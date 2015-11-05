@@ -1,0 +1,171 @@
+#include "stdafx.h"
+#include "MenuScene.hpp"
+
+MenuScene::MenuScene(){
+	m_item_position = sf::Vector2f(SCREEN_WIDTH - ((SCREEN_WIDTH / 100) * 25), SCREEN_HEIGHT - ((SCREEN_HEIGHT / 100) * 30));
+	m_item_spacing = sf::Vector2f(0, 50);
+	m_key_pressed = false;
+
+	loadMedia();
+	loadText();
+
+	m_current_state = SPLASH;
+	m_current_menu_item = M_PLAY;
+	m_play_text.setColor(sf::Color::Yellow);
+
+	cLog::inst()->print("MenuScene Initalised");
+}
+MenuScene::~MenuScene(){
+	cLog::inst()->print("MenuScene Deconstructor Called");
+}
+
+void MenuScene::update(){
+
+}
+void MenuScene::render(sf::RenderWindow &w){
+	switch (m_current_state){
+	case SPLASH:
+		w.draw(s_splash);
+		break;
+	case MAIN:
+		w.draw(s_main_bg);
+		w.draw(s_logo);
+
+		w.draw(m_play_text);
+		w.draw(m_options_text);
+		w.draw(m_exit_text);
+	}
+}
+void MenuScene::handleEvent(sf::Event &e){
+	if (e.type == sf::Event::KeyPressed){
+		switch (e.key.code){
+		case sf::Keyboard::Up:
+			if ((m_current_state == MAIN || m_current_state == OPTIONS) && !m_key_pressed){
+				m_key_pressed = true;
+				moveUp();
+			}
+			break;
+		case sf::Keyboard::Down:
+			if ((m_current_state == MAIN || m_current_state == OPTIONS) && !m_key_pressed){
+				m_key_pressed = true;
+				moveDown();
+			}
+			break;
+		case sf::Keyboard::Return:
+			if ((m_current_state == MAIN || m_current_state == OPTIONS) && !m_key_pressed){
+				m_key_pressed = true;
+				select();
+			}
+			else
+				m_current_state = MAIN;
+			break;
+		case sf::Keyboard::Space:
+			if ((m_current_state == MAIN || m_current_state == OPTIONS) && !m_key_pressed){
+				m_key_pressed = true;
+				select();
+			}
+			else
+				m_current_state = MAIN;
+			break;
+		default:
+			m_key_pressed = false;
+			break;
+		}
+	}
+	else
+		m_key_pressed = false;
+}
+
+void MenuScene::moveUp(){
+	switch (m_current_menu_item){
+	case M_PLAY:
+		break;
+	case M_OPTIONS:
+		m_play_text.setColor(sf::Color::Yellow);
+		m_current_menu_item = M_PLAY;
+
+		m_options_text.setColor(sf::Color::Black);
+		break;
+	case M_EXIT:
+		m_options_text.setColor(sf::Color::Yellow);
+		m_current_menu_item = M_OPTIONS;
+
+		m_exit_text.setColor(sf::Color::Black);
+		break;
+	}
+}
+void MenuScene::moveDown(){
+	switch (m_current_menu_item){
+	case M_PLAY:
+		m_options_text.setColor(sf::Color::Yellow);
+		m_current_menu_item = M_OPTIONS;
+
+		m_play_text.setColor(sf::Color::Black);
+		break;
+	case M_OPTIONS:
+		m_exit_text.setColor(sf::Color::Yellow);
+		m_current_menu_item = M_EXIT;
+
+		m_options_text.setColor(sf::Color::Black);
+		break;
+	case M_EXIT:
+		break;
+	}
+}
+void MenuScene::select(){
+	switch (m_current_menu_item)
+	{
+	case M_PLAY:
+		m_current_state = GAME;
+		break;
+	case M_OPTIONS:
+		m_current_state = OPTIONS;
+		break;
+	case M_EXIT:
+		m_current_state = CLOSE;
+		break;
+	}
+}
+
+void MenuScene::loadMedia(){
+	if (!m_font.loadFromFile("Assets/Font/Golden Age Shad.ttf"))
+		cLog::inst()->print(1, "MenuScene", "Golden Age Shad font failed to load");
+
+	if (!t_splash.loadFromFile("Assets/Splash/Background.png"))
+		cLog::inst()->print(1, "MenuScene", "Splash background texture cannot be loaded");
+	s_splash.setTexture(t_splash);
+	s_splash.setPosition(0, 0);
+
+	if (!t_main_bg.loadFromFile("Assets/Menu/Background.png"))
+		cLog::inst()->print(1, "MenuScene", "Menu background texture cannot be loaded");
+	s_main_bg.setTexture(t_main_bg);
+	s_main_bg.setPosition(0, 0);
+
+	if (!t_logo.loadFromFile("Assets/Menu/Logo.png"))
+		cLog::inst()->print(1, "MenuScene", "Logo texture cannot be loaded");
+	s_logo.setTexture(t_logo);
+	//s_logo.setScale(sf::Vector2f(2.0, 2.0));
+	s_logo.setPosition(SCREEN_WIDTH/2 - t_logo.getSize().x /2, (SCREEN_HEIGHT/100) * 10);
+}
+void MenuScene::loadText(){
+	m_play_text.setFont(m_font);
+	m_play_text.setString("Play");
+	m_play_text.setColor(sf::Color::Black);
+	m_play_text.setCharacterSize(32);
+	m_play_text.setPosition(m_item_position);
+
+	m_options_text.setFont(m_font);
+	m_options_text.setString("Options");
+	m_options_text.setColor(sf::Color::Black);
+	m_options_text.setCharacterSize(32);
+	m_options_text.setPosition(m_item_position + m_item_spacing);
+
+	m_exit_text.setFont(m_font);
+	m_exit_text.setString("Exit");
+	m_exit_text.setColor(sf::Color::Black);
+	m_exit_text.setCharacterSize(32);
+	m_item_spacing = sf::Vector2f(0, 50 * 2);
+	m_exit_text.setPosition(m_item_position + m_item_spacing);
+
+	m_item_spacing = sf::Vector2f(0, 50);
+}
