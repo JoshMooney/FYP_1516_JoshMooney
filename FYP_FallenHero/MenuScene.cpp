@@ -1,5 +1,6 @@
 #include "stdafx.h"
 #include "MenuScene.hpp"
+#include "ResourceManager.hpp"
 
 MenuScene::MenuScene(){
 	m_item_position = sf::Vector2f(SCREEN_WIDTH - ((SCREEN_WIDTH / 100) * 25), SCREEN_HEIGHT - ((SCREEN_HEIGHT / 100) * 30));
@@ -25,11 +26,11 @@ void MenuScene::update(){
 void MenuScene::render(sf::RenderWindow &w){
 	switch (m_current_state){
 	case SPLASH:
-		w.draw(s_splash);
+		w.draw(m_splash_sprt);
 		break;
 	case MAIN:
-		w.draw(s_main_bg);
-		w.draw(s_logo);
+		w.draw(m_main_bg_sprt);
+		w.draw(m_logo_sprt);
 
 		w.draw(m_play_text);
 		w.draw(m_options_text);
@@ -74,6 +75,9 @@ void MenuScene::handleEvent(sf::Event &e){
 	}
 	else
 		m_key_pressed = false;
+}
+void MenuScene::handleInput(){
+
 }
 
 void MenuScene::moveUp(){
@@ -131,21 +135,19 @@ void MenuScene::loadMedia(){
 	if (!m_font.loadFromFile("Assets/Font/Golden Age Shad.ttf"))
 		cLog::inst()->print(1, "MenuScene", "Golden Age Shad font failed to load");
 
-	if (!t_splash.loadFromFile("Assets/Splash/Background.png"))
-		cLog::inst()->print(1, "MenuScene", "Splash background texture cannot be loaded");
-	s_splash.setTexture(t_splash);
-	s_splash.setPosition(0, 0);
+	s_splash = "Assets/Splash/Background.png";
+	m_splash_sprt.setTexture(ResourceManager<sf::Texture>::instance()->get(s_splash));
+	m_splash_sprt.setPosition(0, 0);
 
-	if (!t_main_bg.loadFromFile("Assets/Menu/Background.png"))
-		cLog::inst()->print(1, "MenuScene", "Menu background texture cannot be loaded");
-	s_main_bg.setTexture(t_main_bg);
-	s_main_bg.setPosition(0, 0);
+	s_main_bg = "Assets/Menu/Background.png";
+	m_main_bg_sprt.setTexture(ResourceManager<sf::Texture>::instance()->get(s_main_bg));
+	m_main_bg_sprt.setPosition(0, 0);
 
-	if (!t_logo.loadFromFile("Assets/Menu/Logo.png"))
-		cLog::inst()->print(1, "MenuScene", "Logo texture cannot be loaded");
-	s_logo.setTexture(t_logo);
+	s_logo = "Assets/Menu/Logo.png";
+	m_logo_sprt.setTexture(ResourceManager<sf::Texture>::instance()->get(s_logo));
+	sf::Texture l_texture = ResourceManager<sf::Texture>::instance()->get(s_logo);
 	//s_logo.setScale(sf::Vector2f(2.0, 2.0));
-	s_logo.setPosition(SCREEN_WIDTH/2 - t_logo.getSize().x /2, (SCREEN_HEIGHT/100) * 10);
+	m_logo_sprt.setPosition(SCREEN_WIDTH / 2 - l_texture.getSize().x / 2, (SCREEN_HEIGHT / 100) * 10);
 }
 void MenuScene::loadText(){
 	m_play_text.setFont(m_font);

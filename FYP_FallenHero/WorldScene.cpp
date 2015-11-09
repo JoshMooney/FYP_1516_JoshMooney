@@ -5,18 +5,16 @@
 WorldScene::WorldScene(){
 	m_key_pressed = false;
 	
-	if (!t_main_bg.loadFromFile("Assets/World/map.png"))
-		cLog::inst()->print(1, "World", "Map texture failed to load");
-	s_main_bg.setPosition(0, 0);
-	s_main_bg.setTexture(t_main_bg);
+	s_main_bg_text = "Assets/World/map.png";
+	m_main_bg_sprt.setPosition(0, 0);
+	m_main_bg_sprt.setTexture(ResourceManager<sf::Texture>::instance()->get(s_main_bg_text));
 
-	if (!t_player_icon.loadFromFile("Assets/World/player_icon.png"))
-		cLog::inst()->print(1, "WorldMap", "Player Icon texture could not be loaded");
-	s_player_icon.setScale(.25f, .25f);
-	s_player_icon.setTexture(t_player_icon);
-	s_player_icon.setPosition(200, 200);
+	s_player_icon_text = "Assets/World/player_icon.png";
+	m_player_icon_sprt.setTexture(ResourceManager<sf::Texture>::instance()->get(s_player_icon_text));
+	m_player_icon_sprt.setScale(.25f, .25f);
+	m_player_icon_sprt.setPosition(200, 200);
 
-	m_world_map = WorldMap(sf::Vector2f(0, 0), t_player_icon);
+	m_world_map = WorldMap(sf::Vector2f(0, 0));
 }
 WorldScene::~WorldScene(){
 
@@ -26,7 +24,7 @@ void WorldScene::update(){
 
 }
 void WorldScene::render(sf::RenderWindow &w){
-	w.draw(s_main_bg);		//Renders the background
+	w.draw(m_main_bg_sprt);		//Renders the background
 	//w.draw(s_player_icon);
 	m_world_map.render(w);		//Renders the entire World Map
 

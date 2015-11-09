@@ -4,12 +4,14 @@
 #include "SFML\Graphics.hpp"
 #include "Box2D\Box2D.h"
 
+#include "ResourceManager.hpp"
+
 class Platform {
 public:
 	b2Body *m_box_body;
 	bool m_body_active;
 	sf::Sprite m_sprite;
-	sf::Texture m_texture;
+	string s_texture;
 	sf::Vector2f m_size;
 
 	Platform();

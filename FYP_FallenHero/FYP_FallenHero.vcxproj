@@ -90,6 +90,7 @@
     <ClInclude Include="MenuScene.hpp" />
     <ClInclude Include="Platform.hpp" />
     <ClInclude Include="Player.hpp" />
+    <ClInclude Include="ResourceManager.hpp" />
     <ClInclude Include="Scene.hpp" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />

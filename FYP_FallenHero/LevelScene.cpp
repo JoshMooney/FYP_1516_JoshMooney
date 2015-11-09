@@ -54,6 +54,9 @@ void LevelScene::handleEvent(sf::Event &e, sf::Time dt){
 		}
 	}
 }
+void LevelScene::handleInput(){
+
+}
 
 void LevelScene::loadLevel(string s){
 

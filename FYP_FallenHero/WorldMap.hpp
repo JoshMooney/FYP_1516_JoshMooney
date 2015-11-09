@@ -4,12 +4,13 @@
 
 #include <vector>
 #include "WorldNode.hpp"
+#include "ResourceManager.hpp"
 
 class WorldMap{
 private:
 	enum LEVEL {LVL_1, LVL_2, LVL_3A, LVL_3B, LVL_4, LVL_5, LVL_6};
 	vector<WorldNode> m_map;
-	sf::Texture t_horz_arc, t_vert_arc;
+	string s_horz_arc, s_vert_arc;
 	vector<sf::Sprite> m_arcs;
 	sf::Vector2f m_map_origin;
 	sf::Texture t_player_icon;

@@ -2,6 +2,7 @@
 #define WORLD_NODE_HPP
 #include "stdafx.h"
 #include "SFML/Graphics.hpp"
+#include "ResourceManager.hpp"
 
 #include <string>
 #include <map>
@@ -13,7 +14,7 @@ struct WorldNode {
 	static const int WEST = 3;
 
 	map<string, WorldNode*> m_neighbouring_nodes;
-	sf::Texture m_texture;
+	string s_texture;
 	sf::Sprite m_sprite;
 	string m_lvl_id;
 	bool m_is_locked;
@@ -25,7 +26,6 @@ struct WorldNode {
 		m_is_complete = false;
 		m_sprite.setPosition(pos);
 		loadMedia();
-		m_sprite.setTexture(m_texture);
 	}
 	WorldNode(string id, sf::Vector2f pos, bool locked, bool complete){
 		m_lvl_id = id;
@@ -33,20 +33,19 @@ struct WorldNode {
 		m_is_complete = complete;
 		m_sprite.setPosition(pos);
 		loadMedia();
-		m_sprite.setTexture(m_texture);
 	}
-	WorldNode(string id, sf::Vector2f pos, bool locked, bool complete, sf::Texture text){
+	WorldNode(string id, sf::Vector2f pos, bool locked, bool complete, string text){
 		m_lvl_id = id;
 		m_is_locked = locked;
 		m_is_complete = complete;
 		m_sprite.setPosition(pos);
-		m_texture = text;
-		m_sprite.setTexture(m_texture);
+		s_texture = text;
+		m_sprite.setTexture(ResourceManager<sf::Texture>::instance()->get(s_texture));
 	}
 
 	void loadMedia(){
-		if (!m_texture.loadFromFile("Assets/World/node.png"))
-			cLog::inst()->print(2, "WorldNode", "Texture failed to load");
+		s_texture = "Assets/World/node.png";
+		m_sprite.setTexture(ResourceManager<sf::Texture>::instance()->get(s_texture));
 	}
 	void addNeighbour(string s, WorldNode* n)	{
 		m_neighbouring_nodes[s] = n;

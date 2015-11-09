@@ -9,8 +9,8 @@
 class WorldScene : public Scene{
 private:
 	WorldMap m_world_map;
-	sf::Texture t_main_bg, t_player_icon;
-	sf::Sprite s_main_bg, s_player_icon;
+	string s_main_bg_text, s_player_icon_text;
+	sf::Sprite m_main_bg_sprt, m_player_icon_sprt;
 	bool m_key_pressed;
 public:
 	enum STATE {MAP, EXIT};

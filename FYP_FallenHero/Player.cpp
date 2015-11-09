@@ -8,10 +8,10 @@ Player::Player(b2World &m_world){
 	m_speed = 5.0f;
 	m_direction = 1;	//true = 1 = Looing right and vice versa
 
-	if (!e_texture.loadFromFile("Assets/Game/player.png"))
-		cLog::inst()->print(2, "Player", "Texture Failed to load");
-	setTexture(e_texture);
-	m_text_size = e_texture.getSize();
+	e_texture = "Assets/Game/player.png";
+	setTexture(ResourceManager<sf::Texture>::instance()->get(e_texture));
+	sf::Texture l_texture = ResourceManager<sf::Texture>::instance()->get(e_texture);
+	m_text_size = l_texture.getSize();
 	m_acceleration = 1200;
 	m_deceleration = 180;
 

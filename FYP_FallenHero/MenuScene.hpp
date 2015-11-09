@@ -5,8 +5,8 @@
 
 class MenuScene : public Scene{
 private:
-	sf::Texture t_splash, t_main_bg, t_logo;
-	sf::Sprite s_splash, s_main_bg, s_logo;
+	string s_splash, s_main_bg, s_logo;
+	sf::Sprite m_splash_sprt, m_main_bg_sprt, m_logo_sprt;
 	sf::Font m_font;
 	sf::Text m_play_text, m_options_text, m_exit_text;
 	sf::Vector2f m_item_position;

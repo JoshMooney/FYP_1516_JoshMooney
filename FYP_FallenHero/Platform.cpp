@@ -17,10 +17,9 @@ Platform::Platform(sf::Vector2f position, sf::Vector2f size, b2World &m_world) {
 	shape.SetAsBox(m_size.x * 0.5f, m_size.y * 0.5f);
 	m_box_body->CreateFixture(&shape, 0.0f);
 
-	if (!m_texture.loadFromFile("Assets/Game/platform.png"))
-		cLog::inst()->print(2, "Platform", "Texture Failed to load");
+	s_texture = "Assets/Game/platform.png";
+	m_sprite.setTexture(ResourceManager<sf::Texture>::instance()->get(s_texture));
 
-	m_sprite.setTexture(m_texture);
 	sf::Vector2<int> l_int_size = sf::Vector2<int>((int)m_size.x, (int)m_size.y);
 	m_sprite.setTextureRect(sf::IntRect(sf::Vector2<int>(0, 0), l_int_size));
 	m_sprite.setPosition(sf::Vector2f(position.x, position.y));

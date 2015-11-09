@@ -8,30 +8,26 @@ WorldMap::WorldMap(sf::Vector2f origin_pos){
 	loadMedia();
 	createMap();
 
-	if (!t_player_icon.loadFromFile("Assets/World/player_icon.png"))
-		cLog::inst()->print(1, "WorldMap", "Player Icon texture could not be loaded");
+	s_player_icon.setTexture(ResourceManager<sf::Texture>::instance()->get("Assets/World/player_icon.png"));
 	s_player_icon.setScale(.25f, .25f);
-	s_player_icon.setTexture(t_player_icon);
-	s_player_icon.setPosition(200, 200);
+	s_player_icon.setPosition(500, 200);
 }
 WorldMap::WorldMap(sf::Vector2f origin_pos, sf::Texture node){
 	m_map_origin = origin_pos;
 	loadMedia();
 	createMap();
 
-	if (!t_player_icon.loadFromFile("Assets/World/player_icon.png"))
-		cLog::inst()->print(1, "WorldMap", "Player Icon texture could not be loaded");
 	s_player_icon.setScale(.25f, .25f);
 	s_player_icon.setTexture(node);
-	s_player_icon.setPosition(200, 200);
+	s_player_icon.setPosition(500, 200);
 }
 
 void WorldMap::loadMedia(){
-	if (!t_horz_arc.loadFromFile("Assets/World/arc_horz.png"))
-		cLog::inst()->print(1, "WorldMap", "Arc texture could not be loaded");
-	if (!t_vert_arc.loadFromFile("Assets/World/arc_vert.png"))
-		cLog::inst()->print(1, "WorldMap", "Arc texture could not be loaded");
+	s_horz_arc = "Assets/World/arc_horz.png";
+	s_vert_arc = "Assets/World/arc_vert.png";
 
+	ResourceManager<sf::Texture>::instance()->get(s_horz_arc);
+	ResourceManager<sf::Texture>::instance()->get(s_vert_arc);
 }
 void WorldMap::createMap(){/*
 	m_map.push_back(WorldNode("lvl_1", sf::Vector2f(0 + m_map_origin.x, 0 + m_map_origin.y), false));
@@ -48,7 +44,7 @@ void WorldMap::createMap(){/*
 sf::Vector2f WorldMap::findArcPosition(WorldNode* node){
 	sf::Vector2f arc_pos;
 	sf::Vector2f node_pos = node->m_sprite.getPosition();
-	sf::Vector2u node_size = node->m_texture.getSize();
+	sf::Vector2u node_size = ResourceManager<sf::Texture>::instance()->get(node->s_texture).getSize();
 	arc_pos = sf::Vector2f(node_pos.x + (node_size.x / 2), node_pos.y + (node_size.y / 2));
 
 	return arc_pos;
