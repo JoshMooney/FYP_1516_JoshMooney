@@ -87,6 +87,9 @@
     <ClInclude Include="XBOXController.hpp">
       <Filter>Header Files\Util</Filter>
     </ClInclude>
+    <ClInclude Include="vCamera.hpp">
+      <Filter>Header Files\Util</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -123,6 +126,9 @@
       <Filter>Source Files\Map</Filter>
     </ClCompile>
     <ClCompile Include="XBOXController.cpp">
+      <Filter>Source Files\Util</Filter>
+    </ClCompile>
+    <ClCompile Include="vCamera.cpp">
       <Filter>Source Files\Util</Filter>
     </ClCompile>
   </ItemGroup>

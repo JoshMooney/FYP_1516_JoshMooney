@@ -1,8 +1,10 @@
 #include "stdafx.h"
 #include "LevelScene.hpp"
+#include "vHelper.hpp"
 
-LevelScene::LevelScene()	{
+LevelScene::LevelScene(){
 	m_level_active = true;
+	m_camera = vCamera(sf::Vector2f(SCREEN_WIDTH, SCREEN_HEIGHT));
 
 }
 LevelScene::LevelScene(string lvl_name, Player *p){
@@ -19,16 +21,22 @@ void LevelScene::update(){
 }
 void LevelScene::update(sf::Time dt){
 	m_player->update(dt);
-	
+	m_camera.setCenter(m_camera.getPlayerOffset(vHelper::toSF(m_player->getCenter())));
 
 }
 void LevelScene::render(sf::RenderWindow &w){
+	//Render Background
+
+	w.setView(m_camera);
 	w.draw(*m_player);
 	//for (int i = 0; i < m_platform.size(); i++){
 	//	m_platform[i].render(w);
 	//}
 	m_plat1.render(w);
 	m_plat2.render(w);
+
+
+	w.setView(w.getDefaultView());	//Reset the windows view before exiting renderer
 }
 void LevelScene::handleEvent(sf::Event &e){
 	cLog::inst()->print(1, "LevelScene", "Deprecated handleEvent called");

@@ -29,6 +29,7 @@ public:
 	bool getDirection()	{ return m_direction; }
 	void setDirection(float d)	{ m_direction = d; };
 	bool isJumping()	{ return m_is_jumping; }
+	b2Vec2 getCenter()	{ return e_box_body->GetPosition(); }
 
 	inline float clamp(float x, float min, float max);
 	void alineSprite();

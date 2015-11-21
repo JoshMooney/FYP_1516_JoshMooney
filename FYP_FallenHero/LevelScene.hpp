@@ -8,6 +8,7 @@
 #include "Player.hpp"
 #include "Platform.hpp"
 #include "XBOXController.hpp"
+#include "vCamera.hpp"
 
 class LevelScene : public Scene{
 private:
@@ -16,6 +17,7 @@ private:
 	//vector<Platform> m_platform;
 	Platform m_plat1;
 	Platform m_plat2;
+	vCamera m_camera;
 public:
 	LevelScene();
 	LevelScene(XBOXController *controller);
@@ -31,8 +33,10 @@ public:
 
 	void loadLevel(string s);
 	void setPlayer(Player* p)	{ m_player = p; }
+	vCamera* getCamera()	{ return &m_camera; }
 
 	void createPlatforms(b2World *l_world);
+	
 };
 
 #endif
