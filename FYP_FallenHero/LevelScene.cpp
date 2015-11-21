@@ -3,6 +3,7 @@
 
 LevelScene::LevelScene()	{
 	m_level_active = true;
+
 }
 LevelScene::LevelScene(string lvl_name, Player *p){
 	loadLevel(lvl_name);
@@ -18,6 +19,7 @@ void LevelScene::update(){
 }
 void LevelScene::update(sf::Time dt){
 	m_player->update(dt);
+	
 
 }
 void LevelScene::render(sf::RenderWindow &w){
@@ -54,8 +56,22 @@ void LevelScene::handleEvent(sf::Event &e, sf::Time dt){
 		}
 	}
 }
-void LevelScene::handleInput(){
+void LevelScene::handleInput(XBOXController &controller){
+	if (controller.isPressed["D_UP"] || controller.isPressed["A"]){
+		m_player->jump();
+	}
+	if (controller.isPressed["D_RIGHT"]){
+		m_player->moveRight();
+	}
+	if (controller.isPressed["D_LEFT"]){
+		m_player->moveLeft();
+	}
+	if (controller.isPressed["SELECT"]){
+		
+	}
 
+	/*if (controller.isIdle())
+		m_key_pressed = false;*/
 }
 
 void LevelScene::loadLevel(string s){

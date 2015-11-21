@@ -7,6 +7,7 @@
 #include <vector>
 #include "Player.hpp"
 #include "Platform.hpp"
+#include "XBOXController.hpp"
 
 class LevelScene : public Scene{
 private:
@@ -17,6 +18,7 @@ private:
 	Platform m_plat2;
 public:
 	LevelScene();
+	LevelScene(XBOXController *controller);
 	LevelScene(string lvl_name, Player *p);
 	~LevelScene();
 
@@ -25,7 +27,7 @@ public:
 	void render(sf::RenderWindow &w);
 	void handleEvent(sf::Event &e);		//Deprecated due to addition of delta time
 	void handleEvent(sf::Event &e, sf::Time dt);
-	void handleInput();
+	void handleInput(XBOXController &controller);
 
 	void loadLevel(string s);
 	void setPlayer(Player* p)	{ m_player = p; }

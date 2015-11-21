@@ -98,6 +98,7 @@
     <ClInclude Include="WorldMap.hpp" />
     <ClInclude Include="WorldNode.hpp" />
     <ClInclude Include="WorldScene.hpp" />
+    <ClInclude Include="XBOXController.hpp" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="cLog.cpp" />
@@ -114,6 +115,7 @@
     </ClCompile>
     <ClCompile Include="WorldMap.cpp" />
     <ClCompile Include="WorldScene.cpp" />
+    <ClCompile Include="XBOXController.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

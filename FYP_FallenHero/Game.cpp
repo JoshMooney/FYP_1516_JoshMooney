@@ -5,6 +5,8 @@ Game::Game() {
 	m_window = new sf::RenderWindow(sf::VideoMode(SCREEN_WIDTH, SCREEN_HEIGHT, 32), "Fallen Hero", sf::Style::Titlebar);
 	m_world = new b2World(GRAVITY);
 	isRunning = true;
+	m_xbox_controller = XBOXController();
+	m_xbox_controller.UpdateButtons();
 	cLog::inst()->print("Game class initialised");
 
 	m_menu_scene = new MenuScene();
@@ -12,8 +14,8 @@ Game::Game() {
 	m_world_scene = new WorldScene();
 
 	//Starting scene
-	m_current_state = WORLD;
-	m_current_scene = m_world_scene;
+	m_current_state = MENU;
+	m_current_scene = m_menu_scene;
 
 	m_time_per_frame = sf::seconds(1.f / 60.f);
 	m_delta_time = sf::Time::Zero;
@@ -25,22 +27,31 @@ Game::~Game(){
 }
 
 void Game::run(){
+	bool controller_connected;
 	while (isRunning) {
 		sf::Event l_event;
 		m_window->pollEvent(l_event);
+		controller_connected = m_xbox_controller.isConnected();
+		if (controller_connected)	m_xbox_controller.UpdateButtons();
 		if (m_current_state == LEVEL){	//If Level	
 			m_world->Step(B2_TIMESTEP, VEL_ITER, POS_ITER);
 			m_frame_time = m_delta_clock.restart();
 			m_delta_time += m_frame_time;
 			while (m_delta_time >= m_time_per_frame){
-				m_level_scene->handleEvent(l_event, m_time_per_frame);
+				if (controller_connected)
+					m_level_scene->handleInput(m_xbox_controller);
+				else
+					m_level_scene->handleEvent(l_event, m_time_per_frame);
 				m_level_scene->update(m_time_per_frame);
 
 				m_delta_time -= m_time_per_frame;
 			}
 		}
 		else{
-    		m_current_scene->handleEvent(l_event);
+			if (controller_connected)
+				m_current_scene->handleInput(m_xbox_controller);
+			else
+				m_current_scene->handleEvent(l_event);
 			m_current_scene->update();
 		}
 

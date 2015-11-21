@@ -22,7 +22,7 @@ public:
 	void update();
 	void render(sf::RenderWindow &w);
 	void handleEvent(sf::Event &e);
-	void handleInput();
+	void handleInput(XBOXController &controller);
 };
 
 #endif

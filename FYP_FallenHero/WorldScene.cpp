@@ -1,7 +1,6 @@
 #include "stdafx.h"
 #include "WorldScene.hpp"
 
-
 WorldScene::WorldScene(){
 	m_key_pressed = false;
 	
@@ -67,7 +66,7 @@ void WorldScene::handleEvent(sf::Event &e){
 	}
 }
 
-void WorldScene::handleInput(){
+void WorldScene::handleInput(XBOXController &controller){
 	if (s_key_map["UP"] && !s_prev_key_map["UP"]){
 
 	}

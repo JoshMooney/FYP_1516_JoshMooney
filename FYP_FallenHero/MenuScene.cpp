@@ -38,35 +38,31 @@ void MenuScene::render(sf::RenderWindow &w){
 	}
 }
 void MenuScene::handleEvent(sf::Event &e){
-	if (e.type == sf::Event::KeyPressed){
+		if (e.type == sf::Event::KeyReleased){
 		switch (e.key.code){
 		case sf::Keyboard::Up:
-			if ((m_current_state == MAIN || m_current_state == OPTIONS) && !m_key_pressed){
+			if (!m_key_pressed){
 				m_key_pressed = true;
 				moveUp();
 			}
 			break;
 		case sf::Keyboard::Down:
-			if ((m_current_state == MAIN || m_current_state == OPTIONS) && !m_key_pressed){
+			if (!m_key_pressed){
 				m_key_pressed = true;
 				moveDown();
 			}
 			break;
 		case sf::Keyboard::Return:
-			if ((m_current_state == MAIN || m_current_state == OPTIONS) && !m_key_pressed){
+			if (!m_key_pressed){
 				m_key_pressed = true;
 				select();
 			}
-			else
-				m_current_state = MAIN;
 			break;
 		case sf::Keyboard::Space:
-			if ((m_current_state == MAIN || m_current_state == OPTIONS) && !m_key_pressed){
+			if (!m_key_pressed){
 				m_key_pressed = true;
 				select();
 			}
-			else
-				m_current_state = MAIN;
 			break;
 		default:
 			m_key_pressed = false;
@@ -76,8 +72,27 @@ void MenuScene::handleEvent(sf::Event &e){
 	else
 		m_key_pressed = false;
 }
-void MenuScene::handleInput(){
-
+void MenuScene::handleInput(XBOXController &controller){
+	if (controller.isPressed["D_UP"]){
+		if (!m_key_pressed){
+			m_key_pressed = true;
+			moveUp();
+		}
+	}
+	if (controller.isPressed["D_DOWN"]){
+		if (!m_key_pressed){
+			m_key_pressed = true;
+			moveDown();
+		}
+	}
+	if (controller.isPressed["A"]){
+		if (!m_key_pressed){
+			m_key_pressed = true;
+			select();
+		}
+	}
+	if (controller.isIdle())
+		m_key_pressed = false;
 }
 
 void MenuScene::moveUp(){
@@ -117,18 +132,21 @@ void MenuScene::moveDown(){
 	}
 }
 void MenuScene::select(){
-	switch (m_current_menu_item)
-	{
-	case M_PLAY:
-		m_current_state = GAME;
-		break;
-	case M_OPTIONS:
-		m_current_state = OPTIONS;
-		break;
-	case M_EXIT:
-		m_current_state = CLOSE;
-		break;
-	}
+	if (m_current_state == MAIN)
+		switch (m_current_menu_item)
+		{
+		case M_PLAY:
+			m_current_state = GAME;
+			break;
+		case M_OPTIONS:
+			m_current_state = OPTIONS;
+			break;
+		case M_EXIT:
+			m_current_state = CLOSE;
+			break;
+		}
+	if (m_current_state == SPLASH)
+		m_current_state = MAIN;
 }
 
 void MenuScene::loadMedia(){

@@ -2,10 +2,10 @@
 #include "Player.hpp"
 
 Player::Player(b2World &m_world){
-	m_jump_force = 15.0f;
+	m_jump_force = 50.0f;
 	m_is_moving = false;
 	m_is_jumping = false;
-	m_speed = 5.0f;
+	m_speed = 10.0f;
 	m_direction = 1;	//true = 1 = Looing right and vice versa
 
 	e_texture = "Assets/Game/player.png";

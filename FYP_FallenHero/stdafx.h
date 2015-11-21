@@ -11,6 +11,7 @@
 
 #include <stdio.h>
 #include <tchar.h>
+#include <windows.h>
 
 const int SCREEN_WIDTH = 960;
 const int SCREEN_HEIGHT = 640;
