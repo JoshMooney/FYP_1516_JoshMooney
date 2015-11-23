@@ -10,12 +10,13 @@
 #include "MenuScene.hpp"
 #include "Player.hpp"
 #include "XBOXController.hpp"
+#include "STP\TMXLoader.hpp"
 
 class Game {
 private:
 	XBOXController m_xbox_controller;
 	const float B2_TIMESTEP = 1.0f / 60.0f;
-	const b2Vec2 GRAVITY = b2Vec2(0, 7.0f);
+	const b2Vec2 GRAVITY = b2Vec2(0, 5.0f);
 	const int VEL_ITER = 6;
 	const int POS_ITER = 2;
 

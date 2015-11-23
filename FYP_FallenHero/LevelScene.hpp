@@ -9,9 +9,11 @@
 #include "Platform.hpp"
 #include "XBOXController.hpp"
 #include "vCamera.hpp"
+#include "STP\TMXLoader.hpp"
 
 class LevelScene : public Scene{
 private:
+	tmx::TileMap *tiled_map;
 	Player *m_player;
 	bool m_level_active;
 	//vector<Platform> m_platform;
