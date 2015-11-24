@@ -14,6 +14,7 @@
 class Game {
 private:
 	XBOXController m_xbox_controller;
+	bool controller_connected, previous_connected;
 	const float B2_TIMESTEP = 1.0f / 60.0f;
 	const b2Vec2 GRAVITY = b2Vec2(0, 7.0f);
 	const int VEL_ITER = 6;
@@ -46,6 +47,7 @@ public:
 	void render();
 
 	void createPlayer();
+	bool checkController();
 };
 
 #endif

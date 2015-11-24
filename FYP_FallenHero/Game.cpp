@@ -27,34 +27,18 @@ Game::~Game(){
 }
 
 void Game::run(){
-	bool controller_connected;
 	while (isRunning) {
 		sf::Event l_event;
 		m_window->pollEvent(l_event);
-		controller_connected = m_xbox_controller.isConnected();
+		controller_connected = checkController();		//Checks controller connections and compaires to previous state.
 		if (controller_connected)	m_xbox_controller.UpdateButtons();
-		if (m_current_state == LEVEL){	//If Level	
-			m_world->Step(B2_TIMESTEP, VEL_ITER, POS_ITER);
-			m_frame_time = m_delta_clock.restart();
-			m_delta_time += m_frame_time;
-			while (m_delta_time >= m_time_per_frame){
-				if (controller_connected)
-					m_level_scene->handleInput(m_xbox_controller);
-				else
-					m_level_scene->handleEvent(l_event, m_time_per_frame);
-				m_level_scene->update(m_time_per_frame);
-
-				m_delta_time -= m_time_per_frame;
-			}
-		}
-		else{
-			if (controller_connected)
-				m_current_scene->handleInput(m_xbox_controller);
-			else
-				m_current_scene->handleEvent(l_event);
-			m_current_scene->update();
-		}
-
+		if (m_current_state == LEVEL){	m_world->Step(B2_TIMESTEP, VEL_ITER, POS_ITER);	}
+		
+		if (controller_connected)	
+			m_current_scene->handleInput(m_xbox_controller);
+		else
+			m_current_scene->handleEvent(l_event);
+		m_current_scene->update();
 
 		render();
 
@@ -72,24 +56,23 @@ void Game::render(){
 
 	m_current_scene->render(*m_window);
 	m_window->display();
-	
-	/*
-	switch (m_current_state){
-	case MENU:
-		m_menu_scene->render(*m_window);
-		break;
-	case LEVEL:
-		m_level_scene->render(*m_window);
-		break;
-	case WORLD:
-		m_world_scene->render(*m_window);
-		break;
-	}
-	*/
 }
 void Game::createPlayer(){
 	m_player = new Player(*m_world);
 	m_level_scene->setPlayer(m_player);
+}
+
+bool Game::checkController() {
+	bool is_connected = m_xbox_controller.isConnected();
+	if (is_connected && !previous_connected) {
+		previous_connected = is_connected;
+	}
+	if (!is_connected && previous_connected) {
+		//Throw Controller Disconnect error.
+		previous_connected = is_connected;
+	}
+
+	return is_connected;
 }
 
 #pragma region Notes:

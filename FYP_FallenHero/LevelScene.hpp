@@ -18,6 +18,7 @@ private:
 	Platform m_plat1;
 	Platform m_plat2;
 	vCamera m_camera;
+	sf::Time m_time_per_frame;
 public:
 	LevelScene();
 	LevelScene(XBOXController *controller);
