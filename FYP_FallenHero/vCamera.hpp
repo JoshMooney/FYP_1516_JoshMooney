@@ -9,6 +9,9 @@
 
 class vCamera : public sf::View {
 private:
+	bool lock_x, lock_y;
+	bool prev_lock_x, prev_lock_y;
+	float lock_x_value, lock_y_value;
 	bool out_of_bounds = false;
 	float XAxisOffset;
 	sf::FloatRect m_bounds;
@@ -16,6 +19,7 @@ public:
 	vCamera();
 	vCamera(sf::Vector2f screen_size);
 	vCamera(sf::Vector2f screen_size, sf::FloatRect bounds);
+	vCamera(sf::Vector2f screen_size, sf::FloatRect bounds, pair<bool, bool> locked_axis);
 	~vCamera();
 
 	sf::Vector2f getPlayerOffset(sf::Vector2f player_center);
@@ -23,7 +27,8 @@ public:
 	sf::FloatRect checkBounds(sf::Vector2f player_center);
 	sf::FloatRect getRectViewport();
 	void addBounds(sf::FloatRect bounds) { m_bounds = bounds; }
-	
+	void LockX(bool b);
+	void LockY(bool b);
 	
 };
 

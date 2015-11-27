@@ -63,6 +63,19 @@ void LevelScene::handleEvent(sf::Event &e){
 			m_player->moveLeft();
 			break;
 #pragma endregion
+		case sf::Keyboard::Q:
+			m_camera.LockX(false);
+			break;
+		case sf::Keyboard::E:
+			m_camera.LockX(true);
+			break;
+		case sf::Keyboard::Z:
+			m_camera.LockY(false);
+			break;
+		case sf::Keyboard::C:
+			m_camera.LockY(true);
+			break;
+
 		case sf::Keyboard::Return:
 			break;
 		case sf::Keyboard::Space:
