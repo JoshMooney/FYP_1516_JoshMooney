@@ -15,12 +15,14 @@ private:
 	bool out_of_bounds = false;
 	float XAxisOffset;
 	sf::FloatRect m_bounds;
+	sf::Vector2f SCREEN_SIZE;
 public:
 	vCamera();
 	vCamera(sf::Vector2f screen_size);
 	vCamera(sf::Vector2f screen_size, sf::FloatRect bounds);
 	vCamera(sf::Vector2f screen_size, sf::FloatRect bounds, pair<bool, bool> locked_axis);
 	~vCamera();
+	void refresh(sf::Vector2f player_center);
 
 	sf::Vector2f getPlayerOffset(sf::Vector2f player_center);
 

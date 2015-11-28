@@ -5,15 +5,16 @@ Player::Player(b2World &m_world){
 	m_jump_force = 50.0f;
 	m_is_moving = false;
 	m_is_jumping = false;
-	m_speed = 25.0f;
+	m_speed = 50.0f;
 	m_direction = 1;	//true = 1 = Looing right and vice versa
+	speedFactor = 0;
 
 	e_texture = "Assets/Game/player.png";
 	setTexture(ResourceManager<sf::Texture>::instance()->get(e_texture));
 	sf::Texture l_texture = ResourceManager<sf::Texture>::instance()->get(e_texture);
 	m_text_size = l_texture.getSize();
 	m_acceleration = 1200;
-	m_deceleration = 180;
+	m_deceleration = 800;
 
 	b2BodyDef myBodyDef;
 	myBodyDef.type = b2_dynamicBody; //this will be a dynamic body
@@ -27,7 +28,14 @@ Player::Player(b2World &m_world){
 	//Define the shape of the body
 	b2PolygonShape shape;
 	shape.SetAsBox(m_text_size.x * 0.5f, m_text_size.y * 0.5f);
-	e_box_body->CreateFixture(&shape, 0.0f);
+
+	b2FixtureDef myFixtureDef;
+	myFixtureDef.density = 1.0f;
+	myFixtureDef.friction = 1.5f;
+	myFixtureDef.shape = &shape;
+
+	e_box_body->CreateFixture(&myFixtureDef);
+	//e_box_body->CreateFixture(&shape, 0.0f);
 
 	alineSprite();
 }
@@ -41,19 +49,40 @@ Player::~Player(){
 
 void Player::update(sf::Time dt){
 	alineSprite();
+	Idle();
+}
+void Player::Idle() {
+	if (!m_is_moving) {
+		if (speedFactor > 0)
+			speedFactor -= 0.02f;
+		if (speedFactor < 0)
+			speedFactor += 0.02f;
+		e_box_body->SetLinearVelocity(b2Vec2(0, e_box_body->GetLinearVelocity().y));
+	}
 }
 void Player::moveLeft(){
 	m_direction = 0;
+	if (speedFactor > -1.f)
+		speedFactor -= 0.02;
+	else if (speedFactor < -1.f)
+		speedFactor = -1.f;
 
-	float newXVel = clamp(e_box_body->GetLinearVelocity().x - (m_acceleration * DELTA_TIME.asSeconds()), -m_speed, m_speed);
-	e_box_body->SetLinearVelocity(b2Vec2(newXVel, e_box_body->GetLinearVelocity().y));
+	e_box_body->SetLinearVelocity(b2Vec2(m_speed * speedFactor, e_box_body->GetLinearVelocity().y));
+	//float newXVel = clamp(e_box_body->GetLinearVelocity().x - (m_acceleration * DELTA_TIME.asSeconds()), -m_speed, m_speed);
+	//float newXVel = clamp(e_box_body->GetLinearVelocity().x - (m_speed * DELTA_TIME.asSeconds()), -m_deceleration, m_acceleration);
+	//e_box_body->SetLinearVelocity(b2Vec2(newXVel, e_box_body->GetLinearVelocity().y));
 	m_is_moving = true;
 }
 void Player::moveRight(){
 	m_direction = 1;
+	if (speedFactor < 1.f)
+		speedFactor += 0.02f;
+	else if (speedFactor > 1.f)
+		speedFactor = 1.f;
 
-	float newXVel = clamp(e_box_body->GetLinearVelocity().x + (m_acceleration * DELTA_TIME.asSeconds()), -m_speed, m_speed);
-	e_box_body->SetLinearVelocity(b2Vec2(newXVel, e_box_body->GetLinearVelocity().y));
+	e_box_body->SetLinearVelocity(b2Vec2(m_speed * speedFactor, e_box_body->GetLinearVelocity().y));
+	//float newXVel = clamp(e_box_body->GetLinearVelocity().x + (m_speed * DELTA_TIME.asSeconds()), -m_deceleration, m_acceleration);
+	//e_box_body->SetLinearVelocity(b2Vec2(newXVel, e_box_body->GetLinearVelocity().y));
 	m_is_moving = true;
 }
 void Player::jump(){
@@ -61,6 +90,12 @@ void Player::jump(){
 	//e_box_body->SetLinearVelocity(b2Vec2(e_box_body->GetLinearVelocity().x, m_acceleration * DELTA_TIME.asSeconds()), -m_jump_force, m_jump_force);
 	e_box_body->SetLinearVelocity(b2Vec2(e_box_body->GetLinearVelocity().x, e_box_body->GetLinearVelocity().y - newYVel));
 }
+void Player::reset() {
+	m_direction = 1;	//true = 1 = Looing right and vice versa
+	speedFactor = 0;
+	e_box_body->SetLinearVelocity(b2Vec2(0, 0));
+}
+
 void Player::alineSprite(){
 	b2Vec2 box_pos = e_box_body->GetPosition();
 	sf::Vector2f sf_box_pos = sf::Vector2f(box_pos.x - (m_text_size.x * 0.5f), box_pos.y - (m_text_size.y * 0.5f));

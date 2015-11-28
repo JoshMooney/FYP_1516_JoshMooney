@@ -11,6 +11,7 @@
 #include "vCamera.hpp"
 #include "Exit.hpp"
 #include "STP\TMXLoader.hpp"
+#include "vHelper.hpp"
 
 class LevelScene : public Scene{
 private:
@@ -23,6 +24,7 @@ private:
 	vCamera m_camera;
 	sf::Time m_time_per_frame;
 	Exit m_exit;
+	string path, format;
 public:
 	LevelScene();
 	LevelScene(XBOXController *controller);
@@ -36,7 +38,7 @@ public:
 	void handleEvent(sf::Event &e, sf::Time dt);
 	void handleInput(XBOXController &controller);
 
-	void loadLevel(string s);
+	void loadLevel(string lvl_name);
 	void setPlayer(Player* p)	{ m_player = p; }
 	vCamera* getCamera()	{ return &m_camera; }
 

@@ -5,6 +5,8 @@ vCamera::vCamera(){
 
 }
 vCamera::vCamera(sf::Vector2f screen_size){
+	SCREEN_SIZE = screen_size;
+
 	reset(sf::FloatRect{ 0, 0, screen_size.x, screen_size.y });
 	setViewport(sf::FloatRect{ 0, 0, 1.0f, 1.0f });
 	lock_x = false;
@@ -13,6 +15,8 @@ vCamera::vCamera(sf::Vector2f screen_size){
 	prev_lock_y = lock_y;
 }
 vCamera::vCamera(sf::Vector2f screen_size, sf::FloatRect bounds) {
+	SCREEN_SIZE = screen_size;
+
 	reset(sf::FloatRect{ 0, 0, screen_size.x, screen_size.y });
 	setViewport(sf::FloatRect{ 0, 0, 1.0f, 1.0f });
 	m_bounds = bounds;
@@ -23,6 +27,8 @@ vCamera::vCamera(sf::Vector2f screen_size, sf::FloatRect bounds) {
 }
 
 vCamera::vCamera(sf::Vector2f screen_size, sf::FloatRect bounds, pair<bool, bool> locked_axis) {
+	SCREEN_SIZE = screen_size;
+
 	reset(sf::FloatRect{ 0, 0, screen_size.x, screen_size.y });
 	setViewport(sf::FloatRect{ 0, 0, 1.0f, 1.0f });
 	m_bounds = bounds;
@@ -34,6 +40,19 @@ vCamera::vCamera(sf::Vector2f screen_size, sf::FloatRect bounds, pair<bool, bool
 
 vCamera::~vCamera(){
 
+}
+
+void vCamera::refresh(sf::Vector2f player_center){
+	reset(sf::FloatRect{ 0, 0, SCREEN_SIZE.x, SCREEN_SIZE.y });
+	setViewport(sf::FloatRect{ 0, 0, 1.0f, 1.0f });
+
+	XAxisOffset = 0;
+	lock_x = false;
+	lock_y = false;
+	prev_lock_x = false;
+	prev_lock_y = false;
+
+	setCenter(getPlayerOffset(player_center));
 }
 
 sf::Vector2f vCamera::getPlayerOffset(sf::Vector2f player_center) {

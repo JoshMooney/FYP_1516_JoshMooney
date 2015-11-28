@@ -1,6 +1,5 @@
 #include "stdafx.h"
 #include "LevelScene.hpp"
-#include "vHelper.hpp"
 
 LevelScene::LevelScene(){
 	m_level_complete = false;
@@ -9,6 +8,8 @@ LevelScene::LevelScene(){
 	m_time_per_frame = sf::seconds(1.f / 30.0f);
 	m_exit = Exit(sf::Vector2f(1100, 350));
 	tiled_map = new tmx::TileMap("test.tmx");
+	path = "Assets/Levels/";
+	format = ".tmx";
 }
 LevelScene::LevelScene(string lvl_name, Player *p){
 	loadLevel(lvl_name);
@@ -51,9 +52,6 @@ void LevelScene::render(sf::RenderWindow &w){
 	w.setView(w.getDefaultView());	//Reset the windows view before exiting renderer
 }
 
-/*void LevelScene::handleEvent(sf::Event &e){
-	//cLog::inst()->print(1, "LevelScene", "Deprecated handleEvent called");
-}*/
 void LevelScene::handleEvent(sf::Event &e){
 	if (e.type == sf::Event::KeyPressed){
 		switch (e.key.code){
@@ -89,6 +87,29 @@ void LevelScene::handleEvent(sf::Event &e){
 			break;
 		}
 	}
+
+	if (e.type == sf::Event::KeyReleased) {
+		switch (e.key.code) {
+		#pragma region Movement Keys
+		case sf::Keyboard::Up:
+			
+			break;
+		case sf::Keyboard::Down: 
+
+			break;
+		case sf::Keyboard::Right:
+			m_player->setIfMoving(false);
+			break;
+		case sf::Keyboard::Left:
+			m_player->setIfMoving(false);
+			break;
+		#pragma endregion
+		case sf::Keyboard::Return:
+			break;
+		case sf::Keyboard::Space:
+			break;
+		}
+	}
 }
 void LevelScene::handleInput(XBOXController &controller){
 	if (controller.isPressed["D_UP"] || controller.isPressed["A"]){
@@ -108,8 +129,10 @@ void LevelScene::handleInput(XBOXController &controller){
 		m_key_pressed = false;*/
 }
 
-void LevelScene::loadLevel(string s){
-	cLog::inst()->print(s);
+void LevelScene::loadLevel(string lvl_name){
+	cLog::inst()->print(lvl_name);
+	delete tiled_map;
+	tiled_map = new tmx::TileMap(path + lvl_name + format);
 }
 
 void LevelScene::createPlatforms(b2World *l_world){
@@ -120,4 +143,8 @@ void LevelScene::createPlatforms(b2World *l_world){
 }
 void LevelScene::reset() {
 	m_level_complete = false;
+	m_player->reset();
+	m_player->moveTo(sf::Vector2f(200, 0));
+	m_camera.refresh(vHelper::toSF(m_player->getCenter()));
+
 }

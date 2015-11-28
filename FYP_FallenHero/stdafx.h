@@ -7,6 +7,7 @@
 
 #include "targetver.h"
 #include "cLog.hpp"
+//#include "vHelper.hpp"
 #include "SFML\System\Time.hpp"
 
 #include <stdio.h>
