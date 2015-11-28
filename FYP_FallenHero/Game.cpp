@@ -17,7 +17,7 @@ Game::Game() {
 	m_current_state = MENU;
 	m_current_scene = m_menu_scene;
 
-	m_time_per_frame = sf::seconds(1.f / 60.f);
+	m_time_per_frame = sf::seconds(1.f / 30.f);
 	m_delta_time = sf::Time::Zero;
 	createPlayer();
 }
