@@ -9,6 +9,7 @@
 #include "Platform.hpp"
 #include "XBOXController.hpp"
 #include "vCamera.hpp"
+#include "Exit.hpp"
 
 class LevelScene : public Scene{
 private:
@@ -19,6 +20,7 @@ private:
 	Platform m_plat2;
 	vCamera m_camera;
 	sf::Time m_time_per_frame;
+	Exit m_exit;
 public:
 	LevelScene();
 	LevelScene(XBOXController *controller);
@@ -38,6 +40,7 @@ public:
 
 	void createPlatforms(b2World *l_world);
 	bool isComplete() { return m_level_complete; }
+	void reset();
 };
 
 #endif

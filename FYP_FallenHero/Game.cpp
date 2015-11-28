@@ -74,8 +74,10 @@ void Game::goToNextScene() {
 	case MENU:
 		m_current_scene = m_world_scene;
 		m_current_state = WORLD;
+
 		break;
 	case WORLD:
+		m_world_scene->reset("LVL_1");
 		m_current_scene = m_level_scene;
 		m_current_state = LEVEL;
 		m_level_scene->loadLevel(m_world_scene->getCurrentLevel());
@@ -83,6 +85,7 @@ void Game::goToNextScene() {
 		m_level_scene->createPlatforms(m_world);
 		break;
 	case LEVEL:
+		m_level_scene->reset();
 		m_current_scene = m_world_scene;
 		m_current_state = WORLD;
 		break;

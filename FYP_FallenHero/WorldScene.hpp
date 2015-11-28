@@ -31,6 +31,7 @@ public:
 	void select();
 	bool LevelSelected() { return has_selected; }
 	string getCurrentLevel() { return m_player_icon.getTag(); }
+	void reset(string s);
 };
 
 #endif

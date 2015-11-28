@@ -7,7 +7,7 @@ LevelScene::LevelScene(){
 	m_camera = vCamera(sf::Vector2f(SCREEN_WIDTH, SCREEN_HEIGHT), sf::FloatRect{0.0f, 0.0f, 1200.0f, 640.0f});
 	//tiled_map = new tmx::TileMap("test.tmx");
 	m_time_per_frame = sf::seconds(1.f / 30.0f);
-
+	m_exit = Exit(sf::Vector2f(1100, 350));
 }
 LevelScene::LevelScene(string lvl_name, Player *p){
 	loadLevel(lvl_name);
@@ -22,6 +22,11 @@ void LevelScene::update(){
 	//cLog::inst()->print(1, "LevelScene", "Deprecated update called");
 	m_player->update(m_time_per_frame);
 	m_camera.setCenter(m_camera.getPlayerOffset(vHelper::toSF(m_player->getCenter())));
+	
+	sf::Vector2u size = ResourceManager<sf::Texture>::instance()->get(m_player->e_texture).getSize();
+	if (m_exit.isCollided(sf::FloatRect{ m_player->getPosition().x, m_player->getPosition().y, (float)size.x, (float)size.y }))
+		m_level_complete = true;
+
 	//m_camera.checkBounds();
 }
 void LevelScene::update(sf::Time dt){
@@ -39,7 +44,7 @@ void LevelScene::render(sf::RenderWindow &w){
 	//}
 	m_plat1.render(w);
 	m_plat2.render(w);
-
+	w.draw(m_exit);
 
 	w.setView(w.getDefaultView());	//Reset the windows view before exiting renderer
 }
@@ -110,4 +115,7 @@ void LevelScene::createPlatforms(b2World *l_world){
 	//m_platform.push_back(Platform(sf::Vector2f(500, 450), sf::Vector2f(200, 50), *l_world));
 	m_plat1 = Platform(sf::Vector2f(150, 500), sf::Vector2f(200, 50), *l_world);
 	m_plat2 = Platform(sf::Vector2f(500, 450), sf::Vector2f(800, 50), *l_world);
+}
+void LevelScene::reset() {
+	m_level_complete = false;
 }

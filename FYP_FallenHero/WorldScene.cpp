@@ -27,6 +27,7 @@ void WorldScene::render(sf::RenderWindow &w){
 	m_world_map->render(w);		//Renders the entire World Map
 	w.draw(m_player_icon);
 }
+
 void WorldScene::handleEvent(sf::Event &e){
 	if (e.type == sf::Event::KeyReleased){
 		switch (e.key.code){
@@ -61,8 +62,10 @@ void WorldScene::handleEvent(sf::Event &e){
 			m_key_pressed = true;
 			break;
 		case sf::Keyboard::Space:
-			m_key_pressed = true;
-			select();
+			if (!m_key_pressed) {
+				m_key_pressed = true;
+				select();
+			}
 			break;
 		#pragma endregion
 		}
@@ -70,7 +73,6 @@ void WorldScene::handleEvent(sf::Event &e){
 	else
 		m_key_pressed = false;
 }
-
 void WorldScene::handleInput(XBOXController &controller){
 	if (s_key_map["UP"] && !s_prev_key_map["UP"]){
 
@@ -107,4 +109,8 @@ void WorldScene::movePlayer(string direction){
 }
 void WorldScene::select() {
 	has_selected = true;
+}
+
+void WorldScene::reset(string s) {
+	has_selected = false;
 }
