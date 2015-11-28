@@ -38,7 +38,7 @@ void MenuScene::render(sf::RenderWindow &w){
 	}
 }
 void MenuScene::handleEvent(sf::Event &e){
-		if (e.type == sf::Event::KeyReleased){
+	if (e.type == sf::Event::KeyReleased){
 		switch (e.key.code){
 		case sf::Keyboard::Up:
 			if (!m_key_pressed){

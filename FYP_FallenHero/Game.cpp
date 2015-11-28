@@ -30,6 +30,7 @@ void Game::run(){
 	while (isRunning) {
 		sf::Event l_event;
 		m_window->pollEvent(l_event);
+
 		controller_connected = checkController();		//Checks controller connections and compaires to previous state.
 		if (controller_connected)	m_xbox_controller.UpdateButtons();
 		if (m_current_state == LEVEL){	m_world->Step(B2_TIMESTEP, VEL_ITER, POS_ITER);	}
@@ -41,13 +42,7 @@ void Game::run(){
 		m_current_scene->update();
 
 		render();
-
-		if (m_current_state == MENU)
-			if (m_menu_scene->getState() == MenuScene::GAME){
-				m_current_scene = m_level_scene;
-				m_current_state = LEVEL;
-				m_level_scene->createPlatforms(m_world);
-		}
+		checkSceneChange();
 	}
 }
 
@@ -73,6 +68,34 @@ bool Game::checkController() {
 	}
 
 	return is_connected;
+}
+void Game::goToNextScene() {
+	switch (m_current_state) {
+	case MENU:
+		m_current_scene = m_world_scene;
+		m_current_state = WORLD;
+		break;
+	case WORLD:
+		m_current_scene = m_level_scene;
+		m_current_state = LEVEL;
+		m_level_scene->loadLevel(m_world_scene->getCurrentLevel());
+
+		m_level_scene->createPlatforms(m_world);
+		break;
+	case LEVEL:
+		m_current_scene = m_world_scene;
+		m_current_state = WORLD;
+		break;
+	}
+}
+
+void Game::checkSceneChange() {
+	if (m_current_state == MENU && m_menu_scene->getState() == MenuScene::GAME)
+		goToNextScene();
+	if (m_current_state == WORLD && m_world_scene->LevelSelected())
+		goToNextScene();
+	if (m_current_state == LEVEL && m_level_scene->isComplete())
+		goToNextScene();
 }
 
 #pragma region Notes:

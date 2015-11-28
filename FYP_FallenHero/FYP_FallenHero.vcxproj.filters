@@ -90,6 +90,9 @@
     <ClInclude Include="vCamera.hpp">
       <Filter>Header Files\Util</Filter>
     </ClInclude>
+    <ClInclude Include="PlayerIcon.hpp">
+      <Filter>Header Files\Map</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">

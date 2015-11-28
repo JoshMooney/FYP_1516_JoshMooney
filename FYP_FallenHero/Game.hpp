@@ -48,6 +48,8 @@ public:
 
 	void createPlayer();
 	bool checkController();
+	void checkSceneChange();
+	void goToNextScene();
 };
 
 #endif

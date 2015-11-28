@@ -2,68 +2,73 @@
 #include "WorldScene.hpp"
 
 WorldScene::WorldScene(){
-	m_key_pressed = false;
+	m_key_pressed = true;
+	has_selected = false;
 	
 	s_main_bg_text = "Assets/World/map.png";
 	m_main_bg_sprt.setPosition(0, 0);
 	m_main_bg_sprt.setTexture(ResourceManager<sf::Texture>::instance()->get(s_main_bg_text));
 
-	s_player_icon_text = "Assets/World/player_icon.png";
-	m_player_icon_sprt.setTexture(ResourceManager<sf::Texture>::instance()->get(s_player_icon_text));
-	m_player_icon_sprt.setScale(.25f, .25f);
-	m_player_icon_sprt.setPosition(200, 200);
+	m_world_map = new WorldMap(sf::Vector2f(100, 200));
 
-	m_world_map = WorldMap(sf::Vector2f(0, 0));
+	m_player_icon = PlayerIcon();
+	m_player_icon.setCenter(m_world_map->getNode(m_player_icon.getTag())->getCenter());
 }
 WorldScene::~WorldScene(){
-
+	//delete m_world_map;
 }
 
 void WorldScene::update(){
 
 }
 void WorldScene::render(sf::RenderWindow &w){
-	w.draw(m_main_bg_sprt);		//Renders the background
+	//w.draw(m_main_bg_sprt);		//Renders the background
 	//w.draw(s_player_icon);
-	m_world_map.render(w);		//Renders the entire World Map
-
+	m_world_map->render(w);		//Renders the entire World Map
+	w.draw(m_player_icon);
 }
 void WorldScene::handleEvent(sf::Event &e){
-	if (e.type == sf::Event::KeyPressed){
+	if (e.type == sf::Event::KeyReleased){
 		switch (e.key.code){
 		#pragma region Movement Controls
 		case sf::Keyboard::Left:
-			s_key_map["LEFT"] = true;
-			m_key_pressed = true;
+			if (!m_key_pressed){
+				m_key_pressed = true;
+				movePlayer("LEFT");
+			}
 			break;
 		case sf::Keyboard::Right:
-			s_key_map["RIGHT"] = true;
-			m_key_pressed = true;
+			if (!m_key_pressed){
+				m_key_pressed = true;
+				movePlayer("RIGHT");
+			}
 			break;
 		case sf::Keyboard::Up:
-			s_key_map["UP"] = true;
-			m_key_pressed = true;
+			if (!m_key_pressed){
+				m_key_pressed = true;
+				movePlayer("UP");
+			}
 			break;
 		case sf::Keyboard::Down:
-			s_key_map["DOWN"] = true;
-			m_key_pressed = true;
+			if (!m_key_pressed){
+				m_key_pressed = true;
+				movePlayer("DOWN");
+			}
 			break;
 		#pragma endregion
 		#pragma region Interaction Controls
 		case sf::Keyboard::Return:
-			s_key_map["RETURN"] = true;
 			m_key_pressed = true;
 			break;
 		case sf::Keyboard::Space:
-			s_key_map["SPACE"] = true;
 			m_key_pressed = true;
+			select();
 			break;
 		#pragma endregion
-		default:
-			m_key_pressed = false;
-			break;
 		}
 	}
+	else
+		m_key_pressed = false;
 }
 
 void WorldScene::handleInput(XBOXController &controller){
@@ -88,4 +93,18 @@ void WorldScene::handleInput(XBOXController &controller){
 
 	s_prev_key_map = s_key_map;
 	s_key_map.clear();
+}
+
+void WorldScene::movePlayer(string direction){
+	WorldNode* node = m_world_map->getNode(m_player_icon.getTag());
+	if (node->checkNeighbout(direction)){
+		node = node->getNeightbourNode(direction);
+		m_player_icon.setTag(node->m_lvl_id);
+		m_player_icon.setCenter(node->getCenter());
+	}
+	else
+		m_player_icon.bump(direction);
+}
+void WorldScene::select() {
+	has_selected = true;
 }

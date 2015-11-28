@@ -13,7 +13,7 @@
 class LevelScene : public Scene{
 private:
 	Player *m_player;
-	bool m_level_active;
+	bool m_level_complete;
 	//vector<Platform> m_platform;
 	Platform m_plat1;
 	Platform m_plat2;
@@ -37,7 +37,7 @@ public:
 	vCamera* getCamera()	{ return &m_camera; }
 
 	void createPlatforms(b2World *l_world);
-	
+	bool isComplete() { return m_level_complete; }
 };
 
 #endif

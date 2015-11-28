@@ -3,7 +3,7 @@
 #include "vHelper.hpp"
 
 LevelScene::LevelScene(){
-	m_level_active = true;
+	m_level_complete = false;
 	m_camera = vCamera(sf::Vector2f(SCREEN_WIDTH, SCREEN_HEIGHT), sf::FloatRect{0.0f, 0.0f, 1200.0f, 640.0f});
 	//tiled_map = new tmx::TileMap("test.tmx");
 	m_time_per_frame = sf::seconds(1.f / 30.0f);
@@ -12,7 +12,7 @@ LevelScene::LevelScene(){
 LevelScene::LevelScene(string lvl_name, Player *p){
 	loadLevel(lvl_name);
 	m_player = p;
-	m_level_active = true;
+	m_level_complete = false;
 }
 LevelScene::~LevelScene(){
 
@@ -102,7 +102,7 @@ void LevelScene::handleInput(XBOXController &controller){
 }
 
 void LevelScene::loadLevel(string s){
-
+	cLog::inst()->print(s);
 }
 
 void LevelScene::createPlatforms(b2World *l_world){

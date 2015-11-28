@@ -4,22 +4,11 @@
 
 WorldMap::WorldMap(){}
 WorldMap::WorldMap(sf::Vector2f origin_pos){
+	m_seperator = 100;
+	m_arc_height = 10;
 	m_map_origin = origin_pos;
 	loadMedia();
 	createMap();
-
-	s_player_icon.setTexture(ResourceManager<sf::Texture>::instance()->get("Assets/World/player_icon.png"));
-	s_player_icon.setScale(.25f, .25f);
-	s_player_icon.setPosition(500, 200);
-}
-WorldMap::WorldMap(sf::Vector2f origin_pos, sf::Texture node){
-	m_map_origin = origin_pos;
-	loadMedia();
-	createMap();
-
-	s_player_icon.setScale(.25f, .25f);
-	s_player_icon.setTexture(node);
-	s_player_icon.setPosition(500, 200);
 }
 
 void WorldMap::loadMedia(){
@@ -29,122 +18,100 @@ void WorldMap::loadMedia(){
 	ResourceManager<sf::Texture>::instance()->get(s_horz_arc);
 	ResourceManager<sf::Texture>::instance()->get(s_vert_arc);
 }
-void WorldMap::createMap(){/*
-	m_map.push_back(WorldNode("lvl_1", sf::Vector2f(0 + m_map_origin.x, 0 + m_map_origin.y), false));
-	m_map.push_back(WorldNode("lvl_2", sf::Vector2f(75 + m_map_origin.x, 0 + m_map_origin.y), false));
-	m_map.push_back(WorldNode("lvl_3b", sf::Vector2f(75 + m_map_origin.x, -75 + m_map_origin.y), false));
-	m_map.push_back(WorldNode("lvl_3a", sf::Vector2f(75 + m_map_origin.x, 75 + m_map_origin.y), false));
-	m_map.push_back(WorldNode("lvl_4", sf::Vector2f(150 + m_map_origin.x, 75 + m_map_origin.y), false));
-	m_map.push_back(WorldNode("lvl_5", sf::Vector2f(150 + m_map_origin.x, 0 + m_map_origin.y), false));
-	m_map.push_back(WorldNode("lvl_6", sf::Vector2f(225 + m_map_origin.x, 0 + m_map_origin.y), false));
-	m_map.push_back(WorldNode("lvl_7", sf::Vector2f(300 + m_map_origin.x, 0 + m_map_origin.y), false));
-	*/
+void WorldMap::createMap(){
+	sf::Vector2f nodePosition = m_map_origin + sf::Vector2f(0,0);	//0 ,0
+	m_map.push_back(WorldNode("LVL_1", nodePosition, false));		
+
+	nodePosition += sf::Vector2f(m_seperator, 0);		//100 , 0
+	m_map.push_back(WorldNode("LVL_2", nodePosition, false));		
+
+	nodePosition += sf::Vector2f(0, m_seperator);	//100 , 100
+	m_map.push_back(WorldNode("LVL_3A", nodePosition, false));
+
+	nodePosition += sf::Vector2f(0, -2 * m_seperator);		//100 , -100
+	m_map.push_back(WorldNode("LVL_3B", nodePosition, false));
+
+	nodePosition += sf::Vector2f(m_seperator, 2 * m_seperator);		//200 , 100
+	m_map.push_back(WorldNode("LVL_4", nodePosition, false));
+
+	nodePosition += sf::Vector2f(0, -m_seperator);		//200 , 0
+	m_map.push_back(WorldNode("LVL_5", nodePosition, false));
+
+	nodePosition += sf::Vector2f(m_seperator, 0);		//300 , 0
+	m_map.push_back(WorldNode("LVL_6", nodePosition, false));
+
+	//nodePosition += sf::Vector2f(m_seperator, 0);		//400 , 0
+	//m_map.push_back(WorldNode("lvl_7", nodePosition, false));
+	
 	addArcs();
 }
-sf::Vector2f WorldMap::findArcPosition(WorldNode* node){
-	sf::Vector2f arc_pos;
-	sf::Vector2f node_pos = node->m_sprite.getPosition();
-	sf::Vector2u node_size = ResourceManager<sf::Texture>::instance()->get(node->s_texture).getSize();
-	arc_pos = sf::Vector2f(node_pos.x + (node_size.x / 2), node_pos.y + (node_size.y / 2));
+sf::Sprite WorldMap::PlotArc(LEVEL l1, LEVEL l2){
+	string orientation;
+	sf::Sprite sprite;
+	if (m_map[l1].getCenter().x < m_map[l2].getCenter().x){
+		m_map[l1].m_neighbouring_nodes["RIGHT"] = &m_map[l2];
+		m_map[l2].m_neighbouring_nodes["LEFT"] = &m_map[l1];
+		orientation = s_vert_arc;	//1 to 2
 
-	return arc_pos;
+		sf::Vector2f pos = m_map[l1].getCenter();
+		sprite.setPosition(sf::Vector2f(pos.x - m_arc_height / 2, pos.y));
+	}
+	if (m_map[l1].getCenter().x > m_map[l2].getCenter().x){
+		m_map[l1].m_neighbouring_nodes["LEFT"] = &m_map[l2];
+		m_map[l2].m_neighbouring_nodes["RIGHT"] = &m_map[l1];
+		orientation = s_vert_arc;	//2 to 1
+
+		sf::Vector2f pos = m_map[l2].getCenter();
+		sprite.setPosition(sf::Vector2f(pos.x - m_arc_height / 2, pos.y));
+	}
+	if (m_map[l1].getCenter().y < m_map[l2].getCenter().y){
+		m_map[l1].m_neighbouring_nodes["DOWN"] = &m_map[l2];
+		m_map[l2].m_neighbouring_nodes["UP"] = &m_map[l1];
+		orientation = s_horz_arc;	//1 to 2
+
+		sf::Vector2f pos = m_map[l1].getCenter();
+		sprite.setPosition(sf::Vector2f(pos.x, pos.y - m_arc_height / 2));
+	}
+	if (m_map[l1].getCenter().y > m_map[l2].getCenter().y){
+		m_map[l1].m_neighbouring_nodes["UP"] = &m_map[l2];
+		m_map[l2].m_neighbouring_nodes["DOWN"] = &m_map[l1];
+		orientation = s_horz_arc;	//2 to 1
+
+		sf::Vector2f pos = m_map[l2].getCenter();
+		sprite.setPosition(sf::Vector2f(pos.x, pos.y - m_arc_height / 2));
+	}
+	sprite.setTexture(ResourceManager<sf::Texture>::instance()->get(orientation));
+
+
+	return sprite;
 }
-void WorldMap::addArcs(){/*
-	vector<WorldNode *> l_arcs, l_default_arcs;
-	sf::Sprite l_sprite;
-	sf::Vector2f l_pos;
-
-	l_arcs.push_back(NULL);
-	l_arcs.push_back(NULL);
-	l_arcs.push_back(NULL);
-	l_arcs.push_back(NULL);
-	l_default_arcs = l_arcs;
+void WorldMap::addArcs(){
+	sf::Sprite l_horz, l_vert;
+	l_horz.setTexture(ResourceManager<sf::Texture>::instance()->get(s_horz_arc));
+	l_vert.setTexture(ResourceManager<sf::Texture>::instance()->get(s_vert_arc));
 	
-	//Set up Neighbouring Nodes
-	l_arcs[WorldNode::NORTH] = NULL;
-	l_arcs[WorldNode::SOUTH] = NULL;
-	l_arcs[WorldNode::EAST] = &m_map[LVL_2];
-	l_arcs[WorldNode::WEST] = NULL;
-	//Add and push Arc
-	m_map[LVL_1].addNeighbours(l_arcs);
-	l_sprite.setTexture(t_horz_arc);
-	l_sprite.setPosition(findArcPosition(&m_map[LVL_1]));
-	m_arcs.push_back(l_sprite);
-	//Clear Arcs to Default
-	l_arcs = l_default_arcs;
-
-	l_arcs[WorldNode::NORTH] = &m_map[LVL_3B];
-	l_arcs[WorldNode::SOUTH] = &m_map[LVL_3A];
-	l_arcs[WorldNode::EAST] = NULL;
-	l_arcs[WorldNode::WEST] = NULL;
-	m_map[LVL_2].addNeighbours(l_arcs);
-	l_sprite.setTexture(t_vert_arc);
-	l_sprite.setPosition(findArcPosition(&m_map[LVL_2]));
-	m_arcs.push_back(l_sprite);
-
-	l_sprite.setTexture(t_vert_arc);
-	l_sprite.setPosition(findArcPosition(&m_map[LVL_2]));
-	m_arcs.push_back(l_sprite);
-	l_arcs = l_default_arcs;
-
-	l_arcs[WorldNode::NORTH] = NULL;
-	l_arcs[WorldNode::SOUTH] = NULL;
-	l_arcs[WorldNode::EAST] = &m_map[LVL_4];
-	l_arcs[WorldNode::WEST] = NULL;
-	m_map[LVL_3A].addNeighbours(l_arcs);
-	l_sprite.setTexture(t_horz_arc);
-	l_sprite.setPosition(findArcPosition(&m_map[LVL_3A]));
-	m_arcs.push_back(l_sprite);
-	l_arcs = l_default_arcs;
-
-	l_arcs[WorldNode::NORTH] = &m_map[LVL_5];
-	l_arcs[WorldNode::SOUTH] = NULL;
-	l_arcs[WorldNode::EAST] = NULL;
-	l_arcs[WorldNode::WEST] = NULL;
-	m_map[LVL_4].addNeighbours(l_arcs);
-	l_sprite.setTexture(t_vert_arc);
-	l_sprite.setPosition(findArcPosition(&m_map[LVL_4]));
-	m_arcs.push_back(l_sprite);
-	l_arcs = l_default_arcs;
-
-	l_arcs[WorldNode::NORTH] = NULL;
-	l_arcs[WorldNode::SOUTH] = NULL;
-	l_arcs[WorldNode::EAST] = &m_map[LVL_6];
-	l_arcs[WorldNode::WEST] = NULL;
-	m_map[LVL_5].addNeighbours(l_arcs);
-	l_sprite.setTexture(t_horz_arc);
-	l_sprite.setPosition(findArcPosition(&m_map[LVL_5]));
-	m_arcs.push_back(l_sprite);
-	l_arcs = l_default_arcs;
-	*/
-	/* Notes
-	l_arcs[WorldNode::DIRECTION::NORTH] = NULL;
-	l_arcs[WorldNode::DIRECTION::SOUTH] = NULL;
-	l_arcs[WorldNode::DIRECTION::EAST] = NULL;
-	l_arcs[WorldNode::DIRECTION::WEST] = NULL;
-	m_map[LVL_1].addNeighbours(l_arcs);
-	l_arcs.clear();
-	*/
-
-}
-WorldNode* WorldMap::getNode(LEVEL lvl){
-	return &(m_map[lvl]);
+	m_arcs.push_back(PlotArc(LVL_1, LVL_2));
+	m_arcs.push_back(PlotArc(LVL_2, LVL_3B));
+	m_arcs.push_back(PlotArc(LVL_2, LVL_3A));
+	m_arcs.push_back(PlotArc(LVL_3A, LVL_4));
+	m_arcs.push_back(PlotArc(LVL_4, LVL_5));
+	m_arcs.push_back(PlotArc(LVL_5, LVL_6));
 }
 vector<WorldNode>* WorldMap::getNodes(){
 	return &m_map;
 }
 
 void WorldMap::render(sf::RenderWindow &w){
-	/*
-	for (int i = 0; i < m_arcs.size() - 1; i++){
+	
+	for (int i = 0; i < m_arcs.size(); i++){
 		w.draw(m_arcs[i]);
 	}
 
-	for (int i = 0; i < m_map.size() - 1; i++){
+	for (int i = 0; i < m_map.size(); i++){
 		w.draw(m_map[i]);
 	}
-	*/
+	
 
 	w.draw(s_player_icon);
-	m_test_node.render(w);
+	//m_test_node.render(w);
 }
