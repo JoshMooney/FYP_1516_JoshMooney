@@ -12,10 +12,12 @@
 #include "Exit.hpp"
 #include "STP\TMXLoader.hpp"
 #include "vHelper.hpp"
+#include "Level.hpp"
+#include <memory>
+#include "Box2D\Box2D.h"
 
 class LevelScene : public Scene{
 private:
-	tmx::TileMap *tiled_map;
 	Player *m_player;
 	bool m_level_complete;
 	//vector<Platform> m_platform;
@@ -25,6 +27,7 @@ private:
 	sf::Time m_time_per_frame;
 	Exit m_exit;
 	string path, format;
+	shared_ptr<Level> m_level;
 public:
 	LevelScene();
 	LevelScene(XBOXController *controller);
@@ -38,7 +41,7 @@ public:
 	void handleEvent(sf::Event &e, sf::Time dt);
 	void handleInput(XBOXController &controller);
 
-	void loadLevel(string lvl_name);
+	void loadLevel(string lvl_name, b2World *world);
 	void setPlayer(Player* p)	{ m_player = p; }
 	vCamera* getCamera()	{ return &m_camera; }
 

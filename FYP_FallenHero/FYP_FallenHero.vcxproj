@@ -110,6 +110,8 @@
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="Level.cpp" />
     <ClCompile Include="LevelScene.cpp" />
+    <ClCompile Include="MapLayer.cpp" />
+    <ClCompile Include="MapObject.cpp" />
     <ClCompile Include="MenuScene.cpp" />
     <ClCompile Include="Platform.cpp" />
     <ClCompile Include="Player.cpp" />
@@ -117,6 +119,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="tmx2box2d.cpp" />
     <ClCompile Include="vCamera.cpp" />
     <ClCompile Include="WorldMap.cpp" />
     <ClCompile Include="WorldScene.cpp" />

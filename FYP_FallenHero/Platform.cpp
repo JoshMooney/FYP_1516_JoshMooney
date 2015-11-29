@@ -2,8 +2,20 @@
 #include "Platform.hpp"
 
 Platform::Platform(){}
+Platform::Platform(sf::FloatRect geo) {
+	m_size = sf::Vector2f(geo.width, geo.height);
+	m_geometry = geo;
+	m_body_active = true;
+}
+Platform::Platform(sf::Vector2f position, sf::Vector2f size) {
+	m_size = size;
+	m_geometry = sf::FloatRect(position.x, position.y, size.x, size.y);
+	m_body_active = true;
+}
 Platform::Platform(sf::Vector2f position, sf::Vector2f size, b2World &m_world) {
 	m_size = size;
+	m_geometry = sf::FloatRect(position.x, position.y, size.x, size.y);
+
 	b2BodyDef myBodyDef;
 	myBodyDef.type = b2_staticBody; //this will be a static body
 	myBodyDef.position = b2Vec2(position.x + (m_size.x * 0.5f), position.y + (m_size.y * 0.5f)); //set the starting position
@@ -29,3 +41,4 @@ Platform::Platform(sf::Vector2f position, sf::Vector2f size, b2World &m_world) {
 void Platform::render(sf::RenderWindow &w){
 	w.draw(m_sprite);
 }
+

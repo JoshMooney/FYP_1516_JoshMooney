@@ -1,11 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="90" height="25" tilewidth="32" tileheight="32" nextobjectid="1">
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="90" height="25" tilewidth="32" tileheight="32" nextobjectid="23">
  <tileset firstgid="1" name="tile_set" tilewidth="32" tileheight="32" tilecount="3">
   <image source="Tiles/tile_set.png" width="96" height="32"/>
  </tileset>
- <layer name="Tile Layer 1" width="90" height="25">
+ <layer name="Textures" width="90" height="25">
   <data encoding="base64" compression="zlib">
    eJzt0CkOACAQBMFl+f+f8QgCCZcoUWbUpEtEFABgSi7u7OucOl/pPNrR+WfZ6bfX/wAA4KT6gdcNAABgVgMXWQkd
   </data>
  </layer>
+ <objectgroup name="Bodies">
+  <object id="16" name="Platfrom 1" type="Platform" x="-1.5" y="546" width="1057" height="112.5"/>
+  <object id="17" name="Platform 2" type="Platform" x="1170" y="466" width="202" height="214.5"/>
+  <object id="18" name="Platform 3" type="Platform" x="1545" y="537" width="512.5" height="146"/>
+  <object id="19" name="Platform 4" type="Platform" x="2192" y="591.5" width="616" height="85"/>
+ </objectgroup>
+ <objectgroup name="Player Data">
+  <object id="21" name="End Level" type="Exit" x="2742" y="519" width="64" height="64"/>
+  <object id="22" name="Start Level" type="Spawn" x="7" y="474.5" width="64" height="64"/>
+ </objectgroup>
 </map>

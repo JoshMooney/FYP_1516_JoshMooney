@@ -7,17 +7,13 @@ LevelScene::LevelScene(){
 	//tiled_map = new tmx::TileMap("test.tmx");
 	m_time_per_frame = sf::seconds(1.f / 30.0f);
 	m_exit = Exit(sf::Vector2f(1100, 350));
-	tiled_map = new tmx::TileMap("test.tmx");
-	path = "Assets/Levels/";
-	format = ".tmx";
 }
 LevelScene::LevelScene(string lvl_name, Player *p){
-	loadLevel(lvl_name);
 	m_player = p;
 	m_level_complete = false;
 }
 LevelScene::~LevelScene(){
-
+	
 }
 
 void LevelScene::update(){
@@ -40,7 +36,7 @@ void LevelScene::render(sf::RenderWindow &w){
 	//Render Background
 
 	w.setView(m_camera);
-	w.draw(*tiled_map);
+	m_level->render(w);
 	w.draw(*m_player);
 	//for (int i = 0; i < m_platform.size(); i++){
 	//	m_platform[i].render(w);
@@ -129,10 +125,8 @@ void LevelScene::handleInput(XBOXController &controller){
 		m_key_pressed = false;*/
 }
 
-void LevelScene::loadLevel(string lvl_name){
-	cLog::inst()->print(lvl_name);
-	delete tiled_map;
-	tiled_map = new tmx::TileMap(path + lvl_name + format);
+void LevelScene::loadLevel(string lvl_name, b2World *world){
+	m_level = make_shared<Level>(lvl_name, world);
 }
 
 void LevelScene::createPlatforms(b2World *l_world){

@@ -80,7 +80,7 @@ void Game::goToNextScene() {
 		m_world_scene->reset("LVL_1");
 		m_current_scene = m_level_scene;
 		m_current_state = LEVEL;
-		m_level_scene->loadLevel(m_world_scene->getCurrentLevel());
+		m_level_scene->loadLevel(m_world_scene->getCurrentLevel(), m_world);
 
 		m_level_scene->createPlatforms(m_world);
 		break;

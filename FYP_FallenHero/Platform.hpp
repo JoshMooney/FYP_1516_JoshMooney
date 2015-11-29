@@ -13,9 +13,13 @@ public:
 	sf::Sprite m_sprite;
 	string s_texture;
 	sf::Vector2f m_size;
+	sf::FloatRect m_geometry;
 
 	Platform();
+	Platform(sf::FloatRect geo);
+	Platform(sf::Vector2f position, sf::Vector2f size);
 	Platform(sf::Vector2f position, sf::Vector2f size, b2World &m_world);
+	void setBody(b2Body* b) { m_box_body = b; }
 	void render(sf::RenderWindow &w);
 };
 
