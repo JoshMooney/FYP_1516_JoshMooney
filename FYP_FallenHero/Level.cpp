@@ -8,27 +8,40 @@ Level::Level() {
 Level::Level(string s, b2World *world) {
 	path = "Assets/Levels/";
 	format = ".tmx";
-	tile_size = 32;
+	tile_size = sf::Vector2u(32, 32);
 
 	loadMap(s);
 	ParseMapLayers(world);
 }
+struct OBJ {
+	int width;
+	int height;
+	int x;
+	int y;
+};
+
 Level::~Level() {
 	
 }
 
 void Level::render(sf::RenderWindow &w){
 	w.draw(*tiled_map);
-	//w.draw(*ml);
 }
 
 void Level::ParseMapLayers(b2World * world) {
 	//map.GetObjectLayer("Layer Name");
+	/*
+	shared_ptr<tmx::ObjectGroup> lay;
+	lay = make_shared<tmx::ObjectGroup>(tiled_map->GetObjectGroup("Terrain"));
+	OBJ object;
+	object.x = lay->objects_[0].x_;
+	object.y = lay->objects_[0].y_;
+	object.width = lay->objects_[0].width_;
+	object.height = lay->objects_[0].height_;
+	*/
+	
 
-	shared_ptr<tmx::ObjectGroup> l;
-
-	l = make_shared<tmx::ObjectGroup>(tiled_map->GetObjectGroup("Terrain"));
-	CreateTerrain(world, l);
+	//CreateTerrain(world, l);
 
 	//l = make_shared<tmx::ObjectGroup>(tiled_map->GetObjectGroup("Platform"));
 	//CreatePlatforms(world, layer);
@@ -39,10 +52,33 @@ void Level::ParseMapLayers(b2World * world) {
 	//l = make_shared<tmx::ObjectGroup>(tiled_map->GetObjectGroup("Level_Data"));
 	//GenerateLevelItems(world, layer);
 
+
 }
 
 void Level::CreateTerrain(b2World * world, shared_ptr<tmx::ObjectGroup> layer) {
-/*
+	//for (const auto& o : layer.) {
+		b2BodyDef myBodyDef;
+		myBodyDef.type = b2_staticBody;		//this will be a dynamic body
+		myBodyDef.position.Set(0, 0);		//set the starting position
+		myBodyDef.angle = 0;				//set the starting angle
+		myBodyDef.userData = "Terrain";
+
+		b2Body* box_body = world->CreateBody(&myBodyDef);
+
+		//Define the shape of the body
+		b2PolygonShape shape;
+		shape.SetAsBox(1, 1);
+
+		b2FixtureDef myFixtureDef;
+		myFixtureDef.density = 0.0f;
+		myFixtureDef.friction = 0.0f;
+		myFixtureDef.shape = &shape;
+
+		box_body->CreateFixture(&myFixtureDef);
+		terrain_data.push_back(box_body);
+	//}
+
+	/*
 	std::vector<std::unique_ptr<sf::Shape>> debugBoxes;
 	std::vector<DebugShape> debugShapes;
 	std::map<b2Body*, sf::CircleShape> dynamicShapes; //we can use raw pointers because box2D manages its own memory

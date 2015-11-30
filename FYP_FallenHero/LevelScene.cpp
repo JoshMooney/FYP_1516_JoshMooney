@@ -3,7 +3,7 @@
 
 LevelScene::LevelScene(){
 	m_level_complete = false;
-	m_camera = vCamera(sf::Vector2f(SCREEN_WIDTH, SCREEN_HEIGHT), sf::FloatRect{0.0f, 0.0f, 1200.0f, 640.0f});
+	m_camera = vCamera(sf::Vector2f(SCREEN_WIDTH, SCREEN_HEIGHT), sf::FloatRect{0.0f, 0.0f, 3000.0f, 640.0f});
 	//tiled_map = new tmx::TileMap("test.tmx");
 	m_time_per_frame = sf::seconds(1.f / 30.0f);
 	m_exit = Exit(sf::Vector2f(1100, 350));
