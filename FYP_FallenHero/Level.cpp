@@ -18,22 +18,30 @@ Level::~Level() {
 }
 
 void Level::render(sf::RenderWindow &w){
-	//w.draw(*tiled_map);
+	w.draw(*tiled_map);
 	//w.draw(*ml);
 }
 
 void Level::ParseMapLayers(b2World * world) {
-	/*const std::vector<tmx::MapLayer>& layers = ml->GetLayers();
+	//map.GetObjectLayer("Layer Name");
 
-	for (const auto& l : layers){		//Foreach loop
-		if (l.name == "Bodies") {
-			CreateTerrain(world, l);
-		}
-	}*/
+	shared_ptr<tmx::ObjectGroup> l;
+
+	l = make_shared<tmx::ObjectGroup>(tiled_map->GetObjectGroup("Terrain"));
+	CreateTerrain(world, l);
+
+	//l = make_shared<tmx::ObjectGroup>(tiled_map->GetObjectGroup("Platform"));
+	//CreatePlatforms(world, layer);
+
+	//l = make_shared<tmx::ObjectGroup>(tiled_map->GetObjectGroup("Player_Data"));
+	//GeneratePlayerItems(world, layer);
+
+	//l = make_shared<tmx::ObjectGroup>(tiled_map->GetObjectGroup("Level_Data"));
+	//GenerateLevelItems(world, layer);
 
 }
 
-//void Level::CreateTerrain(b2World * world, tmx::MapLayer layer) {
+void Level::CreateTerrain(b2World * world, shared_ptr<tmx::ObjectGroup> layer) {
 /*
 	std::vector<std::unique_ptr<sf::Shape>> debugBoxes;
 	std::vector<DebugShape> debugShapes;
@@ -71,10 +79,10 @@ void Level::ParseMapLayers(b2World * world) {
 			}
 		}
 	}*/
-//}
+}
 
 
 void Level::loadMap(string lvl_name) {
-	//ml = make_shared<tmx::MapLoader>("Assets/Levels/");
-	//ml->Load(lvl_name + format);
+	tiled_map = make_shared<tmx::TileMap>(path + lvl_name + format);
+	tiled_map->ShowObjects(true);
 }

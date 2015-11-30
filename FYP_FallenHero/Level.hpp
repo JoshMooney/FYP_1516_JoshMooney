@@ -5,10 +5,7 @@
 #include "SFML\Graphics.hpp"
 #include "SFML\Window.hpp"
 #include "STP\TMXLoader.hpp"
-/*
-#include "tmx\MapLoader.h"
-#include "tmx\tmx2box2d.h"
-#include <tmx/DebugShape.h>*/
+
 #include <Box2D/Collision/Shapes/b2PolygonShape.h>
 #include <Box2D/Collision/Shapes/b2CircleShape.h>
 
@@ -24,11 +21,14 @@ class Level {
 private:
 	string path;
 	string format;
-	//shared_ptr<tmx::TileMap> tiled_map;
-	int tile_size;
-	//shared_ptr<tmx::MapLoader> ml;
+	sf::Vector2u tile_size;
+	shared_ptr<tmx::TileMap> tiled_map;
 
-	vector<Platform> m_platform_data;
+	vector<b2Body*> terrain_data;			//Terrain of the level
+	vector<Platform> platform_data;			//Platform Data
+	//vector<LevelItem> player_data;		//Player Level Data Spawn, Exit, checkpoints.
+	//vector<Collectible> level_data;		//Coins, collectibles
+	
 public:
 	Level();
 	Level(string s, b2World *world);
@@ -36,10 +36,13 @@ public:
 
 	void render(sf::RenderWindow &w);
 	void ParseMapLayers(b2World *world);
-	//void CreateTerrain(b2World *world, tmx::MapLayer layer);
+	void CreateTerrain(b2World *world, shared_ptr<tmx::ObjectGroup> layer);
+	void CreatePlatforms(b2World *world, shared_ptr<tmx::ObjectGroup> layer);
+	void GeneratePlayerItems(b2World *world, shared_ptr<tmx::ObjectGroup> layer);
+	void GenerateLevelItems(b2World *world, shared_ptr<tmx::ObjectGroup> layer);
 
 	void loadMap(string lvl_name);
-	//shared_ptr<tmx::TileMap> tiledMap() { return tiled_map; }
+	shared_ptr<tmx::TileMap> tiledMap() { return tiled_map; }
 };
 
 #endif
