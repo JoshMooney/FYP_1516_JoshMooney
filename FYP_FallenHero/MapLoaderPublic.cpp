@@ -26,7 +26,7 @@ it freely, subject to the following restrictions:
 3. This notice may not be removed or altered from any
    source distribution.
 *********************************************************************/
-
+#include "stdafx.h"
 #include <tmx/MapLoader.h>
 #include <tmx/Log.h>
 
@@ -154,7 +154,7 @@ void MapLoader::Draw(sf::RenderTarget& rt, MapLayer::DrawType type, bool debug)
 		DrawLayer(rt, layer, debug);
 		}
 		break;
-	case MapLayer::Debug:
+	/*case MapLayer::Debug:
 		for(auto layer : m_layers)
 		{
 			if(layer.type == ObjectGroup)
@@ -166,7 +166,7 @@ void MapLoader::Draw(sf::RenderTarget& rt, MapLayer::DrawType type, bool debug)
 		}
 		rt.draw(m_gridVertices);
 		rt.draw(m_rootNode);
-		break;
+		break;*/
 	}
 }
 

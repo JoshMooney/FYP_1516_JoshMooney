@@ -26,7 +26,7 @@ it freely, subject to the following restrictions:
 3. This notice may not be removed or altered from any
    source distribution.
 *********************************************************************/
-
+#include "stdafx.h"
 #include <tmx/MapLoader.h>
 #include <tmx/Log.h>
 #include <zlib.h>
@@ -287,7 +287,7 @@ bool MapLoader::ProcessTiles(const pugi::xml_node& tilesetNode)
 
 	//process image from disk
 	std::string imageName = FileFromPath(imageNode.attribute("source").as_string());
-	sf::Image sourceImage = LoadImage(imageName);
+	sf::Image sourceImage = LoadImageW(imageName);
 	if(m_failedImage)
 	{
 		LOG("Failed to load image " + imageName, Logger::Type::Error);
@@ -353,7 +353,7 @@ bool MapLoader::ParseCollectionOfImages(const pugi::xml_node& tilesetNode)
                 if (std::string(c.name()) == "image")
                 {
                     std::string imageName = FileFromPath(c.attribute("source").as_string());
-                    sf::Image sourceImage = LoadImage(imageName);
+                    sf::Image sourceImage = LoadImageW(imageName);
                     if (m_failedImage)
                     {
                         LOG("Failed to load image " + imageName, Logger::Type::Error);
@@ -930,7 +930,7 @@ bool MapLoader::ParseObjectgroup(const pugi::xml_node& groupNode)
 		}
 		else debugColour = sf::Color(127u, 127u, 127u);
 		debugColour.a = static_cast<sf::Uint8>(255.f * layer.opacity);
-		object.CreateDebugShape(debugColour);
+		//object.CreateDebugShape(debugColour);
 
 		//creates line segments from any available points
 		object.CreateSegments();
@@ -958,7 +958,7 @@ bool MapLoader::ParseImageLayer(const pugi::xml_node& imageLayerNode)
 	}
 
 	std::string imageName = imageNode.attribute("source").as_string();
-	sf::Image image = LoadImage(imageName);
+	sf::Image image = LoadImageW(imageName);
 	if(m_failedImage)
 	{
 		LOG("Failed to load image at " + imageName, Logger::Type::Error);
@@ -1061,9 +1061,9 @@ void MapLoader::DrawLayer(sf::RenderTarget& rt, MapLayer& layer, bool debug)
 
 	if(debug && layer.type == ObjectGroup)
 	{
-		for(const auto& object : layer.objects)		
-			if(m_bounds.intersects(object.GetAABB()))
-				object.DrawDebugShape(rt);
+		for (const auto& object : layer.objects)
+			if (m_bounds.intersects(object.GetAABB()))
+				;//object.DrawDebugShape(rt);
 	}
 }
 
@@ -1123,6 +1123,7 @@ sf::Color MapLoader::ColourFromHex(const char* hexStr) const
 
 	return sf::Color(r, g, b);
 }
+
 
 bool MapLoader::Decompress(const char* source, std::vector<unsigned char>& dest, int inSize, int expectedSize)
 {
@@ -1202,7 +1203,8 @@ bool MapLoader::Decompress(const char* source, std::vector<unsigned char>& dest,
 	return true;
 }
 
-sf::Image& MapLoader::LoadImage(const std::string& imageName)
+//caches loaded images to prevent loading the same tileset more than once
+sf::Image& MapLoader::LoadImageW(const std::string& imageName)
 {
 	for(const auto& p : m_searchPaths)
 	{

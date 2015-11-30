@@ -31,6 +31,18 @@
     <Filter Include="Header Files\Map">
       <UniqueIdentifier>{ee609332-dbd1-4c0b-aa8f-0523e1315658}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\TMX">
+      <UniqueIdentifier>{8b72e0a7-817f-4e15-ab7c-feaec88e8f02}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\TMX">
+      <UniqueIdentifier>{c048b3a9-bab9-4786-a411-d629cfcecee2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\pugixml">
+      <UniqueIdentifier>{6b482dd8-d474-49f9-a1be-756ef53cbaa3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\pugixml">
+      <UniqueIdentifier>{43481c3d-696a-44d3-95d2-e3184c13babe}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -90,6 +102,36 @@
     <ClInclude Include="vCamera.hpp">
       <Filter>Header Files\Util</Filter>
     </ClInclude>
+    <ClInclude Include="tmx\DebugShape.h">
+      <Filter>Header Files\TMX</Filter>
+    </ClInclude>
+    <ClInclude Include="tmx\Helpers.h">
+      <Filter>Header Files\TMX</Filter>
+    </ClInclude>
+    <ClInclude Include="tmx\Log.h">
+      <Filter>Header Files\TMX</Filter>
+    </ClInclude>
+    <ClInclude Include="tmx\MapLayer.h">
+      <Filter>Header Files\TMX</Filter>
+    </ClInclude>
+    <ClInclude Include="tmx\MapLoader.h">
+      <Filter>Header Files\TMX</Filter>
+    </ClInclude>
+    <ClInclude Include="tmx\MapObject.h">
+      <Filter>Header Files\TMX</Filter>
+    </ClInclude>
+    <ClInclude Include="tmx\QuadTreeNode.h">
+      <Filter>Header Files\TMX</Filter>
+    </ClInclude>
+    <ClInclude Include="tmx\tmx2box2d.h">
+      <Filter>Header Files\TMX</Filter>
+    </ClInclude>
+    <ClInclude Include="pugixml\pugiconfig.hpp">
+      <Filter>Header Files\pugixml</Filter>
+    </ClInclude>
+    <ClInclude Include="pugixml\pugixml.hpp">
+      <Filter>Header Files\pugixml</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -130,6 +172,30 @@
     </ClCompile>
     <ClCompile Include="vCamera.cpp">
       <Filter>Source Files\Util</Filter>
+    </ClCompile>
+    <ClCompile Include="MapLoaderPublic.cpp">
+      <Filter>Source Files\TMX</Filter>
+    </ClCompile>
+    <ClCompile Include="MapLoaderPrivate.cpp">
+      <Filter>Source Files\TMX</Filter>
+    </ClCompile>
+    <ClCompile Include="DebugShape.cpp">
+      <Filter>Source Files\TMX</Filter>
+    </ClCompile>
+    <ClCompile Include="MapLayer.cpp">
+      <Filter>Source Files\TMX</Filter>
+    </ClCompile>
+    <ClCompile Include="MapObject.cpp">
+      <Filter>Source Files\TMX</Filter>
+    </ClCompile>
+    <ClCompile Include="QuadTreeNode.cpp">
+      <Filter>Source Files\TMX</Filter>
+    </ClCompile>
+    <ClCompile Include="tmx2box2d.cpp">
+      <Filter>Source Files\TMX</Filter>
+    </ClCompile>
+    <ClCompile Include="pugixml.cpp">
+      <Filter>Source Files\pugixml</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

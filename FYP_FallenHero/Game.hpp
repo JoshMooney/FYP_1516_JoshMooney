@@ -10,7 +10,7 @@
 #include "MenuScene.hpp"
 #include "Player.hpp"
 #include "XBOXController.hpp"
-#include "STP\TMXLoader.hpp"
+//#include "STP\TMXLoader.hpp"
 
 class Game {
 private:

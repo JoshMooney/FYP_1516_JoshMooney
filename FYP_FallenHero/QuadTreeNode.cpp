@@ -30,6 +30,7 @@ it freely, subject to the following restrictions:
 
 
 ///source for QuadTreeNode class///
+#include "stdafx.h"
 #include <tmx/QuadTreeNode.h>
 
 using namespace tmx;

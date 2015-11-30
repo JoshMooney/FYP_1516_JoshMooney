@@ -5,7 +5,12 @@
 LevelScene::LevelScene(){
 	m_level_active = true;
 	m_camera = vCamera(sf::Vector2f(SCREEN_WIDTH, SCREEN_HEIGHT));
-	tiled_map = new tmx::TileMap("test.tmx");
+	tmx::MapLoader tiled_map("Assets/", 0);
+	//tmx::MapLoader ml("", 0);
+	//ml.Load("test.tmx");
+	//ml = make_shared<tmx::MapLoader>("Assets/Levels/");
+	//ml->Load("LVL_1");
+	//tiled_map = new tmx::TileMap("test.tmx");
 }
 LevelScene::LevelScene(string lvl_name, Player *p){
 	loadLevel(lvl_name);
@@ -28,7 +33,8 @@ void LevelScene::render(sf::RenderWindow &w){
 	//Render Background
 
 	w.setView(m_camera);
-	w.draw(*tiled_map);
+	//w.draw(*ml);
+	//w.draw(*tiled_map);
 	w.draw(*m_player);
 	//for (int i = 0; i < m_platform.size(); i++){
 	//	m_platform[i].render(w);

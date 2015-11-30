@@ -9,11 +9,18 @@
 #include "Platform.hpp"
 #include "XBOXController.hpp"
 #include "vCamera.hpp"
-#include "STP\TMXLoader.hpp"
+//#include "STP\TMXLoader.hpp"
+
+#include <tmx\MapLoader.h>
+#include <tmx\MapObject.h>
+#include <tmx/tmx2box2d.h>
+
+#include <memory>
 
 class LevelScene : public Scene{
 private:
-	tmx::TileMap *tiled_map;
+	shared_ptr<tmx::MapLoader> ml;
+	//shared_ptr<tmx::TileMap> tiled_map;
 	Player *m_player;
 	bool m_level_active;
 	//vector<Platform> m_platform;
