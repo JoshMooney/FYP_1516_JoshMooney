@@ -3,10 +3,9 @@
 
 LevelScene::LevelScene(){
 	m_level_complete = false;
-	m_camera = vCamera(sf::Vector2f(SCREEN_WIDTH, SCREEN_HEIGHT), sf::FloatRect{0.0f, 0.0f, 3000.0f, 640.0f});
+	m_camera = vCamera(sf::Vector2f(SCREEN_WIDTH, SCREEN_HEIGHT), sf::FloatRect{0.0f, 0.0f, 2880.0f, 640.0f});
 	//tiled_map = new tmx::TileMap("test.tmx");
 	m_time_per_frame = sf::seconds(1.f / 30.0f);
-	m_exit = Exit(sf::Vector2f(1100, 350));
 }
 LevelScene::LevelScene(string lvl_name, Player *p){
 	m_player = p;
@@ -22,7 +21,7 @@ void LevelScene::update(){
 	m_camera.setCenter(m_camera.getPlayerOffset(vHelper::toSF(m_player->getCenter())));
 	
 	sf::Vector2u size = ResourceManager<sf::Texture>::instance()->get(m_player->e_texture).getSize();
-	if (m_exit.isCollided(sf::FloatRect{ m_player->getPosition().x, m_player->getPosition().y, (float)size.x, (float)size.y }))
+	if (m_level->hasEnded(sf::FloatRect{ m_player->getPosition().x, m_player->getPosition().y, (float)size.x, (float)size.y }))
 		m_level_complete = true;
 
 	//m_camera.checkBounds();
@@ -41,9 +40,9 @@ void LevelScene::render(sf::RenderWindow &w){
 	//for (int i = 0; i < m_platform.size(); i++){
 	//	m_platform[i].render(w);
 	//}
-	m_plat1.render(w);
-	m_plat2.render(w);
-	w.draw(m_exit);
+	//m_plat1.render(w);
+	//m_plat2.render(w);
+	
 
 	w.setView(w.getDefaultView());	//Reset the windows view before exiting renderer
 }
@@ -127,18 +126,18 @@ void LevelScene::handleInput(XBOXController &controller){
 
 void LevelScene::loadLevel(string lvl_name, b2World *world){
 	m_level = make_shared<Level>(lvl_name, world);
+	m_player->reset(m_level->getSpawn());
 }
 
 void LevelScene::createPlatforms(b2World *l_world){
 	//m_platform.push_back(Platform(sf::Vector2f(150, 500), sf::Vector2f(200, 50), *l_world));
 	//m_platform.push_back(Platform(sf::Vector2f(500, 450), sf::Vector2f(200, 50), *l_world));
-	m_plat1 = Platform(sf::Vector2f(150, 500), sf::Vector2f(200, 50), *l_world);
-	m_plat2 = Platform(sf::Vector2f(500, 450), sf::Vector2f(800, 50), *l_world);
+	//m_plat1 = Platform(sf::Vector2f(150, 500), sf::Vector2f(200, 50), *l_world);
+	//m_plat2 = Platform(sf::Vector2f(500, 450), sf::Vector2f(800, 50), *l_world);
 }
 void LevelScene::reset() {
 	m_level_complete = false;
-	m_player->reset();
-	m_player->moveTo(sf::Vector2f(200, 0));
+	m_player->reset(sf::Vector2f(0,0));
 	m_camera.refresh(vHelper::toSF(m_player->getCenter()));
 
 }

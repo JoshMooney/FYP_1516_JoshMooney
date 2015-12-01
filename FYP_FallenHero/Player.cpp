@@ -90,10 +90,11 @@ void Player::jump(){
 	//e_box_body->SetLinearVelocity(b2Vec2(e_box_body->GetLinearVelocity().x, m_acceleration * DELTA_TIME.asSeconds()), -m_jump_force, m_jump_force);
 	e_box_body->SetLinearVelocity(b2Vec2(e_box_body->GetLinearVelocity().x, e_box_body->GetLinearVelocity().y - newYVel));
 }
-void Player::reset() {
+void Player::reset(sf::Vector2f pos) {
 	m_direction = 1;	//true = 1 = Looing right and vice versa
 	speedFactor = 0;
 	e_box_body->SetLinearVelocity(b2Vec2(0, 0));
+	moveTo(pos);
 }
 
 void Player::alineSprite(){

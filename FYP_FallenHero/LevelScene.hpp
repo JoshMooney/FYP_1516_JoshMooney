@@ -21,11 +21,8 @@ private:
 	Player *m_player;
 	bool m_level_complete;
 	//vector<Platform> m_platform;
-	Platform m_plat1;
-	Platform m_plat2;
 	vCamera m_camera;
 	sf::Time m_time_per_frame;
-	Exit m_exit;
 	string path, format;
 	shared_ptr<Level> m_level;
 public:

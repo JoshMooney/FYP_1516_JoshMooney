@@ -1,5 +1,6 @@
 #include "stdafx.h"
 #include "Level.hpp"
+#include <string>
 
 Level::Level() {
 	cLog::inst()->print(3, "Level", "Default constructor of level called");
@@ -8,16 +9,20 @@ Level::Level() {
 Level::Level(string s, b2World *world) {
 	path = "Assets/Levels/";
 	format = ".tmx";
-	tile_size = sf::Vector2u(32, 32);
+	tile_size = 32;
 
 	loadMap(s);
 	ParseMapLayers(world);
 }
+
+/*TEMP*/
 struct OBJ {
 	int width;
 	int height;
 	int x;
 	int y;
+
+	sf::Vector2f getCenter() { return sf::Vector2f(x + width / 2, y + height / 2); }
 };
 
 Level::~Level() {
@@ -26,28 +31,23 @@ Level::~Level() {
 
 void Level::render(sf::RenderWindow &w){
 	w.draw(*tiled_map);
+	w.draw(m_exit);
 }
 
 void Level::ParseMapLayers(b2World * world) {
 	//map.GetObjectLayer("Layer Name");
-	/*
-	shared_ptr<tmx::ObjectGroup> lay;
-	lay = make_shared<tmx::ObjectGroup>(tiled_map->GetObjectGroup("Terrain"));
-	OBJ object;
-	object.x = lay->objects_[0].x_;
-	object.y = lay->objects_[0].y_;
-	object.width = lay->objects_[0].width_;
-	object.height = lay->objects_[0].height_;
-	*/
 	
+	tmx::ObjectGroup lay;
 
-	//CreateTerrain(world, l);
+	lay = tiled_map->GetObjectGroup("Terrain");
+	CreateTerrain(world, lay);
+	tiled_map->GetObjectGroup("Terrain").visible = false;
+
+	lay = tiled_map->GetObjectGroup("Player_Data");
+	GeneratePlayerItems(world, lay);
 
 	//l = make_shared<tmx::ObjectGroup>(tiled_map->GetObjectGroup("Platform"));
 	//CreatePlatforms(world, layer);
-
-	//l = make_shared<tmx::ObjectGroup>(tiled_map->GetObjectGroup("Player_Data"));
-	//GeneratePlayerItems(world, layer);
 
 	//l = make_shared<tmx::ObjectGroup>(tiled_map->GetObjectGroup("Level_Data"));
 	//GenerateLevelItems(world, layer);
@@ -55,19 +55,32 @@ void Level::ParseMapLayers(b2World * world) {
 
 }
 
-void Level::CreateTerrain(b2World * world, shared_ptr<tmx::ObjectGroup> layer) {
-	//for (const auto& o : layer.) {
+void Level::CreateTerrain(b2World * world, tmx::ObjectGroup &layer) {
+	int lenght = layer.objects_.size();
+	
+	for (int i = 0; i < lenght; i++) {
+		OBJ object;
+		//Dont even ask!!
+		object.x = layer.objects_[i].height_;
+		string s = layer.objects_[i].GetPropertyValue("x");
+		object.x = atoi(s.c_str()) * 32;		//By tile size
+		object.y = layer.objects_[i].x_;
+		object.width = layer.objects_[i].y_;
+		object.height = layer.objects_[i].width_;
+		
 		b2BodyDef myBodyDef;
 		myBodyDef.type = b2_staticBody;		//this will be a dynamic body
-		myBodyDef.position.Set(0, 0);		//set the starting position
+		sf::Vector2f b2Pos = object.getCenter();
+
+		myBodyDef.position.Set(b2Pos.x, b2Pos.y);		//set the starting position
 		myBodyDef.angle = 0;				//set the starting angle
 		myBodyDef.userData = "Terrain";
-
+		
 		b2Body* box_body = world->CreateBody(&myBodyDef);
 
 		//Define the shape of the body
 		b2PolygonShape shape;
-		shape.SetAsBox(1, 1);
+		shape.SetAsBox(object.width/2, object.height/2);
 
 		b2FixtureDef myFixtureDef;
 		myFixtureDef.density = 0.0f;
@@ -76,45 +89,27 @@ void Level::CreateTerrain(b2World * world, shared_ptr<tmx::ObjectGroup> layer) {
 
 		box_body->CreateFixture(&myFixtureDef);
 		terrain_data.push_back(box_body);
+	}
+}
+
+void Level::GeneratePlayerItems(b2World * world, tmx::ObjectGroup & layer) {
+	int lenght = layer.objects_.size();
+	//for (int i = 0; i < lenght; i++) {
+		//if ( TYPE == Checkpoint)	{
+		//string type = layer.objects_[i].type_;	//Make this work when recompiling the STP .dll 
+		//if (type == "Exit") {
+		/*string x = layer.objects_[i].GetPropertyValue("x");
+			string y = layer.objects_[i].GetPropertyValue("y"); */
+			string x = layer.objects_[1].GetPropertyValue("x");
+			string y = layer.objects_[1].GetPropertyValue("y");
+			m_exit = Exit(sf::Vector2f(atoi(x.c_str()) * tile_size, atoi(y.c_str()) * tile_size));
+		//}
+		//if (type == "Spawn") {
+			string x1 = layer.objects_[0].GetPropertyValue("x");
+			string y2 = layer.objects_[0].GetPropertyValue("y");
+			m_player_spawn = sf::Vector2f(atoi(x1.c_str()) * tile_size, atoi(y2.c_str()) * tile_size);
+		//}
 	//}
-
-	/*
-	std::vector<std::unique_ptr<sf::Shape>> debugBoxes;
-	std::vector<DebugShape> debugShapes;
-	std::map<b2Body*, sf::CircleShape> dynamicShapes; //we can use raw pointers because box2D manages its own memory
-	//m_platform_data
-	//Platform(sf::Vector2f position, sf::Vector2f size, b2World &m_world)
-	for (const auto& o : layer.objects)
-	{
-		//receive a pointer to the newly created body
-		b2Body* b = tmx::BodyCreator::Add(o, *world);
-		sf::FloatRect body_geo = o.GetAABB();
-		m_platform_data.push_back(Platform(body_geo));
-		/*
-		//iterate over body info to create some visual debugging shapes to help visualise
-		debugBoxes.push_back(std::unique_ptr<sf::RectangleShape>(new sf::RectangleShape(sf::Vector2f(6.f, 6.f))));
-		sf::Vector2f pos = tmx::BoxToSfVec(b->GetPosition());
-		debugBoxes.back()->setPosition(pos);
-		debugBoxes.back()->setOrigin(3.f, 3.f);
-
-		for (b2Fixture* f = b->GetFixtureList(); f; f = f->GetNext())
-		{
-			b2Shape::Type shapeType = f->GetType();
-			if (shapeType == b2Shape::e_polygon)
-			{
-				DebugShape ds;
-				ds.setPosition(pos);
-				b2PolygonShape* ps = (b2PolygonShape*)f->GetShape();
-
-				int count = ps->GetVertexCount();
-				for (int i = 0; i < count; i++)
-					ds.AddVertex(sf::Vertex(tmx::BoxToSfVec(ps->GetVertex(i)), sf::Color::Green));
-
-				ds.AddVertex(sf::Vertex(tmx::BoxToSfVec(ps->GetVertex(0)), sf::Color::Green));
-				debugShapes.push_back(ds);
-			}
-		}
-	}*/
 }
 
 

@@ -31,6 +31,12 @@
     <Filter Include="Header Files\Map">
       <UniqueIdentifier>{ee609332-dbd1-4c0b-aa8f-0523e1315658}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Entities">
+      <UniqueIdentifier>{8dca9a99-3c2e-44f3-bb68-c603fbf878bf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Entities">
+      <UniqueIdentifier>{101a3380-f5e0-4dd3-a064-d40573d11d39}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -59,12 +65,6 @@
     </ClInclude>
     <ClInclude Include="LevelScene.hpp">
       <Filter>Header Files\Scenes</Filter>
-    </ClInclude>
-    <ClInclude Include="Player.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Entity.hpp">
-      <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Platform.hpp">
       <Filter>Header Files</Filter>
@@ -96,6 +96,18 @@
     <ClInclude Include="Level.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Enemy.hpp">
+      <Filter>Header Files\Entities</Filter>
+    </ClInclude>
+    <ClInclude Include="Entity.hpp">
+      <Filter>Header Files\Entities</Filter>
+    </ClInclude>
+    <ClInclude Include="Player.hpp">
+      <Filter>Header Files\Entities</Filter>
+    </ClInclude>
+    <ClInclude Include="Snake.hpp">
+      <Filter>Header Files\Entities</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -116,9 +128,6 @@
     <ClCompile Include="LevelScene.cpp">
       <Filter>Source Files\Scenes</Filter>
     </ClCompile>
-    <ClCompile Include="Player.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Level.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -136,6 +145,9 @@
     </ClCompile>
     <ClCompile Include="vCamera.cpp">
       <Filter>Source Files\Util</Filter>
+    </ClCompile>
+    <ClCompile Include="Player.cpp">
+      <Filter>Source Files\Entities</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

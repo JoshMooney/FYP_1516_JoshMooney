@@ -28,6 +28,9 @@ public:
 	void print(string message) {
 		cout << message << endl;
 	}
+	void debug(string from, int i) {
+		cout << from << ": " << i << endl;
+	}
 	void newline(){
 		cout << endl;
 	}

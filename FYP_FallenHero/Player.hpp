@@ -25,7 +25,7 @@ public:
 	void moveLeft();
 	void moveRight();
 	void jump();
-	void reset();
+	void reset(sf::Vector2f pos);
 
 	b2Body* getBody()	{ return e_box_body; }
 	bool isMoving()	{ return m_is_moving; }
@@ -35,6 +35,7 @@ public:
 	bool isJumping()	{ return m_is_jumping; }
 	b2Vec2 getCenter()	{ return e_box_body->GetPosition(); }
 	void moveTo(sf::Vector2f p) {	e_box_body->SetTransform(vHelper::toB2(p), 0.0f);	}
+	void Spawn(sf::Vector2f p);
 	
 	inline float clamp(float x, float min, float max);
 	void alineSprite();

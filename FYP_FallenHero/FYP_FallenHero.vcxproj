@@ -84,6 +84,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="cLog.hpp" />
+    <ClInclude Include="Enemy.hpp" />
     <ClInclude Include="Entity.hpp" />
     <ClInclude Include="Exit.hpp" />
     <ClInclude Include="Game.hpp" />
@@ -95,6 +96,7 @@
     <ClInclude Include="PlayerIcon.hpp" />
     <ClInclude Include="ResourceManager.hpp" />
     <ClInclude Include="Scene.hpp" />
+    <ClInclude Include="Snake.hpp" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
     <ClInclude Include="vCamera.hpp" />
