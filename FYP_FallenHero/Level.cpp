@@ -61,12 +61,17 @@ void Level::CreateTerrain(b2World * world, tmx::ObjectGroup &layer) {
 	for (int i = 0; i < lenght; i++) {
 		OBJ object;
 		//Dont even ask!!
-		object.x = layer.objects_[i].height_;
 		string s = layer.objects_[i].GetPropertyValue("x");
 		object.x = atoi(s.c_str()) * 32;		//By tile size
-		object.y = layer.objects_[i].x_;
-		object.width = layer.objects_[i].y_;
-		object.height = layer.objects_[i].width_;
+
+		s = layer.objects_[i].GetPropertyValue("y");
+		object.y = atoi(s.c_str()) * 32;		//By tile size
+
+		s = layer.objects_[i].GetPropertyValue("w");
+		object.width = atoi(s.c_str()) * 32;		//By tile size
+
+		s = layer.objects_[i].GetPropertyValue("h");
+		object.height = atoi(s.c_str()) * 32;		//By tile size
 		
 		b2BodyDef myBodyDef;
 		myBodyDef.type = b2_staticBody;		//this will be a dynamic body

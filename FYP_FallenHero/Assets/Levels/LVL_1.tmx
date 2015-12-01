@@ -1,21 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" width="90" height="25" tilewidth="32" tileheight="32">
- <tileset firstgid="1" name="tile_set" tilewidth="32" tileheight="32">
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="90" height="25" tilewidth="32" tileheight="32" nextobjectid="8">
+ <tileset firstgid="1" name="tile_set" tilewidth="32" tileheight="32" tilecount="3">
   <image source="Tiles/tile_set.png" width="96" height="32"/>
+ </tileset>
+ <tileset firstgid="4" name="temp_ground" tilewidth="32" tileheight="32" tilecount="9">
+  <image source="Tiles/groundTileset.png" width="288" height="32"/>
  </tileset>
  <layer name="Textures" width="90" height="25">
   <data encoding="base64" compression="zlib">
-   eJzt1tEKgCAMQNFl///PPUQQw9aaOTPugT0k9NBFTBEA6GN5OIihc46jX5F6V72OGKtzqawjhv2cg8459BlxPiv0M53juG/koDNmwD7MQeccX++8OkbfgfSMMNv/6y+dPd/Reyx0prOFzru7d96e0Y1bO3u+kc50pjOd6Uznq9kAOjMGrg==
+   eJztllsKgCAQAE163v/CiRCESOKuLWkzMB/5ETYsmnMAAO8wVQoy6GzD1c+7fNd0HWQ8dfaZdZDBPNtAZxvSM+J+VqTPdJbD/4YNdIYeYA5toLMNX+88B3eFi/2WI73dX2vwULjZbzmSdtXMSgtL8zZKZ803tLDUgc59d9ae+7X+tbP2vb1JZzqPJJ3p3NIT0awVIQ==
   </data>
  </layer>
- <objectgroup name="Terrain" width="0" height="0">
+ <objectgroup name="Terrain">
   <properties>
    <property name="h" value=""/>
    <property name="w" value=""/>
    <property name="x" value=""/>
    <property name="y" value=""/>
   </properties>
-  <object name="pf_1" type="Platform" x="-5" y="544" width="1063" height="268">
+  <object id="1" name="pf_1" type="Platform" x="-5" y="544" width="1063" height="268">
    <properties>
     <property name="h" value="9"/>
     <property name="w" value="34"/>
@@ -23,12 +26,15 @@
     <property name="y" value="17"/>
    </properties>
   </object>
-  <object name="pf_3" type="Platform" x="1984" y="608" width="893" height="205">
+  <object id="2" name="pf_3" type="Platform" x="1984" y="608" width="893" height="205">
    <properties>
+    <property name="h" value="6"/>
+    <property name="w" value="27"/>
     <property name="x" value="62"/>
+    <property name="y" value="19"/>
    </properties>
   </object>
-  <object name="pf_2" type="Platform" x="1282" y="492" width="537" height="304">
+  <object id="3" name="pf_2" type="Platform" x="1282" y="480" width="537" height="304">
    <properties>
     <property name="h" value="9.5"/>
     <property name="w" value="17"/>
@@ -37,8 +43,8 @@
    </properties>
   </object>
  </objectgroup>
- <objectgroup name="Player_Data" width="90" height="25">
-  <object name="Start Level" type="Spawn" x="32" y="448" width="64" height="64">
+ <objectgroup name="Player_Data">
+  <object id="4" name="Start Level" type="Spawn" x="32" y="448" width="64" height="64">
    <properties>
     <property name="h" value="2"/>
     <property name="w" value="2"/>
@@ -46,7 +52,7 @@
     <property name="y" value="14"/>
    </properties>
   </object>
-  <object name="End Level" type="Exit" x="2784" y="512" width="64" height="64">
+  <object id="5" name="End Level" type="Exit" x="2784" y="512" width="64" height="64">
    <properties>
     <property name="h" value="2"/>
     <property name="w" value="2"/>
