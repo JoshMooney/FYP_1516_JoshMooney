@@ -74,27 +74,38 @@ void WorldScene::handleEvent(sf::Event &e){
 		m_key_pressed = false;
 }
 void WorldScene::handleInput(XBOXController &controller){
-	if (s_key_map["UP"] && !s_prev_key_map["UP"]){
-
+	if (controller.isPressed["D_UP"]){
+		if (!m_key_pressed){
+			m_key_pressed = true;
+			movePlayer("UP");
+		}
 	}
-	else if (s_key_map["DOWN"] && !s_prev_key_map["DOWN"]) {
-
+	if (controller.isPressed["D_DOWN"]){
+		if (!m_key_pressed){
+			m_key_pressed = true;
+			movePlayer("DOWN");
+		}
 	}
-	else if (s_key_map["LEFT"] && !s_prev_key_map["LEFT"]) {
-
+	if (controller.isPressed["D_LEFT"]){
+		if (!m_key_pressed){
+			m_key_pressed = true;
+			movePlayer("LEFT");
+		}
 	}
-	else if (s_key_map["RIGHT"] && !s_prev_key_map["RIGHT"]) {
-
+	if (controller.isPressed["D_RIGHT"]){
+		if (!m_key_pressed){
+			m_key_pressed = true;
+			movePlayer("RIGHT");
+		}
 	}
-	else if (s_key_map["RETURN"] && !s_prev_key_map["RETURN"]) {
-
+	if (controller.isPressed["A"]){
+		if (!m_key_pressed){
+			m_key_pressed = true;
+			select();
+		}
 	}
-	else if (s_key_map["SPACE"] && !s_prev_key_map["SPACE"]) {
-
-	}
-
-	s_prev_key_map = s_key_map;
-	s_key_map.clear();
+	if (controller.isIdle())
+		m_key_pressed = false;
 }
 
 void WorldScene::movePlayer(string direction){
