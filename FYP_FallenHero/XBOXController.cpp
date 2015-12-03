@@ -76,7 +76,7 @@ void XBOXController::Rumble(int l_rm, int r_rm)
 
 void XBOXController::UpdateButtons(){
 	//isPressed = isPressed_cleared;
-
+	wasPressed = isPressed;
 	UpdateA();
 	UpdateB();
 	UpdateX();

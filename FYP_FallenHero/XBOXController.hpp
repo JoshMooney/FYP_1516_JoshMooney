@@ -41,6 +41,7 @@ private:
 	void UpdateBack();
 public:
 	map<string, bool> isPressed;
+	map<string, bool> wasPressed;
 	map<string, bool> isPressed_cleared;
 
 	XBOXController();
