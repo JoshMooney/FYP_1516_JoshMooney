@@ -13,6 +13,7 @@ private:
 	bool prev_lock_x, prev_lock_y;
 	float lock_x_value, lock_y_value;
 	bool out_of_bounds = false;
+	float pos_x, pos_y;
 	float XAxisOffset;
 	sf::FloatRect m_bounds;
 	sf::Vector2f SCREEN_SIZE;
@@ -22,6 +23,7 @@ public:
 	vCamera(sf::Vector2f screen_size, sf::FloatRect bounds);
 	vCamera(sf::Vector2f screen_size, sf::FloatRect bounds, pair<bool, bool> locked_axis);
 	~vCamera();
+
 	void refresh(sf::Vector2f player_center);
 
 	sf::Vector2f getPlayerOffset(sf::Vector2f player_center);
@@ -31,6 +33,8 @@ public:
 	void addBounds(sf::FloatRect bounds) { m_bounds = bounds; }
 	void LockX(bool b);
 	void LockY(bool b);
+	float getX();
+	float getY();
 	
 };
 

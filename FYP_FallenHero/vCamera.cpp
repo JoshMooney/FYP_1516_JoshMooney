@@ -111,8 +111,10 @@ sf::FloatRect vCamera::getRectViewport() {
 	sf::Vector2f l_size, l_center;
 	l_size = getSize();
 	l_center = getCenter();
-	sf::FloatRect temp = sf::FloatRect((float)(l_center.x - l_size.x / 2),
-		(float)(l_center.y - l_size.y / 2),
+	pos_x = l_center.x - l_size.x / 2;
+	pos_y = l_center.y - l_size.y / 2;
+	sf::FloatRect temp = sf::FloatRect((float)(pos_x),
+		(float)(pos_y),
 		(float)(l_size.x),
 		(float)(l_size.y));
 	return temp;
@@ -133,3 +135,10 @@ void vCamera::LockY(bool b){
 	}
 	else	lock_y = b;
 }
+float vCamera::getX(){
+	return pos_x;
+}
+float vCamera::getY(){
+	return pos_y;
+}
+

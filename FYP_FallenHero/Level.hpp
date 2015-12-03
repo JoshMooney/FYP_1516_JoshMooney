@@ -14,9 +14,11 @@
 #include <string>
 #include <vector>
 
+#include "vCamera.hpp"
 #include "Platform.hpp"
 #include "Exit.hpp"
 #include "Terrain.hpp"
+#include "ParallaxSprite.hpp"
 
 class Level {
 private:
@@ -24,11 +26,14 @@ private:
 	string format;
 	int tile_size;
 	
+	ParallaxSprite scene;
+
 	shared_ptr<tmx::TileMap> tiled_map;
 	Exit m_exit;
 	
 	vector<Terrain> terrain_data;			//Terrain of the level
 	vector<Platform> platform_data;			//Platform Data
+	vector<ParallaxSprite> scenery_data;			//Platform Data
 	//vector<LevelItem> player_data;		//Player Level Data Spawn, Exit, checkpoints.
 	//vector<Collectible> level_data;		//Coins, collectibles
 	sf::Vector2f m_player_spawn;
@@ -37,13 +42,14 @@ public:
 	Level(string s, b2World *world);
 	~Level();
 
-	void render(sf::RenderWindow &w);
+	void render(sf::RenderWindow &w, vCamera *cam);
 
 	void ParseMapLayers(b2World *world);
 	void CreateTerrain(b2World *world, tmx::ObjectGroup &layer);
 	void CreatePlatforms(b2World *world, tmx::ObjectGroup &layer);
 	void GeneratePlayerItems(b2World *world, tmx::ObjectGroup &layer);
 	void GenerateLevelItems(b2World *world, tmx::ObjectGroup &layer);
+	void GenerateBackground();
 
 	void loadMap(string lvl_name);
 	shared_ptr<tmx::TileMap> tiledMap() { return tiled_map; }

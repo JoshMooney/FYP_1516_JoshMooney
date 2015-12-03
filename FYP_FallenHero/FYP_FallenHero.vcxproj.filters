@@ -37,6 +37,12 @@
     <Filter Include="Source Files\Entities">
       <UniqueIdentifier>{101a3380-f5e0-4dd3-a064-d40573d11d39}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Level">
+      <UniqueIdentifier>{efb50261-6ba3-49ed-81ef-717160bc9d75}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Level">
+      <UniqueIdentifier>{893aa20d-60dc-456e-9f63-a8324139b95c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -90,12 +96,6 @@
     <ClInclude Include="PlayerIcon.hpp">
       <Filter>Header Files\Map</Filter>
     </ClInclude>
-    <ClInclude Include="Exit.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Level.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Enemy.hpp">
       <Filter>Header Files\Entities</Filter>
     </ClInclude>
@@ -110,6 +110,15 @@
     </ClInclude>
     <ClInclude Include="Terrain.hpp">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Exit.hpp">
+      <Filter>Header Files\Level</Filter>
+    </ClInclude>
+    <ClInclude Include="Level.hpp">
+      <Filter>Header Files\Level</Filter>
+    </ClInclude>
+    <ClInclude Include="ParallaxSprite.hpp">
+      <Filter>Header Files\Level</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -131,9 +140,6 @@
     <ClCompile Include="LevelScene.cpp">
       <Filter>Source Files\Scenes</Filter>
     </ClCompile>
-    <ClCompile Include="Level.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Platform.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -151,6 +157,9 @@
     </ClCompile>
     <ClCompile Include="Player.cpp">
       <Filter>Source Files\Entities</Filter>
+    </ClCompile>
+    <ClCompile Include="Level.cpp">
+      <Filter>Source Files\Level</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

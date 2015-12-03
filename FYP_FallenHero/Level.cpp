@@ -11,6 +11,8 @@ Level::Level(string s, b2World *world) {
 	format = ".tmx";
 	tile_size = 32;
 
+	scene = ParallaxSprite(path + "Backgrounds/Mountains.png", sf::Vector3f(0, 0, 0.5f));
+
 	loadMap(s);
 	ParseMapLayers(world);
 }
@@ -29,7 +31,16 @@ Level::~Level() {
 	
 }
 
-void Level::render(sf::RenderWindow &w){
+void Level::render(sf::RenderWindow &w, vCamera *cam){
+	/*for (int i = 0; i < scenery_data.size(); i++){
+		float x = cam->getX() * scenery_data[i].getDefaultPosition().z;
+		scenery_data[i].setPosition(sf::Vector2f(x, scenery_data[i].getDefaultPosition().y));
+	}*/
+	
+	float x = cam->getX() * scene.getDefaultPosition().z;
+	scene.setPosition(sf::Vector2f(x, scene.getDefaultPosition().y));
+	w.draw(scene);
+
 	w.draw(*tiled_map);
 	w.draw(m_exit);
 }
@@ -46,6 +57,8 @@ void Level::ParseMapLayers(b2World * world) {
 	lay = tiled_map->GetObjectGroup("Player_Data");
 	GeneratePlayerItems(world, lay);
 
+	GenerateBackground();
+
 	//l = make_shared<tmx::ObjectGroup>(tiled_map->GetObjectGroup("Platform"));
 	//CreatePlatforms(world, layer);
 
@@ -54,7 +67,6 @@ void Level::ParseMapLayers(b2World * world) {
 
 
 }
-
 void Level::CreateTerrain(b2World * world, tmx::ObjectGroup &layer) {
 	int lenght = layer.objects_.size();
 	Terrain terrain;
@@ -101,7 +113,6 @@ void Level::CreateTerrain(b2World * world, tmx::ObjectGroup &layer) {
 		terrain_data.push_back(terrain);
 	}
 }
-
 void Level::GeneratePlayerItems(b2World * world, tmx::ObjectGroup & layer) {
 	string x, y;
 	string type;
@@ -121,6 +132,19 @@ void Level::GeneratePlayerItems(b2World * world, tmx::ObjectGroup & layer) {
 			m_player_spawn = sf::Vector2f(atoi(x.c_str()) * tile_size, atoi(y.c_str()) * tile_size);
 		}
 	}
+}
+
+void Level::GenerateBackground(){
+	/*ParallaxSprite scenery;
+
+	scenery = ParallaxSprite(path + "Backgrounds/Clouds.png", sf::Vector3f(0, 0, 0.8f));
+	scenery_data.push_back(scenery);
+
+	scenery = ParallaxSprite(path + "Backgrounds/Mountains.png", sf::Vector3f(0, 0, 0.5f));
+	scenery_data.push_back(scenery);
+
+	scenery = ParallaxSprite(path + "Backgrounds/Trees.png", sf::Vector3f(0, 0, 0.2f));
+	scenery_data.push_back(scenery);*/
 }
 
 void Level::loadMap(string lvl_name) {

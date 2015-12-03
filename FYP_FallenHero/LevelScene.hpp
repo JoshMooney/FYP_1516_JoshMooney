@@ -35,6 +35,8 @@ private:
 	const b2Vec2 GRAVITY = b2Vec2(0, 9.81f);
 	const int VEL_ITER = 6;
 	const int POS_ITER = 2;
+
+	bool isPaused;
 public:
 	b2World* m_world;
 
@@ -43,8 +45,7 @@ public:
 	LevelScene(string lvl_name, Player *p);
 	~LevelScene();
 
-	void update();			//Deprecated due to addition of delta time
-	void update(sf::Time dt);			
+	void update();			//Deprecated due to addition of delta time		
 	void render(sf::RenderWindow &w);
 	void handleEvent(sf::Event &e);		//Deprecated due to addition of delta time
 	void handleEvent(sf::Event &e, sf::Time dt);
