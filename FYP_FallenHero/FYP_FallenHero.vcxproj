@@ -99,6 +99,7 @@
     <ClInclude Include="Snake.hpp" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
+    <ClInclude Include="Terrain.hpp" />
     <ClInclude Include="vCamera.hpp" />
     <ClInclude Include="vHelper.hpp" />
     <ClInclude Include="WorldMap.hpp" />

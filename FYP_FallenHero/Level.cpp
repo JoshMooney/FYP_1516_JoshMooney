@@ -57,10 +57,10 @@ void Level::ParseMapLayers(b2World * world) {
 
 void Level::CreateTerrain(b2World * world, tmx::ObjectGroup &layer) {
 	int lenght = layer.objects_.size();
-	
+	Terrain terrain;
+
 	for (int i = 0; i < lenght; i++) {
 		OBJ object;
-		//Dont even ask!!
 		string s = layer.objects_[i].GetPropertyValue("x");
 		object.x = atoi(s.c_str()) * 32;		//By tile size
 
@@ -73,6 +73,8 @@ void Level::CreateTerrain(b2World * world, tmx::ObjectGroup &layer) {
 		s = layer.objects_[i].GetPropertyValue("h");
 		object.height = atoi(s.c_str()) * 32;		//By tile size
 		
+		//terrain->geometry. = sf::FloatRect{}
+
 		b2BodyDef myBodyDef;
 		myBodyDef.type = b2_staticBody;		//this will be a dynamic body
 		sf::Vector2f b2Pos = object.getCenter();
@@ -98,22 +100,23 @@ void Level::CreateTerrain(b2World * world, tmx::ObjectGroup &layer) {
 }
 
 void Level::GeneratePlayerItems(b2World * world, tmx::ObjectGroup & layer) {
+	string x, y;
+	string type;
 	int lenght = layer.objects_.size();
-	//for (int i = 0; i < lenght; i++) {
-		//if ( TYPE == Checkpoint)	{
-		//string type = layer.objects_[i].type_;	//Make this work when recompiling the STP .dll 
-		//if (type == "Exit") {
-		/*string x = layer.objects_[i].GetPropertyValue("x");
-			string y = layer.objects_[i].GetPropertyValue("y"); */
-			string x = layer.objects_[1].GetPropertyValue("x");
-			string y = layer.objects_[1].GetPropertyValue("y");
+
+	for (int i = 0; i < lenght; i++) {
+		//if (type == "Checkpoint")	{
+		string type = layer.objects_[i].GetPropertyValue("type"); 	//Make this work when recompiling the STP .dll 
+		if (type == "EXIT") {
+			x = layer.objects_[1].GetPropertyValue("x");
+			y = layer.objects_[1].GetPropertyValue("y");
 			m_exit = Exit(sf::Vector2f(atoi(x.c_str()) * tile_size, atoi(y.c_str()) * tile_size));
-		//}
-		//if (type == "Spawn") {
-			string x1 = layer.objects_[0].GetPropertyValue("x");
-			string y2 = layer.objects_[0].GetPropertyValue("y");
-			m_player_spawn = sf::Vector2f(atoi(x1.c_str()) * tile_size, atoi(y2.c_str()) * tile_size);
-		//}
+		}
+		if (type == "SPAWN") {
+			x = layer.objects_[0].GetPropertyValue("x");
+			y = layer.objects_[0].GetPropertyValue("y");
+			m_player_spawn = sf::Vector2f(atoi(x.c_str()) * tile_size, atoi(y.c_str()) * tile_size);
+		}
 	//}
 }
 
