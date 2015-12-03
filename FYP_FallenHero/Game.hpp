@@ -16,10 +16,6 @@ class Game {
 private:
 	XBOXController m_xbox_controller;
 	bool controller_connected, previous_connected;
-	const float B2_TIMESTEP = 1.0f / 60.0f;
-	const b2Vec2 GRAVITY = b2Vec2(0, 9.81f);
-	const int VEL_ITER = 6;
-	const int POS_ITER = 2;
 
 	Player *m_player;
 
@@ -33,7 +29,6 @@ public:
 
 	bool isRunning;
 	sf::RenderWindow* m_window;
-	b2World* m_world;
 
 	//Scenes
 	MenuScene *m_menu_scene;

@@ -20,7 +20,7 @@ public:
 	Player(b2World &m_world);
 	~Player();
 
-	void update(sf::Time dt);
+	void update(FTS fts);
 	void Idle();
 	void moveLeft();
 	void moveRight();

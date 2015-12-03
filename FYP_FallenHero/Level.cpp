@@ -95,7 +95,10 @@ void Level::CreateTerrain(b2World * world, tmx::ObjectGroup &layer) {
 		myFixtureDef.shape = &shape;
 
 		box_body->CreateFixture(&myFixtureDef);
-		terrain_data.push_back(box_body);
+
+		terrain.body = box_body;
+		terrain.geometry = sf::FloatRect{ (float)object.x, (float)object.y, (float)object.width, (float)object.height };
+		terrain_data.push_back(terrain);
 	}
 }
 
@@ -107,19 +110,18 @@ void Level::GeneratePlayerItems(b2World * world, tmx::ObjectGroup & layer) {
 	for (int i = 0; i < lenght; i++) {
 		//if (type == "Checkpoint")	{
 		string type = layer.objects_[i].GetPropertyValue("type"); 	//Make this work when recompiling the STP .dll 
-		if (type == "EXIT") {
+		if (type == "Exit") {
 			x = layer.objects_[1].GetPropertyValue("x");
 			y = layer.objects_[1].GetPropertyValue("y");
 			m_exit = Exit(sf::Vector2f(atoi(x.c_str()) * tile_size, atoi(y.c_str()) * tile_size));
 		}
-		if (type == "SPAWN") {
+		if (type == "Spawn") {
 			x = layer.objects_[0].GetPropertyValue("x");
 			y = layer.objects_[0].GetPropertyValue("y");
 			m_player_spawn = sf::Vector2f(atoi(x.c_str()) * tile_size, atoi(y.c_str()) * tile_size);
 		}
-	//}
+	}
 }
-
 
 void Level::loadMap(string lvl_name) {
 	tiled_map = make_shared<tmx::TileMap>(path + lvl_name + format);

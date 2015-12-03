@@ -2,10 +2,15 @@
 #include "LevelScene.hpp"
 
 LevelScene::LevelScene(){
+	m_world = new b2World(GRAVITY);
+
 	m_level_complete = false;
 	m_camera = vCamera(sf::Vector2f(SCREEN_WIDTH, SCREEN_HEIGHT), sf::FloatRect{0.0f, 0.0f, 2880.0f, 640.0f});
 	//tiled_map = new tmx::TileMap("test.tmx");
-	m_time_per_frame = sf::seconds(1.f / 30.0f);
+	//m_time_per_frame = sf::seconds(1.f / 30.0f);
+
+	m_player = new Player(*m_world);
+	player_size = ResourceManager<sf::Texture>::instance()->get(m_player->e_texture).getSize();
 }
 LevelScene::LevelScene(string lvl_name, Player *p){
 	m_player = p;
@@ -17,17 +22,22 @@ LevelScene::~LevelScene(){
 
 void LevelScene::update(){
 	//cLog::inst()->print(1, "LevelScene", "Deprecated update called");
-	m_player->update(m_time_per_frame);
-	m_camera.setCenter(m_camera.getPlayerOffset(vHelper::toSF(m_player->getCenter())));
-	
-	sf::Vector2u size = ResourceManager<sf::Texture>::instance()->get(m_player->e_texture).getSize();
-	if (m_level->hasEnded(sf::FloatRect{ m_player->getPosition().x, m_player->getPosition().y, (float)size.x, (float)size.y }))
-		m_level_complete = true;
+	while (game_clock.now() - timeOfLastTick >= timePerTick){
+		timeOfLastTick = game_clock.now();
+
+		m_world->Step(B2_TIMESTEP, VEL_ITER, POS_ITER);
+
+		m_player->update(timeOfLastTick);
+		m_camera.setCenter(m_camera.getPlayerOffset(vHelper::toSF(m_player->getCenter())));
+		
+		if (m_level->hasEnded(sf::FloatRect{ m_player->getPosition().x, m_player->getPosition().y, (float)player_size.x, (float)player_size.y }))
+			m_level_complete = true;
+	}
 
 	//m_camera.checkBounds();
 }
 void LevelScene::update(sf::Time dt){
-	m_player->update(m_time_per_frame);
+	//m_player->update(m_time_per_frame);
 	m_camera.setCenter(m_camera.getPlayerOffset(vHelper::toSF(m_player->getCenter())));
 
 }
@@ -124,17 +134,11 @@ void LevelScene::handleInput(XBOXController &controller){
 		m_key_pressed = false;*/
 }
 
-void LevelScene::loadLevel(string lvl_name, b2World *world){
-	m_level = make_shared<Level>(lvl_name, world);
+void LevelScene::loadLevel(string lvl_name){
+	m_level = make_shared<Level>(lvl_name, m_world);
 	m_player->reset(m_level->getSpawn());
 }
 
-void LevelScene::createPlatforms(b2World *l_world){
-	//m_platform.push_back(Platform(sf::Vector2f(150, 500), sf::Vector2f(200, 50), *l_world));
-	//m_platform.push_back(Platform(sf::Vector2f(500, 450), sf::Vector2f(200, 50), *l_world));
-	//m_plat1 = Platform(sf::Vector2f(150, 500), sf::Vector2f(200, 50), *l_world);
-	//m_plat2 = Platform(sf::Vector2f(500, 450), sf::Vector2f(800, 50), *l_world);
-}
 void LevelScene::reset() {
 	m_level_complete = false;
 	m_player->reset(sf::Vector2f(0,0));

@@ -8,7 +8,7 @@
 #include "ResourceManager.hpp"
 
 struct Entity : public sf::Sprite {
-	virtual void update(sf::Time dt) = 0;
+	virtual void update(FTS fts) = 0;
 
 	int e_hp;
 	string e_texture;

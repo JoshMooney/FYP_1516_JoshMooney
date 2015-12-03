@@ -47,7 +47,7 @@ Player::~Player(){
 
 }
 
-void Player::update(sf::Time dt){
+void Player::update(FTS fts){
 	alineSprite();
 	Idle();
 }

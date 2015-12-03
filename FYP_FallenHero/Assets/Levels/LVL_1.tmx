@@ -18,7 +18,7 @@
    <property name="x" value=""/>
    <property name="y" value=""/>
   </properties>
-  <object id="1" name="pf_1" type="Platform" x="-5" y="544" width="1063" height="268">
+  <object id="1" name="pf_1" type="Platform" x="-5" y="544" width="1063" height="256">
    <properties>
     <property name="h" value="9"/>
     <property name="w" value="34"/>
@@ -26,7 +26,7 @@
     <property name="y" value="17"/>
    </properties>
   </object>
-  <object id="2" name="pf_3" type="Platform" x="1984" y="608" width="893" height="205">
+  <object id="2" name="pf_3" type="Platform" x="1984" y="608" width="893" height="196">
    <properties>
     <property name="h" value="6"/>
     <property name="w" value="27"/>
@@ -34,7 +34,7 @@
     <property name="y" value="19"/>
    </properties>
   </object>
-  <object id="3" name="pf_2" type="Platform" x="1282" y="480" width="537" height="304">
+  <object id="3" name="pf_2" type="Platform" x="1282" y="480" width="537" height="324">
    <properties>
     <property name="h" value="9.5"/>
     <property name="w" value="17"/>
@@ -47,6 +47,7 @@
   <object id="4" name="Start Level" type="Spawn" x="32" y="448" width="64" height="64">
    <properties>
     <property name="h" value="2"/>
+    <property name="type" value="Spawn"/>
     <property name="w" value="2"/>
     <property name="x" value="1"/>
     <property name="y" value="14"/>
@@ -55,6 +56,7 @@
   <object id="5" name="End Level" type="Exit" x="2784" y="512" width="64" height="64">
    <properties>
     <property name="h" value="2"/>
+    <property name="type " value="Exit"/>
     <property name="w" value="2"/>
     <property name="x" value="87"/>
     <property name="y" value="16"/>
