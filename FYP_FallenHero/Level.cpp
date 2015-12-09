@@ -82,16 +82,16 @@ void Level::CreateTerrain(b2World * world, tmx::ObjectGroup &layer) {
 	for (int i = 0; i < lenght; i++) {
 		OBJ object;
 		string s = layer.objects_[i].GetPropertyValue("x");
-		object.x = atoi(s.c_str()) * 32;		//By tile size
+		object.x = atoi(s.c_str());		
 
 		s = layer.objects_[i].GetPropertyValue("y");
-		object.y = atoi(s.c_str()) * 32;		//By tile size
+		object.y = atoi(s.c_str());		
 
 		s = layer.objects_[i].GetPropertyValue("w");
-		object.width = atoi(s.c_str()) * 32;		//By tile size
+		object.width = atoi(s.c_str());		
 
 		s = layer.objects_[i].GetPropertyValue("h");
-		object.height = atoi(s.c_str()) * 32;		//By tile size
+		object.height = atoi(s.c_str());		
 		
 		//terrain->geometry. = sf::FloatRect{}
 
@@ -132,12 +132,12 @@ void Level::GeneratePlayerItems(b2World * world, tmx::ObjectGroup & layer) {
 		if (type == "Exit") {
 			x = layer.objects_[1].GetPropertyValue("x");
 			y = layer.objects_[1].GetPropertyValue("y");
-			m_exit = Exit(sf::Vector2f(atoi(x.c_str()) * tile_size, atoi(y.c_str()) * tile_size));
+			m_exit = Exit(sf::Vector2f(atoi(x.c_str()), atoi(y.c_str())));
 		}
 		if (type == "Spawn") {
 			x = layer.objects_[0].GetPropertyValue("x");
 			y = layer.objects_[0].GetPropertyValue("y");
-			m_player_spawn = sf::Vector2f(atoi(x.c_str()) * tile_size, atoi(y.c_str()) * tile_size);
+			m_player_spawn = sf::Vector2f(atoi(x.c_str()), atoi(y.c_str()));
 		}
 	}
 }
