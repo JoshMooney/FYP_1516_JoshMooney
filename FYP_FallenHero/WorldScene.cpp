@@ -74,25 +74,25 @@ void WorldScene::handleEvent(sf::Event &e){
 		m_key_pressed = false;
 }
 void WorldScene::handleInput(XBOXController &controller){
-	if (controller.isPressed["D_UP"]){
+	if (controller.isPressed["D_UP"] || controller.isPressed["AL_UP"]){
 		if (!m_key_pressed){
 			m_key_pressed = true;
 			movePlayer("UP");
 		}
 	}
-	if (controller.isPressed["D_DOWN"]){
+	if (controller.isPressed["D_DOWN"] || controller.isPressed["AL_DOWN"]){
 		if (!m_key_pressed){
 			m_key_pressed = true;
 			movePlayer("DOWN");
 		}
 	}
-	if (controller.isPressed["D_LEFT"]){
+	if (controller.isPressed["D_LEFT"] || controller.isPressed["AL_LEFT"]){
 		if (!m_key_pressed){
 			m_key_pressed = true;
 			movePlayer("LEFT");
 		}
 	}
-	if (controller.isPressed["D_RIGHT"]){
+	if (controller.isPressed["D_RIGHT"] || controller.isPressed["AL_RIGHT"]){
 		if (!m_key_pressed){
 			m_key_pressed = true;
 			movePlayer("RIGHT");

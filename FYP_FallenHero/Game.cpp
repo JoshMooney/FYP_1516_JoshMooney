@@ -4,8 +4,8 @@
 Game::Game() {
 	m_window = new sf::RenderWindow(sf::VideoMode(SCREEN_WIDTH, SCREEN_HEIGHT, 32), "Fallen Hero", sf::Style::Titlebar);
 	isRunning = true;
-	m_xbox_controller = XBOXController();
-	m_xbox_controller.UpdateButtons();
+	m_xbox_controller = make_shared<XBOXController>();
+	m_xbox_controller->UpdateButtons();
 	cLog::inst()->print("Game class initialised");
 
 	m_menu_scene = new MenuScene();
@@ -32,9 +32,9 @@ void Game::run(){
 
 		controller_connected = checkController();		//Checks controller connections and compaires to previous state.
 		if (controller_connected)	
-			m_xbox_controller.UpdateButtons();
+			m_xbox_controller->UpdateButtons();
 		if (controller_connected)	
-			m_current_scene->handleInput(m_xbox_controller);
+			m_current_scene->handleInput(*m_xbox_controller);
 		else
 			m_current_scene->handleEvent(l_event);
 		m_current_scene->update();
@@ -56,7 +56,7 @@ void Game::createPlayer(){
 }
 
 bool Game::checkController() {
-	bool is_connected = m_xbox_controller.isConnected();
+	bool is_connected = m_xbox_controller->isConnected();
 	if (is_connected && !previous_connected) {
 		previous_connected = is_connected;
 	}

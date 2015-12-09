@@ -73,13 +73,13 @@ void MenuScene::handleEvent(sf::Event &e){
 		m_key_pressed = false;
 }
 void MenuScene::handleInput(XBOXController &controller){
-	if (controller.isPressed["D_UP"]){
+	if (controller.isPressed["D_UP"] || controller.isPressed["AL_UP"]){
 		if (!m_key_pressed){
 			m_key_pressed = true;
 			moveUp();
 		}
 	}
-	if (controller.isPressed["D_DOWN"]){
+	if (controller.isPressed["D_DOWN"] || controller.isPressed["AL_DOWN"]){
 		if (!m_key_pressed){
 			m_key_pressed = true;
 			moveDown();

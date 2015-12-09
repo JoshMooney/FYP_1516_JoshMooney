@@ -122,15 +122,16 @@ void LevelScene::handleInput(XBOXController &controller){
 		//if (!controller.isPressed["A"] && controller.wasPressed["A"]){
 		//	m_player->jump();
 		//}
-		if (controller.isPressed["D_RIGHT"]){
+		if (controller.isPressed["D_RIGHT"] || controller.isPressed["AL_RIGHT"]){
 			m_player->moveRight();
 		}
-		if (controller.isPressed["D_LEFT"]){
+		if (controller.isPressed["D_LEFT"] || controller.isPressed["AL_LEFT"]){
 			m_player->moveLeft();
 		}
 
 		//If there is input being recieved or not
-		if (!controller.isPressed["D_LEFT"] && !controller.isPressed["D_RIGHT"])
+		if (!controller.isPressed["D_LEFT"] && !controller.isPressed["D_RIGHT"] &&
+			!controller.isPressed["AL_LEFT"] && !controller.isPressed["AL_RIGHT"])
 			m_player->setIfMoving(false);
 
 		/*if (controller.isIdle())

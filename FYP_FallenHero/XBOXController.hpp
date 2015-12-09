@@ -17,11 +17,13 @@
 */
 #include <map>
 #include "cLog.hpp"
+#include <utility>
 
 class XBOXController {
 private:
-	XINPUT_STATE state;
+	XINPUT_STATE state, prev_state;
 	XINPUT_VIBRATION motor;
+	bool connected;
 	bool output;
 
 	void UpdateA();
@@ -34,11 +36,40 @@ private:
 	void UpdateDpadRight();
 	void UpdateDpadLeft();
 
+	void UpdateLeftAnalogUp();
+	void UpdateLeftAnalogDown();
+	void UpdateLeftAnalogRight();
+	void UpdateLeftAnalogLeft();
+
+	void UpdateRightAnalogUp();
+	void UpdateRightAnalogDown();
+	void UpdateRightAnalogRight();
+	void UpdateRightAnalogLeft();
+
+	void UpdateAnalogSticks();
+	void UpdateTriggers();
+
 	void UpdateRB();
 	void UpdateLB();
 
 	void UpdateStart();
 	void UpdateBack();
+
+	/*Deadzones*/
+	float dz_LX, dz_LY;
+	float dz_RX, dz_RY;
+	const float DEADZONE_MAX = 1.f;
+	const float ANALOG_GREATEST_DIR = 0.51f;
+	/*Trigger Thresholds*/
+	float threshold_LT, threshold_RT;
+	const float THRESHOLD_MAX = 1.f;
+	/*Left & Right Stick Values*/
+	float left_X, left_Y;
+	float right_X, right_Y;
+	const short STICK_MAX = 32767;
+	/*Trigger Values*/
+	float left_trigger, right_trigger;
+	const BYTE TRIGGER_MAX = 255;
 public:
 	map<string, bool> isPressed;
 	map<string, bool> wasPressed;
@@ -57,7 +88,10 @@ public:
 	void UpdateButtons();
 	bool isIdle();
 
-	
+	float getRT();
+	float getLT();
+	std::pair<float, float> getRightAnalog();
+	std::pair<float, float> getLeftAnalog();
 };
 
 #endif

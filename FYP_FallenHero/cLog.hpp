@@ -31,6 +31,9 @@ public:
 	void debug(string from, int i) {
 		cout << from << ": " << i << endl;
 	}
+	void debug(string from, float i) {
+		cout << from << ": " << i << endl;
+	}
 	void newline(){
 		cout << endl;
 	}
