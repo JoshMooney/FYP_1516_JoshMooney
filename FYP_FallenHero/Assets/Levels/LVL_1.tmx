@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="90" height="25" tilewidth="32" tileheight="32" nextobjectid="8">
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="90" height="25" tilewidth="32" tileheight="32" nextobjectid="12">
  <tileset firstgid="1" name="tile_set" tilewidth="32" tileheight="32" tilecount="3">
   <image source="Tiles/tile_set.png" width="96" height="32"/>
  </tileset>
@@ -47,7 +47,7 @@
   <object id="4" name="Start Level" type="Spawn" x="32" y="448" width="64" height="64">
    <properties>
     <property name="h" value="2"/>
-    <property name="type" value="Spawn"/>
+    <property name="label" value="Spawn"/>
     <property name="w" value="2"/>
     <property name="x" value="1"/>
     <property name="y" value="14"/>
@@ -56,11 +56,38 @@
   <object id="5" name="End Level" type="Exit" x="2784" y="512" width="64" height="64">
    <properties>
     <property name="h" value="2"/>
-    <property name="type " value="Exit"/>
+    <property name="label" value="Exit"/>
     <property name="w" value="2"/>
     <property name="x" value="87"/>
     <property name="y" value="16"/>
    </properties>
   </object>
  </objectgroup>
+ <objectgroup name="Background">
+  <object id="8" name="Clouds" x="16" y="16">
+   <properties>
+    <property name="filename" value="Clouds"/>
+    <property name="x" value="0"/>
+    <property name="y" value="0"/>
+    <property name="z" value="0"/>
+   </properties>
+  </object>
+  <object id="9" name="Mountains" x="48" y="16">
+   <properties>
+    <property name="filename" value="Mountains"/>
+    <property name="x" value="0"/>
+    <property name="y" value="0"/>
+    <property name="z" value="0"/>
+   </properties>
+  </object>
+  <object id="11" name="Trees" x="80" y="16">
+   <properties>
+    <property name="filename" value="Trees"/>
+    <property name="x" value="0"/>
+    <property name="y" value="0"/>
+    <property name="z" value="0"/>
+   </properties>
+  </object>
+ </objectgroup>
+ <objectgroup name="Foreground"/>
 </map>

@@ -1,5 +1,5 @@
-#ifndef _SCENERY_HPP
-#define _SCENERY_HPP
+#ifndef _PARALLAX_SPRITE_HPP
+#define _PARALLAX_SPRITE_HPP
 #include "stdafx.h"
 #include "SFML\Graphics\View.hpp"
 #include "SFML\System\Vector3.hpp"

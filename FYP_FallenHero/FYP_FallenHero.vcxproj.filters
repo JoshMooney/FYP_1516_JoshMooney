@@ -120,6 +120,9 @@
     <ClInclude Include="ParallaxSprite.hpp">
       <Filter>Header Files\Level</Filter>
     </ClInclude>
+    <ClInclude Include="Scenery.hpp">
+      <Filter>Header Files\Level</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -159,6 +162,9 @@
       <Filter>Source Files\Entities</Filter>
     </ClCompile>
     <ClCompile Include="Level.cpp">
+      <Filter>Source Files\Level</Filter>
+    </ClCompile>
+    <ClCompile Include="Scenery.cpp">
       <Filter>Source Files\Level</Filter>
     </ClCompile>
   </ItemGroup>

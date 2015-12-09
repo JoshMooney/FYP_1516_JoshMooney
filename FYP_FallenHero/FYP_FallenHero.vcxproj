@@ -97,6 +97,7 @@
     <ClInclude Include="ResourceManager.hpp" />
     <ClInclude Include="Scene.hpp" />
     <ClInclude Include="ParallaxSprite.hpp" />
+    <ClInclude Include="Scenery.hpp" />
     <ClInclude Include="Snake.hpp" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
@@ -117,6 +118,7 @@
     <ClCompile Include="MenuScene.cpp" />
     <ClCompile Include="Platform.cpp" />
     <ClCompile Include="Player.cpp" />
+    <ClCompile Include="Scenery.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>

@@ -18,6 +18,7 @@
 #include "Platform.hpp"
 #include "Exit.hpp"
 #include "Terrain.hpp"
+#include "Scenery.hpp"
 #include "ParallaxSprite.hpp"
 
 class Level {
@@ -25,7 +26,8 @@ private:
 	string path;
 	string format;
 	int tile_size;
-	
+
+	Scenery scenery;
 	ParallaxSprite scene;
 
 	shared_ptr<tmx::TileMap> tiled_map;
@@ -49,7 +51,8 @@ public:
 	void CreatePlatforms(b2World *world, tmx::ObjectGroup &layer);
 	void GeneratePlayerItems(b2World *world, tmx::ObjectGroup &layer);
 	void GenerateLevelItems(b2World *world, tmx::ObjectGroup &layer);
-	void GenerateBackground();
+	void GenerateSceneryBG(b2World *world, tmx::ObjectGroup &layer);
+	void GenerateSceneryFG(b2World *world, tmx::ObjectGroup &layer);
 
 	void loadMap(string lvl_name);
 	shared_ptr<tmx::TileMap> tiledMap() { return tiled_map; }

@@ -14,6 +14,7 @@ Level::Level(string s, b2World *world) {
 	scene = ParallaxSprite(path + "Backgrounds/Mountains.png", sf::Vector3f(0, 0, 0.5f));
 
 	loadMap(s);
+	scenery = Scenery();
 	ParseMapLayers(world);
 }
 
@@ -49,15 +50,22 @@ void Level::ParseMapLayers(b2World * world) {
 	//map.GetObjectLayer("Layer Name");
 	
 	tmx::ObjectGroup lay;
-
+	//** Put all of this level loading onto threads to speed up the process **//
 	lay = tiled_map->GetObjectGroup("Terrain");
 	CreateTerrain(world, lay);
 	tiled_map->GetObjectGroup("Terrain").visible = false;
 
 	lay = tiled_map->GetObjectGroup("Player_Data");
 	GeneratePlayerItems(world, lay);
+	tiled_map->GetObjectGroup("Player_Data").visible = true;
 
-	GenerateBackground();
+	lay = tiled_map->GetObjectGroup("Background");
+	GenerateSceneryBG(world, lay);
+	tiled_map->GetObjectGroup("Background").visible = true;
+
+	lay = tiled_map->GetObjectGroup("Foreground");
+	GenerateSceneryFG(world, lay);
+	tiled_map->GetObjectGroup("Foreground").visible = true;
 
 	//l = make_shared<tmx::ObjectGroup>(tiled_map->GetObjectGroup("Platform"));
 	//CreatePlatforms(world, layer);
@@ -120,7 +128,7 @@ void Level::GeneratePlayerItems(b2World * world, tmx::ObjectGroup & layer) {
 
 	for (int i = 0; i < lenght; i++) {
 		//if (type == "Checkpoint")	{
-		string type = layer.objects_[i].GetPropertyValue("type"); 	//Make this work when recompiling the STP .dll 
+		string type = layer.objects_[i].GetPropertyValue("label"); 	
 		if (type == "Exit") {
 			x = layer.objects_[1].GetPropertyValue("x");
 			y = layer.objects_[1].GetPropertyValue("y");
@@ -133,18 +141,32 @@ void Level::GeneratePlayerItems(b2World * world, tmx::ObjectGroup & layer) {
 		}
 	}
 }
+void Level::GenerateSceneryBG(b2World *world, tmx::ObjectGroup &layer) {
+	int lenght = layer.objects_.size();
+	string path = "Assets/Level/Backgrounds/";
+	string format = ".png";
+	string num;
 
-void Level::GenerateBackground(){
-	/*ParallaxSprite scenery;
+	for (int i = 0; i < lenght; i++) {
+		sf::Vector3f vec3;
+		num = layer.objects_[i].GetPropertyValue("x");
+		vec3.x = atoi(num.c_str());
 
-	scenery = ParallaxSprite(path + "Backgrounds/Clouds.png", sf::Vector3f(0, 0, 0.8f));
-	scenery_data.push_back(scenery);
+		num = layer.objects_[i].GetPropertyValue("y");
+		vec3.y = atoi(num.c_str());
 
-	scenery = ParallaxSprite(path + "Backgrounds/Mountains.png", sf::Vector3f(0, 0, 0.5f));
-	scenery_data.push_back(scenery);
+		num = layer.objects_[i].GetPropertyValue("z");
+		vec3.z = atoi(num.c_str());
 
-	scenery = ParallaxSprite(path + "Backgrounds/Trees.png", sf::Vector3f(0, 0, 0.2f));
-	scenery_data.push_back(scenery);*/
+		string texture;
+		texture = layer.objects_[i].GetPropertyValue("filename");
+		scenery.insertBG(ParallaxSprite(path + texture + format, vec3));
+	}
+
+	scenery.sortBG();
+}
+void Level::GenerateSceneryFG(b2World *world, tmx::ObjectGroup &layer) {
+
 }
 
 void Level::loadMap(string lvl_name) {
