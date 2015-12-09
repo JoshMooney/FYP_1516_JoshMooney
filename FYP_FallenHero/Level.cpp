@@ -32,18 +32,17 @@ Level::~Level() {
 	
 }
 
-void Level::render(sf::RenderWindow &w, vCamera *cam){
-	/*for (int i = 0; i < scenery_data.size(); i++){
-		float x = cam->getX() * scenery_data[i].getDefaultPosition().z;
-		scenery_data[i].setPosition(sf::Vector2f(x, scenery_data[i].getDefaultPosition().y));
-	}*/
+void Level::render(sf::RenderWindow &w, vCamera *cam){	
+	//float x = cam->getX() * scene.getDefaultPosition().z;
+	//scene.setPosition(sf::Vector2f(x, scene.getDefaultPosition().y));
 	
-	float x = cam->getX() * scene.getDefaultPosition().z;
-	scene.setPosition(sf::Vector2f(x, scene.getDefaultPosition().y));
-	w.draw(scene);
+	scenery.renderBG(w, cam);		//Render Background
 
-	w.draw(*tiled_map);
-	w.draw(m_exit);
+	//w.draw(scene);
+	w.draw(*tiled_map);				//Render Tiled Map
+	w.draw(m_exit);					//Render Exit point
+
+	scenery.renderFG(w, cam);		//Render Foreground
 }
 
 void Level::ParseMapLayers(b2World * world) {
@@ -141,9 +140,9 @@ void Level::GeneratePlayerItems(b2World * world, tmx::ObjectGroup & layer) {
 		}
 	}
 }
-void Level::GenerateSceneryBG(b2World *world, tmx::ObjectGroup &layer) {
+void Level::GenerateSceneryBG(b2World *world, tmx::ObjectGroup & layer) {
 	int lenght = layer.objects_.size();
-	string path = "Assets/Level/Backgrounds/";
+	string path = "Assets/Levels/Backgrounds/";
 	string format = ".png";
 	string num;
 
@@ -162,7 +161,10 @@ void Level::GenerateSceneryBG(b2World *world, tmx::ObjectGroup &layer) {
 		texture = layer.objects_[i].GetPropertyValue("filename");
 		scenery.insertBG(ParallaxSprite(path + texture + format, vec3));
 	}
-
+	/*TEMP: While the above for loop acts funny*/
+	scenery.insertBG(ParallaxSprite(path + "Trees" + format, sf::Vector3f(0, 150, 0.8f)));
+	scenery.insertBG(ParallaxSprite(path + "Mountains" + format, sf::Vector3f(0, 100, 0.4f)));
+	scenery.insertBG(ParallaxSprite(path + "Clouds" + format, sf::Vector3f(0, 0, 0.6f)));
 	scenery.sortBG();
 }
 void Level::GenerateSceneryFG(b2World *world, tmx::ObjectGroup &layer) {
