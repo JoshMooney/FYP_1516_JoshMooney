@@ -6,6 +6,8 @@
 #include "SFML\Graphics.hpp"
 #include "WorldMap.hpp"
 #include "PlayerIcon.hpp"
+#include "vCamera.hpp"
+#include "SimpleGUI.hpp"
 
 class WorldScene : public Scene{
 private:
@@ -15,6 +17,8 @@ private:
 	PlayerIcon m_player_icon;
 	bool m_key_pressed;
 	bool has_selected;
+	vCamera m_camera;
+	std::shared_ptr<SimpleGUI> m_gui;
 public:
 	enum STATE {MAP, EXIT};
 	STATE m_current_state;

@@ -6,6 +6,7 @@
 #include <vector>
 #include "WorldNode.hpp"
 #include "ResourceManager.hpp"
+#include "vCamera.hpp"
 
 class WorldMap{
 private:
@@ -17,14 +18,17 @@ private:
 	sf::Texture t_player_icon;
 	sf::Sprite s_player_icon;
 	float m_seperator;
-
+	vCamera m_camera;
 	WorldNode m_test_node = WorldNode("TEST", sf::Vector2f(500, 500), false);
 	sf::Sprite m_test_arc;
+	sf::FloatRect m_bounds;
 public:
 	enum LEVEL { LVL_1, LVL_2, LVL_3A, LVL_3B, LVL_4, LVL_5, LVL_6 };
 	WorldMap();
 	WorldMap(sf::Vector2f origin_pos);
 
+	sf::Vector2f getCenter();
+	void generateBounds();
 	void loadMedia();
 	void createMap();
 	void addArcs();

@@ -39,8 +39,15 @@ public:
 	}
 
 	void loadMedia(){
-		s_texture = "Assets/World/node.png";
-		setTexture(ResourceManager<sf::Texture>::instance()->get(s_texture));
+		if (m_is_locked) {
+			s_texture = "Assets/World/node_locked.png";
+			setTexture(ResourceManager<sf::Texture>::instance()->get(s_texture));
+		}
+		else {
+			s_texture = "Assets/World/node.png";
+			setTexture(ResourceManager<sf::Texture>::instance()->get(s_texture));
+		}
+
 	}
 	bool checkNeighbout(string n){
 		if (m_neighbouring_nodes[n] != nullptr)

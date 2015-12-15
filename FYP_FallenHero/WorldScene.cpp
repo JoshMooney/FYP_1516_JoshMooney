@@ -9,10 +9,16 @@ WorldScene::WorldScene(){
 	m_main_bg_sprt.setPosition(0, 0);
 	m_main_bg_sprt.setTexture(ResourceManager<sf::Texture>::instance()->get(s_main_bg_text));
 
-	m_world_map = new WorldMap(sf::Vector2f(100, 200));
+	sf::Vector2f maporigin(100, 200);
+	m_world_map = new WorldMap(maporigin);
+
+	m_gui = std::make_shared<SimpleGUI>(SimpleGUI("Gui.png", maporigin + sf::Vector2f(150, -150), "Golden Age Shad.ttf", "Test Test", sf::Vector2f(25, 12)));
 
 	m_player_icon = PlayerIcon();
 	m_player_icon.setCenter(m_world_map->getNode(m_player_icon.getTag())->getCenter());
+
+	m_camera = vCamera(sf::Vector2f(SCREEN_WIDTH/2, SCREEN_HEIGHT/2), sf::FloatRect{ 0.0f, 0.0f, 2880.0f, 640.0f });
+	m_camera.setCenter(m_world_map->getCenter());
 }
 WorldScene::~WorldScene(){
 	//delete m_world_map;
@@ -24,8 +30,13 @@ void WorldScene::update(){
 void WorldScene::render(sf::RenderWindow &w){
 	//w.draw(m_main_bg_sprt);		//Renders the background
 	//w.draw(s_player_icon);
+	w.setView(m_camera);
+
 	m_world_map->render(w);		//Renders the entire World Map
 	w.draw(m_player_icon);
+	m_gui->render(w);
+
+	w.setView(w.getDefaultView());
 }
 
 void WorldScene::handleEvent(sf::Event &e){
@@ -112,8 +123,10 @@ void WorldScene::movePlayer(string direction){
 	WorldNode* node = m_world_map->getNode(m_player_icon.getTag());
 	if (node->checkNeighbout(direction)){
 		node = node->getNeightbourNode(direction);
-		m_player_icon.setTag(node->m_lvl_id);
-		m_player_icon.setCenter(node->getCenter());
+		if (!node->m_is_locked) {
+			m_player_icon.setTag(node->m_lvl_id);
+			m_player_icon.setCenter(node->getCenter());
+		}
 	}
 	else
 		m_player_icon.bump(direction);
