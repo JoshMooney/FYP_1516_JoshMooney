@@ -40,6 +40,10 @@ public:
 	inline float clamp(float x, float min, float max);
 	void alineSprite();
 	void setIfMoving(bool b) { m_is_moving = b; }
+	sf::FloatRect getBounds() { 
+		sf::Vector2u size = getTexture()->getSize();
+		return sf::FloatRect{getPosition().x, getPosition().y, (float)size.x, (float)size.y};
+	}
 };
 
 #endif

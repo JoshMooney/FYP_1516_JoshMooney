@@ -58,6 +58,7 @@ public:
 	shared_ptr<tmx::TileMap> tiledMap() { return tiled_map; }
 	bool hasEnded(sf::FloatRect player) { return m_exit.isCollided(player); }
 	sf::Vector2f getSpawn() { return m_player_spawn; }
+	bool isOutOfBounds();
 };
 
 #endif

@@ -5,7 +5,7 @@
  </tileset>
  <layer name="Textures" width="90" height="25">
   <data encoding="base64" compression="zlib">
-   eJzt1tEKgCAMQFGz///nHiKIYbpmbob3wCCSHrqIlRIAjLG9HNjQ2cfVL6dy1yzWYFPrnAvXsGntZ7kGG825wfncT57D9/O4dA82/G/4oDP+IGIfrrj36exj9s67YuT/jpwIM3y/VuyseY/RU0NnOtfQ+dR65uuJbtzbWfOOdKYznelMZzo/zQFQ2gbA
+   eJzt1tEKgCAMQNFl///PPUQQw5at3AzvgT0k9NBFTBEA6GN5OPChc4yjX5F6V70OH6tzqazDh/0cg84x9BlxPiv0M539uG/EoDP+IGMfzrj36Rxj9M5rw+g7kJ4MI/y/Zuzc8h29x0JnOlvovLt75+vJbvy2c8s30pnOdKYznel8NRse4ga+
   </data>
  </layer>
  <objectgroup name="Terrain">
@@ -28,7 +28,6 @@
   <object id="4" name="Start Level" type="Spawn" x="32" y="448" width="64" height="64">
    <properties>
     <property name="h" value="64"/>
-    <property name="label" value="Spawn"/>
     <property name="w" value="64"/>
     <property name="x" value="32"/>
     <property name="y" value="448"/>
@@ -37,7 +36,6 @@
   <object id="5" name="End Level" type="Exit" x="961" y="447" width="64" height="64">
    <properties>
     <property name="h" value="64"/>
-    <property name="label" value="Exit"/>
     <property name="w" value="64"/>
     <property name="x" value="961"/>
     <property name="y" value="447"/>

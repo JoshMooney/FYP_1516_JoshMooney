@@ -35,7 +35,7 @@ public:
 	void LockY(bool b);
 	float getX();
 	float getY();
-	
+	bool outOfBounds(sf::FloatRect &rec);
 };
 
 #endif

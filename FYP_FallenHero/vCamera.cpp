@@ -142,3 +142,9 @@ float vCamera::getY(){
 	return pos_y;
 }
 
+bool vCamera::outOfBounds(sf::FloatRect & rec) {
+	if (m_bounds.intersects(rec))
+		return false;
+	return true;
+}
+

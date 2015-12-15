@@ -54,6 +54,7 @@ public:
 	void loadLevel(string lvl_name);
 	void setPlayer(Player* p)	{ m_player = p; }
 	vCamera* getCamera()	{ return &m_camera; }
+	void respawnPlayer();
 
 	bool isComplete() { return m_level_complete; }
 	void reset();

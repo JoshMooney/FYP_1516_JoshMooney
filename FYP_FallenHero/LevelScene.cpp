@@ -6,6 +6,8 @@ LevelScene::LevelScene(){
 
 	m_level_complete = false;
 	m_camera = vCamera(sf::Vector2f(SCREEN_WIDTH, SCREEN_HEIGHT), sf::FloatRect{0.0f, 0.0f, 2880.0f, 640.0f});
+	m_camera.LockX(false);
+	m_camera.LockY(false);
 	//tiled_map = new tmx::TileMap("test.tmx");
 	//m_time_per_frame = sf::seconds(1.f / 30.0f);
 	isPaused = false;
@@ -15,6 +17,8 @@ LevelScene::LevelScene(){
 LevelScene::LevelScene(string lvl_name, Player *p){
 	m_player = p;
 	m_level_complete = false;
+
+	//Dont use !
 }
 LevelScene::~LevelScene(){
 	
@@ -29,7 +33,9 @@ void LevelScene::update(){
 
 		m_player->update(timeOfLastTick);
 		m_camera.setCenter(m_camera.getPlayerOffset(vHelper::toSF(m_player->getCenter())));
-		
+		if (m_camera.outOfBounds(m_player->getBounds()))
+			respawnPlayer();
+
 		if (m_level->hasEnded(sf::FloatRect{ m_player->getPosition().x, m_player->getPosition().y, (float)player_size.x, (float)player_size.y }))
 			m_level_complete = true;
 	}
@@ -144,6 +150,10 @@ void LevelScene::handleInput(XBOXController &controller){
 
 void LevelScene::loadLevel(string lvl_name){
 	m_level = make_shared<Level>(lvl_name, m_world);
+	m_player->reset(m_level->getSpawn());
+}
+
+void LevelScene::respawnPlayer() {
 	m_player->reset(m_level->getSpawn());
 }
 
