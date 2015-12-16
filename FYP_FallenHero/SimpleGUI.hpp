@@ -28,7 +28,7 @@ public:
 	void setBackgroundPosition(sf::Vector2f p);
 	void setTextOffet(sf::Vector2f p);
 
-	void render(sf::RenderWindow &w);
+	void render(sf::RenderWindow &w, string lvl);
 };
 
 #endif

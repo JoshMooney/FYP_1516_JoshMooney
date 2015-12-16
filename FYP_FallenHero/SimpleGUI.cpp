@@ -54,7 +54,7 @@ void SimpleGUI::setTextOffet(sf::Vector2f p) {
 	text_offset = p;
 }
 
-void SimpleGUI::render(sf::RenderWindow &w) {
+void SimpleGUI::render(sf::RenderWindow &w, string lvl) {
 	w.draw(m_background);
 	/*
 	m_text = sf::Text("Hello world", m_font);
@@ -67,7 +67,7 @@ void SimpleGUI::render(sf::RenderWindow &w) {
 	m_text->setPosition(200, 200);
 	m_text->setCharacterSize(15);
 	m_text->setColor(sf::Color::Black);*/
-	setText("Hi");
+	setText(lvl);
 
 	w.draw(m_text);
 }

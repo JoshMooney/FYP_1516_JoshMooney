@@ -2,7 +2,7 @@
 #include "Scenery.hpp"
 
 struct myclass {
-	bool operator() (ParallaxSprite ps1, ParallaxSprite ps2) { return (ps1.getDefaultPosition().z < ps2.getDefaultPosition().z); }
+	bool operator() (ParallaxSprite ps1, ParallaxSprite ps2) { return (ps1.getDefaultPosition().z > ps2.getDefaultPosition().z); }
 } myobject;
 
 Scenery::Scenery() {

@@ -34,7 +34,7 @@ void WorldScene::render(sf::RenderWindow &w){
 
 	m_world_map->render(w);		//Renders the entire World Map
 	w.draw(m_player_icon);
-	m_gui->render(w);
+	m_gui->render(w, m_player_icon.m_lvl_tag);
 
 	w.setView(w.getDefaultView());
 }

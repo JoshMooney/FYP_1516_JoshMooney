@@ -58,9 +58,9 @@ void Level::ParseMapLayers(b2World * world) {
 	GeneratePlayerItems(world, lay);
 	tiled_map->GetObjectGroup("Player_Data").visible = true;
 
-	lay = tiled_map->GetObjectGroup("Background");
+	lay = tiled_map->GetObjectGroup("BG");
 	GenerateSceneryBG(world, lay);
-	tiled_map->GetObjectGroup("Background").visible = true;
+	tiled_map->GetObjectGroup("BG").visible = true;
 
 	lay = tiled_map->GetObjectGroup("Foreground");
 	GenerateSceneryFG(world, lay);
@@ -120,7 +120,7 @@ void Level::CreateTerrain(b2World * world, tmx::ObjectGroup &layer) {
 		terrain_data.push_back(terrain);
 	}
 }
-void Level::GeneratePlayerItems(b2World * world, tmx::ObjectGroup & layer) {
+void Level::GeneratePlayerItems(b2World * world, tmx::ObjectGroup &layer) {
 	string x, y;
 	string type;
 	int lenght = layer.objects_.size();
@@ -140,7 +140,7 @@ void Level::GeneratePlayerItems(b2World * world, tmx::ObjectGroup & layer) {
 		}
 	}
 }
-void Level::GenerateSceneryBG(b2World *world, tmx::ObjectGroup & layer) {
+void Level::GenerateSceneryBG(b2World *world, tmx::ObjectGroup &layer) {
 	int lenght = layer.objects_.size();
 	string path = "Assets/Levels/Backgrounds/";
 	string format = ".png";
@@ -156,15 +156,17 @@ void Level::GenerateSceneryBG(b2World *world, tmx::ObjectGroup & layer) {
 
 		num = layer.objects_[i].GetPropertyValue("z");
 		vec3.z = atoi(num.c_str());
+		vec3.z /= 10;
 
 		string texture;
 		texture = layer.objects_[i].GetPropertyValue("filename");
 		scenery.insertBG(ParallaxSprite(path + texture + format, vec3));
 	}
+
 	/*TEMP: While the above for loop acts funny*/
-	scenery.insertBG(ParallaxSprite(path + "Trees" + format, sf::Vector3f(0, 150, 0.8f)));
+	/*scenery.insertBG(ParallaxSprite(path + "Trees" + format, sf::Vector3f(0, 150, 0.8f)));
 	scenery.insertBG(ParallaxSprite(path + "Mountains" + format, sf::Vector3f(0, 100, 0.4f)));
-	scenery.insertBG(ParallaxSprite(path + "Clouds" + format, sf::Vector3f(0, 0, 0.6f)));
+	scenery.insertBG(ParallaxSprite(path + "Clouds" + format, sf::Vector3f(0, 0, 0.6f)));*/
 	scenery.sortBG();
 }
 void Level::GenerateSceneryFG(b2World *world, tmx::ObjectGroup &layer) {
