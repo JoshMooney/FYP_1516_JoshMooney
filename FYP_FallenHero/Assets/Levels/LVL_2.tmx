@@ -3,9 +3,12 @@
  <tileset firstgid="1" name="tile_set" tilewidth="32" tileheight="32" tilecount="3">
   <image source="Tiles/tile_set.png" width="96" height="32"/>
  </tileset>
+ <tileset firstgid="4" name="Lvl_2_ground" tilewidth="32" tileheight="32" tilecount="9">
+  <image source="Tiles/different_tileset.png" width="288" height="32"/>
+ </tileset>
  <layer name="Textures" width="90" height="25">
   <data encoding="base64" compression="zlib">
-   eJzt1tEKgCAMQFGz///nHiKIYbpmbob3wCCSHrqIlRIAjLG9HNjQ2cfVL6dy1yzWYFPrnAvXsGntZ7kGG825wfncT57D9/O4dA82/G/4oDP+IGIfrrj36exj9s67YuT/jpwIM3y/VuyseY/RU0NnOtfQ+dR65uuJbtzbWfOOdKYznelMZzo/zQFQ2gbA
+   eJztltsKgCAQBU26/f8X10sQIqm73tIZOBD6kDssq8YAAJRhSQzIwHMdHn/W+L1aZw9kfHm2nm+QEepndw9kxMwN5rMedw6/57FvDWTw3qgDnuEPtOjDGXsfz3Xo3fN651Rky3/8KHq4v1L+uStz5D9+FG6Nml7JkVC/jeJZW0dpD3j+t2ft3E/NrJ5b143nMYNnPI+UWTxfCd8PaQ==
   </data>
  </layer>
  <objectgroup name="Terrain">
@@ -45,5 +48,5 @@
   </object>
  </objectgroup>
  <objectgroup name="BG"/>
- <objectgroup name="Foreground"/>
+ <objectgroup name="FG"/>
 </map>

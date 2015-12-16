@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="90" height="25" tilewidth="32" tileheight="32" nextobjectid="20">
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="90" height="25" tilewidth="32" tileheight="32" nextobjectid="23">
  <tileset firstgid="1" name="tile_set" tilewidth="32" tileheight="32" tilecount="3">
   <image source="Tiles/tile_set.png" width="96" height="32"/>
  </tileset>
@@ -63,13 +63,19 @@
    </properties>
   </object>
  </objectgroup>
- <objectgroup name="Foreground">
-  <object id="12" name="Test" type="Scenery" x="16" y="48">
+ <objectgroup name="FG">
+  <properties>
+   <property name="filename" value=""/>
+   <property name="x" value=""/>
+   <property name="y" value=""/>
+   <property name="z" value=""/>
+  </properties>
+  <object id="20" name="Tree" type="Scenery" x="736" y="544" width="96" height="64">
    <properties>
-    <property name="filename" value="foreground"/>
-    <property name="x" value="0"/>
-    <property name="y" value="0"/>
-    <property name="z" value="0"/>
+    <property name="filename" value="Tree_2"/>
+    <property name="x" value="736"/>
+    <property name="y" value="282"/>
+    <property name="z" value="75"/>
    </properties>
   </object>
  </objectgroup>
@@ -80,7 +86,7 @@
    <property name="y" value=""/>
    <property name="z" value=""/>
   </properties>
-  <object id="14" name="Trees" x="85.5" y="191" width="96" height="51.5">
+  <object id="14" name="Trees" x="64" y="192" width="96" height="51.5">
    <properties>
     <property name="filename" value="Trees"/>
     <property name="x" value="0"/>
@@ -88,7 +94,7 @@
     <property name="z" value="5"/>
    </properties>
   </object>
-  <object id="17" name="Sky" x="143.5" y="115.5" width="96" height="51.5">
+  <object id="17" name="Sky" x="64" y="128" width="96" height="51.5">
    <properties>
     <property name="filename" value="Sky"/>
     <property name="x" value="0"/>
@@ -96,7 +102,7 @@
     <property name="z" value="10"/>
    </properties>
   </object>
-  <object id="18" name="Clouds" x="221.5" y="189.5" width="96" height="51.5">
+  <object id="18" name="Clouds" x="192" y="192" width="96" height="51.5">
    <properties>
     <property name="filename" value="Clouds"/>
     <property name="x" value="0"/>
@@ -104,12 +110,20 @@
     <property name="z" value="7"/>
    </properties>
   </object>
-  <object id="19" name="Mountain" x="269" y="114" width="96" height="51.5">
+  <object id="19" name="Mountain" x="192" y="128" width="96" height="51.5">
    <properties>
     <property name="filename" value="Mountains"/>
     <property name="x" value="0"/>
     <property name="y" value="100"/>
     <property name="z" value="8"/>
+   </properties>
+  </object>
+  <object id="21" name="Tree2" type="Scenery" x="832" y="480" width="96" height="64">
+   <properties>
+    <property name="filename" value="Tree"/>
+    <property name="x" value="800"/>
+    <property name="y" value="282"/>
+    <property name="z" value="80"/>
    </properties>
   </object>
  </objectgroup>

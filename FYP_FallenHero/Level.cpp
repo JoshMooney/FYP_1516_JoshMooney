@@ -62,9 +62,9 @@ void Level::ParseMapLayers(b2World * world) {
 	GenerateSceneryBG(world, lay);
 	tiled_map->GetObjectGroup("BG").visible = true;
 
-	lay = tiled_map->GetObjectGroup("Foreground");
+	lay = tiled_map->GetObjectGroup("FG");
 	GenerateSceneryFG(world, lay);
-	tiled_map->GetObjectGroup("Foreground").visible = true;
+	tiled_map->GetObjectGroup("FG").visible = true;
 
 	//l = make_shared<tmx::ObjectGroup>(tiled_map->GetObjectGroup("Platform"));
 	//CreatePlatforms(world, layer);
@@ -163,14 +163,33 @@ void Level::GenerateSceneryBG(b2World *world, tmx::ObjectGroup &layer) {
 		scenery.insertBG(ParallaxSprite(path + texture + format, vec3));
 	}
 
-	/*TEMP: While the above for loop acts funny*/
-	/*scenery.insertBG(ParallaxSprite(path + "Trees" + format, sf::Vector3f(0, 150, 0.8f)));
-	scenery.insertBG(ParallaxSprite(path + "Mountains" + format, sf::Vector3f(0, 100, 0.4f)));
-	scenery.insertBG(ParallaxSprite(path + "Clouds" + format, sf::Vector3f(0, 0, 0.6f)));*/
 	scenery.sortBG();
 }
 void Level::GenerateSceneryFG(b2World *world, tmx::ObjectGroup &layer) {
+	/*int lenght = layer.objects_.size();
+	string path = "Assets/Levels/Backgrounds/";
+	string format = ".png";
+	string num;
 
+	for (int i = 0; i < lenght; i++) {
+		sf::Vector3f vec3;
+		num = layer.objects_[i].GetPropertyValue("x");
+		vec3.x = atoi(num.c_str());
+
+		num = layer.objects_[i].GetPropertyValue("y");
+		vec3.y = atoi(num.c_str());
+
+		num = layer.objects_[i].GetPropertyValue("z");
+		vec3.z = atoi(num.c_str());
+		vec3.z /= 10;
+
+		string texture;
+		texture = layer.objects_[i].GetPropertyValue("filename");
+		scenery.insertBG(ParallaxSprite(path + texture + format, vec3));
+	}
+
+	scenery.sortBG();*/
+//}
 }
 
 void Level::loadMap(string lvl_name) {
