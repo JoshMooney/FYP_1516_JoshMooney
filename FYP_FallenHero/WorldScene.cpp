@@ -5,14 +5,14 @@ WorldScene::WorldScene(){
 	m_key_pressed = true;
 	has_selected = false;
 	
-	s_main_bg_text = "Assets/World/map.png";
+	s_main_bg_text = "Assets/World/background.png";
 	m_main_bg_sprt.setPosition(0, 0);
 	m_main_bg_sprt.setTexture(ResourceManager<sf::Texture>::instance()->get(s_main_bg_text));
 
 	sf::Vector2f maporigin(100, 200);
 	m_world_map = new WorldMap(maporigin);
 
-	m_gui = std::make_shared<SimpleGUI>(SimpleGUI("Gui.png", maporigin + sf::Vector2f(150, -150), "Golden Age Shad.ttf", "Test Test", sf::Vector2f(25, 12)));
+	m_gui = std::make_shared<SimpleGUI>(SimpleGUI("Gui.png", maporigin + sf::Vector2f(250, -150), "Golden Age Shad.ttf", "Test Test", sf::Vector2f(25, 12)));
 
 	m_player_icon = PlayerIcon();
 	m_player_icon.setCenter(m_world_map->getNode(m_player_icon.getTag())->getCenter());
@@ -28,10 +28,9 @@ void WorldScene::update(){
 
 }
 void WorldScene::render(sf::RenderWindow &w){
-	//w.draw(m_main_bg_sprt);		//Renders the background
-	//w.draw(s_player_icon);
+	w.draw(m_main_bg_sprt);
 	w.setView(m_camera);
-
+	
 	m_world_map->render(w);		//Renders the entire World Map
 	w.draw(m_player_icon);
 	m_gui->render(w, m_player_icon.m_lvl_tag);

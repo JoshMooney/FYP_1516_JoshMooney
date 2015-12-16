@@ -44,6 +44,6 @@
    </properties>
   </object>
  </objectgroup>
- <objectgroup name="Background"/>
+ <objectgroup name="BG"/>
  <objectgroup name="Foreground"/>
 </map>
