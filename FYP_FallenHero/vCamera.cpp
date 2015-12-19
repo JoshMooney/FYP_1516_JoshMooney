@@ -47,10 +47,14 @@ void vCamera::refresh(sf::Vector2f player_center){
 	setViewport(sf::FloatRect{ 0, 0, 1.0f, 1.0f });
 
 	XAxisOffset = 0;
+	lock_x_value = 0;
+	lock_y_value = 0;
 	lock_x = false;
 	lock_y = false;
 	prev_lock_x = false;
 	prev_lock_y = false;
+
+	out_of_bounds = false;
 
 	setCenter(getPlayerOffset(player_center));
 }

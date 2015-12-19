@@ -32,10 +32,11 @@ void LevelScene::update(){
 		m_world->Step(B2_TIMESTEP, VEL_ITER, POS_ITER);
 
 		m_player->update(timeOfLastTick);
-		m_camera.setCenter(m_camera.getPlayerOffset(vHelper::toSF(m_player->getCenter())));
-		if (m_camera.outOfBounds(m_player->getBounds()))
+		if (m_camera.outOfBounds(m_player->getBounds())) {
 			respawnPlayer();
-
+			m_camera.refresh(vHelper::toSF(m_player->getCenter()));
+		}
+		m_camera.setCenter(m_camera.getPlayerOffset(vHelper::toSF(m_player->getCenter())));
 		if (m_level->hasEnded(sf::FloatRect{ m_player->getPosition().x, m_player->getPosition().y, (float)player_size.x, (float)player_size.y }))
 			m_level_complete = true;
 	}
@@ -149,6 +150,8 @@ void LevelScene::handleInput(XBOXController &controller){
 }
 
 void LevelScene::loadLevel(string lvl_name){
+	if (m_level != nullptr)
+		m_level->destroy(m_world);
 	m_level = make_shared<Level>(lvl_name, m_world);
 	m_player->reset(m_level->getSpawn());
 }
