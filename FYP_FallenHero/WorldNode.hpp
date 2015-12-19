@@ -10,6 +10,7 @@
 class WorldNode : public sf::Sprite {
 public:
 	map<string, WorldNode*> m_neighbouring_nodes;
+	WorldNode* m_next_lvl;
 	string s_texture;
 	string m_lvl_id;
 	bool m_is_locked;
@@ -38,6 +39,10 @@ public:
 		setTexture(ResourceManager<sf::Texture>::instance()->get(s_texture));
 	}
 
+	void unlock() {
+		m_is_locked = false;
+		loadMedia();
+	}
 	void loadMedia(){
 		if (m_is_locked) {
 			s_texture = "Assets/World/node_locked.png";

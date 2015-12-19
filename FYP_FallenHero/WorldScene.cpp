@@ -137,3 +137,10 @@ void WorldScene::select() {
 void WorldScene::reset(string s) {
 	has_selected = false;
 }
+
+void WorldScene::checkUnlocks(string lvl_name) {
+	WorldNode* node = m_world_map->getNode(lvl_name);
+	if(node->m_next_lvl != nullptr)
+		if (node->m_next_lvl->m_is_locked)
+			node->m_next_lvl->unlock();
+}

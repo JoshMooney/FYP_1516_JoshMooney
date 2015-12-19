@@ -5,7 +5,7 @@
  </tileset>
  <layer name="Textures" width="90" height="25">
   <data encoding="base64" compression="zlib">
-   eJzt1tEKgCAMQNFl///PPUQQw5at3AzvgT0k9NBFTBEA6GN5OPChc4yjX5F6V70OH6tzqazDh/0cg84x9BlxPiv0M539uG/EoDP+IGMfzrj36Rxj9M5rw+g7kJ4MI/y/Zuzc8h29x0JnOlvovLt75+vJbvy2c8s30pnOdKYznel8NRse4ga+
+   eJzt1kEKgEAMBMFV//9nT4JXJTtRtgrmA00OGQNgju3heEfnjKvfPnSeSecMnTN0zrh3vk/nWv6NDJ35g447XPH2dc7QOUPnjOMDW0F3Y511rtTdWGedK3U31lnnSt2NV+l8Ahd4A60=
   </data>
  </layer>
  <objectgroup name="Terrain">
@@ -42,6 +42,6 @@
    </properties>
   </object>
  </objectgroup>
- <objectgroup name="Background"/>
- <objectgroup name="Foreground"/>
+ <objectgroup name="BG"/>
+ <objectgroup name="FG"/>
 </map>

@@ -195,6 +195,7 @@ void Level::GenerateSceneryFG(b2World *world, tmx::ObjectGroup &layer) {
 void Level::loadMap(string lvl_name) {
 	tiled_map = make_shared<tmx::TileMap>(path + lvl_name + format);
 	tiled_map->ShowObjects(true);
+	
 }
 
 void Level::destroy(b2World *world) {
