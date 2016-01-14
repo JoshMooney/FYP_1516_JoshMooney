@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="90" height="25" tilewidth="32" tileheight="32" nextobjectid="23">
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="90" height="25" tilewidth="32" tileheight="32" nextobjectid="24">
  <tileset firstgid="1" name="tile_set" tilewidth="32" tileheight="32" tilecount="3">
   <image source="Tiles/tile_set.png" width="96" height="32"/>
  </tileset>
@@ -72,10 +72,10 @@
   </properties>
   <object id="20" name="Tree" type="Scenery" x="736" y="544" width="96" height="64">
    <properties>
-    <property name="filename" value="Tree_2"/>
+    <property name="filename" value="Tree2"/>
     <property name="x" value="736"/>
-    <property name="y" value="282"/>
-    <property name="z" value="75"/>
+    <property name="y" value="346"/>
+    <property name="z" value="2"/>
    </properties>
   </object>
  </objectgroup>
@@ -118,12 +118,12 @@
     <property name="z" value="8"/>
    </properties>
   </object>
-  <object id="21" name="Tree2" type="Scenery" x="832" y="480" width="96" height="64">
+  <object id="23" name="Tree" type="Scenery" x="800" y="480" width="96" height="64">
    <properties>
     <property name="filename" value="Tree"/>
-    <property name="x" value="800"/>
-    <property name="y" value="282"/>
-    <property name="z" value="80"/>
+    <property name="x" value="736"/>
+    <property name="y" value="346"/>
+    <property name="z" value="2"/>
    </properties>
   </object>
  </objectgroup>

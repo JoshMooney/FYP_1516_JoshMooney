@@ -25,7 +25,6 @@ vCamera::vCamera(sf::Vector2f screen_size, sf::FloatRect bounds) {
 	prev_lock_x = lock_x;
 	prev_lock_y = lock_y;
 }
-
 vCamera::vCamera(sf::Vector2f screen_size, sf::FloatRect bounds, pair<bool, bool> locked_axis) {
 	SCREEN_SIZE = screen_size;
 
@@ -37,7 +36,6 @@ vCamera::vCamera(sf::Vector2f screen_size, sf::FloatRect bounds, pair<bool, bool
 	prev_lock_x = false;
 	prev_lock_y = false;
 }
-
 vCamera::~vCamera(){
 
 }
@@ -47,6 +45,7 @@ void vCamera::refresh(sf::Vector2f player_center){
 	setViewport(sf::FloatRect{ 0, 0, 1.0f, 1.0f });
 
 	XAxisOffset = 0;
+	YAxisOffset = 0;
 	lock_x = false;
 	lock_y = false;
 	prev_lock_x = false;
@@ -74,6 +73,7 @@ sf::Vector2f vCamera::getPlayerOffset(sf::Vector2f player_center) {
 	if (out_of_bounds) {
 		//Calculate new player position minus the distance to the edge of the screen 
 		player_center.x = XAxisOffset;
+		//player_center.y = YAxisOffset;
 		//out_of_bounds = false;
 	}
 
@@ -96,7 +96,23 @@ sf::FloatRect vCamera::checkBounds(sf::Vector2f player_center) {
 		XAxisOffset = m_bounds.width;
 		XAxisOffset -= viewport.width / 2;
 	}
-	if(player_center.x > viewport.width / 2 && player_center.x < m_bounds.width - (viewport.width / 2))
+	/*
+	if (viewport.top < m_bounds.top) {
+		out_of_bounds = true;
+		viewport.top = m_bounds.top;
+
+		YAxisOffset = viewport.top;
+		YAxisOffset += viewport.height / 2;
+	}
+	if (viewport.top > m_bounds.height - viewport.height) {
+		out_of_bounds = true;
+		viewport.top = m_bounds.height - viewport.height;
+
+		YAxisOffset = m_bounds.height;
+		YAxisOffset -= viewport.height / 2;
+	}
+	*/
+	if(player_center.x > viewport.width / 2 && player_center.x < m_bounds.width - (viewport.width / 2)) /*||player_center.y > viewport.height / 2 && player_center.y < m_bounds.height - (viewport.height / 2))*/
 		out_of_bounds = false;
 		
 	/*

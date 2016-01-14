@@ -37,6 +37,7 @@ private:
 	const int POS_ITER = 2;
 
 	bool isPaused;
+
 public:
 	b2World* m_world;
 

@@ -126,6 +126,9 @@
     <ClInclude Include="SimpleGUI.hpp">
       <Filter>Header Files\Map</Filter>
     </ClInclude>
+    <ClInclude Include="SFMLDebugDraw.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -171,6 +174,9 @@
       <Filter>Source Files\Level</Filter>
     </ClCompile>
     <ClCompile Include="SimpleGUI.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="SFMLDebugDraw.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

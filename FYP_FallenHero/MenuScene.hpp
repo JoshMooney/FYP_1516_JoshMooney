@@ -12,6 +12,8 @@ private:
 	sf::Vector2f m_item_position;
 	sf::Vector2f m_item_spacing;
 	bool m_key_pressed;
+
+	sf::Sound move_sound;
 public:
 	enum STATE { SPLASH, MAIN, OPTIONS, GAME, GAMEOVER, CLOSE};
 	enum M_ITEM { M_PLAY, M_OPTIONS, M_EXIT };

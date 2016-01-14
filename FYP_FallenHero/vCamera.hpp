@@ -14,7 +14,7 @@ private:
 	float lock_x_value, lock_y_value;
 	bool out_of_bounds = false;
 	float pos_x, pos_y;
-	float XAxisOffset;
+	float XAxisOffset, YAxisOffset;
 	sf::FloatRect m_bounds;
 	sf::Vector2f SCREEN_SIZE;
 public:

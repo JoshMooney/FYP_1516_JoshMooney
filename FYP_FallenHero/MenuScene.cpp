@@ -164,8 +164,10 @@ void MenuScene::loadMedia(){
 	s_logo = "Assets/Menu/Logo.png";
 	m_logo_sprt.setTexture(ResourceManager<sf::Texture>::instance()->get(s_logo));
 	sf::Texture l_texture = ResourceManager<sf::Texture>::instance()->get(s_logo);
-	//s_logo.setScale(sf::Vector2f(2.0, 2.0));
 	m_logo_sprt.setPosition(SCREEN_WIDTH / 2 - l_texture.getSize().x / 2, (SCREEN_HEIGHT / 100) * 10);
+
+	move_sound.setBuffer(ResourceManager<sf::SoundBuffer>::instance()->get("Assets/Audio/Menu/test.wav"));
+	move_sound.play();
 }
 void MenuScene::loadText(){
 	m_play_text.setFont(m_font);

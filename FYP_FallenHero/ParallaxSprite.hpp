@@ -14,7 +14,7 @@ public:
 	ParallaxSprite(){	}
 	ParallaxSprite(string text, sf::Vector3f pos) : s_texture(text), position(pos){
 		setTexture(ResourceManager<sf::Texture>::instance()->get(s_texture));
-		setPosition(pos.x, pos.y);
+		setPosition(position.x, position.y);
 	}
 
 	sf::Vector3f getDefaultPosition()	{ return position; }
