@@ -30,6 +30,7 @@ private:
 	string path, format;
 	shared_ptr<Level> m_level;
 	sf::Vector2u player_size;
+	string level_id;
 
 	const float B2_TIMESTEP = 1.0f / 60.0f;
 	const b2Vec2 GRAVITY = b2Vec2(0, 9.81f);
@@ -55,6 +56,7 @@ public:
 	void loadLevel(string lvl_name);
 	void setPlayer(Player* p)	{ m_player = p; }
 	vCamera* getCamera()	{ return &m_camera; }
+	string getLevelName() { return level_id; }
 	void respawnPlayer();
 
 	bool isComplete() { return m_level_complete; }

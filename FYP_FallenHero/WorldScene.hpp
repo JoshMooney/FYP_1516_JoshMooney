@@ -36,6 +36,7 @@ public:
 	bool LevelSelected() { return has_selected; }
 	string getCurrentLevel() { return m_player_icon.getTag(); }
 	void reset(string s);
+	void checkUnlocks(string lvl_name);
 };
 
 #endif

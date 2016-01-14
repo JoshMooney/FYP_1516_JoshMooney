@@ -38,7 +38,8 @@ void LevelScene::update(){
 		}
 		m_camera.setCenter(m_camera.getPlayerOffset(vHelper::toSF(m_player->getCenter())));
 
-		if (m_level->hasEnded(sf::FloatRect{ m_player->getPosition().x, m_player->getPosition().y, (float)player_size.x, (float)player_size.y })) {
+		if (m_level->hasEnded(sf::FloatRect{ m_player->getPosition().x, m_player->getPosition().y, (float)player_size.x, (float)player_size.y }))
+		{
 			m_level_complete = true;
 		}
 	}
@@ -152,10 +153,11 @@ void LevelScene::handleInput(XBOXController &controller){
 }
 
 void LevelScene::loadLevel(string lvl_name){
-	if (m_level != nullptr)
-		m_level->Destroy(m_world);
-	m_level = make_shared<Level>(lvl_name, m_world);
-	m_player->reset(m_level->getSpawn());
+	level_id = lvl_name;		//Store the currently loaded levels ID
+	if (m_level != nullptr)		m_level->destroy(m_world);			//If there was a previous level destroy all the b2Bodies in that level 
+	m_level = make_shared<Level>(lvl_name, m_world);				//Create a new level
+	m_player->reset(m_level->getSpawn());			//Reset the player for the new level
+	//Set the Cameras bounds here once loaded from the .tmx
 }
 
 void LevelScene::respawnPlayer() {

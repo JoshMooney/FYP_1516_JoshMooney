@@ -87,6 +87,7 @@ void Game::goToNextScene() {
 		//m_level_scene->createPlatforms(m_world);
 		break;
 	case LEVEL:
+		m_world_scene->checkUnlocks(m_level_scene->getLevelName());
 		m_level_scene->reset();
 		m_current_scene = m_world_scene;
 		m_current_state = WORLD;

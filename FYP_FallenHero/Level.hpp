@@ -32,7 +32,7 @@ private:
 
 	shared_ptr<tmx::TileMap> tiled_map;
 	Exit m_exit;
-	
+
 	vector<Terrain> terrain_data;			//Terrain of the level
 	vector<Platform> platform_data;			//Platform Data
 	vector<ParallaxSprite> scenery_data;			//Platform Data
@@ -62,7 +62,7 @@ public:
 	shared_ptr<tmx::TileMap> tiledMap() { return tiled_map; }
 	bool hasEnded(sf::FloatRect player) { return m_exit.isCollided(player); }
 	sf::Vector2f getSpawn() { return m_player_spawn; }
-	bool isOutOfBounds();
+	void destroy(b2World *world);
 };
 
 #endif

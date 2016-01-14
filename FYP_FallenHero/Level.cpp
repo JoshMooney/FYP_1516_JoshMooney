@@ -54,7 +54,7 @@ void Level::ParseMapLayers(b2World * world) {
 
 	lay = tiled_map->GetObjectGroup("BG");
 	GenerateSceneryBG(world, lay);
-	tiled_map->GetObjectGroup("BG").visible = true;
+	tiled_map->GetObjectGroup("BG").visible = false;
 
 	lay = tiled_map->GetObjectGroup("FG");
 	GenerateSceneryFG(world, lay);
@@ -197,4 +197,14 @@ void Level::Destroy(b2World *world) {
 void Level::loadMap(string lvl_name) {
 	tiled_map = make_shared<tmx::TileMap>(path + lvl_name + format);
 	tiled_map->ShowObjects(true);
+	
+}
+
+void Level::destroy(b2World *world) {
+	int i;
+	
+	//Destroy Each of the B2Bodies assocatied with the Terrain
+	for (i = 0; i < terrain_data.size(); i++) {
+		world->DestroyBody(terrain_data[i].body);
+	}
 }

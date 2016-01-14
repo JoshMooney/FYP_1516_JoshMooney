@@ -56,7 +56,7 @@ void WorldMap::createMap(){
 	m_map.push_back(WorldNode("LVL_1", nodePosition, false));		
 
 	nodePosition += sf::Vector2f(m_seperator, 0);		//100 , 0
-	m_map.push_back(WorldNode("LVL_2", nodePosition, false));		
+	m_map.push_back(WorldNode("LVL_2", nodePosition, true));
 
 	nodePosition += sf::Vector2f(0, m_seperator);	//100 , 100
 	m_map.push_back(WorldNode("LVL_3A", nodePosition, true));
@@ -97,6 +97,7 @@ sf::Sprite WorldMap::PlotArc(LEVEL l1, LEVEL l2){
 		sf::Vector2f pos = m_map[l2].getCenter();
 		sprite.setPosition(sf::Vector2f(pos.x - m_arc_height / 2, pos.y));
 	}
+
 	if (m_map[l1].getCenter().y < m_map[l2].getCenter().y){
 		m_map[l1].m_neighbouring_nodes["DOWN"] = &m_map[l2];
 		m_map[l2].m_neighbouring_nodes["UP"] = &m_map[l1];
@@ -115,6 +116,8 @@ sf::Sprite WorldMap::PlotArc(LEVEL l1, LEVEL l2){
 	}
 	sprite.setTexture(ResourceManager<sf::Texture>::instance()->get(orientation));
 
+	//If the neighbour has one make that one the next level
+	m_map[l1].m_next_lvl = &m_map[l2];
 
 	return sprite;
 }
@@ -129,6 +132,8 @@ void WorldMap::addArcs(){
 	m_arcs.push_back(PlotArc(LVL_3A, LVL_4));
 	m_arcs.push_back(PlotArc(LVL_4, LVL_5));
 	m_arcs.push_back(PlotArc(LVL_5, LVL_6));
+
+	m_map[LVL_6].m_next_lvl = &m_map[LVL_6];	//Final Level in the map gets its next pointer to itself, This could be built upon to point to the next map in the Game Hence world 2
 }
 vector<WorldNode>* WorldMap::getNodes(){
 	return &m_map;
