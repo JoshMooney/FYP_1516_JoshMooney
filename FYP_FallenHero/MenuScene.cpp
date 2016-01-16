@@ -3,7 +3,7 @@
 #include "ResourceManager.hpp"
 
 MenuScene::MenuScene(){
-	m_item_position = sf::Vector2f(SCREEN_WIDTH - ((SCREEN_WIDTH / 100) * 25), SCREEN_HEIGHT - ((SCREEN_HEIGHT / 100) * 30));
+	m_item_position = sf::Vector2f(SCREEN_WIDTH - ((SCREEN_WIDTH / 100) * 28), SCREEN_HEIGHT - ((SCREEN_HEIGHT / 100) * 36));
 	m_item_spacing = sf::Vector2f(0, 50);
 	m_key_pressed = false;
 
@@ -11,8 +11,8 @@ MenuScene::MenuScene(){
 	loadText();
 
 	m_current_state = SPLASH;
-	m_current_menu_item = M_PLAY;
-	m_play_text.setColor(sf::Color::Yellow);
+	m_current_menu_item = M_CONTINUE;
+	menu_text[M_CONTINUE].setColor(sf::Color::Yellow);
 
 	cLog::inst()->print("MenuScene Initalised");
 }
@@ -32,9 +32,14 @@ void MenuScene::render(sf::RenderWindow &w){
 		w.draw(m_main_bg_sprt);
 		w.draw(m_logo_sprt);
 
-		w.draw(m_play_text);
-		w.draw(m_options_text);
-		w.draw(m_exit_text);
+		for (int i = 0; i < menu_text.size(); i++){
+			w.draw(menu_text[i]);
+		}
+		break;
+	case SAVE_SELECT:
+		w.draw(m_main_bg_sprt);
+		w.draw(m_save_gui);
+		break;
 	}
 }
 void MenuScene::handleEvent(sf::Event &e){
@@ -64,6 +69,12 @@ void MenuScene::handleEvent(sf::Event &e){
 				select();
 			}
 			break;
+		case sf::Keyboard::BackSpace:
+			if (!m_key_pressed){
+				m_key_pressed = true;
+				back();
+			}
+			break;
 		default:
 			m_key_pressed = false;
 			break;
@@ -85,10 +96,28 @@ void MenuScene::handleInput(XBOXController &controller){
 			moveDown();
 		}
 	}
+	if (controller.isPressed["D_RIGHT"] || controller.isPressed["AL_RIGHT"]){
+		if (!m_key_pressed){
+			m_key_pressed = true;
+			moveUp();
+		}
+	}
+	if (controller.isPressed["D_LEFT"] || controller.isPressed["AL_LEFT"]){
+		if (!m_key_pressed){
+			m_key_pressed = true;
+			moveDown();
+		}
+	}
 	if (controller.isPressed["A"]){
 		if (!m_key_pressed){
 			m_key_pressed = true;
 			select();
+		}
+	}
+	if (controller.isPressed["B"]){
+		if (!m_key_pressed){
+			m_key_pressed = true;
+			back();
 		}
 	}
 	if (controller.isIdle())
@@ -96,46 +125,82 @@ void MenuScene::handleInput(XBOXController &controller){
 }
 
 void MenuScene::moveUp(){
-	switch (m_current_menu_item){
-	case M_PLAY:
-		break;
-	case M_OPTIONS:
-		m_play_text.setColor(sf::Color::Yellow);
-		m_current_menu_item = M_PLAY;
+	if (m_current_state == MAIN){
+		switch (m_current_menu_item){
+		case M_CONTINUE:
+			break;
+		case M_NEW:
+			menu_text[M_CONTINUE].setColor(sf::Color::Yellow);
+			m_current_menu_item = M_CONTINUE;
+			menu_text[M_NEW].setColor(sf::Color::Black);
+			break;
+		case M_OPTIONS:
+			menu_text[M_NEW].setColor(sf::Color::Yellow);
+			m_current_menu_item = M_NEW;
+			menu_text[M_OPTIONS].setColor(sf::Color::Black);
+			break;
+		case M_EXIT:
+			menu_text[M_OPTIONS].setColor(sf::Color::Yellow);
+			m_current_menu_item = M_OPTIONS;
+			menu_text[M_EXIT].setColor(sf::Color::Black);
+			break;
+		}
+	}
+	if (m_current_state == SAVE_SELECT){
 
-		m_options_text.setColor(sf::Color::Black);
-		break;
-	case M_EXIT:
-		m_options_text.setColor(sf::Color::Yellow);
-		m_current_menu_item = M_OPTIONS;
-
-		m_exit_text.setColor(sf::Color::Black);
-		break;
 	}
 }
 void MenuScene::moveDown(){
-	switch (m_current_menu_item){
-	case M_PLAY:
-		m_options_text.setColor(sf::Color::Yellow);
-		m_current_menu_item = M_OPTIONS;
+	if (m_current_state == MAIN) {
+		switch (m_current_menu_item) {
+		case M_CONTINUE:
+			menu_text[M_NEW].setColor(sf::Color::Yellow);
+			m_current_menu_item = M_NEW;
+			menu_text[M_CONTINUE].setColor(sf::Color::Black);
+			break;
+		case M_NEW:
+			menu_text[M_OPTIONS].setColor(sf::Color::Yellow);
+			m_current_menu_item = M_OPTIONS;
+			menu_text[M_NEW].setColor(sf::Color::Black);
+			break;
+		case M_OPTIONS:
+			menu_text[M_EXIT].setColor(sf::Color::Yellow);
+			m_current_menu_item = M_EXIT;
+			menu_text[M_OPTIONS].setColor(sf::Color::Black);
+			break;
+		case M_EXIT:
+			break;
+		}
+	}
+	if (m_current_state == SAVE_SELECT){
 
-		m_play_text.setColor(sf::Color::Black);
-		break;
-	case M_OPTIONS:
-		m_exit_text.setColor(sf::Color::Yellow);
-		m_current_menu_item = M_EXIT;
+	}
+}
+void MenuScene::moveRight(){
+	if (m_current_state == MAIN){
 
-		m_options_text.setColor(sf::Color::Black);
-		break;
-	case M_EXIT:
-		break;
+	}
+	if (m_current_state == SAVE_SELECT){
+
+	}
+}
+void MenuScene::moveLeft(){
+	if (m_current_state == MAIN){
+
+	}
+	if (m_current_state == SAVE_SELECT){
+
 	}
 }
 void MenuScene::select(){
+	cLog::inst()->print("Select Pressed");
 	if (m_current_state == MAIN)
 		switch (m_current_menu_item)
 		{
-		case M_PLAY:
+		case M_CONTINUE:
+			m_current_state = SAVE_SELECT;
+			break;
+		case M_NEW:
 			m_current_state = GAME;
 			break;
 		case M_OPTIONS:
@@ -147,6 +212,11 @@ void MenuScene::select(){
 		}
 	if (m_current_state == SPLASH)
 		m_current_state = MAIN;
+}
+void MenuScene::back(){
+	if (m_current_state == SAVE_SELECT){
+		changeState(STATE::MAIN);
+	}
 }
 
 void MenuScene::loadMedia(){
@@ -166,26 +236,45 @@ void MenuScene::loadMedia(){
 	sf::Texture l_texture = ResourceManager<sf::Texture>::instance()->get(s_logo);
 	//s_logo.setScale(sf::Vector2f(2.0, 2.0));
 	m_logo_sprt.setPosition(SCREEN_WIDTH / 2 - l_texture.getSize().x / 2, (SCREEN_HEIGHT / 100) * 10);
+
+	s_save_gui = "Assets/Menu/saveSelectGUI.png";
+	m_save_gui.setTexture(ResourceManager<sf::Texture>::instance()->get(s_save_gui));
+	m_save_gui.setPosition(0, 0);
 }
 void MenuScene::loadText(){
-	m_play_text.setFont(m_font);
-	m_play_text.setString("Play");
-	m_play_text.setColor(sf::Color::Black);
-	m_play_text.setCharacterSize(32);
-	m_play_text.setPosition(m_item_position);
+	sf::Vector2f spacing = m_item_spacing;
 
-	m_options_text.setFont(m_font);
-	m_options_text.setString("Options");
-	m_options_text.setColor(sf::Color::Black);
-	m_options_text.setCharacterSize(32);
-	m_options_text.setPosition(m_item_position + m_item_spacing);
+	sf::Text text;
+	buttons.push_back("Continue");
+	buttons.push_back("New Game");
+	buttons.push_back("Options");
+	buttons.push_back("Exit");
+	for (int i = 0; i < buttons.size(); i++){
+		text.setFont(m_font);
+		text.setString(buttons[i]);
+		text.setColor(sf::Color::Black);
+		text.setCharacterSize(32);
+		spacing = sf::Vector2f(m_item_spacing.x * i, m_item_spacing.y * i);
+		text.setPosition(m_item_position + spacing);
 
-	m_exit_text.setFont(m_font);
-	m_exit_text.setString("Exit");
-	m_exit_text.setColor(sf::Color::Black);
-	m_exit_text.setCharacterSize(32);
-	m_item_spacing = sf::Vector2f(0, 50 * 2);
-	m_exit_text.setPosition(m_item_position + m_item_spacing);
-
+		menu_text.push_back(text);
+	}
 	m_item_spacing = sf::Vector2f(0, 50);
+}
+void MenuScene::setLoader(XMLLoader *l){
+	loader = l;
+}
+void MenuScene::changeState(STATE s) {
+	switch (m_current_slot){
+	case SPLASH:
+		break;
+	case MAIN:
+		m_current_menu_item = M_CONTINUE;
+		break;
+	case OPTIONS:
+		break;
+	case SAVE_SELECT:
+		m_current_slot = SLOT_1;
+		break;
+	}
 }

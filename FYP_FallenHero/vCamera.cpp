@@ -83,6 +83,9 @@ sf::Vector2f vCamera::getPlayerOffset(sf::Vector2f player_center) {
 
 	return player_center;
 }
+void vCamera::setBounds(sf::FloatRect bounds) {
+	m_bounds = bounds;
+}
 sf::FloatRect vCamera::checkBounds(sf::Vector2f player_center) {
 	sf::FloatRect viewport = getRectViewport();
 

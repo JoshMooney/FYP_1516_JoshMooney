@@ -12,6 +12,8 @@ Game::Game() {
 	m_level_scene = new LevelScene();
 	m_world_scene = new WorldScene();
 
+	m_loader = new XMLLoader();
+	m_menu_scene->setLoader(m_loader);
 	//Starting scene
 	m_current_state = MENU;
 	m_current_scene = m_menu_scene;

@@ -12,7 +12,8 @@ WorldScene::WorldScene(){
 	sf::Vector2f maporigin(100, 200);
 	m_world_map = new WorldMap(maporigin);
 
-	m_gui = std::make_shared<SimpleGUI>(SimpleGUI("Gui.png", maporigin + sf::Vector2f(250, -150), "Golden Age Shad.ttf", "Test Test", sf::Vector2f(25, 12)));
+	//m_gui = std::make_shared<SimpleGUI>(SimpleGUI("Gui.png", maporigin + sf::Vector2f(240, -100), "Golden Age Shad.ttf", "Test Test", sf::Vector2f(25, 12)));
+	m_gui = std::make_shared<SimpleGUI>(SimpleGUI("Gui.png", maporigin + sf::Vector2f(220, -100), "Golden Age Shad.ttf", "Test Test", sf::Vector2f(25, 12), "GUI_title.png"));
 
 	m_player_icon = PlayerIcon();
 	m_player_icon.setCenter(m_world_map->getNode(m_player_icon.getTag())->getCenter());

@@ -5,7 +5,7 @@ LevelScene::LevelScene(){
 	m_world = new b2World(GRAVITY);
 
 	m_level_complete = false;
-	m_camera = vCamera(sf::Vector2f(SCREEN_WIDTH, SCREEN_HEIGHT), sf::FloatRect{0.0f, 0.0f, 2880.0f, 640.0f});
+	m_camera = vCamera(sf::Vector2f(SCREEN_WIDTH, SCREEN_HEIGHT), sf::FloatRect{0.0f, 0.0f, 960.0f, 640.0f});
 	m_camera.LockX(false);
 	m_camera.LockY(false);
 	//tiled_map = new tmx::TileMap("test.tmx");
@@ -153,6 +153,7 @@ void LevelScene::loadLevel(string lvl_name){
 	level_id = lvl_name;		//Store the currently loaded levels ID
 	if (m_level != nullptr)		m_level->destroy(m_world);			//If there was a previous level destroy all the b2Bodies in that level 
 	m_level = make_shared<Level>(lvl_name, m_world);				//Create a new level
+	m_camera.setBounds(m_level->Bounds());
 	m_player->reset(m_level->getSpawn());			//Reset the player for the new level
 	//Set the Cameras bounds here once loaded from the .tmx
 }

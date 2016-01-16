@@ -47,7 +47,13 @@ void Level::render(sf::RenderWindow &w, vCamera *cam){
 
 void Level::ParseMapLayers(b2World * world) {
 	//map.GetObjectLayer("Layer Name");
+	//Load size of the Map
+	int tile_size = 32;
+	int w = tiled_map->GetWidth();
+	int h = tiled_map->GetHeight();
 	
+	bounds = { (float)0, (float)0, (float)w * tile_size, (float)h * tile_size };
+
 	tmx::ObjectGroup lay;
 	//** Put all of this level loading onto threads to speed up the process **//
 	lay = tiled_map->GetObjectGroup("Terrain");

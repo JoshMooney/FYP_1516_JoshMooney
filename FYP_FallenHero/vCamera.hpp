@@ -27,7 +27,7 @@ public:
 	void refresh(sf::Vector2f player_center);
 
 	sf::Vector2f getPlayerOffset(sf::Vector2f player_center);
-
+	void setBounds(sf::FloatRect bounds);
 	sf::FloatRect checkBounds(sf::Vector2f player_center);
 	sf::FloatRect getRectViewport();
 	void addBounds(sf::FloatRect bounds) { m_bounds = bounds; }

@@ -39,6 +39,7 @@ private:
 	//vector<LevelItem> player_data;		//Player Level Data Spawn, Exit, checkpoints.
 	//vector<Collectible> level_data;		//Coins, collectibles
 	sf::Vector2f m_player_spawn;
+	sf::FloatRect bounds;			//This is the bounds of the level
 public:
 	Level();
 	Level(string s, b2World *world);
@@ -59,6 +60,7 @@ public:
 	bool hasEnded(sf::FloatRect player) { return m_exit.isCollided(player); }
 	sf::Vector2f getSpawn() { return m_player_spawn; }
 	void destroy(b2World *world);
+	sf::FloatRect Bounds() { return bounds; }
 };
 
 #endif

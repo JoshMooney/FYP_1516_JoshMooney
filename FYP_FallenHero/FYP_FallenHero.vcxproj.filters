@@ -108,9 +108,6 @@
     <ClInclude Include="Snake.hpp">
       <Filter>Header Files\Entities</Filter>
     </ClInclude>
-    <ClInclude Include="Terrain.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Exit.hpp">
       <Filter>Header Files\Level</Filter>
     </ClInclude>
@@ -125,6 +122,18 @@
     </ClInclude>
     <ClInclude Include="SimpleGUI.hpp">
       <Filter>Header Files\Map</Filter>
+    </ClInclude>
+    <ClInclude Include="Terrain.hpp">
+      <Filter>Header Files\Level</Filter>
+    </ClInclude>
+    <ClInclude Include="tinyxml2.h">
+      <Filter>Header Files\Util</Filter>
+    </ClInclude>
+    <ClInclude Include="XMLLoader.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="SaveSlot.hpp">
+      <Filter>Header Files\Util</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -172,6 +181,9 @@
     </ClCompile>
     <ClCompile Include="SimpleGUI.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="tinyxml2.cpp">
+      <Filter>Source Files\Util</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

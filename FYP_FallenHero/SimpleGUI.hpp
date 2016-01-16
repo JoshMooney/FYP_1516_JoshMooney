@@ -11,8 +11,8 @@ class SimpleGUI {
 private:
 	sf::Text m_text;
 	sf::Font m_font;
-	sf::Sprite m_background;
-	string m_texture;
+	sf::Sprite m_background, title_bar;
+	string m_texture, title_texture;
 	string m_text_for_gui;
 
 	sf::Vector2f text_offset;
@@ -21,6 +21,7 @@ private:
 public:
 	SimpleGUI(string texture, string font, string text);
 	SimpleGUI(string texture, sf::Vector2f bg_pos, string font, string text, sf::Vector2f t_offset);
+	SimpleGUI(string texture, sf::Vector2f bg_pos, string font, string text, sf::Vector2f t_offset, string title_texture);
 	~SimpleGUI();
 
 	void loadMedia(string texture, string font);

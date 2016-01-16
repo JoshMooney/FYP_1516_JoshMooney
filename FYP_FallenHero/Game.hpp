@@ -11,11 +11,13 @@
 #include "Player.hpp"
 #include "XBOXController.hpp"
 #include "STP\TMXLoader.hpp"
+#include "XMLLoader.hpp"
 #include <memory>
 
 class Game {
 private:
 	shared_ptr<XBOXController> m_xbox_controller;
+	XMLLoader *m_loader;
 	bool controller_connected, previous_connected;
 
 	Player *m_player;

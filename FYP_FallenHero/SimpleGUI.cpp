@@ -7,6 +7,7 @@
 //	cLog::inst()->print(3, "Simple GUI", "Default Constructor was called, where no constructor exists");
 //}
 SimpleGUI::SimpleGUI(string texture, string font, string text) {
+	title_texture = "";
 	loadMedia(texture, font);
 
 	m_background.setPosition(0, 0);
@@ -18,7 +19,22 @@ SimpleGUI::SimpleGUI(string texture, string font, string text) {
 	m_text.setPosition(10, 10);
 }
 SimpleGUI::SimpleGUI(string texture, sf::Vector2f bg_pos, string font, string text, sf::Vector2f t_offset) {
+	title_texture = "";
 	loadMedia(texture, font);
+
+	m_background.setPosition(bg_pos);
+	m_background.setScale(0.85f, 0.85f);
+
+	text_offset = t_offset;
+	m_text_for_gui = text;
+	setText("hi");
+}
+SimpleGUI::SimpleGUI(string texture, sf::Vector2f bg_pos, string font, string text, sf::Vector2f t_offset, string tit_text) {
+	title_texture = tit_text;
+	loadMedia(texture, font);
+	if (title_texture != "") {
+		title_bar.setPosition(bg_pos - sf::Vector2f(16, 56));
+	}
 
 	m_background.setPosition(bg_pos);
 	m_background.setScale(0.85f, 0.85f);
@@ -34,6 +50,9 @@ SimpleGUI::~SimpleGUI() {
 void SimpleGUI::loadMedia(string texture, string font) {
 	m_font.loadFromFile("Assets/Font/" + font);
 	m_background.setTexture(ResourceManager<sf::Texture>::instance()->get("Assets/" + texture));
+	if (title_texture != "") {
+		title_bar.setTexture(ResourceManager<sf::Texture>::instance()->get("Assets/" + title_texture));
+	}
 }
 
 void SimpleGUI::setText(string s) {
@@ -55,6 +74,8 @@ void SimpleGUI::setTextOffet(sf::Vector2f p) {
 }
 
 void SimpleGUI::render(sf::RenderWindow &w, string lvl) {
+	if(title_texture != "")
+		w.draw(title_bar);
 	w.draw(m_background);
 	/*
 	m_text = sf::Text("Hello world", m_font);
