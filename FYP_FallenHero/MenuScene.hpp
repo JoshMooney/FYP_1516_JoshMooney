@@ -10,8 +10,8 @@
 
 class MenuScene : public Scene{
 private:
-	string s_splash, s_main_bg, s_logo, s_save_gui, s_save_banner, s_erase_banner;
-	sf::Sprite m_splash_sprt, m_main_bg_sprt, m_logo_sprt, m_save_gui, m_save_banner, m_erase_banner;
+	string s_splash, s_main_bg, s_logo, s_save_gui, s_save_banner, s_erase_banner, s_options_gui;
+	sf::Sprite m_splash_sprt, m_main_bg_sprt, m_logo_sprt, m_save_gui, m_save_banner, m_erase_banner, m_options_gui;
 	sf::Font m_font;
 	vector<sf::Text> menu_text;
 	sf::Vector2f m_item_position;

@@ -59,6 +59,10 @@ void MenuScene::render(sf::RenderWindow &w){
 			}
 		w.draw(m_save_select_text);
 		break;
+	case OPTIONS:
+		w.draw(m_main_bg_sprt);
+		w.draw(m_options_gui);
+		break;
 	}
 }
 void MenuScene::handleEvent(sf::Event &e){
@@ -336,6 +340,10 @@ void MenuScene::loadMedia(){
 	s_save_gui = "Assets/Menu/saveSelectGUI.png";
 	m_save_gui.setTexture(ResourceManager<sf::Texture>::instance()->get(s_save_gui));
 	m_save_gui.setPosition(0, 0);
+
+	s_options_gui = "Assets/Menu/options_menu.png";
+	m_options_gui.setTexture(ResourceManager<sf::Texture>::instance()->get(s_options_gui));
+	m_options_gui.setPosition(0, 0);
 
 	s_save_banner = "Assets/Menu/select_gui_banner.png";
 	m_save_banner.setTexture(ResourceManager<sf::Texture>::instance()->get(s_save_banner));
