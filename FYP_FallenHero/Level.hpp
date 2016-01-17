@@ -27,7 +27,7 @@ private:
 	string format;
 	int tile_size;
 
-	Scenery scenery;
+	
 	ParallaxSprite scene;
 
 	shared_ptr<tmx::TileMap> tiled_map;
@@ -41,6 +41,8 @@ private:
 	sf::Vector2f m_player_spawn;
 	sf::FloatRect bounds;			//This is the bounds of the level
 public:
+	Scenery scenery;
+
 	Level();
 	Level(string s, b2World *world);
 	~Level();
@@ -54,6 +56,8 @@ public:
 	void GenerateLevelItems(b2World *world, tmx::ObjectGroup &layer);
 	void GenerateSceneryBG(b2World *world, tmx::ObjectGroup &layer);
 	void GenerateSceneryFG(b2World *world, tmx::ObjectGroup &layer);
+
+	void Destroy(b2World *world);
 
 	void loadMap(string lvl_name);
 	shared_ptr<tmx::TileMap> tiledMap() { return tiled_map; }

@@ -234,12 +234,15 @@ void MenuScene::loadMedia(){
 	s_logo = "Assets/Menu/Logo.png";
 	m_logo_sprt.setTexture(ResourceManager<sf::Texture>::instance()->get(s_logo));
 	sf::Texture l_texture = ResourceManager<sf::Texture>::instance()->get(s_logo);
-	//s_logo.setScale(sf::Vector2f(2.0, 2.0));
 	m_logo_sprt.setPosition(SCREEN_WIDTH / 2 - l_texture.getSize().x / 2, (SCREEN_HEIGHT / 100) * 10);
 
 	s_save_gui = "Assets/Menu/saveSelectGUI.png";
 	m_save_gui.setTexture(ResourceManager<sf::Texture>::instance()->get(s_save_gui));
 	m_save_gui.setPosition(0, 0);
+
+	move_sound.setBuffer(ResourceManager<sf::SoundBuffer>::instance()->get("Assets/Audio/Menu/test.wav"));
+	move_sound.play();
+
 }
 void MenuScene::loadText(){
 	sf::Vector2f spacing = m_item_spacing;

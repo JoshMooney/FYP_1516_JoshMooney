@@ -37,21 +37,24 @@ void LevelScene::update(){
 			m_camera.refresh(vHelper::toSF(m_player->getCenter()));
 		}
 		m_camera.setCenter(m_camera.getPlayerOffset(vHelper::toSF(m_player->getCenter())));
+
 		if (m_level->hasEnded(sf::FloatRect{ m_player->getPosition().x, m_player->getPosition().y, (float)player_size.x, (float)player_size.y }))
+		{
 			m_level_complete = true;
+		}
 	}
 
 	//m_camera.checkBounds();
 }
 void LevelScene::render(sf::RenderWindow &w){
-	//Render Background
-	w.setView(m_camera);
+	w.setView(m_camera);		//Set the Camera
+	m_level->scenery.renderBG(w, &m_camera);	//Render Background	
 
-	m_level->render(w, &m_camera);
-	w.draw(*m_player);
+	m_level->render(w, &m_camera);		//render the level
+	w.draw(*m_player);					//render Player
 	
-
-	w.setView(w.getDefaultView());	//Reset the windows view before exiting renderer
+	m_level->scenery.renderFG(w, &m_camera);	//Render Foreground	
+	w.setView(w.getDefaultView());		//Reset the windows view before exiting renderer
 }
 
 void LevelScene::handleEvent(sf::Event &e){

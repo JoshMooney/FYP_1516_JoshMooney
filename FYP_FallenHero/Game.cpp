@@ -1,7 +1,7 @@
 #include "stdafx.h"
 #include "Game.hpp"
 
-Game::Game() {
+Game::Game() : debug_draw(*m_window) {
 	m_window = new sf::RenderWindow(sf::VideoMode(SCREEN_WIDTH, SCREEN_HEIGHT, 32), "Fallen Hero", sf::Style::Titlebar);
 	isRunning = true;
 	m_xbox_controller = make_shared<XBOXController>();
@@ -14,6 +14,10 @@ Game::Game() {
 
 	m_loader = new XMLLoader();
 	m_menu_scene->setLoader(m_loader);
+
+	debug_draw = SFMLDebugDraw(*m_window);
+	m_level_scene->m_world->SetDebugDraw(&debug_draw);
+
 	//Starting scene
 	m_current_state = MENU;
 	m_current_scene = m_menu_scene;
@@ -50,6 +54,7 @@ void Game::render(){
 	m_window->clear();
 
 	m_current_scene->render(*m_window);
+	m_level_scene->m_world->DrawDebugData();
 	m_window->display();
 }
 void Game::createPlayer(){

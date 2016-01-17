@@ -27,7 +27,8 @@ Player::Player(b2World &m_world){
 
 	//Define the shape of the body
 	b2PolygonShape shape;
-	shape.SetAsBox(m_text_size.x * 0.5f, m_text_size.y * 0.5f);
+	//shape.SetAsBox(m_text_size.x / 32.0f, m_text_size.y / 32.0f);
+	shape.SetAsBox(m_text_size.x / 2.0f, m_text_size.y /2.0f);
 
 	b2FixtureDef myFixtureDef;
 	myFixtureDef.density = 1.0f;

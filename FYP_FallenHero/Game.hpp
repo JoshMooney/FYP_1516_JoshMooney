@@ -13,6 +13,7 @@
 #include "STP\TMXLoader.hpp"
 #include "XMLLoader.hpp"
 #include <memory>
+#include "SFMLDebugDraw.h" 
 
 class Game {
 private:
@@ -26,6 +27,7 @@ private:
 	sf::Time m_delta_time;
 	sf::Time m_time_per_frame;
 	sf::Time m_frame_time;
+	SFMLDebugDraw debug_draw;
 public:
 	enum STATE { MENU, LEVEL, WORLD };
 	STATE m_current_state;

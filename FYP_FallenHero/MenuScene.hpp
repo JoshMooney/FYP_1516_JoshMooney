@@ -17,7 +17,7 @@ private:
 	vector<string> buttons;
 	bool m_key_pressed;
 	XMLLoader *loader;
-	
+	sf::Sound move_sound;
 public:
 	SaveSlot *selected_slot;
 	enum STATE { SPLASH, MAIN, SAVE_SELECT, OPTIONS, GAME, GAMEOVER, CLOSE};

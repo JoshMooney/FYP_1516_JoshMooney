@@ -5,7 +5,6 @@
 Level::Level() {
 	cLog::inst()->print(3, "Level", "Default constructor of level called");
 }
-
 Level::Level(string s, b2World *world) {
 	path = "Assets/Levels/";
 	format = ".tmx";
@@ -35,14 +34,9 @@ Level::~Level() {
 void Level::render(sf::RenderWindow &w, vCamera *cam){	
 	//float x = cam->getX() * scene.getDefaultPosition().z;
 	//scene.setPosition(sf::Vector2f(x, scene.getDefaultPosition().y));
-	
-	scenery.renderBG(w, cam);		//Render Background
 
-	//w.draw(scene);
 	w.draw(*tiled_map);				//Render Tiled Map
 	w.draw(m_exit);					//Render Exit point
-
-	scenery.renderFG(w, cam);		//Render Foreground
 }
 
 void Level::ParseMapLayers(b2World * world) {
@@ -112,7 +106,7 @@ void Level::CreateTerrain(b2World * world, tmx::ObjectGroup &layer) {
 
 		//Define the shape of the body
 		b2PolygonShape shape;
-		shape.SetAsBox(object.width/2, object.height/2);
+		shape.SetAsBox(object.width / 2, object.height / 2);
 
 		b2FixtureDef myFixtureDef;
 		myFixtureDef.density = 0.0f;
@@ -172,8 +166,8 @@ void Level::GenerateSceneryBG(b2World *world, tmx::ObjectGroup &layer) {
 	scenery.sortBG();
 }
 void Level::GenerateSceneryFG(b2World *world, tmx::ObjectGroup &layer) {
-	/*int lenght = layer.objects_.size();
-	string path = "Assets/Levels/Backgrounds/";
+	int lenght = layer.objects_.size();
+	string path = "Assets/Levels/Foregrounds/";
 	string format = ".png";
 	string num;
 
@@ -191,13 +185,21 @@ void Level::GenerateSceneryFG(b2World *world, tmx::ObjectGroup &layer) {
 
 		string texture;
 		texture = layer.objects_[i].GetPropertyValue("filename");
-		scenery.insertBG(ParallaxSprite(path + texture + format, vec3));
+		scenery.insertFG(ParallaxSprite(path + texture + format, vec3));
 	}
 
-	scenery.sortBG();*/
-//}
+	scenery.sortFG();
 }
 
+void Level::Destroy(b2World *world) {
+	int i;
+	
+	//Destroy Terrain
+	for (i = 0; i < terrain_data.size(); i++) {
+		world->DestroyBody(terrain_data[i].body);
+	}
+	terrain_data.clear();
+}
 void Level::loadMap(string lvl_name) {
 	tiled_map = make_shared<tmx::TileMap>(path + lvl_name + format);
 	tiled_map->ShowObjects(true);
