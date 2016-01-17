@@ -129,10 +129,10 @@
     <ClInclude Include="tinyxml2.h">
       <Filter>Header Files\Util</Filter>
     </ClInclude>
-    <ClInclude Include="XMLLoader.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="SaveSlot.hpp">
+      <Filter>Header Files\Util</Filter>
+    </ClInclude>
+    <ClInclude Include="XMLLoader.hpp">
       <Filter>Header Files\Util</Filter>
     </ClInclude>
   </ItemGroup>

@@ -74,10 +74,11 @@ void Game::goToNextScene() {
 	case MENU:
 		m_current_scene = m_world_scene;
 		m_current_state = WORLD;
-
+		//Pass the Selected slot to the world
+		m_world_scene->loadSaveSlot(m_menu_scene->selected_slot);
 		break;
 	case WORLD:
-		m_world_scene->reset("LVL_1");
+		m_world_scene->reset();
 		m_current_scene = m_level_scene;
 		m_current_state = LEVEL;
 		m_level_scene->loadLevel(m_world_scene->getCurrentLevel());
@@ -86,6 +87,9 @@ void Game::goToNextScene() {
 		break;
 	case LEVEL:
 		m_world_scene->checkUnlocks(m_level_scene->getLevelName());
+		//Save Game here
+		m_loader->save();
+
 		m_level_scene->reset();
 		m_current_scene = m_world_scene;
 		m_current_state = WORLD;

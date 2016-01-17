@@ -31,6 +31,7 @@ public:
 	void generateBounds();
 	void loadMedia();
 	void createMap();
+	void createMap(map<string, bool> map_data);
 	void addArcs();
 	sf::Sprite PlotArc(LEVEL l1, LEVEL l2);
 	vector<WorldNode>* getNodes();

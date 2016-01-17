@@ -3,6 +3,7 @@
 #include "stdafx.h"
 #include "Scene.hpp"
 #include "XMLLoader.hpp"
+#include "SaveSlot.hpp"
 #include <memory>
 
 class MenuScene : public Scene{
@@ -16,7 +17,9 @@ private:
 	vector<string> buttons;
 	bool m_key_pressed;
 	XMLLoader *loader;
+	
 public:
+	SaveSlot *selected_slot;
 	enum STATE { SPLASH, MAIN, SAVE_SELECT, OPTIONS, GAME, GAMEOVER, CLOSE};
 	enum M_ITEM { M_CONTINUE, M_NEW, M_OPTIONS, M_EXIT };
 	enum O_ITEM { O_VOLUME };

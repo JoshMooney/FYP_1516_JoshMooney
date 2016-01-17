@@ -263,6 +263,7 @@ void MenuScene::loadText(){
 }
 void MenuScene::setLoader(XMLLoader *l){
 	loader = l;
+	selected_slot = loader->saved_data[0];
 }
 void MenuScene::changeState(STATE s) {
 	switch (m_current_slot){

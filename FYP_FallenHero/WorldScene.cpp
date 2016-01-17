@@ -135,7 +135,7 @@ void WorldScene::select() {
 	has_selected = true;
 }
 
-void WorldScene::reset(string s) {
+void WorldScene::reset() {
 	has_selected = false;
 }
 
@@ -144,4 +144,24 @@ void WorldScene::checkUnlocks(string lvl_name) {
 	if(node->m_next_lvl != nullptr)
 		if (node->m_next_lvl->m_is_locked)
 			node->m_next_lvl->unlock();
+	generateMapData();
+}
+
+//Regenerates and copys map data to the current loaded save slot
+void WorldScene::generateMapData() {
+	//Generate Map data
+	m_map_data["LVL1"] = m_world_map->getNode("LVL_1")->m_is_locked;
+	m_map_data["LVL2"] = m_world_map->getNode("LVL_2")->m_is_locked;
+	m_map_data["LVL3"] = m_world_map->getNode("LVL_3A")->m_is_locked;
+	m_map_data["LVL4"] = m_world_map->getNode("LVL_3B")->m_is_locked;
+	m_map_data["LVL5"] = m_world_map->getNode("LVL_4")->m_is_locked;
+	m_map_data["LVL6"] = m_world_map->getNode("LVL_5")->m_is_locked;
+	m_map_data["LVL7"] = m_world_map->getNode("LVL_6")->m_is_locked;
+	//Copy Map data to saveslot
+	m_current_slot->m_LVL_DATA = m_map_data;	
+}
+
+void WorldScene::loadSaveSlot(SaveSlot * ss) {
+	m_current_slot = ss;
+	m_world_map->createMap(ss->m_LVL_DATA);
 }

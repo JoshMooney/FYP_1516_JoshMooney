@@ -52,6 +52,7 @@ void WorldMap::loadMedia(){
 	ResourceManager<sf::Texture>::instance()->get(s_vert_arc);
 }
 void WorldMap::createMap(){
+	m_map.clear();
 	sf::Vector2f nodePosition = m_map_origin + sf::Vector2f(0,0);	//0 ,0
 	m_map.push_back(WorldNode("LVL_1", nodePosition, false));		
 
@@ -77,6 +78,39 @@ void WorldMap::createMap(){
 	//m_map.push_back(WorldNode("lvl_7", nodePosition, false));
 	
 	addArcs();
+}
+void WorldMap::createMap(map<string, bool> map_data) {
+	m_map.clear();
+	string lvl_name = "LVL1";
+	sf::Vector2f nodePosition = m_map_origin + sf::Vector2f(0, 0);	//0 ,0
+	m_map.push_back(WorldNode("LVL_1", nodePosition, map_data["LVL1"], !map_data["LVL1"]));
+
+	lvl_name = "LVL2";
+	nodePosition += sf::Vector2f(m_seperator, 0);		//100 , 0
+	m_map.push_back(WorldNode("LVL_2", nodePosition, map_data["LVL2"], !map_data["LVL2"]));
+
+	lvl_name = "LVL3";
+	nodePosition += sf::Vector2f(0, m_seperator);	//100 , 100
+	m_map.push_back(WorldNode("LVL_3A", nodePosition, map_data["LVL3"], !map_data["LVL3"]));
+
+	lvl_name = "LVL4";
+	nodePosition += sf::Vector2f(0, -2 * m_seperator);		//100 , -100
+	m_map.push_back(WorldNode("LVL_3B", nodePosition, map_data["LVL4"], !map_data["LVL4"]));
+
+	lvl_name = "LVL5";
+	nodePosition += sf::Vector2f(m_seperator, 2 * m_seperator);		//200 , 100
+	m_map.push_back(WorldNode("LVL_4", nodePosition, map_data["LVL5"], !map_data["LVL5"]));
+
+	lvl_name = "LVL6";
+	nodePosition += sf::Vector2f(0, -m_seperator);		//200 , 0
+	m_map.push_back(WorldNode("LVL_5", nodePosition, map_data["LVL6"], !map_data["LVL6"]));
+
+	lvl_name = "LVL7";
+	nodePosition += sf::Vector2f(m_seperator, 0);		//300 , 0
+	m_map.push_back(WorldNode("LVL_6", nodePosition, map_data["LVL7"], !map_data["LVL7"]));
+
+	addArcs();
+
 }
 sf::Sprite WorldMap::PlotArc(LEVEL l1, LEVEL l2){
 	string orientation;

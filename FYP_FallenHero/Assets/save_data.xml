@@ -9,7 +9,8 @@
                 <LVL3>0</LVL3>
                 <LVL4>1</LVL4>
                 <LVL5>0</LVL5>
-                <LVL6>1</LVL6>
+                <LVL6>0</LVL6>
+                <LVL7>0</LVL7>
             </Levels>
         </SaveSlot1>
         <SaveSlot2>
@@ -22,6 +23,7 @@
                 <LVL4>0</LVL4>
                 <LVL5>0</LVL5>
                 <LVL6>0</LVL6>
+                <LVL7>1</LVL7>
             </Levels>
         </SaveSlot2>
         <SaveSlot3>
@@ -34,6 +36,7 @@
                 <LVL4>0</LVL4>
                 <LVL5>0</LVL5>
                 <LVL6>0</LVL6>
+                <LVL7>1</LVL7>
             </Levels>
         </SaveSlot3>
     </SaveGame>

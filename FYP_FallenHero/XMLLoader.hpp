@@ -5,6 +5,7 @@
 #include "tinyxml2.h"
 #include "SaveSlot.hpp"
 #include <vector>
+#include <assert.h>
 
 class XMLLoader {
 private:
@@ -29,13 +30,16 @@ public:
 	vector<SaveSlot *> saved_data;
 
 	XMLLoader(){
-		tinyxml2::XMLError eResult = xmlDoc.LoadFile("SaveData.xml");
+		//tinyxml2::XMLError eResult = xmlDoc.LoadFile("Assets/SaveData.xml");
+		assert(xmlDoc.LoadFile("Assets/save_data.xml") != tinyxml2::XML_ERROR_FILE_NOT_FOUND);
 		
 		tinyxml2::XMLNode *pRoot = xmlDoc.FirstChild();
 		//cout << string_to_int(s) << endl;
 		
 		saveGame = pRoot->FirstChildElement("SaveGame");
 		if (saveGame == nullptr) throw tinyxml2::XML_ERROR_FILE_READ_ERROR;
+
+		loadSaveSlots();
 		/*
 		tinyxml2::XMLElement * slot = saveGame->FirstChildElement("SaveSlot1");
 		if (slot == nullptr) throw tinyxml2::XML_ERROR_FILE_READ_ERROR;
@@ -48,7 +52,9 @@ public:
 		string l_data = level_bool->GetText();
 		cout << string_to_int(l_data) << endl;
 		*/
+		/*
 		loadSaveSlots();
+		*/
 		/*
 		const string image_ext = texture->Attribute("EXT");
 		const string file_name = image_name + '.' + image_ext;*/
@@ -97,6 +103,10 @@ public:
 			ele = levelElement->FirstChildElement("LVL6");
 			text = string_to_int(ele->GetText());
 			map["LVL6"] = text;
+
+			ele = levelElement->FirstChildElement("LVL7");
+			text = string_to_int(ele->GetText());
+			map["LVL7"] = text;
 			//============================================================================================
 
 			saved_data.push_back(new SaveSlot(i + 1, time, gold, map));
@@ -139,7 +149,7 @@ public:
 		}
 		pRoot->InsertEndChild(saveGame);
 
-		tinyxml2::XMLError eResult = xmlDoc.SaveFile("SavedData.xml");
+		tinyxml2::XMLError eResult = xmlDoc.SaveFile("Assets/save_data.xml");
 
 	}
 	void initFile(){
@@ -165,7 +175,7 @@ public:
 
 		pElement = xmlDoc.NewElement("Levels");
 
-		for (int i = 0; i < 6; i++){
+		for (int i = 0; i < 7; i++){
 			string level = "LVL" + std::to_string(i + 1);
 			const char * c = level.c_str();
 			tinyxml2::XMLElement * pListElement = xmlDoc.NewElement(c);
@@ -188,7 +198,7 @@ public:
 
 		pRoot->InsertEndChild(saveGame);
 
-		tinyxml2::XMLError eResult = xmlDoc.SaveFile("SavedData.xml");
+		tinyxml2::XMLError eResult = xmlDoc.SaveFile("Assets/save_data.xml");
 		if (eResult != NULL)
 			perror("Error saving file a backup will be loaded on restart");
 		if (remove("Backup_SavedData.xml") != 0)

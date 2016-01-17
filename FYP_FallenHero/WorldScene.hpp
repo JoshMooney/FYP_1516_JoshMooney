@@ -8,6 +8,7 @@
 #include "PlayerIcon.hpp"
 #include "vCamera.hpp"
 #include "SimpleGUI.hpp"
+#include "SaveSlot.hpp"
 
 class WorldScene : public Scene{
 private:
@@ -19,7 +20,9 @@ private:
 	bool has_selected;
 	vCamera m_camera;
 	std::shared_ptr<SimpleGUI> m_gui;
+	map<string, bool> m_map_data;
 public:
+	SaveSlot *m_current_slot;
 	enum STATE {MAP, EXIT};
 	STATE m_current_state;
 
@@ -35,8 +38,10 @@ public:
 	void select();
 	bool LevelSelected() { return has_selected; }
 	string getCurrentLevel() { return m_player_icon.getTag(); }
-	void reset(string s);
+	void reset();
 	void checkUnlocks(string lvl_name);
+	void generateMapData();
+	void loadSaveSlot(SaveSlot * ss);
 };
 
 #endif
