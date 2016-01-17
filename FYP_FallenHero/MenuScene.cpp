@@ -49,6 +49,16 @@ void MenuScene::render(sf::RenderWindow &w){
 			}
 		w.draw(m_save_select_text);
 		break;
+	case NEW:
+		w.draw(m_main_bg_sprt);
+		w.draw(m_save_gui);
+		w.draw(m_erase_banner);
+		for (int i = 0; i < m_save_text.size(); i++)
+			for (int j = 0; j < m_save_text[i].size(); j++) {
+				w.draw(m_save_text[i][j]);
+			}
+		w.draw(m_save_select_text);
+		break;
 	}
 }
 void MenuScene::handleEvent(sf::Event &e){
@@ -215,6 +225,20 @@ void MenuScene::moveRight(){
 			break;
 		}
 	}
+	if (m_current_state == NEW) {
+		switch (m_current_slot) {
+		case SLOT_1:
+			m_current_slot = SLOT_2;
+			m_erase_banner.setPosition(m_banner_pos + m_banner_sep);
+			break;
+		case SLOT_2:
+			m_current_slot = SLOT_3;
+			m_erase_banner.setPosition(m_banner_pos + m_banner_sep + m_banner_sep);
+			break;
+		case SLOT_3:
+			break;
+		}
+	}
 }
 void MenuScene::moveLeft(){
 	if (m_current_state == MAIN){
@@ -234,6 +258,20 @@ void MenuScene::moveLeft(){
 			break;
 		}
 	}
+	if (m_current_state == NEW) {
+		switch (m_current_slot) {
+		case SLOT_1:
+			break;
+		case SLOT_2:
+			m_current_slot = SLOT_1;
+			m_erase_banner.setPosition(m_banner_pos);
+			break;
+		case SLOT_3:
+			m_current_slot = SLOT_2;
+			m_erase_banner.setPosition(m_banner_pos + m_banner_sep);
+			break;
+		}
+	}
 }
 void MenuScene::select() {
 	cLog::inst()->print("Select Pressed");
@@ -244,7 +282,7 @@ void MenuScene::select() {
 			changeState(SAVE_SELECT);
 			break;
 		case M_NEW:
-			changeState(GAME);
+			changeState(NEW);
 			break;
 		case M_OPTIONS:
 			changeState(OPTIONS);
@@ -257,11 +295,23 @@ void MenuScene::select() {
 		selected_slot = loader->saved_data[m_current_slot];
 		changeState(GAME);
 	}
+	else if (m_current_state == NEW) {
+		delete loader->saved_data[m_current_slot];
+		loader->saved_data[m_current_slot] = new SaveSlot(m_current_slot + 1);
+		selected_slot = loader->saved_data[m_current_slot];
+		changeState(GAME);
+	}
 	else if (m_current_state == SPLASH)
 		changeState(MAIN);
 }
 void MenuScene::back(){
 	if (m_current_state == SAVE_SELECT){
+		changeState(STATE::MAIN);
+	}
+	else if (m_current_state == OPTIONS) {
+		changeState(STATE::MAIN);
+	}
+	else if (m_current_state == NEW) {
 		changeState(STATE::MAIN);
 	}
 }
@@ -290,6 +340,10 @@ void MenuScene::loadMedia(){
 	s_save_banner = "Assets/Menu/select_gui_banner.png";
 	m_save_banner.setTexture(ResourceManager<sf::Texture>::instance()->get(s_save_banner));
 	m_save_banner.setPosition(m_banner_pos);
+
+	s_erase_banner = "Assets/Menu/erase_gui_banner.png";
+	m_erase_banner.setTexture(ResourceManager<sf::Texture>::instance()->get(s_erase_banner));
+	m_erase_banner.setPosition(m_banner_pos);
 
 	move_sound.setBuffer(ResourceManager<sf::SoundBuffer>::instance()->get("Assets/Audio/Menu/test.wav"));
 	move_sound.play();
@@ -320,6 +374,12 @@ void MenuScene::loadText(){
 	m_save_select_text.setColor(sf::Color::Black);
 	m_save_select_text.setCharacterSize(22);
 	m_save_select_text.setPosition(195, 500);
+
+	m_save_select_text.setFont(m_font);
+	m_save_select_text.setString("Please select a save slot to overwrite.");
+	m_save_select_text.setColor(sf::Color::Black);
+	m_save_select_text.setCharacterSize(22);
+	m_save_select_text.setPosition(195, 500);
 }
 void MenuScene::setLoader(XMLLoader *l){
 	loader = l;
@@ -342,6 +402,11 @@ void MenuScene::changeState(STATE s) {
 		break;
 	case SAVE_SELECT:
 		m_current_state = SAVE_SELECT;
+		m_current_slot = SLOT_1;
+		generateSaveText();
+		break;
+	case NEW:
+		m_current_state = NEW;
 		m_current_slot = SLOT_1;
 		generateSaveText();
 		break;

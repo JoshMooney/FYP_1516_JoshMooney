@@ -10,8 +10,8 @@
 
 class MenuScene : public Scene{
 private:
-	string s_splash, s_main_bg, s_logo, s_save_gui, s_save_banner;
-	sf::Sprite m_splash_sprt, m_main_bg_sprt, m_logo_sprt, m_save_gui, m_save_banner;
+	string s_splash, s_main_bg, s_logo, s_save_gui, s_save_banner, s_erase_banner;
+	sf::Sprite m_splash_sprt, m_main_bg_sprt, m_logo_sprt, m_save_gui, m_save_banner, m_erase_banner;
 	sf::Font m_font;
 	vector<sf::Text> menu_text;
 	sf::Vector2f m_item_position;
@@ -22,10 +22,10 @@ private:
 	sf::Sound move_sound;
 	sf::Vector2f m_banner_pos, m_banner_sep;		//The (Currently) Yellow banner that surronds the highlighted save slot
 	vector<SaveText> m_save_text;		//The SaveSlot Translated into sf::Text basicly
-	sf::Text m_save_select_text;
+	sf::Text m_save_select_text, m_erase_select_text;
 public:
 	SaveSlot *selected_slot;
-	enum STATE { SPLASH, MAIN, SAVE_SELECT, OPTIONS, GAME, GAMEOVER, CLOSE};
+	enum STATE { SPLASH, MAIN, SAVE_SELECT, NEW, OPTIONS, GAME, GAMEOVER, CLOSE};
 	enum M_ITEM { M_CONTINUE, M_NEW, M_OPTIONS, M_EXIT };
 	enum O_ITEM { O_VOLUME };
 	enum SAVESLOTS	{ SLOT_1, SLOT_2, SLOT_3 };
