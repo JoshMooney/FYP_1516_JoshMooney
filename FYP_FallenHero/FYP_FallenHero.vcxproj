@@ -101,7 +101,6 @@
     <ClInclude Include="Scene.hpp" />
     <ClInclude Include="ParallaxSprite.hpp" />
     <ClInclude Include="Scenery.hpp" />
-    <ClInclude Include="SFMLDebugDraw.h" />
     <ClInclude Include="SimpleGUI.hpp" />
     <ClInclude Include="Snake.hpp" />
     <ClInclude Include="stdafx.h" />
@@ -126,7 +125,6 @@
     <ClCompile Include="Platform.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="Scenery.cpp" />
-    <ClCompile Include="SFMLDebugDraw.cpp" />
     <ClCompile Include="SimpleGUI.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>

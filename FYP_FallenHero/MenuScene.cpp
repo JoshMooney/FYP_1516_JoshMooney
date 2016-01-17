@@ -57,7 +57,7 @@ void MenuScene::render(sf::RenderWindow &w){
 			for (int j = 0; j < m_save_text[i].size(); j++) {
 				w.draw(m_save_text[i][j]);
 			}
-		w.draw(m_save_select_text);
+		w.draw(m_erase_select_text);
 		break;
 	case OPTIONS:
 		w.draw(m_main_bg_sprt);
@@ -383,11 +383,11 @@ void MenuScene::loadText(){
 	m_save_select_text.setCharacterSize(22);
 	m_save_select_text.setPosition(195, 500);
 
-	m_save_select_text.setFont(m_font);
-	m_save_select_text.setString("Please select a save slot to overwrite.");
-	m_save_select_text.setColor(sf::Color::Black);
-	m_save_select_text.setCharacterSize(22);
-	m_save_select_text.setPosition(195, 500);
+	m_erase_select_text.setFont(m_font);
+	m_erase_select_text.setString("Please select a save slot to overwrite.");
+	m_erase_select_text.setColor(sf::Color::Black);
+	m_erase_select_text.setCharacterSize(22);
+	m_erase_select_text.setPosition(195, 500);
 }
 void MenuScene::setLoader(XMLLoader *l){
 	loader = l;
@@ -398,7 +398,6 @@ void MenuScene::changeState(STATE s) {
 	case SPLASH:
 		break;
 	case MAIN:
-		m_current_menu_item = M_CONTINUE;
 		m_current_state = MAIN;
 		break;
 	case OPTIONS:
@@ -406,7 +405,6 @@ void MenuScene::changeState(STATE s) {
 		break;
 	case GAME:
 		m_current_state = GAME;
-		
 		break;
 	case SAVE_SELECT:
 		m_current_state = SAVE_SELECT;

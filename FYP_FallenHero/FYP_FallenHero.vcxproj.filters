@@ -129,13 +129,11 @@
     <ClInclude Include="tinyxml2.h">
       <Filter>Header Files\Util</Filter>
     </ClInclude>
+    <ClInclude Include="XMLLoader.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
     <ClInclude Include="SaveSlot.hpp">
       <Filter>Header Files\Util</Filter>
-    </ClInclude>
-    <ClInclude Include="XMLLoader.hpp">
-      <Filter>Header Files\Util</Filter>
-    <ClInclude Include="SFMLDebugDraw.h">
-      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -186,8 +184,6 @@
     </ClCompile>
     <ClCompile Include="tinyxml2.cpp">
       <Filter>Source Files\Util</Filter>
-    <ClCompile Include="SFMLDebugDraw.cpp">
-      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
