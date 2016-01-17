@@ -13,7 +13,7 @@ SimpleGUI::SimpleGUI(string texture, string font, string text) {
 	m_background.setPosition(0, 0);
 
 	m_text = sf::Text("Hello world", m_font);
-	m_text.setCharacterSize(24);
+	m_text.setCharacterSize(20);
 	m_text.setStyle(sf::Text::Bold);
 	m_text.setColor(sf::Color::Black);
 	m_text.setPosition(10, 10);
@@ -58,9 +58,9 @@ void SimpleGUI::loadMedia(string texture, string font) {
 void SimpleGUI::setText(string s) {
 	m_text.setString(s);
 	m_text = sf::Text(s, m_font, 32);
-	m_text.setCharacterSize(32);
+	m_text.setCharacterSize(20);
 	m_text.setStyle(sf::Text::Regular);
-	m_text.setColor(sf::Color::White);
+	m_text.setColor(sf::Color::Black);
 	m_text.setPosition(m_background.getPosition() + text_offset);
 }
 

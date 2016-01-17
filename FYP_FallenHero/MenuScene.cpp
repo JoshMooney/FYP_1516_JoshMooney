@@ -1,11 +1,14 @@
 #include "stdafx.h"
 #include "MenuScene.hpp"
 #include "ResourceManager.hpp"
+#include <sstream> 
 
 MenuScene::MenuScene(){
 	m_item_position = sf::Vector2f(SCREEN_WIDTH - ((SCREEN_WIDTH / 100) * 28), SCREEN_HEIGHT - ((SCREEN_HEIGHT / 100) * 36));
 	m_item_spacing = sf::Vector2f(0, 50);
 	m_key_pressed = false;
+	m_banner_pos = sf::Vector2f(52, 115);
+	m_banner_sep = sf::Vector2f(304, 0);
 
 	loadMedia();
 	loadText();
@@ -39,6 +42,12 @@ void MenuScene::render(sf::RenderWindow &w){
 	case SAVE_SELECT:
 		w.draw(m_main_bg_sprt);
 		w.draw(m_save_gui);
+		w.draw(m_save_banner);
+		for (int i = 0; i < m_save_text.size(); i++)
+			for (int j = 0; j < m_save_text[i].size(); j++) {
+				w.draw(m_save_text[i][j]);
+			}
+		w.draw(m_save_select_text);
 		break;
 	}
 }
@@ -55,6 +64,18 @@ void MenuScene::handleEvent(sf::Event &e){
 			if (!m_key_pressed){
 				m_key_pressed = true;
 				moveDown();
+			}
+			break;
+		case sf::Keyboard::Right:
+			if (!m_key_pressed) {
+				m_key_pressed = true;
+				moveRight();
+			}
+			break;
+		case sf::Keyboard::Left:
+			if (!m_key_pressed) {
+				m_key_pressed = true;
+				moveLeft();
 			}
 			break;
 		case sf::Keyboard::Return:
@@ -181,7 +202,18 @@ void MenuScene::moveRight(){
 
 	}
 	if (m_current_state == SAVE_SELECT){
-
+		switch (m_current_slot) {
+		case SLOT_1:
+			m_current_slot = SLOT_2;
+			m_save_banner.setPosition(m_banner_pos + m_banner_sep);
+			break;
+		case SLOT_2:
+			m_current_slot = SLOT_3;
+			m_save_banner.setPosition(m_banner_pos + m_banner_sep + m_banner_sep);
+			break;
+		case SLOT_3:
+			break;
+		}
 	}
 }
 void MenuScene::moveLeft(){
@@ -189,29 +221,44 @@ void MenuScene::moveLeft(){
 
 	}
 	if (m_current_state == SAVE_SELECT){
-
+		switch (m_current_slot) {
+		case SLOT_1:
+			break;
+		case SLOT_2:
+			m_current_slot = SLOT_1;
+			m_save_banner.setPosition(m_banner_pos);
+			break;
+		case SLOT_3:
+			m_current_slot = SLOT_2;
+			m_save_banner.setPosition(m_banner_pos + m_banner_sep);
+			break;
+		}
 	}
 }
-void MenuScene::select(){
+void MenuScene::select() {
 	cLog::inst()->print("Select Pressed");
 	if (m_current_state == MAIN)
 		switch (m_current_menu_item)
 		{
 		case M_CONTINUE:
-			m_current_state = SAVE_SELECT;
+			changeState(SAVE_SELECT);
 			break;
 		case M_NEW:
-			m_current_state = GAME;
+			changeState(GAME);
 			break;
 		case M_OPTIONS:
-			m_current_state = OPTIONS;
+			changeState(OPTIONS);
 			break;
 		case M_EXIT:
 			m_current_state = CLOSE;
 			break;
 		}
-	if (m_current_state == SPLASH)
-		m_current_state = MAIN;
+	else if (m_current_state == SAVE_SELECT) {
+		selected_slot = loader->saved_data[m_current_slot];
+		changeState(GAME);
+	}
+	else if (m_current_state == SPLASH)
+		changeState(MAIN);
 }
 void MenuScene::back(){
 	if (m_current_state == SAVE_SELECT){
@@ -240,6 +287,10 @@ void MenuScene::loadMedia(){
 	m_save_gui.setTexture(ResourceManager<sf::Texture>::instance()->get(s_save_gui));
 	m_save_gui.setPosition(0, 0);
 
+	s_save_banner = "Assets/Menu/select_gui_banner.png";
+	m_save_banner.setTexture(ResourceManager<sf::Texture>::instance()->get(s_save_banner));
+	m_save_banner.setPosition(m_banner_pos);
+
 	move_sound.setBuffer(ResourceManager<sf::SoundBuffer>::instance()->get("Assets/Audio/Menu/test.wav"));
 	move_sound.play();
 
@@ -263,22 +314,90 @@ void MenuScene::loadText(){
 		menu_text.push_back(text);
 	}
 	m_item_spacing = sf::Vector2f(0, 50);
+
+	m_save_select_text.setFont(m_font);
+	m_save_select_text.setString("Please select your save slot to load.");
+	m_save_select_text.setColor(sf::Color::Black);
+	m_save_select_text.setCharacterSize(22);
+	m_save_select_text.setPosition(195, 500);
 }
 void MenuScene::setLoader(XMLLoader *l){
 	loader = l;
 	selected_slot = loader->saved_data[0];
 }
 void MenuScene::changeState(STATE s) {
-	switch (m_current_slot){
+	switch (s){
 	case SPLASH:
 		break;
 	case MAIN:
 		m_current_menu_item = M_CONTINUE;
+		m_current_state = MAIN;
 		break;
 	case OPTIONS:
+		m_current_state = OPTIONS;
+		break;
+	case GAME:
+		m_current_state = GAME;
+		
 		break;
 	case SAVE_SELECT:
+		m_current_state = SAVE_SELECT;
 		m_current_slot = SLOT_1;
+		generateSaveText();
 		break;
+	}
+}
+
+void MenuScene::generateSaveText() {
+	sf::Vector2f text_sep(0, 20);
+	sf::Vector2f text_pos;
+	sf::Vector2f origin;
+	std::stringstream data;
+	sf::Text text;
+
+	text.setFont(m_font);
+	text.setColor(sf::Color::Black);
+	text.setCharacterSize(22);
+	for (int i = 0; i < 3; i++) {
+		SaveText save_text;		//Local save_text to be pushed back to the main
+		origin = m_banner_pos + sf::Vector2f(m_banner_sep.x * i, m_banner_sep.y) + sf::Vector2f(25, 50);		//Banner pos + banner sep + aesthetics
+		text_pos = sf::Vector2f(0,0);
+		
+		data.str(std::string());
+		data.clear();
+		text.setPosition(origin + text_pos + sf::Vector2f(24,-20));
+		text.setCharacterSize(26);
+		text_pos = text_pos + text_sep;
+		data << "Save Slot " << i;
+		text.setString(data.str());
+		save_text.push_back(text);
+
+		data.str(std::string());
+		data.clear();
+		text.setPosition(origin + text_pos);
+		text.setCharacterSize(22);
+		text_pos = text_pos + text_sep;
+		data << "Time " << loader->saved_data[i]->m_timePlayed;
+		text.setString(data.str());
+		save_text.push_back(text);
+		
+		data.str(std::string());
+		data.clear();
+		text.setPosition(origin + text_pos);
+		text_pos = text_pos + text_sep;
+		data << "Gold " << loader->saved_data[i]->m_currentGold;
+		text.setString(data.str());
+		save_text.push_back(text);
+
+		data.str(std::string());
+		data.clear();
+		text.setPosition(origin + text_pos);
+		text.setCharacterSize(22);
+		data << "Lvls " << loader->saved_data[i]->m_levels_unlocked << "/7";
+		text.setString(data.str());
+		save_text.push_back(text);
+
+		//Push back each SaveText which is just trnslated XML to sf::Text and positioned within my GUI
+		m_save_text.push_back(save_text);
 	}
 }

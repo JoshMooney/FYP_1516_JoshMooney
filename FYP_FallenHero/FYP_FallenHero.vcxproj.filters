@@ -123,7 +123,6 @@
     <ClInclude Include="SimpleGUI.hpp">
       <Filter>Header Files\Map</Filter>
     </ClInclude>
-<<<<<<< HEAD
     <ClInclude Include="Terrain.hpp">
       <Filter>Header Files\Level</Filter>
     </ClInclude>
@@ -135,10 +134,8 @@
     </ClInclude>
     <ClInclude Include="XMLLoader.hpp">
       <Filter>Header Files\Util</Filter>
-=======
     <ClInclude Include="SFMLDebugDraw.h">
       <Filter>Header Files</Filter>
->>>>>>> d44f6e16c30a67b0dbde937c1ccda14a2c1c3d08
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -187,13 +184,10 @@
     <ClCompile Include="SimpleGUI.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-<<<<<<< HEAD
     <ClCompile Include="tinyxml2.cpp">
       <Filter>Source Files\Util</Filter>
-=======
     <ClCompile Include="SFMLDebugDraw.cpp">
       <Filter>Source Files</Filter>
->>>>>>> d44f6e16c30a67b0dbde937c1ccda14a2c1c3d08
     </ClCompile>
   </ItemGroup>
 </Project>

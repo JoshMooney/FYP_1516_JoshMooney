@@ -80,39 +80,49 @@ public:
 			tinyxml2::XMLElement * levelElement = slot->FirstChildElement("Levels");
 			if (levelElement == nullptr) throw tinyxml2::XML_ERROR_FILE_READ_ERROR;
 			//============================================================================================
+			int levels_unlocked = 0;
 			tinyxml2::XMLElement * ele = levelElement->FirstChildElement("LVL1");
 			int text = string_to_int(ele->GetText());
+			if (text == 0)	levels_unlocked++;
 			map["LVL1"] = text;
 
 			ele = levelElement->FirstChildElement("LVL2");
 			text = string_to_int(ele->GetText());
+			if (text == 0)	levels_unlocked++;
 			map["LVL2"] = text;
 
 			ele = levelElement->FirstChildElement("LVL3");
 			text = string_to_int(ele->GetText());
+			if (text == 0)	levels_unlocked++;
 			map["LVL3"] = text;
 
 			ele = levelElement->FirstChildElement("LVL4");
 			text = string_to_int(ele->GetText());
+			if (text == 0)	levels_unlocked++;
 			map["LVL4"] = text;
 
 			ele = levelElement->FirstChildElement("LVL5");
 			text = string_to_int(ele->GetText());
+			if (text == 0)	levels_unlocked++;
 			map["LVL5"] = text;
 
 			ele = levelElement->FirstChildElement("LVL6");
 			text = string_to_int(ele->GetText());
+			if (text == 0)	levels_unlocked++;
 			map["LVL6"] = text;
 
 			ele = levelElement->FirstChildElement("LVL7");
 			text = string_to_int(ele->GetText());
+			if (text == 0)	levels_unlocked++;
 			map["LVL7"] = text;
 			//============================================================================================
 
-			saved_data.push_back(new SaveSlot(i + 1, time, gold, map));
+			saved_data.push_back(new SaveSlot(i + 1, time, gold, map, levels_unlocked));
 		}
 	}
 	void GenerateSaveFile(){
+		cLog::inst()->print(3, "XML Loader", "Generating new save_data.xml");
+
 		//create and insert the root node of the .xml document
 		tinyxml2::XMLNode *pRoot = xmlDoc.NewElement("Root");
 		xmlDoc.InsertFirstChild(pRoot);

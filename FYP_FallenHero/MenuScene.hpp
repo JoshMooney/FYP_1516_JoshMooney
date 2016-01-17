@@ -6,18 +6,23 @@
 #include "SaveSlot.hpp"
 #include <memory>
 
+#define SaveText vector<sf::Text>
+
 class MenuScene : public Scene{
 private:
-	string s_splash, s_main_bg, s_logo, s_save_gui;
-	sf::Sprite m_splash_sprt, m_main_bg_sprt, m_logo_sprt, m_save_gui;
+	string s_splash, s_main_bg, s_logo, s_save_gui, s_save_banner;
+	sf::Sprite m_splash_sprt, m_main_bg_sprt, m_logo_sprt, m_save_gui, m_save_banner;
 	sf::Font m_font;
 	vector<sf::Text> menu_text;
 	sf::Vector2f m_item_position;
 	sf::Vector2f m_item_spacing;
 	vector<string> buttons;
 	bool m_key_pressed;
-	XMLLoader *loader;
+	XMLLoader *loader;				//Loader for the save_data.xml
 	sf::Sound move_sound;
+	sf::Vector2f m_banner_pos, m_banner_sep;		//The (Currently) Yellow banner that surronds the highlighted save slot
+	vector<SaveText> m_save_text;		//The SaveSlot Translated into sf::Text basicly
+	sf::Text m_save_select_text;
 public:
 	SaveSlot *selected_slot;
 	enum STATE { SPLASH, MAIN, SAVE_SELECT, OPTIONS, GAME, GAMEOVER, CLOSE};
@@ -53,7 +58,7 @@ public:
 	STATE getState()	{ return m_current_state; }
 	M_ITEM getMenuPosition()	{ return m_current_menu_item; }
 	O_ITEM getOptionsPosition()	{ return m_current_options_item; }
-
+	void generateSaveText();
 };
 
 #endif
