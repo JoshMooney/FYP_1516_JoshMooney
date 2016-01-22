@@ -4,21 +4,35 @@
 #include <memory>
 #include <map>
 
+/**
+*	@class ResourceManager Can be used for loading any data type thanks to its use of templates
+*	@brief This class is ultra light weight and can be implemented easly something i tend to forget if im using
+*	this class is how to actually call its singleton. When using the ResourceManager you must declare the type you 
+*	wish to use before any method call e.g. ResourceManager<sf::Texture>::instance()->get(File name here);
+*/
 template<typename T>
 class ResourceManager {
 private:
-	static ResourceManager<T>* mInstance;
-	ResourceManager<T>();
+	static ResourceManager<T>* mInstance;		//!<This is the instance of the resourceManager and is required as part of the singleton pattern if confused: https://en.wikipedia.org/wiki/Singleton_pattern
+	ResourceManager<T>();						//!<Template default constructor for the class
 
-	//map of paths to texture ptrs
+	/**
+	*	@brief This container stores the resource in a map for easy access
+	*	@param std::string - The route to the resource as a string
+	*	@param std::unique_ptr<T> - A unique pointer to a templated resource
+	*/
 	std::map< std::string, std::unique_ptr<T>> mResources;
 	//boost::mutex mResourceMutex;
 
 public:
-	~ResourceManager<T>();
-	static ResourceManager<T>* instance();
-
-	T& get(std::string path);
+	~ResourceManager<T>();						//!<Publicly available deconstructor for the class				
+	static ResourceManager<T>* instance();      //!<Fetches the current instance of the Manager is required to achieve the singleton pattern
+                                                
+	/**
+	*	@brief Gets the resouce and if it does not exist it creates and stores that resource
+	*	@param std::string This is the path to the file on the computer
+	*/	
+	T& get(std::string path);                   
 };
 
 template<typename T>
