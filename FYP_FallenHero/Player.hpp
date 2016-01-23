@@ -7,12 +7,13 @@
 #include "vHelper.hpp"
 
 /**
-*	@class
-*	@brief 
+*	@class Player
+*	@brief This is the player class that will represent the user while in game, and will be responsable for
+*	constructing, rendering and updating the player. The responce to input is handled here also. 
 */
 class Player : public Entity {
 private:
-	bool m_is_moving;			//!<Blah
+	bool m_is_moving;			/*!< BLAH */
 	bool m_is_jumping;          //!<
 	float m_speed;              //!<
 	bool m_direction;           //!<

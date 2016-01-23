@@ -4,6 +4,11 @@
 LevelScene::LevelScene(){
 	m_world = new b2World(GRAVITY);
 
+	buttonX_ = new JumpCommand();
+	buttonY_ = new FireCommand();
+	buttonB_ = new LurchCommand();
+	buttonA_ = new SwapCommand();
+
 	m_level_complete = false;
 	m_camera = vCamera(sf::Vector2f(SCREEN_WIDTH, SCREEN_HEIGHT), sf::FloatRect{0.0f, 0.0f, 960.0f, 640.0f});
 	m_camera.LockX(false);
@@ -85,6 +90,19 @@ void LevelScene::handleEvent(sf::Event &e){
 				break;
 			case sf::Keyboard::C:
 				m_camera.LockY(true);
+				break;
+			//Execute command pattern commands here
+			case sf::Keyboard::W:
+				buttonY_->execute(m_player);
+				break;
+			case sf::Keyboard::A:
+				buttonX_->execute(m_player);
+				break;
+			case sf::Keyboard::D:
+				buttonB_->execute(m_player);
+				break;
+			case sf::Keyboard::S:
+				buttonA_->execute(m_player);
 				break;
 
 			case sf::Keyboard::Return:

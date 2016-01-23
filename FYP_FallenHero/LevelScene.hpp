@@ -17,6 +17,7 @@
 #include <memory>
 #include "Box2D\Box2D.h"
 #include <chrono>
+#include "Command.hpp"
 
 class LevelScene : public Scene{
 private:
@@ -40,6 +41,11 @@ private:
 	bool isPaused;
 
 public:
+	Command* buttonX_;
+	Command* buttonY_;
+	Command* buttonB_;
+	Command* buttonA_;
+
 	b2World* m_world;
 
 	LevelScene();
