@@ -4,6 +4,7 @@
 # My Exclusions #
 #################
 FYP_FallenHero/Assets/excluded/*
+Documents/Doxygen_HTML/*
 
 # User-specific files
 *.suo
