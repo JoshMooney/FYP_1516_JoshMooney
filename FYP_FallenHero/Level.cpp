@@ -110,7 +110,7 @@ void Level::CreateTerrain(b2World * world, tmx::ObjectGroup &layer) {
 
 		b2FixtureDef myFixtureDef;
 		myFixtureDef.density = 0.0f;
-		myFixtureDef.friction = 0.0f;
+		myFixtureDef.friction = 0.5f;
 		myFixtureDef.shape = &shape;
 
 		box_body->CreateFixture(&myFixtureDef);

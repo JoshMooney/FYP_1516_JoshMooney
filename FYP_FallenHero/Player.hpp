@@ -13,68 +13,81 @@
 */
 class Player : public Entity {
 private:
-	bool m_is_moving;			/*!< BLAH */
-	bool m_is_jumping;          //!<
-	float m_speed;              //!<
-	bool m_direction;           //!<
-	sf::Vector2u m_text_size;   //!<
-	float m_acceleration;       //!<
-	float m_deceleration;       //!<
-	float m_jump_force;         //!<
-	float speedFactor;          //!<
+	bool m_is_moving;		
+	bool m_is_jumping;         
+	float m_speed;             
+	bool m_direction;          
+	sf::Vector2u m_text_size;  
+	float m_acceleration;      
+	float m_deceleration;      
+	float m_jump_force;        
+	float speedFactor;         
 public:
 	/**
-	*	@brief 
+	*	@brief Default constructor for the player where all the member variables are set and the boxbody is
+	*	is created and attached to the player object. The texture is loaded and set for the player here also
+	*	@param B2World Is a reference to the current box2d world 
 	*/
 	Player(b2World &m_world);
 	~Player();
 
+	/**
+	*	@brief Updates the player in any way nessasary eg alineSprite
+	*	@param FTS frame time stamp
+	*/
 	void update(FTS fts);
 	/**
-	*	@brief 
+	*	@brief Check if the player is standing idle
 	*/
 	void Idle();
 	/**
-	*	@brief 
+	*	@brief Make the player move left and apply speed factor 
 	*/
 	void moveLeft();
 	/**
-	*	@brief 
+	*	@brief Make the player move right and apply speed factor 
 	*/
 	void moveRight();
 	/**
-	*	@brief 
+	*	@brief Make the player jump
 	*/
 	void jump();
 	/**
-	*	@brief 
+	*	@brief Resets the player in the game setting its direction and speedfactor 
+	*	@param sf::Vector2f Set b2body and sprite to this position
 	*/
 	void reset(sf::Vector2f pos);
-
-	b2Body* getBody()	{ return e_box_body; }                                                  //!<
-	bool isMoving()	{ return m_is_moving; }                                                     //!<
-	float getSpeed()	{ return m_speed; }                                                     //!<
-	bool getDirection()	{ return m_direction; }                                                 //!<
-	void setDirection(float d)	{ m_direction = d; };                                           //!<
-	bool isJumping()	{ return m_is_jumping; }                                                //!<
-	b2Vec2 getCenter()	{ return e_box_body->GetPosition(); }                                   //!<
-	void moveTo(sf::Vector2f p) {	e_box_body->SetTransform(vHelper::toB2(p), 0.0f);	}		//!<
+	
+	b2Body* getBody()	{ return e_box_body; }                                                  //!<Returns a pointer to the b2body associated with the player
+	bool isMoving()	{ return m_is_moving; }                                                     //!<Bool whether the player is moving or not
+	float getSpeed()	{ return m_speed; }                                                     //!<Finds the speed of the player
+	bool getDirection()	{ return m_direction; }                                                 //!<Finds the direction the player is facing
+	void setDirection(float d)	{ m_direction = d; };                                           //!<Sets the players direction to the value passed in
+	bool isJumping()	{ return m_is_jumping; }                                                //!<Checks if the player is in the jumping animation
+	b2Vec2 getCenter()	{ return e_box_body->GetPosition(); }                                   //!<Finds the center of the player in Global coordinates
+	void moveTo(sf::Vector2f p) {	e_box_body->SetTransform(vHelper::toB2(p), 0.0f);	}		//!<Sets the Player to the position passed in
 	/**
-	*	@brief 
+	*	@brief Position the players b2Body to the position passed in
+	*	@param p Position
 	*/
 	void Spawn(sf::Vector2f p);
 	
 	/**
-	*	@brief 
+	*	@brief Finds a value between the max and min passed in 
+	*	@param
+	*	@param min the minimum range of the clamp
+	*	@param max the maximum range of the clamp
+	*	@return clamps value
 	*/
 	inline float clamp(float x, float min, float max);
-	void alineSprite();
 	/**
-	*	@brief 
+	*	@brief Calculates and sets the position of the sf::Sprite in relation to the b2Body
 	*/
-	void setIfMoving(bool b) { m_is_moving = b; }
+	void alineSprite();
+	void setIfMoving(bool b) { m_is_moving = b; }		//!<Sets the Variable m_is_moving
 	/**
-	*	@brief Gets a sf::FloatRect 
+	*	@brief Gets a sf::FloatRect representing the bounds of the Player
+	*	@return Bounds of the player
 	*/
 	sf::FloatRect getBounds() { 
 		sf::Vector2u size = getTexture()->getSize();

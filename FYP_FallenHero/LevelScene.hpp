@@ -19,6 +19,9 @@
 #include <chrono>
 #include "Command.hpp"
 
+#include "Spawner.hpp"
+#include "Snake.hpp"
+
 class LevelScene : public Scene{
 private:
 	std::chrono::steady_clock game_clock;
@@ -39,8 +42,9 @@ private:
 	const int POS_ITER = 2;
 
 	bool isPaused;
-
+	Spawner m_spawner;
 public:
+	Snake *snake;
 	Command* buttonX_;
 	Command* buttonY_;
 	Command* buttonB_;

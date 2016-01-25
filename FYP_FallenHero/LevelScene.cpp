@@ -4,6 +4,9 @@
 LevelScene::LevelScene(){
 	m_world = new b2World(GRAVITY);
 
+	m_spawner = Spawner(m_world);
+	m_spawner.SpawnSnake(sf::Vector2f(200, 100));
+
 	buttonX_ = new JumpCommand();
 	buttonY_ = new FireCommand();
 	buttonB_ = new LurchCommand();
@@ -35,7 +38,7 @@ void LevelScene::update(){
 		timeOfLastTick = game_clock.now();
 
 		m_world->Step(B2_TIMESTEP, VEL_ITER, POS_ITER);
-
+		m_spawner.update(timeOfLastTick, m_player);
 		m_player->update(timeOfLastTick);
 		if (m_camera.outOfBounds(m_player->getBounds())) {
 			respawnPlayer();
@@ -56,6 +59,8 @@ void LevelScene::render(sf::RenderWindow &w){
 	m_level->scenery.renderBG(w, &m_camera);	//Render Background	
 
 	m_level->render(w, &m_camera);		//render the level
+	
+	m_spawner.render(w);
 	w.draw(*m_player);					//render Player
 	
 	m_level->scenery.renderFG(w, &m_camera);	//Render Foreground	

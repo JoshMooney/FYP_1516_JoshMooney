@@ -4,6 +4,7 @@
 struct BGSorter {
 	bool operator() (ParallaxSprite ps1, ParallaxSprite ps2) { return (ps1.getDefaultPosition().z > ps2.getDefaultPosition().z); }
 } BG_sort;
+
 struct FGSorter {
 	bool operator() (ParallaxSprite ps1, ParallaxSprite ps2) { return (ps1.getDefaultPosition().z < ps2.getDefaultPosition().z); }
 } FG_sort;
