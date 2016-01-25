@@ -5,7 +5,7 @@
 #include "SFML\Graphics.hpp"
 #include "Box2D\Box2D.h"
 #include "Enemy.hpp"
-#include "Snake.hpp"
+#include "Skeleton.hpp"
 
 #include "Player.hpp"
 
@@ -15,18 +15,18 @@ private:
 	float update_dist;
 	b2World *m_world;
 
-	Snake* prototype_snake;
+	Skeleton* prototype_Skeleton;
 	vector<Enemy *> m_enemies;
 
 public:
-	enum SPAWN_TYPE {SNAKE};
+	enum SPAWN_TYPE { SKELETON };
 	Spawner()	{		}
 	Spawner(b2World *world);
 	~Spawner();
 
 	b2Body* GenerateBody(SPAWN_TYPE type);
 
-	void SpawnSnake(sf::Vector2f pos);
+	void SpawnSkeleton(sf::Vector2f pos);
 
 	void CullInActiveEnemies();
 

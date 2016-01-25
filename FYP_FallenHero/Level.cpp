@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include "Level.hpp"
 #include <string>
+#include "vHelper.hpp"
 
 Level::Level() {
 	cLog::inst()->print(3, "Level", "Default constructor of level called");
@@ -98,26 +99,27 @@ void Level::CreateTerrain(b2World * world, tmx::ObjectGroup &layer) {
 		myBodyDef.type = b2_staticBody;		//this will be a dynamic body
 		sf::Vector2f b2Pos = object.getCenter();
 
-		myBodyDef.position.Set(b2Pos.x, b2Pos.y);		//set the starting position
+		myBodyDef.position.Set(b2Pos.x / vHelper::B2_SCALE, b2Pos.y / vHelper::B2_SCALE);		//set the starting position
 		myBodyDef.angle = 0;				//set the starting angle
-		myBodyDef.userData = "Terrain";
 		
 		b2Body* box_body = world->CreateBody(&myBodyDef);
 
 		//Define the shape of the body
 		b2PolygonShape shape;
-		shape.SetAsBox(object.width / 2, object.height / 2);
+		shape.SetAsBox((object.width / vHelper::B2_SCALE) / 2, (object.height / vHelper::B2_SCALE) / 2);
 
 		b2FixtureDef myFixtureDef;
 		myFixtureDef.density = 0.0f;
 		myFixtureDef.friction = 0.5f;
 		myFixtureDef.shape = &shape;
+		myFixtureDef.userData = "Terrain";
 
 		box_body->CreateFixture(&myFixtureDef);
 
 		terrain.body = box_body;
 		terrain.geometry = sf::FloatRect{ (float)object.x, (float)object.y, (float)object.width, (float)object.height };
 		terrain_data.push_back(terrain);
+		terrain_data.back().body->SetUserData(&terrain_data.back());
 	}
 }
 void Level::GeneratePlayerItems(b2World * world, tmx::ObjectGroup &layer) {

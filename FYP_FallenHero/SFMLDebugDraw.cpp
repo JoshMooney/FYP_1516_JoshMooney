@@ -17,8 +17,10 @@
 #include "stdafx.h"
 #include "SFMLDebugDraw.h"
 
-
+SFMLDebugDraw::SFMLDebugDraw() {}
 SFMLDebugDraw::SFMLDebugDraw(sf::RenderWindow &window) : m_window(&window) {}
+
+
 
 void SFMLDebugDraw::DrawPolygon(const b2Vec2* vertices, int32 vertexCount, const b2Color& color) 
 {

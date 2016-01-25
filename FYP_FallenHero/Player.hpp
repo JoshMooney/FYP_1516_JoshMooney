@@ -63,9 +63,11 @@ public:
 	float getSpeed()	{ return m_speed; }                                                     //!<Finds the speed of the player
 	bool getDirection()	{ return m_direction; }                                                 //!<Finds the direction the player is facing
 	void setDirection(float d)	{ m_direction = d; };                                           //!<Sets the players direction to the value passed in
-	bool isJumping()	{ return m_is_jumping; }                                                //!<Checks if the player is in the jumping animation
-	b2Vec2 getCenter()	{ return e_box_body->GetPosition(); }                                   //!<Finds the center of the player in Global coordinates
+	bool isJumping()	{ return m_is_jumping; }   
+	void setJumping(bool b) { m_is_jumping = b; }												//!<Checks if the player is in the jumping animation
+	sf::Vector2f getCenter()	{ return vHelper::toSF(e_box_body->GetPosition()); }                                   //!<Finds the center of the player in Global coordinates
 	void moveTo(sf::Vector2f p) {	e_box_body->SetTransform(vHelper::toB2(p), 0.0f);	}		//!<Sets the Player to the position passed in
+	void TakeDamage();
 	/**
 	*	@brief Position the players b2Body to the position passed in
 	*	@param p Position

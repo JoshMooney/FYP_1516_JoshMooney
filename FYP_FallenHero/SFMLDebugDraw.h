@@ -21,6 +21,7 @@
 #include <Box2D/Box2D.h>
 #include <SFML/Window.hpp>
 #include <SFML/Graphics.hpp>
+#include "SFML\Window.hpp"
 #include <cmath>
 #define _SCALE_ 32
 
@@ -34,7 +35,12 @@ class SFMLDebugDraw : public b2Draw
 private:
 	sf::RenderWindow* m_window;
 public:
+	SFMLDebugDraw();
 	SFMLDebugDraw(sf::RenderWindow &window);
+
+	void PassWindow(sf::RenderWindow* w) {
+		m_window = w;
+	}
 
 	/// Convert Box2D's OpenGL style color definition[0-1] to SFML's color definition[0-255], with optional alpha byte[Default - opaque]
 	static sf::Color GLColorToSFML(const b2Color &color, sf::Uint8 alpha = 255)

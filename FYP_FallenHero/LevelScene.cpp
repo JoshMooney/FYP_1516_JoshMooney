@@ -1,11 +1,15 @@
 #include "stdafx.h"
 #include "LevelScene.hpp"
+#include "vHelper.hpp"
 
-LevelScene::LevelScene(){
-	m_world = new b2World(GRAVITY);
+LevelScene::LevelScene() :
+	contact_listener(ContactListener())
+{
+	m_world = new b2World(vHelper::toB2(GRAVITY));
+	m_world->SetContactListener(&contact_listener);
 
 	m_spawner = Spawner(m_world);
-	m_spawner.SpawnSnake(sf::Vector2f(200, 100));
+	m_spawner.SpawnSkeleton(sf::Vector2f(200, 0));
 
 	buttonX_ = new JumpCommand();
 	buttonY_ = new FireCommand();
@@ -37,14 +41,16 @@ void LevelScene::update(){
 	while (game_clock.now() - timeOfLastTick >= timePerTick && !isPaused){
 		timeOfLastTick = game_clock.now();
 
-		m_world->Step(B2_TIMESTEP, VEL_ITER, POS_ITER);
 		m_spawner.update(timeOfLastTick, m_player);
+		m_spawner.CullInActiveEnemies();
+		m_world->Step(B2_TIMESTEP, VEL_ITER, POS_ITER);
+		
 		m_player->update(timeOfLastTick);
 		if (m_camera.outOfBounds(m_player->getBounds())) {
 			respawnPlayer();
-			m_camera.refresh(vHelper::toSF(m_player->getCenter()));
+			m_camera.refresh(m_player->getCenter());
 		}
-		m_camera.setCenter(m_camera.getPlayerOffset(vHelper::toSF(m_player->getCenter())));
+		m_camera.setCenter(m_camera.getPlayerOffset(m_player->getCenter()));
 
 		if (m_level->hasEnded(sf::FloatRect{ m_player->getPosition().x, m_player->getPosition().y, (float)player_size.x, (float)player_size.y }))
 		{
@@ -62,7 +68,8 @@ void LevelScene::render(sf::RenderWindow &w){
 	
 	m_spawner.render(w);
 	w.draw(*m_player);					//render Player
-	
+
+	m_world->DrawDebugData();
 	m_level->scenery.renderFG(w, &m_camera);	//Render Foreground	
 	w.setView(w.getDefaultView());		//Reset the windows view before exiting renderer
 }
@@ -191,6 +198,6 @@ void LevelScene::respawnPlayer() {
 void LevelScene::reset() {
 	m_level_complete = false;
 	m_player->reset(sf::Vector2f(0,0));
-	m_camera.refresh(vHelper::toSF(m_player->getCenter()));
+	m_camera.refresh(m_player->getCenter());
 
 }

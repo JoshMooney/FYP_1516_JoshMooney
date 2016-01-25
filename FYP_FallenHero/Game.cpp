@@ -1,8 +1,16 @@
 #include "stdafx.h"
 #include "Game.hpp"
 
-Game::Game() {
-	m_window = new sf::RenderWindow(sf::VideoMode(SCREEN_WIDTH, SCREEN_HEIGHT, 32), "Fallen Hero", sf::Style::Titlebar);
+#include "Box2D\Common\b2Draw.h"
+
+Game::Game() :
+	m_window(new sf::RenderWindow(sf::VideoMode(SCREEN_WIDTH, SCREEN_HEIGHT, 32), "Fallen Hero", sf::Style::Titlebar)),
+	dd(*m_window)
+{
+	//m_window = new sf::RenderWindow(sf::VideoMode(SCREEN_WIDTH, SCREEN_HEIGHT, 32), "Fallen Hero", sf::Style::Titlebar);
+	//dd(*m_window);
+
+	dd.PassWindow(m_window);
 	isRunning = true;
 	m_xbox_controller = make_shared<XBOXController>();
 	m_xbox_controller->UpdateButtons();
@@ -11,6 +19,16 @@ Game::Game() {
 	m_menu_scene = new MenuScene();
 	m_level_scene = new LevelScene();
 	m_world_scene = new WorldScene();
+
+	//Debugdraw
+	uint32 flags = 0;
+	flags += b2Draw::e_shapeBit;
+	//flags += b2Draw::e_jointBit;
+	//flags += b2Draw::e_aabbBit;
+	//flags += b2Draw::e_pairBit;
+	//flags += b2Draw::e_centerOfMassBit;
+	dd.SetFlags(flags);
+	m_level_scene->m_world->SetDebugDraw(&dd);
 
 	m_loader = new XMLLoader();
 	m_menu_scene->setLoader(m_loader);
@@ -54,7 +72,7 @@ void Game::render(){
 	m_window->clear();
 
 	m_current_scene->render(*m_window);
-	m_level_scene->m_world->DrawDebugData();
+	//m_level_scene->m_world->DrawDebugData();
 	m_window->display();
 }
 void Game::createPlayer(){

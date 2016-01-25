@@ -19,11 +19,14 @@
 #include <chrono>
 #include "Command.hpp"
 
+#include "ContactListener.hpp"
 #include "Spawner.hpp"
-#include "Snake.hpp"
+#include "Skeleton.hpp"
+#include "SFMLDebugDraw.h"
 
 class LevelScene : public Scene{
 private:
+	ContactListener contact_listener;
 	std::chrono::steady_clock game_clock;
 	const std::chrono::duration<long long, std::micro> timePerTick = std::chrono::microseconds(16);
 	FTS timeOfLastTick = game_clock.now();
@@ -37,14 +40,13 @@ private:
 	string level_id;
 
 	const float B2_TIMESTEP = 1.0f / 60.0f;
-	const b2Vec2 GRAVITY = b2Vec2(0, 9.81f);
+	const sf::Vector2f GRAVITY = sf::Vector2f(0, 9.81f);
 	const int VEL_ITER = 6;
 	const int POS_ITER = 2;
 
 	bool isPaused;
 	Spawner m_spawner;
 public:
-	Snake *snake;
 	Command* buttonX_;
 	Command* buttonY_;
 	Command* buttonB_;

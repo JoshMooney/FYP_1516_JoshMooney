@@ -14,8 +14,11 @@
 #include "XMLLoader.hpp"
 #include <memory>
 
+#include "SFMLDebugDraw.h"
+
 class Game {
 private:
+	SFMLDebugDraw dd;
 	shared_ptr<XBOXController> m_xbox_controller;
 	XMLLoader *m_loader;
 	bool controller_connected, previous_connected;

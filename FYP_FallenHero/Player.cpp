@@ -1,11 +1,12 @@
 #include "stdafx.h"
 #include "Player.hpp"
+#include "vHelper.hpp"
 
 Player::Player(b2World &m_world){
-	m_jump_force = 50.0f;
+	m_jump_force = 1.5f;
 	m_is_moving = false;
 	m_is_jumping = false;
-	m_speed = 50.0f;
+	m_speed = 1.5f;
 	m_direction = 1;	//true = 1 = Looing right and vice versa
 	speedFactor = 0;
 
@@ -18,9 +19,11 @@ Player::Player(b2World &m_world){
 
 	b2BodyDef myBodyDef;
 	myBodyDef.type = b2_dynamicBody; //this will be a dynamic body
-	myBodyDef.position.Set(200, 0); //set the starting position
+	myBodyDef.position = vHelper::toB2(sf::Vector2f(200, 0)); //set the starting position
 	myBodyDef.angle = 0; //set the starting angle
 	myBodyDef.userData = this;
+	myBodyDef.fixedRotation = true;
+	//myBodyDef.gravityScale = 0.0f;
 
 	e_body_active = true;
 	e_box_body = m_world.CreateBody(&myBodyDef);
@@ -28,12 +31,14 @@ Player::Player(b2World &m_world){
 	//Define the shape of the body
 	b2PolygonShape shape;
 	//shape.SetAsBox(m_text_size.x / 32.0f, m_text_size.y / 32.0f);
-	shape.SetAsBox(m_text_size.x / 2.0f, m_text_size.y /2.0f);
+	shape.SetAsBox((m_text_size.x / vHelper::B2_SCALE) / 2, (m_text_size.y / vHelper::B2_SCALE) / 2);
 
 	b2FixtureDef myFixtureDef;
 	myFixtureDef.density = 1.0f;
 	myFixtureDef.friction = 1.5f;
 	myFixtureDef.shape = &shape;
+	myFixtureDef.userData = "Player";
+	
 
 	e_box_body->CreateFixture(&myFixtureDef);
 	//e_box_body->CreateFixture(&shape, 0.0f);
@@ -86,10 +91,14 @@ void Player::moveRight(){
 	//e_box_body->SetLinearVelocity(b2Vec2(newXVel, e_box_body->GetLinearVelocity().y));
 	m_is_moving = true;
 }
-void Player::jump(){
-	float newYVel = clamp(e_box_body->GetLinearVelocity().y + (m_acceleration * DELTA_TIME.asSeconds()), -m_jump_force, m_jump_force);
-	//e_box_body->SetLinearVelocity(b2Vec2(e_box_body->GetLinearVelocity().x, m_acceleration * DELTA_TIME.asSeconds()), -m_jump_force, m_jump_force);
-	e_box_body->SetLinearVelocity(b2Vec2(e_box_body->GetLinearVelocity().x, e_box_body->GetLinearVelocity().y - newYVel));
+
+void Player::jump() {
+	if (!m_is_jumping) {
+		float newYVel = clamp(e_box_body->GetLinearVelocity().y + (m_acceleration * DELTA_TIME.asSeconds()), -m_jump_force, m_jump_force);
+		//e_box_body->SetLinearVelocity(b2Vec2(e_box_body->GetLinearVelocity().x, m_acceleration * DELTA_TIME.asSeconds()), -m_jump_force, m_jump_force);
+		e_box_body->SetLinearVelocity(b2Vec2(e_box_body->GetLinearVelocity().x, e_box_body->GetLinearVelocity().y - newYVel));
+		m_is_jumping = true;
+	}
 }
 void Player::reset(sf::Vector2f pos) {
 	m_direction = 1;	//true = 1 = Looing right and vice versa
@@ -98,8 +107,12 @@ void Player::reset(sf::Vector2f pos) {
 	moveTo(pos);
 }
 
+void Player::TakeDamage() {
+
+}
+
 void Player::alineSprite(){
-	b2Vec2 box_pos = e_box_body->GetPosition();
+	sf::Vector2f box_pos = vHelper::toSF(e_box_body->GetPosition());
 	sf::Vector2f sf_box_pos = sf::Vector2f(box_pos.x - (m_text_size.x * 0.5f), box_pos.y - (m_text_size.y * 0.5f));
 	setPosition(sf_box_pos);
 }

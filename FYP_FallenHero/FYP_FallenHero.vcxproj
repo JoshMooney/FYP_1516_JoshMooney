@@ -87,6 +87,7 @@
   <ItemGroup>
     <ClInclude Include="cLog.hpp" />
     <ClInclude Include="Command.hpp" />
+    <ClInclude Include="ContactListener.hpp" />
     <ClInclude Include="Enemy.hpp" />
     <ClInclude Include="Entity.hpp" />
     <ClInclude Include="Exit.hpp" />
@@ -102,8 +103,9 @@
     <ClInclude Include="Scene.hpp" />
     <ClInclude Include="ParallaxSprite.hpp" />
     <ClInclude Include="Scenery.hpp" />
+    <ClInclude Include="SFMLDebugDraw.h" />
     <ClInclude Include="SimpleGUI.hpp" />
-    <ClInclude Include="Snake.hpp" />
+    <ClInclude Include="Skeleton.hpp" />
     <ClInclude Include="Spawner.hpp" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
@@ -127,8 +129,9 @@
     <ClCompile Include="Platform.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="Scenery.cpp" />
+    <ClCompile Include="SFMLDebugDraw.cpp" />
     <ClCompile Include="SimpleGUI.cpp" />
-    <ClCompile Include="Snake.cpp" />
+    <ClCompile Include="Skeleton.cpp" />
     <ClCompile Include="Spawner.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>

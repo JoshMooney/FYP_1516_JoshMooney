@@ -105,9 +105,6 @@
     <ClInclude Include="Player.hpp">
       <Filter>Header Files\Entities</Filter>
     </ClInclude>
-    <ClInclude Include="Snake.hpp">
-      <Filter>Header Files\Entities</Filter>
-    </ClInclude>
     <ClInclude Include="Exit.hpp">
       <Filter>Header Files\Level</Filter>
     </ClInclude>
@@ -139,6 +136,15 @@
       <Filter>Header Files\Util</Filter>
     </ClInclude>
     <ClInclude Include="Spawner.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Skeleton.hpp">
+      <Filter>Header Files\Entities</Filter>
+    </ClInclude>
+    <ClInclude Include="ContactListener.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="SFMLDebugDraw.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -191,10 +197,13 @@
     <ClCompile Include="tinyxml2.cpp">
       <Filter>Source Files\Util</Filter>
     </ClCompile>
-    <ClCompile Include="Snake.cpp">
+    <ClCompile Include="Spawner.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Skeleton.cpp">
       <Filter>Source Files\Entities</Filter>
     </ClCompile>
-    <ClCompile Include="Spawner.cpp">
+    <ClCompile Include="SFMLDebugDraw.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
