@@ -37,7 +37,7 @@ public:
 	void isTouching(Terrain* t) {	touching_terr = t;	}
 	void ReachedEdge();
 	void ReachPlayer();
-
+	void ReachWall();
 };
 
 #endif

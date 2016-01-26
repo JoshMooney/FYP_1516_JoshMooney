@@ -11,6 +11,7 @@
 class ContactListener : public b2ContactListener {
 private:
 	const float player_jump_y_offset = 15;
+	const float entity_wall_offset = 10;
 public:
 	ContactListener() : b2ContactListener() {	}
 
@@ -109,14 +110,42 @@ public:
 			if (fixAType == "Skeleton") {
 				void* bodyUserData1 = contact->GetFixtureA()->GetBody()->GetUserData();
 				void* bodyUserData2 = contact->GetFixtureB()->GetBody()->GetUserData();
-				Terrain* t = static_cast<Terrain*>(bodyUserData2);
-				static_cast<Skeleton*>(bodyUserData1)->isTouching(t);
+
+				sf::FloatRect t = static_cast<Terrain*>(bodyUserData2)->geometry;
+				sf::FloatRect s = static_cast<Skeleton*>(bodyUserData1)->getBounds();
+
+				//Right Side
+				if (s.left + s.width > t.left - entity_wall_offset &&
+					s.left + s.width < t.left)
+					static_cast<Skeleton*>(bodyUserData1)->ReachWall();
+				//Left Side
+				else if (s.left > t.left + t.width + entity_wall_offset &&
+					s.left < t.left + t.width)
+					static_cast<Skeleton*>(bodyUserData1)->ReachWall();
+				//Else set touching ground to be the skeleton ground
+				else {
+					Terrain* t = static_cast<Terrain*>(bodyUserData2);
+					static_cast<Skeleton*>(bodyUserData1)->isTouching(t);
+				}
 			}
 			else if (fixBType == "Skeleton") {
 				void* bodyUserData1 = contact->GetFixtureB()->GetBody()->GetUserData();
 				void* bodyUserData2 = contact->GetFixtureA()->GetBody()->GetUserData();
-				Terrain* t = static_cast<Terrain*>(bodyUserData2);
-				static_cast<Skeleton*>(bodyUserData1)->isTouching(t);
+
+				sf::FloatRect t = static_cast<Terrain*>(bodyUserData2)->geometry;
+				sf::FloatRect s = static_cast<Skeleton*>(bodyUserData1)->getBounds();
+
+				//Right Side
+				if (t.left + t.width < s.left)
+					static_cast<Skeleton*>(bodyUserData1)->ReachWall();
+				//Left Side
+				else if (t.left > s.left + s.width)
+					static_cast<Skeleton*>(bodyUserData1)->ReachWall();
+				//Else set touching ground to be the skeleton ground
+				else {
+					Terrain* t = static_cast<Terrain*>(bodyUserData2);
+					static_cast<Skeleton*>(bodyUserData1)->isTouching(t);
+				}
 			}
 		}
 
@@ -146,11 +175,19 @@ public:
 				void* bodyUserData1 = contact->GetFixtureB()->GetBody()->GetUserData();
 				void* bodyUserData2 = contact->GetFixtureA()->GetBody()->GetUserData();
 				
-				static_cast<Skeleton*>(bodyUserData1)->ReachPlayer();
-				static_cast<Player*>(bodyUserData2)->TakeDamage();
+				Skeleton* s = static_cast<Skeleton*>(bodyUserData1); //->ReachPlayer();
+				Player* p = static_cast<Player*>(bodyUserData2); //->TakeDamage();
+
+				if (p->getBounds().top + p->getBounds().height < s->getBounds().top)	{
+					//Kill enemy
+					s->TakeDamage();
+				}
+				else {
+					static_cast<Skeleton*>(bodyUserData1)->ReachPlayer();
+					static_cast<Player*>(bodyUserData2)->TakeDamage();
+				}
 			}
 		}
-		
 	}
 
 	void EndContact(b2Contact* contact) {

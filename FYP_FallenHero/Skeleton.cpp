@@ -82,22 +82,7 @@ void Skeleton::Die() {
 
 void Skeleton::move() {
 	if (touching_terr == nullptr) {
-		/*if (e_direction) {
-			if (speedFactor < 1.f)
-				speedFactor += 0.02f;
-			else if (speedFactor > 1.f)
-				speedFactor = 1.f;
-
-			e_box_body->SetLinearVelocity(b2Vec2(m_speed * speedFactor, e_box_body->GetLinearVelocity().y));
-		}
-		else {
-			if (speedFactor > -1.f)
-				speedFactor -= 0.02;
-			else if (speedFactor < -1.f)
-				speedFactor = -1.f;
-
-			e_box_body->SetLinearVelocity(b2Vec2(m_speed * speedFactor, e_box_body->GetLinearVelocity().y));
-		}*/
+		//In the air
 	}
 	else {
 		sf::FloatRect b = getBounds();
@@ -140,10 +125,13 @@ void Skeleton::alineSprite() {
 
 void Skeleton::ReachedEdge() {
 	e_direction = !e_direction;
-
 }
 
 void Skeleton::ReachPlayer() {
 	e_direction = !e_direction;
 	move();
+}
+
+void Skeleton::ReachWall(){
+	e_direction = !e_direction;
 }

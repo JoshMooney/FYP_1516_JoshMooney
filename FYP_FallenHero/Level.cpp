@@ -6,7 +6,7 @@
 Level::Level() {
 	cLog::inst()->print(3, "Level", "Default constructor of level called");
 }
-Level::Level(string s, b2World *world) {
+Level::Level(string s, b2World *world, Spawner *spawner) {
 	path = "Assets/Levels/";
 	format = ".tmx";
 	tile_size = 32;
@@ -15,7 +15,7 @@ Level::Level(string s, b2World *world) {
 
 	loadMap(s);
 	scenery = Scenery();
-	ParseMapLayers(world);
+	ParseMapLayers(world, spawner);
 }
 
 /*TEMP*/
@@ -40,7 +40,7 @@ void Level::render(sf::RenderWindow &w, vCamera *cam){
 	w.draw(m_exit);					//Render Exit point
 }
 
-void Level::ParseMapLayers(b2World * world) {
+void Level::ParseMapLayers(b2World * world, Spawner *s) {
 	//map.GetObjectLayer("Layer Name");
 	//Load size of the Map
 	int tile_size = 32;
@@ -66,6 +66,10 @@ void Level::ParseMapLayers(b2World * world) {
 	lay = tiled_map->GetObjectGroup("FG");
 	GenerateSceneryFG(world, lay);
 	tiled_map->GetObjectGroup("FG").visible = true;
+
+	lay = tiled_map->GetObjectGroup("Enemy_Data");
+	GenerateEnemies(world, lay, s);
+	tiled_map->GetObjectGroup("Enemy_Data").visible = false;
 
 	//l = make_shared<tmx::ObjectGroup>(tiled_map->GetObjectGroup("Platform"));
 	//CreatePlatforms(world, layer);
@@ -192,6 +196,23 @@ void Level::GenerateSceneryFG(b2World *world, tmx::ObjectGroup &layer) {
 	}
 
 	scenery.sortFG();
+}
+void Level::GenerateEnemies(b2World *world, tmx::ObjectGroup &layer, Spawner* s){
+	int lenght = layer.objects_.size();
+	sf::Vector2f position;
+	string num;
+	for (int i = 0; i < lenght; i++) {
+		string type = layer.objects_[i].GetPropertyValue("type");
+		if (type == "Skeleton") {
+			num = layer.objects_[i].GetPropertyValue("x");
+			position.x = atoi(num.c_str());
+
+			num = layer.objects_[i].GetPropertyValue("y");
+			position.y = atoi(num.c_str());			
+			
+			s->SpawnSkeleton(position);
+		}
+	}
 }
 
 void Level::Destroy(b2World *world) {

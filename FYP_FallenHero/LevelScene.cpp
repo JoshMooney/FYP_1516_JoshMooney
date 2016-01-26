@@ -9,7 +9,7 @@ LevelScene::LevelScene() :
 	m_world->SetContactListener(&contact_listener);
 
 	m_spawner = Spawner(m_world);
-	//m_spawner.SpawnSkeleton(sf::Vector2f(200, 0));
+	m_spawner.SpawnSkeleton(sf::Vector2f(200, 0));
 
 	buttonX_ = new JumpCommand();
 	buttonY_ = new FireCommand();
@@ -190,7 +190,7 @@ void LevelScene::handleInput(XBOXController &controller){
 void LevelScene::loadLevel(string lvl_name){
 	level_id = lvl_name;		//Store the currently loaded levels ID
 	if (m_level != nullptr)		m_level->Destroy(m_world);			//If there was a previous level destroy all the b2Bodies in that level 
-	m_level = make_shared<Level>(lvl_name, m_world);				//Create a new level
+	m_level = make_shared<Level>(lvl_name, m_world, &m_spawner);				//Create a new level
 	m_camera.setBounds(m_level->Bounds());
 	m_player->reset(m_level->getSpawn());			//Reset the player for the new level
 	//Set the Cameras bounds here once loaded from the .tmx

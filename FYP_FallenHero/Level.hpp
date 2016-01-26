@@ -19,6 +19,7 @@
 #include "Exit.hpp"
 #include "Terrain.hpp"
 #include "Scenery.hpp"
+#include "Spawner.hpp"
 #include "ParallaxSprite.hpp"
 
 class Level {
@@ -26,7 +27,6 @@ private:
 	string path;
 	string format;
 	int tile_size;
-
 	
 	ParallaxSprite scene;
 
@@ -44,18 +44,19 @@ public:
 	Scenery scenery;
 
 	Level();
-	Level(string s, b2World *world);
+	Level(string s, b2World *world, Spawner *spawner);
 	~Level();
 
 	void render(sf::RenderWindow &w, vCamera *cam);
 
-	void ParseMapLayers(b2World *world);
+	void ParseMapLayers(b2World *world, Spawner *spawner);
 	void CreateTerrain(b2World *world, tmx::ObjectGroup &layer);
 	void CreatePlatforms(b2World *world, tmx::ObjectGroup &layer);
 	void GeneratePlayerItems(b2World *world, tmx::ObjectGroup &layer);
 	void GenerateLevelItems(b2World *world, tmx::ObjectGroup &layer);
 	void GenerateSceneryBG(b2World *world, tmx::ObjectGroup &layer);
 	void GenerateSceneryFG(b2World *world, tmx::ObjectGroup &layer);
+	void GenerateEnemies(b2World *world, tmx::ObjectGroup &layer, Spawner* spawner);
 
 	void Destroy(b2World *world);
 
