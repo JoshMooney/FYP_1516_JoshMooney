@@ -12,7 +12,7 @@ private:
 	bool lock_x, lock_y;
 	bool prev_lock_x, prev_lock_y;
 	float lock_x_value, lock_y_value;
-	bool out_of_bounds = false;
+	bool oob_x, oob_y;
 	float pos_x, pos_y;
 	float XAxisOffset, YAxisOffset;
 	sf::FloatRect m_bounds;

@@ -24,7 +24,7 @@ b2Body * Spawner::GenerateBody(SPAWN_TYPE type) {
 		myBodyDef.type = b2_dynamicBody; //this will be a dynamic body
 		myBodyDef.position = vHelper::toB2(sf::Vector2f(100,100)); //set the starting position
 		myBodyDef.angle = 0; //set the starting angle
-		myBodyDef.fixedRotation = true;
+		myBodyDef.fixedRotation = false;
 
 		b2Body* body = m_world->CreateBody(&myBodyDef);
 

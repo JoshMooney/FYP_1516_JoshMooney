@@ -8,9 +8,9 @@
                 <LVL2>0</LVL2>
                 <LVL3>0</LVL3>
                 <LVL4>1</LVL4>
-                <LVL5>1</LVL5>
-                <LVL6>1</LVL6>
-                <LVL7>1</LVL7>
+                <LVL5>0</LVL5>
+                <LVL6>0</LVL6>
+                <LVL7>0</LVL7>
             </Levels>
         </SaveSlot1>
         <SaveSlot2>
@@ -18,12 +18,12 @@
             <CurrentGold>0</CurrentGold>
             <Levels>
                 <LVL1>0</LVL1>
-                <LVL2>1</LVL2>
-                <LVL3>1</LVL3>
+                <LVL2>0</LVL2>
+                <LVL3>0</LVL3>
                 <LVL4>1</LVL4>
-                <LVL5>1</LVL5>
-                <LVL6>1</LVL6>
-                <LVL7>1</LVL7>
+                <LVL5>0</LVL5>
+                <LVL6>0</LVL6>
+                <LVL7>0</LVL7>
             </Levels>
         </SaveSlot2>
         <SaveSlot3>

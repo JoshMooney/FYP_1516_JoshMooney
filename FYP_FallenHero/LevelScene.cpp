@@ -9,7 +9,7 @@ LevelScene::LevelScene() :
 	m_world->SetContactListener(&contact_listener);
 
 	m_spawner = Spawner(m_world);
-	m_spawner.SpawnSkeleton(sf::Vector2f(200, 0));
+	//m_spawner.SpawnSkeleton(sf::Vector2f(200, 0));
 
 	buttonX_ = new JumpCommand();
 	buttonY_ = new FireCommand();
@@ -44,6 +44,8 @@ void LevelScene::update(){
 		m_spawner.update(timeOfLastTick, m_player);
 		m_spawner.CullInActiveEnemies();
 		m_world->Step(B2_TIMESTEP, VEL_ITER, POS_ITER);
+
+		
 		
 		m_player->update(timeOfLastTick);
 		if (m_camera.outOfBounds(m_player->getBounds())) {
@@ -104,6 +106,9 @@ void LevelScene::handleEvent(sf::Event &e){
 				m_camera.LockY(true);
 				break;
 			//Execute command pattern commands here
+			case sf::Keyboard::P:
+				m_player->setJumping(false);
+				break;
 			case sf::Keyboard::W:
 				buttonY_->execute(m_player);
 				break;
@@ -184,7 +189,7 @@ void LevelScene::handleInput(XBOXController &controller){
 
 void LevelScene::loadLevel(string lvl_name){
 	level_id = lvl_name;		//Store the currently loaded levels ID
-	if (m_level != nullptr)		m_level->destroy(m_world);			//If there was a previous level destroy all the b2Bodies in that level 
+	if (m_level != nullptr)		m_level->Destroy(m_world);			//If there was a previous level destroy all the b2Bodies in that level 
 	m_level = make_shared<Level>(lvl_name, m_world);				//Create a new level
 	m_camera.setBounds(m_level->Bounds());
 	m_player->reset(m_level->getSpawn());			//Reset the player for the new level

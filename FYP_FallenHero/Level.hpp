@@ -33,7 +33,7 @@ private:
 	shared_ptr<tmx::TileMap> tiled_map;
 	Exit m_exit;
 
-	vector<Terrain> terrain_data;			//Terrain of the level
+	vector<Terrain *> terrain_data;			//Terrain of the level
 	vector<Platform> platform_data;			//Platform Data
 	vector<ParallaxSprite> scenery_data;			//Platform Data
 	//vector<LevelItem> player_data;		//Player Level Data Spawn, Exit, checkpoints.

@@ -77,7 +77,7 @@ void Level::ParseMapLayers(b2World * world) {
 }
 void Level::CreateTerrain(b2World * world, tmx::ObjectGroup &layer) {
 	int lenght = layer.objects_.size();
-	Terrain terrain;
+	Terrain *terrain;
 
 	for (int i = 0; i < lenght; i++) {
 		OBJ object;
@@ -97,9 +97,9 @@ void Level::CreateTerrain(b2World * world, tmx::ObjectGroup &layer) {
 
 		b2BodyDef myBodyDef;
 		myBodyDef.type = b2_staticBody;		//this will be a dynamic body
-		sf::Vector2f b2Pos = object.getCenter();
+		sf::Vector2f ter_pos = object.getCenter();
 
-		myBodyDef.position.Set(b2Pos.x / vHelper::B2_SCALE, b2Pos.y / vHelper::B2_SCALE);		//set the starting position
+		myBodyDef.position.Set(ter_pos.x / vHelper::B2_SCALE, ter_pos.y / vHelper::B2_SCALE);		//set the starting position
 		myBodyDef.angle = 0;				//set the starting angle
 		
 		b2Body* box_body = world->CreateBody(&myBodyDef);
@@ -116,10 +116,11 @@ void Level::CreateTerrain(b2World * world, tmx::ObjectGroup &layer) {
 
 		box_body->CreateFixture(&myFixtureDef);
 
-		terrain.body = box_body;
-		terrain.geometry = sf::FloatRect{ (float)object.x, (float)object.y, (float)object.width, (float)object.height };
+		terrain = new Terrain();
+		terrain->body = box_body;
+		terrain->geometry = sf::FloatRect{ (float)object.x, (float)object.y, (float)object.width, (float)object.height };
 		terrain_data.push_back(terrain);
-		terrain_data.back().body->SetUserData(&terrain_data.back());
+		terrain_data.back()->body->SetUserData(terrain_data.back());
 	}
 }
 void Level::GeneratePlayerItems(b2World * world, tmx::ObjectGroup &layer) {
@@ -198,7 +199,8 @@ void Level::Destroy(b2World *world) {
 	
 	//Destroy Terrain
 	for (i = 0; i < terrain_data.size(); i++) {
-		world->DestroyBody(terrain_data[i].body);
+		world->DestroyBody(terrain_data[i]->body);
+		delete terrain_data[i];
 	}
 	terrain_data.clear();
 }
@@ -208,11 +210,3 @@ void Level::loadMap(string lvl_name) {
 	
 }
 
-void Level::destroy(b2World *world) {
-	int i;
-	
-	//Destroy Each of the B2Bodies assocatied with the Terrain
-	for (i = 0; i < terrain_data.size(); i++) {
-		world->DestroyBody(terrain_data[i].body);
-	}
-}

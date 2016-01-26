@@ -13,6 +13,9 @@ vCamera::vCamera(sf::Vector2f screen_size){
 	lock_y = false;
 	prev_lock_x = lock_x;
 	prev_lock_y = lock_y;
+
+	oob_x = false;
+	oob_y= false;
 }
 vCamera::vCamera(sf::Vector2f screen_size, sf::FloatRect bounds) {
 	SCREEN_SIZE = screen_size;
@@ -24,6 +27,9 @@ vCamera::vCamera(sf::Vector2f screen_size, sf::FloatRect bounds) {
 	lock_y = false;
 	prev_lock_x = lock_x;
 	prev_lock_y = lock_y;
+
+	oob_x = false;
+	oob_y = false;
 }
 vCamera::vCamera(sf::Vector2f screen_size, sf::FloatRect bounds, pair<bool, bool> locked_axis) {
 	SCREEN_SIZE = screen_size;
@@ -35,6 +41,9 @@ vCamera::vCamera(sf::Vector2f screen_size, sf::FloatRect bounds, pair<bool, bool
 	lock_y = locked_axis.second;
 	prev_lock_x = false;
 	prev_lock_y = false;
+
+	oob_x = false;
+	oob_y = false;
 }
 vCamera::~vCamera(){
 
@@ -54,7 +63,8 @@ void vCamera::refresh(sf::Vector2f player_center){
 	prev_lock_x = false;
 	prev_lock_y = false;
 
-	out_of_bounds = false;
+	oob_x = false;
+	oob_y = false;
 
 	setCenter(getPlayerOffset(player_center));
 }
@@ -75,11 +85,14 @@ sf::Vector2f vCamera::getPlayerOffset(sf::Vector2f player_center) {
 	if (lock_x)
 		player_center.x = lock_x_value;
 	checkBounds(player_center);
-	if (out_of_bounds) {
+	if (oob_x) {
 		//Calculate new player position minus the distance to the edge of the screen 
 		player_center.x = XAxisOffset;
 		//player_center.y = YAxisOffset;
 		//out_of_bounds = false;
+	}
+	if (oob_y){
+		player_center.y = YAxisOffset;
 	}
 
 	return player_center;
@@ -91,38 +104,39 @@ sf::FloatRect vCamera::checkBounds(sf::Vector2f player_center) {
 	sf::FloatRect viewport = getRectViewport();
 
 	if (viewport.left < m_bounds.left) {
-		out_of_bounds = true;
+		oob_x = true;
 		viewport.left = m_bounds.left;
 
 		XAxisOffset = viewport.left;
 		XAxisOffset += viewport.width / 2;
 	}
 	if (viewport.left > m_bounds.width - viewport.width) {
-		out_of_bounds = true;
+		oob_x = true;
 		viewport.left = m_bounds.width - viewport.width;
 
 		XAxisOffset = m_bounds.width;
 		XAxisOffset -= viewport.width / 2;
 	}
-	/*
+
 	if (viewport.top < m_bounds.top) {
-		out_of_bounds = true;
+		oob_y = true;
 		viewport.top = m_bounds.top;
 
 		YAxisOffset = viewport.top;
 		YAxisOffset += viewport.height / 2;
 	}
 	if (viewport.top > m_bounds.height - viewport.height) {
-		out_of_bounds = true;
+		oob_y = true;
 		viewport.top = m_bounds.height - viewport.height;
 
 		YAxisOffset = m_bounds.height;
 		YAxisOffset -= viewport.height / 2;
 	}
-	*/
+
 	if(player_center.x > viewport.width / 2 && player_center.x < m_bounds.width - (viewport.width / 2)) /*||player_center.y > viewport.height / 2 && player_center.y < m_bounds.height - (viewport.height / 2))*/
-		out_of_bounds = false;
-		
+		oob_x = false;
+	if (player_center.y > viewport.height / 2 && player_center.y < m_bounds.height - (viewport.height / 2))
+		oob_y = false;
 	/*
 	if (viewport.top < m_bounds.top)
 	viewport.top = m_bounds.top;

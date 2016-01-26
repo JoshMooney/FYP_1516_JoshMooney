@@ -10,7 +10,7 @@
 
 class ContactListener : public b2ContactListener {
 private:
-	const float player_jump_y_offset = 10;
+	const float player_jump_y_offset = 15;
 public:
 	ContactListener() : b2ContactListener() {	}
 
@@ -68,12 +68,17 @@ public:
 				void* bodyUserData1 = contact->GetFixtureA()->GetBody()->GetUserData();
 				void* bodyUserData2 = contact->GetFixtureB()->GetBody()->GetUserData();
 				p = static_cast<Player*>(bodyUserData1);
-				if (p->isJumping()) {
-					b2Vec2 p_pos = contact->GetFixtureA()->GetBody()->GetPosition();
-					b2Vec2 t_pos = contact->GetFixtureB()->GetBody()->GetPosition();
-					sf::FloatRect player_geo = p->getBounds();
-					sf::FloatRect terrain_geo = static_cast<Terrain*>(bodyUserData2)->geometry;
 
+				if (p->isJumping()) {
+					sf::Vector2f t_pos = vHelper::toSF(contact->GetFixtureB()->GetBody()->GetPosition());
+					sf::FloatRect player_geo = p->getBounds();
+
+					Terrain* terrain = reinterpret_cast<Terrain*>(bodyUserData2);
+					terrain = static_cast<Terrain*>(bodyUserData2);
+					//terrain = dynamic_cast<Terrain*>(bodyUserData2);
+
+					sf::FloatRect terrain_geo = terrain->geometry;
+					
 					if (player_geo.top + player_geo.height >= terrain_geo.top - player_jump_y_offset &&
 						player_geo.top + player_geo.height <= terrain_geo.top)
 						p->setJumping(false);
@@ -145,107 +150,7 @@ public:
 				static_cast<Player*>(bodyUserData2)->TakeDamage();
 			}
 		}
-		/*
-		if (fixAType == "Player" && fixBType == "Platform"
-		|| fixAType == "Platform" && fixBType == "Player") {
-		if (fixAType == "Player") {
-		void* bodyUserData1 = contact->GetFixtureA()->GetUserData();
-		void* bodyUserData2 = contact->GetFixtureB()->GetUserData();
-		b2Vec2 posPlat = contact->GetFixtureB()->GetBody()->GetPosition();
-
-		b2Vec2 posPlayer = contact->GetFixtureA()->GetBody()->GetPosition();
-
-		if (posPlat.y - (20 / 60.0f) > posPlayer.y + 16 / 30.0f)
-		static_cast<Player*>(bodyUserData1)->Ground();
-		static_cast<Platform*>(bodyUserData2)->ToggleMove();
-		}
-		else if (fixBType == "Player") {
-		void* bodyUserData1 = contact->GetFixtureB()->GetUserData();
-		void* bodyUserData2 = contact->GetFixtureA()->GetUserData();
-		b2Vec2 posPlat = contact->GetFixtureA()->GetBody()->GetPosition();
-
-		b2Vec2 posPlayer = contact->GetFixtureB()->GetBody()->GetPosition();
-
-		if (posPlat.y - (20 / 60.0f) > posPlayer.y + 16 / 30.0f)
-		static_cast<Player*>(bodyUserData1)->Ground();
-
-		static_cast<Platform*>(bodyUserData2)->ToggleMove();
-		}
-		}
-
-		if (fixAType == "Bullet" && fixBType == "Boundary"
-		|| fixAType == "Boundary" && fixBType == "Bullet") {
-		if (fixAType == "Bullet") {
-		void* bodyUserData1 = contact->GetFixtureA()->GetUserData();
-		void* bodyUserData2 = contact->GetFixtureB()->GetUserData();
-		static_cast<Bullet*>(bodyUserData1)->HitWall();
-		}
-		else if (fixBType == "Bullet") {
-		void* bodyUserData1 = contact->GetFixtureB()->GetUserData();
-		void* bodyUserData2 = contact->GetFixtureA()->GetUserData();
-		static_cast<Bullet*>(bodyUserData1)->HitWall();
-
-		}
-		}
-
-		if (fixAType == "Player" && fixBType == "Bullet"
-		|| fixAType == "Bullet" && fixBType == "Player") {
-		if (fixAType == "Player") {
-		void* bodyUserData1 = contact->GetFixtureA()->GetUserData();
-		void* bodyUserData2 = contact->GetFixtureB()->GetUserData();
-		if (static_cast<Player*>(bodyUserData1)->isPlayer1() && static_cast<Bullet*>(bodyUserData2)->isBullet1())
-		{
-		static_cast<Player*>(bodyUserData1)->PickupBullet();
-		static_cast<Bullet*>(bodyUserData2)->Reset();
-		}
-		else if (!static_cast<Player*>(bodyUserData1)->isPlayer1() && !static_cast<Bullet*>(bodyUserData2)->isBullet1()) {
-		static_cast<Player*>(bodyUserData1)->PickupBullet();
-		static_cast<Bullet*>(bodyUserData2)->Reset();
-		}
-		else if (!static_cast<Player*>(bodyUserData1)->isPlayer1() && static_cast<Bullet*>(bodyUserData2)->isBullet1())
-		{
-		if (static_cast<Bullet*>(bodyUserData2)->getAlive()) {
-		level->ChangeLevel();
-		static_cast<Bullet*>(bodyUserData2)->Reset();
-		}
-		}
-		else if (static_cast<Player*>(bodyUserData1)->isPlayer1() && !static_cast<Bullet*>(bodyUserData2)->isBullet1()) {
-		if (static_cast<Bullet*>(bodyUserData2)->getAlive()) {
-		level->ChangeLevel();
-		static_cast<Bullet*>(bodyUserData2)->Reset();
-
-		}
-		}
-		}
-		else if (fixBType == "Player") {
-		void* bodyUserData1 = contact->GetFixtureB()->GetUserData();
-		void* bodyUserData2 = contact->GetFixtureA()->GetUserData();
-		if (static_cast<Player*>(bodyUserData1)->isPlayer1() && static_cast<Bullet*>(bodyUserData2)->isBullet1())
-		{
-		static_cast<Player*>(bodyUserData1)->PickupBullet();
-		static_cast<Bullet*>(bodyUserData2)->Reset();
-		}
-		else if (!static_cast<Player*>(bodyUserData1)->isPlayer1() && !static_cast<Bullet*>(bodyUserData2)->isBullet1()) {
-		static_cast<Player*>(bodyUserData1)->PickupBullet();
-		static_cast<Bullet*>(bodyUserData2)->Reset();
-		}
-		else if (!static_cast<Player*>(bodyUserData1)->isPlayer1() && static_cast<Bullet*>(bodyUserData2)->isBullet1())
-		{
-		if (static_cast<Bullet*>(bodyUserData2)->getAlive()) {
-
-		level->ChangeLevel();
-		static_cast<Bullet*>(bodyUserData2)->Reset();
-		}
-		}
-		else if (static_cast<Player*>(bodyUserData1)->isPlayer1() && !static_cast<Bullet*>(bodyUserData2)->isBullet1()) {
-		if (static_cast<Bullet*>(bodyUserData2)->getAlive()) {
-
-		level->ChangeLevel();
-		static_cast<Bullet*>(bodyUserData2)->Reset();
-		}
-		}
-		}
-		}*/
+		
 	}
 
 	void EndContact(b2Contact* contact) {
