@@ -40,7 +40,7 @@ private:
 	string level_id;
 
 	const float B2_TIMESTEP = 1.0f / 60.0f;
-	const sf::Vector2f GRAVITY = sf::Vector2f(0, 9.81f);
+	const sf::Vector2f GRAVITY = sf::Vector2f(0, 14.0f);
 	const int VEL_ITER = 6;
 	const int POS_ITER = 2;
 

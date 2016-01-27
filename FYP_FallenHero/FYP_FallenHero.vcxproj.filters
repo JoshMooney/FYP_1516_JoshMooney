@@ -147,6 +147,12 @@
     <ClInclude Include="SFMLDebugDraw.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Weed.hpp">
+      <Filter>Header Files\Entities</Filter>
+    </ClInclude>
+    <ClInclude Include="Flyer.hpp">
+      <Filter>Header Files\Entities</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">

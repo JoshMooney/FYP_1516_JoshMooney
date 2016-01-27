@@ -28,7 +28,7 @@ public:
 	void setActive(bool b) { e_body_active = b; }
 	sf::FloatRect getBounds() {
 		sf::Vector2u size = getTexture()->getSize();
-		return sf::FloatRect{ getPosition().x, getPosition().y, (float)size.x, (float)size.y };
+		return sf::FloatRect{ getPosition().x - (size.x / 2), getPosition().y - (size.y / 2), (float)size.x, (float)size.y };
 	}
 };
 

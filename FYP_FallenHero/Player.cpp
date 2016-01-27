@@ -10,10 +10,13 @@ Player::Player(b2World &m_world){
 	m_direction = 1;	//true = 1 = Looing right and vice versa
 	speedFactor = 0;
 
+	//Texture Stuff!
 	e_texture = "Assets/Game/player.png";
 	setTexture(ResourceManager<sf::Texture>::instance()->get(e_texture));
 	sf::Texture l_texture = ResourceManager<sf::Texture>::instance()->get(e_texture);
 	m_text_size = l_texture.getSize();
+	setOrigin(m_text_size.x / 2, m_text_size.y / 2);
+
 	m_acceleration = 1200;
 	m_deceleration = 800;
 
@@ -67,7 +70,7 @@ void Player::Idle() {
 	}
 }
 void Player::moveLeft(){
-	m_direction = 0;
+	setDirection(false);
 	if (speedFactor > -1.f)
 		speedFactor -= 0.02;
 	else if (speedFactor < -1.f)
@@ -80,7 +83,7 @@ void Player::moveLeft(){
 	m_is_moving = true;
 }
 void Player::moveRight(){
-	m_direction = 1;
+	setDirection(true);
 	if (speedFactor < 1.f)
 		speedFactor += 0.02f;
 	else if (speedFactor > 1.f)
@@ -107,14 +110,24 @@ void Player::reset(sf::Vector2f pos) {
 	moveTo(pos);
 }
 
+void Player::ChangeDirection() {
+	m_direction = !m_direction;
+	if (m_direction)	setScale(1, 1);
+	else setScale(-1, 1);
+}
+
+void Player::setDirection(bool b) {
+	m_direction = b;
+	if (m_direction)	setScale(1, 1);
+	else setScale(-1, 1);
+}
+
 void Player::TakeDamage() {
 
 }
 
 void Player::alineSprite(){
-	sf::Vector2f box_pos = vHelper::toSF(e_box_body->GetPosition());
-	sf::Vector2f sf_box_pos = sf::Vector2f(box_pos.x - (m_text_size.x * 0.5f), box_pos.y - (m_text_size.y * 0.5f));
-	setPosition(sf_box_pos);
+	setPosition(vHelper::toSF(e_box_body->GetPosition()));
 }
 
 //clamp a value to a range

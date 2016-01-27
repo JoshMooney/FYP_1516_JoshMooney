@@ -46,14 +46,13 @@ void Skeleton::init() {
 	e_can_despawn = false;
 
 	m_current_state = WALKING;
-	ai = GREEN;
+	ai = WHITE;
 
 	e_texture = "Assets/Game/enemy.png";
 	setTexture(ResourceManager<sf::Texture>::instance()->get(e_texture));
 	sf::Texture l_texture = ResourceManager<sf::Texture>::instance()->get(e_texture);
 	m_text_size = l_texture.getSize();
-	m_acceleration = 1200;
-	m_deceleration = 800;
+	setOrigin(m_text_size.x / 2, m_text_size.y / 2);
 
 	//Entity Initalisation
 	e_hp = 10;
@@ -118,20 +117,32 @@ void Skeleton::attack() {
 }
 
 void Skeleton::alineSprite() {
-	sf::Vector2f box_pos = vHelper::toSF(e_box_body->GetPosition());
-	sf::Vector2f sf_box_pos = sf::Vector2f(box_pos.x - (m_text_size.x * 0.5f), box_pos.y - (m_text_size.y * 0.5f));
-	setPosition(sf_box_pos);
+	setPosition(vHelper::toSF(e_box_body->GetPosition()));
+}
+
+void Skeleton::ChangeDirection() {
+	e_direction = !e_direction;
+	if (e_direction)	setScale(1, 1);
+	else setScale(-1, 1);
+}
+
+void Skeleton::setDirection(bool b) {
+	e_direction = b;
+	if (e_direction)	setScale(1, 1);
+	else setScale(-1, 1);
 }
 
 void Skeleton::ReachedEdge() {
-	e_direction = !e_direction;
+	ChangeDirection();
+
 }
 
 void Skeleton::ReachPlayer() {
-	e_direction = !e_direction;
+	ChangeDirection();
 	move();
 }
 
 void Skeleton::ReachWall(){
-	e_direction = !e_direction;
+	ChangeDirection();
+
 }

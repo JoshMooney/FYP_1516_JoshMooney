@@ -9,7 +9,6 @@ LevelScene::LevelScene() :
 	m_world->SetContactListener(&contact_listener);
 
 	m_spawner = Spawner(m_world);
-	m_spawner.SpawnSkeleton(sf::Vector2f(200, 0));
 
 	buttonX_ = new JumpCommand();
 	buttonY_ = new FireCommand();

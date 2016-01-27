@@ -1,44 +1,35 @@
-#ifndef _SKELETON_HPP
-#define _SKELETON_HPP
+#ifndef _WEED_HPP
+#define _WEED_HPP
 #include "stdafx.h"
-
-#include "Terrain.hpp"
 #include "Enemy.hpp"
 
-class Skeleton : public Enemy {
+class Weed : public Enemy {
 private:
 	sf::Vector2u m_text_size;
-	float m_speed;
-	Terrain* touching_terr;
 	float speedFactor;
+	float m_speed;
 public:
-	enum AI { WHITE, GREY, BLACK };
+	enum AI { GREEN, BLUE, RED };
 	AI ai;
-	enum STATE {WALKING, ATTACKING, IDLE, DEATH};
+	enum STATE { ATTACKING, IDLE, DEATH, EXCITED };
 	STATE m_current_state;
 
-	Skeleton();
-	Skeleton(b2Body *b, sf::Vector2f pos, bool dir);
-	Skeleton(b2World *world);
+	Weed();
+	Weed(b2Body *b, sf::Vector2f pos, bool dir);
+	~Weed();
 	void init();
 
 	void update(FTS fts);
 	void render(sf::RenderWindow &w);
-
 	void TakeDamage();
 	void Die();
 	void assignBody(b2Body *b) { e_box_body = b; }
-	void move();
 	void attack();
 	void alineSprite();
 	void ChangeDirection();
 	void setDirection(bool b);
 	sf::Vector2f getCenter() { return vHelper::toSF(e_box_body->GetPosition()); }
 	sf::Vector2u getTextureSize() { return m_text_size; }
-	void isTouching(Terrain* t) {	touching_terr = t;	}
-	void ReachedEdge();
-	void ReachPlayer();
-	void ReachWall();
 };
 
 #endif

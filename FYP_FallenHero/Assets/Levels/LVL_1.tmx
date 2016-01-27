@@ -11,7 +11,7 @@
  </tileset>
  <layer name="Textures" width="198" height="26">
   <data encoding="base64" compression="zlib">
-   eJztmcsOgyAQRbvoc9Hn/39sa6LRAHXszFABz0nuQjE4GI4Fu9sBjBw/ufQ5rVwLQCngBUAMXgDE4AVADF4AxOAFQAxeAMTgBQAAAADANtl/chDaz0EOQvvSpO770A8FwI1hjyy1T3MS2pcmtSe/6ocC4MYwr+d+M7R9engR/n6Ex6/+XJenqWqAkekc9nQj7FvrhXR8788NwY3lWNbA39bBc317Xu85ptR9cv7XsIYXty+1SPuWVLt13pRGOB7t+nfJfJHW39brf+lHM46wH8/3RkleSOuz1L7Gsnea27P9C28PtuyF5/Mp2QvpuKM2L3J7sCUvcrJ1LyxrME1ye4AXeqbvLE09LXnRevAiT114UXfwIk9deFF3WvGii/X7cIhlr4cXdaclL6z39awDL+pOq150WfMbCF7UnZa9KO25tuTFGxd3Mig=
+   eJztmcsOgyAQRbvoc9Hn/39sa6LRAHXszFABz0nuQjE4GI4Fu9sBjBw/ufQ5rVwLQCngBUAMXgDE4AVADF4AxOAFQAxeAMTgBQAAAADANtl/chDaz0EOQvvSpO770A8FwI1hjyy1T3MS2pcmtSe/6ocC4MYwr+d+M7R9engR/n6Ex6/+XJenqWqAkekc9nQj7FvrhXR8788NwY3lWNbA39bBc317Xu85ptR9cv7XsIYXty+1SPuWVLt13pRGOB7t+nfJfJHW39brf+lHM46wH893RkleSOuz1L7Gsnea27P9C28PtuxF7mdTihfScUdtXuT2YEte5GTrXljWYJrk9gAv9EzfWZp6WvKi9eBFnrrwou7gRZ668KLutOJFF+v34RDLXg8v6k5LXljv61kHXtSdVr3osuY3ELyoOy17UdpzbcmLN0ctMhc=
   </data>
  </layer>
  <objectgroup name="Terrain">
@@ -125,33 +125,33 @@
     <property name="y" value="352"/>
    </properties>
   </object>
-  <object id="37" name="pf_13" type="Platform" x="3552" y="512" width="576" height="64">
+  <object id="37" name="pf_13" type="Platform" x="3680" y="512" width="416" height="64">
    <properties>
-    <property name="h" value="46"/>
-    <property name="w" value="576"/>
-    <property name="x" value="3552"/>
+    <property name="h" value="64"/>
+    <property name="w" value="416"/>
+    <property name="x" value="3680"/>
     <property name="y" value="512"/>
    </properties>
   </object>
-  <object id="40" name="pf_14" type="Platform" x="3552" y="448" width="128" height="64">
+  <object id="40" name="pf_14" type="Platform" x="3648" y="448" width="32" height="128">
    <properties>
-    <property name="h" value="64"/>
-    <property name="w" value="128"/>
-    <property name="x" value="3552"/>
+    <property name="h" value="128"/>
+    <property name="w" value="32"/>
+    <property name="x" value="3648"/>
     <property name="y" value="448"/>
    </properties>
   </object>
-  <object id="43" name="pf_15" type="Platform" x="3552" y="416" width="96" height="32">
+  <object id="43" name="pf_15" type="Platform" x="3616" y="416" width="32" height="160">
    <properties>
-    <property name="h" value="32"/>
-    <property name="w" value="96"/>
-    <property name="x" value="3552"/>
+    <property name="h" value="160"/>
+    <property name="w" value="32"/>
+    <property name="x" value="3616"/>
     <property name="y" value="416"/>
    </properties>
   </object>
-  <object id="44" name="pf_16" type="Platform" x="3552" y="352" width="64" height="64">
+  <object id="44" name="pf_16" type="Platform" x="3552" y="352" width="64" height="224">
    <properties>
-    <property name="h" value="64"/>
+    <property name="h" value="244"/>
     <property name="w" value="64"/>
     <property name="x" value="3552"/>
     <property name="y" value="352"/>
@@ -347,7 +347,7 @@
   </object>
  </objectgroup>
  <objectgroup name="Enemy_Data">
-  <object id="60" x="480" y="416" width="64" height="64">
+  <object id="60" name="Skeleton" x="480" y="416" width="64" height="64">
    <properties>
     <property name="h" value="64"/>
     <property name="type" value="Skeleton"/>
