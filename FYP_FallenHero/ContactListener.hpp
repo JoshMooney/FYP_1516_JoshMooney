@@ -135,13 +135,14 @@ public:
 				sf::FloatRect t = static_cast<Terrain*>(bodyUserData2)->geometry;
 				sf::FloatRect s = static_cast<Skeleton*>(bodyUserData1)->getBounds();
 
+				sf::IntRect int_s = vHelper::FloatToInt(s);
 				//Right Side
-				if (s.left + s.width > t.left - entity_wall_offset &&
-					s.left + s.width < t.left)
+				if (int_s.left + int_s.width >= t.left - entity_wall_offset &&
+					int_s.left + int_s.width <= t.left)
 					static_cast<Skeleton*>(bodyUserData1)->ReachWall();
 				//Left Side
-				else if (s.left > t.left + t.width + entity_wall_offset &&
-					s.left < t.left + t.width)
+				else if (int_s.left >= t.left + t.width + entity_wall_offset &&
+					int_s.left <= t.left + t.width)
 					static_cast<Skeleton*>(bodyUserData1)->ReachWall();
 				//Else set touching ground to be the skeleton ground
 				else {

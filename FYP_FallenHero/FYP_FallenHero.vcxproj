@@ -61,7 +61,7 @@
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalLibraryDirectories>$(SFML_vs13)/lib; ./lib; $(STP)\doc\lib;</AdditionalLibraryDirectories>
-      <AdditionalDependencies>Box2D.lib;STP-d.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>Box2D.lib;STP-d.lib;thor-d.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -85,12 +85,14 @@
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Actor.hpp" />
     <ClInclude Include="cLog.hpp" />
     <ClInclude Include="Command.hpp" />
     <ClInclude Include="ContactListener.hpp" />
     <ClInclude Include="Enemy.hpp" />
     <ClInclude Include="Entity.hpp" />
     <ClInclude Include="Exit.hpp" />
+    <ClInclude Include="Flyer.hpp" />
     <ClInclude Include="Game.hpp" />
     <ClInclude Include="Level.hpp" />
     <ClInclude Include="LevelScene.hpp" />
@@ -113,6 +115,7 @@
     <ClInclude Include="tinyxml2.h" />
     <ClInclude Include="vCamera.hpp" />
     <ClInclude Include="vHelper.hpp" />
+    <ClInclude Include="Weed.hpp" />
     <ClInclude Include="WorldMap.hpp" />
     <ClInclude Include="WorldNode.hpp" />
     <ClInclude Include="WorldScene.hpp" />

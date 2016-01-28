@@ -70,7 +70,7 @@ void vCamera::refresh(sf::Vector2f player_center){
 }
 
 sf::Vector2f vCamera::getPlayerOffset(sf::Vector2f player_center) {
-	player_center.y -= 150;
+	player_center.y -= 50;		//150
 	if (lock_x && !prev_lock_x){
 		prev_lock_x = lock_x;
 		lock_x_value = player_center.x;

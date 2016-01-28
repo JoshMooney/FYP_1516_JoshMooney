@@ -4,6 +4,7 @@
 #include "Entity.hpp"
 
 #include "Box2D\Box2D.h"
+#include "Thor\Animations.hpp"
 #include "vHelper.hpp"
 
 /**
@@ -13,6 +14,7 @@
 */
 class Player : public Entity {
 private:
+	thor::Animator<sf::Sprite, std::string> m_animator;
 	bool m_is_moving;		
 	bool m_is_jumping;         
 	float m_speed;             
@@ -61,11 +63,11 @@ public:
 	b2Body* getBody()	{ return e_box_body; }                                                  //!<Returns a pointer to the b2body associated with the player
 	bool isMoving()	{ return m_is_moving; }                                                     //!<Bool whether the player is moving or not
 	float getSpeed()	{ return m_speed; }                                                     //!<Finds the speed of the player
-	bool getDirection()	{ return m_direction; }                                                 //!<Finds the direction the player is facing
-	void setDirection(float d)	{ m_direction = d; };                                           //!<Sets the players direction to the value passed in
+	void ChangeDirection();
+	void setDirection(bool b);                                           //!<Sets the players direction to the value passed in
 	bool isJumping()	{ return m_is_jumping; }   
 	void setJumping(bool b) { m_is_jumping = b; }												//!<Checks if the player is in the jumping animation
-	sf::Vector2f getCenter()	{ return vHelper::toSF(e_box_body->GetPosition()); }                                   //!<Finds the center of the player in Global coordinates
+	sf::Vector2f getCenter() { return getPosition(); }                                   //!<Finds the center of the player in Global coordinates
 	void moveTo(sf::Vector2f p) {	e_box_body->SetTransform(vHelper::toB2(p), 0.0f);	}		//!<Sets the Player to the position passed in
 	void TakeDamage();
 	/**
@@ -93,7 +95,7 @@ public:
 	*/
 	sf::FloatRect getBounds() { 
 		sf::Vector2u size = getTexture()->getSize();
-		return sf::FloatRect{getPosition().x, getPosition().y, (float)size.x, (float)size.y};
+		return sf::FloatRect{getPosition().x - (size.x /2), getPosition().y - (size.y / 2), (float)size.x, (float)size.y};
 	}
 };
 

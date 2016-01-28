@@ -31,7 +31,7 @@ public:
 	void CullInActiveEnemies();
 
 	void update(FTS fts, Player *p);
-	void render(sf::RenderWindow &w);
+	void render(sf::RenderWindow &w, sf::Time frames);
 };
 
 #endif

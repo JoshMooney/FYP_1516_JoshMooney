@@ -72,9 +72,9 @@ void Spawner::update(FTS fts, Player * p) {
 	}
 }
 
-void Spawner::render(sf::RenderWindow &w) {
+void Spawner::render(sf::RenderWindow &w, sf::Time frames) {
 	for (int i = 0; i < m_enemies.size(); i++) {
-		m_enemies.at(i)->render(w);
+		m_enemies.at(i)->render(w, frames);
 		w.draw(*m_enemies[i]);
 	}
 }

@@ -43,30 +43,113 @@ void Skeleton::init() {
 	m_speed = 0.5f;
 	e_direction = 1;	//true = 1 = Looing right and vice versa
 	speedFactor = 0;
+	e_body_active = true;
 	e_can_despawn = false;
 
 	m_current_state = WALKING;
-	ai = GREEN;
+	m_previous_state = m_current_state;
+	ai = WHITE;
 
-	e_texture = "Assets/Game/enemy.png";
-	setTexture(ResourceManager<sf::Texture>::instance()->get(e_texture));
-	sf::Texture l_texture = ResourceManager<sf::Texture>::instance()->get(e_texture);
-	m_text_size = l_texture.getSize();
-	m_acceleration = 1200;
-	m_deceleration = 800;
+	loadMedia();
 
 	//Entity Initalisation
 	e_hp = 10;
 	e_body_active;
+	if (touching_terr == nullptr) {
+		m_current_state = IDLE;
+	}
+}
+
+void Skeleton::ChangeState(STATE s) {
+	/*switch (s) {
+	case IDLE:
+		m_current_state = IDLE;
+		m_animator.playAnimation(IDLE);
+		break;
+	case DEATH:
+		m_current_state = DEATH;
+		m_animator.playAnimation(DEATH);
+		break;
+	case WALKING:
+		m_current_state = WALKING;
+		m_animator.playAnimation(WALKING);
+		break;
+	case ATTACKING:
+		m_current_state = ATTACKING;
+		m_animator.playAnimation(ATTACKING);
+		break;
+	}*/
+}
+
+void Skeleton::loadMedia(){
+	e_texture = "Assets/Game/OG_Skeleton.png";
+	setTexture(ResourceManager<sf::Texture>::instance()->get(e_texture));
+	sf::Texture l_texture = ResourceManager<sf::Texture>::instance()->get(e_texture);
+	//m_text_size = l_texture.getSize();
+	m_text_size = sf::Vector2u(27, 44);
+	setOrigin(m_text_size.x / 2, m_text_size.y / 2);
+
+	addFrames(frame_death, 0, 0, 7, 38, 47, 0.25f);
+	addFrames(frame_idle, 1, 0, 4, m_text_size.x, m_text_size.y, 0.25f);
+	addFrames(frame_walk, 2, 0, 4, m_text_size.x, m_text_size.y, 0.25f);
+	addFrames(frame_attack, 3, 0, 4, 29, m_text_size.y, 0.25f);
+	
+	m_animator.addAnimation(DEATH, frame_death, sf::seconds(0.5f));
+	m_animator.addAnimation(IDLE, frame_idle, sf::seconds(0.5f));
+	m_animator.addAnimation(WALKING, frame_walk, sf::seconds(0.5f));
+	m_animator.addAnimation(ATTACKING, frame_attack, sf::seconds(0.5f));
+}
+
+void Skeleton::checkAnimation() {
+	if (m_previous_state != m_current_state) {
+ 		m_previous_state = m_current_state;
+		m_animator.playAnimation(m_current_state);
+	}
+	if(m_current_state == WALKING && !m_animator.isPlayingAnimation())
+		m_animator.playAnimation(WALKING);
+	if (m_current_state == IDLE && !m_animator.isPlayingAnimation())
+		m_animator.playAnimation(IDLE);
+	if (m_current_state == ATTACKING && !m_animator.isPlayingAnimation()) {
+		m_current_state = WALKING;
+		ChangeDirection();
+		move();
+	}
+}
+
+void Skeleton::addFrames(thor::FrameAnimation& animation, int y, int xFirst, int xLast, int xSep, int ySep, float duration) {
+	if (y == 0)
+		y = 0;
+	else if (y == 1)
+		y = 47;
+	else if (y == 2)
+		y = 91;
+	else if (y == 3)
+		y = 135;
+
+	for (int x = xFirst; x != xLast; x += 1)
+		animation.addFrame(duration, sf::IntRect(xSep * x, y, xSep, ySep));
 }
 
 void Skeleton::update(FTS fts) {
-	move();
+	checkAnimation();
+	if (e_body_active) {
+		if(m_current_state == WALKING)
+			move();
+		
+		// If no other animation is playing, play idle animation
+		//if (!m_animator.isPlayingAnimation())
+		//	m_animator.playAnimation(IDLE);
 
-	alineSprite();
+		alineSprite();
+	}
+	else	{
+		if (!m_animator.isPlayingAnimation())
+			e_can_despawn = true;
+	}
 }
-void Skeleton::render(sf::RenderWindow &w) {
-
+void Skeleton::render(sf::RenderWindow &w, sf::Time frames) {
+	m_animator.update(frames);
+	m_animator.animate(*this);
 }
 
 void Skeleton::TakeDamage() {
@@ -76,13 +159,17 @@ void Skeleton::TakeDamage() {
 }
 
 void Skeleton::Die() {
+	e_box_body->GetFixtureList()->SetSensor(true);
 	e_body_active = false;
-	e_can_despawn = true;
+	e_can_despawn = false;
+	m_current_state = DEATH;
 }
 
 void Skeleton::move() {
 	if (touching_terr == nullptr) {
 		//In the air
+		//m_animator.playAnimation(IDLE);
+		m_current_state = IDLE;
 	}
 	else {
 		sf::FloatRect b = getBounds();
@@ -114,27 +201,43 @@ void Skeleton::move() {
 }
 
 void Skeleton::attack() {
-
+	m_current_state = ATTACKING;
 }
 
 void Skeleton::alineSprite() {
-	sf::Vector2f box_pos = vHelper::toSF(e_box_body->GetPosition());
-	sf::Vector2f sf_box_pos = sf::Vector2f(box_pos.x - (m_text_size.x * 0.5f), box_pos.y - (m_text_size.y * 0.5f));
-	setPosition(sf_box_pos);
+	setPosition(vHelper::toSF(e_box_body->GetPosition()));
+}
+
+void Skeleton::ChangeDirection() {
+	e_direction = !e_direction;
+	if (e_direction)	setScale(1, 1);
+	else setScale(-1, 1);
+}
+
+void Skeleton::setDirection(bool b) {
+	e_direction = b;
+	if (e_direction)	setScale(1, 1);
+	else setScale(-1, 1);
+}
+
+void Skeleton::isTouching(Terrain* t) { 
+	touching_terr = t; 
+	m_current_state = WALKING;
 }
 
 void Skeleton::ReachedEdge() {
-	e_direction = !e_direction;
-	setScale(sf::Vector2f(-1, 1));
+	ChangeDirection();
+
 }
 
 void Skeleton::ReachPlayer() {
-	e_direction = !e_direction;
-	setScale(sf::Vector2f(-1, 1));
-	move();
+	attack();
+	//ChangeDirection();
+	//move();
 }
 
 void Skeleton::ReachWall(){
-	e_direction = !e_direction;
-	setScale(sf::Vector2f(-1, 1));
+	//e_direction = !e_direction;
+
+	ChangeDirection();
 }
