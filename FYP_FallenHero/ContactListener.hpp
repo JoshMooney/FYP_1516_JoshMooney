@@ -136,10 +136,12 @@ public:
 				sf::FloatRect s = static_cast<Skeleton*>(bodyUserData1)->getBounds();
 
 				//Right Side
-				if (t.left + t.width < s.left)
+				if (s.left + s.width > t.left - entity_wall_offset &&
+					s.left + s.width < t.left)
 					static_cast<Skeleton*>(bodyUserData1)->ReachWall();
 				//Left Side
-				else if (t.left > s.left + s.width)
+				else if (s.left > t.left + t.width + entity_wall_offset &&
+					s.left < t.left + t.width)
 					static_cast<Skeleton*>(bodyUserData1)->ReachWall();
 				//Else set touching ground to be the skeleton ground
 				else {

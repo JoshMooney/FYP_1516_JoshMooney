@@ -125,13 +125,16 @@ void Skeleton::alineSprite() {
 
 void Skeleton::ReachedEdge() {
 	e_direction = !e_direction;
+	setScale(sf::Vector2f(-1, 1));
 }
 
 void Skeleton::ReachPlayer() {
 	e_direction = !e_direction;
+	setScale(sf::Vector2f(-1, 1));
 	move();
 }
 
 void Skeleton::ReachWall(){
 	e_direction = !e_direction;
+	setScale(sf::Vector2f(-1, 1));
 }
