@@ -19,11 +19,15 @@ LevelScene::LevelScene() :
 	m_camera = vCamera(sf::Vector2f(SCREEN_WIDTH, SCREEN_HEIGHT), sf::FloatRect{0.0f, 0.0f, 960.0f, 640.0f});
 	m_camera.LockX(false);
 	m_camera.LockY(false);
+	//m_camera.zoom(0.45f);
+
+
 	//tiled_map = new tmx::TileMap("test.tmx");
 	//m_time_per_frame = sf::seconds(1.f / 30.0f);
 	isPaused = false;
 	m_player = new Player(*m_world);
 	player_size = ResourceManager<sf::Texture>::instance()->get(m_player->e_texture).getSize();
+	m_animation_clock.restart();
 }
 LevelScene::LevelScene(string lvl_name, Player *p){
 	m_player = p;
@@ -37,8 +41,10 @@ LevelScene::~LevelScene(){
 
 void LevelScene::update(){
 	//cLog::inst()->print(1, "LevelScene", "Deprecated update called");
+	
 	while (game_clock.now() - timeOfLastTick >= timePerTick && !isPaused){
 		timeOfLastTick = game_clock.now();
+		frame_elapse = m_animation_clock.restart();
 
 		m_spawner.update(timeOfLastTick, m_player);
 		m_spawner.CullInActiveEnemies();
@@ -67,7 +73,7 @@ void LevelScene::render(sf::RenderWindow &w){
 
 	m_level->render(w, &m_camera);		//render the level
 	
-	m_spawner.render(w);
+	m_spawner.render(w, frame_elapse);
 	w.draw(*m_player);					//render Player
 
 	m_world->DrawDebugData();

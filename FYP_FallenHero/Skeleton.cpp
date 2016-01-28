@@ -48,24 +48,46 @@ void Skeleton::init() {
 	m_current_state = WALKING;
 	ai = WHITE;
 
-	e_texture = "Assets/Game/enemy.png";
-	setTexture(ResourceManager<sf::Texture>::instance()->get(e_texture));
-	sf::Texture l_texture = ResourceManager<sf::Texture>::instance()->get(e_texture);
-	m_text_size = l_texture.getSize();
-	setOrigin(m_text_size.x / 2, m_text_size.y / 2);
+	loadMedia();
 
 	//Entity Initalisation
 	e_hp = 10;
 	e_body_active;
 }
 
+void Skeleton::loadMedia(){
+	e_texture = "Assets/Game/Skeleton_Walk.png";
+	setTexture(ResourceManager<sf::Texture>::instance()->get(e_texture));
+	sf::Texture l_texture = ResourceManager<sf::Texture>::instance()->get(e_texture);
+	//m_text_size = l_texture.getSize();
+	m_text_size = sf::Vector2u(41, 64);
+	setOrigin(m_text_size.x / 2, m_text_size.y / 2);
+
+	addFrames(frame_walk, 0, 0, 4, m_text_size.x, m_text_size.y, 0.25f);
+
+	m_animator.addAnimation(WALKING, frame_walk, sf::seconds(0.5f));
+	//frame_attack;
+	//frame_idle;
+	//frame_death;
+}
+
+void Skeleton::addFrames(thor::FrameAnimation& animation, int y, int xFirst, int xLast, int xSep, int ySep, float duration)
+{
+	for (int x = xFirst; x != xLast; x += 1)
+		animation.addFrame(duration, sf::IntRect(xSep * x, ySep * y, xSep, ySep));
+}
+
 void Skeleton::update(FTS fts) {
 	move();
+	// If no other animation is playing, play idle animation
+	if (!m_animator.isPlayingAnimation())
+		m_animator.playAnimation(WALKING);
 
 	alineSprite();
 }
-void Skeleton::render(sf::RenderWindow &w) {
-
+void Skeleton::render(sf::RenderWindow &w, sf::Time frames) {
+	m_animator.update(frames);
+	m_animator.animate(*this);
 }
 
 void Skeleton::TakeDamage() {

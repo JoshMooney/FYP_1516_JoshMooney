@@ -46,6 +46,8 @@ private:
 
 	bool isPaused;
 	Spawner m_spawner;
+	sf::Clock m_animation_clock;
+	sf::Time frame_elapse;
 public:
 	Command* buttonX_;
 	Command* buttonY_;

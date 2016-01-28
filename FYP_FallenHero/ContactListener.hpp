@@ -11,7 +11,7 @@
 class ContactListener : public b2ContactListener {
 private:
 	const float player_jump_y_offset = 15;
-	const float entity_wall_offset = 10;
+	const float entity_wall_offset = 15;
 public:
 	ContactListener() : b2ContactListener() {	}
 
@@ -135,11 +135,19 @@ public:
 				sf::FloatRect t = static_cast<Terrain*>(bodyUserData2)->geometry;
 				sf::FloatRect s = static_cast<Skeleton*>(bodyUserData1)->getBounds();
 
+				//if (s.left + s.width > t.left + t.width - entity_wall_offset &&
+				//	s.left + s.width < t.left + t. width)
+				//	static_cast<Skeleton*>(bodyUserData1)->ReachWall();
+				//else if (s.left < t.left + entity_wall_offset &&
+				//	s.left > t.left)
+				//	static_cast<Skeleton*>(bodyUserData1)->ReachWall();
 				//Right Side
-				if (t.left + t.width < s.left)
+				if (s.left + s.width > t.left - entity_wall_offset &&
+					s.left + s.width < t.left)
 					static_cast<Skeleton*>(bodyUserData1)->ReachWall();
 				//Left Side
-				else if (t.left > s.left + s.width)
+				else if (s.left > t.left + t.width + entity_wall_offset &&
+					s.left < t.left + t.width)
 					static_cast<Skeleton*>(bodyUserData1)->ReachWall();
 				//Else set touching ground to be the skeleton ground
 				else {

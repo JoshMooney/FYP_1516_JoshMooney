@@ -4,6 +4,7 @@
 #include "Entity.hpp"
 
 #include "Box2D\Box2D.h"
+#include "Thor\Animations.hpp"
 #include "vHelper.hpp"
 
 /**
@@ -13,6 +14,7 @@
 */
 class Player : public Entity {
 private:
+	thor::Animator<sf::Sprite, std::string> m_animator;
 	bool m_is_moving;		
 	bool m_is_jumping;         
 	float m_speed;             

@@ -20,7 +20,7 @@ public:
 	void init();
 
 	void update(FTS fts);
-	void render(sf::RenderWindow &w);
+	void render(sf::RenderWindow &w, sf::Time frames);
 	void TakeDamage();
 	void Die();
 	void assignBody(b2Body *b) { e_box_body = b; }

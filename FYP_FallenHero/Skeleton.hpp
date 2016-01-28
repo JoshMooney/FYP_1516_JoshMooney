@@ -4,6 +4,7 @@
 
 #include "Terrain.hpp"
 #include "Enemy.hpp"
+#include "Thor\Animations.hpp"
 
 class Skeleton : public Enemy {
 private:
@@ -11,19 +12,26 @@ private:
 	float m_speed;
 	Terrain* touching_terr;
 	float speedFactor;
+	thor::FrameAnimation frame_walk;
+	thor::FrameAnimation frame_attack;
+	thor::FrameAnimation frame_idle;
+	thor::FrameAnimation frame_death;
 public:
 	enum AI { WHITE, GREY, BLACK };
 	AI ai;
 	enum STATE {WALKING, ATTACKING, IDLE, DEATH};
 	STATE m_current_state;
+	thor::Animator<sf::Sprite, STATE> m_animator;
 
 	Skeleton();
 	Skeleton(b2Body *b, sf::Vector2f pos, bool dir);
 	Skeleton(b2World *world);
 	void init();
 
+	void loadMedia();
+	void addFrames(thor::FrameAnimation& animation, int x, int yFirst, int yLast, int xSep, int ySep, float duration);
 	void update(FTS fts);
-	void render(sf::RenderWindow &w);
+	void render(sf::RenderWindow &w, sf::Time frames);
 
 	void TakeDamage();
 	void Die();
@@ -39,6 +47,9 @@ public:
 	void ReachedEdge();
 	void ReachPlayer();
 	void ReachWall();
+	sf::FloatRect getBounds() {
+		return sf::FloatRect{ (e_box_body->GetPosition().x * vHelper::B2_SCALE) - (m_text_size.x / 2), (e_box_body->GetPosition().y * vHelper::B2_SCALE) - (m_text_size.y / 2), (float)m_text_size.x, (float)m_text_size.y };
+	}
 };
 
 #endif
