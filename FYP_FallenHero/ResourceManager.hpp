@@ -3,6 +3,7 @@
 #include "cLog.hpp"
 #include <memory>
 #include <map>
+#include "SFML\Audio.hpp"
 
 /**
 *	@class ResourceManager Can be used for loading any data type thanks to its use of templates
@@ -75,4 +76,5 @@ T& ResourceManager<T>::get(std::string path) {
 	//return reference to the texture
 	return *mResources.at(path);
 }//unlock the mutex here when lock_guard goes out of scope
+
 #endif

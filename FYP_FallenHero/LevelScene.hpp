@@ -23,6 +23,7 @@
 #include "Spawner.hpp"
 #include "Skeleton.hpp"
 #include "SFMLDebugDraw.h"
+#include "SFML\Audio.hpp"
 
 class LevelScene : public Scene{
 private:
@@ -48,7 +49,9 @@ private:
 	Spawner m_spawner;
 	sf::Clock m_animation_clock;
 	sf::Time frame_elapse;
+	string s_background_music;
 public:
+	sf::Music m_background_music;
 	Command* buttonX_;
 	Command* buttonY_;
 	Command* buttonB_;
@@ -61,6 +64,7 @@ public:
 	LevelScene(string lvl_name, Player *p);
 	~LevelScene();
 
+	void loadMedia();
 	void update();			//Deprecated due to addition of delta time		
 	void render(sf::RenderWindow &w);
 	void handleEvent(sf::Event &e);		//Deprecated due to addition of delta time

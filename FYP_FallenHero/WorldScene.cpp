@@ -5,9 +5,7 @@ WorldScene::WorldScene(){
 	m_key_pressed = true;
 	has_selected = false;
 	
-	s_main_bg_text = "Assets/World/background.png";
-	m_main_bg_sprt.setPosition(0, 0);
-	m_main_bg_sprt.setTexture(ResourceManager<sf::Texture>::instance()->get(s_main_bg_text));
+	loadMedia();
 
 	sf::Vector2f maporigin(100, 200);
 	m_world_map = new WorldMap(maporigin);
@@ -25,6 +23,18 @@ WorldScene::~WorldScene(){
 	//delete m_world_map;
 }
 
+void WorldScene::loadMedia() {
+	s_main_bg_text = "Assets/World/background.png";
+	m_main_bg_sprt.setPosition(0, 0);
+	m_main_bg_sprt.setTexture(ResourceManager<sf::Texture>::instance()->get(s_main_bg_text));
+
+	s_bump = "Assets/Audio/Map/bump.wav";
+	m_bump.setBuffer(ResourceManager<sf::SoundBuffer>::instance()->get(s_bump));
+	s_run_away = "Assets/Audio/Map/run_away.wav";
+	m_run_away.setBuffer(ResourceManager<sf::SoundBuffer>::instance()->get(s_run_away));
+	s_select = "Assets/Audio/Map/select.wav";
+	m_select.setBuffer(ResourceManager<sf::SoundBuffer>::instance()->get(s_select));
+}
 void WorldScene::update(){
 
 }
@@ -124,14 +134,20 @@ void WorldScene::movePlayer(string direction){
 	if (node->checkNeighbout(direction)){
 		node = node->getNeightbourNode(direction);
 		if (!node->m_is_locked) {
+			m_run_away.play();
 			m_player_icon.setTag(node->m_lvl_id);
 			m_player_icon.setCenter(node->getCenter());
 		}
+		else
+			m_bump.play();
 	}
-	else
+	else {
+		m_bump.play();
 		m_player_icon.bump(direction);
+	}
 }
 void WorldScene::select() {
+	m_select.play();
 	has_selected = true;
 }
 

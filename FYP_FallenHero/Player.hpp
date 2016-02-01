@@ -5,6 +5,7 @@
 
 #include "Box2D\Box2D.h"
 #include "Thor\Animations.hpp"
+#include "SFML\Audio.hpp"
 #include "vHelper.hpp"
 
 /**
@@ -23,7 +24,16 @@ private:
 	float m_acceleration;      
 	float m_deceleration;      
 	float m_jump_force;        
-	float speedFactor;         
+	float speedFactor;        
+	string s_jump;
+	string s_death;
+	string s_finish_level;
+	string s_fall;
+
+	sf::Sound m_jump;
+	sf::Sound m_death;
+	sf::Sound m_finish_level;
+	sf::Sound m_fall;
 public:
 	/**
 	*	@brief Default constructor for the player where all the member variables are set and the boxbody is
@@ -33,6 +43,7 @@ public:
 	Player(b2World &m_world);
 	~Player();
 
+	void loadMedia();
 	/**
 	*	@brief Updates the player in any way nessasary eg alineSprite
 	*	@param FTS frame time stamp

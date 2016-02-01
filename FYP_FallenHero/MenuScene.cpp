@@ -18,6 +18,7 @@ MenuScene::MenuScene(){
 	menu_text[M_CONTINUE].setColor(sf::Color::Yellow);
 
 	cLog::inst()->print("MenuScene Initalised");
+	m_background_music.play();
 }
 MenuScene::~MenuScene(){
 	cLog::inst()->print("MenuScene Deconstructor Called");
@@ -163,18 +164,25 @@ void MenuScene::moveUp(){
 	if (m_current_state == MAIN){
 		switch (m_current_menu_item){
 		case M_CONTINUE:
+			m_bump.play();
 			break;
 		case M_NEW:
+			m_move_up.play();
+
 			menu_text[M_CONTINUE].setColor(sf::Color::Yellow);
 			m_current_menu_item = M_CONTINUE;
 			menu_text[M_NEW].setColor(sf::Color::Black);
 			break;
 		case M_OPTIONS:
+			m_move_up.play();
+
 			menu_text[M_NEW].setColor(sf::Color::Yellow);
 			m_current_menu_item = M_NEW;
 			menu_text[M_OPTIONS].setColor(sf::Color::Black);
 			break;
-		case M_EXIT:
+		case M_EXIT:			
+			m_move_up.play();
+
 			menu_text[M_OPTIONS].setColor(sf::Color::Yellow);
 			m_current_menu_item = M_OPTIONS;
 			menu_text[M_EXIT].setColor(sf::Color::Black);
@@ -189,21 +197,28 @@ void MenuScene::moveDown(){
 	if (m_current_state == MAIN) {
 		switch (m_current_menu_item) {
 		case M_CONTINUE:
+			m_move_down.play();
+
 			menu_text[M_NEW].setColor(sf::Color::Yellow);
 			m_current_menu_item = M_NEW;
 			menu_text[M_CONTINUE].setColor(sf::Color::Black);
 			break;
 		case M_NEW:
+			m_move_down.play();
+
 			menu_text[M_OPTIONS].setColor(sf::Color::Yellow);
 			m_current_menu_item = M_OPTIONS;
 			menu_text[M_NEW].setColor(sf::Color::Black);
 			break;
 		case M_OPTIONS:
+			m_move_down.play();
+
 			menu_text[M_EXIT].setColor(sf::Color::Yellow);
 			m_current_menu_item = M_EXIT;
 			menu_text[M_OPTIONS].setColor(sf::Color::Black);
 			break;
 		case M_EXIT:
+			m_bump.play();
 			break;
 		}
 	}
@@ -218,28 +233,34 @@ void MenuScene::moveRight(){
 	if (m_current_state == SAVE_SELECT){
 		switch (m_current_slot) {
 		case SLOT_1:
+			m_move_up.play();
 			m_current_slot = SLOT_2;
 			m_save_banner.setPosition(m_banner_pos + m_banner_sep);
 			break;
 		case SLOT_2:
+			m_move_up.play();
 			m_current_slot = SLOT_3;
 			m_save_banner.setPosition(m_banner_pos + m_banner_sep + m_banner_sep);
 			break;
 		case SLOT_3:
+			m_bump.play();
 			break;
 		}
 	}
 	if (m_current_state == NEW) {
 		switch (m_current_slot) {
 		case SLOT_1:
+			m_move_up.play();
 			m_current_slot = SLOT_2;
 			m_erase_banner.setPosition(m_banner_pos + m_banner_sep);
 			break;
 		case SLOT_2:
+			m_move_up.play();
 			m_current_slot = SLOT_3;
 			m_erase_banner.setPosition(m_banner_pos + m_banner_sep + m_banner_sep);
 			break;
 		case SLOT_3:
+			m_bump.play();
 			break;
 		}
 	}
@@ -251,12 +272,15 @@ void MenuScene::moveLeft(){
 	if (m_current_state == SAVE_SELECT){
 		switch (m_current_slot) {
 		case SLOT_1:
+			m_bump.play();
 			break;
 		case SLOT_2:
+			m_move_down.play();
 			m_current_slot = SLOT_1;
 			m_save_banner.setPosition(m_banner_pos);
 			break;
 		case SLOT_3:
+			m_move_down.play();
 			m_current_slot = SLOT_2;
 			m_save_banner.setPosition(m_banner_pos + m_banner_sep);
 			break;
@@ -265,12 +289,15 @@ void MenuScene::moveLeft(){
 	if (m_current_state == NEW) {
 		switch (m_current_slot) {
 		case SLOT_1:
+			m_bump.play();
 			break;
 		case SLOT_2:
+			m_move_down.play();
 			m_current_slot = SLOT_1;
 			m_erase_banner.setPosition(m_banner_pos);
 			break;
 		case SLOT_3:
+			m_move_down.play();
 			m_current_slot = SLOT_2;
 			m_erase_banner.setPosition(m_banner_pos + m_banner_sep);
 			break;
@@ -353,9 +380,21 @@ void MenuScene::loadMedia(){
 	m_erase_banner.setTexture(ResourceManager<sf::Texture>::instance()->get(s_erase_banner));
 	m_erase_banner.setPosition(m_banner_pos);
 
-	move_sound.setBuffer(ResourceManager<sf::SoundBuffer>::instance()->get("Assets/Audio/Menu/test.wav"));
-	move_sound.play();
+	//Load and initalise the Audio for the scene
+	s_move_down = "Assets/Audio/Menu/move_down.wav";
+	m_move_down.setBuffer(ResourceManager<sf::SoundBuffer>::instance()->get(s_move_down));
+	s_move_up = "Assets/Audio/Menu/move_up.wav";
+	m_move_up.setBuffer(ResourceManager<sf::SoundBuffer>::instance()->get(s_move_up));
+	s_select = "Assets/Audio/Menu/select.wav";
+	m_select.setBuffer(ResourceManager<sf::SoundBuffer>::instance()->get(s_select));
+	s_bump = "Assets/Audio/Menu/bump.wav";
+	m_bump.setBuffer(ResourceManager<sf::SoundBuffer>::instance()->get(s_bump));
 
+	s_background_music = "Assets/Audio/Menu/Champion_of_Light.ogg";
+	if (!m_background_music.openFromFile(s_background_music))
+		cLog::inst()->print(3, "MenuScene", "Background music failed to load");
+	m_background_music.setLoop(true);
+	m_background_music.setVolume(65.0f);
 }
 void MenuScene::loadText(){
 	sf::Vector2f spacing = m_item_spacing;
@@ -394,6 +433,7 @@ void MenuScene::setLoader(XMLLoader *l){
 	selected_slot = loader->saved_data[0];
 }
 void MenuScene::changeState(STATE s) {
+	m_select.play();
 	switch (s){
 	case SPLASH:
 		break;

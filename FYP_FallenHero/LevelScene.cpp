@@ -40,6 +40,12 @@ LevelScene::~LevelScene(){
 	
 }
 
+void LevelScene::loadMedia() {
+	s_background_music = "Assets/Audio/Game/TheLoomingBattle.OGG";
+	m_background_music.openFromFile(s_background_music);
+	m_background_music.setLoop(true);
+	m_background_music.setVolume(65.0f);
+}
 void LevelScene::update(){
 	//cLog::inst()->print(1, "LevelScene", "Deprecated update called");
 	
@@ -195,6 +201,7 @@ void LevelScene::handleInput(XBOXController &controller){
 }
 
 void LevelScene::loadLevel(string lvl_name){
+	m_background_music.play();
 	level_id = lvl_name;		//Store the currently loaded levels ID
 	if (m_level != nullptr)		m_level->Destroy(m_world);			//If there was a previous level destroy all the b2Bodies in that level 
 	m_level = make_shared<Level>(lvl_name, m_world, &m_spawner);				//Create a new level
@@ -208,6 +215,7 @@ void LevelScene::respawnPlayer() {
 }
 
 void LevelScene::reset() {
+	m_background_music.stop();
 	m_level_complete = false;
 	m_player->reset(sf::Vector2f(0,0));
 	m_camera.refresh(m_player->getCenter());

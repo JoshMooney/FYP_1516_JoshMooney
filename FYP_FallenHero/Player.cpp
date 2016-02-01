@@ -3,6 +3,7 @@
 #include "vHelper.hpp"
 
 Player::Player(b2World &m_world){
+	loadMedia();
 	m_jump_force = 1.5f;
 	m_is_moving = false;
 	m_is_jumping = false;
@@ -55,6 +56,16 @@ Player::~Player(){
 
 
 }
+void Player::loadMedia() {
+	s_jump = "Assets/Audio/Game/Player/jump.wav";
+	m_jump.setBuffer(ResourceManager<sf::SoundBuffer>::instance()->get(s_jump));
+	s_death = "Assets/Audio/Game/Player/death.wav";
+	m_death.setBuffer(ResourceManager<sf::SoundBuffer>::instance()->get(s_death));
+	s_finish_level = "Assets/Audio/Game/Player/finish_level.wav";
+	m_finish_level.setBuffer(ResourceManager<sf::SoundBuffer>::instance()->get(s_finish_level));
+	s_fall = "Assets/Audio/Game/Player/fall.wav";
+	m_fall.setBuffer(ResourceManager<sf::SoundBuffer>::instance()->get(s_fall));
+}
 
 void Player::update(FTS fts){
 	alineSprite();
@@ -97,6 +108,7 @@ void Player::moveRight(){
 
 void Player::jump() {
 	if (!m_is_jumping) {
+		m_jump.play();
 		float newYVel = clamp(e_box_body->GetLinearVelocity().y + (m_acceleration * DELTA_TIME.asSeconds()), -m_jump_force, m_jump_force);
 		//e_box_body->SetLinearVelocity(b2Vec2(e_box_body->GetLinearVelocity().x, m_acceleration * DELTA_TIME.asSeconds()), -m_jump_force, m_jump_force);
 		e_box_body->SetLinearVelocity(b2Vec2(e_box_body->GetLinearVelocity().x, e_box_body->GetLinearVelocity().y - newYVel));

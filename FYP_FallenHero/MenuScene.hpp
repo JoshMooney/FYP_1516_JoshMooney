@@ -25,7 +25,19 @@ private:
 	vector<SaveText> m_save_text;			//!<The SaveSlot Translated into sf::Text basicly
 	sf::Text m_save_select_text;			//!<
 	sf::Text m_erase_select_text;			//!<
+
+	string s_move_down;
+	string s_move_up;
+	string s_select;
+	string s_bump;
+	string s_background_music;
+	sf::Sound m_move_down;
+	sf::Sound m_move_up;
+	sf::Sound m_select;
+	sf::Sound m_bump;
+	
 public:
+	sf::Music m_background_music;
 /**
 	*	@brief 
 	*/

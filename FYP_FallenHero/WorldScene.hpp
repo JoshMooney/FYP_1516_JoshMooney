@@ -4,6 +4,7 @@
 #include "Scene.hpp"
 
 #include "SFML\Graphics.hpp"
+#include "SFML\Audio.hpp"
 #include "WorldMap.hpp"
 #include "PlayerIcon.hpp"
 #include "vCamera.hpp"
@@ -21,6 +22,14 @@ private:
 	vCamera m_camera;
 	std::shared_ptr<SimpleGUI> m_gui;
 	map<string, bool> m_map_data;
+	string s_bump;
+	string s_run_away;
+	string s_select;
+	string s_background_music;
+	sf::Sound m_bump;
+	sf::Sound m_run_away;
+	sf::Sound m_select;
+	sf::Music m_background_music;
 public:
 	SaveSlot *m_current_slot;
 	enum STATE {MAP, EXIT};
@@ -29,6 +38,7 @@ public:
 	WorldScene();
 	~WorldScene();
 
+	void loadMedia();
 	void update();
 	void render(sf::RenderWindow &w);
 	void handleEvent(sf::Event &e);
