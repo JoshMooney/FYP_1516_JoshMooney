@@ -151,7 +151,7 @@
   </object>
   <object id="44" name="pf_16" type="Platform" x="3552" y="352" width="64" height="224">
    <properties>
-    <property name="h" value="244"/>
+    <property name="h" value="224"/>
     <property name="w" value="64"/>
     <property name="x" value="3552"/>
     <property name="y" value="352"/>

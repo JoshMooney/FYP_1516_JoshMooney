@@ -394,7 +394,7 @@ void MenuScene::loadMedia(){
 	if (!m_background_music.openFromFile(s_background_music))
 		cLog::inst()->print(3, "MenuScene", "Background music failed to load");
 	m_background_music.setLoop(true);
-	m_background_music.setVolume(65.0f);
+	m_background_music.setVolume(45.0f);
 }
 void MenuScene::loadText(){
 	sf::Vector2f spacing = m_item_spacing;

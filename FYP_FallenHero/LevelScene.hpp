@@ -24,6 +24,7 @@
 #include "Skeleton.hpp"
 #include "SFMLDebugDraw.h"
 #include "SFML\Audio.hpp"
+#include "HUD.hpp"
 
 class LevelScene : public Scene{
 private:
@@ -33,6 +34,7 @@ private:
 	FTS timeOfLastTick = game_clock.now();
 
 	Player *m_player;
+	HUD m_player_HUD;
 	bool m_level_complete;
 	vCamera m_camera;
 	string path, format;

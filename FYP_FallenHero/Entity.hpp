@@ -10,7 +10,8 @@
 struct Entity : public sf::Sprite {
 	virtual void update(FTS fts) = 0;
 
-	int e_hp;
+	float e_hp;
+	float e_max_hp;
 	string e_texture;
 	bool e_body_active;
 	b2Body *e_box_body;

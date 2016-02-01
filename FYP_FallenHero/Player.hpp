@@ -24,7 +24,8 @@ private:
 	float m_acceleration;      
 	float m_deceleration;      
 	float m_jump_force;        
-	float speedFactor;        
+	float speedFactor;   
+	bool m_alive;
 	string s_jump;
 	string s_death;
 	string s_finish_level;
@@ -34,7 +35,10 @@ private:
 	sf::Sound m_death;
 	sf::Sound m_finish_level;
 	sf::Sound m_fall;
+	int m_gold;
 public:
+	float m_xp;
+	float m_max_xp;
 	/**
 	*	@brief Default constructor for the player where all the member variables are set and the boxbody is
 	*	is created and attached to the player object. The texture is loaded and set for the player here also
@@ -71,6 +75,8 @@ public:
 	*/
 	void reset(sf::Vector2f pos);
 	
+	int getGold() { return m_gold; }
+	bool isAlive() { return m_alive; }
 	b2Body* getBody()	{ return e_box_body; }                                                  //!<Returns a pointer to the b2body associated with the player
 	bool isMoving()	{ return m_is_moving; }                                                     //!<Bool whether the player is moving or not
 	float getSpeed()	{ return m_speed; }                                                     //!<Finds the speed of the player
@@ -108,6 +114,13 @@ public:
 		sf::Vector2u size = getTexture()->getSize();
 		return sf::FloatRect{getPosition().x - (size.x /2), getPosition().y - (size.y / 2), (float)size.x, (float)size.y};
 	}
+	float healthRatio() {
+		return e_hp / e_max_hp;
+	}
+	float experienceRatio() {
+		return m_xp / m_max_xp;
+	}
+	
 };
 
 #endif

@@ -10,7 +10,7 @@ LevelScene::LevelScene() :
 
 	m_spawner = Spawner(m_world);
 	
-
+	loadMedia();
 	buttonX_ = new JumpCommand();
 	buttonY_ = new FireCommand();
 	buttonB_ = new LurchCommand();
@@ -20,13 +20,13 @@ LevelScene::LevelScene() :
 	m_camera = vCamera(sf::Vector2f(SCREEN_WIDTH, SCREEN_HEIGHT), sf::FloatRect{0.0f, 0.0f, 960.0f, 640.0f});
 	m_camera.LockX(false);
 	m_camera.LockY(false);
-	m_camera.zoom(0.45f);
-
+	//m_camera.zoom(0.45f);
 
 	//tiled_map = new tmx::TileMap("test.tmx");
 	//m_time_per_frame = sf::seconds(1.f / 30.0f);
 	isPaused = false;
 	m_player = new Player(*m_world);
+	m_player_HUD = HUD(m_player);
 	player_size = ResourceManager<sf::Texture>::instance()->get(m_player->e_texture).getSize();
 	m_animation_clock.restart();
 }
@@ -44,7 +44,7 @@ void LevelScene::loadMedia() {
 	s_background_music = "Assets/Audio/Game/TheLoomingBattle.OGG";
 	m_background_music.openFromFile(s_background_music);
 	m_background_music.setLoop(true);
-	m_background_music.setVolume(65.0f);
+	m_background_music.setVolume(45.0f);
 }
 void LevelScene::update(){
 	//cLog::inst()->print(1, "LevelScene", "Deprecated update called");
@@ -57,12 +57,14 @@ void LevelScene::update(){
 		m_spawner.CullInActiveEnemies();
 		m_world->Step(B2_TIMESTEP, VEL_ITER, POS_ITER);
 
-		
-		
-		m_player->update(timeOfLastTick);
+		if (m_player->isAlive())
+			m_player->update(timeOfLastTick);
+		else
+			respawnPlayer();
+		m_player_HUD.update();
+
 		if (m_camera.outOfBounds(m_player->getBounds())) {
 			respawnPlayer();
-			m_camera.refresh(m_player->getCenter());
 		}
 		m_camera.setCenter(m_camera.getPlayerOffset(m_player->getCenter()));
 
@@ -87,6 +89,7 @@ void LevelScene::render(sf::RenderWindow &w){
 	m_world->DrawDebugData();
 	m_level->scenery.renderFG(w, &m_camera);	//Render Foreground	
 	w.setView(w.getDefaultView());		//Reset the windows view before exiting renderer
+	m_player_HUD.render(&w);
 }
 
 void LevelScene::handleEvent(sf::Event &e){
@@ -204,14 +207,17 @@ void LevelScene::loadLevel(string lvl_name){
 	m_background_music.play();
 	level_id = lvl_name;		//Store the currently loaded levels ID
 	if (m_level != nullptr)		m_level->Destroy(m_world);			//If there was a previous level destroy all the b2Bodies in that level 
+	m_spawner.clear();
 	m_level = make_shared<Level>(lvl_name, m_world, &m_spawner);				//Create a new level
 	m_camera.setBounds(m_level->Bounds());
 	m_player->reset(m_level->getSpawn());			//Reset the player for the new level
+	m_camera.refresh(m_player->getCenter());
 	//Set the Cameras bounds here once loaded from the .tmx
 }
 
 void LevelScene::respawnPlayer() {
 	m_player->reset(m_level->getSpawn());
+	m_camera.refresh(m_player->getCenter());
 }
 
 void LevelScene::reset() {

@@ -32,6 +32,7 @@ public:
 
 	void update(FTS fts, Player *p);
 	void render(sf::RenderWindow &w, sf::Time frames);
+	void clear();
 };
 
 #endif

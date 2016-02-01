@@ -3,6 +3,13 @@
 #include "vHelper.hpp"
 
 Player::Player(b2World &m_world){
+	m_alive = true;
+	e_hp = 100;
+	e_max_hp = 100;
+	m_xp = 100;
+	m_max_xp = 100;
+	m_gold = 9001;
+
 	loadMedia();
 	m_jump_force = 1.5f;
 	m_is_moving = false;
@@ -116,6 +123,8 @@ void Player::jump() {
 	}
 }
 void Player::reset(sf::Vector2f pos) {
+	e_hp = 100;
+	m_alive = true;
 	m_direction = 1;	//true = 1 = Looing right and vice versa
 	speedFactor = 0;
 	e_box_body->SetLinearVelocity(b2Vec2(0, 0));
@@ -135,7 +144,10 @@ void Player::setDirection(bool b) {
 }
 
 void Player::TakeDamage() {
-
+	e_hp -= 25;
+	if (e_hp <= 0) {
+		m_alive = false;
+	}
 }
 
 void Player::alineSprite(){

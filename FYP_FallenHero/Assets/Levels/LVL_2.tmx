@@ -57,4 +57,5 @@
  </objectgroup>
  <objectgroup name="BG"/>
  <objectgroup name="FG"/>
+ <objectgroup name="Enemy_Data"/>
 </map>
