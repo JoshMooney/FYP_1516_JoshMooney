@@ -116,6 +116,7 @@ void Player::moveRight(){
 void Player::jump() {
 	if (!m_is_jumping) {
 		m_jump.play();
+		e_box_body->GetFixtureList()->SetFriction(0.0f);
 		float newYVel = clamp(e_box_body->GetLinearVelocity().y + (m_acceleration * DELTA_TIME.asSeconds()), -m_jump_force, m_jump_force);
 		//e_box_body->SetLinearVelocity(b2Vec2(e_box_body->GetLinearVelocity().x, m_acceleration * DELTA_TIME.asSeconds()), -m_jump_force, m_jump_force);
 		e_box_body->SetLinearVelocity(b2Vec2(e_box_body->GetLinearVelocity().x, e_box_body->GetLinearVelocity().y - newYVel));

@@ -83,8 +83,11 @@ public:
 	void ChangeDirection();
 	void setDirection(bool b);                                           //!<Sets the players direction to the value passed in
 	bool isJumping()	{ return m_is_jumping; }   
-	void setJumping(bool b) { m_is_jumping = b; }												//!<Checks if the player is in the jumping animation
-	sf::Vector2f getCenter() { return getPosition(); }                                   //!<Finds the center of the player in Global coordinates
+	void setJumping(bool b) { 
+		m_is_jumping = b; 
+		e_box_body->GetFixtureList()->SetFriction(1.5f);
+	}												//!<Checks if the player is in the jumping animation
+	sf::Vector2f getCenter() { return vHelper::toSF(e_box_body->GetPosition()); }                                   //!<Finds the center of the player in Global coordinates
 	void moveTo(sf::Vector2f p) {	e_box_body->SetTransform(vHelper::toB2(p), 0.0f);	}		//!<Sets the Player to the position passed in
 	void TakeDamage();
 	/**

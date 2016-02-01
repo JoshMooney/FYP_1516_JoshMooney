@@ -26,14 +26,6 @@
     <property name="y" value="544"/>
    </properties>
   </object>
-  <object id="7" name="pf_2" type="Platform" x="736" y="416" width="135" height="108">
-   <properties>
-    <property name="h" value="108"/>
-    <property name="w" value="135"/>
-    <property name="x" value="736"/>
-    <property name="y" value="416"/>
-   </properties>
-  </object>
  </objectgroup>
  <objectgroup name="Player_Data">
   <object id="4" name="Start Level" type="Spawn" x="32" y="448" width="64" height="64">

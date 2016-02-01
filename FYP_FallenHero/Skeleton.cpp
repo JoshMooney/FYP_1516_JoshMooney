@@ -169,7 +169,9 @@ void Skeleton::move() {
 	if (touching_terr == nullptr) {
 		//In the air
 		//m_animator.playAnimation(IDLE);
-		m_current_state = IDLE;
+		if (e_body_active) {
+			m_current_state = IDLE;
+		}
 	}
 	else {
 		sf::FloatRect b = getBounds();
@@ -201,7 +203,9 @@ void Skeleton::move() {
 }
 
 void Skeleton::attack() {
-	m_current_state = ATTACKING;
+	if (e_body_active) {
+		m_current_state = ATTACKING;
+	}
 }
 
 void Skeleton::alineSprite() {
@@ -221,8 +225,10 @@ void Skeleton::setDirection(bool b) {
 }
 
 void Skeleton::isTouching(Terrain* t) { 
-	touching_terr = t; 
-	m_current_state = WALKING;
+	if (e_body_active) {
+		touching_terr = t;
+		m_current_state = WALKING;
+	}
 }
 
 void Skeleton::ReachedEdge() {

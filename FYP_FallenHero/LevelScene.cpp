@@ -205,13 +205,19 @@ void LevelScene::handleInput(XBOXController &controller){
 
 void LevelScene::loadLevel(string lvl_name){
 	m_background_music.play();
+	m_level_complete = false;
 	level_id = lvl_name;		//Store the currently loaded levels ID
 	if (m_level != nullptr)		m_level->Destroy(m_world);			//If there was a previous level destroy all the b2Bodies in that level 
+	
 	m_spawner.clear();
 	m_level = make_shared<Level>(lvl_name, m_world, &m_spawner);				//Create a new level
 	m_camera.setBounds(m_level->Bounds());
-	m_player->reset(m_level->getSpawn());			//Reset the player for the new level
+	
+	//m_player->reset(m_level->getSpawn());			//Reset the player for the new level
+	respawnPlayer();
 	m_camera.refresh(m_player->getCenter());
+	
+	
 	//Set the Cameras bounds here once loaded from the .tmx
 }
 
