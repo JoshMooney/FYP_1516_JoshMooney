@@ -89,15 +89,15 @@ void Skeleton::loadMedia(){
 	m_text_size = sf::Vector2u(27, 44);
 	setOrigin(m_text_size.x / 2, m_text_size.y / 2);
 
-	addFrames(frame_death, 0, 0, 7, 38, 47, 0.25f);
-	addFrames(frame_idle, 1, 0, 4, m_text_size.x, m_text_size.y, 0.25f);
-	addFrames(frame_walk, 2, 0, 4, m_text_size.x, m_text_size.y, 0.25f);
-	addFrames(frame_attack, 3, 0, 4, 29, m_text_size.y, 0.25f);
+	addFrames(frame_death, 0, 0, 7, 38, 47, 1.0f);
+	addFrames(frame_idle, 1, 0, 4, m_text_size.x, m_text_size.y, 1.0f);
+	addFrames(frame_walk, 2, 0, 4, m_text_size.x, m_text_size.y, 1.0f);
+	addFrames(frame_attack, 3, 0, 4, 29, m_text_size.y, 1.0f);
 	
 	m_animator.addAnimation(DEATH, frame_death, sf::seconds(0.5f));
 	m_animator.addAnimation(IDLE, frame_idle, sf::seconds(0.5f));
 	m_animator.addAnimation(WALKING, frame_walk, sf::seconds(0.5f));
-	m_animator.addAnimation(ATTACKING, frame_attack, sf::seconds(0.5f));
+	m_animator.addAnimation(ATTACKING, frame_attack, sf::seconds(0.25f));
 }
 
 void Skeleton::checkAnimation() {

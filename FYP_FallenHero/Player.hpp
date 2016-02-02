@@ -15,7 +15,6 @@
 */
 class Player : public Entity {
 private:
-	thor::Animator<sf::Sprite, std::string> m_animator;
 	bool m_is_moving;		
 	bool m_is_jumping;         
 	float m_speed;             
@@ -26,6 +25,7 @@ private:
 	float m_jump_force;        
 	float speedFactor;   
 	bool m_alive;
+	//Sound Effects
 	string s_jump;
 	string s_death;
 	string s_finish_level;
@@ -36,6 +36,16 @@ private:
 	sf::Sound m_finish_level;
 	sf::Sound m_fall;
 	int m_gold;
+	//Animation
+	thor::FrameAnimation frame_attack;
+	thor::FrameAnimation frame_run;
+	thor::FrameAnimation frame_idle;
+	thor::FrameAnimation frame_jump;
+	thor::FrameAnimation frame_hit;
+
+	enum STATE { ATTACK, RUN, JUMP, IDLE, HIT };
+	STATE m_current_state, m_previous_state;
+	thor::Animator<sf::Sprite, STATE> m_animator;
 public:
 	float m_xp;
 	float m_max_xp;
@@ -46,6 +56,10 @@ public:
 	*/
 	Player(b2World &m_world);
 	~Player();
+
+	void checkAnimation();
+	void addFrames(thor::FrameAnimation& animation, STATE s, int xFirst, int xLast, int xSep, int ySep, float duration);
+	void render(sf::Time frames);
 
 	void loadMedia();
 	/**
@@ -114,8 +128,7 @@ public:
 	*	@return Bounds of the player
 	*/
 	sf::FloatRect getBounds() { 
-		sf::Vector2u size = getTexture()->getSize();
-		return sf::FloatRect{getPosition().x - (size.x /2), getPosition().y - (size.y / 2), (float)size.x, (float)size.y};
+		return sf::FloatRect{getPosition().x - (m_text_size.x /2), getPosition().y - (m_text_size.y / 2), (float)m_text_size.x, (float)m_text_size.y};
 	}
 	float healthRatio() {
 		return e_hp / e_max_hp;

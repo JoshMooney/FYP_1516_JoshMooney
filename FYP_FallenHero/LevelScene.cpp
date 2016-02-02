@@ -82,7 +82,7 @@ void LevelScene::render(sf::RenderWindow &w){
 
 	m_level->render(w, &m_camera);		//render the level
 	
-	
+	m_player->render(frame_elapse);
 	w.draw(*m_player);					//render Player
 	m_spawner.render(w, frame_elapse);
 

@@ -11,19 +11,13 @@ Player::Player(b2World &m_world){
 	m_gold = 9001;
 
 	loadMedia();
+
 	m_jump_force = 1.5f;
 	m_is_moving = false;
 	m_is_jumping = false;
 	m_speed = 1.5f;
 	m_direction = 1;	//true = 1 = Looing right and vice versa
 	speedFactor = 0;
-
-	//Texture Stuff!
-	e_texture = "Assets/Game/player.png";
-	setTexture(ResourceManager<sf::Texture>::instance()->get(e_texture));
-	sf::Texture l_texture = ResourceManager<sf::Texture>::instance()->get(e_texture);
-	m_text_size = l_texture.getSize();
-	setOrigin(m_text_size.x / 2, m_text_size.y / 2);
 
 	m_acceleration = 1200;
 	m_deceleration = 800;
@@ -55,6 +49,8 @@ Player::Player(b2World &m_world){
 	//e_box_body->CreateFixture(&shape, 0.0f);
 
 	alineSprite();
+
+	m_current_state = IDLE;
 }
 Player::~Player(){
 	//Destroys the Box2D body component of the Player
@@ -62,6 +58,43 @@ Player::~Player(){
 	e_box_body = nullptr;
 
 
+}
+void Player::checkAnimation() {
+	if (m_current_state != m_previous_state) {
+		m_previous_state = m_current_state;
+		m_animator.playAnimation(m_current_state);
+	}
+	if (!m_is_moving)
+		m_current_state = IDLE;
+	else
+		m_current_state = RUN;
+
+	if (m_current_state == RUN && !m_animator.isPlayingAnimation())
+		m_animator.playAnimation(RUN);
+	if (m_current_state == IDLE && !m_animator.isPlayingAnimation())
+		m_animator.playAnimation(IDLE);
+}
+void Player::addFrames(thor::FrameAnimation & animation, STATE s, int xFirst, int xLast, int xSep, int ySep, float duration) {
+	int y = 0;
+	sf::Vector2f o;
+
+	if (s == RUN)	{
+		y = 60;
+		o = sf::Vector2f(19, 31);
+	}
+	else if (s == IDLE) {
+		y = 164;
+		o = sf::Vector2f(16, 20);
+	}
+
+
+	for (int x = xFirst; x != xLast; x += 1)
+		animation.addFrame(duration, sf::IntRect(xSep * x, y, xSep, ySep), o);
+
+}
+void Player::render(sf::Time frames) {
+	m_animator.update(frames);
+	m_animator.animate(*this);
 }
 void Player::loadMedia() {
 	s_jump = "Assets/Audio/Game/Player/jump.wav";
@@ -72,9 +105,23 @@ void Player::loadMedia() {
 	m_finish_level.setBuffer(ResourceManager<sf::SoundBuffer>::instance()->get(s_finish_level));
 	s_fall = "Assets/Audio/Game/Player/fall.wav";
 	m_fall.setBuffer(ResourceManager<sf::SoundBuffer>::instance()->get(s_fall));
+
+	//Texture Stuff!
+	e_texture = "Assets/Game/player.png";
+	setTexture(ResourceManager<sf::Texture>::instance()->get(e_texture));
+	sf::Texture l_texture = ResourceManager<sf::Texture>::instance()->get(e_texture);
+	m_text_size = sf::Vector2u(36, 44);
+	setOrigin(m_text_size.x / 2, m_text_size.y / 2);
+
+	addFrames(frame_run, RUN, 0, 4, 36, 52, 1.0f);
+	addFrames(frame_idle, IDLE, 0, 3, 32, 44, 1.0f);
+
+	m_animator.addAnimation(RUN, frame_run, sf::seconds(0.5f));
+	m_animator.addAnimation(IDLE, frame_idle, sf::seconds(1.5f));
 }
 
 void Player::update(FTS fts){
+	checkAnimation();
 	alineSprite();
 	Idle();
 }
