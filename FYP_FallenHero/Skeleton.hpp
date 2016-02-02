@@ -16,6 +16,8 @@ private:
 	thor::FrameAnimation frame_attack;
 	thor::FrameAnimation frame_idle;
 	thor::FrameAnimation frame_death;
+	string s_death;
+	sf::Sound m_death;
 public:
 	enum AI { WHITE, GREY, BLACK };
 	AI ai;

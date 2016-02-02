@@ -98,6 +98,9 @@ void Skeleton::loadMedia(){
 	m_animator.addAnimation(IDLE, frame_idle, sf::seconds(0.5f));
 	m_animator.addAnimation(WALKING, frame_walk, sf::seconds(0.5f));
 	m_animator.addAnimation(ATTACKING, frame_attack, sf::seconds(0.25f));
+
+	s_death = "Assets/Audio/Game/skeleton_kill.wav";
+	m_death.setBuffer(ResourceManager<sf::SoundBuffer>::instance()->get(s_death));
 }
 
 void Skeleton::checkAnimation() {
@@ -159,6 +162,7 @@ void Skeleton::TakeDamage() {
 }
 
 void Skeleton::Die() {
+	m_death.play();
 	e_box_body->GetFixtureList()->SetSensor(true);
 	e_body_active = false;
 	e_can_despawn = false;
