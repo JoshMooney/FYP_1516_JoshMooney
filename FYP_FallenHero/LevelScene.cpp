@@ -20,14 +20,14 @@ LevelScene::LevelScene() :
 	m_camera = vCamera(sf::Vector2f(SCREEN_WIDTH, SCREEN_HEIGHT), sf::FloatRect{0.0f, 0.0f, 960.0f, 640.0f});
 	m_camera.LockX(false);
 	m_camera.LockY(false);
-	//m_camera.zoom(0.45f);
+	m_camera.zoom(0.50f);
 
 	//tiled_map = new tmx::TileMap("test.tmx");
 	//m_time_per_frame = sf::seconds(1.f / 30.0f);
 	isPaused = false;
 	m_player = new Player(*m_world);
 	m_player_HUD = HUD(m_player);
-	player_size = ResourceManager<sf::Texture>::instance()->get(m_player->e_texture).getSize();
+	player_size = m_player->getSize();
 	m_animation_clock.restart();
 }
 LevelScene::LevelScene(string lvl_name, Player *p){
@@ -86,7 +86,7 @@ void LevelScene::render(sf::RenderWindow &w){
 	w.draw(*m_player);					//render Player
 	m_spawner.render(w, frame_elapse);
 
-	m_world->DrawDebugData();
+	//m_world->DrawDebugData();
 	m_level->scenery.renderFG(w, &m_camera);	//Render Foreground	
 	w.setView(w.getDefaultView());		//Reset the windows view before exiting renderer
 	m_player_HUD.render(&w);
@@ -141,6 +141,7 @@ void LevelScene::handleEvent(sf::Event &e){
 			case sf::Keyboard::Return:
 				break;
 			case sf::Keyboard::Space:
+				m_player->attack();
 				break;
 			}
 		}
@@ -210,13 +211,13 @@ void LevelScene::loadLevel(string lvl_name){
 	if (m_level != nullptr)		m_level->Destroy(m_world);			//If there was a previous level destroy all the b2Bodies in that level 
 	
 	m_spawner.clear();
+
 	m_level = make_shared<Level>(lvl_name, m_world, &m_spawner);				//Create a new level
 	m_camera.setBounds(m_level->Bounds());
 	
 	//m_player->reset(m_level->getSpawn());			//Reset the player for the new level
 	respawnPlayer();
 	m_camera.refresh(m_player->getCenter());
-	
 	
 	//Set the Cameras bounds here once loaded from the .tmx
 }

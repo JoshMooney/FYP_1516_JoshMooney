@@ -16,7 +16,8 @@
 class Player : public Entity {
 private:
 	bool m_is_moving;		
-	bool m_is_jumping;         
+	bool m_is_jumping;  
+	bool m_is_attacking;
 	float m_speed;             
 	bool m_direction;          
 	sf::Vector2u m_text_size;  
@@ -46,6 +47,7 @@ private:
 	enum STATE { ATTACK, RUN, JUMP, IDLE, HIT };
 	STATE m_current_state, m_previous_state;
 	thor::Animator<sf::Sprite, STATE> m_animator;
+	sf::Vector2i attack_frame_size;
 public:
 	float m_xp;
 	float m_max_xp;
@@ -88,11 +90,14 @@ public:
 	*	@param sf::Vector2f Set b2body and sprite to this position
 	*/
 	void reset(sf::Vector2f pos);
+
+	void attack();
 	
 	int getGold() { return m_gold; }
 	bool isAlive() { return m_alive; }
 	b2Body* getBody()	{ return e_box_body; }                                                  //!<Returns a pointer to the b2body associated with the player
-	bool isMoving()	{ return m_is_moving; }                                                     //!<Bool whether the player is moving or not
+	bool isMoving()	{ return m_is_moving; }		//!<Bool whether the player is moving or not
+	bool isAttacking() { return m_is_attacking; }
 	float getSpeed()	{ return m_speed; }                                                     //!<Finds the speed of the player
 	void ChangeDirection();
 	void setDirection(bool b);                                           //!<Sets the players direction to the value passed in
@@ -104,6 +109,7 @@ public:
 	sf::Vector2f getCenter() { return vHelper::toSF(e_box_body->GetPosition()); }                                   //!<Finds the center of the player in Global coordinates
 	void moveTo(sf::Vector2f p) {	e_box_body->SetTransform(vHelper::toB2(p), 0.0f);	}		//!<Sets the Player to the position passed in
 	void TakeDamage();
+	sf::Vector2u getSize() { return m_text_size; }
 	/**
 	*	@brief Position the players b2Body to the position passed in
 	*	@param p Position
@@ -128,7 +134,21 @@ public:
 	*	@return Bounds of the player
 	*/
 	sf::FloatRect getBounds() { 
-		return sf::FloatRect{getPosition().x - (m_text_size.x /2), getPosition().y - (m_text_size.y / 2), (float)m_text_size.x, (float)m_text_size.y};
+		sf::Vector2f center = getCenter();
+		return sf::FloatRect{ center.x - (m_text_size.x /2), center.y - (m_text_size.y / 2), (float)m_text_size.x, (float)m_text_size.y};
+	}
+	sf::FloatRect getAttackBounds() {
+		sf::Vector2f center = getCenter();
+		if (m_direction) {
+			sf::Vector2f bot_left = sf::Vector2f(center.x - (m_text_size.x / 2), center.y + (m_text_size.y / 2));
+			sf::Vector2f position = sf::Vector2f(bot_left.x, bot_left.y - attack_frame_size.y);
+			return sf::FloatRect{ position.x, position.y, (float)attack_frame_size.x, (float)attack_frame_size.y };
+		}
+		else {
+			sf::Vector2f bot_right = sf::Vector2f(center.x + (m_text_size.x / 2), center.y + (m_text_size.y / 2));
+			sf::Vector2f position = sf::Vector2f(bot_right.x - attack_frame_size.x, bot_right.y - attack_frame_size.y);
+			return sf::FloatRect{ position.x, position.y, (float)attack_frame_size.x, (float)attack_frame_size.y };
+		}
 	}
 	float healthRatio() {
 		return e_hp / e_max_hp;

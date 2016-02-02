@@ -15,6 +15,7 @@ Player::Player(b2World &m_world){
 	m_jump_force = 1.5f;
 	m_is_moving = false;
 	m_is_jumping = false;
+	m_is_attacking = false;
 	m_speed = 1.5f;
 	m_direction = 1;	//true = 1 = Looing right and vice versa
 	speedFactor = 0;
@@ -48,6 +49,19 @@ Player::Player(b2World &m_world){
 	e_box_body->CreateFixture(&myFixtureDef);
 	//e_box_body->CreateFixture(&shape, 0.0f);
 
+	//Create Fixture for the Attack swing 
+	b2PolygonShape sword_shape;
+	sword_shape.SetAsBox((104 / vHelper::B2_SCALE) / 2, (60 / vHelper::B2_SCALE) / 2, vHelper::toB2(sf::Vector2f(0, -8)), 0.0f);
+
+	b2FixtureDef mySwordDef;
+	mySwordDef.density = 1.0f;
+	mySwordDef.friction = 1.5f;
+	mySwordDef.shape = &sword_shape;
+	mySwordDef.userData = "Player_Sword";
+	mySwordDef.isSensor = true;
+
+	e_box_body->CreateFixture(&mySwordDef);
+
 	alineSprite();
 
 	m_current_state = IDLE;
@@ -59,26 +73,37 @@ Player::~Player(){
 
 
 }
+
 void Player::checkAnimation() {
+	if (m_is_attacking)
+		m_current_state = ATTACK;
+	else if (m_is_moving)
+		m_current_state = RUN;
+	else
+		m_current_state = IDLE;
+	
 	if (m_current_state != m_previous_state) {
 		m_previous_state = m_current_state;
 		m_animator.playAnimation(m_current_state);
 	}
-	if (!m_is_moving)
-		m_current_state = IDLE;
-	else
-		m_current_state = RUN;
 
 	if (m_current_state == RUN && !m_animator.isPlayingAnimation())
 		m_animator.playAnimation(RUN);
 	if (m_current_state == IDLE && !m_animator.isPlayingAnimation())
 		m_animator.playAnimation(IDLE);
+	if (m_current_state == ATTACK && !m_animator.isPlayingAnimation()) {
+		m_is_attacking = false;
+		m_current_state = IDLE;
+	}
 }
 void Player::addFrames(thor::FrameAnimation & animation, STATE s, int xFirst, int xLast, int xSep, int ySep, float duration) {
 	int y = 0;
 	sf::Vector2f o;
-
-	if (s == RUN)	{
+	if (s == ATTACK) {
+		y = 0;
+		o = sf::Vector2f(16, 40);
+	}
+	else if (s == RUN)	{
 		y = 60;
 		o = sf::Vector2f(19, 31);
 	}
@@ -112,12 +137,19 @@ void Player::loadMedia() {
 	sf::Texture l_texture = ResourceManager<sf::Texture>::instance()->get(e_texture);
 	m_text_size = sf::Vector2u(36, 44);
 	setOrigin(m_text_size.x / 2, m_text_size.y / 2);
+	attack_frame_size = sf::Vector2i(68, 60);
 
-	addFrames(frame_run, RUN, 0, 4, 36, 52, 1.0f);
-	addFrames(frame_idle, IDLE, 0, 3, 32, 44, 1.0f);
+	addFrames(frame_run,	RUN,	0, 4, 36, 52, 1.0f);
+	addFrames(frame_idle,	IDLE,	0, 3, 32, 44, 1.0f);
+	addFrames(frame_attack, ATTACK, 0, 3, 68, 60, 1.0f);
+	addFrames(frame_jump,	JUMP,	0, 3, 36, 52, 1.0f);
+	addFrames(frame_hit,	HIT,	0, 1, 46, 44, 1.0f);
 
-	m_animator.addAnimation(RUN, frame_run, sf::seconds(0.5f));
-	m_animator.addAnimation(IDLE, frame_idle, sf::seconds(1.5f));
+	m_animator.addAnimation(ATTACK, frame_attack,	sf::seconds(0.15f));
+	m_animator.addAnimation(RUN,	frame_run,		sf::seconds(0.5f));
+	m_animator.addAnimation(IDLE,	frame_idle,		sf::seconds(1.5f));
+	m_animator.addAnimation(JUMP,	frame_jump,		sf::seconds(0.5f));
+	m_animator.addAnimation(HIT,	frame_hit,		sf::seconds(2.5f));
 }
 
 void Player::update(FTS fts){
@@ -135,33 +167,37 @@ void Player::Idle() {
 	}
 }
 void Player::moveLeft(){
-	setDirection(false);
-	if (speedFactor > -1.f)
-		speedFactor -= 0.02;
-	else if (speedFactor < -1.f)
-		speedFactor = -1.f;
+	if (!m_is_attacking) {
+		setDirection(false);
+		if (speedFactor > -1.f)
+			speedFactor -= 0.02;
+		else if (speedFactor < -1.f)
+			speedFactor = -1.f;
 
-	e_box_body->SetLinearVelocity(b2Vec2(m_speed * speedFactor, e_box_body->GetLinearVelocity().y));
-	//float newXVel = clamp(e_box_body->GetLinearVelocity().x - (m_acceleration * DELTA_TIME.asSeconds()), -m_speed, m_speed);
-	//float newXVel = clamp(e_box_body->GetLinearVelocity().x - (m_speed * DELTA_TIME.asSeconds()), -m_deceleration, m_acceleration);
-	//e_box_body->SetLinearVelocity(b2Vec2(newXVel, e_box_body->GetLinearVelocity().y));
-	m_is_moving = true;
+		e_box_body->SetLinearVelocity(b2Vec2(m_speed * speedFactor, e_box_body->GetLinearVelocity().y));
+		//float newXVel = clamp(e_box_body->GetLinearVelocity().x - (m_acceleration * DELTA_TIME.asSeconds()), -m_speed, m_speed);
+		//float newXVel = clamp(e_box_body->GetLinearVelocity().x - (m_speed * DELTA_TIME.asSeconds()), -m_deceleration, m_acceleration);
+		//e_box_body->SetLinearVelocity(b2Vec2(newXVel, e_box_body->GetLinearVelocity().y));
+		m_is_moving = true;
+	}
 }
 void Player::moveRight(){
-	setDirection(true);
-	if (speedFactor < 1.f)
-		speedFactor += 0.02f;
-	else if (speedFactor > 1.f)
-		speedFactor = 1.f;
+	if (!m_is_attacking) {
+		setDirection(true);
+		if (speedFactor < 1.f)
+			speedFactor += 0.02f;
+		else if (speedFactor > 1.f)
+			speedFactor = 1.f;
 
-	e_box_body->SetLinearVelocity(b2Vec2(m_speed * speedFactor, e_box_body->GetLinearVelocity().y));
-	//float newXVel = clamp(e_box_body->GetLinearVelocity().x + (m_speed * DELTA_TIME.asSeconds()), -m_deceleration, m_acceleration);
-	//e_box_body->SetLinearVelocity(b2Vec2(newXVel, e_box_body->GetLinearVelocity().y));
-	m_is_moving = true;
+		e_box_body->SetLinearVelocity(b2Vec2(m_speed * speedFactor, e_box_body->GetLinearVelocity().y));
+		//float newXVel = clamp(e_box_body->GetLinearVelocity().x + (m_speed * DELTA_TIME.asSeconds()), -m_deceleration, m_acceleration);
+		//e_box_body->SetLinearVelocity(b2Vec2(newXVel, e_box_body->GetLinearVelocity().y));
+		m_is_moving = true;
+	}
 }
 
 void Player::jump() {
-	if (!m_is_jumping) {
+	if (!m_is_jumping && !m_is_attacking) {
 		m_jump.play();
 		e_box_body->GetFixtureList()->SetFriction(0.0f);
 		float newYVel = clamp(e_box_body->GetLinearVelocity().y + (m_acceleration * DELTA_TIME.asSeconds()), -m_jump_force, m_jump_force);
@@ -177,6 +213,13 @@ void Player::reset(sf::Vector2f pos) {
 	speedFactor = 0;
 	e_box_body->SetLinearVelocity(b2Vec2(0, 0));
 	moveTo(pos);
+}
+
+void Player::attack() {
+	if (!m_is_attacking) {
+		cLog::inst()->print("Player Attacked");
+		m_is_attacking = true;
+	}
 }
 
 void Player::ChangeDirection() {
@@ -199,7 +242,8 @@ void Player::TakeDamage() {
 }
 
 void Player::alineSprite(){
-	setPosition(vHelper::toSF(e_box_body->GetPosition()));
+	sf::Vector2f pos = vHelper::toSF(e_box_body->GetPosition());
+	setPosition(pos);
 }
 
 //clamp a value to a range

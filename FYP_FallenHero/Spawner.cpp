@@ -66,7 +66,11 @@ void Spawner::CullInActiveEnemies() {
 
 void Spawner::update(FTS fts, Player * p) {
 	for(Enemy* e : m_enemies) {
-		if (update_dist > distanceToPlayer(e->getCenter(), p->getCenter())) {
+		//Check for collision before checking the distance
+		if (e->isCollidingSword() && p->isAttacking() && p->getAttackBounds().intersects(e->getBounds())) {
+			e->TakeDamage();
+		}
+		if (update_dist > distanceToPlayer(e->getCenter(), p->getCenter())) { 
 			e->update(fts);
 		}
 	}

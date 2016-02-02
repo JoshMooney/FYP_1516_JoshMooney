@@ -17,6 +17,7 @@ private:
 	float XAxisOffset, YAxisOffset;
 	sf::FloatRect m_bounds;
 	sf::Vector2f SCREEN_SIZE;
+	float default_zoom;
 public:
 	vCamera();
 	vCamera(sf::Vector2f screen_size);

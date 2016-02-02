@@ -40,6 +40,7 @@ Skeleton::Skeleton(b2World * world) {
 }
 
 void Skeleton::init() {
+	e_sword_col = false;
 	m_speed = 0.5f;
 	e_direction = 1;	//true = 1 = Looing right and vice versa
 	speedFactor = 0;

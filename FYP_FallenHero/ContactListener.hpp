@@ -14,43 +14,9 @@ private:
 	const float entity_wall_offset = 10;
 public:
 	ContactListener() : b2ContactListener() {	}
-
 	/*void PreSolve(b2Contact* contact, const b2Manifold* oldManifold)
 	{
-	void* fixAType = contact->GetFixtureA()->GetBody()->GetUserData();
-	void* fixBType = contact->GetFixtureB()->GetBody()->GetUserData();
-	if (fixAType == "Player" && fixBType == "Bullet"
-	|| fixAType == "Bullet" && fixBType == "Player")
-	{
-	if (fixAType == "Player")
-	{
-	void* bodyUserData1 = contact->GetFixtureA()->GetUserData();
-	void* bodyUserData2 = contact->GetFixtureB()->GetUserData();
-	if (static_cast<Player*>(bodyUserData1)->isPlayer1() && static_cast<Bullet*>(bodyUserData2)->isBullet1()
-	|| static_cast<Player*>(bodyUserData1)->isPlayer1() == false && static_cast<Bullet*>(bodyUserData2)->isBullet1() == false)
-	{
-	contact->SetEnabled(false);
-	}
-	else
-	{
-	AudioManager::GetInstance()->PlaySoundEffect(3);
-	}
-	}
-	if (fixAType == "Bullet")
-	{
-	void* bodyUserData1 = contact->GetFixtureB()->GetUserData();
-	void* bodyUserData2 = contact->GetFixtureA()->GetUserData();
-	if (static_cast<Player*>(bodyUserData1)->isPlayer1() && static_cast<Bullet*>(bodyUserData2)->isBullet1()
-	|| static_cast<Player*>(bodyUserData1)->isPlayer1() == false && static_cast<Bullet*>(bodyUserData2)->isBullet1() == false)
-	{
-	contact->SetEnabled(false);
-	}
-	else
-	{
-	AudioManager::GetInstance()->PlaySoundEffect(3);
-	}
-	}
-	}
+	
 	}*/
 
 	void BeginContact(b2Contact* contact) {
@@ -169,8 +135,8 @@ public:
 					s->TakeDamage();
 				}
 				else {
-					static_cast<Skeleton*>(bodyUserData1)->ReachPlayer();
-					static_cast<Player*>(bodyUserData2)->TakeDamage();
+					s->ReachPlayer();
+					p->TakeDamage();
 				}
 			}
 			else if (fixBType == "Skeleton") {
@@ -186,44 +152,63 @@ public:
 					s->TakeDamage();
 				}
 				else {
-					static_cast<Skeleton*>(bodyUserData1)->ReachPlayer();
-					static_cast<Player*>(bodyUserData2)->TakeDamage();
+					s->ReachPlayer();
+					p->TakeDamage();
 				}
 			}
 		}
+
+		//Player Sword and Skeleton
+		else if (fixAType == "Skeleton" && fixBType == "Player_Sword"
+			|| fixAType == "Player_Sword" && fixBType == "Skeleton") {
+
+			if (fixAType == "Player_Sword") {
+				//if bottom of player touches top of enenmy
+				void* bodyUserData1 = contact->GetFixtureA()->GetBody()->GetUserData();
+				void* bodyUserData2 = contact->GetFixtureB()->GetBody()->GetUserData();
+
+				static_cast<Skeleton*>(bodyUserData2)->setCollidingSword(true); 
+			}
+			else if (fixBType == "Player_Sword") {
+				//if bottom of player touches top of enenmy
+				void* bodyUserData1 = contact->GetFixtureB()->GetBody()->GetUserData();
+				void* bodyUserData2 = contact->GetFixtureA()->GetBody()->GetUserData();
+
+				static_cast<Skeleton*>(bodyUserData2)->setCollidingSword(true);
+			}
+		}
+	}
+
+	void PreSolve(b2Contact* contact, const b2Manifold* oldManifold) {
+		void* fixAType = contact->GetFixtureA()->GetUserData();
+		void* fixBType = contact->GetFixtureB()->GetUserData();
+
+		
 	}
 
 	void EndContact(b2Contact* contact) {
 		void* fixAType = contact->GetFixtureA()->GetBody()->GetUserData();
 		void* fixBType = contact->GetFixtureB()->GetBody()->GetUserData();
-		/*
-		if (fixAType == "Player" && fixBType == "Platform"
-		|| fixAType == "Platform" && fixBType == "Player")
-		{
-		if (fixAType == "Player") {
-		void* bodyUserData1 = contact->GetFixtureA()->GetUserData();
-		void* bodyUserData2 = contact->GetFixtureB()->GetUserData();
-		b2Vec2 posPlat = contact->GetFixtureB()->GetBody()->GetPosition();
+		
+		//Player Sword and Skeleton
+		if (fixAType == "Skeleton" && fixBType == "Player_Sword"
+			|| fixAType == "Player_Sword" && fixBType == "Skeleton") {
 
-		b2Vec2 posPlayer = contact->GetFixtureA()->GetBody()->GetPosition();
+			if (fixAType == "Player_Sword") {
+				//if bottom of player touches top of enenmy
+				void* bodyUserData1 = contact->GetFixtureA()->GetBody()->GetUserData();
+				void* bodyUserData2 = contact->GetFixtureB()->GetBody()->GetUserData();
 
-		if (posPlat.y - (20 / 60.0f) > posPlayer.y + 16 / 30.0f)
-		static_cast<Player*>(bodyUserData1)->SetGrounded(false);
-		static_cast<Platform*>(bodyUserData2)->ToggleMove();
+				static_cast<Skeleton*>(bodyUserData1)->setCollidingSword(false);
+			}
+			else if (fixBType == "Player_Sword") {
+				//if bottom of player touches top of enenmy
+				void* bodyUserData1 = contact->GetFixtureB()->GetBody()->GetUserData();
+				void* bodyUserData2 = contact->GetFixtureA()->GetBody()->GetUserData();
+
+				static_cast<Skeleton*>(bodyUserData1)->setCollidingSword(false);
+			}
 		}
-		else if (fixBType == "Player") {
-		void* bodyUserData1 = contact->GetFixtureB()->GetUserData();
-		void* bodyUserData2 = contact->GetFixtureA()->GetUserData();
-		b2Vec2 posPlat = contact->GetFixtureA()->GetBody()->GetPosition();
-
-		b2Vec2 posPlayer = contact->GetFixtureB()->GetBody()->GetPosition();
-
-		if (posPlat.y - (20 / 60.0f) > posPlayer.y + 16 / 30.0f)
-		static_cast<Player*>(bodyUserData1)->SetGrounded(false);
-
-		static_cast<Platform*>(bodyUserData2)->ToggleMove();
-		}
-		}*/
 	}
 };
 #endif

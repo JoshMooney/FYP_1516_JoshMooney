@@ -18,6 +18,7 @@ private:
 	thor::FrameAnimation frame_death;
 	string s_death;
 	sf::Sound m_death;
+
 public:
 	enum AI { WHITE, GREY, BLACK };
 	AI ai;
@@ -37,8 +38,8 @@ public:
 	void update(FTS fts);
 	void render(sf::RenderWindow &w, sf::Time frames);
 
-	void TakeDamage();
-	void Die();
+	void TakeDamage() override;
+	void Die() override;
 	void assignBody(b2Body *b) { e_box_body = b; }
 	void move();
 	void attack();
@@ -51,7 +52,7 @@ public:
 	void ReachedEdge();
 	void ReachPlayer();
 	void ReachWall();
-	sf::FloatRect getBounds() {
+	sf::FloatRect getBounds() override {
 		sf::Vector2f position(getPosition().x - (m_text_size.x / 2), getPosition().y - (m_text_size.y / 2));
 		return sf::FloatRect{ position.x, position.y, (float)m_text_size.x, (float)m_text_size.y };
 	}
