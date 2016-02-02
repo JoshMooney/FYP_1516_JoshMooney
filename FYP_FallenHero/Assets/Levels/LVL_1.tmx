@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="198" height="26" tilewidth="32" tileheight="32" nextobjectid="61">
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="198" height="26" tilewidth="32" tileheight="32" nextobjectid="65">
  <tileset firstgid="1" name="tile_set" tilewidth="32" tileheight="32" tilecount="3">
   <image source="Tiles/tile_set.png" width="96" height="32"/>
  </tileset>
@@ -226,7 +226,7 @@
     <property name="h" value="480"/>
     <property name="w" value="32"/>
     <property name="x" value="5216"/>
-    <property name="y" value="480"/>
+    <property name="y" value="448"/>
    </properties>
   </object>
   <object id="54" name="pf_23" type="Platform" x="5408" y="480" width="32" height="352">
@@ -354,6 +354,42 @@
     <property name="w" value="64"/>
     <property name="x" value="480"/>
     <property name="y" value="416"/>
+   </properties>
+  </object>
+  <object id="61" name="Skeleton" x="2464" y="384" width="64" height="64">
+   <properties>
+    <property name="h" value="64"/>
+    <property name="type" value="Skeleton"/>
+    <property name="w" value="64"/>
+    <property name="x" value="2464"/>
+    <property name="y" value="384"/>
+   </properties>
+  </object>
+  <object id="62" name="Skeleton" x="3776" y="672" width="64" height="64">
+   <properties>
+    <property name="h" value="64"/>
+    <property name="type" value="Skeleton"/>
+    <property name="w" value="64"/>
+    <property name="x" value="3776"/>
+    <property name="y" value="672"/>
+   </properties>
+  </object>
+  <object id="63" name="Skeleton" x="3872" y="256" width="64" height="64">
+   <properties>
+    <property name="h" value="64"/>
+    <property name="type" value="Skeleton"/>
+    <property name="w" value="64"/>
+    <property name="x" value="3872"/>
+    <property name="y" value="256"/>
+   </properties>
+  </object>
+  <object id="64" name="Skeleton" x="5120" y="320" width="64" height="64">
+   <properties>
+    <property name="h" value="64"/>
+    <property name="type" value="Skeleton"/>
+    <property name="w" value="64"/>
+    <property name="x" value="5120"/>
+    <property name="y" value="320"/>
    </properties>
   </object>
  </objectgroup>
