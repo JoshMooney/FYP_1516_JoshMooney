@@ -57,7 +57,7 @@ void Level::ParseMapLayers(b2World * world, Spawner *s) {
 
 	lay = tiled_map->GetObjectGroup("Player_Data");
 	GeneratePlayerItems(world, lay);
-	tiled_map->GetObjectGroup("Player_Data").visible = true;
+	tiled_map->GetObjectGroup("Player_Data").visible = false;
 
 	lay = tiled_map->GetObjectGroup("BG");
 	GenerateSceneryBG(world, lay);
@@ -65,11 +65,15 @@ void Level::ParseMapLayers(b2World * world, Spawner *s) {
 
 	lay = tiled_map->GetObjectGroup("FG");
 	GenerateSceneryFG(world, lay);
-	tiled_map->GetObjectGroup("FG").visible = true;
+	tiled_map->GetObjectGroup("FG").visible = false;
 
 	lay = tiled_map->GetObjectGroup("Enemy_Data");
 	GenerateEnemies(world, lay, s);
 	tiled_map->GetObjectGroup("Enemy_Data").visible = false;
+
+	lay = tiled_map->GetObjectGroup("Blocks");
+	GenerateBlocks(world, lay, s);
+	tiled_map->GetObjectGroup("Blocks").visible = true;
 
 	//l = make_shared<tmx::ObjectGroup>(tiled_map->GetObjectGroup("Platform"));
 	//CreatePlatforms(world, layer);
@@ -212,6 +216,38 @@ void Level::GenerateEnemies(b2World *world, tmx::ObjectGroup &layer, Spawner* s)
 			
 			s->SpawnSkeleton(position);
 		}
+	}
+}
+void Level::GenerateBlocks(b2World * world, tmx::ObjectGroup & layer, Spawner * spawner) {
+	int lenght = layer.objects_.size();
+	sf::Vector2f position;
+	string num;
+	CrumbleBlock::TYPE block_type;
+	CrumbleBlock::SIZE block_size;
+	for (int i = 0; i < lenght; i++) {
+		string type = layer.objects_[i].GetPropertyValue("type");
+		//Find the type of Block
+		if (type == "rock")
+			block_type = CrumbleBlock::ROCK;
+		else if (type == "sand")
+			block_type = CrumbleBlock::SAND;
+		else if (type == "dirt")
+			block_type = CrumbleBlock::DIRT;
+
+		string size = layer.objects_[i].GetPropertyValue("w");
+		if (size == "64")
+			block_size = CrumbleBlock::LARGE;
+		else if (size == "32")
+ 			block_size = CrumbleBlock::SMALL;
+
+		sf::Vector2f position = sf::Vector2f();
+		num = layer.objects_[i].GetPropertyValue("x");
+		position.x = atoi(num.c_str());
+
+		num = layer.objects_[i].GetPropertyValue("y");
+		position.y = atoi(num.c_str());
+
+		spawner->SpawnBlock(position, block_type, block_size);
 	}
 }
 

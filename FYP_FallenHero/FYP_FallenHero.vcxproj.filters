@@ -126,26 +126,14 @@
     <ClInclude Include="tinyxml2.h">
       <Filter>Header Files\Util</Filter>
     </ClInclude>
-    <ClInclude Include="XMLLoader.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="SaveSlot.hpp">
       <Filter>Header Files\Util</Filter>
     </ClInclude>
     <ClInclude Include="Command.hpp">
       <Filter>Header Files\Util</Filter>
     </ClInclude>
-    <ClInclude Include="Spawner.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Skeleton.hpp">
       <Filter>Header Files\Entities</Filter>
-    </ClInclude>
-    <ClInclude Include="ContactListener.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="SFMLDebugDraw.h">
-      <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Weed.hpp">
       <Filter>Header Files\Entities</Filter>
@@ -153,11 +141,23 @@
     <ClInclude Include="Flyer.hpp">
       <Filter>Header Files\Entities</Filter>
     </ClInclude>
-    <ClInclude Include="Actor.hpp">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="Spawner.hpp">
+      <Filter>Header Files\Entities</Filter>
     </ClInclude>
     <ClInclude Include="HUD.hpp">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\Util</Filter>
+    </ClInclude>
+    <ClInclude Include="XMLLoader.hpp">
+      <Filter>Header Files\Util</Filter>
+    </ClInclude>
+    <ClInclude Include="SFMLDebugDraw.h">
+      <Filter>Header Files\Util</Filter>
+    </ClInclude>
+    <ClInclude Include="ContactListener.hpp">
+      <Filter>Header Files\Util</Filter>
+    </ClInclude>
+    <ClInclude Include="CrumbleBlock.hpp">
+      <Filter>Header Files\Entities</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -209,16 +209,19 @@
     <ClCompile Include="tinyxml2.cpp">
       <Filter>Source Files\Util</Filter>
     </ClCompile>
-    <ClCompile Include="Spawner.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Skeleton.cpp">
       <Filter>Source Files\Entities</Filter>
     </ClCompile>
-    <ClCompile Include="SFMLDebugDraw.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="Spawner.cpp">
+      <Filter>Source Files\Entities</Filter>
     </ClCompile>
     <ClCompile Include="HUD.cpp">
+      <Filter>Source Files\Util</Filter>
+    </ClCompile>
+    <ClCompile Include="SFMLDebugDraw.cpp">
+      <Filter>Source Files\Util</Filter>
+    </ClCompile>
+    <ClCompile Include="CrumbleBlock.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

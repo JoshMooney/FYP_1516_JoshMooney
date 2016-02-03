@@ -56,7 +56,9 @@ public:
 	void GenerateLevelItems(b2World *world, tmx::ObjectGroup &layer);
 	void GenerateSceneryBG(b2World *world, tmx::ObjectGroup &layer);
 	void GenerateSceneryFG(b2World *world, tmx::ObjectGroup &layer);
+
 	void GenerateEnemies(b2World *world, tmx::ObjectGroup &layer, Spawner* spawner);
+	void GenerateBlocks(b2World *world, tmx::ObjectGroup &layer, Spawner* spawner);
 
 	void Destroy(b2World *world);
 

@@ -6,6 +6,7 @@
 #include "Box2D\Box2D.h"
 #include "Enemy.hpp"
 #include "Skeleton.hpp"
+#include "CrumbleBlock.hpp"
 
 #include "Player.hpp"
 
@@ -17,6 +18,7 @@ private:
 
 	Skeleton* prototype_Skeleton;
 	vector<Enemy *> m_enemies;
+	vector<CrumbleBlock *> m_blocks;
 
 public:
 	enum SPAWN_TYPE { SKELETON };
@@ -27,7 +29,10 @@ public:
 	b2Body* GenerateBody(SPAWN_TYPE type);
 
 	void SpawnSkeleton(sf::Vector2f pos);
+	void SpawnBlock(sf::Vector2f pos, CrumbleBlock::TYPE t, CrumbleBlock::SIZE s);
 
+	void CullBodies();
+	void DespawnObject();
 	void CullInActiveEnemies();
 
 	void update(FTS fts, Player *p);

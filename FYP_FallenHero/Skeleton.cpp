@@ -4,6 +4,8 @@
 
 Skeleton::Skeleton() {
 	init();
+	setPosition(-500, -500);
+	setTexture(sf::Texture());
 }
 Skeleton::Skeleton(b2Body *b, sf::Vector2f pos, bool dir) {
 	b->SetUserData(this);
@@ -86,8 +88,7 @@ void Skeleton::loadMedia(){
 	e_texture = "Assets/Game/OG_Skeleton.png";
 	setTexture(ResourceManager<sf::Texture>::instance()->get(e_texture));
 	sf::Texture l_texture = ResourceManager<sf::Texture>::instance()->get(e_texture);
-	//m_text_size = l_texture.getSize();
-	m_text_size = sf::Vector2u(27, 44);
+ 	m_text_size = sf::Vector2u(27, 44);
 	setOrigin(m_text_size.x / 2, m_text_size.y / 2);
 
 	addFrames(frame_death, 0, 0, 7, 38, 47, 1.0f);

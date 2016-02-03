@@ -4,6 +4,7 @@
 #include "Box2D\Box2D.h"
 
 #include "Player.hpp"
+#include "CrumbleBlock.hpp"
 #include "Terrain.hpp"
 #include "Enemy.hpp"
 #include "Skeleton.hpp"
@@ -185,6 +186,24 @@ public:
 				static_cast<Skeleton*>(bodyUserData2)->setCollidingSword(true);
 			}
 		}
+	
+		//Player Sword and Block
+		else if (fixAType == "Block" && fixBType == "Player_Sword"
+			|| fixAType == "Player_Sword" && fixBType == "Block") {
+
+			if (fixAType == "Player_Sword") {
+				void* sword_fix = contact->GetFixtureA()->GetBody()->GetUserData();
+				void* block_fix = contact->GetFixtureB()->GetBody()->GetUserData();
+
+				static_cast<CrumbleBlock*>(block_fix)->setCollidingSword(true);
+			}
+			else if (fixBType == "Player_Sword") {
+				void* block_fix = contact->GetFixtureA()->GetBody()->GetUserData();
+				void* sword_fix = contact->GetFixtureB()->GetBody()->GetUserData();
+
+				static_cast<CrumbleBlock*>(block_fix)->setCollidingSword(true);
+			}
+		}
 	}
 
 	void PreSolve(b2Contact* contact, const b2Manifold* oldManifold) {
@@ -215,6 +234,24 @@ public:
 				void* bodyUserData2 = contact->GetFixtureA()->GetBody()->GetUserData();
 
 				static_cast<Skeleton*>(bodyUserData1)->setCollidingSword(false);
+			}
+		}
+
+		//Player Sword and Block
+		else if (fixAType == "Block" && fixBType == "Player_Sword"
+			|| fixAType == "Player_Sword" && fixBType == "Block") {
+
+			if (fixAType == "Player_Sword") {
+				void* sword_fix = contact->GetFixtureA()->GetBody()->GetUserData();
+				void* block_fix = contact->GetFixtureB()->GetBody()->GetUserData();
+
+				static_cast<CrumbleBlock*>(block_fix)->setCollidingSword(false);
+			}
+			else if (fixBType == "Player_Sword") {
+				void* block_fix = contact->GetFixtureA()->GetBody()->GetUserData();
+				void* sword_fix = contact->GetFixtureB()->GetBody()->GetUserData();
+
+				static_cast<CrumbleBlock*>(block_fix)->setCollidingSword(false);
 			}
 		}
 	}

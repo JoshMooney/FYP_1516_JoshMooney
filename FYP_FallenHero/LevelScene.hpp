@@ -25,6 +25,7 @@
 #include "SFMLDebugDraw.h"
 #include "SFML\Audio.hpp"
 #include "HUD.hpp"
+#include "CrumbleBlock.hpp"
 
 class LevelScene : public Scene{
 private:

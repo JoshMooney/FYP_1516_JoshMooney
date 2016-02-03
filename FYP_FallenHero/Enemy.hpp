@@ -19,6 +19,7 @@ public:
 	b2Body *e_box_body;
 	bool e_direction;
 	bool e_sword_col;
+	bool is_hit;
 
 	virtual void update(FTS fts) = 0;
 	virtual void render(sf::RenderWindow &w, sf::Time frames) = 0;
