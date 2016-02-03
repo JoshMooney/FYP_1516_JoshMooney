@@ -32,12 +32,14 @@ private:
 	string s_finish_level;
 	string s_fall;
 	string s_hit;
+	string s_swing;
 
 	sf::Sound m_jump;
 	sf::Sound m_death;
 	sf::Sound m_finish_level;
 	sf::Sound m_fall;
 	sf::Sound m_hit;
+	sf::Sound m_swing;
 	int m_gold;
 	//Animation
 	thor::FrameAnimation frame_attack;

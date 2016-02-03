@@ -147,6 +147,9 @@ void Player::loadMedia() {
 	m_fall.setBuffer(ResourceManager<sf::SoundBuffer>::instance()->get(s_fall));
 	s_hit = "Assets/Audio/Game/Player/player_hit.wav";
 	m_hit.setBuffer(ResourceManager<sf::SoundBuffer>::instance()->get(s_hit));
+	s_swing = "Assets/Audio/Game/Player/swing.wav";
+	m_swing.setBuffer(ResourceManager<sf::SoundBuffer>::instance()->get(s_swing));
+
 
 	//Texture Stuff!
 	e_texture = "Assets/Game/player.png";
@@ -239,7 +242,8 @@ void Player::FallOffMap(sf::Vector2f pos) {
 
 void Player::attack() {
 	if (!m_is_attacking && m_current_state != HIT) {
-		cLog::inst()->print("Player Attacked");
+		//cLog::inst()->print("Player Attacked");
+		m_swing.play();
 		m_is_attacking = true;
 	}
 }
