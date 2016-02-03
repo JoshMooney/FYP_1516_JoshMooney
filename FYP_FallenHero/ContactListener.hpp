@@ -129,14 +129,18 @@ public:
 		
 				Skeleton* s = static_cast<Skeleton*>(bodyUserData1); //->ReachPlayer();
 				Player* p = static_cast<Player*>(bodyUserData2); //->TakeDamage();
-
-				if (p->getBounds().top + p->getBounds().height < s->getBounds().top)	{
-					//Kill enemy
-					s->TakeDamage();
-				}
-				else {
-					s->ReachPlayer();
-					p->TakeDamage();
+				if (s->isAlive()) {
+					if (p->getBounds().top + p->getBounds().height < s->getBounds().top) {
+						//Kill enemy
+						s->TakeDamage();
+					}
+					else {
+						s->ReachPlayer();
+						if(s->getCenter().x > p->getCenter().x)
+							p->TakeDamage(0);		//Knockback Left
+						else
+							p->TakeDamage(1);		//Knockback Left
+					}
 				}
 			}
 			else if (fixBType == "Skeleton") {
@@ -146,14 +150,18 @@ public:
 				
 				Skeleton* s = static_cast<Skeleton*>(bodyUserData1); //->ReachPlayer();
 				Player* p = static_cast<Player*>(bodyUserData2); //->TakeDamage();
-
-				if (p->getBounds().top + p->getBounds().height < s->getBounds().top)	{
-					//Kill enemy
-					s->TakeDamage();
-				}
-				else {
-					s->ReachPlayer();
-					p->TakeDamage();
+				if (s->isAlive()) {
+					if (p->getBounds().top + p->getBounds().height < s->getBounds().top) {
+						//Kill enemy
+						s->TakeDamage();
+					}
+					else {
+						s->ReachPlayer();
+						if (s->getCenter().x > p->getCenter().x)
+							p->TakeDamage(0);		//Knockback Left
+						else
+							p->TakeDamage(1);		//Knockback Left
+					}
 				}
 			}
 		}

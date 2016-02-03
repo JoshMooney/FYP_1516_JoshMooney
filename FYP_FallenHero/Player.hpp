@@ -31,11 +31,13 @@ private:
 	string s_death;
 	string s_finish_level;
 	string s_fall;
+	string s_hit;
 
 	sf::Sound m_jump;
 	sf::Sound m_death;
 	sf::Sound m_finish_level;
 	sf::Sound m_fall;
+	sf::Sound m_hit;
 	int m_gold;
 	//Animation
 	thor::FrameAnimation frame_attack;
@@ -48,6 +50,7 @@ private:
 	STATE m_current_state, m_previous_state;
 	thor::Animator<sf::Sprite, STATE> m_animator;
 	sf::Vector2i attack_frame_size;
+	sf::Vector2f const knock_back_factor = sf::Vector2f(0.5f, 0.8f);
 public:
 	float m_xp;
 	float m_max_xp;
@@ -90,6 +93,7 @@ public:
 	*	@param sf::Vector2f Set b2body and sprite to this position
 	*/
 	void reset(sf::Vector2f pos);
+	void FallOffMap(sf::Vector2f pos);
 
 	void attack();
 	
@@ -108,7 +112,7 @@ public:
 	}												//!<Checks if the player is in the jumping animation
 	sf::Vector2f getCenter() { return vHelper::toSF(e_box_body->GetPosition()); }                                   //!<Finds the center of the player in Global coordinates
 	void moveTo(sf::Vector2f p) {	e_box_body->SetTransform(vHelper::toB2(p), 0.0f);	}		//!<Sets the Player to the position passed in
-	void TakeDamage();
+	void TakeDamage(bool knock_dir);
 	sf::Vector2u getSize() { return m_text_size; }
 	/**
 	*	@brief Position the players b2Body to the position passed in

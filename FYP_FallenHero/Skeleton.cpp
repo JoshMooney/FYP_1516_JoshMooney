@@ -41,7 +41,7 @@ Skeleton::Skeleton(b2World * world) {
 
 void Skeleton::init() {
 	e_sword_col = false;
-	m_speed = 0.5f;
+	m_speed = 0.35f;
 	e_direction = 1;	//true = 1 = Looing right and vice versa
 	speedFactor = 0;
 	e_body_active = true;
@@ -98,7 +98,7 @@ void Skeleton::loadMedia(){
 	m_animator.addAnimation(DEATH, frame_death, sf::seconds(0.5f));
 	m_animator.addAnimation(IDLE, frame_idle, sf::seconds(0.5f));
 	m_animator.addAnimation(WALKING, frame_walk, sf::seconds(0.5f));
-	m_animator.addAnimation(ATTACKING, frame_attack, sf::seconds(0.25f));
+	m_animator.addAnimation(ATTACKING, frame_attack, sf::seconds(0.15f));
 
 	s_death = "Assets/Audio/Game/skeleton_kill.wav";
 	m_death.setBuffer(ResourceManager<sf::SoundBuffer>::instance()->get(s_death));

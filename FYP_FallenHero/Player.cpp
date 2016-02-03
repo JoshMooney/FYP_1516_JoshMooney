@@ -75,11 +75,13 @@ Player::~Player(){
 }
 
 void Player::checkAnimation() {
-	if (m_is_attacking)
+	if (m_is_attacking && m_current_state != HIT)		//Attack if the state is attacking
 		m_current_state = ATTACK;
-	else if (m_is_moving)
+	else if (m_is_jumping && m_current_state != HIT)
+		m_current_state = JUMP;
+	else if (m_is_moving && m_current_state != HIT)		//Run if m_moving is true
 		m_current_state = RUN;
-	else
+	else if (!m_is_moving && !m_is_attacking && !m_is_jumping && m_current_state != HIT)	//Idle if not moving or attacking or jumping and not hit
 		m_current_state = IDLE;
 	
 	if (m_current_state != m_previous_state) {
@@ -89,10 +91,15 @@ void Player::checkAnimation() {
 
 	if (m_current_state == RUN && !m_animator.isPlayingAnimation())
 		m_animator.playAnimation(RUN);
+	if (m_current_state == JUMP && !m_animator.isPlayingAnimation())
+		m_animator.playAnimation(JUMP);
 	if (m_current_state == IDLE && !m_animator.isPlayingAnimation())
 		m_animator.playAnimation(IDLE);
 	if (m_current_state == ATTACK && !m_animator.isPlayingAnimation()) {
 		m_is_attacking = false;
+		m_current_state = IDLE;
+	}
+	if (m_current_state == HIT && !m_animator.isPlayingAnimation()) {
 		m_current_state = IDLE;
 	}
 }
@@ -110,6 +117,14 @@ void Player::addFrames(thor::FrameAnimation & animation, STATE s, int xFirst, in
 	else if (s == IDLE) {
 		y = 164;
 		o = sf::Vector2f(16, 20);
+	}
+	else if (s == HIT) {
+		y = 208;
+		o = sf::Vector2f(19, 24);
+	}
+	else if (s == JUMP) {
+		y = 112;
+		o = sf::Vector2f(30, 24);
 	}
 
 
@@ -130,6 +145,8 @@ void Player::loadMedia() {
 	m_finish_level.setBuffer(ResourceManager<sf::SoundBuffer>::instance()->get(s_finish_level));
 	s_fall = "Assets/Audio/Game/Player/fall.wav";
 	m_fall.setBuffer(ResourceManager<sf::SoundBuffer>::instance()->get(s_fall));
+	s_hit = "Assets/Audio/Game/Player/player_hit.wav";
+	m_hit.setBuffer(ResourceManager<sf::SoundBuffer>::instance()->get(s_hit));
 
 	//Texture Stuff!
 	e_texture = "Assets/Game/player.png";
@@ -142,14 +159,14 @@ void Player::loadMedia() {
 	addFrames(frame_run,	RUN,	0, 4, 36, 52, 1.0f);
 	addFrames(frame_idle,	IDLE,	0, 3, 32, 44, 1.0f);
 	addFrames(frame_attack, ATTACK, 0, 3, 68, 60, 1.0f);
-	addFrames(frame_jump,	JUMP,	0, 3, 36, 52, 1.0f);
+	addFrames(frame_jump,	JUMP,	0, 4, 36, 52, 1.0f);
 	addFrames(frame_hit,	HIT,	0, 1, 46, 44, 1.0f);
 
 	m_animator.addAnimation(ATTACK, frame_attack,	sf::seconds(0.15f));
 	m_animator.addAnimation(RUN,	frame_run,		sf::seconds(0.5f));
 	m_animator.addAnimation(IDLE,	frame_idle,		sf::seconds(1.5f));
-	m_animator.addAnimation(JUMP,	frame_jump,		sf::seconds(0.5f));
-	m_animator.addAnimation(HIT,	frame_hit,		sf::seconds(2.5f));
+	m_animator.addAnimation(JUMP,	frame_jump,		sf::seconds(1.2f));
+	m_animator.addAnimation(HIT,	frame_hit,		sf::seconds(1.2f));
 }
 
 void Player::update(FTS fts){
@@ -167,7 +184,7 @@ void Player::Idle() {
 	}
 }
 void Player::moveLeft(){
-	if (!m_is_attacking) {
+	if (!m_is_attacking && m_current_state != HIT) {
 		setDirection(false);
 		if (speedFactor > -1.f)
 			speedFactor -= 0.02;
@@ -182,7 +199,7 @@ void Player::moveLeft(){
 	}
 }
 void Player::moveRight(){
-	if (!m_is_attacking) {
+	if (!m_is_attacking && m_current_state != HIT) {
 		setDirection(true);
 		if (speedFactor < 1.f)
 			speedFactor += 0.02f;
@@ -197,7 +214,7 @@ void Player::moveRight(){
 }
 
 void Player::jump() {
-	if (!m_is_jumping && !m_is_attacking) {
+	if (!m_is_jumping && !m_is_attacking && m_current_state != HIT) {
 		m_jump.play();
 		e_box_body->GetFixtureList()->SetFriction(0.0f);
 		float newYVel = clamp(e_box_body->GetLinearVelocity().y + (m_acceleration * DELTA_TIME.asSeconds()), -m_jump_force, m_jump_force);
@@ -215,8 +232,13 @@ void Player::reset(sf::Vector2f pos) {
 	moveTo(pos);
 }
 
+void Player::FallOffMap(sf::Vector2f pos) {
+	reset(pos);
+	m_fall.play();
+}
+
 void Player::attack() {
-	if (!m_is_attacking) {
+	if (!m_is_attacking && m_current_state != HIT) {
 		cLog::inst()->print("Player Attacked");
 		m_is_attacking = true;
 	}
@@ -234,10 +256,25 @@ void Player::setDirection(bool b) {
 	else setScale(-1, 1);
 }
 
-void Player::TakeDamage() {
-	e_hp -= 25;
-	if (e_hp <= 0) {
-		m_alive = false;
+void Player::TakeDamage(bool knock_dir) {
+	if (m_current_state != HIT) {
+		e_box_body->SetLinearVelocity(b2Vec2(0, 0));
+		if (knock_dir) {
+			float newXVel = clamp(e_box_body->GetLinearVelocity().x + (m_acceleration * DELTA_TIME.asSeconds()), 0, knock_back_factor.x);
+			float newYVel = clamp(e_box_body->GetLinearVelocity().y + (m_acceleration * DELTA_TIME.asSeconds()), 0, knock_back_factor.y);
+			e_box_body->SetLinearVelocity(b2Vec2(e_box_body->GetLinearVelocity().x + newXVel, e_box_body->GetLinearVelocity().y - newYVel));
+		}
+		else {
+			float newXVel = clamp(e_box_body->GetLinearVelocity().x + (m_acceleration * DELTA_TIME.asSeconds()), 0, knock_back_factor.x);
+			float newYVel = clamp(e_box_body->GetLinearVelocity().y + (m_acceleration * DELTA_TIME.asSeconds()), 0, knock_back_factor.y);
+			e_box_body->SetLinearVelocity(b2Vec2(e_box_body->GetLinearVelocity().x - newXVel, e_box_body->GetLinearVelocity().y - newYVel));
+		}
+		m_hit.play();
+		m_current_state = HIT;
+		e_hp -= 25;
+		if (e_hp <= 0) {
+			m_alive = false;
+		}
 	}
 }
 

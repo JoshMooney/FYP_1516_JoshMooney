@@ -64,7 +64,8 @@ void LevelScene::update(){
 		m_player_HUD.update();
 
 		if (m_camera.outOfBounds(m_player->getBounds())) {
-			respawnPlayer();
+			m_camera.refresh(m_player->getCenter());
+			m_player->FallOffMap(m_level->getSpawn());
 		}
 		m_camera.setCenter(m_camera.getPlayerOffset(m_player->getCenter()));
 
