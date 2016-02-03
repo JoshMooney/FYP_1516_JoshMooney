@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="198" height="26" tilewidth="32" tileheight="32" nextobjectid="78">
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="198" height="26" tilewidth="32" tileheight="32" nextobjectid="93">
  <tileset firstgid="1" name="tile_set" tilewidth="32" tileheight="32" tilecount="3">
   <image source="Tiles/tile_set.png" width="96" height="32"/>
  </tileset>
@@ -448,6 +448,126 @@
     <property name="w" value="32"/>
     <property name="x" value="576"/>
     <property name="y" value="576"/>
+   </properties>
+  </object>
+  <object id="78" x="2144" y="416" width="64" height="64">
+   <properties>
+    <property name="type" value="rock"/>
+    <property name="w" value="64"/>
+    <property name="x" value="2144"/>
+    <property name="y" value="416"/>
+   </properties>
+  </object>
+  <object id="79" x="3904" y="416" width="64" height="64">
+   <properties>
+    <property name="type" value="rock"/>
+    <property name="w" value="64"/>
+    <property name="x" value="3904"/>
+    <property name="y" value="416"/>
+   </properties>
+  </object>
+  <object id="80" x="3840" y="448" width="64" height="64">
+   <properties>
+    <property name="type" value="sand"/>
+    <property name="w" value="64"/>
+    <property name="x" value="3840"/>
+    <property name="y" value="448"/>
+   </properties>
+  </object>
+  <object id="81" x="4288" y="288" width="64" height="64">
+   <properties>
+    <property name="type" value="dirt"/>
+    <property name="w" value="64"/>
+    <property name="x" value="4288"/>
+    <property name="y" value="288"/>
+   </properties>
+  </object>
+  <object id="82" x="5920" y="416" width="64" height="64">
+   <properties>
+    <property name="type" value="dirt"/>
+    <property name="w" value="64"/>
+    <property name="x" value="5920"/>
+    <property name="y" value="416"/>
+   </properties>
+  </object>
+  <object id="83" x="3904" y="480" width="32" height="32">
+   <properties>
+    <property name="type" value="dirt"/>
+    <property name="w" value="32"/>
+    <property name="x" value="3904"/>
+    <property name="y" value="480"/>
+   </properties>
+  </object>
+  <object id="84" x="3936" y="480" width="32" height="32">
+   <properties>
+    <property name="type" value="rock"/>
+    <property name="w" value="32"/>
+    <property name="x" value="3936"/>
+    <property name="y" value="480"/>
+   </properties>
+  </object>
+  <object id="85" x="3840" y="416" width="32" height="32">
+   <properties>
+    <property name="type" value="dirt"/>
+    <property name="w" value="32"/>
+    <property name="x" value="3840"/>
+    <property name="y" value="416"/>
+   </properties>
+  </object>
+  <object id="86" x="4288" y="256" width="32" height="32">
+   <properties>
+    <property name="type" value="dirt"/>
+    <property name="w" value="32"/>
+    <property name="x" value="4288"/>
+    <property name="y" value="256"/>
+   </properties>
+  </object>
+  <object id="87" x="4256" y="320" width="32" height="32">
+   <properties>
+    <property name="type" value="rock"/>
+    <property name="w" value="32"/>
+    <property name="x" value="4256"/>
+    <property name="y" value="320"/>
+   </properties>
+  </object>
+  <object id="88" x="4256" y="288" width="32" height="32">
+   <properties>
+    <property name="type" value="rock"/>
+    <property name="w" value="32"/>
+    <property name="x" value="4256"/>
+    <property name="y" value="288"/>
+   </properties>
+  </object>
+  <object id="89" x="4224" y="320" width="32" height="32">
+   <properties>
+    <property name="type" value="sand"/>
+    <property name="w" value="32"/>
+    <property name="x" value="4224"/>
+    <property name="y" value="320"/>
+   </properties>
+  </object>
+  <object id="90" x="4320" y="256" width="32" height="32">
+   <properties>
+    <property name="type" value="dirt"/>
+    <property name="w" value="32"/>
+    <property name="x" value="4320"/>
+    <property name="y" value="256"/>
+   </properties>
+  </object>
+  <object id="91" x="3424" y="640" width="64" height="64">
+   <properties>
+    <property name="type" value="sand"/>
+    <property name="w" value="64"/>
+    <property name="x" value="3424"/>
+    <property name="y" value="640"/>
+   </properties>
+  </object>
+  <object id="92" x="3072" y="416" width="64" height="64">
+   <properties>
+    <property name="type" value="dirt"/>
+    <property name="w" value="64"/>
+    <property name="x" value="3072"/>
+    <property name="y" value="416"/>
    </properties>
   </object>
  </objectgroup>

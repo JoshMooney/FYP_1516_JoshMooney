@@ -70,6 +70,41 @@ public:
 			}
 		}
 
+		//Player and Blocks
+		if (fixAType == "Block" && fixBType == "Player"
+			|| fixAType == "Player" && fixBType == "Block") {
+
+			Player* p;
+			if (fixAType == "Player") {
+				void* player_data = contact->GetFixtureA()->GetBody()->GetUserData();
+				void* block_data = contact->GetFixtureB()->GetBody()->GetUserData();
+				p = static_cast<Player*>(player_data);
+
+				if (p->isJumping()) {
+					sf::FloatRect player_geo = p->getBounds();
+					sf::FloatRect block_geo = static_cast<CrumbleBlock*>(block_data)->getBounds();
+
+					if (player_geo.top + player_geo.height >= block_geo.top - player_jump_y_offset &&
+						player_geo.top + player_geo.height <= block_geo.top)
+						p->setJumping(false);
+				}
+			}
+			if (fixBType == "Player") {
+				void* block_data = contact->GetFixtureA()->GetBody()->GetUserData();
+				void* player_data = contact->GetFixtureB()->GetBody()->GetUserData();
+				p = static_cast<Player*>(player_data);
+
+				if (p->isJumping()) {
+					sf::FloatRect player_geo = p->getBounds();
+					sf::FloatRect block_geo = static_cast<CrumbleBlock*>(block_data)->getBounds();
+
+					if (player_geo.top + player_geo.height >= block_geo.top - player_jump_y_offset &&
+						player_geo.top + player_geo.height <= block_geo.top)
+						p->setJumping(false);
+				}
+			}
+		}
+
 		//Ground and Skeleton
 		else if (fixAType == "Skeleton" && fixBType == "Terrain"
 			|| fixAType == "Terrain" && fixBType == "Skeleton") {
@@ -116,6 +151,54 @@ public:
 					Terrain* t = static_cast<Terrain*>(bodyUserData2);
 					static_cast<Skeleton*>(bodyUserData1)->isTouching(t);
 				}
+			}
+		}
+
+		//Ground and Skeleton
+		else if (fixAType == "Skeleton" && fixBType == "Block"
+			|| fixAType == "Block" && fixBType == "Skeleton") {
+
+			if (fixAType == "Skeleton") {
+				void* skele_data = contact->GetFixtureA()->GetBody()->GetUserData();
+				void* block_data = contact->GetFixtureB()->GetBody()->GetUserData();
+
+				sf::FloatRect t = static_cast<CrumbleBlock*>(block_data)->getBounds();
+				sf::FloatRect s = static_cast<Skeleton*>(skele_data)->getBounds();
+
+				//Right Side
+				if (s.left + s.width > t.left - entity_wall_offset &&
+					s.left + s.width < t.left)
+					static_cast<Skeleton*>(skele_data)->ReachWall();
+				//Left Side
+				else if (s.left > t.left + t.width + entity_wall_offset &&
+					s.left < t.left + t.width)
+					static_cast<Skeleton*>(skele_data)->ReachWall();
+				//Else set touching ground to be the skeleton ground
+				//else {
+				//	CrumbleBlock* t = static_cast<CrumbleBlock*>(block_data);
+				//	static_cast<Skeleton*>(skele_data)->isTouching(t);
+				//}
+			}
+			else if (fixBType == "Skeleton") {
+				void* block_data = contact->GetFixtureA()->GetBody()->GetUserData();
+				void* skele_data = contact->GetFixtureB()->GetBody()->GetUserData();
+
+				sf::FloatRect t = static_cast<CrumbleBlock*>(block_data)->getBounds();
+				sf::FloatRect s = static_cast<Skeleton*>(skele_data)->getBounds();
+
+				//Right Side
+				if (s.left + s.width > t.left - entity_wall_offset &&
+					s.left + s.width < t.left)
+					static_cast<Skeleton*>(skele_data)->ReachWall();
+				//Left Side
+				else if (s.left > t.left + t.width + entity_wall_offset &&
+					s.left < t.left + t.width)
+					static_cast<Skeleton*>(skele_data)->ReachWall();
+				//Else set touching ground to be the skeleton ground
+				//else {
+				//	CrumbleBlock* t = static_cast<CrumbleBlock*>(block_data);
+				//	static_cast<Skeleton*>(skele_data)->isTouching(t);
+				//}
 			}
 		}
 

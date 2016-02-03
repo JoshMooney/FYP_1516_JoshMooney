@@ -124,7 +124,7 @@ void Player::addFrames(thor::FrameAnimation & animation, STATE s, int xFirst, in
 	}
 	else if (s == JUMP) {
 		y = 112;
-		o = sf::Vector2f(30, 24);
+		o = sf::Vector2f(19, 31);
 	}
 
 

@@ -73,7 +73,7 @@ void Level::ParseMapLayers(b2World * world, Spawner *s) {
 
 	lay = tiled_map->GetObjectGroup("Blocks");
 	GenerateBlocks(world, lay, s);
-	tiled_map->GetObjectGroup("Blocks").visible = true;
+	tiled_map->GetObjectGroup("Blocks").visible = false;
 
 	//l = make_shared<tmx::ObjectGroup>(tiled_map->GetObjectGroup("Platform"));
 	//CreatePlatforms(world, layer);

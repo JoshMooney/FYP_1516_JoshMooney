@@ -171,13 +171,13 @@ void Spawner::clear() {
 		m_world->DestroyBody((*it)->e_box_body);		//Destroy the b2body of the enemy
 		delete * it;				//delete the pointer
 		it = m_enemies.erase(it);	//erase the object(calls the objects destructor)
-		cLog::inst()->print(0, "Spawner", "Enemy cleared from spawner");
+		//cLog::inst()->print(0, "Spawner", "Enemy cleared from spawner");
 	}
 
 	for (auto it = m_blocks.begin(); it != m_blocks.end();) {
 		m_world->DestroyBody((*it)->e_box_body);		//Destroy the b2body of the enemy
 		delete * it;				//delete the pointer
 		it = m_blocks.erase(it);	//erase the object(calls the objects destructor)
-		cLog::inst()->print(0, "Spawner", "Block cleared from spawner");
+		//cLog::inst()->print(0, "Spawner", "Block cleared from spawner");
 	}
 }
