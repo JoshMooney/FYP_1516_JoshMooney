@@ -1,0 +1,4 @@
+<map id="Player::Spawn" name="Player::Spawn">
+<area shape="rect" id="node2" href="$class_player.html#a49b1af1e82620c3265e8b23a7e4852dc" title="Sets the Player to the position passed in. " alt="" coords="160,5,271,32"/>
+<area shape="rect" id="node3" href="$class_player.html#ab34d543e0ce8136ffd34777576d7c720" title="Resets the player in the game setting its direction and speedfactor. " alt="" coords="319,5,415,32"/>
+</map>

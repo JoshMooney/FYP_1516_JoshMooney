@@ -1,0 +1,4 @@
+<map id="Player::Player" name="Player::Player">
+<area shape="rect" id="node2" href="$class_player.html#a10edd89e8a7ef4f1b83250d2b592cefe" title="Calculates and sets the position of the sf::Sprite in relation to the b2Body. " alt="" coords="185,5,313,32"/>
+<area shape="rect" id="node3" href="$class_resource_manager.html#a3dcdce6201a938ee51be3d23879e46e1" title="Fetches the current instance of the Manager is required to achieve the singleton pattern. " alt="" coords="157,56,341,83"/>
+</map>

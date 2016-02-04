@@ -1,0 +1,12 @@
+<map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
+<area shape="rect" id="node2" href="$class_enemy.html" title="Enemy" alt="" coords="129,68,192,95"/>
+<area shape="rect" id="node6" href="$struct_entity.html" title="Entity" alt="" coords="133,144,189,171"/>
+<area shape="rect" id="node8" href="$class_exit.html" title="Exit" alt="" coords="138,195,183,221"/>
+<area shape="rect" id="node9" href="$class_parallax_sprite.html" title="ParallaxSprite" alt="" coords="109,245,212,272"/>
+<area shape="rect" id="node10" href="$class_player_icon.html" title="This is the players icon that can be seen on the WorldMap scene. It represents the players character ..." alt="" coords="119,296,202,323"/>
+<area shape="rect" id="node11" href="$class_world_node.html" title="WorldNode" alt="" coords="117,347,204,373"/>
+<area shape="rect" id="node3" href="$class_flyer.html" title="Flyer" alt="" coords="271,5,322,32"/>
+<area shape="rect" id="node4" href="$class_skeleton.html" title="Skeleton" alt="" coords="260,56,333,83"/>
+<area shape="rect" id="node5" href="$class_weed.html" title="Weed" alt="" coords="269,107,325,133"/>
+<area shape="rect" id="node7" href="$class_player.html" title="This is the player class that will represent the user while in game, and will be responsable for cons..." alt="" coords="267,157,326,184"/>
+</map>

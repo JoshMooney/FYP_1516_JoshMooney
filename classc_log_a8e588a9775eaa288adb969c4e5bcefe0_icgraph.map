@@ -1,0 +1,4 @@
+<map id="cLog::print" name="cLog::print">
+<area shape="rect" id="node2" href="$class_menu_scene.html#afb5ab00d298633725f69723c83963a45" title="This is a pure virtual funciton for handleInput, which must be overloaded in any inheriting classes..." alt="" coords="136,5,301,32"/>
+<area shape="rect" id="node3" href="$class_resource_manager.html#ac429dfbb66104f517dee009b7bc03599" title="Gets the resouce and if it does not exist it creates and stores that resource. " alt="" coords="142,56,295,83"/>
+</map>

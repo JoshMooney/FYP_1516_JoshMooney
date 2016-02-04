@@ -1,0 +1,6 @@
+<map id="Player::reset" name="Player::reset">
+<area shape="rect" id="node2" href="$class_player.html#a49b1af1e82620c3265e8b23a7e4852dc" title="Sets the Player to the position passed in. " alt="" coords="149,56,260,83"/>
+<area shape="rect" id="node3" href="$class_player.html#af99c17372865d29c79ea1a17c5d8a935" title="Position the players b2Body to the position passed in. " alt="" coords="319,5,425,32"/>
+<area shape="rect" id="node4" href="$class_player.html#ab27728d11ac7c8d8d905ab5bd3e0fe89" title="Finds a value between the max and min passed in. " alt="" coords="321,56,423,83"/>
+<area shape="rect" id="node5" href="$class_player.html#a10edd89e8a7ef4f1b83250d2b592cefe" title="Calculates and sets the position of the sf::Sprite in relation to the b2Body. " alt="" coords="308,107,436,133"/>
+</map>

@@ -1,0 +1,5 @@
+<map id="Player::clamp" name="Player::clamp">
+<area shape="rect" id="node2" href="$class_player.html#a70e21ca98281b7d72f105f2693113d7e" title="Make the player jump. " alt="" coords="164,5,259,32"/>
+<area shape="rect" id="node3" href="$class_player.html#a49b1af1e82620c3265e8b23a7e4852dc" title="Sets the Player to the position passed in. " alt="" coords="156,56,267,83"/>
+<area shape="rect" id="node4" href="$class_player.html#ab34d543e0ce8136ffd34777576d7c720" title="Resets the player in the game setting its direction and speedfactor. " alt="" coords="315,56,411,83"/>
+</map>

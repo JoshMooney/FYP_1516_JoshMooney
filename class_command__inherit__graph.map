@@ -1,0 +1,7 @@
+<map id="Command" name="Command">
+<area shape="rect" id="node2" href="$class_fire_command.html" title="{FireCommand\n||+ execute()\l}" alt="" coords="5,160,108,237"/>
+<area shape="rect" id="node3" href="$class_jump_command.html" title="{JumpCommand\n||+ execute()\l}" alt="" coords="133,160,245,237"/>
+<area shape="rect" id="node4" href="$class_lurch_command.html" title="{LurchCommand\n||+ execute()\l}" alt="" coords="269,160,383,237"/>
+<area shape="rect" id="node5" href="$class_n_u_l_l_command.html" title="{NULLCommand\n||+ execute()\l}" alt="" coords="407,160,520,237"/>
+<area shape="rect" id="node6" href="$class_swap_command.html" title="{SwapCommand\n||+ execute()\l}" alt="" coords="544,160,657,237"/>
+</map>

@@ -1,0 +1,5 @@
+<map id="Enemy" name="Enemy">
+<area shape="rect" id="node3" href="$class_flyer.html" title="{Flyer\n|+ ai\l+ m_current_state\l|}" alt="" coords="5,520,133,612"/>
+<area shape="rect" id="node4" href="$class_skeleton.html" title="{Skeleton\n|+ ai\l+ m_current_state\l+ m_previous_state\l+ m_animator\l|+ Skeleton()\l+ Skeleton()\l+ Skeleton()\l+ init()\l+ ChangeState()\l+ loadMedia()\l+ checkAnimation()\l+ addFrames()\l+ update()\l+ render()\land 15 more...\l}" alt="" coords="158,432,293,700"/>
+<area shape="rect" id="node5" href="$class_weed.html" title="{Weed\n|+ ai\l+ m_current_state\l|+ Weed()\l+ Weed()\l+ ~Weed()\l+ init()\l+ update()\l+ render()\l+ TakeDamage()\l+ Die()\l+ assignBody()\l+ attack()\l+ alineSprite()\l+ ChangeDirection()\l+ setDirection()\l+ getCenter()\l+ getTextureSize()\l}" alt="" coords="317,417,454,715"/>
+</map>

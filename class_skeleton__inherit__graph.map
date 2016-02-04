@@ -1,0 +1,3 @@
+<map id="Skeleton" name="Skeleton">
+<area shape="rect" id="node2" href="$class_enemy.html" title="{Enemy\n|+ e_hp\l+ e_texture\l+ e_body_active\l+ e_can_despawn\l+ e_box_body\l+ e_direction\l|+ update()\l+ render()\l+ alineSprite()\l+ getCenter()\l+ isAlive()\l+ canDespawn()\l+ setActive()\l}" alt="" coords="9,131,136,369"/>
+</map>
