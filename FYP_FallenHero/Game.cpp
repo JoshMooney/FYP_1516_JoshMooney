@@ -7,6 +7,11 @@ Game::Game() :
 	m_window(new sf::RenderWindow(sf::VideoMode(SCREEN_WIDTH, SCREEN_HEIGHT, 32), "Fallen Hero", sf::Style::Titlebar)),
 	dd(*m_window)
 {
+	/*sf::Sprite title;
+	title.setTexture(ResourceManager<sf::Texture>::instance()->get("Assets\title_screen.png"));
+	title.setPosition(0, 0);
+	m_window->draw(title);
+	m_window->display();*/
 	//m_window = new sf::RenderWindow(sf::VideoMode(SCREEN_WIDTH, SCREEN_HEIGHT, 32), "Fallen Hero", sf::Style::Titlebar);
 	//dd(*m_window);
 
