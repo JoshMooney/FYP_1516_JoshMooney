@@ -1,6 +1,8 @@
 var searchData=
 [
-  ['player',['Player',['../class_player.html#a959d295b34c83faa09c375acf38ebe6f',1,'Player']]],
-  ['playericon',['PlayerIcon',['../class_player_icon.html#a0e3c7efe5b8277322a2ddbd2be4fd759',1,'PlayerIcon']]],
-  ['print',['print',['../classc_log.html#a8e588a9775eaa288adb969c4e5bcefe0',1,'cLog::print(string message)'],['../classc_log.html#a17a8987955e87950f2b3c5ac9c54c837',1,'cLog::print(int priority, string from, string message)'],['../classc_log.html#a8e588a9775eaa288adb969c4e5bcefe0',1,'cLog::print(string message)'],['../classc_log.html#a17a8987955e87950f2b3c5ac9c54c837',1,'cLog::print(int priority, string from, string message)']]]
+  ['moveleft',['moveLeft',['../class_player.html#ae3bbcf1159bdc059bff1c2513f2505f7',1,'Player']]],
+  ['moveplayer',['movePlayer',['../class_world_scene.html#af1b3f16c7375f86c397a7576d53c32e0',1,'WorldScene']]],
+  ['moveright',['moveRight',['../class_player.html#a6a2b68bc4b21d4c4a79a23b498896ec2',1,'Player']]],
+  ['moveto',['moveTo',['../class_player.html#a49b1af1e82620c3265e8b23a7e4852dc',1,'Player']]],
+  ['moving',['moving',['../class_player_icon.html#a7fc08c9a1c6d40120ab0e0b93a1c8ad1',1,'PlayerIcon']]]
 ];

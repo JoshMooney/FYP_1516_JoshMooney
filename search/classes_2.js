@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['clog',['cLog',['../classc_log.html',1,'']]],
-  ['command',['Command',['../class_command.html',1,'']]],
-  ['contactlistener',['ContactListener',['../class_contact_listener.html',1,'']]]
+  ['enemy',['Enemy',['../class_enemy.html',1,'']]],
+  ['entity',['Entity',['../struct_entity.html',1,'']]],
+  ['exit',['Exit',['../class_exit.html',1,'']]]
 ];

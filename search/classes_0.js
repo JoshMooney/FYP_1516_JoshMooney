@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['actor',['Actor',['../class_actor.html',1,'']]]
+  ['bgsorter',['BGSorter',['../struct_b_g_sorter.html',1,'']]]
 ];
