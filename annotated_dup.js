@@ -1,10 +1,10 @@
 var annotated_dup =
 [
-    [ "Actor", "class_actor.html", null ],
     [ "BGSorter", "struct_b_g_sorter.html", "struct_b_g_sorter" ],
     [ "cLog", "classc_log.html", "classc_log" ],
     [ "Command", "class_command.html", "class_command" ],
     [ "ContactListener", "class_contact_listener.html", "class_contact_listener" ],
+    [ "CrumbleBlock", "class_crumble_block.html", "class_crumble_block" ],
     [ "Enemy", "class_enemy.html", "class_enemy" ],
     [ "Entity", "struct_entity.html", "struct_entity" ],
     [ "Exit", "class_exit.html", "class_exit" ],

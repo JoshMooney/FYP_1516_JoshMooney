@@ -44,6 +44,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
+      <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li class="current"><a href="annotated.html"><span>Classes</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
       <li>
@@ -109,24 +110,76 @@ $(document).ready(function(){initNavTree('class_command.html','');});
 <div class="title">Command Class Reference<span class="mlabels"><span class="mlabel">abstract</span></span></div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p>This is the base command class that each of the sub commands should inherite from and each of which must overload the execute function.  
+ <a href="class_command.html#details">More...</a></p>
+
+<p><code>#include &lt;<a class="el" href="_command_8hpp_source.html">Command.hpp</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a29f4294ac9e3cd1fb9da3737914681e1"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a29f4294ac9e3cd1fb9da3737914681e1"></a>
-virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>execute</b> (<a class="el" href="class_player.html">Player</a> *p)=0</td></tr>
+<tr class="memitem:a29f4294ac9e3cd1fb9da3737914681e1"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_command.html#a29f4294ac9e3cd1fb9da3737914681e1">execute</a> (<a class="el" href="class_player.html">Player</a> *p)=0</td></tr>
+<tr class="memdesc:a29f4294ac9e3cd1fb9da3737914681e1"><td class="mdescLeft">&#160;</td><td class="mdescRight">This function executes the task issued to the command.  <a href="#a29f4294ac9e3cd1fb9da3737914681e1">More...</a><br /></td></tr>
 <tr class="separator:a29f4294ac9e3cd1fb9da3737914681e1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<div class="dynheader">
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>This is the base command class that each of the sub commands should inherite from and each of which must overload the execute function. </p>
+</div><div class="dynheader">
 Inheritance diagram for Command:</div>
 <div class="dyncontent">
 <div class="center"><img src="class_command__inherit__graph.png" border="0" usemap="#_command_inherit__map" alt="Inheritance graph"/></div>
 <map name="_command_inherit__map" id="_command_inherit__map">
-<area shape="rect" id="node2" href="class_fire_command.html" title="{FireCommand\n||+ execute()\l}" alt="" coords="5,160,108,237"/>
-<area shape="rect" id="node3" href="class_jump_command.html" title="{JumpCommand\n||+ execute()\l}" alt="" coords="133,160,245,237"/>
-<area shape="rect" id="node4" href="class_lurch_command.html" title="{LurchCommand\n||+ execute()\l}" alt="" coords="269,160,383,237"/>
-<area shape="rect" id="node5" href="class_n_u_l_l_command.html" title="{NULLCommand\n||+ execute()\l}" alt="" coords="407,160,520,237"/>
-<area shape="rect" id="node6" href="class_swap_command.html" title="{SwapCommand\n||+ execute()\l}" alt="" coords="544,160,657,237"/>
+<area shape="rect" id="node2" href="class_fire_command.html" title="This is a sub class of the command base class. This class should override the execute command and thi..." alt="" coords="5,160,108,237"/>
+<area shape="rect" id="node3" href="class_jump_command.html" title="This is a sub class of the command base class. This class should override the execute command and thi..." alt="" coords="133,160,245,237"/>
+<area shape="rect" id="node4" href="class_lurch_command.html" title="This is a sub class of the command base class. This class should override the execute command and thi..." alt="" coords="269,160,383,237"/>
+<area shape="rect" id="node5" href="class_n_u_l_l_command.html" title="This is a sub class of the command base class. This class should override the execute command and thi..." alt="" coords="407,160,520,237"/>
+<area shape="rect" id="node6" href="class_swap_command.html" title="This is a sub class of the command base class. This class should override the execute command and thi..." alt="" coords="544,160,657,237"/>
 </map>
+</div>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a class="anchor" id="a29f4294ac9e3cd1fb9da3737914681e1"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void Command::execute </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_player.html">Player</a> *&#160;</td>
+          <td class="paramname"><em>p</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>This function executes the task issued to the command. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname"><a class="el" href="class_player.html" title="This is the player class that will represent the user while in game, and will be responsable for cons...">Player</a></td><td>This is the object to execute the command on </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Implemented in <a class="el" href="class_n_u_l_l_command.html#a52b3659bf120484a4d5c860b3649a4bd">NULLCommand</a>, <a class="el" href="class_lurch_command.html#a1d38355e1af2007c5f4550bd51bb82a9">LurchCommand</a>, <a class="el" href="class_swap_command.html#aa77c3458045249b1d4109191a13b8f47">SwapCommand</a>, <a class="el" href="class_fire_command.html#abbea99bd461efbf13b88dc9222168703">FireCommand</a>, and <a class="el" href="class_jump_command.html#a3a3d55088bf8c087da09f4466dd15be1">JumpCommand</a>.</p>
+
+<p><div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_command_a29f4294ac9e3cd1fb9da3737914681e1_icgraph.png" border="0" usemap="#class_command_a29f4294ac9e3cd1fb9da3737914681e1_icgraph" alt=""/></div>
+<map name="class_command_a29f4294ac9e3cd1fb9da3737914681e1_icgraph" id="class_command_a29f4294ac9e3cd1fb9da3737914681e1_icgraph">
+<area shape="rect" id="node2" href="class_level_scene.html#afc3d3dc0d9cac4aad1c39c2e83bf9a03" title="Handles the keyboard events passed in from the poll event in the main game loop and class the appropr..." alt="" coords="188,5,355,32"/>
+</map>
+</div>
+</p>
+
+</div>
 </div>
 <hr/>The documentation for this class was generated from the following file:<ul>
 <li>FYP_FallenHero/<a class="el" href="_command_8hpp_source.html">Command.hpp</a></li>

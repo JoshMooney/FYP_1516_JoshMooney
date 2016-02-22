@@ -1,0 +1,9 @@
+<map id="LevelScene::loadLevel" name="LevelScene::loadLevel">
+<area shape="rect" id="node2" href="$class_level_scene.html#ac747d494f40ad993c3da23d4dcab62b7" title="Resets the player and respawns them at the closes checkpoint. " alt="" coords="203,56,384,83"/>
+<area shape="rect" id="node8" href="$class_player.html#abeaa6fb79495a647ffd4ca8cf2442d37" title="Finds the center of the player in Global coordinates. " alt="" coords="432,107,555,133"/>
+<area shape="rect" id="node3" href="$class_player.html#ab34d543e0ce8136ffd34777576d7c720" title="Resets the player in the game setting its direction and speedfactor. " alt="" coords="445,56,541,83"/>
+<area shape="rect" id="node4" href="$class_player.html#a49b1af1e82620c3265e8b23a7e4852dc" title="Sets the Player to the position passed in. " alt="" coords="603,56,713,83"/>
+<area shape="rect" id="node5" href="$class_player.html#af99c17372865d29c79ea1a17c5d8a935" title="Position the players b2Body to the position passed in. " alt="" coords="772,5,879,32"/>
+<area shape="rect" id="node6" href="$class_player.html#ab27728d11ac7c8d8d905ab5bd3e0fe89" title="Finds a value between the max and min passed in. " alt="" coords="774,56,877,83"/>
+<area shape="rect" id="node7" href="$class_player.html#a10edd89e8a7ef4f1b83250d2b592cefe" title="Calculates and sets the position of the sf::Sprite in relation to the b2Body. " alt="" coords="761,107,889,133"/>
+</map>

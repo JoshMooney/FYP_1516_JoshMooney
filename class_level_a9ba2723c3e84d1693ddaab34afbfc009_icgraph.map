@@ -1,0 +1,4 @@
+<map id="Level::GenerateBlocks" name="Level::GenerateBlocks">
+<area shape="rect" id="node2" href="$class_level.html#ad425a302e250841b4ee9dd02b9a8b764" title="This is the highest stage of loading the map from .tmx. This method calls the rest of the parse metho..." alt="" coords="205,5,363,32"/>
+<area shape="rect" id="node3" href="$class_level.html#aebf863a4012a921c82a833744980ec43" title="The overloaded constructor for the Level class which assignes the level, calls loadMap, initalises the scenery and calls the ParseMapLayers method to fully intialise the Level. " alt="" coords="411,5,499,32"/>
+</map>

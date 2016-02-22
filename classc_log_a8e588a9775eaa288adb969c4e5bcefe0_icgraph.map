@@ -1,4 +1,13 @@
 <map id="cLog::print" name="cLog::print">
-<area shape="rect" id="node2" href="$class_menu_scene.html#afb5ab00d298633725f69723c83963a45" title="This is a pure virtual funciton for handleInput, which must be overloaded in any inheriting classes..." alt="" coords="136,5,301,32"/>
-<area shape="rect" id="node3" href="$class_resource_manager.html#ac429dfbb66104f517dee009b7bc03599" title="Gets the resouce and if it does not exist it creates and stores that resource. " alt="" coords="142,56,295,83"/>
+<area shape="rect" id="node2" href="$class_jump_command.html#a3a3d55088bf8c087da09f4466dd15be1" title="This function executes the task issued to the command. " alt="" coords="155,5,321,32"/>
+<area shape="rect" id="node3" href="$class_fire_command.html#abbea99bd461efbf13b88dc9222168703" title="This function executes the task issued to the command. " alt="" coords="159,56,317,83"/>
+<area shape="rect" id="node4" href="$class_swap_command.html#aa77c3458045249b1d4109191a13b8f47" title="This function executes the task issued to the command. " alt="" coords="155,107,321,133"/>
+<area shape="rect" id="node5" href="$class_lurch_command.html#a1d38355e1af2007c5f4550bd51bb82a9" title="This function executes the task issued to the command. " alt="" coords="155,157,321,184"/>
+<area shape="rect" id="node6" href="$class_game.html#ad59df6562a58a614fda24622d3715b65" title="Default constructor for the game. " alt="" coords="188,208,288,235"/>
+<area shape="rect" id="node7" href="$class_level.html#a7a696c928ca5d5354db6e50e46d0f67d" title="The levels default constructor which has been deprecated. " alt="" coords="194,259,282,285"/>
+<area shape="rect" id="node8" href="$class_menu_scene.html#afb5ab00d298633725f69723c83963a45" title="This is a pure virtual funciton for handleInput, which must be overloaded in any inheriting classes..." alt="" coords="155,309,321,336"/>
+<area shape="rect" id="node9" href="$class_resource_manager.html#ac429dfbb66104f517dee009b7bc03599" title="Gets the resouce and if it does not exist it creates and stores that resource. " alt="" coords="161,360,315,387"/>
+<area shape="rect" id="node10" href="$class_x_b_o_x_controller.html#ad7f5769354e27c75a07600bed61bbeca" title="A check for if the controller is connected or not. " alt="" coords="143,411,333,437"/>
+<area shape="rect" id="node11" href="$class_x_b_o_x_controller.html#a7975e9a15e402f22330cd0b0079bac41" title="This method calls all the individual update button private methods in the class eg. UpdateA(), UpdateAnalogSticks() etc. " alt="" coords="136,461,340,488"/>
+<area shape="rect" id="node12" href="$class_x_m_l_loader.html#a70dd0457fdd854df811df24b078c9ca4" title="This generates a new saveData.xml for the game insertting all the approprate formatting for reading l..." alt="" coords="140,512,336,539"/>
 </map>

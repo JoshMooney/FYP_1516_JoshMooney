@@ -1,0 +1,3 @@
+<map id="HUD::render" name="HUD::render">
+<area shape="rect" id="node2" href="$class_level_scene.html#ace730bc6ccd5d585b1f96dfe85039cb4" title="Draws the scenes objects such as player, blocks and enemies including the foreground and background..." alt="" coords="147,5,279,32"/>
+</map>

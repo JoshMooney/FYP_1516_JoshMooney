@@ -7,9 +7,12 @@ var class_spawner =
     [ "Spawner", "class_spawner.html#a371977ae0647dd57dd922a33e5894e6b", null ],
     [ "~Spawner", "class_spawner.html#a59d8e3d4d6dc6c25f38ce5d4fcc5e8e6", null ],
     [ "clear", "class_spawner.html#a5296fdc40dcd460ad3a1b1febcf956ec", null ],
+    [ "CullBodies", "class_spawner.html#a9105c55d0d407f1b80c538c7472be28c", null ],
     [ "CullInActiveEnemies", "class_spawner.html#a9b48d243ff322625d440adab8dc18b01", null ],
+    [ "DespawnObject", "class_spawner.html#a0c3fd631637a25820b3771bb65387bd9", null ],
     [ "GenerateBody", "class_spawner.html#a3728d33ef0517064d42a8f6aaecb513e", null ],
     [ "render", "class_spawner.html#a1423123cdc4081f1f2c8bb6e22a269e4", null ],
+    [ "SpawnBlock", "class_spawner.html#a37fc2bc08b1e2ca88604854a5ef8dad9", null ],
     [ "SpawnSkeleton", "class_spawner.html#afe9d8d8c89a3bbd3d771d18bed58c524", null ],
     [ "update", "class_spawner.html#abcaafe5e9152654b1b7fbd788581c979", null ]
 ];

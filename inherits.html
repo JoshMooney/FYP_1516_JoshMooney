@@ -44,6 +44,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
+      <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li class="current"><a href="annotated.html"><span>Classes</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
       <li>
@@ -109,159 +110,155 @@ $(document).ready(function(){initNavTree('hierarchy.html','');});
 <div class="textblock">
 <p><a href="hierarchy.html">Go to the textual class hierarchy</a></p>
 </div><table border="0" cellspacing="10" cellpadding="0">
-<tr><td><img src="inherit_graph_0.png" border="0" alt="" usemap="#_actor"/>
-<map name="_actor" id="_actor">
-<area shape="rect" id="node2" href="class_actor.html" title="Actor" alt="" coords="128,5,181,32"/>
-</map>
-</td></tr>
-<tr><td><img src="inherit_graph_1.png" border="0" alt="" usemap="#_b_g_sorter"/>
+<tr><td><img src="inherit_graph_0.png" border="0" alt="" usemap="#_b_g_sorter"/>
 <map name="_b_g_sorter" id="_b_g_sorter">
 <area shape="rect" id="node1" href="struct_b_g_sorter.html" title="Is a short struct used as a sorting operator for the backgound images sorting the ParallaxSprite&#39;s pa..." alt="" coords="5,5,81,32"/>
 </map>
 </td></tr>
-<tr><td><img src="inherit_graph_2.png" border="0" alt="" usemap="#c_log"/>
+<tr><td><img src="inherit_graph_1.png" border="0" alt="" usemap="#c_log"/>
 <map name="c_log" id="c_log">
-<area shape="rect" id="node1" href="classc_log.html" title="cLog" alt="" coords="5,5,56,32"/>
+<area shape="rect" id="node1" href="classc_log.html" title="This is the logger for printing the the screen on command. " alt="" coords="5,5,56,32"/>
 </map>
 </td></tr>
-<tr><td><img src="inherit_graph_3.png" border="0" alt="" usemap="#_command"/>
+<tr><td><img src="inherit_graph_2.png" border="0" alt="" usemap="#_command"/>
 <map name="_command" id="_command">
-<area shape="rect" id="node1" href="class_command.html" title="Command" alt="" coords="5,107,87,133"/>
-<area shape="rect" id="node2" href="class_fire_command.html" title="FireCommand" alt="" coords="140,5,243,32"/>
-<area shape="rect" id="node3" href="class_jump_command.html" title="JumpCommand" alt="" coords="135,56,247,83"/>
-<area shape="rect" id="node4" href="class_lurch_command.html" title="LurchCommand" alt="" coords="135,107,248,133"/>
-<area shape="rect" id="node5" href="class_n_u_l_l_command.html" title="NULLCommand" alt="" coords="135,157,248,184"/>
-<area shape="rect" id="node6" href="class_swap_command.html" title="SwapCommand" alt="" coords="135,208,248,235"/>
+<area shape="rect" id="node1" href="class_command.html" title="This is the base command class that each of the sub commands should inherite from and each of which m..." alt="" coords="5,107,87,133"/>
+<area shape="rect" id="node2" href="class_fire_command.html" title="This is a sub class of the command base class. This class should override the execute command and thi..." alt="" coords="140,5,243,32"/>
+<area shape="rect" id="node3" href="class_jump_command.html" title="This is a sub class of the command base class. This class should override the execute command and thi..." alt="" coords="135,56,247,83"/>
+<area shape="rect" id="node4" href="class_lurch_command.html" title="This is a sub class of the command base class. This class should override the execute command and thi..." alt="" coords="135,107,248,133"/>
+<area shape="rect" id="node5" href="class_n_u_l_l_command.html" title="This is a sub class of the command base class. This class should override the execute command and thi..." alt="" coords="135,157,248,184"/>
+<area shape="rect" id="node6" href="class_swap_command.html" title="This is a sub class of the command base class. This class should override the execute command and thi..." alt="" coords="135,208,248,235"/>
 </map>
 </td></tr>
-<tr><td><img src="inherit_graph_4.png" border="0" alt="" usemap="#_contact_listener"/>
+<tr><td><img src="inherit_graph_3.png" border="0" alt="" usemap="#_contact_listener"/>
 <map name="_contact_listener" id="_contact_listener">
 <area shape="rect" id="node2" href="class_contact_listener.html" title="ContactListener" alt="" coords="180,5,293,32"/>
 </map>
 </td></tr>
-<tr><td><img src="inherit_graph_5.png" border="0" alt="" usemap="#_enemy"/>
+<tr><td><img src="inherit_graph_4.png" border="0" alt="" usemap="#_enemy"/>
 <map name="_enemy" id="_enemy">
-<area shape="rect" id="node2" href="class_enemy.html" title="Enemy" alt="" coords="129,68,192,95"/>
-<area shape="rect" id="node6" href="struct_entity.html" title="Entity" alt="" coords="133,144,189,171"/>
-<area shape="rect" id="node8" href="class_exit.html" title="Exit" alt="" coords="138,195,183,221"/>
-<area shape="rect" id="node9" href="class_parallax_sprite.html" title="ParallaxSprite" alt="" coords="109,245,212,272"/>
-<area shape="rect" id="node10" href="class_player_icon.html" title="This is the players icon that can be seen on the WorldMap scene. It represents the players character ..." alt="" coords="119,296,202,323"/>
-<area shape="rect" id="node11" href="class_world_node.html" title="WorldNode" alt="" coords="117,347,204,373"/>
-<area shape="rect" id="node3" href="class_flyer.html" title="Flyer" alt="" coords="271,5,322,32"/>
-<area shape="rect" id="node4" href="class_skeleton.html" title="Skeleton" alt="" coords="260,56,333,83"/>
-<area shape="rect" id="node5" href="class_weed.html" title="Weed" alt="" coords="269,107,325,133"/>
-<area shape="rect" id="node7" href="class_player.html" title="This is the player class that will represent the user while in game, and will be responsable for cons..." alt="" coords="267,157,326,184"/>
+<area shape="rect" id="node2" href="class_enemy.html" title="This is the base Enemy class for every type of enemy, This class also helps the CrumbleBlock class po..." alt="" coords="129,107,192,133"/>
+<area shape="rect" id="node7" href="struct_entity.html" title="Base class for anything in the game that is an entity and might need hp and a box body e..." alt="" coords="133,183,189,209"/>
+<area shape="rect" id="node9" href="class_exit.html" title="The Exit trigger for a level when this has been tripped the level will end and the player will be ret..." alt="" coords="138,233,183,260"/>
+<area shape="rect" id="node10" href="class_parallax_sprite.html" title="ParallaxSprite" alt="" coords="109,284,212,311"/>
+<area shape="rect" id="node11" href="class_player_icon.html" title="This is the players icon that can be seen on the WorldMap scene. It represents the players character ..." alt="" coords="119,335,202,361"/>
+<area shape="rect" id="node12" href="class_world_node.html" title="This is a world node to be used by the world map to make the overworld level select. A node is responcable for knowing about it neighbours, what is unlocked after finishing the level and an ID to identify the level the node is associated with. " alt="" coords="117,385,204,412"/>
+<area shape="rect" id="node3" href="class_crumble_block.html" title="This is the single class that is responable for generating a CrumbleBlock depending on the passed in ..." alt="" coords="260,5,363,32"/>
+<area shape="rect" id="node4" href="class_flyer.html" title="Flyer" alt="" coords="286,56,337,83"/>
+<area shape="rect" id="node5" href="class_skeleton.html" title="Skeleton" alt="" coords="275,107,348,133"/>
+<area shape="rect" id="node6" href="class_weed.html" title="Weed" alt="" coords="283,157,339,184"/>
+<area shape="rect" id="node8" href="class_player.html" title="This is the player class that will represent the user while in game, and will be responsable for cons..." alt="" coords="282,208,341,235"/>
 </map>
 </td></tr>
-<tr><td><img src="inherit_graph_6.png" border="0" alt="" usemap="#_f_g_sorter"/>
+<tr><td><img src="inherit_graph_5.png" border="0" alt="" usemap="#_f_g_sorter"/>
 <map name="_f_g_sorter" id="_f_g_sorter">
 <area shape="rect" id="node1" href="struct_f_g_sorter.html" title="Is a short struct used as a sorting operator for the backgound images sorting the ParallaxSprite&#39;s pa..." alt="" coords="5,5,80,32"/>
 </map>
 </td></tr>
-<tr><td><img src="inherit_graph_7.png" border="0" alt="" usemap="#_game"/>
+<tr><td><img src="inherit_graph_6.png" border="0" alt="" usemap="#_game"/>
 <map name="_game" id="_game">
 <area shape="rect" id="node1" href="class_game.html" title="Game" alt="" coords="5,5,63,32"/>
 </map>
 </td></tr>
-<tr><td><img src="inherit_graph_8.png" border="0" alt="" usemap="#gz__header__s"/>
+<tr><td><img src="inherit_graph_7.png" border="0" alt="" usemap="#gz__header__s"/>
 <map name="gz__header__s" id="gz__header__s">
 <area shape="rect" id="node1" href="structgz__header__s.html" title="gz_header_s" alt="" coords="5,5,101,32"/>
 </map>
 </td></tr>
-<tr><td><img src="inherit_graph_9.png" border="0" alt="" usemap="#gz_file__s"/>
+<tr><td><img src="inherit_graph_8.png" border="0" alt="" usemap="#gz_file__s"/>
 <map name="gz_file__s" id="gz_file__s">
 <area shape="rect" id="node1" href="structgz_file__s.html" title="gzFile_s" alt="" coords="5,5,76,32"/>
 </map>
 </td></tr>
-<tr><td><img src="inherit_graph_10.png" border="0" alt="" usemap="#_h_u_d"/>
+<tr><td><img src="inherit_graph_9.png" border="0" alt="" usemap="#_h_u_d"/>
 <map name="_h_u_d" id="_h_u_d">
 <area shape="rect" id="node1" href="class_h_u_d.html" title="HUD" alt="" coords="5,5,55,32"/>
 </map>
 </td></tr>
-<tr><td><img src="inherit_graph_11.png" border="0" alt="" usemap="#internal__state"/>
+<tr><td><img src="inherit_graph_10.png" border="0" alt="" usemap="#internal__state"/>
 <map name="internal__state" id="internal__state">
 <area shape="rect" id="node1" href="structinternal__state.html" title="internal_state" alt="" coords="5,5,105,32"/>
 </map>
 </td></tr>
-<tr><td><img src="inherit_graph_12.png" border="0" alt="" usemap="#_level"/>
+<tr><td><img src="inherit_graph_11.png" border="0" alt="" usemap="#_level"/>
 <map name="_level" id="_level">
-<area shape="rect" id="node1" href="class_level.html" title="Level" alt="" coords="5,5,56,32"/>
+<area shape="rect" id="node1" href="class_level.html" title="This is a level in raw data. This class is ment to encapsulate all the information required for a lev..." alt="" coords="5,5,56,32"/>
 </map>
 </td></tr>
-<tr><td><img src="inherit_graph_13.png" border="0" alt="" usemap="#_o_b_j"/>
+<tr><td><img src="inherit_graph_12.png" border="0" alt="" usemap="#_o_b_j"/>
 <map name="_o_b_j" id="_o_b_j">
 <area shape="rect" id="node1" href="struct_o_b_j.html" title="OBJ" alt="" coords="5,5,52,32"/>
 </map>
 </td></tr>
-<tr><td><img src="inherit_graph_14.png" border="0" alt="" usemap="#_platform"/>
+<tr><td><img src="inherit_graph_13.png" border="0" alt="" usemap="#_platform"/>
 <map name="_platform" id="_platform">
 <area shape="rect" id="node1" href="class_platform.html" title="Platform" alt="" coords="5,5,76,32"/>
 </map>
 </td></tr>
-<tr><td><img src="inherit_graph_15.png" border="0" alt="" usemap="#_resource_manager_3_01_t_01_4"/>
+<tr><td><img src="inherit_graph_14.png" border="0" alt="" usemap="#_resource_manager_3_01_t_01_4"/>
 <map name="_resource_manager_3_01_t_01_4" id="_resource_manager_3_01_t_01_4">
 <area shape="rect" id="node1" href="class_resource_manager.html" title="This class is ultra light weight and can be implemented easly something i tend to forget if im using ..." alt="" coords="5,5,164,32"/>
 </map>
 </td></tr>
-<tr><td><img src="inherit_graph_16.png" border="0" alt="" usemap="#_save_slot"/>
+<tr><td><img src="inherit_graph_15.png" border="0" alt="" usemap="#_save_slot"/>
 <map name="_save_slot" id="_save_slot">
 <area shape="rect" id="node1" href="struct_save_slot.html" title="This is all of the loaded game data from the saveData.xml file parsed and made available to the progr..." alt="" coords="5,5,79,32"/>
 </map>
 </td></tr>
-<tr><td><img src="inherit_graph_17.png" border="0" alt="" usemap="#_scene"/>
+<tr><td><img src="inherit_graph_16.png" border="0" alt="" usemap="#_scene"/>
 <map name="_scene" id="_scene">
 <area shape="rect" id="node1" href="struct_scene.html" title="This is a C++ abstract class, where one or more of its methods are pure virtual and such must be over..." alt="" coords="5,56,64,83"/>
-<area shape="rect" id="node2" href="class_level_scene.html" title="LevelScene" alt="" coords="115,5,203,32"/>
+<area shape="rect" id="node2" href="class_level_scene.html" title="This is the inheriting sub class of Scene and as such overloads the appropratie methods (e..." alt="" coords="115,5,203,32"/>
 <area shape="rect" id="node3" href="class_menu_scene.html" title="MenuScene" alt="" coords="113,56,204,83"/>
-<area shape="rect" id="node4" href="class_world_scene.html" title="WorldScene" alt="" coords="112,107,205,133"/>
+<area shape="rect" id="node4" href="class_world_scene.html" title="This class is responcable for creating, managing of the map as well as save the game, move the player around the map and loads changes state. " alt="" coords="112,107,205,133"/>
 </map>
 </td></tr>
-<tr><td><img src="inherit_graph_18.png" border="0" alt="" usemap="#_scenery"/>
+<tr><td><img src="inherit_graph_17.png" border="0" alt="" usemap="#_scenery"/>
 <map name="_scenery" id="_scenery">
 <area shape="rect" id="node1" href="class_scenery.html" title="This class manages the paralax background for the game by storing two vectors of ParallaxSprite one f..." alt="" coords="5,5,76,32"/>
 </map>
 </td></tr>
-<tr><td><img src="inherit_graph_19.png" border="0" alt="" usemap="#_s_f_m_l_debug_draw"/>
+<tr><td><img src="inherit_graph_18.png" border="0" alt="" usemap="#_s_f_m_l_debug_draw"/>
 <map name="_s_f_m_l_debug_draw" id="_s_f_m_l_debug_draw">
 <area shape="rect" id="node2" href="class_s_f_m_l_debug_draw.html" title="SFMLDebugDraw" alt="" coords="119,5,241,32"/>
 </map>
 </td></tr>
-<tr><td><img src="inherit_graph_20.png" border="0" alt="" usemap="#_simple_g_u_i"/>
+<tr><td><img src="inherit_graph_19.png" border="0" alt="" usemap="#_simple_g_u_i"/>
 <map name="_simple_g_u_i" id="_simple_g_u_i">
 <area shape="rect" id="node1" href="class_simple_g_u_i.html" title="SimpleGUI" alt="" coords="5,5,89,32"/>
 </map>
 </td></tr>
-<tr><td><img src="inherit_graph_21.png" border="0" alt="" usemap="#_spawner"/>
+<tr><td><img src="inherit_graph_20.png" border="0" alt="" usemap="#_spawner"/>
 <map name="_spawner" id="_spawner">
 <area shape="rect" id="node1" href="class_spawner.html" title="Spawner" alt="" coords="5,5,77,32"/>
 </map>
 </td></tr>
-<tr><td><img src="inherit_graph_22.png" border="0" alt="" usemap="#_terrain"/>
+<tr><td><img src="inherit_graph_21.png" border="0" alt="" usemap="#_terrain"/>
 <map name="_terrain" id="_terrain">
 <area shape="rect" id="node1" href="struct_terrain.html" title="Terrain" alt="" coords="5,5,67,32"/>
 </map>
 </td></tr>
-<tr><td><img src="inherit_graph_23.png" border="0" alt="" usemap="#v_camera"/>
+<tr><td><img src="inherit_graph_22.png" border="0" alt="" usemap="#v_camera"/>
 <map name="v_camera" id="v_camera">
 <area shape="rect" id="node2" href="classv_camera.html" title="vCamera" alt="" coords="104,5,176,32"/>
 </map>
 </td></tr>
-<tr><td><img src="inherit_graph_24.png" border="0" alt="" usemap="#_world_map"/>
+<tr><td><img src="inherit_graph_23.png" border="0" alt="" usemap="#_world_map"/>
 <map name="_world_map" id="_world_map">
 <area shape="rect" id="node1" href="class_world_map.html" title="WorldMap" alt="" coords="5,5,87,32"/>
 </map>
 </td></tr>
-<tr><td><img src="inherit_graph_25.png" border="0" alt="" usemap="#_x_b_o_x_controller"/>
+<tr><td><img src="inherit_graph_24.png" border="0" alt="" usemap="#_x_b_o_x_controller"/>
 <map name="_x_b_o_x_controller" id="_x_b_o_x_controller">
-<area shape="rect" id="node1" href="class_x_b_o_x_controller.html" title="XBOXController" alt="" coords="5,5,116,32"/>
+<area shape="rect" id="node1" href="class_x_b_o_x_controller.html" title="This is an instance of the XBOX controller which uses xinput v9.1.0 to detect and store information o..." alt="" coords="5,5,116,32"/>
 </map>
 </td></tr>
-<tr><td><img src="inherit_graph_26.png" border="0" alt="" usemap="#_x_m_l_loader"/>
+<tr><td><img src="inherit_graph_25.png" border="0" alt="" usemap="#_x_m_l_loader"/>
 <map name="_x_m_l_loader" id="_x_m_l_loader">
-<area shape="rect" id="node1" href="class_x_m_l_loader.html" title="XMLLoader" alt="" coords="5,5,92,32"/>
+<area shape="rect" id="node1" href="class_x_m_l_loader.html" title="This class uses tinyXML and my code to read from .xml files and parse that data into usable informati..." alt="" coords="5,5,92,32"/>
 </map>
 </td></tr>
-<tr><td><img src="inherit_graph_27.png" border="0" alt="" usemap="#z__stream__s"/>
+<tr><td><img src="inherit_graph_26.png" border="0" alt="" usemap="#z__stream__s"/>
 <map name="z__stream__s" id="z__stream__s">
 <area shape="rect" id="node1" href="structz__stream__s.html" title="z_stream_s" alt="" coords="5,5,96,32"/>
 </map>

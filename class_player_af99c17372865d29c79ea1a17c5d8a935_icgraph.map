@@ -1,4 +1,13 @@
 <map id="Player::Spawn" name="Player::Spawn">
-<area shape="rect" id="node2" href="$class_player.html#a49b1af1e82620c3265e8b23a7e4852dc" title="Sets the Player to the position passed in. " alt="" coords="160,5,271,32"/>
-<area shape="rect" id="node3" href="$class_player.html#ab34d543e0ce8136ffd34777576d7c720" title="Resets the player in the game setting its direction and speedfactor. " alt="" coords="319,5,415,32"/>
+<area shape="rect" id="node2" href="$class_player.html#a49b1af1e82620c3265e8b23a7e4852dc" title="Sets the Player to the position passed in. " alt="" coords="160,107,271,133"/>
+<area shape="rect" id="node3" href="$class_player.html#ab34d543e0ce8136ffd34777576d7c720" title="Resets the player in the game setting its direction and speedfactor. " alt="" coords="319,107,415,133"/>
+<area shape="rect" id="node4" href="$class_level_scene.html#ac747d494f40ad993c3da23d4dcab62b7" title="Resets the player and respawns them at the closes checkpoint. " alt="" coords="463,81,644,108"/>
+<area shape="rect" id="node11" href="$class_level_scene.html#a9ee140e399671353f88f8ebe35aa0c27" title="Refreshes the camera, restarts the game music and repositiions the player. " alt="" coords="718,157,843,184"/>
+<area shape="rect" id="node5" href="$class_level_scene.html#a7f624c9fb01a52dad4a6d441203aac8c" title="Updates the player and spawner and calculates the Fixed Time Step(FTS). Also updates the camera to ke..." alt="" coords="713,5,848,32"/>
+<area shape="rect" id="node6" href="$class_level_scene.html#aab23b4f39173835669a0c603952b4842" title="Initalises the Level and calls the appropratie load functions to intialise the level from the string ..." alt="" coords="706,56,855,83"/>
+<area shape="rect" id="node10" href="$class_level_scene.html#a8a3ba27a5b9d2bfba500c6ea14e4f82e" title="Gets the ID associated with the current level. " alt="" coords="692,107,869,133"/>
+<area shape="rect" id="node7" href="$class_game.html#ad9382758bb4b0c156fa1973eea33cbb8" title="Change States and initalise them appropratly. " alt="" coords="919,107,1077,133"/>
+<area shape="rect" id="node8" href="$class_game.html#a9137882533a1d2e234c03d73fae68af6" title="Checks the active scene for completion and if so class goToNextScene. " alt="" coords="1127,132,1308,159"/>
+<area shape="rect" id="node9" href="$class_game.html#a1ab78f5ed0d5ea879157357cf2fb2afa" title="This is the main game loop that the game runs and calls all the methods for running the game..." alt="" coords="1356,132,1439,159"/>
+<area shape="rect" id="node12" href="$class_level_scene.html#a599f06e317b66dd0fb260046ea8c2da3" title="Call to check if the level has finished. " alt="" coords="917,157,1079,184"/>
 </map>

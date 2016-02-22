@@ -1,0 +1,8 @@
+<map id="LevelScene::handleInput" name="LevelScene::handleInput">
+<area shape="rect" id="node2" href="$class_player.html#a70e21ca98281b7d72f105f2693113d7e" title="Make the player jump. " alt="" coords="415,5,510,32"/>
+<area shape="rect" id="node4" href="$class_player.html#a6a2b68bc4b21d4c4a79a23b498896ec2" title="Make the player move right and apply speed factor. " alt="" coords="218,56,345,83"/>
+<area shape="rect" id="node6" href="$class_player.html#ae3bbcf1159bdc059bff1c2513f2505f7" title="Make the player move left and apply speed factor. " alt="" coords="222,107,341,133"/>
+<area shape="rect" id="node7" href="$class_player.html#ac1f3ce820337430ef7fc9bf5acd5db08" title="Sets the Variable m_is_moving. " alt="" coords="216,157,347,184"/>
+<area shape="rect" id="node3" href="$class_player.html#ab27728d11ac7c8d8d905ab5bd3e0fe89" title="Finds a value between the max and min passed in. " alt="" coords="579,31,681,57"/>
+<area shape="rect" id="node5" href="$class_player.html#ab92500fc590fa0a523479b46f23a702e" title="Sets the players direction to the value passed in. " alt="" coords="395,56,531,83"/>
+</map>

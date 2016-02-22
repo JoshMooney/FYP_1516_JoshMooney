@@ -1,0 +1,4 @@
+<map id="Level::GenerateSceneryFG" name="Level::GenerateSceneryFG">
+<area shape="rect" id="node2" href="$class_scenery.html#a9d484c7bfc6f83724e4563063712def5" title="Adds the passed in ParallaxSprite to the foreground queue for rendering. To keep the ParallaxSprite i..." alt="" coords="232,5,360,32"/>
+<area shape="rect" id="node3" href="$class_scenery.html#aefbbabd55ded3dabe93e136ec2792ca2" title="This function uses std::sort and FGSorter to organise the bakcgrounds from front to back..." alt="" coords="237,56,355,83"/>
+</map>

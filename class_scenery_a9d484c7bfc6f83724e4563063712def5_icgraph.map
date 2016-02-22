@@ -1,0 +1,5 @@
+<map id="Scenery::insertFG" name="Scenery::insertFG">
+<area shape="rect" id="node2" href="$class_level.html#a9f0e4ab045cd373847d4c2527b7c9824" title="Steps throught the object layer creating the scenerys foreground sprites using the information inside..." alt="" coords="181,5,360,32"/>
+<area shape="rect" id="node3" href="$class_level.html#ad425a302e250841b4ee9dd02b9a8b764" title="This is the highest stage of loading the map from .tmx. This method calls the rest of the parse metho..." alt="" coords="408,5,565,32"/>
+<area shape="rect" id="node4" href="$class_level.html#aebf863a4012a921c82a833744980ec43" title="The overloaded constructor for the Level class which assignes the level, calls loadMap, initalises the scenery and calls the ParseMapLayers method to fully intialise the Level. " alt="" coords="613,5,701,32"/>
+</map>

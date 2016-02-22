@@ -1,0 +1,4 @@
+<map id="CrumbleBlock::addFrames" name="CrumbleBlock::addFrames">
+<area shape="rect" id="node2" href="$class_crumble_block.html#a5a3d391dbcbbcf4092f6f0d9874dc350" title="This loads the approprate assets for the CrumbleBlock. " alt="" coords="229,5,400,32"/>
+<area shape="rect" id="node3" href="$class_crumble_block.html#a0b540bb7aa0461e58a22247f48829562" title="This is the main constructor for the crumble block and is responcable for calling load media and must..." alt="" coords="448,5,640,32"/>
+</map>

@@ -1,0 +1,11 @@
+<map id="Player::reset" name="Player::reset">
+<area shape="rect" id="node2" href="$class_level_scene.html#ac747d494f40ad993c3da23d4dcab62b7" title="Resets the player and respawns them at the closes checkpoint. " alt="" coords="149,81,331,108"/>
+<area shape="rect" id="node9" href="$class_level_scene.html#a9ee140e399671353f88f8ebe35aa0c27" title="Refreshes the camera, restarts the game music and repositiions the player. " alt="" coords="405,157,530,184"/>
+<area shape="rect" id="node3" href="$class_level_scene.html#a7f624c9fb01a52dad4a6d441203aac8c" title="Updates the player and spawner and calculates the Fixed Time Step(FTS). Also updates the camera to ke..." alt="" coords="400,5,535,32"/>
+<area shape="rect" id="node4" href="$class_level_scene.html#aab23b4f39173835669a0c603952b4842" title="Initalises the Level and calls the appropratie load functions to intialise the level from the string ..." alt="" coords="393,56,542,83"/>
+<area shape="rect" id="node8" href="$class_level_scene.html#a8a3ba27a5b9d2bfba500c6ea14e4f82e" title="Gets the ID associated with the current level. " alt="" coords="379,107,556,133"/>
+<area shape="rect" id="node5" href="$class_game.html#ad9382758bb4b0c156fa1973eea33cbb8" title="Change States and initalise them appropratly. " alt="" coords="606,107,763,133"/>
+<area shape="rect" id="node6" href="$class_game.html#a9137882533a1d2e234c03d73fae68af6" title="Checks the active scene for completion and if so class goToNextScene. " alt="" coords="813,132,995,159"/>
+<area shape="rect" id="node7" href="$class_game.html#a1ab78f5ed0d5ea879157357cf2fb2afa" title="This is the main game loop that the game runs and calls all the methods for running the game..." alt="" coords="1043,132,1125,159"/>
+<area shape="rect" id="node10" href="$class_level_scene.html#a599f06e317b66dd0fb260046ea8c2da3" title="Call to check if the level has finished. " alt="" coords="604,157,765,184"/>
+</map>

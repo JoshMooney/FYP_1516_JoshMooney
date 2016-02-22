@@ -1,0 +1,4 @@
+<map id="WorldScene::movePlayer" name="WorldScene::movePlayer">
+<area shape="rect" id="node2" href="$class_world_scene.html#a8d9485ae14e82ca54840358fb3d9e8be" title="Handle the keyboard input for the scene. " alt="" coords="221,5,392,32"/>
+<area shape="rect" id="node3" href="$class_world_scene.html#acf59be6537a77078daca83eb70aca70c" title="Handle the Controller input for the scene. " alt="" coords="223,56,390,83"/>
+</map>

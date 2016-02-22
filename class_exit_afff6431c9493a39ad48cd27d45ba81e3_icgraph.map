@@ -1,0 +1,3 @@
+<map id="Exit::isCollided" name="Exit::isCollided">
+<area shape="rect" id="node2" href="$class_level.html#aaf73b961bb9c82cf609ec7e0b34491fe" title="Bool check for if the level has ended or not. " alt="" coords="163,5,280,32"/>
+</map>

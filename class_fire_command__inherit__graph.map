@@ -1,3 +1,3 @@
 <map id="FireCommand" name="FireCommand">
-<area shape="rect" id="node2" href="$class_command.html" title="{Command\n||+ ~Command()\l+ execute()\l# Command()\l}" alt="" coords="5,5,115,112"/>
+<area shape="rect" id="node2" href="$class_command.html" title="This is the base command class that each of the sub commands should inherite from and each of which m..." alt="" coords="5,5,115,112"/>
 </map>

@@ -44,6 +44,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
+      <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li class="current"><a href="annotated.html"><span>Classes</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
       <li>
@@ -110,78 +111,103 @@ $(document).ready(function(){initNavTree('class_level_scene.html','');});
 <div class="title">LevelScene Class Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p>This is the inheriting sub class of <a class="el" href="struct_scene.html" title="This is a C++ abstract class, where one or more of its methods are pure virtual and such must be over...">Scene</a> and as such overloads the appropratie methods (e.g. handleEvent, render). This class is responcable for updating and rendering everything in the scene while also handlingEvents from the keyboard or input from the controller. The <a class="el" href="class_level_scene.html" title="This is the inheriting sub class of Scene and as such overloads the appropratie methods (e...">LevelScene</a> has a <a class="el" href="class_level.html" title="This is a level in raw data. This class is ment to encapsulate all the information required for a lev...">Level</a> object and is responcible for loading it into memory. The <a class="el" href="class_level.html" title="This is a level in raw data. This class is ment to encapsulate all the information required for a lev...">Level</a> scene controls the fixed time step and handling the box2d world.  
+ <a href="class_level_scene.html#details">More...</a></p>
+
+<p><code>#include &lt;<a class="el" href="_level_scene_8hpp_source.html">LevelScene.hpp</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
+<tr class="memitem:acb1bd3df4007acee81a7ce4cdc36fad5"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="acb1bd3df4007acee81a7ce4cdc36fad5"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_level_scene.html#acb1bd3df4007acee81a7ce4cdc36fad5">LevelScene</a> ()</td></tr>
+<tr class="memdesc:acb1bd3df4007acee81a7ce4cdc36fad5"><td class="mdescLeft">&#160;</td><td class="mdescRight">the default constructor for the level scene <br /></td></tr>
+<tr class="separator:acb1bd3df4007acee81a7ce4cdc36fad5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a26391dbdd725cfc1bff27e36f0b06bfb"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a26391dbdd725cfc1bff27e36f0b06bfb"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>LevelScene</b> (<a class="el" href="class_x_b_o_x_controller.html">XBOXController</a> *controller)</td></tr>
+&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_level_scene.html#a26391dbdd725cfc1bff27e36f0b06bfb">LevelScene</a> (<a class="el" href="class_x_b_o_x_controller.html">XBOXController</a> *controller)</td></tr>
+<tr class="memdesc:a26391dbdd725cfc1bff27e36f0b06bfb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Construct the <a class="el" href="class_level_scene.html" title="This is the inheriting sub class of Scene and as such overloads the appropratie methods (e...">LevelScene</a> and pass it access to the Xbox Controller being used. I believe this has been deprecated. <br /></td></tr>
 <tr class="separator:a26391dbdd725cfc1bff27e36f0b06bfb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a22dbf7393a102abde400c497ecdffcf6"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a22dbf7393a102abde400c497ecdffcf6"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>LevelScene</b> (string lvl_name, <a class="el" href="class_player.html">Player</a> *p)</td></tr>
+&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_level_scene.html#a22dbf7393a102abde400c497ecdffcf6">LevelScene</a> (string lvl_name, <a class="el" href="class_player.html">Player</a> *p)</td></tr>
+<tr class="memdesc:a22dbf7393a102abde400c497ecdffcf6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Construct the <a class="el" href="class_level_scene.html" title="This is the inheriting sub class of Scene and as such overloads the appropratie methods (e...">LevelScene</a> with the level name and player this was a sprint 2 feature that has since been removed. <br /></td></tr>
 <tr class="separator:a22dbf7393a102abde400c497ecdffcf6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4bbebd9d6f2c3222dee15dd4403c7e49"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a4bbebd9d6f2c3222dee15dd4403c7e49"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_level_scene.html#a4bbebd9d6f2c3222dee15dd4403c7e49">~LevelScene</a> ()</td></tr>
+<tr class="memdesc:a4bbebd9d6f2c3222dee15dd4403c7e49"><td class="mdescLeft">&#160;</td><td class="mdescRight">Deconstructor for the <a class="el" href="class_level_scene.html" title="This is the inheriting sub class of Scene and as such overloads the appropratie methods (e...">LevelScene</a>. <br /></td></tr>
+<tr class="separator:a4bbebd9d6f2c3222dee15dd4403c7e49"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:acef8cb520190eff426f3fa41b2e42ac0"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="acef8cb520190eff426f3fa41b2e42ac0"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>loadMedia</b> ()</td></tr>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_level_scene.html#acef8cb520190eff426f3fa41b2e42ac0">loadMedia</a> ()</td></tr>
+<tr class="memdesc:acef8cb520190eff426f3fa41b2e42ac0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Is responsible for loading, looping and setting the volume of the background music. <br /></td></tr>
 <tr class="separator:acef8cb520190eff426f3fa41b2e42ac0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7f624c9fb01a52dad4a6d441203aac8c"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a7f624c9fb01a52dad4a6d441203aac8c"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_level_scene.html#a7f624c9fb01a52dad4a6d441203aac8c">update</a> ()</td></tr>
-<tr class="memdesc:a7f624c9fb01a52dad4a6d441203aac8c"><td class="mdescLeft">&#160;</td><td class="mdescRight">This is a pure virtual funciton for update, which must be overloaded in any inheriting classes. <br /></td></tr>
+<tr class="memdesc:a7f624c9fb01a52dad4a6d441203aac8c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Updates the player and spawner and calculates the Fixed Time Step(FTS). Also updates the camera to keep it aligned with the player and checks for the level over state. <br /></td></tr>
 <tr class="separator:a7f624c9fb01a52dad4a6d441203aac8c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ace730bc6ccd5d585b1f96dfe85039cb4"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ace730bc6ccd5d585b1f96dfe85039cb4"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_level_scene.html#ace730bc6ccd5d585b1f96dfe85039cb4">render</a> (sf::RenderWindow &amp;w)</td></tr>
-<tr class="memdesc:ace730bc6ccd5d585b1f96dfe85039cb4"><td class="mdescLeft">&#160;</td><td class="mdescRight">This is a pure virtual funciton for render, which must be overloaded in any inheriting classes. <br /></td></tr>
+<tr class="memitem:ace730bc6ccd5d585b1f96dfe85039cb4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_level_scene.html#ace730bc6ccd5d585b1f96dfe85039cb4">render</a> (sf::RenderWindow &amp;w)</td></tr>
+<tr class="memdesc:ace730bc6ccd5d585b1f96dfe85039cb4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Draws the scenes objects such as player, blocks and enemies including the foreground and background.  <a href="#ace730bc6ccd5d585b1f96dfe85039cb4">More...</a><br /></td></tr>
 <tr class="separator:ace730bc6ccd5d585b1f96dfe85039cb4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:afc3d3dc0d9cac4aad1c39c2e83bf9a03"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="afc3d3dc0d9cac4aad1c39c2e83bf9a03"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_level_scene.html#afc3d3dc0d9cac4aad1c39c2e83bf9a03">handleEvent</a> (sf::Event &amp;e)</td></tr>
-<tr class="memdesc:afc3d3dc0d9cac4aad1c39c2e83bf9a03"><td class="mdescLeft">&#160;</td><td class="mdescRight">This is a pure virtual funciton for handleEvent, which must be overloaded in any inheriting classes. <br /></td></tr>
+<tr class="memitem:afc3d3dc0d9cac4aad1c39c2e83bf9a03"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_level_scene.html#afc3d3dc0d9cac4aad1c39c2e83bf9a03">handleEvent</a> (sf::Event &amp;e)</td></tr>
+<tr class="memdesc:afc3d3dc0d9cac4aad1c39c2e83bf9a03"><td class="mdescLeft">&#160;</td><td class="mdescRight">Handles the keyboard events passed in from the poll event in the main game loop and class the appropratie command for the key.  <a href="#afc3d3dc0d9cac4aad1c39c2e83bf9a03">More...</a><br /></td></tr>
 <tr class="separator:afc3d3dc0d9cac4aad1c39c2e83bf9a03"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7d4af684091b64284bfe713356cf90f7"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a7d4af684091b64284bfe713356cf90f7"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>handleEvent</b> (sf::Event &amp;e, sf::Time dt)</td></tr>
+<tr class="memitem:a7d4af684091b64284bfe713356cf90f7"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_level_scene.html#a7d4af684091b64284bfe713356cf90f7">handleEvent</a> (sf::Event &amp;e, sf::Time dt)</td></tr>
+<tr class="memdesc:a7d4af684091b64284bfe713356cf90f7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Handles the keyboard events passed in from the poll event in the main game loop and class the appropratie command for the key. This has the addition of delta time used for moving entities.  <a href="#a7d4af684091b64284bfe713356cf90f7">More...</a><br /></td></tr>
 <tr class="separator:a7d4af684091b64284bfe713356cf90f7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a42fc596b7dace4d6485e87bcff8633e8"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a42fc596b7dace4d6485e87bcff8633e8"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_level_scene.html#a42fc596b7dace4d6485e87bcff8633e8">handleInput</a> (<a class="el" href="class_x_b_o_x_controller.html">XBOXController</a> &amp;controller)</td></tr>
-<tr class="memdesc:a42fc596b7dace4d6485e87bcff8633e8"><td class="mdescLeft">&#160;</td><td class="mdescRight">This is a pure virtual funciton for handleInput, which must be overloaded in any inheriting classes. <br /></td></tr>
+<tr class="memitem:a42fc596b7dace4d6485e87bcff8633e8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_level_scene.html#a42fc596b7dace4d6485e87bcff8633e8">handleInput</a> (<a class="el" href="class_x_b_o_x_controller.html">XBOXController</a> &amp;controller)</td></tr>
+<tr class="memdesc:a42fc596b7dace4d6485e87bcff8633e8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Handles the controller input passed down from the <a class="el" href="class_x_b_o_x_controller.html" title="This is an instance of the XBOX controller which uses xinput v9.1.0 to detect and store information o...">XBOXController</a> class to the scene for interpreting from the main <a class="el" href="class_game.html">Game</a> loop.  <a href="#a42fc596b7dace4d6485e87bcff8633e8">More...</a><br /></td></tr>
 <tr class="separator:a42fc596b7dace4d6485e87bcff8633e8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aab23b4f39173835669a0c603952b4842"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aab23b4f39173835669a0c603952b4842"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>loadLevel</b> (string lvl_name)</td></tr>
+<tr class="memitem:aab23b4f39173835669a0c603952b4842"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_level_scene.html#aab23b4f39173835669a0c603952b4842">loadLevel</a> (string lvl_name)</td></tr>
+<tr class="memdesc:aab23b4f39173835669a0c603952b4842"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initalises the <a class="el" href="class_level.html" title="This is a level in raw data. This class is ment to encapsulate all the information required for a lev...">Level</a> and calls the appropratie load functions to intialise the level from the string passed in.  <a href="#aab23b4f39173835669a0c603952b4842">More...</a><br /></td></tr>
 <tr class="separator:aab23b4f39173835669a0c603952b4842"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:abe1cf831543139b8350811b2e220c723"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="abe1cf831543139b8350811b2e220c723"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>setPlayer</b> (<a class="el" href="class_player.html">Player</a> *p)</td></tr>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_level_scene.html#abe1cf831543139b8350811b2e220c723">setPlayer</a> (<a class="el" href="class_player.html">Player</a> *p)</td></tr>
+<tr class="memdesc:abe1cf831543139b8350811b2e220c723"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the player pointer to the player object passed in. <br /></td></tr>
 <tr class="separator:abe1cf831543139b8350811b2e220c723"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a148da54b7f7c304402335bac92687b7d"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a148da54b7f7c304402335bac92687b7d"></a>
-<a class="el" href="classv_camera.html">vCamera</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>getCamera</b> ()</td></tr>
+<a class="el" href="classv_camera.html">vCamera</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_level_scene.html#a148da54b7f7c304402335bac92687b7d">getCamera</a> ()</td></tr>
+<tr class="memdesc:a148da54b7f7c304402335bac92687b7d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Fetches the Scenes Camera. <br /></td></tr>
 <tr class="separator:a148da54b7f7c304402335bac92687b7d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8a3ba27a5b9d2bfba500c6ea14e4f82e"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a8a3ba27a5b9d2bfba500c6ea14e4f82e"></a>
-string&#160;</td><td class="memItemRight" valign="bottom"><b>getLevelName</b> ()</td></tr>
+string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_level_scene.html#a8a3ba27a5b9d2bfba500c6ea14e4f82e">getLevelName</a> ()</td></tr>
+<tr class="memdesc:a8a3ba27a5b9d2bfba500c6ea14e4f82e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the ID associated with the current level. <br /></td></tr>
 <tr class="separator:a8a3ba27a5b9d2bfba500c6ea14e4f82e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac747d494f40ad993c3da23d4dcab62b7"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ac747d494f40ad993c3da23d4dcab62b7"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>respawnPlayer</b> ()</td></tr>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_level_scene.html#ac747d494f40ad993c3da23d4dcab62b7">respawnPlayer</a> ()</td></tr>
+<tr class="memdesc:ac747d494f40ad993c3da23d4dcab62b7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Resets the player and respawns them at the closes checkpoint. <br /></td></tr>
 <tr class="separator:ac747d494f40ad993c3da23d4dcab62b7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a599f06e317b66dd0fb260046ea8c2da3"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a599f06e317b66dd0fb260046ea8c2da3"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>isComplete</b> ()</td></tr>
+bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_level_scene.html#a599f06e317b66dd0fb260046ea8c2da3">isComplete</a> ()</td></tr>
+<tr class="memdesc:a599f06e317b66dd0fb260046ea8c2da3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Call to check if the level has finished. <br /></td></tr>
 <tr class="separator:a599f06e317b66dd0fb260046ea8c2da3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9ee140e399671353f88f8ebe35aa0c27"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a9ee140e399671353f88f8ebe35aa0c27"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>reset</b> ()</td></tr>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_level_scene.html#a9ee140e399671353f88f8ebe35aa0c27">reset</a> ()</td></tr>
+<tr class="memdesc:a9ee140e399671353f88f8ebe35aa0c27"><td class="mdescLeft">&#160;</td><td class="mdescRight">Refreshes the camera, restarts the game music and repositiions the player. <br /></td></tr>
 <tr class="separator:a9ee140e399671353f88f8ebe35aa0c27"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
 <tr class="memitem:a60b51b35f2ca590d8e62c7c21eafe5dc"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a60b51b35f2ca590d8e62c7c21eafe5dc"></a>
-sf::Music&#160;</td><td class="memItemRight" valign="bottom"><b>m_background_music</b></td></tr>
+sf::Music&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_level_scene.html#a60b51b35f2ca590d8e62c7c21eafe5dc">m_background_music</a></td></tr>
+<tr class="memdesc:a60b51b35f2ca590d8e62c7c21eafe5dc"><td class="mdescLeft">&#160;</td><td class="mdescRight">This is the levels background music this is loaded and played from in game. Need some smart way of loading this for the next sprint. <br /></td></tr>
 <tr class="separator:a60b51b35f2ca590d8e62c7c21eafe5dc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:abe02d8810e0788a371a3cb2b45d32be8"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="abe02d8810e0788a371a3cb2b45d32be8"></a>
-<a class="el" href="class_command.html">Command</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>buttonX_</b></td></tr>
+<a class="el" href="class_command.html">Command</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_level_scene.html#abe02d8810e0788a371a3cb2b45d32be8">buttonX_</a></td></tr>
+<tr class="memdesc:abe02d8810e0788a371a3cb2b45d32be8"><td class="mdescLeft">&#160;</td><td class="mdescRight">This is the command class that responds when the X event is needed. <br /></td></tr>
 <tr class="separator:abe02d8810e0788a371a3cb2b45d32be8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa2dc412404a1c4cff7803f9c74eb31a4"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aa2dc412404a1c4cff7803f9c74eb31a4"></a>
-<a class="el" href="class_command.html">Command</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>buttonY_</b></td></tr>
+<a class="el" href="class_command.html">Command</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_level_scene.html#aa2dc412404a1c4cff7803f9c74eb31a4">buttonY_</a></td></tr>
+<tr class="memdesc:aa2dc412404a1c4cff7803f9c74eb31a4"><td class="mdescLeft">&#160;</td><td class="mdescRight">This is the command class that responds when the Y event is needed. <br /></td></tr>
 <tr class="separator:aa2dc412404a1c4cff7803f9c74eb31a4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a05d882c64e5ae0f0120b662188367ea7"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a05d882c64e5ae0f0120b662188367ea7"></a>
-<a class="el" href="class_command.html">Command</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>buttonB_</b></td></tr>
+<a class="el" href="class_command.html">Command</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_level_scene.html#a05d882c64e5ae0f0120b662188367ea7">buttonB_</a></td></tr>
+<tr class="memdesc:a05d882c64e5ae0f0120b662188367ea7"><td class="mdescLeft">&#160;</td><td class="mdescRight">This is the command class that responds when the B event is needed. <br /></td></tr>
 <tr class="separator:a05d882c64e5ae0f0120b662188367ea7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a74f231604896fddd411805e223e8cedf"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a74f231604896fddd411805e223e8cedf"></a>
-<a class="el" href="class_command.html">Command</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>buttonA_</b></td></tr>
+<a class="el" href="class_command.html">Command</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_level_scene.html#a74f231604896fddd411805e223e8cedf">buttonA_</a></td></tr>
+<tr class="memdesc:a74f231604896fddd411805e223e8cedf"><td class="mdescLeft">&#160;</td><td class="mdescRight">This is the command class that responds when the Jump event is needed. <br /></td></tr>
 <tr class="separator:a74f231604896fddd411805e223e8cedf"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3065001b534329145b0da217427dc8b9"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a3065001b534329145b0da217427dc8b9"></a>
-b2World *&#160;</td><td class="memItemRight" valign="bottom"><b>m_world</b></td></tr>
+b2World *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_level_scene.html#a3065001b534329145b0da217427dc8b9">m_world</a></td></tr>
+<tr class="memdesc:a3065001b534329145b0da217427dc8b9"><td class="mdescLeft">&#160;</td><td class="mdescRight">The box2d world is responsible for handling all of the box2d physics in the game. It also has the ablitity to create and delete box bodies. <br /></td></tr>
 <tr class="separator:a3065001b534329145b0da217427dc8b9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_attribs_struct_scene"><td colspan="2" onclick="javascript:toggleInherit('pub_attribs_struct_scene')"><img src="closed.png" alt="-"/>&#160;Public Attributes inherited from <a class="el" href="struct_scene.html">Scene</a></td></tr>
 <tr class="memitem:a10f6b5165b8eda1177769111831ea5bd inherit pub_attribs_struct_scene"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a10f6b5165b8eda1177769111831ea5bd"></a>
@@ -193,13 +219,247 @@ map&lt; string, bool &gt;&#160;</td><td class="memItemRight" valign="bottom"><a 
 <tr class="memdesc:a39edc37ba5eccdf94e56284fb7706435 inherit pub_attribs_struct_scene"><td class="mdescLeft">&#160;</td><td class="mdescRight">This is used for storing any previously pressed keys this scene and holding them for use later in any of the inheriting scenes. You can compair this variable to s_key_map to find held keys if required. <br /></td></tr>
 <tr class="separator:a39edc37ba5eccdf94e56284fb7706435 inherit pub_attribs_struct_scene"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<div class="dynheader">
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>This is the inheriting sub class of <a class="el" href="struct_scene.html" title="This is a C++ abstract class, where one or more of its methods are pure virtual and such must be over...">Scene</a> and as such overloads the appropratie methods (e.g. handleEvent, render). This class is responcable for updating and rendering everything in the scene while also handlingEvents from the keyboard or input from the controller. The <a class="el" href="class_level_scene.html" title="This is the inheriting sub class of Scene and as such overloads the appropratie methods (e...">LevelScene</a> has a <a class="el" href="class_level.html" title="This is a level in raw data. This class is ment to encapsulate all the information required for a lev...">Level</a> object and is responcible for loading it into memory. The <a class="el" href="class_level.html" title="This is a level in raw data. This class is ment to encapsulate all the information required for a lev...">Level</a> scene controls the fixed time step and handling the box2d world. </p>
+</div><div class="dynheader">
 Inheritance diagram for LevelScene:</div>
 <div class="dyncontent">
 <div class="center"><img src="class_level_scene__inherit__graph.png" border="0" usemap="#_level_scene_inherit__map" alt="Inheritance graph"/></div>
 <map name="_level_scene_inherit__map" id="_level_scene_inherit__map">
 <area shape="rect" id="node2" href="struct_scene.html" title="This is a C++ abstract class, where one or more of its methods are pure virtual and such must be over..." alt="" coords="21,5,151,141"/>
 </map>
+</div>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a class="anchor" id="afc3d3dc0d9cac4aad1c39c2e83bf9a03"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void LevelScene::handleEvent </td>
+          <td>(</td>
+          <td class="paramtype">sf::Event &amp;&#160;</td>
+          <td class="paramname"><em>e</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Handles the keyboard events passed in from the poll event in the main game loop and class the appropratie command for the key. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">sf::Event</td><td>This is the event passed in for interpreting key presses </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Implements <a class="el" href="struct_scene.html#a223c047dbeddad83665237d4b261074c">Scene</a>.</p>
+
+<p><div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_level_scene_afc3d3dc0d9cac4aad1c39c2e83bf9a03_cgraph.png" border="0" usemap="#class_level_scene_afc3d3dc0d9cac4aad1c39c2e83bf9a03_cgraph" alt=""/></div>
+<map name="class_level_scene_afc3d3dc0d9cac4aad1c39c2e83bf9a03_cgraph" id="class_level_scene_afc3d3dc0d9cac4aad1c39c2e83bf9a03_cgraph">
+<area shape="rect" id="node2" href="class_player.html#a70e21ca98281b7d72f105f2693113d7e" title="Make the player jump. " alt="" coords="423,5,518,32"/>
+<area shape="rect" id="node4" href="class_player.html#a6a2b68bc4b21d4c4a79a23b498896ec2" title="Make the player move right and apply speed factor. " alt="" coords="224,56,351,83"/>
+<area shape="rect" id="node6" href="class_player.html#ae3bbcf1159bdc059bff1c2513f2505f7" title="Make the player move left and apply speed factor. " alt="" coords="228,107,347,133"/>
+<area shape="rect" id="node7" href="class_player.html#a3d1b2def6b0b9e88ebde048aae4b3211" title="Checks if the player is in the jumping animation. " alt="" coords="221,157,354,184"/>
+<area shape="rect" id="node8" href="class_command.html#a29f4294ac9e3cd1fb9da3737914681e1" title="This function executes the task issued to the command. " alt="" coords="220,208,355,235"/>
+<area shape="rect" id="node9" href="class_player.html#ac1f3ce820337430ef7fc9bf5acd5db08" title="Sets the Variable m_is_moving. " alt="" coords="222,259,353,285"/>
+<area shape="rect" id="node3" href="class_player.html#ab27728d11ac7c8d8d905ab5bd3e0fe89" title="Finds a value between the max and min passed in. " alt="" coords="587,31,689,57"/>
+<area shape="rect" id="node5" href="class_player.html#ab92500fc590fa0a523479b46f23a702e" title="Sets the players direction to the value passed in. " alt="" coords="403,56,539,83"/>
+</map>
+</div>
+</p>
+
+</div>
+</div>
+<a class="anchor" id="a7d4af684091b64284bfe713356cf90f7"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void LevelScene::handleEvent </td>
+          <td>(</td>
+          <td class="paramtype">sf::Event &amp;&#160;</td>
+          <td class="paramname"><em>e</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">sf::Time&#160;</td>
+          <td class="paramname"><em>dt</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Handles the keyboard events passed in from the poll event in the main game loop and class the appropratie command for the key. This has the addition of delta time used for moving entities. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">sf::Event</td><td>This is the event passed in for interpreting key presses </td></tr>
+    <tr><td class="paramname">sf::Time</td><td>The delta time used for updating </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="a42fc596b7dace4d6485e87bcff8633e8"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void LevelScene::handleInput </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_x_b_o_x_controller.html">XBOXController</a> &amp;&#160;</td>
+          <td class="paramname"><em>controller</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Handles the controller input passed down from the <a class="el" href="class_x_b_o_x_controller.html" title="This is an instance of the XBOX controller which uses xinput v9.1.0 to detect and store information o...">XBOXController</a> class to the scene for interpreting from the main <a class="el" href="class_game.html">Game</a> loop. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname"><a class="el" href="class_x_b_o_x_controller.html" title="This is an instance of the XBOX controller which uses xinput v9.1.0 to detect and store information o...">XBOXController</a></td><td>The Xinput wrapper class for interpreting controller input. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Implements <a class="el" href="struct_scene.html#a27c2db1250f879c64f7b510a100d0b8f">Scene</a>.</p>
+
+<p><div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_level_scene_a42fc596b7dace4d6485e87bcff8633e8_cgraph.png" border="0" usemap="#class_level_scene_a42fc596b7dace4d6485e87bcff8633e8_cgraph" alt=""/></div>
+<map name="class_level_scene_a42fc596b7dace4d6485e87bcff8633e8_cgraph" id="class_level_scene_a42fc596b7dace4d6485e87bcff8633e8_cgraph">
+<area shape="rect" id="node2" href="class_player.html#a70e21ca98281b7d72f105f2693113d7e" title="Make the player jump. " alt="" coords="415,5,510,32"/>
+<area shape="rect" id="node4" href="class_player.html#a6a2b68bc4b21d4c4a79a23b498896ec2" title="Make the player move right and apply speed factor. " alt="" coords="218,56,345,83"/>
+<area shape="rect" id="node6" href="class_player.html#ae3bbcf1159bdc059bff1c2513f2505f7" title="Make the player move left and apply speed factor. " alt="" coords="222,107,341,133"/>
+<area shape="rect" id="node7" href="class_player.html#ac1f3ce820337430ef7fc9bf5acd5db08" title="Sets the Variable m_is_moving. " alt="" coords="216,157,347,184"/>
+<area shape="rect" id="node3" href="class_player.html#ab27728d11ac7c8d8d905ab5bd3e0fe89" title="Finds a value between the max and min passed in. " alt="" coords="579,31,681,57"/>
+<area shape="rect" id="node5" href="class_player.html#ab92500fc590fa0a523479b46f23a702e" title="Sets the players direction to the value passed in. " alt="" coords="395,56,531,83"/>
+</map>
+</div>
+</p>
+
+</div>
+</div>
+<a class="anchor" id="aab23b4f39173835669a0c603952b4842"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void LevelScene::loadLevel </td>
+          <td>(</td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>lvl_name</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Initalises the <a class="el" href="class_level.html" title="This is a level in raw data. This class is ment to encapsulate all the information required for a lev...">Level</a> and calls the appropratie load functions to intialise the level from the string passed in. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">string</td><td>The ID of the level name which will be loaded. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p><div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_level_scene_aab23b4f39173835669a0c603952b4842_cgraph.png" border="0" usemap="#class_level_scene_aab23b4f39173835669a0c603952b4842_cgraph" alt=""/></div>
+<map name="class_level_scene_aab23b4f39173835669a0c603952b4842_cgraph" id="class_level_scene_aab23b4f39173835669a0c603952b4842_cgraph">
+<area shape="rect" id="node2" href="class_level_scene.html#ac747d494f40ad993c3da23d4dcab62b7" title="Resets the player and respawns them at the closes checkpoint. " alt="" coords="203,56,384,83"/>
+<area shape="rect" id="node8" href="class_player.html#abeaa6fb79495a647ffd4ca8cf2442d37" title="Finds the center of the player in Global coordinates. " alt="" coords="432,107,555,133"/>
+<area shape="rect" id="node3" href="class_player.html#ab34d543e0ce8136ffd34777576d7c720" title="Resets the player in the game setting its direction and speedfactor. " alt="" coords="445,56,541,83"/>
+<area shape="rect" id="node4" href="class_player.html#a49b1af1e82620c3265e8b23a7e4852dc" title="Sets the Player to the position passed in. " alt="" coords="603,56,713,83"/>
+<area shape="rect" id="node5" href="class_player.html#af99c17372865d29c79ea1a17c5d8a935" title="Position the players b2Body to the position passed in. " alt="" coords="772,5,879,32"/>
+<area shape="rect" id="node6" href="class_player.html#ab27728d11ac7c8d8d905ab5bd3e0fe89" title="Finds a value between the max and min passed in. " alt="" coords="774,56,877,83"/>
+<area shape="rect" id="node7" href="class_player.html#a10edd89e8a7ef4f1b83250d2b592cefe" title="Calculates and sets the position of the sf::Sprite in relation to the b2Body. " alt="" coords="761,107,889,133"/>
+</map>
+</div>
+</p>
+
+<p><div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_level_scene_aab23b4f39173835669a0c603952b4842_icgraph.png" border="0" usemap="#class_level_scene_aab23b4f39173835669a0c603952b4842_icgraph" alt=""/></div>
+<map name="class_level_scene_aab23b4f39173835669a0c603952b4842_icgraph" id="class_level_scene_aab23b4f39173835669a0c603952b4842_icgraph">
+<area shape="rect" id="node2" href="class_game.html#ad9382758bb4b0c156fa1973eea33cbb8" title="Change States and initalise them appropratly. " alt="" coords="203,5,360,32"/>
+<area shape="rect" id="node3" href="class_game.html#a9137882533a1d2e234c03d73fae68af6" title="Checks the active scene for completion and if so class goToNextScene. " alt="" coords="408,5,589,32"/>
+<area shape="rect" id="node4" href="class_game.html#a1ab78f5ed0d5ea879157357cf2fb2afa" title="This is the main game loop that the game runs and calls all the methods for running the game..." alt="" coords="637,5,720,32"/>
+</map>
+</div>
+</p>
+
+</div>
+</div>
+<a class="anchor" id="ace730bc6ccd5d585b1f96dfe85039cb4"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void LevelScene::render </td>
+          <td>(</td>
+          <td class="paramtype">sf::RenderWindow &amp;&#160;</td>
+          <td class="paramname"><em>w</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Draws the scenes objects such as player, blocks and enemies including the foreground and background. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">sf::RenderWindow</td><td>is the games render window for drawing to. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Implements <a class="el" href="struct_scene.html#a6d1270074b9eca3f44d3e01c17ab3a40">Scene</a>.</p>
+
+<p><div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_level_scene_ace730bc6ccd5d585b1f96dfe85039cb4_cgraph.png" border="0" usemap="#class_level_scene_ace730bc6ccd5d585b1f96dfe85039cb4_cgraph" alt=""/></div>
+<map name="class_level_scene_ace730bc6ccd5d585b1f96dfe85039cb4_cgraph" id="class_level_scene_ace730bc6ccd5d585b1f96dfe85039cb4_cgraph">
+<area shape="rect" id="node2" href="class_h_u_d.html#aba8a84f29f268062dac11eba1cb30718" title="Draws all the HUD&#39;s Items to the window. " alt="" coords="185,5,279,32"/>
+</map>
+</div>
+</p>
+
+</div>
 </div>
 <hr/>The documentation for this class was generated from the following files:<ul>
 <li>FYP_FallenHero/<a class="el" href="_level_scene_8hpp_source.html">LevelScene.hpp</a></li>

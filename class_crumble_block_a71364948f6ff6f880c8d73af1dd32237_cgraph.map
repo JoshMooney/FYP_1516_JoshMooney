@@ -1,0 +1,4 @@
+<map id="CrumbleBlock::update" name="CrumbleBlock::update">
+<area shape="rect" id="node2" href="$class_crumble_block.html#a30d4a3dea0f7b721e21c9397b499987e" title="Keeps the Animation in step. Checks for the the flags in the approprate order to keep the animation r..." alt="" coords="204,5,408,32"/>
+<area shape="rect" id="node3" href="$class_crumble_block.html#a699c236260e5bac09b3a13030adbd37a" title="Raise the Death flag for the brick that gets picked up from the checkAnimation function and changes t..." alt="" coords="456,5,587,32"/>
+</map>

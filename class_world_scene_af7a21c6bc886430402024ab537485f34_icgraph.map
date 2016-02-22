@@ -1,0 +1,6 @@
+<map id="WorldScene::loadSaveSlot" name="WorldScene::loadSaveSlot">
+<area shape="rect" id="node2" href="$class_game.html#ad9382758bb4b0c156fa1973eea33cbb8" title="Change States and initalise them appropratly. " alt="" coords="468,5,625,32"/>
+<area shape="rect" id="node5" href="$class_world_scene.html#abf9bc046024c7c2225ecba9bbb22e7ee" title="Get the ID of the level the player is standing on. " alt="" coords="229,31,420,57"/>
+<area shape="rect" id="node3" href="$class_game.html#a9137882533a1d2e234c03d73fae68af6" title="Checks the active scene for completion and if so class goToNextScene. " alt="" coords="673,5,855,32"/>
+<area shape="rect" id="node4" href="$class_game.html#a1ab78f5ed0d5ea879157357cf2fb2afa" title="This is the main game loop that the game runs and calls all the methods for running the game..." alt="" coords="903,5,985,32"/>
+</map>

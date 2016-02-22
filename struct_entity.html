@@ -44,6 +44,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
+      <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li class="current"><a href="annotated.html"><span>Classes</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
       <li>
@@ -110,32 +111,45 @@ $(document).ready(function(){initNavTree('struct_entity.html','');});
 <div class="title">Entity Struct Reference<span class="mlabels"><span class="mlabel">abstract</span></span></div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p>Base class for anything in the game that is an entity and might need hp and a box body e.g. <a class="el" href="class_player.html" title="This is the player class that will represent the user while in game, and will be responsable for cons...">Player</a> and NPC.  
+ <a href="struct_entity.html#details">More...</a></p>
+
+<p><code>#include &lt;<a class="el" href="_entity_8hpp_source.html">Entity.hpp</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a44fc4d400de87e84e988051f8314ed3a"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a44fc4d400de87e84e988051f8314ed3a"></a>
-virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>update</b> (FTS fts)=0</td></tr>
+virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_entity.html#a44fc4d400de87e84e988051f8314ed3a">update</a> (FTS fts)=0</td></tr>
+<tr class="memdesc:a44fc4d400de87e84e988051f8314ed3a"><td class="mdescLeft">&#160;</td><td class="mdescRight">An abstract virtual function meaning this method will have to be overrided in any inheriting classes. <br /></td></tr>
 <tr class="separator:a44fc4d400de87e84e988051f8314ed3a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
 <tr class="memitem:a789f739242ad98915e400c851ce04126"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a789f739242ad98915e400c851ce04126"></a>
-float&#160;</td><td class="memItemRight" valign="bottom"><b>e_hp</b></td></tr>
+float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_entity.html#a789f739242ad98915e400c851ce04126">e_hp</a></td></tr>
+<tr class="memdesc:a789f739242ad98915e400c851ce04126"><td class="mdescLeft">&#160;</td><td class="mdescRight">The Health points of the entity. <br /></td></tr>
 <tr class="separator:a789f739242ad98915e400c851ce04126"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aaf9119d7bd0707385f45e44adf47907d"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aaf9119d7bd0707385f45e44adf47907d"></a>
-float&#160;</td><td class="memItemRight" valign="bottom"><b>e_max_hp</b></td></tr>
+float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_entity.html#aaf9119d7bd0707385f45e44adf47907d">e_max_hp</a></td></tr>
+<tr class="memdesc:aaf9119d7bd0707385f45e44adf47907d"><td class="mdescLeft">&#160;</td><td class="mdescRight">The Maximum Health points of the entity. <br /></td></tr>
 <tr class="separator:aaf9119d7bd0707385f45e44adf47907d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa4af638933f09b66146aafa85c256cda"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aa4af638933f09b66146aafa85c256cda"></a>
-string&#160;</td><td class="memItemRight" valign="bottom"><b>e_texture</b></td></tr>
+string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_entity.html#aa4af638933f09b66146aafa85c256cda">e_texture</a></td></tr>
+<tr class="memdesc:aa4af638933f09b66146aafa85c256cda"><td class="mdescLeft">&#160;</td><td class="mdescRight">A string to the name of the resource and its path location. <br /></td></tr>
 <tr class="separator:aa4af638933f09b66146aafa85c256cda"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac39f7118e8882bd2e2f48263e7b0bac0"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ac39f7118e8882bd2e2f48263e7b0bac0"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>e_body_active</b></td></tr>
+bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_entity.html#ac39f7118e8882bd2e2f48263e7b0bac0">e_body_active</a></td></tr>
+<tr class="memdesc:ac39f7118e8882bd2e2f48263e7b0bac0"><td class="mdescLeft">&#160;</td><td class="mdescRight">A bool to stay if the body is alive or. <br /></td></tr>
 <tr class="separator:ac39f7118e8882bd2e2f48263e7b0bac0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7eba71e5ea7f9f8954b8ba4c32689f1f"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a7eba71e5ea7f9f8954b8ba4c32689f1f"></a>
-b2Body *&#160;</td><td class="memItemRight" valign="bottom"><b>e_box_body</b></td></tr>
+b2Body *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_entity.html#a7eba71e5ea7f9f8954b8ba4c32689f1f">e_box_body</a></td></tr>
+<tr class="memdesc:a7eba71e5ea7f9f8954b8ba4c32689f1f"><td class="mdescLeft">&#160;</td><td class="mdescRight">The Box2D Body associated with the <a class="el" href="struct_entity.html" title="Base class for anything in the game that is an entity and might need hp and a box body e...">Entity</a>. <br /></td></tr>
 <tr class="separator:a7eba71e5ea7f9f8954b8ba4c32689f1f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<div class="dynheader">
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Base class for anything in the game that is an entity and might need hp and a box body e.g. <a class="el" href="class_player.html" title="This is the player class that will represent the user while in game, and will be responsable for cons...">Player</a> and NPC. </p>
+</div><div class="dynheader">
 Inheritance diagram for Entity:</div>
 <div class="dyncontent">
 <div class="center"><img src="struct_entity__inherit__graph.png" border="0" usemap="#_entity_inherit__map" alt="Inheritance graph"/></div>

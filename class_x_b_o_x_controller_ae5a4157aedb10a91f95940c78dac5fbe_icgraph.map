@@ -1,0 +1,4 @@
+<map id="XBOXController::isIdle" name="XBOXController::isIdle">
+<area shape="rect" id="node2" href="$class_menu_scene.html#afb5ab00d298633725f69723c83963a45" title="This is a pure virtual funciton for handleInput, which must be overloaded in any inheriting classes..." alt="" coords="202,5,367,32"/>
+<area shape="rect" id="node3" href="$class_world_scene.html#acf59be6537a77078daca83eb70aca70c" title="Handle the Controller input for the scene. " alt="" coords="201,56,368,83"/>
+</map>

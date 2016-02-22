@@ -44,6 +44,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
+      <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li class="current"><a href="annotated.html"><span>Classes</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
       <li>
@@ -110,61 +111,405 @@ $(document).ready(function(){initNavTree('class_world_node.html','');});
 <div class="title">WorldNode Class Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p>This is a world node to be used by the world map to make the overworld level select. A node is responcable for knowing about it neighbours, what is unlocked after finishing the level and an ID to identify the level the node is associated with.  
+ <a href="class_world_node.html#details">More...</a></p>
+
+<p><code>#include &lt;<a class="el" href="_world_node_8hpp_source.html">WorldNode.hpp</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a15f13dc2e7a912d1e70420bface95563"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a15f13dc2e7a912d1e70420bface95563"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>WorldNode</b> (string id, sf::Vector2f pos, bool locked)</td></tr>
+<tr class="memitem:a15f13dc2e7a912d1e70420bface95563"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_world_node.html#a15f13dc2e7a912d1e70420bface95563">WorldNode</a> (string id, sf::Vector2f pos, bool locked)</td></tr>
+<tr class="memdesc:a15f13dc2e7a912d1e70420bface95563"><td class="mdescLeft">&#160;</td><td class="mdescRight">This is the default constructor for the world node taking the bare minimum of requirements for the world node creation.  <a href="#a15f13dc2e7a912d1e70420bface95563">More...</a><br /></td></tr>
 <tr class="separator:a15f13dc2e7a912d1e70420bface95563"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4dae417ed9b3306c10db06440361f54c"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a4dae417ed9b3306c10db06440361f54c"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>WorldNode</b> (string id, sf::Vector2f pos, bool locked, bool complete)</td></tr>
+<tr class="memitem:a4dae417ed9b3306c10db06440361f54c"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_world_node.html#a4dae417ed9b3306c10db06440361f54c">WorldNode</a> (string id, sf::Vector2f pos, bool locked, bool complete)</td></tr>
+<tr class="memdesc:a4dae417ed9b3306c10db06440361f54c"><td class="mdescLeft">&#160;</td><td class="mdescRight">This is the overloaded constructor for the world node taking the bare minimum of requirements for the world node creation, in addition to the completion bool.  <a href="#a4dae417ed9b3306c10db06440361f54c">More...</a><br /></td></tr>
 <tr class="separator:a4dae417ed9b3306c10db06440361f54c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad2e8d50858da83e575261bb6e3dcb080"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ad2e8d50858da83e575261bb6e3dcb080"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>WorldNode</b> (string id, sf::Vector2f pos, bool locked, bool complete, string text)</td></tr>
+<tr class="memitem:ad2e8d50858da83e575261bb6e3dcb080"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_world_node.html#ad2e8d50858da83e575261bb6e3dcb080">WorldNode</a> (string id, sf::Vector2f pos, bool locked, bool complete, string text)</td></tr>
+<tr class="memdesc:ad2e8d50858da83e575261bb6e3dcb080"><td class="mdescLeft">&#160;</td><td class="mdescRight">This is another overloaded constructor for the world node taking the all of requirements for the world node creation.  <a href="#ad2e8d50858da83e575261bb6e3dcb080">More...</a><br /></td></tr>
 <tr class="separator:ad2e8d50858da83e575261bb6e3dcb080"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab0925e925e1fff1cfaeed4bea9bce534"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ab0925e925e1fff1cfaeed4bea9bce534"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>unlock</b> ()</td></tr>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_world_node.html#ab0925e925e1fff1cfaeed4bea9bce534">unlock</a> ()</td></tr>
+<tr class="memdesc:ab0925e925e1fff1cfaeed4bea9bce534"><td class="mdescLeft">&#160;</td><td class="mdescRight">This unlocks the node and loads any new media it might need. <br /></td></tr>
 <tr class="separator:ab0925e925e1fff1cfaeed4bea9bce534"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:abaceeb0b61341b75da66eaacfba6631b"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="abaceeb0b61341b75da66eaacfba6631b"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>loadMedia</b> ()</td></tr>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_world_node.html#abaceeb0b61341b75da66eaacfba6631b">loadMedia</a> ()</td></tr>
+<tr class="memdesc:abaceeb0b61341b75da66eaacfba6631b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Loads a texture depending on if the level is locked or not. <br /></td></tr>
 <tr class="separator:abaceeb0b61341b75da66eaacfba6631b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a73b30c3aa899e3828f58932b83ee61f9"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a73b30c3aa899e3828f58932b83ee61f9"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>checkNeighbout</b> (string n)</td></tr>
+<tr class="memitem:a73b30c3aa899e3828f58932b83ee61f9"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_world_node.html#a73b30c3aa899e3828f58932b83ee61f9">checkNeighbout</a> (string n)</td></tr>
+<tr class="memdesc:a73b30c3aa899e3828f58932b83ee61f9"><td class="mdescLeft">&#160;</td><td class="mdescRight">This checks for neightbouring nodes in the direction passed in.  <a href="#a73b30c3aa899e3828f58932b83ee61f9">More...</a><br /></td></tr>
 <tr class="separator:a73b30c3aa899e3828f58932b83ee61f9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4691335c0b464a3c2252fd325009eacf"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a4691335c0b464a3c2252fd325009eacf"></a>
-<a class="el" href="class_world_node.html">WorldNode</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>getNeightbourNode</b> (string s)</td></tr>
+<tr class="memitem:a4691335c0b464a3c2252fd325009eacf"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_world_node.html">WorldNode</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_world_node.html#a4691335c0b464a3c2252fd325009eacf">getNeightbourNode</a> (string s)</td></tr>
+<tr class="memdesc:a4691335c0b464a3c2252fd325009eacf"><td class="mdescLeft">&#160;</td><td class="mdescRight">This fetches the neighbouring node of the current node with a string for identifying the direction.  <a href="#a4691335c0b464a3c2252fd325009eacf">More...</a><br /></td></tr>
 <tr class="separator:a4691335c0b464a3c2252fd325009eacf"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a853181cb23258158f97cb7237633a47a"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a853181cb23258158f97cb7237633a47a"></a>
-sf::Vector2f&#160;</td><td class="memItemRight" valign="bottom"><b>getCenter</b> ()</td></tr>
+<tr class="memitem:a853181cb23258158f97cb7237633a47a"><td class="memItemLeft" align="right" valign="top">sf::Vector2f&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_world_node.html#a853181cb23258158f97cb7237633a47a">getCenter</a> ()</td></tr>
+<tr class="memdesc:a853181cb23258158f97cb7237633a47a"><td class="mdescLeft">&#160;</td><td class="mdescRight">This fetches the center of the current node.  <a href="#a853181cb23258158f97cb7237633a47a">More...</a><br /></td></tr>
 <tr class="separator:a853181cb23258158f97cb7237633a47a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
 <tr class="memitem:a5eb732718c44067c657f7b9991d0d86e"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a5eb732718c44067c657f7b9991d0d86e"></a>
-map&lt; string, <a class="el" href="class_world_node.html">WorldNode</a> * &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>m_neighbouring_nodes</b></td></tr>
+map&lt; string, <a class="el" href="class_world_node.html">WorldNode</a> * &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_world_node.html#a5eb732718c44067c657f7b9991d0d86e">m_neighbouring_nodes</a></td></tr>
+<tr class="memdesc:a5eb732718c44067c657f7b9991d0d86e"><td class="mdescLeft">&#160;</td><td class="mdescRight">A map of directions to WorldNodes will identify the neighboursing nodes of the current node. <br /></td></tr>
 <tr class="separator:a5eb732718c44067c657f7b9991d0d86e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae41bd33db228bc60fe9f9db7452666b7"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ae41bd33db228bc60fe9f9db7452666b7"></a>
-<a class="el" href="class_world_node.html">WorldNode</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>m_next_lvl</b></td></tr>
+<a class="el" href="class_world_node.html">WorldNode</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_world_node.html#ae41bd33db228bc60fe9f9db7452666b7">m_next_lvl</a></td></tr>
+<tr class="memdesc:ae41bd33db228bc60fe9f9db7452666b7"><td class="mdescLeft">&#160;</td><td class="mdescRight">The next level to be unlocked after this one is complete. <br /></td></tr>
 <tr class="separator:ae41bd33db228bc60fe9f9db7452666b7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1172bd6ca25a7830ead5200fa0b63a0c"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a1172bd6ca25a7830ead5200fa0b63a0c"></a>
-string&#160;</td><td class="memItemRight" valign="bottom"><b>s_texture</b></td></tr>
+string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_world_node.html#a1172bd6ca25a7830ead5200fa0b63a0c">s_texture</a></td></tr>
+<tr class="memdesc:a1172bd6ca25a7830ead5200fa0b63a0c"><td class="mdescLeft">&#160;</td><td class="mdescRight">A string to the path of the texture which will be used by the resourcemanager to load the asset. <br /></td></tr>
 <tr class="separator:a1172bd6ca25a7830ead5200fa0b63a0c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4fc842b5ebb624a2262d472c006b01f3"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a4fc842b5ebb624a2262d472c006b01f3"></a>
-string&#160;</td><td class="memItemRight" valign="bottom"><b>m_lvl_id</b></td></tr>
+string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_world_node.html#a4fc842b5ebb624a2262d472c006b01f3">m_lvl_id</a></td></tr>
+<tr class="memdesc:a4fc842b5ebb624a2262d472c006b01f3"><td class="mdescLeft">&#160;</td><td class="mdescRight">String for level id, the name of the level. <br /></td></tr>
 <tr class="separator:a4fc842b5ebb624a2262d472c006b01f3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4dbe5b7a573a3e952d2d1e5ece5f9a10"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a4dbe5b7a573a3e952d2d1e5ece5f9a10"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>m_is_locked</b></td></tr>
+bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_world_node.html#a4dbe5b7a573a3e952d2d1e5ece5f9a10">m_is_locked</a></td></tr>
+<tr class="memdesc:a4dbe5b7a573a3e952d2d1e5ece5f9a10"><td class="mdescLeft">&#160;</td><td class="mdescRight">Whether or not the level is locked. <br /></td></tr>
 <tr class="separator:a4dbe5b7a573a3e952d2d1e5ece5f9a10"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af266c16c0f4d2660f915672e065b8ee7"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="af266c16c0f4d2660f915672e065b8ee7"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>m_is_complete</b></td></tr>
+bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_world_node.html#af266c16c0f4d2660f915672e065b8ee7">m_is_complete</a></td></tr>
+<tr class="memdesc:af266c16c0f4d2660f915672e065b8ee7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Whether or not the level is complete. <br /></td></tr>
 <tr class="separator:af266c16c0f4d2660f915672e065b8ee7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<div class="dynheader">
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>This is a world node to be used by the world map to make the overworld level select. A node is responcable for knowing about it neighbours, what is unlocked after finishing the level and an ID to identify the level the node is associated with. </p>
+</div><div class="dynheader">
 Inheritance diagram for WorldNode:</div>
 <div class="dyncontent">
 <div class="center"><img src="class_world_node__inherit__graph.png" border="0" usemap="#_world_node_inherit__map" alt="Inheritance graph"/></div>
-<map name="_world_node_inherit__map" id="_world_node_inherit__map">
+</div>
+<h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a class="anchor" id="a15f13dc2e7a912d1e70420bface95563"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">WorldNode::WorldNode </td>
+          <td>(</td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>id</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">sf::Vector2f&#160;</td>
+          <td class="paramname"><em>pos</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>locked</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>This is the default constructor for the world node taking the bare minimum of requirements for the world node creation. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">id</td><td>The Name of the level doubles up as an identifier </td></tr>
+    <tr><td class="paramname">pos</td><td>The position to spawn the Node at. </td></tr>
+    <tr><td class="paramname">locked</td><td>if the level is locked or not. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p><div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_world_node_a15f13dc2e7a912d1e70420bface95563_cgraph.png" border="0" usemap="#class_world_node_a15f13dc2e7a912d1e70420bface95563_cgraph" alt=""/></div>
+<map name="class_world_node_a15f13dc2e7a912d1e70420bface95563_cgraph" id="class_world_node_a15f13dc2e7a912d1e70420bface95563_cgraph">
+<area shape="rect" id="node2" href="class_world_node.html#abaceeb0b61341b75da66eaacfba6631b" title="Loads a texture depending on if the level is locked or not. " alt="" coords="212,5,365,32"/>
 </map>
+</div>
+</p>
+
+</div>
+</div>
+<a class="anchor" id="a4dae417ed9b3306c10db06440361f54c"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">WorldNode::WorldNode </td>
+          <td>(</td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>id</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">sf::Vector2f&#160;</td>
+          <td class="paramname"><em>pos</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>locked</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>complete</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>This is the overloaded constructor for the world node taking the bare minimum of requirements for the world node creation, in addition to the completion bool. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">id</td><td>The Name of the level doubles up as an identifier </td></tr>
+    <tr><td class="paramname">pos</td><td>The position to spawn the Node at. </td></tr>
+    <tr><td class="paramname">locked</td><td>if the level is locked or not. </td></tr>
+    <tr><td class="paramname">complete</td><td>if the level is complete or not. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p><div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_world_node_a4dae417ed9b3306c10db06440361f54c_cgraph.png" border="0" usemap="#class_world_node_a4dae417ed9b3306c10db06440361f54c_cgraph" alt=""/></div>
+<map name="class_world_node_a4dae417ed9b3306c10db06440361f54c_cgraph" id="class_world_node_a4dae417ed9b3306c10db06440361f54c_cgraph">
+<area shape="rect" id="node2" href="class_world_node.html#abaceeb0b61341b75da66eaacfba6631b" title="Loads a texture depending on if the level is locked or not. " alt="" coords="212,5,365,32"/>
+</map>
+</div>
+</p>
+
+</div>
+</div>
+<a class="anchor" id="ad2e8d50858da83e575261bb6e3dcb080"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">WorldNode::WorldNode </td>
+          <td>(</td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>id</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">sf::Vector2f&#160;</td>
+          <td class="paramname"><em>pos</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>locked</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>complete</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>text</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>This is another overloaded constructor for the world node taking the all of requirements for the world node creation. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">id</td><td>The Name of the level doubles up as an identifier </td></tr>
+    <tr><td class="paramname">pos</td><td>The position to spawn the Node at. </td></tr>
+    <tr><td class="paramname">locked</td><td>if the level is locked or not. </td></tr>
+    <tr><td class="paramname">complete</td><td>if the level is complete or not. </td></tr>
+    <tr><td class="paramname">text</td><td>The file path to the texture for loading custom textures for levels. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a class="anchor" id="a73b30c3aa899e3828f58932b83ee61f9"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool WorldNode::checkNeighbout </td>
+          <td>(</td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>n</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>This checks for neightbouring nodes in the direction passed in. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">string</td><td>of the direction to check for. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>bool if the neightbour exists or not. </dd></dl>
+
+<p><div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_world_node_a73b30c3aa899e3828f58932b83ee61f9_icgraph.png" border="0" usemap="#class_world_node_a73b30c3aa899e3828f58932b83ee61f9_icgraph" alt=""/></div>
+<map name="class_world_node_a73b30c3aa899e3828f58932b83ee61f9_icgraph" id="class_world_node_a73b30c3aa899e3828f58932b83ee61f9_icgraph">
+<area shape="rect" id="node2" href="class_world_scene.html#af1b3f16c7375f86c397a7576d53c32e0" title="Move the player idol in the direction passed into the funtion. " alt="" coords="240,31,408,57"/>
+<area shape="rect" id="node3" href="class_world_scene.html#a8d9485ae14e82ca54840358fb3d9e8be" title="Handle the keyboard input for the scene. " alt="" coords="456,5,627,32"/>
+<area shape="rect" id="node4" href="class_world_scene.html#acf59be6537a77078daca83eb70aca70c" title="Handle the Controller input for the scene. " alt="" coords="458,56,625,83"/>
+</map>
+</div>
+</p>
+
+</div>
+</div>
+<a class="anchor" id="a853181cb23258158f97cb7237633a47a"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">sf::Vector2f WorldNode::getCenter </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>This fetches the center of the current node. </p>
+<dl class="section return"><dt>Returns</dt><dd>sf::Vector2f The Center of the node. </dd></dl>
+
+<p><div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_world_node_a853181cb23258158f97cb7237633a47a_cgraph.png" border="0" usemap="#class_world_node_a853181cb23258158f97cb7237633a47a_cgraph" alt=""/></div>
+<map name="class_world_node_a853181cb23258158f97cb7237633a47a_cgraph" id="class_world_node_a853181cb23258158f97cb7237633a47a_cgraph">
+<area shape="rect" id="node2" href="class_resource_manager.html#a3dcdce6201a938ee51be3d23879e46e1" title="Fetches the current instance of the Manager is required to achieve the singleton pattern. " alt="" coords="204,5,388,32"/>
+</map>
+</div>
+</p>
+
+<p><div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_world_node_a853181cb23258158f97cb7237633a47a_icgraph.png" border="0" usemap="#class_world_node_a853181cb23258158f97cb7237633a47a_icgraph" alt=""/></div>
+<map name="class_world_node_a853181cb23258158f97cb7237633a47a_icgraph" id="class_world_node_a853181cb23258158f97cb7237633a47a_icgraph">
+<area shape="rect" id="node2" href="class_world_scene.html#af1b3f16c7375f86c397a7576d53c32e0" title="Move the player idol in the direction passed into the funtion. " alt="" coords="204,31,372,57"/>
+<area shape="rect" id="node3" href="class_world_scene.html#a8d9485ae14e82ca54840358fb3d9e8be" title="Handle the keyboard input for the scene. " alt="" coords="420,5,591,32"/>
+<area shape="rect" id="node4" href="class_world_scene.html#acf59be6537a77078daca83eb70aca70c" title="Handle the Controller input for the scene. " alt="" coords="422,56,589,83"/>
+</map>
+</div>
+</p>
+
+</div>
+</div>
+<a class="anchor" id="a4691335c0b464a3c2252fd325009eacf"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_world_node.html">WorldNode</a>* WorldNode::getNeightbourNode </td>
+          <td>(</td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>s</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>This fetches the neighbouring node of the current node with a string for identifying the direction. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">string</td><td>The direction of the neightbouring node </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd><a class="el" href="class_world_node.html" title="This is a world node to be used by the world map to make the overworld level select. A node is responcable for knowing about it neighbours, what is unlocked after finishing the level and an ID to identify the level the node is associated with. ">WorldNode</a> The neighbouring node. </dd></dl>
+
+<p><div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_world_node_a4691335c0b464a3c2252fd325009eacf_icgraph.png" border="0" usemap="#class_world_node_a4691335c0b464a3c2252fd325009eacf_icgraph" alt=""/></div>
+<map name="class_world_node_a4691335c0b464a3c2252fd325009eacf_icgraph" id="class_world_node_a4691335c0b464a3c2252fd325009eacf_icgraph">
+<area shape="rect" id="node2" href="class_world_scene.html#af1b3f16c7375f86c397a7576d53c32e0" title="Move the player idol in the direction passed into the funtion. " alt="" coords="257,31,425,57"/>
+<area shape="rect" id="node3" href="class_world_scene.html#a8d9485ae14e82ca54840358fb3d9e8be" title="Handle the keyboard input for the scene. " alt="" coords="473,5,644,32"/>
+<area shape="rect" id="node4" href="class_world_scene.html#acf59be6537a77078daca83eb70aca70c" title="Handle the Controller input for the scene. " alt="" coords="475,56,642,83"/>
+</map>
+</div>
+</p>
+
+</div>
 </div>
 <hr/>The documentation for this class was generated from the following file:<ul>
 <li>FYP_FallenHero/<a class="el" href="_world_node_8hpp_source.html">WorldNode.hpp</a></li>

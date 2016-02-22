@@ -44,6 +44,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
+      <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li class="current"><a href="annotated.html"><span>Classes</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
       <li>
@@ -110,16 +111,19 @@ $(document).ready(function(){initNavTree('class_spawner.html','');});
 <p>This is the complete list of members for <a class="el" href="class_spawner.html">Spawner</a>, including all inherited members.</p>
 <table class="directory">
   <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>clear</b>() (defined in <a class="el" href="class_spawner.html">Spawner</a>)</td><td class="entry"><a class="el" href="class_spawner.html">Spawner</a></td><td class="entry"></td></tr>
-  <tr bgcolor="#f0f0f0"><td class="entry"><b>CullInActiveEnemies</b>() (defined in <a class="el" href="class_spawner.html">Spawner</a>)</td><td class="entry"><a class="el" href="class_spawner.html">Spawner</a></td><td class="entry"></td></tr>
+  <tr bgcolor="#f0f0f0"><td class="entry"><b>CullBodies</b>() (defined in <a class="el" href="class_spawner.html">Spawner</a>)</td><td class="entry"><a class="el" href="class_spawner.html">Spawner</a></td><td class="entry"></td></tr>
+  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>CullInActiveEnemies</b>() (defined in <a class="el" href="class_spawner.html">Spawner</a>)</td><td class="entry"><a class="el" href="class_spawner.html">Spawner</a></td><td class="entry"></td></tr>
+  <tr bgcolor="#f0f0f0"><td class="entry"><b>DespawnObject</b>() (defined in <a class="el" href="class_spawner.html">Spawner</a>)</td><td class="entry"><a class="el" href="class_spawner.html">Spawner</a></td><td class="entry"></td></tr>
   <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>GenerateBody</b>(SPAWN_TYPE type) (defined in <a class="el" href="class_spawner.html">Spawner</a>)</td><td class="entry"><a class="el" href="class_spawner.html">Spawner</a></td><td class="entry"></td></tr>
   <tr bgcolor="#f0f0f0"><td class="entry"><b>render</b>(sf::RenderWindow &amp;w, sf::Time frames) (defined in <a class="el" href="class_spawner.html">Spawner</a>)</td><td class="entry"><a class="el" href="class_spawner.html">Spawner</a></td><td class="entry"></td></tr>
   <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>SKELETON</b> enum value (defined in <a class="el" href="class_spawner.html">Spawner</a>)</td><td class="entry"><a class="el" href="class_spawner.html">Spawner</a></td><td class="entry"></td></tr>
   <tr bgcolor="#f0f0f0"><td class="entry"><b>SPAWN_TYPE</b> enum name (defined in <a class="el" href="class_spawner.html">Spawner</a>)</td><td class="entry"><a class="el" href="class_spawner.html">Spawner</a></td><td class="entry"></td></tr>
-  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>Spawner</b>() (defined in <a class="el" href="class_spawner.html">Spawner</a>)</td><td class="entry"><a class="el" href="class_spawner.html">Spawner</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
-  <tr bgcolor="#f0f0f0"><td class="entry"><b>Spawner</b>(b2World *world) (defined in <a class="el" href="class_spawner.html">Spawner</a>)</td><td class="entry"><a class="el" href="class_spawner.html">Spawner</a></td><td class="entry"></td></tr>
-  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>SpawnSkeleton</b>(sf::Vector2f pos) (defined in <a class="el" href="class_spawner.html">Spawner</a>)</td><td class="entry"><a class="el" href="class_spawner.html">Spawner</a></td><td class="entry"></td></tr>
-  <tr bgcolor="#f0f0f0"><td class="entry"><b>update</b>(FTS fts, Player *p) (defined in <a class="el" href="class_spawner.html">Spawner</a>)</td><td class="entry"><a class="el" href="class_spawner.html">Spawner</a></td><td class="entry"></td></tr>
-  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>~Spawner</b>() (defined in <a class="el" href="class_spawner.html">Spawner</a>)</td><td class="entry"><a class="el" href="class_spawner.html">Spawner</a></td><td class="entry"></td></tr>
+  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>SpawnBlock</b>(sf::Vector2f pos, CrumbleBlock::TYPE t, CrumbleBlock::SIZE s) (defined in <a class="el" href="class_spawner.html">Spawner</a>)</td><td class="entry"><a class="el" href="class_spawner.html">Spawner</a></td><td class="entry"></td></tr>
+  <tr bgcolor="#f0f0f0"><td class="entry"><b>Spawner</b>() (defined in <a class="el" href="class_spawner.html">Spawner</a>)</td><td class="entry"><a class="el" href="class_spawner.html">Spawner</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
+  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>Spawner</b>(b2World *world) (defined in <a class="el" href="class_spawner.html">Spawner</a>)</td><td class="entry"><a class="el" href="class_spawner.html">Spawner</a></td><td class="entry"></td></tr>
+  <tr bgcolor="#f0f0f0"><td class="entry"><b>SpawnSkeleton</b>(sf::Vector2f pos) (defined in <a class="el" href="class_spawner.html">Spawner</a>)</td><td class="entry"><a class="el" href="class_spawner.html">Spawner</a></td><td class="entry"></td></tr>
+  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>update</b>(FTS fts, Player *p) (defined in <a class="el" href="class_spawner.html">Spawner</a>)</td><td class="entry"><a class="el" href="class_spawner.html">Spawner</a></td><td class="entry"></td></tr>
+  <tr bgcolor="#f0f0f0"><td class="entry"><b>~Spawner</b>() (defined in <a class="el" href="class_spawner.html">Spawner</a>)</td><td class="entry"><a class="el" href="class_spawner.html">Spawner</a></td><td class="entry"></td></tr>
 </table></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->

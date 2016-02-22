@@ -44,6 +44,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
+      <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li class="current"><a href="annotated.html"><span>Classes</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
       <li>
@@ -110,21 +111,26 @@ $(document).ready(function(){initNavTree('classc_log.html','');});
 <div class="title">cLog Class Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p>This is the logger for printing the the screen on command.  
+ <a href="classc_log.html#details">More...</a></p>
+
+<p><code>#include &lt;<a class="el" href="c_log_8hpp_source.html">cLog.hpp</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a8e588a9775eaa288adb969c4e5bcefe0"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classc_log.html#a8e588a9775eaa288adb969c4e5bcefe0">print</a> (string message)</td></tr>
+<tr class="memdesc:a8e588a9775eaa288adb969c4e5bcefe0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Print message using the cLoggers cout function.  <a href="#a8e588a9775eaa288adb969c4e5bcefe0">More...</a><br /></td></tr>
 <tr class="separator:a8e588a9775eaa288adb969c4e5bcefe0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9188d068fb2e0985efb910ab8965cfdf"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a9188d068fb2e0985efb910ab8965cfdf"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>debug</b> (string from, int i)</td></tr>
 <tr class="separator:a9188d068fb2e0985efb910ab8965cfdf"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1806420da40dcd920121a74293af8403"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a1806420da40dcd920121a74293af8403"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>debug</b> (string from, float i)</td></tr>
-<tr class="separator:a1806420da40dcd920121a74293af8403"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4f21d5d4f0a7328cca1f4e18eebe4634"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a4f21d5d4f0a7328cca1f4e18eebe4634"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>newline</b> ()</td></tr>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classc_log.html#a4f21d5d4f0a7328cca1f4e18eebe4634">newline</a> ()</td></tr>
+<tr class="memdesc:a4f21d5d4f0a7328cca1f4e18eebe4634"><td class="mdescLeft">&#160;</td><td class="mdescRight">This prints a new line onto the cmd prompt. <br /></td></tr>
 <tr class="separator:a4f21d5d4f0a7328cca1f4e18eebe4634"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a17a8987955e87950f2b3c5ac9c54c837"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classc_log.html#a17a8987955e87950f2b3c5ac9c54c837">print</a> (int priority, string from, string message)</td></tr>
+<tr class="memdesc:a17a8987955e87950f2b3c5ac9c54c837"><td class="mdescLeft">&#160;</td><td class="mdescRight">Print message using the cLoggers cout function.  <a href="#a17a8987955e87950f2b3c5ac9c54c837">More...</a><br /></td></tr>
 <tr class="separator:a17a8987955e87950f2b3c5ac9c54c837"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8e588a9775eaa288adb969c4e5bcefe0"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classc_log.html#a8e588a9775eaa288adb969c4e5bcefe0">print</a> (string message)</td></tr>
 <tr class="separator:a8e588a9775eaa288adb969c4e5bcefe0"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -137,13 +143,16 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>newline</b> ()</td></
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
 <tr class="memitem:a6f776cb395514ae99f44011017da6562"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a6f776cb395514ae99f44011017da6562"></a>
-static <a class="el" href="classc_log.html">cLog</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>inst</b> ()</td></tr>
+static <a class="el" href="classc_log.html">cLog</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classc_log.html#a6f776cb395514ae99f44011017da6562">inst</a> ()</td></tr>
+<tr class="memdesc:a6f776cb395514ae99f44011017da6562"><td class="mdescLeft">&#160;</td><td class="mdescRight">This fetches the instance of the Logger. <br /></td></tr>
 <tr class="separator:a6f776cb395514ae99f44011017da6562"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6f776cb395514ae99f44011017da6562"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a6f776cb395514ae99f44011017da6562"></a>
 static <a class="el" href="classc_log.html">cLog</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>inst</b> ()</td></tr>
 <tr class="separator:a6f776cb395514ae99f44011017da6562"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Member Function Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>This is the logger for printing the the screen on command. </p>
+</div><h2 class="groupheader">Member Function Documentation</h2>
 <a class="anchor" id="a8e588a9775eaa288adb969c4e5bcefe0"></a>
 <div class="memitem">
 <div class="memproto">
@@ -196,21 +205,31 @@ static <a class="el" href="classc_log.html">cLog</a> *&#160;</td><td class="memI
   </tr>
 </table>
 </div><div class="memdoc">
-<p>Print message using the cLoggers cout function. </p><dl class="params"><dt>Parameters</dt><dd>
+
+<p>Print message using the cLoggers cout function. </p>
+<dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">message</td><td>- the message being printed </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>void </dd></dl>
 
 <p><div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="classc_log_a8e588a9775eaa288adb969c4e5bcefe0_icgraph.png" border="0" usemap="#classc_log_a8e588a9775eaa288adb969c4e5bcefe0_icgraph" alt=""/></div>
 <map name="classc_log_a8e588a9775eaa288adb969c4e5bcefe0_icgraph" id="classc_log_a8e588a9775eaa288adb969c4e5bcefe0_icgraph">
-<area shape="rect" id="node2" href="class_menu_scene.html#afb5ab00d298633725f69723c83963a45" title="This is a pure virtual funciton for handleInput, which must be overloaded in any inheriting classes..." alt="" coords="136,5,301,32"/>
-<area shape="rect" id="node3" href="class_resource_manager.html#ac429dfbb66104f517dee009b7bc03599" title="Gets the resouce and if it does not exist it creates and stores that resource. " alt="" coords="142,56,295,83"/>
+<area shape="rect" id="node2" href="class_jump_command.html#a3a3d55088bf8c087da09f4466dd15be1" title="This function executes the task issued to the command. " alt="" coords="155,5,321,32"/>
+<area shape="rect" id="node3" href="class_fire_command.html#abbea99bd461efbf13b88dc9222168703" title="This function executes the task issued to the command. " alt="" coords="159,56,317,83"/>
+<area shape="rect" id="node4" href="class_swap_command.html#aa77c3458045249b1d4109191a13b8f47" title="This function executes the task issued to the command. " alt="" coords="155,107,321,133"/>
+<area shape="rect" id="node5" href="class_lurch_command.html#a1d38355e1af2007c5f4550bd51bb82a9" title="This function executes the task issued to the command. " alt="" coords="155,157,321,184"/>
+<area shape="rect" id="node6" href="class_game.html#ad59df6562a58a614fda24622d3715b65" title="Default constructor for the game. " alt="" coords="188,208,288,235"/>
+<area shape="rect" id="node7" href="class_level.html#a7a696c928ca5d5354db6e50e46d0f67d" title="The levels default constructor which has been deprecated. " alt="" coords="194,259,282,285"/>
+<area shape="rect" id="node8" href="class_menu_scene.html#afb5ab00d298633725f69723c83963a45" title="This is a pure virtual funciton for handleInput, which must be overloaded in any inheriting classes..." alt="" coords="155,309,321,336"/>
+<area shape="rect" id="node9" href="class_resource_manager.html#ac429dfbb66104f517dee009b7bc03599" title="Gets the resouce and if it does not exist it creates and stores that resource. " alt="" coords="161,360,315,387"/>
+<area shape="rect" id="node10" href="class_x_b_o_x_controller.html#ad7f5769354e27c75a07600bed61bbeca" title="A check for if the controller is connected or not. " alt="" coords="143,411,333,437"/>
+<area shape="rect" id="node11" href="class_x_b_o_x_controller.html#a7975e9a15e402f22330cd0b0079bac41" title="This method calls all the individual update button private methods in the class eg. UpdateA(), UpdateAnalogSticks() etc. " alt="" coords="136,461,340,488"/>
+<area shape="rect" id="node12" href="class_x_m_l_loader.html#a70dd0457fdd854df811df24b078c9ca4" title="This generates a new saveData.xml for the game insertting all the approprate formatting for reading l..." alt="" coords="140,512,336,539"/>
 </map>
 </div>
 </p>
@@ -303,7 +322,9 @@ Here is the caller graph for this function:</div>
   </tr>
 </table>
 </div><div class="memdoc">
-<p>Print message using the cLoggers cout function. </p><dl class="params"><dt>Parameters</dt><dd>
+
+<p>Print message using the cLoggers cout function. </p>
+<dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">priority</td><td>- between 1-3 how important the message 1 being urgent and 3 being meh </td></tr>
     <tr><td class="paramname">from</td><td>- the class or function the message came from </td></tr>
@@ -311,7 +332,6 @@ Here is the caller graph for this function:</div>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>void </dd></dl>
 
 </div>
 </div>

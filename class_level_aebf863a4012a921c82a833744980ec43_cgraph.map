@@ -1,0 +1,14 @@
+<map id="Level::Level" name="Level::Level">
+<area shape="rect" id="node2" href="$class_level.html#a246fb48ad46367c70ba7b44d62865072" title="Uses STP library functions to load the .tmx tiled map. " alt="" coords="166,81,274,108"/>
+<area shape="rect" id="node3" href="$class_level.html#ad425a302e250841b4ee9dd02b9a8b764" title="This is the highest stage of loading the map from .tmx. This method calls the rest of the parse metho..." alt="" coords="141,132,299,159"/>
+<area shape="rect" id="node4" href="$class_level.html#a4d21febd15183b245aaa8a97fe341973" title="This steps through the object layer reading in each object and translating it into my c++ OBJ ..." alt="" coords="369,5,505,32"/>
+<area shape="rect" id="node5" href="$class_level.html#af065a5fa8f8884072e31e23ab7e80427" title="Steps throught the object layer creating Player interactive items using the information inside the ob..." alt="" coords="347,56,528,83"/>
+<area shape="rect" id="node6" href="$class_level.html#aaf94ee517d99bc4262fa0797caaed5e9" title="Steps throught the object layer creating the scenerys background sprites using the information inside..." alt="" coords="348,107,527,133"/>
+<area shape="rect" id="node9" href="$class_level.html#a9f0e4ab045cd373847d4c2527b7c9824" title="Steps throught the object layer creating the scenerys foreground sprites using the information inside..." alt="" coords="348,157,527,184"/>
+<area shape="rect" id="node12" href="$class_level.html#a241e5877fba91eabfd4b1588a6005c5f" title="Reads through the object layer creating the Enemies and populating the enemy list within the Spawner ..." alt="" coords="356,208,519,235"/>
+<area shape="rect" id="node13" href="$class_level.html#a9ba2723c3e84d1693ddaab34afbfc009" title="Reads through the object layer creating the CrumbleBlocks and populating the block list within the Sp..." alt="" coords="361,259,513,285"/>
+<area shape="rect" id="node7" href="$class_scenery.html#aa4798d6c67fb6a51abc61521672a9044" title="Adds the passed in ParallaxSprite to the background queue for rendering. To keep the ParallaxSprite i..." alt="" coords="576,56,705,83"/>
+<area shape="rect" id="node8" href="$class_scenery.html#ae3c1ca3c3e8b7066a6dc87bf10719ff4" title="This function uses std::sort and BGSorter to organise the bakcgrounds from back to front..." alt="" coords="581,107,700,133"/>
+<area shape="rect" id="node10" href="$class_scenery.html#a9d484c7bfc6f83724e4563063712def5" title="Adds the passed in ParallaxSprite to the foreground queue for rendering. To keep the ParallaxSprite i..." alt="" coords="577,157,705,184"/>
+<area shape="rect" id="node11" href="$class_scenery.html#aefbbabd55ded3dabe93e136ec2792ca2" title="This function uses std::sort and FGSorter to organise the bakcgrounds from front to back..." alt="" coords="581,208,700,235"/>
+</map>

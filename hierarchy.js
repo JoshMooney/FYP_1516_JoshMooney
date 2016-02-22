@@ -1,8 +1,5 @@
 var hierarchy =
 [
-    [ "Animator", null, [
-      [ "Actor", "class_actor.html", null ]
-    ] ],
     [ "b2ContactListener", null, [
       [ "ContactListener", "class_contact_listener.html", null ]
     ] ],
@@ -39,6 +36,7 @@ var hierarchy =
     [ "Spawner", "class_spawner.html", null ],
     [ "Sprite", null, [
       [ "Enemy", "class_enemy.html", [
+        [ "CrumbleBlock", "class_crumble_block.html", null ],
         [ "Flyer", "class_flyer.html", null ],
         [ "Skeleton", "class_skeleton.html", null ],
         [ "Weed", "class_weed.html", null ]

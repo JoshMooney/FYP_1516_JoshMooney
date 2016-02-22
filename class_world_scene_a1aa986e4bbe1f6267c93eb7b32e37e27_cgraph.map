@@ -1,0 +1,5 @@
+<map id="WorldScene::checkUnlocks" name="WorldScene::checkUnlocks">
+<area shape="rect" id="node2" href="$class_world_node.html#ab0925e925e1fff1cfaeed4bea9bce534" title="This unlocks the node and loads any new media it might need. " alt="" coords="271,5,403,32"/>
+<area shape="rect" id="node4" href="$class_world_scene.html#ae559aa3742aceab5dc04b87f4e736ba7" title="This generates the new Map data of srings to bool to save the game data when new levels have been unl..." alt="" coords="236,56,439,83"/>
+<area shape="rect" id="node3" href="$class_world_node.html#abaceeb0b61341b75da66eaacfba6631b" title="Loads a texture depending on if the level is locked or not. " alt="" coords="487,5,640,32"/>
+</map>

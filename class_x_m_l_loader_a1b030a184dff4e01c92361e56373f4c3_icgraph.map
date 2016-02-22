@@ -1,0 +1,6 @@
+<map id="XMLLoader::WriteSaveSlot" name="XMLLoader::WriteSaveSlot">
+<area shape="rect" id="node2" href="$class_x_m_l_loader.html#aa0bb64a3dfa2c8e65ecad2df57311381" title="This function calls WriteSaveSlot using each of the three save slots loaded from earlier and saves th..." alt="" coords="229,5,349,32"/>
+<area shape="rect" id="node3" href="$class_game.html#ad9382758bb4b0c156fa1973eea33cbb8" title="Change States and initalise them appropratly. " alt="" coords="397,5,555,32"/>
+<area shape="rect" id="node4" href="$class_game.html#a9137882533a1d2e234c03d73fae68af6" title="Checks the active scene for completion and if so class goToNextScene. " alt="" coords="603,5,784,32"/>
+<area shape="rect" id="node5" href="$class_game.html#a1ab78f5ed0d5ea879157357cf2fb2afa" title="This is the main game loop that the game runs and calls all the methods for running the game..." alt="" coords="832,5,915,32"/>
+</map>

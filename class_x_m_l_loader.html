@@ -44,6 +44,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
+      <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li class="current"><a href="annotated.html"><span>Classes</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
       <li>
@@ -110,31 +111,164 @@ $(document).ready(function(){initNavTree('class_x_m_l_loader.html','');});
 <div class="title">XMLLoader Class Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p>This class uses tinyXML and my code to read from .xml files and parse that data into usable information. This class must read from the saveData.xml file and load it into three save slots each holding the data of the save.  
+ <a href="class_x_m_l_loader.html#details">More...</a></p>
+
+<p><code>#include &lt;<a class="el" href="_x_m_l_loader_8hpp_source.html">XMLLoader.hpp</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:ac62f10bb240fa15aad90d0626b4af348"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ac62f10bb240fa15aad90d0626b4af348"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>loadSaveSlots</b> ()</td></tr>
+<tr class="memitem:a252642cfb4422345dad88585c477d4a5"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a252642cfb4422345dad88585c477d4a5"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_x_m_l_loader.html#a252642cfb4422345dad88585c477d4a5">XMLLoader</a> ()</td></tr>
+<tr class="memdesc:a252642cfb4422345dad88585c477d4a5"><td class="mdescLeft">&#160;</td><td class="mdescRight">This is the default constructor for the <a class="el" href="class_x_m_l_loader.html" title="This class uses tinyXML and my code to read from .xml files and parse that data into usable informati...">XMLLoader</a>. This sets up the root node and initalises the tinyxml2::XMLElement to start on the first save slot. <br /></td></tr>
+<tr class="separator:a252642cfb4422345dad88585c477d4a5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac62f10bb240fa15aad90d0626b4af348"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_x_m_l_loader.html#ac62f10bb240fa15aad90d0626b4af348">loadSaveSlots</a> ()</td></tr>
+<tr class="memdesc:ac62f10bb240fa15aad90d0626b4af348"><td class="mdescLeft">&#160;</td><td class="mdescRight">Cycles through the XMLElement saveGame and reads in each of the required fields into the approprate holder in the <a class="el" href="struct_save_slot.html" title="This is all of the loaded game data from the saveData.xml file parsed and made available to the progr...">SaveSlot</a> for access later. This process is looped to read through each of the three save slots.  <a href="#ac62f10bb240fa15aad90d0626b4af348">More...</a><br /></td></tr>
 <tr class="separator:ac62f10bb240fa15aad90d0626b4af348"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a70dd0457fdd854df811df24b078c9ca4"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a70dd0457fdd854df811df24b078c9ca4"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>GenerateSaveFile</b> ()</td></tr>
+<tr class="memitem:a70dd0457fdd854df811df24b078c9ca4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_x_m_l_loader.html#a70dd0457fdd854df811df24b078c9ca4">GenerateSaveFile</a> ()</td></tr>
+<tr class="memdesc:a70dd0457fdd854df811df24b078c9ca4"><td class="mdescLeft">&#160;</td><td class="mdescRight">This generates a new saveData.xml for the game insertting all the approprate formatting for reading later.  <a href="#a70dd0457fdd854df811df24b078c9ca4">More...</a><br /></td></tr>
 <tr class="separator:a70dd0457fdd854df811df24b078c9ca4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a93e5039f9743dfa000c1f0f5099bbeb8"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a93e5039f9743dfa000c1f0f5099bbeb8"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>initFile</b> ()</td></tr>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_x_m_l_loader.html#a93e5039f9743dfa000c1f0f5099bbeb8">initFile</a> ()</td></tr>
+<tr class="memdesc:a93e5039f9743dfa000c1f0f5099bbeb8"><td class="mdescLeft">&#160;</td><td class="mdescRight">This initalises the required variables for the <a class="el" href="class_x_m_l_loader.html" title="This class uses tinyXML and my code to read from .xml files and parse that data into usable informati...">XMLLoader</a> class. <br /></td></tr>
 <tr class="separator:a93e5039f9743dfa000c1f0f5099bbeb8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1b030a184dff4e01c92361e56373f4c3"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a1b030a184dff4e01c92361e56373f4c3"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>WriteSaveSlot</b> (<a class="el" href="struct_save_slot.html">SaveSlot</a> s)</td></tr>
+<tr class="memitem:a1b030a184dff4e01c92361e56373f4c3"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_x_m_l_loader.html#a1b030a184dff4e01c92361e56373f4c3">WriteSaveSlot</a> (<a class="el" href="struct_save_slot.html">SaveSlot</a> s)</td></tr>
+<tr class="memdesc:a1b030a184dff4e01c92361e56373f4c3"><td class="mdescLeft">&#160;</td><td class="mdescRight">This function takes the passed in <a class="el" href="struct_save_slot.html" title="This is all of the loaded game data from the saveData.xml file parsed and made available to the progr...">SaveSlot</a>, and writes it to the .xml file.  <a href="#a1b030a184dff4e01c92361e56373f4c3">More...</a><br /></td></tr>
 <tr class="separator:a1b030a184dff4e01c92361e56373f4c3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa0bb64a3dfa2c8e65ecad2df57311381"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aa0bb64a3dfa2c8e65ecad2df57311381"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>save</b> ()</td></tr>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_x_m_l_loader.html#aa0bb64a3dfa2c8e65ecad2df57311381">save</a> ()</td></tr>
+<tr class="memdesc:aa0bb64a3dfa2c8e65ecad2df57311381"><td class="mdescLeft">&#160;</td><td class="mdescRight">This function calls WriteSaveSlot using each of the three save slots loaded from earlier and saves the saveData.xml file. <br /></td></tr>
 <tr class="separator:aa0bb64a3dfa2c8e65ecad2df57311381"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
 <tr class="memitem:ad3c7dfbda92c78c7c4e0f8faaeb54979"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ad3c7dfbda92c78c7c4e0f8faaeb54979"></a>
-vector&lt; <a class="el" href="struct_save_slot.html">SaveSlot</a> * &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>saved_data</b></td></tr>
+vector&lt; <a class="el" href="struct_save_slot.html">SaveSlot</a> * &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_x_m_l_loader.html#ad3c7dfbda92c78c7c4e0f8faaeb54979">saved_data</a></td></tr>
+<tr class="memdesc:ad3c7dfbda92c78c7c4e0f8faaeb54979"><td class="mdescLeft">&#160;</td><td class="mdescRight">This is a vector of saveslots to store each of the saves that are loaded into memory. <br /></td></tr>
 <tr class="separator:ad3c7dfbda92c78c7c4e0f8faaeb54979"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>This class uses tinyXML and my code to read from .xml files and parse that data into usable information. This class must read from the saveData.xml file and load it into three save slots each holding the data of the save. </p>
+</div><h2 class="groupheader">Member Function Documentation</h2>
+<a class="anchor" id="a70dd0457fdd854df811df24b078c9ca4"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void XMLLoader::GenerateSaveFile </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>This generates a new saveData.xml for the game insertting all the approprate formatting for reading later. </p>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="struct_save_slot.html" title="This is all of the loaded game data from the saveData.xml file parsed and made available to the progr...">SaveSlot</a> </dd></dl>
+
+<p><div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_x_m_l_loader_a70dd0457fdd854df811df24b078c9ca4_cgraph.png" border="0" usemap="#class_x_m_l_loader_a70dd0457fdd854df811df24b078c9ca4_cgraph" alt=""/></div>
+<map name="class_x_m_l_loader_a70dd0457fdd854df811df24b078c9ca4_cgraph" id="class_x_m_l_loader_a70dd0457fdd854df811df24b078c9ca4_cgraph">
+<area shape="rect" id="node2" href="classc_log.html#a6f776cb395514ae99f44011017da6562" title="This fetches the instance of the Logger. " alt="" coords="251,5,330,32"/>
+<area shape="rect" id="node3" href="classc_log.html#a8e588a9775eaa288adb969c4e5bcefe0" title="Print message using the cLoggers cout function. " alt="" coords="249,56,332,83"/>
+</map>
+</div>
+</p>
+
+</div>
+</div>
+<a class="anchor" id="ac62f10bb240fa15aad90d0626b4af348"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void XMLLoader::loadSaveSlots </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Cycles through the XMLElement saveGame and reads in each of the required fields into the approprate holder in the <a class="el" href="struct_save_slot.html" title="This is all of the loaded game data from the saveData.xml file parsed and made available to the progr...">SaveSlot</a> for access later. This process is looped to read through each of the three save slots. </p>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="struct_save_slot.html" title="This is all of the loaded game data from the saveData.xml file parsed and made available to the progr...">SaveSlot</a> </dd></dl>
+
+<p><div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_x_m_l_loader_ac62f10bb240fa15aad90d0626b4af348_icgraph.png" border="0" usemap="#class_x_m_l_loader_ac62f10bb240fa15aad90d0626b4af348_icgraph" alt=""/></div>
+<map name="class_x_m_l_loader_ac62f10bb240fa15aad90d0626b4af348_icgraph" id="class_x_m_l_loader_ac62f10bb240fa15aad90d0626b4af348_icgraph">
+<area shape="rect" id="node2" href="class_x_m_l_loader.html#a252642cfb4422345dad88585c477d4a5" title="This is the default constructor for the XMLLoader. This sets up the root node and initalises the tiny..." alt="" coords="229,5,388,32"/>
+</map>
+</div>
+</p>
+
+</div>
+</div>
+<a class="anchor" id="a1b030a184dff4e01c92361e56373f4c3"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void XMLLoader::WriteSaveSlot </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="struct_save_slot.html">SaveSlot</a>&#160;</td>
+          <td class="paramname"><em>s</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>This function takes the passed in <a class="el" href="struct_save_slot.html" title="This is all of the loaded game data from the saveData.xml file parsed and made available to the progr...">SaveSlot</a>, and writes it to the .xml file. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">This</td><td>is the <a class="el" href="struct_save_slot.html" title="This is all of the loaded game data from the saveData.xml file parsed and made available to the progr...">SaveSlot</a> to be written. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p><div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_x_m_l_loader_a1b030a184dff4e01c92361e56373f4c3_icgraph.png" border="0" usemap="#class_x_m_l_loader_a1b030a184dff4e01c92361e56373f4c3_icgraph" alt=""/></div>
+<map name="class_x_m_l_loader_a1b030a184dff4e01c92361e56373f4c3_icgraph" id="class_x_m_l_loader_a1b030a184dff4e01c92361e56373f4c3_icgraph">
+<area shape="rect" id="node2" href="class_x_m_l_loader.html#aa0bb64a3dfa2c8e65ecad2df57311381" title="This function calls WriteSaveSlot using each of the three save slots loaded from earlier and saves th..." alt="" coords="229,5,349,32"/>
+<area shape="rect" id="node3" href="class_game.html#ad9382758bb4b0c156fa1973eea33cbb8" title="Change States and initalise them appropratly. " alt="" coords="397,5,555,32"/>
+<area shape="rect" id="node4" href="class_game.html#a9137882533a1d2e234c03d73fae68af6" title="Checks the active scene for completion and if so class goToNextScene. " alt="" coords="603,5,784,32"/>
+<area shape="rect" id="node5" href="class_game.html#a1ab78f5ed0d5ea879157357cf2fb2afa" title="This is the main game loop that the game runs and calls all the methods for running the game..." alt="" coords="832,5,915,32"/>
+</map>
+</div>
+</p>
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following file:<ul>
 <li>FYP_FallenHero/<a class="el" href="_x_m_l_loader_8hpp_source.html">XMLLoader.hpp</a></li>
 </ul>

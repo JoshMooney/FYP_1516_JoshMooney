@@ -44,6 +44,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
+      <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li class="current"><a href="annotated.html"><span>Classes</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
       <li>
@@ -109,20 +110,73 @@ $(document).ready(function(){initNavTree('class_fire_command.html','');});
 <div class="title">FireCommand Class Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p>This is a sub class of the command base class. This class should override the execute command and this command calls the Fire function.  
+ <a href="class_fire_command.html#details">More...</a></p>
+
+<p><code>#include &lt;<a class="el" href="_command_8hpp_source.html">Command.hpp</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:abbea99bd461efbf13b88dc9222168703"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="abbea99bd461efbf13b88dc9222168703"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>execute</b> (<a class="el" href="class_player.html">Player</a> *p)</td></tr>
+<tr class="memitem:abbea99bd461efbf13b88dc9222168703"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_fire_command.html#abbea99bd461efbf13b88dc9222168703">execute</a> (<a class="el" href="class_player.html">Player</a> *p)</td></tr>
+<tr class="memdesc:abbea99bd461efbf13b88dc9222168703"><td class="mdescLeft">&#160;</td><td class="mdescRight">This function executes the task issued to the command.  <a href="#abbea99bd461efbf13b88dc9222168703">More...</a><br /></td></tr>
 <tr class="separator:abbea99bd461efbf13b88dc9222168703"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<div class="dynheader">
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>This is a sub class of the command base class. This class should override the execute command and this command calls the Fire function. </p>
+</div><div class="dynheader">
 Inheritance diagram for FireCommand:</div>
 <div class="dyncontent">
 <div class="center"><img src="class_fire_command__inherit__graph.png" border="0" usemap="#_fire_command_inherit__map" alt="Inheritance graph"/></div>
 <map name="_fire_command_inherit__map" id="_fire_command_inherit__map">
-<area shape="rect" id="node2" href="class_command.html" title="{Command\n||+ ~Command()\l+ execute()\l# Command()\l}" alt="" coords="5,5,115,112"/>
+<area shape="rect" id="node2" href="class_command.html" title="This is the base command class that each of the sub commands should inherite from and each of which m..." alt="" coords="5,5,115,112"/>
 </map>
+</div>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a class="anchor" id="abbea99bd461efbf13b88dc9222168703"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void FireCommand::execute </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_player.html">Player</a> *&#160;</td>
+          <td class="paramname"><em>p</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>This function executes the task issued to the command. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname"><a class="el" href="class_player.html" title="This is the player class that will represent the user while in game, and will be responsable for cons...">Player</a></td><td>This is the object to execute the command on </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Implements <a class="el" href="class_command.html#a29f4294ac9e3cd1fb9da3737914681e1">Command</a>.</p>
+
+<p><div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_fire_command_abbea99bd461efbf13b88dc9222168703_cgraph.png" border="0" usemap="#class_fire_command_abbea99bd461efbf13b88dc9222168703_cgraph" alt=""/></div>
+<map name="class_fire_command_abbea99bd461efbf13b88dc9222168703_cgraph" id="class_fire_command_abbea99bd461efbf13b88dc9222168703_cgraph">
+<area shape="rect" id="node2" href="classc_log.html#a6f776cb395514ae99f44011017da6562" title="This fetches the instance of the Logger. " alt="" coords="213,5,291,32"/>
+<area shape="rect" id="node3" href="classc_log.html#a8e588a9775eaa288adb969c4e5bcefe0" title="Print message using the cLoggers cout function. " alt="" coords="211,56,293,83"/>
+</map>
+</div>
+</p>
+
+</div>
 </div>
 <hr/>The documentation for this class was generated from the following file:<ul>
 <li>FYP_FallenHero/<a class="el" href="_command_8hpp_source.html">Command.hpp</a></li>

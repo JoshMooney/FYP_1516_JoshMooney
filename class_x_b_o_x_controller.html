@@ -44,6 +44,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
+      <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li class="current"><a href="annotated.html"><span>Classes</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
       <li>
@@ -110,49 +111,259 @@ $(document).ready(function(){initNavTree('class_x_b_o_x_controller.html','');});
 <div class="title">XBOXController Class Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p>This is an instance of the XBOX controller which uses xinput v9.1.0 to detect and store information on the first controller connected to the system. This class will be passed around by the game to different scenes to detect input only if the controller is actually connected. Otherwise the keyboard is passed around for input checking.  
+ <a href="class_x_b_o_x_controller.html#details">More...</a></p>
+
+<p><code>#include &lt;<a class="el" href="_x_b_o_x_controller_8hpp_source.html">XBOXController.hpp</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:afe5af228b157eeaeb020d7dc78ed9160"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="afe5af228b157eeaeb020d7dc78ed9160"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>XBOXController</b> (bool is_output)</td></tr>
+<tr class="memitem:a70682aee5da9f1472f3f761c9a045dbc"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a70682aee5da9f1472f3f761c9a045dbc"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_x_b_o_x_controller.html#a70682aee5da9f1472f3f761c9a045dbc">XBOXController</a> ()</td></tr>
+<tr class="memdesc:a70682aee5da9f1472f3f761c9a045dbc"><td class="mdescLeft">&#160;</td><td class="mdescRight">The default constructor for the Xbox contrller class, the variables for triggers, bumpers and analog will be initalised and the isPressed map must be set up. <br /></td></tr>
+<tr class="separator:a70682aee5da9f1472f3f761c9a045dbc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afe5af228b157eeaeb020d7dc78ed9160"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_x_b_o_x_controller.html#afe5af228b157eeaeb020d7dc78ed9160">XBOXController</a> (bool is_output)</td></tr>
+<tr class="memdesc:afe5af228b157eeaeb020d7dc78ed9160"><td class="mdescLeft">&#160;</td><td class="mdescRight">The overloaded constructor for the Xbox contrller class, the variables for triggers, bumpers and analog will be initalised and the isPressed map must be set up. This object will output button presses.  <a href="#afe5af228b157eeaeb020d7dc78ed9160">More...</a><br /></td></tr>
 <tr class="separator:afe5af228b157eeaeb020d7dc78ed9160"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad7f5769354e27c75a07600bed61bbeca"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ad7f5769354e27c75a07600bed61bbeca"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>isConnected</b> ()</td></tr>
+<tr class="memitem:a69228859bd86fe0c4e600ae80f51bc3a"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a69228859bd86fe0c4e600ae80f51bc3a"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_x_b_o_x_controller.html#a69228859bd86fe0c4e600ae80f51bc3a">~XBOXController</a> ()</td></tr>
+<tr class="memdesc:a69228859bd86fe0c4e600ae80f51bc3a"><td class="mdescLeft">&#160;</td><td class="mdescRight">This is the deconstructor for the XBOX Controller class. <br /></td></tr>
+<tr class="separator:a69228859bd86fe0c4e600ae80f51bc3a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad7f5769354e27c75a07600bed61bbeca"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_x_b_o_x_controller.html#ad7f5769354e27c75a07600bed61bbeca">isConnected</a> ()</td></tr>
+<tr class="memdesc:ad7f5769354e27c75a07600bed61bbeca"><td class="mdescLeft">&#160;</td><td class="mdescRight">A check for if the controller is connected or not.  <a href="#ad7f5769354e27c75a07600bed61bbeca">More...</a><br /></td></tr>
 <tr class="separator:ad7f5769354e27c75a07600bed61bbeca"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a87d44c7173766f787d9dff29f6118452"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a87d44c7173766f787d9dff29f6118452"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>Rumble</b> (int l_rm, int r_rm)</td></tr>
+<tr class="memitem:a87d44c7173766f787d9dff29f6118452"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_x_b_o_x_controller.html#a87d44c7173766f787d9dff29f6118452">Rumble</a> (int l_rm, int r_rm)</td></tr>
+<tr class="memdesc:a87d44c7173766f787d9dff29f6118452"><td class="mdescLeft">&#160;</td><td class="mdescRight">This function rumbles the controller by the amount of the values passed in.  <a href="#a87d44c7173766f787d9dff29f6118452">More...</a><br /></td></tr>
 <tr class="separator:a87d44c7173766f787d9dff29f6118452"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7975e9a15e402f22330cd0b0079bac41"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a7975e9a15e402f22330cd0b0079bac41"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>UpdateButtons</b> ()</td></tr>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_x_b_o_x_controller.html#a7975e9a15e402f22330cd0b0079bac41">UpdateButtons</a> ()</td></tr>
+<tr class="memdesc:a7975e9a15e402f22330cd0b0079bac41"><td class="mdescLeft">&#160;</td><td class="mdescRight">This method calls all the individual update button private methods in the class eg. UpdateA(), UpdateAnalogSticks() etc. <br /></td></tr>
 <tr class="separator:a7975e9a15e402f22330cd0b0079bac41"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae5a4157aedb10a91f95940c78dac5fbe"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ae5a4157aedb10a91f95940c78dac5fbe"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>isIdle</b> ()</td></tr>
+<tr class="memitem:ae5a4157aedb10a91f95940c78dac5fbe"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_x_b_o_x_controller.html#ae5a4157aedb10a91f95940c78dac5fbe">isIdle</a> ()</td></tr>
+<tr class="memdesc:ae5a4157aedb10a91f95940c78dac5fbe"><td class="mdescLeft">&#160;</td><td class="mdescRight">Simple check to see whether or not the controller is idle this compairs the isPressed_cleared against the isPressed and returns the result.  <a href="#ae5a4157aedb10a91f95940c78dac5fbe">More...</a><br /></td></tr>
 <tr class="separator:ae5a4157aedb10a91f95940c78dac5fbe"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:adf0af928e112e1a8abd860e589478952"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="adf0af928e112e1a8abd860e589478952"></a>
-float&#160;</td><td class="memItemRight" valign="bottom"><b>getRT</b> ()</td></tr>
+<tr class="memitem:adf0af928e112e1a8abd860e589478952"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_x_b_o_x_controller.html#adf0af928e112e1a8abd860e589478952">getRT</a> ()</td></tr>
+<tr class="memdesc:adf0af928e112e1a8abd860e589478952"><td class="mdescLeft">&#160;</td><td class="mdescRight">This function gets the value of the Right Trigger press.  <a href="#adf0af928e112e1a8abd860e589478952">More...</a><br /></td></tr>
 <tr class="separator:adf0af928e112e1a8abd860e589478952"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac3c00cc5121640b2862fcc0c2b3e85da"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ac3c00cc5121640b2862fcc0c2b3e85da"></a>
-float&#160;</td><td class="memItemRight" valign="bottom"><b>getLT</b> ()</td></tr>
+<tr class="memitem:ac3c00cc5121640b2862fcc0c2b3e85da"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_x_b_o_x_controller.html#ac3c00cc5121640b2862fcc0c2b3e85da">getLT</a> ()</td></tr>
+<tr class="memdesc:ac3c00cc5121640b2862fcc0c2b3e85da"><td class="mdescLeft">&#160;</td><td class="mdescRight">This function gets the value of the Left Trigger press.  <a href="#ac3c00cc5121640b2862fcc0c2b3e85da">More...</a><br /></td></tr>
 <tr class="separator:ac3c00cc5121640b2862fcc0c2b3e85da"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7a30ff99556e489cab92c1c4c49646aa"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a7a30ff99556e489cab92c1c4c49646aa"></a>
-std::pair&lt; float, float &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>getRightAnalog</b> ()</td></tr>
+<tr class="memitem:a7a30ff99556e489cab92c1c4c49646aa"><td class="memItemLeft" align="right" valign="top">std::pair&lt; float, float &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_x_b_o_x_controller.html#a7a30ff99556e489cab92c1c4c49646aa">getRightAnalog</a> ()</td></tr>
+<tr class="memdesc:a7a30ff99556e489cab92c1c4c49646aa"><td class="mdescLeft">&#160;</td><td class="mdescRight">This function fetchs the x and y axis of the right analog stick.  <a href="#a7a30ff99556e489cab92c1c4c49646aa">More...</a><br /></td></tr>
 <tr class="separator:a7a30ff99556e489cab92c1c4c49646aa"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a81c44cf1831a33a9a9ef548f87eb75ed"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a81c44cf1831a33a9a9ef548f87eb75ed"></a>
-std::pair&lt; float, float &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>getLeftAnalog</b> ()</td></tr>
+<tr class="memitem:a81c44cf1831a33a9a9ef548f87eb75ed"><td class="memItemLeft" align="right" valign="top">std::pair&lt; float, float &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_x_b_o_x_controller.html#a81c44cf1831a33a9a9ef548f87eb75ed">getLeftAnalog</a> ()</td></tr>
+<tr class="memdesc:a81c44cf1831a33a9a9ef548f87eb75ed"><td class="mdescLeft">&#160;</td><td class="mdescRight">This function fetchs the x and y axis of the left analog stick.  <a href="#a81c44cf1831a33a9a9ef548f87eb75ed">More...</a><br /></td></tr>
 <tr class="separator:a81c44cf1831a33a9a9ef548f87eb75ed"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
 <tr class="memitem:af5086f661015bc022581fdc9b8b002c2"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="af5086f661015bc022581fdc9b8b002c2"></a>
-map&lt; string, bool &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>isPressed</b></td></tr>
+map&lt; string, bool &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_x_b_o_x_controller.html#af5086f661015bc022581fdc9b8b002c2">isPressed</a></td></tr>
+<tr class="memdesc:af5086f661015bc022581fdc9b8b002c2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Is a map of strings to bools used for identlifing the keys to a bool for whether its pressed. <br /></td></tr>
 <tr class="separator:af5086f661015bc022581fdc9b8b002c2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a77ce9f678eaa95bdac21e4ce8ee24b5f"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a77ce9f678eaa95bdac21e4ce8ee24b5f"></a>
-map&lt; string, bool &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>wasPressed</b></td></tr>
+map&lt; string, bool &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_x_b_o_x_controller.html#a77ce9f678eaa95bdac21e4ce8ee24b5f">wasPressed</a></td></tr>
+<tr class="memdesc:a77ce9f678eaa95bdac21e4ce8ee24b5f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Is a map of strings to bools used for identlifing the keys to a bool for whether the key was pressed. <br /></td></tr>
 <tr class="separator:a77ce9f678eaa95bdac21e4ce8ee24b5f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8aabdaf37c086d62bea8cdc677ffaf67"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a8aabdaf37c086d62bea8cdc677ffaf67"></a>
-map&lt; string, bool &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>isPressed_cleared</b></td></tr>
+map&lt; string, bool &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_x_b_o_x_controller.html#a8aabdaf37c086d62bea8cdc677ffaf67">isPressed_cleared</a></td></tr>
+<tr class="memdesc:a8aabdaf37c086d62bea8cdc677ffaf67"><td class="mdescLeft">&#160;</td><td class="mdescRight">This is a cleared lists of keys to false bools. <br /></td></tr>
 <tr class="separator:a8aabdaf37c086d62bea8cdc677ffaf67"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>This is an instance of the XBOX controller which uses xinput v9.1.0 to detect and store information on the first controller connected to the system. This class will be passed around by the game to different scenes to detect input only if the controller is actually connected. Otherwise the keyboard is passed around for input checking. </p>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a class="anchor" id="afe5af228b157eeaeb020d7dc78ed9160"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">XBOXController::XBOXController </td>
+          <td>(</td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>is_output</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>The overloaded constructor for the Xbox contrller class, the variables for triggers, bumpers and analog will be initalised and the isPressed map must be set up. This object will output button presses. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">bool</td><td>Wheather or not there is debug output for the controller. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a class="anchor" id="a81c44cf1831a33a9a9ef548f87eb75ed"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::pair&lt; float, float &gt; XBOXController::getLeftAnalog </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>This function fetchs the x and y axis of the left analog stick. </p>
+<dl class="section return"><dt>Returns</dt><dd>std::pair Of floats to the x and y values. </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="ac3c00cc5121640b2862fcc0c2b3e85da"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float XBOXController::getLT </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>This function gets the value of the Left Trigger press. </p>
+<dl class="section return"><dt>Returns</dt><dd>float Value of left trigger press </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a7a30ff99556e489cab92c1c4c49646aa"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::pair&lt; float, float &gt; XBOXController::getRightAnalog </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>This function fetchs the x and y axis of the right analog stick. </p>
+<dl class="section return"><dt>Returns</dt><dd>std::pair Of floats to the x and y values. </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="adf0af928e112e1a8abd860e589478952"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float XBOXController::getRT </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>This function gets the value of the Right Trigger press. </p>
+<dl class="section return"><dt>Returns</dt><dd>float Value of right trigger press </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="ad7f5769354e27c75a07600bed61bbeca"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool XBOXController::isConnected </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>A check for if the controller is connected or not. </p>
+<dl class="section return"><dt>Returns</dt><dd>bool return true if connected else return false if not connected </dd></dl>
+
+<p><div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_x_b_o_x_controller_ad7f5769354e27c75a07600bed61bbeca_cgraph.png" border="0" usemap="#class_x_b_o_x_controller_ad7f5769354e27c75a07600bed61bbeca_cgraph" alt=""/></div>
+<map name="class_x_b_o_x_controller_ad7f5769354e27c75a07600bed61bbeca_cgraph" id="class_x_b_o_x_controller_ad7f5769354e27c75a07600bed61bbeca_cgraph">
+<area shape="rect" id="node2" href="classc_log.html#a6f776cb395514ae99f44011017da6562" title="This fetches the instance of the Logger. " alt="" coords="246,5,325,32"/>
+<area shape="rect" id="node3" href="classc_log.html#a8e588a9775eaa288adb969c4e5bcefe0" title="Print message using the cLoggers cout function. " alt="" coords="244,56,327,83"/>
+</map>
+</div>
+</p>
+
+</div>
+</div>
+<a class="anchor" id="ae5a4157aedb10a91f95940c78dac5fbe"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool XBOXController::isIdle </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Simple check to see whether or not the controller is idle this compairs the isPressed_cleared against the isPressed and returns the result. </p>
+<dl class="section return"><dt>Returns</dt><dd>bool if the controller is idle or not. </dd></dl>
+
+<p><div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_x_b_o_x_controller_ae5a4157aedb10a91f95940c78dac5fbe_icgraph.png" border="0" usemap="#class_x_b_o_x_controller_ae5a4157aedb10a91f95940c78dac5fbe_icgraph" alt=""/></div>
+<map name="class_x_b_o_x_controller_ae5a4157aedb10a91f95940c78dac5fbe_icgraph" id="class_x_b_o_x_controller_ae5a4157aedb10a91f95940c78dac5fbe_icgraph">
+<area shape="rect" id="node2" href="class_menu_scene.html#afb5ab00d298633725f69723c83963a45" title="This is a pure virtual funciton for handleInput, which must be overloaded in any inheriting classes..." alt="" coords="202,5,367,32"/>
+<area shape="rect" id="node3" href="class_world_scene.html#acf59be6537a77078daca83eb70aca70c" title="Handle the Controller input for the scene. " alt="" coords="201,56,368,83"/>
+</map>
+</div>
+</p>
+
+</div>
+</div>
+<a class="anchor" id="a87d44c7173766f787d9dff29f6118452"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void XBOXController::Rumble </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>l_rm</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>r_rm</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>This function rumbles the controller by the amount of the values passed in. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">l_rm</td><td>is the amount of rumble of the left motor </td></tr>
+    <tr><td class="paramname">r_rm</td><td>is the amount of rumble of the right motor </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following files:<ul>
 <li>FYP_FallenHero/<a class="el" href="_x_b_o_x_controller_8hpp_source.html">XBOXController.hpp</a></li>
 <li>FYP_FallenHero/XBOXController.cpp</li>

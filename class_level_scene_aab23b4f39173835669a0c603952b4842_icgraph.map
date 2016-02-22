@@ -1,0 +1,5 @@
+<map id="LevelScene::loadLevel" name="LevelScene::loadLevel">
+<area shape="rect" id="node2" href="$class_game.html#ad9382758bb4b0c156fa1973eea33cbb8" title="Change States and initalise them appropratly. " alt="" coords="203,5,360,32"/>
+<area shape="rect" id="node3" href="$class_game.html#a9137882533a1d2e234c03d73fae68af6" title="Checks the active scene for completion and if so class goToNextScene. " alt="" coords="408,5,589,32"/>
+<area shape="rect" id="node4" href="$class_game.html#a1ab78f5ed0d5ea879157357cf2fb2afa" title="This is the main game loop that the game runs and calls all the methods for running the game..." alt="" coords="637,5,720,32"/>
+</map>

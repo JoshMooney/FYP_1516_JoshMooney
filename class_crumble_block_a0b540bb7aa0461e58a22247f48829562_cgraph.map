@@ -1,0 +1,5 @@
+<map id="CrumbleBlock::CrumbleBlock" name="CrumbleBlock::CrumbleBlock">
+<area shape="rect" id="node2" href="$class_crumble_block.html#a5a3d391dbcbbcf4092f6f0d9874dc350" title="This loads the approprate assets for the CrumbleBlock. " alt="" coords="246,5,417,32"/>
+<area shape="rect" id="node4" href="$class_crumble_block.html#a88b1cd94d479a9cf88bad5f969e8e1d3" title="Alines the sprite with the Box2D body. " alt="" coords="245,56,417,83"/>
+<area shape="rect" id="node3" href="$class_crumble_block.html#a7e148719a4cd9a5ea74baaa55fdc1940" title="Creates and adds a frame to a thor::FrameAnimation. " alt="" coords="465,5,641,32"/>
+</map>

@@ -1,0 +1,3 @@
+<map id="CrumbleBlock" name="CrumbleBlock">
+<area shape="rect" id="node2" href="$class_enemy.html" title="This is the base Enemy class for every type of enemy, This class also helps the CrumbleBlock class po..." alt="" coords="5,131,151,472"/>
+</map>

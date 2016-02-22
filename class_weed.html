@@ -44,6 +44,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
+      <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li class="current"><a href="annotated.html"><span>Classes</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
       <li>
@@ -134,17 +135,19 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:aae5abd1d6da2596af6336bc998a5a163"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aae5abd1d6da2596af6336bc998a5a163"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>init</b> ()</td></tr>
 <tr class="separator:aae5abd1d6da2596af6336bc998a5a163"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac637ec598034e774c8a3f3b3bbe32656"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ac637ec598034e774c8a3f3b3bbe32656"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>update</b> (FTS fts)</td></tr>
+<tr class="memitem:ac637ec598034e774c8a3f3b3bbe32656"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_weed.html#ac637ec598034e774c8a3f3b3bbe32656">update</a> (FTS fts)</td></tr>
+<tr class="memdesc:ac637ec598034e774c8a3f3b3bbe32656"><td class="mdescLeft">&#160;</td><td class="mdescRight">This pure virtual function for updating the enemy objects and must be overloaded in any derived classes.  <a href="#ac637ec598034e774c8a3f3b3bbe32656">More...</a><br /></td></tr>
 <tr class="separator:ac637ec598034e774c8a3f3b3bbe32656"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6ca3deb696438ad2d95380535eacc94b"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a6ca3deb696438ad2d95380535eacc94b"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>render</b> (sf::RenderWindow &amp;w, sf::Time frames)</td></tr>
+<tr class="memitem:a6ca3deb696438ad2d95380535eacc94b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_weed.html#a6ca3deb696438ad2d95380535eacc94b">render</a> (sf::RenderWindow &amp;w, sf::Time frames)</td></tr>
+<tr class="memdesc:a6ca3deb696438ad2d95380535eacc94b"><td class="mdescLeft">&#160;</td><td class="mdescRight">This pure virtual function for rendering the enemy object and must be overloaded in any derived classes.  <a href="#a6ca3deb696438ad2d95380535eacc94b">More...</a><br /></td></tr>
 <tr class="separator:a6ca3deb696438ad2d95380535eacc94b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6db14d91406d52fd6badd448abf8e39c"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a6db14d91406d52fd6badd448abf8e39c"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>TakeDamage</b> ()</td></tr>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_weed.html#a6db14d91406d52fd6badd448abf8e39c">TakeDamage</a> ()</td></tr>
+<tr class="memdesc:a6db14d91406d52fd6badd448abf8e39c"><td class="mdescLeft">&#160;</td><td class="mdescRight">This pure virtual function for taking dameage and losting hp and must be overloaded in any derived classes. <br /></td></tr>
 <tr class="separator:a6db14d91406d52fd6badd448abf8e39c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa1f700d204e9f25dc7d57a90fcc34ddd"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aa1f700d204e9f25dc7d57a90fcc34ddd"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>Die</b> ()</td></tr>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_weed.html#aa1f700d204e9f25dc7d57a90fcc34ddd">Die</a> ()</td></tr>
+<tr class="memdesc:aa1f700d204e9f25dc7d57a90fcc34ddd"><td class="mdescLeft">&#160;</td><td class="mdescRight">This pure virtual function for dieing and must be overloaded in any derived classes. <br /></td></tr>
 <tr class="separator:aa1f700d204e9f25dc7d57a90fcc34ddd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a89c03c8d62c8d4c6d8bc743ab3c6fa3d"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a89c03c8d62c8d4c6d8bc743ab3c6fa3d"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>assignBody</b> (b2Body *b)</td></tr>
@@ -153,7 +156,8 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>assignBody</b> (b2Bod
 void&#160;</td><td class="memItemRight" valign="bottom"><b>attack</b> ()</td></tr>
 <tr class="separator:ab400030a6420d0497b8640fe76a95a5d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae4303b6809063c00bec6c609d667b9f2"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ae4303b6809063c00bec6c609d667b9f2"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>alineSprite</b> ()</td></tr>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_weed.html#ae4303b6809063c00bec6c609d667b9f2">alineSprite</a> ()</td></tr>
+<tr class="memdesc:ae4303b6809063c00bec6c609d667b9f2"><td class="mdescLeft">&#160;</td><td class="mdescRight">This pure virtual function for alineing the sprite to the box body attached to the enemy object and must be overloaded in any derived classes. <br /></td></tr>
 <tr class="separator:ae4303b6809063c00bec6c609d667b9f2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3931d463de595b642a0a726ad7975051"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a3931d463de595b642a0a726ad7975051"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>ChangeDirection</b> ()</td></tr>
@@ -162,21 +166,37 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>ChangeDirection</b> (
 void&#160;</td><td class="memItemRight" valign="bottom"><b>setDirection</b> (bool b)</td></tr>
 <tr class="separator:a5d07d62222484cbd79e533a1cddeab7d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:abf97b67750d0a32c64185dbdf7ff8315"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="abf97b67750d0a32c64185dbdf7ff8315"></a>
-sf::Vector2f&#160;</td><td class="memItemRight" valign="bottom"><b>getCenter</b> ()</td></tr>
+sf::Vector2f&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_weed.html#abf97b67750d0a32c64185dbdf7ff8315">getCenter</a> ()</td></tr>
+<tr class="memdesc:abf97b67750d0a32c64185dbdf7ff8315"><td class="mdescLeft">&#160;</td><td class="mdescRight">Fetches the center of the <a class="el" href="class_enemy.html" title="This is the base Enemy class for every type of enemy, This class also helps the CrumbleBlock class po...">Enemy</a>. <br /></td></tr>
 <tr class="separator:abf97b67750d0a32c64185dbdf7ff8315"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9a4d4ea4c1efabfb9778186e3a4366c1"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a9a4d4ea4c1efabfb9778186e3a4366c1"></a>
 sf::Vector2u&#160;</td><td class="memItemRight" valign="bottom"><b>getTextureSize</b> ()</td></tr>
 <tr class="separator:a9a4d4ea4c1efabfb9778186e3a4366c1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_class_enemy"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_class_enemy')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="class_enemy.html">Enemy</a></td></tr>
+<tr class="memitem:ab7a5cd7e74bace0c4eca16c7d7190054 inherit pub_methods_class_enemy"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ab7a5cd7e74bace0c4eca16c7d7190054"></a>
+virtual sf::FloatRect&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_enemy.html#ab7a5cd7e74bace0c4eca16c7d7190054">getBounds</a> ()=0</td></tr>
+<tr class="memdesc:ab7a5cd7e74bace0c4eca16c7d7190054 inherit pub_methods_class_enemy"><td class="mdescLeft">&#160;</td><td class="mdescRight">This pure virtual function for getting a SFML bounding box representing the enemy. <br /></td></tr>
+<tr class="separator:ab7a5cd7e74bace0c4eca16c7d7190054 inherit pub_methods_class_enemy"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2cce7194016cb90b9e457b3da131fd8a inherit pub_methods_class_enemy"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a2cce7194016cb90b9e457b3da131fd8a"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>isAlive</b> ()</td></tr>
+bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_enemy.html#a2cce7194016cb90b9e457b3da131fd8a">isAlive</a> ()</td></tr>
+<tr class="memdesc:a2cce7194016cb90b9e457b3da131fd8a inherit pub_methods_class_enemy"><td class="mdescLeft">&#160;</td><td class="mdescRight">Fetch whether the body is active or not. <br /></td></tr>
 <tr class="separator:a2cce7194016cb90b9e457b3da131fd8a inherit pub_methods_class_enemy"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2c904727da0d0487e56250771b1d3381 inherit pub_methods_class_enemy"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a2c904727da0d0487e56250771b1d3381"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>canDespawn</b> ()</td></tr>
+bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_enemy.html#a2c904727da0d0487e56250771b1d3381">canDespawn</a> ()</td></tr>
+<tr class="memdesc:a2c904727da0d0487e56250771b1d3381 inherit pub_methods_class_enemy"><td class="mdescLeft">&#160;</td><td class="mdescRight">Fetch whether the <a class="el" href="class_enemy.html" title="This is the base Enemy class for every type of enemy, This class also helps the CrumbleBlock class po...">Enemy</a> can be Despawned or not. <br /></td></tr>
 <tr class="separator:a2c904727da0d0487e56250771b1d3381 inherit pub_methods_class_enemy"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aff6991f819e59562f3969d4951928c90 inherit pub_methods_class_enemy"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aff6991f819e59562f3969d4951928c90"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>setActive</b> (bool b)</td></tr>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_enemy.html#aff6991f819e59562f3969d4951928c90">setActive</a> (bool b)</td></tr>
+<tr class="memdesc:aff6991f819e59562f3969d4951928c90 inherit pub_methods_class_enemy"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the Body active flag. <br /></td></tr>
 <tr class="separator:aff6991f819e59562f3969d4951928c90 inherit pub_methods_class_enemy"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad3e89c53dfcb25e51c0fd70d1605fe4b inherit pub_methods_class_enemy"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ad3e89c53dfcb25e51c0fd70d1605fe4b"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_enemy.html#ad3e89c53dfcb25e51c0fd70d1605fe4b">setCollidingSword</a> (bool b)</td></tr>
+<tr class="memdesc:ad3e89c53dfcb25e51c0fd70d1605fe4b inherit pub_methods_class_enemy"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the colliding with sword flag. <br /></td></tr>
+<tr class="separator:ad3e89c53dfcb25e51c0fd70d1605fe4b inherit pub_methods_class_enemy"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0db1e38631f573fa45e52454dfe083bc inherit pub_methods_class_enemy"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a0db1e38631f573fa45e52454dfe083bc"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_enemy.html#a0db1e38631f573fa45e52454dfe083bc">isCollidingSword</a> ()</td></tr>
+<tr class="memdesc:a0db1e38631f573fa45e52454dfe083bc inherit pub_methods_class_enemy"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns whether or not the sword is colliding. <br /></td></tr>
+<tr class="separator:a0db1e38631f573fa45e52454dfe083bc inherit pub_methods_class_enemy"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
@@ -188,31 +208,125 @@ STATE&#160;</td><td class="memItemRight" valign="bottom"><b>m_current_state</b><
 <tr class="separator:ad409d31a00522f981982d54d83af43c7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_attribs_class_enemy"><td colspan="2" onclick="javascript:toggleInherit('pub_attribs_class_enemy')"><img src="closed.png" alt="-"/>&#160;Public Attributes inherited from <a class="el" href="class_enemy.html">Enemy</a></td></tr>
 <tr class="memitem:aee836f31c9d48b4ca1510916075d17c9 inherit pub_attribs_class_enemy"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aee836f31c9d48b4ca1510916075d17c9"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><b>e_hp</b></td></tr>
+int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_enemy.html#aee836f31c9d48b4ca1510916075d17c9">e_hp</a></td></tr>
+<tr class="memdesc:aee836f31c9d48b4ca1510916075d17c9 inherit pub_attribs_class_enemy"><td class="mdescLeft">&#160;</td><td class="mdescRight">Health points of the <a class="el" href="class_enemy.html" title="This is the base Enemy class for every type of enemy, This class also helps the CrumbleBlock class po...">Enemy</a>. <br /></td></tr>
 <tr class="separator:aee836f31c9d48b4ca1510916075d17c9 inherit pub_attribs_class_enemy"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a788d735ecba0ce4ae3a2bcb6ff99cb52 inherit pub_attribs_class_enemy"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a788d735ecba0ce4ae3a2bcb6ff99cb52"></a>
-string&#160;</td><td class="memItemRight" valign="bottom"><b>e_texture</b></td></tr>
+string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_enemy.html#a788d735ecba0ce4ae3a2bcb6ff99cb52">e_texture</a></td></tr>
+<tr class="memdesc:a788d735ecba0ce4ae3a2bcb6ff99cb52 inherit pub_attribs_class_enemy"><td class="mdescLeft">&#160;</td><td class="mdescRight">The string of the texture being loaded in. <br /></td></tr>
 <tr class="separator:a788d735ecba0ce4ae3a2bcb6ff99cb52 inherit pub_attribs_class_enemy"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a72e32ab2e4c3f24b59c03fa2ab6054e8 inherit pub_attribs_class_enemy"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a72e32ab2e4c3f24b59c03fa2ab6054e8"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>e_body_active</b></td></tr>
+bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_enemy.html#a72e32ab2e4c3f24b59c03fa2ab6054e8">e_body_active</a></td></tr>
+<tr class="memdesc:a72e32ab2e4c3f24b59c03fa2ab6054e8 inherit pub_attribs_class_enemy"><td class="mdescLeft">&#160;</td><td class="mdescRight">bool flag for weather the body is alive or not. <br /></td></tr>
 <tr class="separator:a72e32ab2e4c3f24b59c03fa2ab6054e8 inherit pub_attribs_class_enemy"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:adcd6c11b684f89db9f6d2d7861dd0161 inherit pub_attribs_class_enemy"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="adcd6c11b684f89db9f6d2d7861dd0161"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>e_can_despawn</b></td></tr>
+bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_enemy.html#adcd6c11b684f89db9f6d2d7861dd0161">e_can_despawn</a></td></tr>
+<tr class="memdesc:adcd6c11b684f89db9f6d2d7861dd0161 inherit pub_attribs_class_enemy"><td class="mdescLeft">&#160;</td><td class="mdescRight">bool flag for weather the enemey can be despawned or not <br /></td></tr>
 <tr class="separator:adcd6c11b684f89db9f6d2d7861dd0161 inherit pub_attribs_class_enemy"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a07e7515437aab2c230093d9a9506251b inherit pub_attribs_class_enemy"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a07e7515437aab2c230093d9a9506251b"></a>
-b2Body *&#160;</td><td class="memItemRight" valign="bottom"><b>e_box_body</b></td></tr>
+b2Body *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_enemy.html#a07e7515437aab2c230093d9a9506251b">e_box_body</a></td></tr>
+<tr class="memdesc:a07e7515437aab2c230093d9a9506251b inherit pub_attribs_class_enemy"><td class="mdescLeft">&#160;</td><td class="mdescRight">The box body attached to the enemy for handling physics. <br /></td></tr>
 <tr class="separator:a07e7515437aab2c230093d9a9506251b inherit pub_attribs_class_enemy"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a382f1c946684268d2c79ab37a0997dfc inherit pub_attribs_class_enemy"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a382f1c946684268d2c79ab37a0997dfc"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>e_direction</b></td></tr>
+bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_enemy.html#a382f1c946684268d2c79ab37a0997dfc">e_direction</a></td></tr>
+<tr class="memdesc:a382f1c946684268d2c79ab37a0997dfc inherit pub_attribs_class_enemy"><td class="mdescLeft">&#160;</td><td class="mdescRight">A bool to represent direction if 1 the character is looking right and if 0 the character is looking left. <br /></td></tr>
 <tr class="separator:a382f1c946684268d2c79ab37a0997dfc inherit pub_attribs_class_enemy"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad056f066f0242b93c6b237fae0cfea18 inherit pub_attribs_class_enemy"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ad056f066f0242b93c6b237fae0cfea18"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_enemy.html#ad056f066f0242b93c6b237fae0cfea18">e_sword_col</a></td></tr>
+<tr class="memdesc:ad056f066f0242b93c6b237fae0cfea18 inherit pub_attribs_class_enemy"><td class="mdescLeft">&#160;</td><td class="mdescRight">This is the flag for weather the enemy is colliding with the players sword box. <br /></td></tr>
+<tr class="separator:ad056f066f0242b93c6b237fae0cfea18 inherit pub_attribs_class_enemy"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9b43c8604db5ed231ddef3b501ac4fea inherit pub_attribs_class_enemy"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a9b43c8604db5ed231ddef3b501ac4fea"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_enemy.html#a9b43c8604db5ed231ddef3b501ac4fea">is_hit</a></td></tr>
+<tr class="memdesc:a9b43c8604db5ed231ddef3b501ac4fea inherit pub_attribs_class_enemy"><td class="mdescLeft">&#160;</td><td class="mdescRight">If the enemy is hit or not. <br /></td></tr>
+<tr class="separator:a9b43c8604db5ed231ddef3b501ac4fea inherit pub_attribs_class_enemy"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <div class="dynheader">
 Inheritance diagram for Weed:</div>
 <div class="dyncontent">
 <div class="center"><img src="class_weed__inherit__graph.png" border="0" usemap="#_weed_inherit__map" alt="Inheritance graph"/></div>
 <map name="_weed_inherit__map" id="_weed_inherit__map">
-<area shape="rect" id="node2" href="class_enemy.html" title="{Enemy\n|+ e_hp\l+ e_texture\l+ e_body_active\l+ e_can_despawn\l+ e_box_body\l+ e_direction\l|+ update()\l+ render()\l+ alineSprite()\l+ getCenter()\l+ isAlive()\l+ canDespawn()\l+ setActive()\l}" alt="" coords="11,131,137,369"/>
+<area shape="rect" id="node2" href="class_enemy.html" title="This is the base Enemy class for every type of enemy, This class also helps the CrumbleBlock class po..." alt="" coords="5,131,151,472"/>
 </map>
+</div>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a class="anchor" id="a6ca3deb696438ad2d95380535eacc94b"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Weed::render </td>
+          <td>(</td>
+          <td class="paramtype">sf::RenderWindow &amp;&#160;</td>
+          <td class="paramname"><em>w</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">sf::Time&#160;</td>
+          <td class="paramname"><em>frames</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>This pure virtual function for rendering the enemy object and must be overloaded in any derived classes. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">sf::RenderWindow</td><td>This is the SFML window being rendered to. </td></tr>
+    <tr><td class="paramname">sf::Time</td><td>This is for updating and rendering the animation component. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Implements <a class="el" href="class_enemy.html#aa158957c195a1ac88cc16231922f3d67">Enemy</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ac637ec598034e774c8a3f3b3bbe32656"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Weed::update </td>
+          <td>(</td>
+          <td class="paramtype">FTS&#160;</td>
+          <td class="paramname"><em>fts</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>This pure virtual function for updating the enemy objects and must be overloaded in any derived classes. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">FTS</td><td>This is the Fixed Time Step passed to the enemy for moving within delta time </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Implements <a class="el" href="class_enemy.html#a50a6d8ba42da7926af91631476c144c5">Enemy</a>.</p>
+
+</div>
 </div>
 <hr/>The documentation for this class was generated from the following file:<ul>
 <li>FYP_FallenHero/<a class="el" href="_weed_8hpp_source.html">Weed.hpp</a></li>

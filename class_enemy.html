@@ -44,6 +44,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
+      <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li class="current"><a href="annotated.html"><span>Classes</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
       <li>
@@ -110,61 +111,188 @@ $(document).ready(function(){initNavTree('class_enemy.html','');});
 <div class="title">Enemy Class Reference<span class="mlabels"><span class="mlabel">abstract</span></span></div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p>This is the base <a class="el" href="class_enemy.html" title="This is the base Enemy class for every type of enemy, This class also helps the CrumbleBlock class po...">Enemy</a> class for every type of enemy, This class also helps the <a class="el" href="class_crumble_block.html" title="This is the single class that is responable for generating a CrumbleBlock depending on the passed in ...">CrumbleBlock</a> class possible as it is considered an enemy due to its need to animated and be hit by player. The <a class="el" href="class_enemy.html" title="This is the base Enemy class for every type of enemy, This class also helps the CrumbleBlock class po...">Enemy</a> class is abstract due to its pure virtual functions such as update and redner etc. This functions must be overrided in any derived classes.  
+ <a href="class_enemy.html#details">More...</a></p>
+
+<p><code>#include &lt;<a class="el" href="_enemy_8hpp_source.html">Enemy.hpp</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a50a6d8ba42da7926af91631476c144c5"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a50a6d8ba42da7926af91631476c144c5"></a>
-virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>update</b> (FTS fts)=0</td></tr>
+<tr class="memitem:a50a6d8ba42da7926af91631476c144c5"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_enemy.html#a50a6d8ba42da7926af91631476c144c5">update</a> (FTS fts)=0</td></tr>
+<tr class="memdesc:a50a6d8ba42da7926af91631476c144c5"><td class="mdescLeft">&#160;</td><td class="mdescRight">This pure virtual function for updating the enemy objects and must be overloaded in any derived classes.  <a href="#a50a6d8ba42da7926af91631476c144c5">More...</a><br /></td></tr>
 <tr class="separator:a50a6d8ba42da7926af91631476c144c5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa158957c195a1ac88cc16231922f3d67"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aa158957c195a1ac88cc16231922f3d67"></a>
-virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>render</b> (sf::RenderWindow &amp;w, sf::Time frames)=0</td></tr>
+<tr class="memitem:aa158957c195a1ac88cc16231922f3d67"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_enemy.html#aa158957c195a1ac88cc16231922f3d67">render</a> (sf::RenderWindow &amp;w, sf::Time frames)=0</td></tr>
+<tr class="memdesc:aa158957c195a1ac88cc16231922f3d67"><td class="mdescLeft">&#160;</td><td class="mdescRight">This pure virtual function for rendering the enemy object and must be overloaded in any derived classes.  <a href="#aa158957c195a1ac88cc16231922f3d67">More...</a><br /></td></tr>
 <tr class="separator:aa158957c195a1ac88cc16231922f3d67"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a31c2159cd9b8848de8eb96b32bf9f5ca"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a31c2159cd9b8848de8eb96b32bf9f5ca"></a>
-virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>alineSprite</b> ()=0</td></tr>
+virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_enemy.html#a31c2159cd9b8848de8eb96b32bf9f5ca">alineSprite</a> ()=0</td></tr>
+<tr class="memdesc:a31c2159cd9b8848de8eb96b32bf9f5ca"><td class="mdescLeft">&#160;</td><td class="mdescRight">This pure virtual function for alineing the sprite to the box body attached to the enemy object and must be overloaded in any derived classes. <br /></td></tr>
 <tr class="separator:a31c2159cd9b8848de8eb96b32bf9f5ca"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0a2d76baeb22f41d169f82cf86fa118e"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a0a2d76baeb22f41d169f82cf86fa118e"></a>
+virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_enemy.html#a0a2d76baeb22f41d169f82cf86fa118e">TakeDamage</a> ()=0</td></tr>
+<tr class="memdesc:a0a2d76baeb22f41d169f82cf86fa118e"><td class="mdescLeft">&#160;</td><td class="mdescRight">This pure virtual function for taking dameage and losting hp and must be overloaded in any derived classes. <br /></td></tr>
+<tr class="separator:a0a2d76baeb22f41d169f82cf86fa118e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad74144872a2d7f3e361f286db9ce47f6"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ad74144872a2d7f3e361f286db9ce47f6"></a>
+virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_enemy.html#ad74144872a2d7f3e361f286db9ce47f6">Die</a> ()=0</td></tr>
+<tr class="memdesc:ad74144872a2d7f3e361f286db9ce47f6"><td class="mdescLeft">&#160;</td><td class="mdescRight">This pure virtual function for dieing and must be overloaded in any derived classes. <br /></td></tr>
+<tr class="separator:ad74144872a2d7f3e361f286db9ce47f6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab7a5cd7e74bace0c4eca16c7d7190054"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ab7a5cd7e74bace0c4eca16c7d7190054"></a>
+virtual sf::FloatRect&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_enemy.html#ab7a5cd7e74bace0c4eca16c7d7190054">getBounds</a> ()=0</td></tr>
+<tr class="memdesc:ab7a5cd7e74bace0c4eca16c7d7190054"><td class="mdescLeft">&#160;</td><td class="mdescRight">This pure virtual function for getting a SFML bounding box representing the enemy. <br /></td></tr>
+<tr class="separator:ab7a5cd7e74bace0c4eca16c7d7190054"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a240dfac93ae32ff25bb08c476b9aea29"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a240dfac93ae32ff25bb08c476b9aea29"></a>
-virtual sf::Vector2f&#160;</td><td class="memItemRight" valign="bottom"><b>getCenter</b> ()</td></tr>
+virtual sf::Vector2f&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_enemy.html#a240dfac93ae32ff25bb08c476b9aea29">getCenter</a> ()</td></tr>
+<tr class="memdesc:a240dfac93ae32ff25bb08c476b9aea29"><td class="mdescLeft">&#160;</td><td class="mdescRight">Fetches the center of the <a class="el" href="class_enemy.html" title="This is the base Enemy class for every type of enemy, This class also helps the CrumbleBlock class po...">Enemy</a>. <br /></td></tr>
 <tr class="separator:a240dfac93ae32ff25bb08c476b9aea29"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2cce7194016cb90b9e457b3da131fd8a"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a2cce7194016cb90b9e457b3da131fd8a"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>isAlive</b> ()</td></tr>
+bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_enemy.html#a2cce7194016cb90b9e457b3da131fd8a">isAlive</a> ()</td></tr>
+<tr class="memdesc:a2cce7194016cb90b9e457b3da131fd8a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Fetch whether the body is active or not. <br /></td></tr>
 <tr class="separator:a2cce7194016cb90b9e457b3da131fd8a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2c904727da0d0487e56250771b1d3381"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a2c904727da0d0487e56250771b1d3381"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>canDespawn</b> ()</td></tr>
+bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_enemy.html#a2c904727da0d0487e56250771b1d3381">canDespawn</a> ()</td></tr>
+<tr class="memdesc:a2c904727da0d0487e56250771b1d3381"><td class="mdescLeft">&#160;</td><td class="mdescRight">Fetch whether the <a class="el" href="class_enemy.html" title="This is the base Enemy class for every type of enemy, This class also helps the CrumbleBlock class po...">Enemy</a> can be Despawned or not. <br /></td></tr>
 <tr class="separator:a2c904727da0d0487e56250771b1d3381"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aff6991f819e59562f3969d4951928c90"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aff6991f819e59562f3969d4951928c90"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>setActive</b> (bool b)</td></tr>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_enemy.html#aff6991f819e59562f3969d4951928c90">setActive</a> (bool b)</td></tr>
+<tr class="memdesc:aff6991f819e59562f3969d4951928c90"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the Body active flag. <br /></td></tr>
 <tr class="separator:aff6991f819e59562f3969d4951928c90"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad3e89c53dfcb25e51c0fd70d1605fe4b"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ad3e89c53dfcb25e51c0fd70d1605fe4b"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_enemy.html#ad3e89c53dfcb25e51c0fd70d1605fe4b">setCollidingSword</a> (bool b)</td></tr>
+<tr class="memdesc:ad3e89c53dfcb25e51c0fd70d1605fe4b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the colliding with sword flag. <br /></td></tr>
+<tr class="separator:ad3e89c53dfcb25e51c0fd70d1605fe4b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0db1e38631f573fa45e52454dfe083bc"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a0db1e38631f573fa45e52454dfe083bc"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_enemy.html#a0db1e38631f573fa45e52454dfe083bc">isCollidingSword</a> ()</td></tr>
+<tr class="memdesc:a0db1e38631f573fa45e52454dfe083bc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns whether or not the sword is colliding. <br /></td></tr>
+<tr class="separator:a0db1e38631f573fa45e52454dfe083bc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
 <tr class="memitem:aee836f31c9d48b4ca1510916075d17c9"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aee836f31c9d48b4ca1510916075d17c9"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><b>e_hp</b></td></tr>
+int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_enemy.html#aee836f31c9d48b4ca1510916075d17c9">e_hp</a></td></tr>
+<tr class="memdesc:aee836f31c9d48b4ca1510916075d17c9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Health points of the <a class="el" href="class_enemy.html" title="This is the base Enemy class for every type of enemy, This class also helps the CrumbleBlock class po...">Enemy</a>. <br /></td></tr>
 <tr class="separator:aee836f31c9d48b4ca1510916075d17c9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a788d735ecba0ce4ae3a2bcb6ff99cb52"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a788d735ecba0ce4ae3a2bcb6ff99cb52"></a>
-string&#160;</td><td class="memItemRight" valign="bottom"><b>e_texture</b></td></tr>
+string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_enemy.html#a788d735ecba0ce4ae3a2bcb6ff99cb52">e_texture</a></td></tr>
+<tr class="memdesc:a788d735ecba0ce4ae3a2bcb6ff99cb52"><td class="mdescLeft">&#160;</td><td class="mdescRight">The string of the texture being loaded in. <br /></td></tr>
 <tr class="separator:a788d735ecba0ce4ae3a2bcb6ff99cb52"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a72e32ab2e4c3f24b59c03fa2ab6054e8"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a72e32ab2e4c3f24b59c03fa2ab6054e8"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>e_body_active</b></td></tr>
+bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_enemy.html#a72e32ab2e4c3f24b59c03fa2ab6054e8">e_body_active</a></td></tr>
+<tr class="memdesc:a72e32ab2e4c3f24b59c03fa2ab6054e8"><td class="mdescLeft">&#160;</td><td class="mdescRight">bool flag for weather the body is alive or not. <br /></td></tr>
 <tr class="separator:a72e32ab2e4c3f24b59c03fa2ab6054e8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:adcd6c11b684f89db9f6d2d7861dd0161"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="adcd6c11b684f89db9f6d2d7861dd0161"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>e_can_despawn</b></td></tr>
+bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_enemy.html#adcd6c11b684f89db9f6d2d7861dd0161">e_can_despawn</a></td></tr>
+<tr class="memdesc:adcd6c11b684f89db9f6d2d7861dd0161"><td class="mdescLeft">&#160;</td><td class="mdescRight">bool flag for weather the enemey can be despawned or not <br /></td></tr>
 <tr class="separator:adcd6c11b684f89db9f6d2d7861dd0161"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a07e7515437aab2c230093d9a9506251b"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a07e7515437aab2c230093d9a9506251b"></a>
-b2Body *&#160;</td><td class="memItemRight" valign="bottom"><b>e_box_body</b></td></tr>
+b2Body *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_enemy.html#a07e7515437aab2c230093d9a9506251b">e_box_body</a></td></tr>
+<tr class="memdesc:a07e7515437aab2c230093d9a9506251b"><td class="mdescLeft">&#160;</td><td class="mdescRight">The box body attached to the enemy for handling physics. <br /></td></tr>
 <tr class="separator:a07e7515437aab2c230093d9a9506251b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a382f1c946684268d2c79ab37a0997dfc"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a382f1c946684268d2c79ab37a0997dfc"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>e_direction</b></td></tr>
+bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_enemy.html#a382f1c946684268d2c79ab37a0997dfc">e_direction</a></td></tr>
+<tr class="memdesc:a382f1c946684268d2c79ab37a0997dfc"><td class="mdescLeft">&#160;</td><td class="mdescRight">A bool to represent direction if 1 the character is looking right and if 0 the character is looking left. <br /></td></tr>
 <tr class="separator:a382f1c946684268d2c79ab37a0997dfc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad056f066f0242b93c6b237fae0cfea18"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ad056f066f0242b93c6b237fae0cfea18"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_enemy.html#ad056f066f0242b93c6b237fae0cfea18">e_sword_col</a></td></tr>
+<tr class="memdesc:ad056f066f0242b93c6b237fae0cfea18"><td class="mdescLeft">&#160;</td><td class="mdescRight">This is the flag for weather the enemy is colliding with the players sword box. <br /></td></tr>
+<tr class="separator:ad056f066f0242b93c6b237fae0cfea18"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9b43c8604db5ed231ddef3b501ac4fea"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a9b43c8604db5ed231ddef3b501ac4fea"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_enemy.html#a9b43c8604db5ed231ddef3b501ac4fea">is_hit</a></td></tr>
+<tr class="memdesc:a9b43c8604db5ed231ddef3b501ac4fea"><td class="mdescLeft">&#160;</td><td class="mdescRight">If the enemy is hit or not. <br /></td></tr>
+<tr class="separator:a9b43c8604db5ed231ddef3b501ac4fea"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<div class="dynheader">
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>This is the base <a class="el" href="class_enemy.html" title="This is the base Enemy class for every type of enemy, This class also helps the CrumbleBlock class po...">Enemy</a> class for every type of enemy, This class also helps the <a class="el" href="class_crumble_block.html" title="This is the single class that is responable for generating a CrumbleBlock depending on the passed in ...">CrumbleBlock</a> class possible as it is considered an enemy due to its need to animated and be hit by player. The <a class="el" href="class_enemy.html" title="This is the base Enemy class for every type of enemy, This class also helps the CrumbleBlock class po...">Enemy</a> class is abstract due to its pure virtual functions such as update and redner etc. This functions must be overrided in any derived classes. </p>
+</div><div class="dynheader">
 Inheritance diagram for Enemy:</div>
 <div class="dyncontent">
 <div class="center"><img src="class_enemy__inherit__graph.png" border="0" usemap="#_enemy_inherit__map" alt="Inheritance graph"/></div>
 <map name="_enemy_inherit__map" id="_enemy_inherit__map">
-<area shape="rect" id="node3" href="class_flyer.html" title="{Flyer\n|+ ai\l+ m_current_state\l|}" alt="" coords="5,520,133,612"/>
-<area shape="rect" id="node4" href="class_skeleton.html" title="{Skeleton\n|+ ai\l+ m_current_state\l+ m_previous_state\l+ m_animator\l|+ Skeleton()\l+ Skeleton()\l+ Skeleton()\l+ init()\l+ ChangeState()\l+ loadMedia()\l+ checkAnimation()\l+ addFrames()\l+ update()\l+ render()\land 15 more...\l}" alt="" coords="158,432,293,700"/>
-<area shape="rect" id="node5" href="class_weed.html" title="{Weed\n|+ ai\l+ m_current_state\l|+ Weed()\l+ Weed()\l+ ~Weed()\l+ init()\l+ update()\l+ render()\l+ TakeDamage()\l+ Die()\l+ assignBody()\l+ attack()\l+ alineSprite()\l+ ChangeDirection()\l+ setDirection()\l+ getCenter()\l+ getTextureSize()\l}" alt="" coords="317,417,454,715"/>
+<area shape="rect" id="node3" href="class_crumble_block.html" title="This is the single class that is responable for generating a CrumbleBlock depending on the passed in ..." alt="" coords="5,520,140,847"/>
+<area shape="rect" id="node4" href="class_flyer.html" title="{Flyer\n|+ ai\l+ m_current_state\l|}" alt="" coords="165,637,293,729"/>
+<area shape="rect" id="node5" href="class_skeleton.html" title="{Skeleton\n|+ ai\l+ m_current_state\l+ m_previous_state\l+ m_animator\l|+ Skeleton()\l+ Skeleton()\l+ Skeleton()\l+ init()\l+ ChangeState()\l+ loadMedia()\l+ checkAnimation()\l+ addFrames()\l+ update()\l+ render()\land 15 more...\l}" alt="" coords="317,549,452,817"/>
+<area shape="rect" id="node6" href="class_weed.html" title="{Weed\n|+ ai\l+ m_current_state\l|+ Weed()\l+ Weed()\l+ ~Weed()\l+ init()\l+ update()\l+ render()\l+ TakeDamage()\l+ Die()\l+ assignBody()\l+ attack()\l+ alineSprite()\l+ ChangeDirection()\l+ setDirection()\l+ getCenter()\l+ getTextureSize()\l}" alt="" coords="476,535,613,832"/>
 </map>
+</div>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a class="anchor" id="aa158957c195a1ac88cc16231922f3d67"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void Enemy::render </td>
+          <td>(</td>
+          <td class="paramtype">sf::RenderWindow &amp;&#160;</td>
+          <td class="paramname"><em>w</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">sf::Time&#160;</td>
+          <td class="paramname"><em>frames</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>This pure virtual function for rendering the enemy object and must be overloaded in any derived classes. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">sf::RenderWindow</td><td>This is the SFML window being rendered to. </td></tr>
+    <tr><td class="paramname">sf::Time</td><td>This is for updating and rendering the animation component. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Implemented in <a class="el" href="class_crumble_block.html#a2c65172ebbdec52e3964f61b20c53de9">CrumbleBlock</a>, <a class="el" href="class_skeleton.html#a58906e9ae41c4eee248bf529111846ef">Skeleton</a>, and <a class="el" href="class_weed.html#a6ca3deb696438ad2d95380535eacc94b">Weed</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a50a6d8ba42da7926af91631476c144c5"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void Enemy::update </td>
+          <td>(</td>
+          <td class="paramtype">FTS&#160;</td>
+          <td class="paramname"><em>fts</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>This pure virtual function for updating the enemy objects and must be overloaded in any derived classes. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">FTS</td><td>This is the Fixed Time Step passed to the enemy for moving within delta time </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Implemented in <a class="el" href="class_crumble_block.html#a71364948f6ff6f880c8d73af1dd32237">CrumbleBlock</a>, <a class="el" href="class_skeleton.html#af43e084ca879b4f64073e75f855c1879">Skeleton</a>, and <a class="el" href="class_weed.html#ac637ec598034e774c8a3f3b3bbe32656">Weed</a>.</p>
+
+</div>
 </div>
 <hr/>The documentation for this class was generated from the following file:<ul>
 <li>FYP_FallenHero/<a class="el" href="_enemy_8hpp_source.html">Enemy.hpp</a></li>

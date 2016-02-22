@@ -7,7 +7,7 @@ var class_level =
     [ "CreatePlatforms", "class_level.html#a37e796053abfd95eea1143e3ee4164c5", null ],
     [ "CreateTerrain", "class_level.html#a4d21febd15183b245aaa8a97fe341973", null ],
     [ "Destroy", "class_level.html#a24d81d9f4fab68ce1a63dc07910e8eac", null ],
-    [ "destroy", "class_level.html#af495b706d302096951783b357d011af1", null ],
+    [ "GenerateBlocks", "class_level.html#a9ba2723c3e84d1693ddaab34afbfc009", null ],
     [ "GenerateEnemies", "class_level.html#a241e5877fba91eabfd4b1588a6005c5f", null ],
     [ "GenerateLevelItems", "class_level.html#a2cf8ce29e4320cc9e4b14c855ab4a84f", null ],
     [ "GeneratePlayerItems", "class_level.html#af065a5fa8f8884072e31e23ab7e80427", null ],

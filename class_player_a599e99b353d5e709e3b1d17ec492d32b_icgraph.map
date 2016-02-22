@@ -1,0 +1,3 @@
+<map id="Player::update" name="Player::update">
+<area shape="rect" id="node2" href="$class_level_scene.html#a7f624c9fb01a52dad4a6d441203aac8c" title="Updates the player and spawner and calculates the Fixed Time Step(FTS). Also updates the camera to ke..." alt="" coords="160,5,295,32"/>
+</map>

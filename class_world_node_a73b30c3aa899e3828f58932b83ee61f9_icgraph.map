@@ -1,0 +1,5 @@
+<map id="WorldNode::checkNeighbout" name="WorldNode::checkNeighbout">
+<area shape="rect" id="node2" href="$class_world_scene.html#af1b3f16c7375f86c397a7576d53c32e0" title="Move the player idol in the direction passed into the funtion. " alt="" coords="240,31,408,57"/>
+<area shape="rect" id="node3" href="$class_world_scene.html#a8d9485ae14e82ca54840358fb3d9e8be" title="Handle the keyboard input for the scene. " alt="" coords="456,5,627,32"/>
+<area shape="rect" id="node4" href="$class_world_scene.html#acf59be6537a77078daca83eb70aca70c" title="Handle the Controller input for the scene. " alt="" coords="458,56,625,83"/>
+</map>

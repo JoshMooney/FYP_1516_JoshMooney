@@ -44,6 +44,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
+      <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li class="current"><a href="annotated.html"><span>Classes</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
       <li>
@@ -111,67 +112,85 @@ $(document).ready(function(){initNavTree('class_world_scene.html','');});
 <div class="title">WorldScene Class Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p>This class is responcable for creating, managing of the map as well as save the game, move the player around the map and loads changes state.  
+ <a href="class_world_scene.html#details">More...</a></p>
+
+<p><code>#include &lt;<a class="el" href="_world_scene_8hpp_source.html">WorldScene.hpp</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-types"></a>
 Public Types</h2></td></tr>
-<tr class="memitem:a2df500ab9085993b91fac3dd80d29627"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a2df500ab9085993b91fac3dd80d29627"></a>enum &#160;</td><td class="memItemRight" valign="bottom"><b>STATE</b> { <b>MAP</b>, 
-<b>EXIT</b>
+<tr class="memitem:a2df500ab9085993b91fac3dd80d29627"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_world_scene.html#a2df500ab9085993b91fac3dd80d29627">STATE</a> { <a class="el" href="class_world_scene.html#a2df500ab9085993b91fac3dd80d29627af8554f166052834337694a3c1b3ff775">MAP</a>, 
+<a class="el" href="class_world_scene.html#a2df500ab9085993b91fac3dd80d29627ab79480aead43b9126cd0c8fe17651d0b">EXIT</a>
  }</td></tr>
 <tr class="separator:a2df500ab9085993b91fac3dd80d29627"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
+<tr class="memitem:a86c5a4b83213d28ce5c62eba9d35da64"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a86c5a4b83213d28ce5c62eba9d35da64"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_world_scene.html#a86c5a4b83213d28ce5c62eba9d35da64">WorldScene</a> ()</td></tr>
+<tr class="memdesc:a86c5a4b83213d28ce5c62eba9d35da64"><td class="mdescLeft">&#160;</td><td class="mdescRight">This is the default constructor for the world scene. <br /></td></tr>
+<tr class="separator:a86c5a4b83213d28ce5c62eba9d35da64"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a96919a2cba5b6b6e544cc9b749e13ac8"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a96919a2cba5b6b6e544cc9b749e13ac8"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_world_scene.html#a96919a2cba5b6b6e544cc9b749e13ac8">~WorldScene</a> ()</td></tr>
+<tr class="memdesc:a96919a2cba5b6b6e544cc9b749e13ac8"><td class="mdescLeft">&#160;</td><td class="mdescRight">This is the deconstructor for the world scene. <br /></td></tr>
+<tr class="separator:a96919a2cba5b6b6e544cc9b749e13ac8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2d4bf1cfa27cdb3b1c1d35d6a9d2582a"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a2d4bf1cfa27cdb3b1c1d35d6a9d2582a"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>loadMedia</b> ()</td></tr>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_world_scene.html#a2d4bf1cfa27cdb3b1c1d35d6a9d2582a">loadMedia</a> ()</td></tr>
+<tr class="memdesc:a2d4bf1cfa27cdb3b1c1d35d6a9d2582a"><td class="mdescLeft">&#160;</td><td class="mdescRight">This loads all the assets the scene requires for use such as the background image and all the sounds effects required by the scene. <br /></td></tr>
 <tr class="separator:a2d4bf1cfa27cdb3b1c1d35d6a9d2582a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3064adaa4d7f35552c5be1c97b6f12de"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a3064adaa4d7f35552c5be1c97b6f12de"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_world_scene.html#a3064adaa4d7f35552c5be1c97b6f12de">update</a> ()</td></tr>
-<tr class="memdesc:a3064adaa4d7f35552c5be1c97b6f12de"><td class="mdescLeft">&#160;</td><td class="mdescRight">This is a pure virtual funciton for update, which must be overloaded in any inheriting classes. <br /></td></tr>
+<tr class="memdesc:a3064adaa4d7f35552c5be1c97b6f12de"><td class="mdescLeft">&#160;</td><td class="mdescRight">Currently blank the <a class="el" href="class_world_scene.html" title="This class is responcable for creating, managing of the map as well as save the game, move the player around the map and loads changes state. ">WorldScene</a> doesnt get updated in any way. <br /></td></tr>
 <tr class="separator:a3064adaa4d7f35552c5be1c97b6f12de"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:afdcb19b38ae966b638abed07d61d4659"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="afdcb19b38ae966b638abed07d61d4659"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_world_scene.html#afdcb19b38ae966b638abed07d61d4659">render</a> (sf::RenderWindow &amp;w)</td></tr>
-<tr class="memdesc:afdcb19b38ae966b638abed07d61d4659"><td class="mdescLeft">&#160;</td><td class="mdescRight">This is a pure virtual funciton for render, which must be overloaded in any inheriting classes. <br /></td></tr>
+<tr class="memitem:afdcb19b38ae966b638abed07d61d4659"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_world_scene.html#afdcb19b38ae966b638abed07d61d4659">render</a> (sf::RenderWindow &amp;w)</td></tr>
+<tr class="memdesc:afdcb19b38ae966b638abed07d61d4659"><td class="mdescLeft">&#160;</td><td class="mdescRight">This renders all the assets in the scene, aswell as sets the view of the camera to the window and reset it before exiting the function.  <a href="#afdcb19b38ae966b638abed07d61d4659">More...</a><br /></td></tr>
 <tr class="separator:afdcb19b38ae966b638abed07d61d4659"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8d9485ae14e82ca54840358fb3d9e8be"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a8d9485ae14e82ca54840358fb3d9e8be"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_world_scene.html#a8d9485ae14e82ca54840358fb3d9e8be">handleEvent</a> (sf::Event &amp;e)</td></tr>
-<tr class="memdesc:a8d9485ae14e82ca54840358fb3d9e8be"><td class="mdescLeft">&#160;</td><td class="mdescRight">This is a pure virtual funciton for handleEvent, which must be overloaded in any inheriting classes. <br /></td></tr>
+<tr class="memitem:a8d9485ae14e82ca54840358fb3d9e8be"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_world_scene.html#a8d9485ae14e82ca54840358fb3d9e8be">handleEvent</a> (sf::Event &amp;e)</td></tr>
+<tr class="memdesc:a8d9485ae14e82ca54840358fb3d9e8be"><td class="mdescLeft">&#160;</td><td class="mdescRight">Handle the keyboard input for the scene.  <a href="#a8d9485ae14e82ca54840358fb3d9e8be">More...</a><br /></td></tr>
 <tr class="separator:a8d9485ae14e82ca54840358fb3d9e8be"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:acf59be6537a77078daca83eb70aca70c"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="acf59be6537a77078daca83eb70aca70c"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_world_scene.html#acf59be6537a77078daca83eb70aca70c">handleInput</a> (<a class="el" href="class_x_b_o_x_controller.html">XBOXController</a> &amp;controller)</td></tr>
-<tr class="memdesc:acf59be6537a77078daca83eb70aca70c"><td class="mdescLeft">&#160;</td><td class="mdescRight">This is a pure virtual funciton for handleInput, which must be overloaded in any inheriting classes. <br /></td></tr>
+<tr class="memitem:acf59be6537a77078daca83eb70aca70c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_world_scene.html#acf59be6537a77078daca83eb70aca70c">handleInput</a> (<a class="el" href="class_x_b_o_x_controller.html">XBOXController</a> &amp;controller)</td></tr>
+<tr class="memdesc:acf59be6537a77078daca83eb70aca70c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Handle the Controller input for the scene.  <a href="#acf59be6537a77078daca83eb70aca70c">More...</a><br /></td></tr>
 <tr class="separator:acf59be6537a77078daca83eb70aca70c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af1b3f16c7375f86c397a7576d53c32e0"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="af1b3f16c7375f86c397a7576d53c32e0"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>movePlayer</b> (string direction)</td></tr>
+<tr class="memitem:af1b3f16c7375f86c397a7576d53c32e0"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_world_scene.html#af1b3f16c7375f86c397a7576d53c32e0">movePlayer</a> (string direction)</td></tr>
+<tr class="memdesc:af1b3f16c7375f86c397a7576d53c32e0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Move the player idol in the direction passed into the funtion.  <a href="#af1b3f16c7375f86c397a7576d53c32e0">More...</a><br /></td></tr>
 <tr class="separator:af1b3f16c7375f86c397a7576d53c32e0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a93e63f5226b909c5b7aa069ab18a9979"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a93e63f5226b909c5b7aa069ab18a9979"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>select</b> ()</td></tr>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_world_scene.html#a93e63f5226b909c5b7aa069ab18a9979">select</a> ()</td></tr>
+<tr class="memdesc:a93e63f5226b909c5b7aa069ab18a9979"><td class="mdescLeft">&#160;</td><td class="mdescRight">Select the current level the player idol is standing on, also play the select sound. <br /></td></tr>
 <tr class="separator:a93e63f5226b909c5b7aa069ab18a9979"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:abba4d916d4f00c4aee35106bfb4f7997"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="abba4d916d4f00c4aee35106bfb4f7997"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>LevelSelected</b> ()</td></tr>
+bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_world_scene.html#abba4d916d4f00c4aee35106bfb4f7997">LevelSelected</a> ()</td></tr>
+<tr class="memdesc:abba4d916d4f00c4aee35106bfb4f7997"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the level thats been selected for changing scenes. <br /></td></tr>
 <tr class="separator:abba4d916d4f00c4aee35106bfb4f7997"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:abf9bc046024c7c2225ecba9bbb22e7ee"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="abf9bc046024c7c2225ecba9bbb22e7ee"></a>
-string&#160;</td><td class="memItemRight" valign="bottom"><b>getCurrentLevel</b> ()</td></tr>
+string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_world_scene.html#abf9bc046024c7c2225ecba9bbb22e7ee">getCurrentLevel</a> ()</td></tr>
+<tr class="memdesc:abf9bc046024c7c2225ecba9bbb22e7ee"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the ID of the level the player is standing on. <br /></td></tr>
 <tr class="separator:abf9bc046024c7c2225ecba9bbb22e7ee"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8a1258250759b79622f34e73da2ad7d8"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a8a1258250759b79622f34e73da2ad7d8"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>reset</b> ()</td></tr>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_world_scene.html#a8a1258250759b79622f34e73da2ad7d8">reset</a> ()</td></tr>
+<tr class="memdesc:a8a1258250759b79622f34e73da2ad7d8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Resets any variables required for resetting the scene to be used again. <br /></td></tr>
 <tr class="separator:a8a1258250759b79622f34e73da2ad7d8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1aa986e4bbe1f6267c93eb7b32e37e27"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a1aa986e4bbe1f6267c93eb7b32e37e27"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>checkUnlocks</b> (string lvl_name)</td></tr>
+<tr class="memitem:a1aa986e4bbe1f6267c93eb7b32e37e27"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_world_scene.html#a1aa986e4bbe1f6267c93eb7b32e37e27">checkUnlocks</a> (string lvl_name)</td></tr>
+<tr class="memdesc:a1aa986e4bbe1f6267c93eb7b32e37e27"><td class="mdescLeft">&#160;</td><td class="mdescRight">This function checks the level name as askes the <a class="el" href="class_world_node.html" title="This is a world node to be used by the world map to make the overworld level select. A node is responcable for knowing about it neighbours, what is unlocked after finishing the level and an ID to identify the level the node is associated with. ">WorldNode</a> if it has a unlock or not.  <a href="#a1aa986e4bbe1f6267c93eb7b32e37e27">More...</a><br /></td></tr>
 <tr class="separator:a1aa986e4bbe1f6267c93eb7b32e37e27"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae559aa3742aceab5dc04b87f4e736ba7"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ae559aa3742aceab5dc04b87f4e736ba7"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>generateMapData</b> ()</td></tr>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_world_scene.html#ae559aa3742aceab5dc04b87f4e736ba7">generateMapData</a> ()</td></tr>
+<tr class="memdesc:ae559aa3742aceab5dc04b87f4e736ba7"><td class="mdescLeft">&#160;</td><td class="mdescRight">This generates the new Map data of srings to bool to save the game data when new levels have been unlocked. <br /></td></tr>
 <tr class="separator:ae559aa3742aceab5dc04b87f4e736ba7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af7a21c6bc886430402024ab537485f34"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="af7a21c6bc886430402024ab537485f34"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>loadSaveSlot</b> (<a class="el" href="struct_save_slot.html">SaveSlot</a> *ss)</td></tr>
+<tr class="memitem:af7a21c6bc886430402024ab537485f34"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_world_scene.html#af7a21c6bc886430402024ab537485f34">loadSaveSlot</a> (<a class="el" href="struct_save_slot.html">SaveSlot</a> *ss)</td></tr>
+<tr class="memdesc:af7a21c6bc886430402024ab537485f34"><td class="mdescLeft">&#160;</td><td class="mdescRight">The method takes a <a class="el" href="struct_save_slot.html" title="This is all of the loaded game data from the saveData.xml file parsed and made available to the progr...">SaveSlot</a> and creates a map depending on the information in the save.  <a href="#af7a21c6bc886430402024ab537485f34">More...</a><br /></td></tr>
 <tr class="separator:af7a21c6bc886430402024ab537485f34"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
 <tr class="memitem:a8a1383304b628f0d2c470adc2f166019"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a8a1383304b628f0d2c470adc2f166019"></a>
-<a class="el" href="struct_save_slot.html">SaveSlot</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>m_current_slot</b></td></tr>
+<a class="el" href="struct_save_slot.html">SaveSlot</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_world_scene.html#a8a1383304b628f0d2c470adc2f166019">m_current_slot</a></td></tr>
+<tr class="memdesc:a8a1383304b628f0d2c470adc2f166019"><td class="mdescLeft">&#160;</td><td class="mdescRight">This is the current save slot loaded into the game for pulling information for the map and saving to. The state the map is in, whather a selection has been made or not. <br /></td></tr>
 <tr class="separator:a8a1383304b628f0d2c470adc2f166019"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8455266923f408b28def2989be33d81b"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a8455266923f408b28def2989be33d81b"></a>
-STATE&#160;</td><td class="memItemRight" valign="bottom"><b>m_current_state</b></td></tr>
+<a class="el" href="class_world_scene.html#a2df500ab9085993b91fac3dd80d29627">STATE</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_world_scene.html#a8455266923f408b28def2989be33d81b">m_current_state</a></td></tr>
+<tr class="memdesc:a8455266923f408b28def2989be33d81b"><td class="mdescLeft">&#160;</td><td class="mdescRight">The the current state of the game. <br /></td></tr>
 <tr class="separator:a8455266923f408b28def2989be33d81b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_attribs_struct_scene"><td colspan="2" onclick="javascript:toggleInherit('pub_attribs_struct_scene')"><img src="closed.png" alt="-"/>&#160;Public Attributes inherited from <a class="el" href="struct_scene.html">Scene</a></td></tr>
 <tr class="memitem:a10f6b5165b8eda1177769111831ea5bd inherit pub_attribs_struct_scene"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a10f6b5165b8eda1177769111831ea5bd"></a>
@@ -183,13 +202,316 @@ map&lt; string, bool &gt;&#160;</td><td class="memItemRight" valign="bottom"><a 
 <tr class="memdesc:a39edc37ba5eccdf94e56284fb7706435 inherit pub_attribs_struct_scene"><td class="mdescLeft">&#160;</td><td class="mdescRight">This is used for storing any previously pressed keys this scene and holding them for use later in any of the inheriting scenes. You can compair this variable to s_key_map to find held keys if required. <br /></td></tr>
 <tr class="separator:a39edc37ba5eccdf94e56284fb7706435 inherit pub_attribs_struct_scene"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<div class="dynheader">
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>This class is responcable for creating, managing of the map as well as save the game, move the player around the map and loads changes state. </p>
+</div><div class="dynheader">
 Inheritance diagram for WorldScene:</div>
 <div class="dyncontent">
 <div class="center"><img src="class_world_scene__inherit__graph.png" border="0" usemap="#_world_scene_inherit__map" alt="Inheritance graph"/></div>
 <map name="_world_scene_inherit__map" id="_world_scene_inherit__map">
 <area shape="rect" id="node2" href="struct_scene.html" title="This is a C++ abstract class, where one or more of its methods are pure virtual and such must be over..." alt="" coords="12,5,143,141"/>
 </map>
+</div>
+<h2 class="groupheader">Member Enumeration Documentation</h2>
+<a class="anchor" id="a2df500ab9085993b91fac3dd80d29627"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum <a class="el" href="class_world_scene.html#a2df500ab9085993b91fac3dd80d29627">WorldScene::STATE</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<table class="fieldtable">
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a class="anchor" id="a2df500ab9085993b91fac3dd80d29627af8554f166052834337694a3c1b3ff775"></a>MAP&#160;</td><td class="fielddoc">
+<p>The World <a class="el" href="struct_scene.html" title="This is a C++ abstract class, where one or more of its methods are pure virtual and such must be over...">Scene</a> is currently on the map and moving around. </p>
+</td></tr>
+<tr><td class="fieldname"><a class="anchor" id="a2df500ab9085993b91fac3dd80d29627ab79480aead43b9126cd0c8fe17651d0b"></a>EXIT&#160;</td><td class="fielddoc">
+<p>The World <a class="el" href="struct_scene.html" title="This is a C++ abstract class, where one or more of its methods are pure virtual and such must be over...">Scene</a> is currently exiting and needs to change scene. </p>
+</td></tr>
+</table>
+
+</div>
+</div>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a class="anchor" id="a1aa986e4bbe1f6267c93eb7b32e37e27"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void WorldScene::checkUnlocks </td>
+          <td>(</td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>lvl_name</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>This function checks the level name as askes the <a class="el" href="class_world_node.html" title="This is a world node to be used by the world map to make the overworld level select. A node is responcable for knowing about it neighbours, what is unlocked after finishing the level and an ID to identify the level the node is associated with. ">WorldNode</a> if it has a unlock or not. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">lvl_name</td><td>This is the name of the level just complete </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p><div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_world_scene_a1aa986e4bbe1f6267c93eb7b32e37e27_cgraph.png" border="0" usemap="#class_world_scene_a1aa986e4bbe1f6267c93eb7b32e37e27_cgraph" alt=""/></div>
+<map name="class_world_scene_a1aa986e4bbe1f6267c93eb7b32e37e27_cgraph" id="class_world_scene_a1aa986e4bbe1f6267c93eb7b32e37e27_cgraph">
+<area shape="rect" id="node2" href="class_world_node.html#ab0925e925e1fff1cfaeed4bea9bce534" title="This unlocks the node and loads any new media it might need. " alt="" coords="271,5,403,32"/>
+<area shape="rect" id="node4" href="class_world_scene.html#ae559aa3742aceab5dc04b87f4e736ba7" title="This generates the new Map data of srings to bool to save the game data when new levels have been unl..." alt="" coords="236,56,439,83"/>
+<area shape="rect" id="node3" href="class_world_node.html#abaceeb0b61341b75da66eaacfba6631b" title="Loads a texture depending on if the level is locked or not. " alt="" coords="487,5,640,32"/>
+</map>
+</div>
+</p>
+
+<p><div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_world_scene_a1aa986e4bbe1f6267c93eb7b32e37e27_icgraph.png" border="0" usemap="#class_world_scene_a1aa986e4bbe1f6267c93eb7b32e37e27_icgraph" alt=""/></div>
+<map name="class_world_scene_a1aa986e4bbe1f6267c93eb7b32e37e27_icgraph" id="class_world_scene_a1aa986e4bbe1f6267c93eb7b32e37e27_icgraph">
+<area shape="rect" id="node2" href="class_game.html#ad9382758bb4b0c156fa1973eea33cbb8" title="Change States and initalise them appropratly. " alt="" coords="475,5,632,32"/>
+<area shape="rect" id="node5" href="class_world_scene.html#abf9bc046024c7c2225ecba9bbb22e7ee" title="Get the ID of the level the player is standing on. " alt="" coords="236,31,427,57"/>
+<area shape="rect" id="node3" href="class_game.html#a9137882533a1d2e234c03d73fae68af6" title="Checks the active scene for completion and if so class goToNextScene. " alt="" coords="680,5,861,32"/>
+<area shape="rect" id="node4" href="class_game.html#a1ab78f5ed0d5ea879157357cf2fb2afa" title="This is the main game loop that the game runs and calls all the methods for running the game..." alt="" coords="909,5,992,32"/>
+</map>
+</div>
+</p>
+
+</div>
+</div>
+<a class="anchor" id="a8d9485ae14e82ca54840358fb3d9e8be"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void WorldScene::handleEvent </td>
+          <td>(</td>
+          <td class="paramtype">sf::Event &amp;&#160;</td>
+          <td class="paramname"><em>e</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Handle the keyboard input for the scene. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">sf::Event</td><td>This is the event to read the keyboard for input </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Implements <a class="el" href="struct_scene.html#a223c047dbeddad83665237d4b261074c">Scene</a>.</p>
+
+<p><div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_world_scene_a8d9485ae14e82ca54840358fb3d9e8be_cgraph.png" border="0" usemap="#class_world_scene_a8d9485ae14e82ca54840358fb3d9e8be_cgraph" alt=""/></div>
+<map name="class_world_scene_a8d9485ae14e82ca54840358fb3d9e8be_cgraph" id="class_world_scene_a8d9485ae14e82ca54840358fb3d9e8be_cgraph">
+<area shape="rect" id="node2" href="class_world_scene.html#af1b3f16c7375f86c397a7576d53c32e0" title="Move the player idol in the direction passed into the funtion. " alt="" coords="224,157,392,184"/>
+<area shape="rect" id="node11" href="class_world_scene.html#a93e63f5226b909c5b7aa069ab18a9979" title="Select the current level the player idol is standing on, also play the select sound. " alt="" coords="240,208,376,235"/>
+<area shape="rect" id="node3" href="class_player_icon.html#a6c6a19d6b9e6712850b185b3a1c0840b" title="Fetchs the m_lvl_tag. " alt="" coords="477,5,607,32"/>
+<area shape="rect" id="node4" href="class_world_node.html#a73b30c3aa899e3828f58932b83ee61f9" title="This checks for neightbouring nodes in the direction passed in. " alt="" coords="449,56,635,83"/>
+<area shape="rect" id="node5" href="class_world_node.html#a4691335c0b464a3c2252fd325009eacf" title="This fetches the neighbouring node of the current node with a string for identifying the direction..." alt="" coords="440,107,644,133"/>
+<area shape="rect" id="node6" href="class_player_icon.html#a688e789e546f2c1c3d1b6c18d60f75e7" title="Sets the m_lvl_tag to a new passed in string s. " alt="" coords="477,157,607,184"/>
+<area shape="rect" id="node7" href="class_player_icon.html#a22fde2f4faaa8ddd1d672626287e7d91" title="Sets the center of the sf::Sprite instead of the top left corner as is standerd. I find it easier whe..." alt="" coords="469,208,615,235"/>
+<area shape="rect" id="node9" href="class_world_node.html#a853181cb23258158f97cb7237633a47a" title="This fetches the center of the current node. " alt="" coords="467,259,617,285"/>
+<area shape="rect" id="node10" href="class_player_icon.html#ae5ee98fcc6804c1b0f7e7696f5de7999" title="To play a sound and animation when the player attempts to move in a direction that is blocked or lock..." alt="" coords="481,309,603,336"/>
+<area shape="rect" id="node8" href="class_resource_manager.html#a3dcdce6201a938ee51be3d23879e46e1" title="Fetches the current instance of the Manager is required to achieve the singleton pattern. " alt="" coords="692,233,876,260"/>
+</map>
+</div>
+</p>
+
+</div>
+</div>
+<a class="anchor" id="acf59be6537a77078daca83eb70aca70c"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void WorldScene::handleInput </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_x_b_o_x_controller.html">XBOXController</a> &amp;&#160;</td>
+          <td class="paramname"><em>controller</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Handle the Controller input for the scene. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname"><a class="el" href="class_x_b_o_x_controller.html" title="This is an instance of the XBOX controller which uses xinput v9.1.0 to detect and store information o...">XBOXController</a></td><td>This is the controller to read for input </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Implements <a class="el" href="struct_scene.html#a27c2db1250f879c64f7b510a100d0b8f">Scene</a>.</p>
+
+<p><div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_world_scene_acf59be6537a77078daca83eb70aca70c_cgraph.png" border="0" usemap="#class_world_scene_acf59be6537a77078daca83eb70aca70c_cgraph" alt=""/></div>
+<map name="class_world_scene_acf59be6537a77078daca83eb70aca70c_cgraph" id="class_world_scene_acf59be6537a77078daca83eb70aca70c_cgraph">
+<area shape="rect" id="node2" href="class_world_scene.html#af1b3f16c7375f86c397a7576d53c32e0" title="Move the player idol in the direction passed into the funtion. " alt="" coords="220,157,388,184"/>
+<area shape="rect" id="node11" href="class_world_scene.html#a93e63f5226b909c5b7aa069ab18a9979" title="Select the current level the player idol is standing on, also play the select sound. " alt="" coords="236,208,372,235"/>
+<area shape="rect" id="node12" href="class_x_b_o_x_controller.html#ae5a4157aedb10a91f95940c78dac5fbe" title="Simple check to see whether or not the controller is idle this compairs the isPressed_cleared against..." alt="" coords="230,259,378,285"/>
+<area shape="rect" id="node3" href="class_player_icon.html#a6c6a19d6b9e6712850b185b3a1c0840b" title="Fetchs the m_lvl_tag. " alt="" coords="473,5,603,32"/>
+<area shape="rect" id="node4" href="class_world_node.html#a73b30c3aa899e3828f58932b83ee61f9" title="This checks for neightbouring nodes in the direction passed in. " alt="" coords="445,56,631,83"/>
+<area shape="rect" id="node5" href="class_world_node.html#a4691335c0b464a3c2252fd325009eacf" title="This fetches the neighbouring node of the current node with a string for identifying the direction..." alt="" coords="436,107,640,133"/>
+<area shape="rect" id="node6" href="class_player_icon.html#a688e789e546f2c1c3d1b6c18d60f75e7" title="Sets the m_lvl_tag to a new passed in string s. " alt="" coords="473,157,603,184"/>
+<area shape="rect" id="node7" href="class_player_icon.html#a22fde2f4faaa8ddd1d672626287e7d91" title="Sets the center of the sf::Sprite instead of the top left corner as is standerd. I find it easier whe..." alt="" coords="465,208,611,235"/>
+<area shape="rect" id="node9" href="class_world_node.html#a853181cb23258158f97cb7237633a47a" title="This fetches the center of the current node. " alt="" coords="463,259,613,285"/>
+<area shape="rect" id="node10" href="class_player_icon.html#ae5ee98fcc6804c1b0f7e7696f5de7999" title="To play a sound and animation when the player attempts to move in a direction that is blocked or lock..." alt="" coords="477,309,599,336"/>
+<area shape="rect" id="node8" href="class_resource_manager.html#a3dcdce6201a938ee51be3d23879e46e1" title="Fetches the current instance of the Manager is required to achieve the singleton pattern. " alt="" coords="688,233,872,260"/>
+</map>
+</div>
+</p>
+
+</div>
+</div>
+<a class="anchor" id="af7a21c6bc886430402024ab537485f34"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void WorldScene::loadSaveSlot </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="struct_save_slot.html">SaveSlot</a> *&#160;</td>
+          <td class="paramname"><em>ss</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>The method takes a <a class="el" href="struct_save_slot.html" title="This is all of the loaded game data from the saveData.xml file parsed and made available to the progr...">SaveSlot</a> and creates a map depending on the information in the save. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname"><a class="el" href="struct_save_slot.html" title="This is all of the loaded game data from the saveData.xml file parsed and made available to the progr...">SaveSlot</a></td><td>This is the save slot that needs to be loaded into the map </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p><div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_world_scene_af7a21c6bc886430402024ab537485f34_icgraph.png" border="0" usemap="#class_world_scene_af7a21c6bc886430402024ab537485f34_icgraph" alt=""/></div>
+<map name="class_world_scene_af7a21c6bc886430402024ab537485f34_icgraph" id="class_world_scene_af7a21c6bc886430402024ab537485f34_icgraph">
+<area shape="rect" id="node2" href="class_game.html#ad9382758bb4b0c156fa1973eea33cbb8" title="Change States and initalise them appropratly. " alt="" coords="468,5,625,32"/>
+<area shape="rect" id="node5" href="class_world_scene.html#abf9bc046024c7c2225ecba9bbb22e7ee" title="Get the ID of the level the player is standing on. " alt="" coords="229,31,420,57"/>
+<area shape="rect" id="node3" href="class_game.html#a9137882533a1d2e234c03d73fae68af6" title="Checks the active scene for completion and if so class goToNextScene. " alt="" coords="673,5,855,32"/>
+<area shape="rect" id="node4" href="class_game.html#a1ab78f5ed0d5ea879157357cf2fb2afa" title="This is the main game loop that the game runs and calls all the methods for running the game..." alt="" coords="903,5,985,32"/>
+</map>
+</div>
+</p>
+
+</div>
+</div>
+<a class="anchor" id="af1b3f16c7375f86c397a7576d53c32e0"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void WorldScene::movePlayer </td>
+          <td>(</td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>direction</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Move the player idol in the direction passed into the funtion. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">string</td><td>The direction to move the player to. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p><div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_world_scene_af1b3f16c7375f86c397a7576d53c32e0_cgraph.png" border="0" usemap="#class_world_scene_af1b3f16c7375f86c397a7576d53c32e0_cgraph" alt=""/></div>
+<map name="class_world_scene_af1b3f16c7375f86c397a7576d53c32e0_cgraph" id="class_world_scene_af1b3f16c7375f86c397a7576d53c32e0_cgraph">
+<area shape="rect" id="node2" href="class_player_icon.html#a6c6a19d6b9e6712850b185b3a1c0840b" title="Fetchs the m_lvl_tag. " alt="" coords="258,5,389,32"/>
+<area shape="rect" id="node3" href="class_world_node.html#a73b30c3aa899e3828f58932b83ee61f9" title="This checks for neightbouring nodes in the direction passed in. " alt="" coords="230,56,417,83"/>
+<area shape="rect" id="node4" href="class_world_node.html#a4691335c0b464a3c2252fd325009eacf" title="This fetches the neighbouring node of the current node with a string for identifying the direction..." alt="" coords="221,107,425,133"/>
+<area shape="rect" id="node5" href="class_player_icon.html#a688e789e546f2c1c3d1b6c18d60f75e7" title="Sets the m_lvl_tag to a new passed in string s. " alt="" coords="258,157,389,184"/>
+<area shape="rect" id="node6" href="class_player_icon.html#a22fde2f4faaa8ddd1d672626287e7d91" title="Sets the center of the sf::Sprite instead of the top left corner as is standerd. I find it easier whe..." alt="" coords="250,208,397,235"/>
+<area shape="rect" id="node8" href="class_world_node.html#a853181cb23258158f97cb7237633a47a" title="This fetches the center of the current node. " alt="" coords="248,259,399,285"/>
+<area shape="rect" id="node9" href="class_player_icon.html#ae5ee98fcc6804c1b0f7e7696f5de7999" title="To play a sound and animation when the player attempts to move in a direction that is blocked or lock..." alt="" coords="262,309,385,336"/>
+<area shape="rect" id="node7" href="class_resource_manager.html#a3dcdce6201a938ee51be3d23879e46e1" title="Fetches the current instance of the Manager is required to achieve the singleton pattern. " alt="" coords="473,233,657,260"/>
+</map>
+</div>
+</p>
+
+<p><div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_world_scene_af1b3f16c7375f86c397a7576d53c32e0_icgraph.png" border="0" usemap="#class_world_scene_af1b3f16c7375f86c397a7576d53c32e0_icgraph" alt=""/></div>
+<map name="class_world_scene_af1b3f16c7375f86c397a7576d53c32e0_icgraph" id="class_world_scene_af1b3f16c7375f86c397a7576d53c32e0_icgraph">
+<area shape="rect" id="node2" href="class_world_scene.html#a8d9485ae14e82ca54840358fb3d9e8be" title="Handle the keyboard input for the scene. " alt="" coords="221,5,392,32"/>
+<area shape="rect" id="node3" href="class_world_scene.html#acf59be6537a77078daca83eb70aca70c" title="Handle the Controller input for the scene. " alt="" coords="223,56,390,83"/>
+</map>
+</div>
+</p>
+
+</div>
+</div>
+<a class="anchor" id="afdcb19b38ae966b638abed07d61d4659"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void WorldScene::render </td>
+          <td>(</td>
+          <td class="paramtype">sf::RenderWindow &amp;&#160;</td>
+          <td class="paramname"><em>w</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>This renders all the assets in the scene, aswell as sets the view of the camera to the window and reset it before exiting the function. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">sf::RenderWindow</td><td>This is the SFML window to render to. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Implements <a class="el" href="struct_scene.html#a6d1270074b9eca3f44d3e01c17ab3a40">Scene</a>.</p>
+
+</div>
 </div>
 <hr/>The documentation for this class was generated from the following files:<ul>
 <li>FYP_FallenHero/<a class="el" href="_world_scene_8hpp_source.html">WorldScene.hpp</a></li>
