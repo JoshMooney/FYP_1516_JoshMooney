@@ -99,20 +99,21 @@ public:
 
 	void attack();
 	
+	void addGold(int amount)	{ m_gold += amount; }
 	int getGold() { return m_gold; }
 	bool isAlive() { return m_alive; }
 	b2Body* getBody()	{ return e_box_body; }                                                  //!<Returns a pointer to the b2body associated with the player
-	bool isMoving()	{ return m_is_moving; }		//!<Bool whether the player is moving or not
+	bool isMoving()	{ return m_is_moving; }														//!<Bool whether the player is moving or not
 	bool isAttacking() { return m_is_attacking; }
 	float getSpeed()	{ return m_speed; }                                                     //!<Finds the speed of the player
 	void ChangeDirection();
-	void setDirection(bool b);                                           //!<Sets the players direction to the value passed in
+	void setDirection(bool b);                                          						//!<Sets the players direction to the value passed in
 	bool isJumping()	{ return m_is_jumping; }   
 	void setJumping(bool b) { 
 		m_is_jumping = b; 
 		e_box_body->GetFixtureList()->SetFriction(1.5f);
 	}												//!<Checks if the player is in the jumping animation
-	sf::Vector2f getCenter() { return vHelper::toSF(e_box_body->GetPosition()); }                                   //!<Finds the center of the player in Global coordinates
+	sf::Vector2f getCenter() { return vHelper::toSF(e_box_body->GetPosition()); }               //!<Finds the center of the player in Global coordinates
 	void moveTo(sf::Vector2f p) {	e_box_body->SetTransform(vHelper::toB2(p), 0.0f);	}		//!<Sets the Player to the position passed in
 	void TakeDamage(bool knock_dir);
 	sf::Vector2u getSize() { return m_text_size; }
