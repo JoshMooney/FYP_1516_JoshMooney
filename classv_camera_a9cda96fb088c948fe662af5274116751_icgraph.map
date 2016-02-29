@@ -1,0 +1,4 @@
+<map id="vCamera::outOfBounds" name="vCamera::outOfBounds">
+<area shape="rect" id="node2" href="$class_level_scene.html#a7f624c9fb01a52dad4a6d441203aac8c" title="Updates the player and spawner and calculates the Fixed Time Step(FTS). Also updates the camera to ke..." alt="" coords="213,5,348,32"/>
+<area shape="rect" id="node3" href="$classv_camera.html#a22afb0a931e009eb6c956381193beea0" title="Adds a boundary to the camera. " alt="" coords="208,56,353,83"/>
+</map>

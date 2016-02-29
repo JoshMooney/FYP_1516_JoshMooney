@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['rock',['ROCK',['../class_crumble_block.html#ac4f508d4903d3b8b6cb0ae5d6cc572aba96a156f9b11e53d61647d8e9aca553e4',1,'CrumbleBlock']]]
+  ['idle',['IDLE',['../class_skeleton.html#aebe199234436d5e5d7930afe38ba41e1a2dd7f19d3dda1d3c183cf2ba9e23951e',1,'Skeleton']]]
 ];

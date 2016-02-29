@@ -1,0 +1,7 @@
+<map id="Skeleton::getBounds" name="Skeleton::getBounds">
+<area shape="rect" id="node2" href="$class_contact_listener.html#af83946c54271cbf9d8ee273587ed1791" title="This is the Box2d callback called when two box bodies begin colliding. " alt="" coords="196,5,395,32"/>
+<area shape="rect" id="node3" href="$class_skeleton.html#abc6f15953f742a76512cdc31abd96e5d" title="This advances the unit a step using there direction and speed. " alt="" coords="240,56,351,83"/>
+<area shape="rect" id="node4" href="$class_skeleton.html#aac7209bb7595431145f2257a9a3fcf0d" title="This checks the current animation and changes the state of the animation depending on the flags curre..." alt="" coords="443,5,617,32"/>
+<area shape="rect" id="node5" href="$class_skeleton.html#af43e084ca879b4f64073e75f855c1879" title="This updates the unit in any way possible. The function calls the checkAnimation to keep the animatio..." alt="" coords="665,31,785,57"/>
+<area shape="rect" id="node6" href="$class_skeleton.html#a2dec6ef7c49ef8e882496e5e00295122" title="Attach the body to the unit. " alt="" coords="455,107,605,133"/>
+</map>

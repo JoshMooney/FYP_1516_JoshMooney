@@ -31,7 +31,7 @@
 <table cellspacing="0" cellpadding="0">
  <tbody>
  <tr style="height: 56px;">
-  <td id="projectlogo"><img alt="Logo" src="Logo.png"/></td>
+  <td id="projectlogo"><img alt="Logo" src="Logo_original.png"/></td>
  </tr>
  </tbody>
 </table>
@@ -96,11 +96,13 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
       <li><a href="functions_l.html#index_l"><span>l</span></a></li>
       <li><a href="functions_m.html#index_m"><span>m</span></a></li>
       <li><a href="functions_n.html#index_n"><span>n</span></a></li>
+      <li><a href="functions_o.html#index_o"><span>o</span></a></li>
       <li><a href="functions_p.html#index_p"><span>p</span></a></li>
       <li><a href="functions_r.html#index_r"><span>r</span></a></li>
       <li class="current"><a href="functions_s.html#index_s"><span>s</span></a></li>
       <li><a href="functions_t.html#index_t"><span>t</span></a></li>
       <li><a href="functions_u.html#index_u"><span>u</span></a></li>
+      <li><a href="functions_v.html#index_v"><span>v</span></a></li>
       <li><a href="functions_w.html#index_w"><span>w</span></a></li>
       <li><a href="functions_x.html#index_x"><span>x</span></a></li>
       <li><a href="functions_0x7e.html#index_0x7e"><span>~</span></a></li>
@@ -155,11 +157,17 @@ $(document).ready(function(){initNavTree('functions_s.html','');});
 <li>save()
 : <a class="el" href="class_x_m_l_loader.html#aa0bb64a3dfa2c8e65ecad2df57311381">XMLLoader</a>
 </li>
+<li>SAVE_SELECT
+: <a class="el" href="class_menu_scene.html#a8756ba62c8ea0c38859f170ffeae3007a7ebc9d6c2a850322fe9d822ebdb39afa">MenuScene</a>
+</li>
 <li>saved_data
 : <a class="el" href="class_x_m_l_loader.html#ad3c7dfbda92c78c7c4e0f8faaeb54979">XMLLoader</a>
 </li>
 <li>SaveSlot()
 : <a class="el" href="struct_save_slot.html#ad3bfbaf7369f235c1c8127fc3aaf2f19">SaveSlot</a>
+</li>
+<li>SAVESLOTS
+: <a class="el" href="class_menu_scene.html#a65109f3a7c6c64a800f558441a8d4d95">MenuScene</a>
 </li>
 <li>scenery
 : <a class="el" href="class_level.html#a7845b10ea9e2584c94cd5e78c93ba271">Level</a>
@@ -168,7 +176,11 @@ $(document).ready(function(){initNavTree('functions_s.html','');});
 : <a class="el" href="class_scenery.html#a430e7d158b02733b779122a4d65cd2fd">Scenery</a>
 </li>
 <li>select()
-: <a class="el" href="class_world_scene.html#a93e63f5226b909c5b7aa069ab18a9979">WorldScene</a>
+: <a class="el" href="class_menu_scene.html#a7c472d0e317df10174e1d31a404a4313">MenuScene</a>
+, <a class="el" href="class_world_scene.html#a93e63f5226b909c5b7aa069ab18a9979">WorldScene</a>
+</li>
+<li>selected_slot
+: <a class="el" href="class_menu_scene.html#ac4fdbef37e687d011fc9df34c631373d">MenuScene</a>
 </li>
 <li>setActive()
 : <a class="el" href="class_enemy.html#aff6991f819e59562f3969d4951928c90">Enemy</a>
@@ -176,20 +188,30 @@ $(document).ready(function(){initNavTree('functions_s.html','');});
 <li>setBackgroundPosition()
 : <a class="el" href="class_simple_g_u_i.html#a36d95b42f733893410cf1e4aa0ce1f9c">SimpleGUI</a>
 </li>
+<li>setBounds()
+: <a class="el" href="classv_camera.html#aefc8bc9a4ef56caa717fc284e29b1efc">vCamera</a>
+</li>
 <li>setCenter()
 : <a class="el" href="class_player_icon.html#a22fde2f4faaa8ddd1d672626287e7d91">PlayerIcon</a>
 </li>
 <li>setCollidingSword()
 : <a class="el" href="class_enemy.html#ad3e89c53dfcb25e51c0fd70d1605fe4b">Enemy</a>
 </li>
+<li>setDefaultPosition()
+: <a class="el" href="class_parallax_sprite.html#a62add48bae6bf530f963bbcdeb3eeac7">ParallaxSprite</a>
+</li>
 <li>setDirection()
 : <a class="el" href="class_player.html#ab92500fc590fa0a523479b46f23a702e">Player</a>
+, <a class="el" href="class_skeleton.html#ad8f2d78625b61b18ed75262b5c4bfd68">Skeleton</a>
 </li>
 <li>setIfMoving()
 : <a class="el" href="class_player.html#ac1f3ce820337430ef7fc9bf5acd5db08">Player</a>
 </li>
 <li>setJumping()
 : <a class="el" href="class_player.html#a3d1b2def6b0b9e88ebde048aae4b3211">Player</a>
+</li>
+<li>setLoader()
+: <a class="el" href="class_menu_scene.html#a2d37f8f48a2c30c0f6e1e576e86212a5">MenuScene</a>
 </li>
 <li>setPlayer()
 : <a class="el" href="class_level_scene.html#abe1cf831543139b8350811b2e220c723">LevelScene</a>
@@ -204,10 +226,25 @@ $(document).ready(function(){initNavTree('functions_s.html','');});
 : <a class="el" href="class_simple_g_u_i.html#a122ed24443c46f1358d52f3e4a7ab355">SimpleGUI</a>
 </li>
 <li>SimpleGUI()
-: <a class="el" href="class_simple_g_u_i.html#aa91f27d62c02b4448ea110d1ba1caca0">SimpleGUI</a>
+: <a class="el" href="class_simple_g_u_i.html#af6fb61d1672abc543b5256e338b0c6d0">SimpleGUI</a>
 </li>
 <li>SIZE
 : <a class="el" href="class_crumble_block.html#ab0d033075fa5c05291fd4e86ec8df74f">CrumbleBlock</a>
+</li>
+<li>Skeleton()
+: <a class="el" href="class_skeleton.html#af01a02f1ce9ae4c801cd6e66ccf7407f">Skeleton</a>
+</li>
+<li>SKELETON
+: <a class="el" href="class_spawner.html#af783ad0abd1a80779f2497d0d3ced4e2a2b59f2465a66cd59b40d071957160463">Spawner</a>
+</li>
+<li>SLOT_1
+: <a class="el" href="class_menu_scene.html#a65109f3a7c6c64a800f558441a8d4d95a470a933d90ef9c1c6d1bd1292ae707df">MenuScene</a>
+</li>
+<li>SLOT_2
+: <a class="el" href="class_menu_scene.html#a65109f3a7c6c64a800f558441a8d4d95a23961a7834bfada40185264c15a7dfa1">MenuScene</a>
+</li>
+<li>SLOT_3
+: <a class="el" href="class_menu_scene.html#a65109f3a7c6c64a800f558441a8d4d95a2e1643ab5dda8c81349379796275c3d7">MenuScene</a>
 </li>
 <li>SMALL
 : <a class="el" href="class_crumble_block.html#ab0d033075fa5c05291fd4e86ec8df74fa2217742bb46e71243dabe590099299bc">CrumbleBlock</a>
@@ -221,10 +258,30 @@ $(document).ready(function(){initNavTree('functions_s.html','');});
 <li>Spawn()
 : <a class="el" href="class_player.html#af99c17372865d29c79ea1a17c5d8a935">Player</a>
 </li>
+<li>SPAWN_TYPE
+: <a class="el" href="class_spawner.html#af783ad0abd1a80779f2497d0d3ced4e2">Spawner</a>
+</li>
+<li>SpawnBlock()
+: <a class="el" href="class_spawner.html#a37fc2bc08b1e2ca88604854a5ef8dad9">Spawner</a>
+</li>
+<li>Spawner()
+: <a class="el" href="class_spawner.html#a371977ae0647dd57dd922a33e5894e6b">Spawner</a>
+</li>
+<li>SpawnSkeleton()
+: <a class="el" href="class_spawner.html#afe9d8d8c89a3bbd3d771d18bed58c524">Spawner</a>
+</li>
+<li>SPLASH
+: <a class="el" href="class_menu_scene.html#a8756ba62c8ea0c38859f170ffeae3007aff18109046160aab2473fac20221a4a9">MenuScene</a>
+</li>
 <li>STATE
 : <a class="el" href="class_crumble_block.html#ad56109756a37ee84c1ae5ede20fe6738">CrumbleBlock</a>
 , <a class="el" href="class_game.html#a126d999138acc80d63a8f96909b7887c">Game</a>
+, <a class="el" href="class_menu_scene.html#a8756ba62c8ea0c38859f170ffeae3007">MenuScene</a>
+, <a class="el" href="class_skeleton.html#aebe199234436d5e5d7930afe38ba41e1">Skeleton</a>
 , <a class="el" href="class_world_scene.html#a2df500ab9085993b91fac3dd80d29627">WorldScene</a>
+</li>
+<li>strtolvl()
+: <a class="el" href="class_world_map.html#a0fb76571a7d56a07bf515d69e56aab79">WorldMap</a>
 </li>
 </ul>
 </div><!-- contents -->

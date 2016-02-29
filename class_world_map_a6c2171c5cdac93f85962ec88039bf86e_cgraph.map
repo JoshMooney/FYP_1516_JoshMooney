@@ -1,0 +1,5 @@
+<map id="WorldMap::getNode" name="WorldMap::getNode">
+<area shape="rect" id="node2" href="$class_world_map.html#a0fb76571a7d56a07bf515d69e56aab79" title="Converts the string passed in into the approprate LEVEL state for loading a saving the file correctly..." alt="" coords="191,31,317,57"/>
+<area shape="rect" id="node3" href="$classc_log.html#a6f776cb395514ae99f44011017da6562" title="This fetches the instance of the Logger. " alt="" coords="367,5,446,32"/>
+<area shape="rect" id="node4" href="$classc_log.html#a8e588a9775eaa288adb969c4e5bcefe0" title="Print message using the cLoggers cout function. " alt="" coords="365,56,448,83"/>
+</map>

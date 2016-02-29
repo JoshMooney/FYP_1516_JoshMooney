@@ -31,7 +31,7 @@
 <table cellspacing="0" cellpadding="0">
  <tbody>
  <tr style="height: 56px;">
-  <td id="projectlogo"><img alt="Logo" src="Logo.png"/></td>
+  <td id="projectlogo"><img alt="Logo" src="Logo_original.png"/></td>
  </tr>
  </tbody>
 </table>
@@ -111,67 +111,526 @@ $(document).ready(function(){initNavTree('class_world_map.html','');});
 <div class="title">WorldMap Class Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p>Is responsable for storing a vector of WorldNodes as well as generating the arcs and drawing both the arcs and nodes. This class must be held by the <a class="el" href="class_world_scene.html" title="This class is responcable for creating, managing of the map as well as save the game, move the player around the map and loads changes state. ">WorldScene</a> class for moving the player icon around and chooseing a level.  
+ <a href="class_world_map.html#details">More...</a></p>
+
+<p><code>#include &lt;<a class="el" href="_world_map_8hpp_source.html">WorldMap.hpp</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-types"></a>
 Public Types</h2></td></tr>
-<tr class="memitem:ad2fb27b12f2d42614c970a55c8950ff8"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ad2fb27b12f2d42614c970a55c8950ff8"></a>enum &#160;</td><td class="memItemRight" valign="bottom"><b>LEVEL</b> { <br />
-&#160;&#160;<b>LVL_1</b>, 
-<b>LVL_2</b>, 
-<b>LVL_3A</b>, 
-<b>LVL_3B</b>, 
-<b>LVL_4</b>, 
-<b>LVL_5</b>, 
+<tr class="memitem:ad2fb27b12f2d42614c970a55c8950ff8"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_world_map.html#ad2fb27b12f2d42614c970a55c8950ff8">LEVEL</a> { <br />
+&#160;&#160;<a class="el" href="class_world_map.html#ad2fb27b12f2d42614c970a55c8950ff8a482a79dbb7b87ee9f07c5e6775df0a86">LVL_1</a>, 
+<a class="el" href="class_world_map.html#ad2fb27b12f2d42614c970a55c8950ff8ade7367da5db5c4588fe07017fd77725a">LVL_2</a>, 
+<a class="el" href="class_world_map.html#ad2fb27b12f2d42614c970a55c8950ff8ac13d2cdd6bcb40e4a4bbbf429d093344">LVL_3A</a>, 
+<a class="el" href="class_world_map.html#ad2fb27b12f2d42614c970a55c8950ff8a5918003b26b20fc0d63d6ce3e25575e2">LVL_3B</a>, 
+<a class="el" href="class_world_map.html#ad2fb27b12f2d42614c970a55c8950ff8aecc34b0249a842a0f843b6f44b9c93ef">LVL_4</a>, 
+<a class="el" href="class_world_map.html#ad2fb27b12f2d42614c970a55c8950ff8aaf96c5d42d7f88b94dfd042d34845d8c">LVL_5</a>, 
 <br />
-&#160;&#160;<b>LVL_6</b>
+&#160;&#160;<a class="el" href="class_world_map.html#ad2fb27b12f2d42614c970a55c8950ff8ade5ec658c40670b87151966f577bb014">LVL_6</a>
 <br />
- }</td></tr>
+ }<tr class="memdesc:ad2fb27b12f2d42614c970a55c8950ff8"><td class="mdescLeft">&#160;</td><td class="mdescRight">for storing the number of levels and the name to identify them by.  <a href="class_world_map.html#ad2fb27b12f2d42614c970a55c8950ff8">More...</a><br /></td></tr>
+</td></tr>
 <tr class="separator:ad2fb27b12f2d42614c970a55c8950ff8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:ae71d5f5e9e523a3e94a82122bec74a9d"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ae71d5f5e9e523a3e94a82122bec74a9d"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>WorldMap</b> (sf::Vector2f origin_pos)</td></tr>
+<tr class="memitem:ad079799989e80b5469c880b8b40e000e"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ad079799989e80b5469c880b8b40e000e"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_world_map.html#ad079799989e80b5469c880b8b40e000e">WorldMap</a> ()</td></tr>
+<tr class="memdesc:ad079799989e80b5469c880b8b40e000e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Default constructor for the map this method should be deprecated and no longer used as far as i know. <br /></td></tr>
+<tr class="separator:ad079799989e80b5469c880b8b40e000e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae71d5f5e9e523a3e94a82122bec74a9d"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_world_map.html#ae71d5f5e9e523a3e94a82122bec74a9d">WorldMap</a> (sf::Vector2f origin_pos)</td></tr>
+<tr class="memdesc:ae71d5f5e9e523a3e94a82122bec74a9d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Overloaded Contructor allowing for the origin of the plotted map to to be set.  <a href="#ae71d5f5e9e523a3e94a82122bec74a9d">More...</a><br /></td></tr>
 <tr class="separator:ae71d5f5e9e523a3e94a82122bec74a9d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae07476c5ede73d4e0e7efe5709c76401"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ae07476c5ede73d4e0e7efe5709c76401"></a>
-sf::Vector2f&#160;</td><td class="memItemRight" valign="bottom"><b>getCenter</b> ()</td></tr>
+<tr class="memitem:ae07476c5ede73d4e0e7efe5709c76401"><td class="memItemLeft" align="right" valign="top">sf::Vector2f&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_world_map.html#ae07476c5ede73d4e0e7efe5709c76401">getCenter</a> ()</td></tr>
+<tr class="memdesc:ae07476c5ede73d4e0e7efe5709c76401"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calculates the center of the map taking each of the nodes and arcs into account.  <a href="#ae07476c5ede73d4e0e7efe5709c76401">More...</a><br /></td></tr>
 <tr class="separator:ae07476c5ede73d4e0e7efe5709c76401"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae2c630f993b5c0a0672ca0c770c36d5e"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ae2c630f993b5c0a0672ca0c770c36d5e"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>generateBounds</b> ()</td></tr>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_world_map.html#ae2c630f993b5c0a0672ca0c770c36d5e">generateBounds</a> ()</td></tr>
+<tr class="memdesc:ae2c630f993b5c0a0672ca0c770c36d5e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates the m_bound Float Rect here for the bounds of the map. <br /></td></tr>
 <tr class="separator:ae2c630f993b5c0a0672ca0c770c36d5e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9e15a7b259b360a8cad685496ef1b046"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a9e15a7b259b360a8cad685496ef1b046"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>loadMedia</b> ()</td></tr>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_world_map.html#a9e15a7b259b360a8cad685496ef1b046">loadMedia</a> ()</td></tr>
+<tr class="memdesc:a9e15a7b259b360a8cad685496ef1b046"><td class="mdescLeft">&#160;</td><td class="mdescRight">Loads the required assets for the Arcs needed for between nodes. <br /></td></tr>
 <tr class="separator:a9e15a7b259b360a8cad685496ef1b046"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a73e1b3ad73523fb395d27dc7029ebf08"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a73e1b3ad73523fb395d27dc7029ebf08"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>createMap</b> ()</td></tr>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_world_map.html#a73e1b3ad73523fb395d27dc7029ebf08">createMap</a> ()</td></tr>
+<tr class="memdesc:a73e1b3ad73523fb395d27dc7029ebf08"><td class="mdescLeft">&#160;</td><td class="mdescRight">This Function generates the hard coded map of nodes for the world map. <br /></td></tr>
 <tr class="separator:a73e1b3ad73523fb395d27dc7029ebf08"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5b9f2e73c77bc54e31a20f4336084c05"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a5b9f2e73c77bc54e31a20f4336084c05"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>createMap</b> (map&lt; string, bool &gt; map_data)</td></tr>
+<tr class="memitem:a5b9f2e73c77bc54e31a20f4336084c05"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_world_map.html#a5b9f2e73c77bc54e31a20f4336084c05">createMap</a> (map&lt; string, bool &gt; map_data)</td></tr>
+<tr class="memdesc:a5b9f2e73c77bc54e31a20f4336084c05"><td class="mdescLeft">&#160;</td><td class="mdescRight">This funciton generates the map using the data passed in, in the map_data.  <a href="#a5b9f2e73c77bc54e31a20f4336084c05">More...</a><br /></td></tr>
 <tr class="separator:a5b9f2e73c77bc54e31a20f4336084c05"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a777b1f38905036b07f434b7f8796edc6"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a777b1f38905036b07f434b7f8796edc6"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>addArcs</b> ()</td></tr>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_world_map.html#a777b1f38905036b07f434b7f8796edc6">addArcs</a> ()</td></tr>
+<tr class="memdesc:a777b1f38905036b07f434b7f8796edc6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calls the Plot arcs on the Nodes to connect each of them up to one another. <br /></td></tr>
 <tr class="separator:a777b1f38905036b07f434b7f8796edc6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a91ef189bafa24a32ac331fc702c5f015"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a91ef189bafa24a32ac331fc702c5f015"></a>
-sf::Sprite&#160;</td><td class="memItemRight" valign="bottom"><b>PlotArc</b> (LEVEL l1, LEVEL l2)</td></tr>
+<tr class="memitem:a91ef189bafa24a32ac331fc702c5f015"><td class="memItemLeft" align="right" valign="top">sf::Sprite&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_world_map.html#a91ef189bafa24a32ac331fc702c5f015">PlotArc</a> (<a class="el" href="class_world_map.html#ad2fb27b12f2d42614c970a55c8950ff8">LEVEL</a> l1, <a class="el" href="class_world_map.html#ad2fb27b12f2d42614c970a55c8950ff8">LEVEL</a> l2)</td></tr>
+<tr class="memdesc:a91ef189bafa24a32ac331fc702c5f015"><td class="mdescLeft">&#160;</td><td class="mdescRight">This method checks the center of each node and determines which side of l2 is in regards to l1 then a arc can be created and returned. This method also sets the neighbouring node field in the nodes to one another traversing between them.  <a href="#a91ef189bafa24a32ac331fc702c5f015">More...</a><br /></td></tr>
 <tr class="separator:a91ef189bafa24a32ac331fc702c5f015"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad1adcc4b6a2ede39277ca171f93b17f3"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ad1adcc4b6a2ede39277ca171f93b17f3"></a>
-vector&lt; <a class="el" href="class_world_node.html">WorldNode</a> &gt; *&#160;</td><td class="memItemRight" valign="bottom"><b>getNodes</b> ()</td></tr>
+<tr class="memitem:ad1adcc4b6a2ede39277ca171f93b17f3"><td class="memItemLeft" align="right" valign="top">vector&lt; <a class="el" href="class_world_node.html">WorldNode</a> &gt; *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_world_map.html#ad1adcc4b6a2ede39277ca171f93b17f3">getNodes</a> ()</td></tr>
+<tr class="memdesc:ad1adcc4b6a2ede39277ca171f93b17f3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the map of nodes and returns a pointer to the first element in the map.  <a href="#ad1adcc4b6a2ede39277ca171f93b17f3">More...</a><br /></td></tr>
 <tr class="separator:ad1adcc4b6a2ede39277ca171f93b17f3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aff7ed2a5ad580d9cc833f9328f25f137"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aff7ed2a5ad580d9cc833f9328f25f137"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>render</b> (sf::RenderWindow &amp;w)</td></tr>
+<tr class="memitem:aff7ed2a5ad580d9cc833f9328f25f137"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_world_map.html#aff7ed2a5ad580d9cc833f9328f25f137">render</a> (sf::RenderWindow &amp;w)</td></tr>
+<tr class="memdesc:aff7ed2a5ad580d9cc833f9328f25f137"><td class="mdescLeft">&#160;</td><td class="mdescRight">Render the <a class="el" href="class_world_map.html" title="Is responsable for storing a vector of WorldNodes as well as generating the arcs and drawing both the...">WorldMap</a> which includes all the nodes and the arcs connecting those nodes.  <a href="#aff7ed2a5ad580d9cc833f9328f25f137">More...</a><br /></td></tr>
 <tr class="separator:aff7ed2a5ad580d9cc833f9328f25f137"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa22135598bd731d814efe402a2d2ee47"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aa22135598bd731d814efe402a2d2ee47"></a>
-<a class="el" href="class_world_node.html">WorldNode</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>getNode</b> (LEVEL l)</td></tr>
+<tr class="memitem:aa22135598bd731d814efe402a2d2ee47"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_world_node.html">WorldNode</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_world_map.html#aa22135598bd731d814efe402a2d2ee47">getNode</a> (<a class="el" href="class_world_map.html#ad2fb27b12f2d42614c970a55c8950ff8">LEVEL</a> l)</td></tr>
+<tr class="memdesc:aa22135598bd731d814efe402a2d2ee47"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets a node in the map with the enum of the passed in LEVEL.  <a href="#aa22135598bd731d814efe402a2d2ee47">More...</a><br /></td></tr>
 <tr class="separator:aa22135598bd731d814efe402a2d2ee47"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6c2171c5cdac93f85962ec88039bf86e"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a6c2171c5cdac93f85962ec88039bf86e"></a>
-<a class="el" href="class_world_node.html">WorldNode</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>getNode</b> (string l)</td></tr>
+<tr class="memitem:a6c2171c5cdac93f85962ec88039bf86e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_world_node.html">WorldNode</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_world_map.html#a6c2171c5cdac93f85962ec88039bf86e">getNode</a> (string l)</td></tr>
+<tr class="memdesc:a6c2171c5cdac93f85962ec88039bf86e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets a node in the map with the enum state name assocated with the string passed in by calling the <a class="el" href="class_world_map.html#a0fb76571a7d56a07bf515d69e56aab79" title="Converts the string passed in into the approprate LEVEL state for loading a saving the file correctly...">strtolvl()</a> funtciton.  <a href="#a6c2171c5cdac93f85962ec88039bf86e">More...</a><br /></td></tr>
 <tr class="separator:a6c2171c5cdac93f85962ec88039bf86e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0fb76571a7d56a07bf515d69e56aab79"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a0fb76571a7d56a07bf515d69e56aab79"></a>
-LEVEL&#160;</td><td class="memItemRight" valign="bottom"><b>strtolvl</b> (string s)</td></tr>
+<tr class="memitem:a0fb76571a7d56a07bf515d69e56aab79"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_world_map.html#ad2fb27b12f2d42614c970a55c8950ff8">LEVEL</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_world_map.html#a0fb76571a7d56a07bf515d69e56aab79">strtolvl</a> (string s)</td></tr>
+<tr class="memdesc:a0fb76571a7d56a07bf515d69e56aab79"><td class="mdescLeft">&#160;</td><td class="mdescRight">Converts the string passed in into the approprate LEVEL state for loading a saving the file correctly. This method is the mirror of the <a class="el" href="class_world_map.html#a699af749ac97c5bba9b03349fed7665b" title="Converts the LEVEL state passed in into the approprate string for loading a level correctly...">lvltostr()</a> function.  string The string to be translated.  <a href="#a0fb76571a7d56a07bf515d69e56aab79">More...</a><br /></td></tr>
 <tr class="separator:a0fb76571a7d56a07bf515d69e56aab79"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a699af749ac97c5bba9b03349fed7665b"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a699af749ac97c5bba9b03349fed7665b"></a>
-string&#160;</td><td class="memItemRight" valign="bottom"><b>lvltostr</b> (LEVEL l)</td></tr>
+<tr class="memitem:a699af749ac97c5bba9b03349fed7665b"><td class="memItemLeft" align="right" valign="top">string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_world_map.html#a699af749ac97c5bba9b03349fed7665b">lvltostr</a> (<a class="el" href="class_world_map.html#ad2fb27b12f2d42614c970a55c8950ff8">LEVEL</a> l)</td></tr>
+<tr class="memdesc:a699af749ac97c5bba9b03349fed7665b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Converts the LEVEL state passed in into the approprate string for loading a level correctly. This method is the mirror of the <a class="el" href="class_world_map.html#a0fb76571a7d56a07bf515d69e56aab79" title="Converts the string passed in into the approprate LEVEL state for loading a saving the file correctly...">strtolvl()</a> function.  LEVEL The state to be translated.  <a href="#a699af749ac97c5bba9b03349fed7665b">More...</a><br /></td></tr>
 <tr class="separator:a699af749ac97c5bba9b03349fed7665b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Is responsable for storing a vector of WorldNodes as well as generating the arcs and drawing both the arcs and nodes. This class must be held by the <a class="el" href="class_world_scene.html" title="This class is responcable for creating, managing of the map as well as save the game, move the player around the map and loads changes state. ">WorldScene</a> class for moving the player icon around and chooseing a level. </p>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="class_world_node.html" title="This is a world node to be used by the world map to make the overworld level select. A node is responcable for knowing about it neighbours, what is unlocked after finishing the level and an ID to identify the level the node is associated with. ">WorldNode</a> </dd>
+<dd>
+<a class="el" href="class_world_scene.html" title="This class is responcable for creating, managing of the map as well as save the game, move the player around the map and loads changes state. ">WorldScene</a> </dd></dl>
+</div><h2 class="groupheader">Member Enumeration Documentation</h2>
+<a class="anchor" id="ad2fb27b12f2d42614c970a55c8950ff8"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum <a class="el" href="class_world_map.html#ad2fb27b12f2d42614c970a55c8950ff8">WorldMap::LEVEL</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>for storing the number of levels and the name to identify them by. </p>
+<table class="fieldtable">
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a class="anchor" id="ad2fb27b12f2d42614c970a55c8950ff8a482a79dbb7b87ee9f07c5e6775df0a86"></a>LVL_1&#160;</td><td class="fielddoc">
+<p>Enum state for level 1. </p>
+</td></tr>
+<tr><td class="fieldname"><a class="anchor" id="ad2fb27b12f2d42614c970a55c8950ff8ade7367da5db5c4588fe07017fd77725a"></a>LVL_2&#160;</td><td class="fielddoc">
+<p>Enum state for level 2. </p>
+</td></tr>
+<tr><td class="fieldname"><a class="anchor" id="ad2fb27b12f2d42614c970a55c8950ff8ac13d2cdd6bcb40e4a4bbbf429d093344"></a>LVL_3A&#160;</td><td class="fielddoc">
+<p>Enum state for level 3a. </p>
+</td></tr>
+<tr><td class="fieldname"><a class="anchor" id="ad2fb27b12f2d42614c970a55c8950ff8a5918003b26b20fc0d63d6ce3e25575e2"></a>LVL_3B&#160;</td><td class="fielddoc">
+<p>Enum state for level 3b. </p>
+</td></tr>
+<tr><td class="fieldname"><a class="anchor" id="ad2fb27b12f2d42614c970a55c8950ff8aecc34b0249a842a0f843b6f44b9c93ef"></a>LVL_4&#160;</td><td class="fielddoc">
+<p>Enum state for level 4. </p>
+</td></tr>
+<tr><td class="fieldname"><a class="anchor" id="ad2fb27b12f2d42614c970a55c8950ff8aaf96c5d42d7f88b94dfd042d34845d8c"></a>LVL_5&#160;</td><td class="fielddoc">
+<p>Enum state for level 5. </p>
+</td></tr>
+<tr><td class="fieldname"><a class="anchor" id="ad2fb27b12f2d42614c970a55c8950ff8ade5ec658c40670b87151966f577bb014"></a>LVL_6&#160;</td><td class="fielddoc">
+<p>Enum state for level 6. </p>
+</td></tr>
+</table>
+
+</div>
+</div>
+<h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a class="anchor" id="ae71d5f5e9e523a3e94a82122bec74a9d"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">WorldMap::WorldMap </td>
+          <td>(</td>
+          <td class="paramtype">sf::Vector2f&#160;</td>
+          <td class="paramname"><em>origin_pos</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Overloaded Contructor allowing for the origin of the plotted map to to be set. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">sf::Vecotr2f</td><td>The origin to begin creating the map. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p><div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_world_map_ae71d5f5e9e523a3e94a82122bec74a9d_cgraph.png" border="0" usemap="#class_world_map_ae71d5f5e9e523a3e94a82122bec74a9d_cgraph" alt=""/></div>
+<map name="class_world_map_ae71d5f5e9e523a3e94a82122bec74a9d_cgraph" id="class_world_map_ae71d5f5e9e523a3e94a82122bec74a9d_cgraph">
+<area shape="rect" id="node2" href="class_world_map.html#a9e15a7b259b360a8cad685496ef1b046" title="Loads the required assets for the Arcs needed for between nodes. " alt="" coords="219,5,367,32"/>
+<area shape="rect" id="node4" href="class_world_map.html#a73e1b3ad73523fb395d27dc7029ebf08" title="This Function generates the hard coded map of nodes for the world map. " alt="" coords="217,56,368,83"/>
+<area shape="rect" id="node8" href="class_world_map.html#ae2c630f993b5c0a0672ca0c770c36d5e" title="Creates the m_bound Float Rect here for the bounds of the map. " alt="" coords="201,107,384,133"/>
+<area shape="rect" id="node3" href="class_resource_manager.html#a3dcdce6201a938ee51be3d23879e46e1" title="Fetches the current instance of the Manager is required to achieve the singleton pattern. " alt="" coords="432,5,616,32"/>
+<area shape="rect" id="node5" href="class_world_map.html#a777b1f38905036b07f434b7f8796edc6" title="Calls the Plot arcs on the Nodes to connect each of them up to one another. " alt="" coords="455,56,593,83"/>
+<area shape="rect" id="node6" href="class_world_map.html#a91ef189bafa24a32ac331fc702c5f015" title="This method checks the center of each node and determines which side of l2 is in regards to l1 then a..." alt="" coords="664,56,796,83"/>
+<area shape="rect" id="node7" href="class_world_map.html#ae07476c5ede73d4e0e7efe5709c76401" title="Calculates the center of the map taking each of the nodes and arcs into account. " alt="" coords="844,56,989,83"/>
+</map>
+</div>
+</p>
+
+</div>
+</div>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a class="anchor" id="a5b9f2e73c77bc54e31a20f4336084c05"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void WorldMap::createMap </td>
+          <td>(</td>
+          <td class="paramtype">map&lt; string, bool &gt;&#160;</td>
+          <td class="paramname"><em>map_data</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>This funciton generates the map using the data passed in, in the map_data. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">map&lt;string,bool&gt;</td><td>strings to bools representing the levels and weather or not they are unlocked. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p><div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_world_map_a5b9f2e73c77bc54e31a20f4336084c05_cgraph.png" border="0" usemap="#class_world_map_a5b9f2e73c77bc54e31a20f4336084c05_cgraph" alt=""/></div>
+<map name="class_world_map_a5b9f2e73c77bc54e31a20f4336084c05_cgraph" id="class_world_map_a5b9f2e73c77bc54e31a20f4336084c05_cgraph">
+<area shape="rect" id="node2" href="class_world_map.html#a777b1f38905036b07f434b7f8796edc6" title="Calls the Plot arcs on the Nodes to connect each of them up to one another. " alt="" coords="204,5,341,32"/>
+<area shape="rect" id="node3" href="class_world_map.html#a91ef189bafa24a32ac331fc702c5f015" title="This method checks the center of each node and determines which side of l2 is in regards to l1 then a..." alt="" coords="389,5,521,32"/>
+<area shape="rect" id="node4" href="class_world_map.html#ae07476c5ede73d4e0e7efe5709c76401" title="Calculates the center of the map taking each of the nodes and arcs into account. " alt="" coords="569,5,715,32"/>
+</map>
+</div>
+</p>
+
+</div>
+</div>
+<a class="anchor" id="ae07476c5ede73d4e0e7efe5709c76401"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">sf::Vector2f WorldMap::getCenter </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Calculates the center of the map taking each of the nodes and arcs into account. </p>
+<dl class="section return"><dt>Returns</dt><dd>sf::Vecotr2f Center point of the map. </dd></dl>
+
+<p><div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_world_map_ae07476c5ede73d4e0e7efe5709c76401_icgraph.png" border="0" usemap="#class_world_map_ae07476c5ede73d4e0e7efe5709c76401_icgraph" alt=""/></div>
+<map name="class_world_map_ae07476c5ede73d4e0e7efe5709c76401_icgraph" id="class_world_map_ae07476c5ede73d4e0e7efe5709c76401_icgraph">
+<area shape="rect" id="node2" href="class_world_map.html#a91ef189bafa24a32ac331fc702c5f015" title="This method checks the center of each node and determines which side of l2 is in regards to l1 then a..." alt="" coords="219,31,351,57"/>
+<area shape="rect" id="node11" href="class_world_scene.html#a86c5a4b83213d28ce5c62eba9d35da64" title="This is the default constructor for the world scene. " alt="" coords="199,81,371,108"/>
+<area shape="rect" id="node3" href="class_world_map.html#a777b1f38905036b07f434b7f8796edc6" title="Calls the Plot arcs on the Nodes to connect each of them up to one another. " alt="" coords="419,31,556,57"/>
+<area shape="rect" id="node4" href="class_world_map.html#a73e1b3ad73523fb395d27dc7029ebf08" title="This Function generates the hard coded map of nodes for the world map. " alt="" coords="604,31,755,57"/>
+<area shape="rect" id="node5" href="class_world_map.html#ae71d5f5e9e523a3e94a82122bec74a9d" title="Overloaded Contructor allowing for the origin of the plotted map to to be set. " alt="" coords="817,5,965,32"/>
+<area shape="rect" id="node6" href="class_world_scene.html#af7a21c6bc886430402024ab537485f34" title="The method takes a SaveSlot and creates a map depending on the information in the save..." alt="" coords="803,56,979,83"/>
+<area shape="rect" id="node7" href="class_game.html#ad9382758bb4b0c156fa1973eea33cbb8" title="Change States and initalise them appropratly. " alt="" coords="1265,56,1423,83"/>
+<area shape="rect" id="node10" href="class_world_scene.html#abf9bc046024c7c2225ecba9bbb22e7ee" title="Get the ID of the level the player is standing on. " alt="" coords="1027,81,1217,108"/>
+<area shape="rect" id="node8" href="class_game.html#a9137882533a1d2e234c03d73fae68af6" title="Checks the active scene for completion and if so class goToNextScene. " alt="" coords="1471,56,1652,83"/>
+<area shape="rect" id="node9" href="class_game.html#a1ab78f5ed0d5ea879157357cf2fb2afa" title="This is the main game loop that the game runs and calls all the methods for running the game..." alt="" coords="1700,56,1783,83"/>
+</map>
+</div>
+</p>
+
+</div>
+</div>
+<a class="anchor" id="aa22135598bd731d814efe402a2d2ee47"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_world_node.html">WorldNode</a>* WorldMap::getNode </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_world_map.html#ad2fb27b12f2d42614c970a55c8950ff8">LEVEL</a>&#160;</td>
+          <td class="paramname"><em>l</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Gets a node in the map with the enum of the passed in LEVEL. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">LEVEL</td><td>The level to get from the map. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>WorldNode* The node with the stte passed in. </dd></dl>
+
+<p><div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_world_map_aa22135598bd731d814efe402a2d2ee47_icgraph.png" border="0" usemap="#class_world_map_aa22135598bd731d814efe402a2d2ee47_icgraph" alt=""/></div>
+<map name="class_world_map_aa22135598bd731d814efe402a2d2ee47_icgraph" id="class_world_map_aa22135598bd731d814efe402a2d2ee47_icgraph">
+<area shape="rect" id="node2" href="class_world_scene.html#a86c5a4b83213d28ce5c62eba9d35da64" title="This is the default constructor for the world scene. " alt="" coords="206,5,378,32"/>
+<area shape="rect" id="node3" href="class_world_scene.html#af1b3f16c7375f86c397a7576d53c32e0" title="Move the player idol in the direction passed into the funtion. " alt="" coords="208,56,376,83"/>
+<area shape="rect" id="node6" href="class_world_scene.html#a1aa986e4bbe1f6267c93eb7b32e37e27" title="This function checks the level name as askes the WorldNode if it has a unlock or not. " alt="" coords="441,107,624,133"/>
+<area shape="rect" id="node11" href="class_world_scene.html#ae559aa3742aceab5dc04b87f4e736ba7" title="This generates the new Map data of srings to bool to save the game data when new levels have been unl..." alt="" coords="191,157,393,184"/>
+<area shape="rect" id="node4" href="class_world_scene.html#a8d9485ae14e82ca54840358fb3d9e8be" title="Handle the keyboard input for the scene. " alt="" coords="447,5,618,32"/>
+<area shape="rect" id="node5" href="class_world_scene.html#acf59be6537a77078daca83eb70aca70c" title="Handle the Controller input for the scene. " alt="" coords="449,56,616,83"/>
+<area shape="rect" id="node7" href="class_game.html#ad9382758bb4b0c156fa1973eea33cbb8" title="Change States and initalise them appropratly. " alt="" coords="911,132,1068,159"/>
+<area shape="rect" id="node10" href="class_world_scene.html#abf9bc046024c7c2225ecba9bbb22e7ee" title="Get the ID of the level the player is standing on. " alt="" coords="672,157,863,184"/>
+<area shape="rect" id="node8" href="class_game.html#a9137882533a1d2e234c03d73fae68af6" title="Checks the active scene for completion and if so class goToNextScene. " alt="" coords="1116,132,1297,159"/>
+<area shape="rect" id="node9" href="class_game.html#a1ab78f5ed0d5ea879157357cf2fb2afa" title="This is the main game loop that the game runs and calls all the methods for running the game..." alt="" coords="1345,132,1428,159"/>
+</map>
+</div>
+</p>
+
+</div>
+</div>
+<a class="anchor" id="a6c2171c5cdac93f85962ec88039bf86e"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_world_node.html">WorldNode</a>* WorldMap::getNode </td>
+          <td>(</td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>l</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Gets a node in the map with the enum state name assocated with the string passed in by calling the <a class="el" href="class_world_map.html#a0fb76571a7d56a07bf515d69e56aab79" title="Converts the string passed in into the approprate LEVEL state for loading a saving the file correctly...">strtolvl()</a> funtciton. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">string</td><td>The string of the Node to fetch. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>WorldNode* The node with the Id of the parameter. </dd></dl>
+
+<p><div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_world_map_a6c2171c5cdac93f85962ec88039bf86e_cgraph.png" border="0" usemap="#class_world_map_a6c2171c5cdac93f85962ec88039bf86e_cgraph" alt=""/></div>
+<map name="class_world_map_a6c2171c5cdac93f85962ec88039bf86e_cgraph" id="class_world_map_a6c2171c5cdac93f85962ec88039bf86e_cgraph">
+<area shape="rect" id="node2" href="class_world_map.html#a0fb76571a7d56a07bf515d69e56aab79" title="Converts the string passed in into the approprate LEVEL state for loading a saving the file correctly..." alt="" coords="191,31,317,57"/>
+<area shape="rect" id="node3" href="classc_log.html#a6f776cb395514ae99f44011017da6562" title="This fetches the instance of the Logger. " alt="" coords="367,5,446,32"/>
+<area shape="rect" id="node4" href="classc_log.html#a8e588a9775eaa288adb969c4e5bcefe0" title="Print message using the cLoggers cout function. " alt="" coords="365,56,448,83"/>
+</map>
+</div>
+</p>
+
+</div>
+</div>
+<a class="anchor" id="ad1adcc4b6a2ede39277ca171f93b17f3"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">vector&lt; <a class="el" href="class_world_node.html">WorldNode</a> &gt; * WorldMap::getNodes </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Gets the map of nodes and returns a pointer to the first element in the map. </p>
+<dl class="section return"><dt>Returns</dt><dd>vector&lt;WorldNode&gt;* Pointer to the world map. </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a699af749ac97c5bba9b03349fed7665b"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">string WorldMap::lvltostr </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_world_map.html#ad2fb27b12f2d42614c970a55c8950ff8">LEVEL</a>&#160;</td>
+          <td class="paramname"><em>l</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Converts the LEVEL state passed in into the approprate string for loading a level correctly. This method is the mirror of the <a class="el" href="class_world_map.html#a0fb76571a7d56a07bf515d69e56aab79" title="Converts the string passed in into the approprate LEVEL state for loading a saving the file correctly...">strtolvl()</a> function.  LEVEL The state to be translated. </p>
+<dl class="section return"><dt>Returns</dt><dd>string The translated string. </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a91ef189bafa24a32ac331fc702c5f015"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">sf::Sprite WorldMap::PlotArc </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_world_map.html#ad2fb27b12f2d42614c970a55c8950ff8">LEVEL</a>&#160;</td>
+          <td class="paramname"><em>l1</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="class_world_map.html#ad2fb27b12f2d42614c970a55c8950ff8">LEVEL</a>&#160;</td>
+          <td class="paramname"><em>l2</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>This method checks the center of each node and determines which side of l2 is in regards to l1 then a arc can be created and returned. This method also sets the neighbouring node field in the nodes to one another traversing between them. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">l1</td><td>The first level to begin the arc at </td></tr>
+    <tr><td class="paramname">l2</td><td>The second level is to calculate where the end needs to be. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>sf::Sprite This is the Arc itself being returned. </dd></dl>
+
+<p><div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_world_map_a91ef189bafa24a32ac331fc702c5f015_cgraph.png" border="0" usemap="#class_world_map_a91ef189bafa24a32ac331fc702c5f015_cgraph" alt=""/></div>
+<map name="class_world_map_a91ef189bafa24a32ac331fc702c5f015_cgraph" id="class_world_map_a91ef189bafa24a32ac331fc702c5f015_cgraph">
+<area shape="rect" id="node2" href="class_world_map.html#ae07476c5ede73d4e0e7efe5709c76401" title="Calculates the center of the map taking each of the nodes and arcs into account. " alt="" coords="185,5,331,32"/>
+</map>
+</div>
+</p>
+
+<p><div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_world_map_a91ef189bafa24a32ac331fc702c5f015_icgraph.png" border="0" usemap="#class_world_map_a91ef189bafa24a32ac331fc702c5f015_icgraph" alt=""/></div>
+<map name="class_world_map_a91ef189bafa24a32ac331fc702c5f015_icgraph" id="class_world_map_a91ef189bafa24a32ac331fc702c5f015_icgraph">
+<area shape="rect" id="node2" href="class_world_map.html#a777b1f38905036b07f434b7f8796edc6" title="Calls the Plot arcs on the Nodes to connect each of them up to one another. " alt="" coords="185,31,323,57"/>
+<area shape="rect" id="node3" href="class_world_map.html#a73e1b3ad73523fb395d27dc7029ebf08" title="This Function generates the hard coded map of nodes for the world map. " alt="" coords="371,31,521,57"/>
+<area shape="rect" id="node4" href="class_world_map.html#ae71d5f5e9e523a3e94a82122bec74a9d" title="Overloaded Contructor allowing for the origin of the plotted map to to be set. " alt="" coords="583,5,731,32"/>
+<area shape="rect" id="node5" href="class_world_scene.html#af7a21c6bc886430402024ab537485f34" title="The method takes a SaveSlot and creates a map depending on the information in the save..." alt="" coords="569,56,745,83"/>
+<area shape="rect" id="node6" href="class_game.html#ad9382758bb4b0c156fa1973eea33cbb8" title="Change States and initalise them appropratly. " alt="" coords="1032,56,1189,83"/>
+<area shape="rect" id="node9" href="class_world_scene.html#abf9bc046024c7c2225ecba9bbb22e7ee" title="Get the ID of the level the player is standing on. " alt="" coords="793,81,984,108"/>
+<area shape="rect" id="node7" href="class_game.html#a9137882533a1d2e234c03d73fae68af6" title="Checks the active scene for completion and if so class goToNextScene. " alt="" coords="1237,56,1419,83"/>
+<area shape="rect" id="node8" href="class_game.html#a1ab78f5ed0d5ea879157357cf2fb2afa" title="This is the main game loop that the game runs and calls all the methods for running the game..." alt="" coords="1467,56,1549,83"/>
+</map>
+</div>
+</p>
+
+</div>
+</div>
+<a class="anchor" id="aff7ed2a5ad580d9cc833f9328f25f137"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void WorldMap::render </td>
+          <td>(</td>
+          <td class="paramtype">sf::RenderWindow &amp;&#160;</td>
+          <td class="paramname"><em>w</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Render the <a class="el" href="class_world_map.html" title="Is responsable for storing a vector of WorldNodes as well as generating the arcs and drawing both the...">WorldMap</a> which includes all the nodes and the arcs connecting those nodes. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">sf::RenderWindow</td><td>The SFML window to render to. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p><div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_world_map_aff7ed2a5ad580d9cc833f9328f25f137_icgraph.png" border="0" usemap="#class_world_map_aff7ed2a5ad580d9cc833f9328f25f137_icgraph" alt=""/></div>
+<map name="class_world_map_aff7ed2a5ad580d9cc833f9328f25f137_icgraph" id="class_world_map_aff7ed2a5ad580d9cc833f9328f25f137_icgraph">
+<area shape="rect" id="node2" href="class_world_scene.html#afdcb19b38ae966b638abed07d61d4659" title="This renders all the assets in the scene, aswell as sets the view of the camera to the window and res..." alt="" coords="179,5,316,32"/>
+</map>
+</div>
+</p>
+
+</div>
+</div>
+<a class="anchor" id="a0fb76571a7d56a07bf515d69e56aab79"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_world_map.html#ad2fb27b12f2d42614c970a55c8950ff8">LEVEL</a> WorldMap::strtolvl </td>
+          <td>(</td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>s</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Converts the string passed in into the approprate LEVEL state for loading a saving the file correctly. This method is the mirror of the <a class="el" href="class_world_map.html#a699af749ac97c5bba9b03349fed7665b" title="Converts the LEVEL state passed in into the approprate string for loading a level correctly...">lvltostr()</a> function.  string The string to be translated. </p>
+<dl class="section return"><dt>Returns</dt><dd>LEVEL The translated state. </dd></dl>
+
+<p><div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_world_map_a0fb76571a7d56a07bf515d69e56aab79_cgraph.png" border="0" usemap="#class_world_map_a0fb76571a7d56a07bf515d69e56aab79_cgraph" alt=""/></div>
+<map name="class_world_map_a0fb76571a7d56a07bf515d69e56aab79_cgraph" id="class_world_map_a0fb76571a7d56a07bf515d69e56aab79_cgraph">
+<area shape="rect" id="node2" href="classc_log.html#a6f776cb395514ae99f44011017da6562" title="This fetches the instance of the Logger. " alt="" coords="182,5,261,32"/>
+<area shape="rect" id="node3" href="classc_log.html#a8e588a9775eaa288adb969c4e5bcefe0" title="Print message using the cLoggers cout function. " alt="" coords="180,56,263,83"/>
+</map>
+</div>
+</p>
+
+<p><div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_world_map_a0fb76571a7d56a07bf515d69e56aab79_icgraph.png" border="0" usemap="#class_world_map_a0fb76571a7d56a07bf515d69e56aab79_icgraph" alt=""/></div>
+<map name="class_world_map_a0fb76571a7d56a07bf515d69e56aab79_icgraph" id="class_world_map_a0fb76571a7d56a07bf515d69e56aab79_icgraph">
+<area shape="rect" id="node2" href="class_world_map.html#a6c2171c5cdac93f85962ec88039bf86e" title="Gets a node in the map with the enum state name assocated with the string passed in by calling the st..." alt="" coords="180,5,317,32"/>
+</map>
+</div>
+</p>
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following files:<ul>
 <li>FYP_FallenHero/<a class="el" href="_world_map_8hpp_source.html">WorldMap.hpp</a></li>
 <li>FYP_FallenHero/WorldMap.cpp</li>

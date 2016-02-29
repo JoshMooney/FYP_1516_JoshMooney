@@ -1,0 +1,6 @@
+<map id="Spawner::SpawnSkeleton" name="Spawner::SpawnSkeleton">
+<area shape="rect" id="node2" href="$class_level.html#a241e5877fba91eabfd4b1588a6005c5f" title="Reads through the object layer creating the Enemies and populating the enemy list within the Spawner ..." alt="" coords="224,5,387,32"/>
+<area shape="rect" id="node5" href="$class_spawner.html#a3e3aa3ccff73556625359e75f64d0dd0" title="Default constructor for the spawner class. " alt="" coords="240,56,371,83"/>
+<area shape="rect" id="node3" href="$class_level.html#ad425a302e250841b4ee9dd02b9a8b764" title="This is the highest stage of loading the map from .tmx. This method calls the rest of the parse metho..." alt="" coords="435,5,592,32"/>
+<area shape="rect" id="node4" href="$class_level.html#aebf863a4012a921c82a833744980ec43" title="The overloaded constructor for the Level class which assignes the level, calls loadMap, initalises the scenery and calls the ParseMapLayers method to fully intialise the Level. " alt="" coords="640,5,728,32"/>
+</map>

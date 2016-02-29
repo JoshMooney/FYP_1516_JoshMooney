@@ -1,0 +1,4 @@
+<map id="Spawner::update" name="Spawner::update">
+<area shape="rect" id="node2" href="$class_level_scene.html#a7f624c9fb01a52dad4a6d441203aac8c" title="Updates the player and spawner and calculates the Fixed Time Step(FTS). Also updates the camera to ke..." alt="" coords="172,5,307,32"/>
+<area shape="rect" id="node3" href="$class_spawner.html#a3e3aa3ccff73556625359e75f64d0dd0" title="Default constructor for the spawner class. " alt="" coords="174,56,305,83"/>
+</map>

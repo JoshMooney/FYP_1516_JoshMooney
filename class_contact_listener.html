@@ -31,7 +31,7 @@
 <table cellspacing="0" cellpadding="0">
  <tbody>
  <tr style="height: 56px;">
-  <td id="projectlogo"><img alt="Logo" src="Logo.png"/></td>
+  <td id="projectlogo"><img alt="Logo" src="Logo_original.png"/></td>
  </tr>
  </tbody>
 </table>
@@ -110,6 +110,11 @@ $(document).ready(function(){initNavTree('class_contact_listener.html','');});
 <div class="title">ContactListener Class Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p>This is the box2D contactlistener that detects and responds to collision as it happens using callbacks.  
+ <a href="class_contact_listener.html#details">More...</a></p>
+
+<p><code>#include &lt;<a class="el" href="_contact_listener_8hpp_source.html">ContactListener.hpp</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
@@ -123,7 +128,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:a92df01f2f60983f4f1dd74b5e845188d"><td class="mdescLeft">&#160;</td><td class="mdescRight">This is the Box2d callback called when two box bodies end contact.  <a href="#a92df01f2f60983f4f1dd74b5e845188d">More...</a><br /></td></tr>
 <tr class="separator:a92df01f2f60983f4f1dd74b5e845188d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<div class="dynheader">
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>This is the box2D contactlistener that detects and responds to collision as it happens using callbacks. </p>
+</div><div class="dynheader">
 Inheritance diagram for ContactListener:</div>
 <div class="dyncontent">
 <div class="center"><img src="class_contact_listener__inherit__graph.png" border="0" usemap="#_contact_listener_inherit__map" alt="Inheritance graph"/></div>
@@ -168,10 +175,12 @@ Here is the call graph for this function:</div>
 <area shape="rect" id="node3" href="class_player.html#abeaa6fb79495a647ffd4ca8cf2442d37" title="Finds the center of the player in Global coordinates. " alt="" coords="457,31,580,57"/>
 <area shape="rect" id="node4" href="class_player.html#a3d1b2def6b0b9e88ebde048aae4b3211" title="Checks if the player is in the jumping animation. " alt="" coords="264,107,397,133"/>
 <area shape="rect" id="node5" href="class_enemy.html#a2cce7194016cb90b9e457b3da131fd8a" title="Fetch whether the body is active or not. " alt="" coords="277,157,385,184"/>
-<area shape="rect" id="node6" href="class_skeleton.html#a61c73a0e54fcbc2d6cf5aa51e507260b" title="This pure virtual function for getting a SFML bounding box representing the enemy. " alt="" coords="628,233,771,260"/>
-<area shape="rect" id="node7" href="class_skeleton.html#a4f79a60c35f768e20a72db8c2dd2b0e7" title="This pure virtual function for taking dameage and losting hp and must be overloaded in any derived cl..." alt="" coords="252,259,409,285"/>
-<area shape="rect" id="node9" href="class_skeleton.html#a059bbda6d8f1039b91f453222e41325a" title="Fetches the center of the Enemy. " alt="" coords="262,309,399,336"/>
-<area shape="rect" id="node8" href="class_skeleton.html#af7691d8faab04f35c72712c084ad0b27" title="This pure virtual function for dieing and must be overloaded in any derived classes. " alt="" coords="469,259,569,285"/>
+<area shape="rect" id="node6" href="class_skeleton.html#a61c73a0e54fcbc2d6cf5aa51e507260b" title="Create a rectangle. " alt="" coords="259,208,402,235"/>
+<area shape="rect" id="node7" href="class_skeleton.html#a4f79a60c35f768e20a72db8c2dd2b0e7" title="This is the take damage funtion where the unit takes flat damage. " alt="" coords="252,259,409,285"/>
+<area shape="rect" id="node9" href="class_skeleton.html#a6db5460d0f2e07b5bb0395b6279c89cc" title="Tell the unit it has reached the player. " alt="" coords="253,309,408,336"/>
+<area shape="rect" id="node11" href="class_skeleton.html#a059bbda6d8f1039b91f453222e41325a" title="Fetches the center of the unit and returns it as a float vector. " alt="" coords="262,360,399,387"/>
+<area shape="rect" id="node8" href="class_skeleton.html#af7691d8faab04f35c72712c084ad0b27" title="This kills the unit and raises the flag to detroy body. " alt="" coords="469,259,569,285"/>
+<area shape="rect" id="node10" href="class_skeleton.html#a90927f96174510cebe29d6bb39f4387c" title="Attack and play the attack animaiton. " alt="" coords="460,309,577,336"/>
 </map>
 </div>
 </p>

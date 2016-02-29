@@ -2,9 +2,11 @@
 <area shape="rect" id="node2" href="$class_player.html#a70e21ca98281b7d72f105f2693113d7e" title="Make the player jump. " alt="" coords="423,5,518,32"/>
 <area shape="rect" id="node4" href="$class_player.html#a6a2b68bc4b21d4c4a79a23b498896ec2" title="Make the player move right and apply speed factor. " alt="" coords="224,56,351,83"/>
 <area shape="rect" id="node6" href="$class_player.html#ae3bbcf1159bdc059bff1c2513f2505f7" title="Make the player move left and apply speed factor. " alt="" coords="228,107,347,133"/>
-<area shape="rect" id="node7" href="$class_player.html#a3d1b2def6b0b9e88ebde048aae4b3211" title="Checks if the player is in the jumping animation. " alt="" coords="221,157,354,184"/>
-<area shape="rect" id="node8" href="$class_command.html#a29f4294ac9e3cd1fb9da3737914681e1" title="This function executes the task issued to the command. " alt="" coords="220,208,355,235"/>
-<area shape="rect" id="node9" href="$class_player.html#ac1f3ce820337430ef7fc9bf5acd5db08" title="Sets the Variable m_is_moving. " alt="" coords="222,259,353,285"/>
+<area shape="rect" id="node7" href="$classv_camera.html#a67cdbca23247d3bea6c64cb2c834abbf" title="Setter for the locking the X axis. " alt="" coords="230,157,345,184"/>
+<area shape="rect" id="node8" href="$classv_camera.html#aed6b6bce7c86eb72ae9e420822df95f7" title="Setter for the locking the Y axis. " alt="" coords="229,208,346,235"/>
+<area shape="rect" id="node9" href="$class_player.html#a3d1b2def6b0b9e88ebde048aae4b3211" title="Checks if the player is in the jumping animation. " alt="" coords="221,259,354,285"/>
+<area shape="rect" id="node10" href="$class_command.html#a29f4294ac9e3cd1fb9da3737914681e1" title="This function executes the task issued to the command. " alt="" coords="220,309,355,336"/>
+<area shape="rect" id="node11" href="$class_player.html#ac1f3ce820337430ef7fc9bf5acd5db08" title="Sets the Variable m_is_moving. " alt="" coords="222,360,353,387"/>
 <area shape="rect" id="node3" href="$class_player.html#ab27728d11ac7c8d8d905ab5bd3e0fe89" title="Finds a value between the max and min passed in. " alt="" coords="587,31,689,57"/>
 <area shape="rect" id="node5" href="$class_player.html#ab92500fc590fa0a523479b46f23a702e" title="Sets the players direction to the value passed in. " alt="" coords="403,56,539,83"/>
 </map>

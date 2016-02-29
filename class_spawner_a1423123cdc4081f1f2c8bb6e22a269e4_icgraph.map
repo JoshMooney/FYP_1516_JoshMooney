@@ -1,0 +1,4 @@
+<map id="Spawner::render" name="Spawner::render">
+<area shape="rect" id="node2" href="$class_level_scene.html#ace730bc6ccd5d585b1f96dfe85039cb4" title="Draws the scenes objects such as player, blocks and enemies including the foreground and background..." alt="" coords="169,5,301,32"/>
+<area shape="rect" id="node3" href="$class_spawner.html#a3e3aa3ccff73556625359e75f64d0dd0" title="Default constructor for the spawner class. " alt="" coords="170,56,301,83"/>
+</map>

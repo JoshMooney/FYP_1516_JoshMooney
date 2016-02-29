@@ -1,0 +1,8 @@
+<map id="Skeleton::getTextureSize" name="Skeleton::getTextureSize">
+<area shape="rect" id="node2" href="$class_skeleton.html#ac9f426767ffa60975218cc915e31b114" title="Sets the terrrain toucher to the terrain passed in. " alt="" coords="231,5,374,32"/>
+<area shape="rect" id="node3" href="$class_skeleton.html#acb477101295504fa27e6ee6920b57852" title="Tell the unit it has reached the edge. " alt="" coords="221,56,384,83"/>
+<area shape="rect" id="node5" href="$class_skeleton.html#a6db5460d0f2e07b5bb0395b6279c89cc" title="Tell the unit it has reached the player. " alt="" coords="225,157,380,184"/>
+<area shape="rect" id="node7" href="$class_skeleton.html#a6d83a409914e8ab9821ed022f597b350" title="Tell the unit it has reached the player. " alt="" coords="231,107,375,133"/>
+<area shape="rect" id="node4" href="$class_skeleton.html#aba5d37609d32fe3d3e7044514639297c" title="Change the direction of the enemy and flip the sprite so the texture is reversed. ..." alt="" coords="432,81,608,108"/>
+<area shape="rect" id="node6" href="$class_skeleton.html#a90927f96174510cebe29d6bb39f4387c" title="Attack and play the attack animaiton. " alt="" coords="461,157,579,184"/>
+</map>

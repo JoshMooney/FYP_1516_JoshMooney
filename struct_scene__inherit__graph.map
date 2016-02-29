@@ -1,5 +1,5 @@
 <map id="Scene" name="Scene">
 <area shape="rect" id="node2" href="$class_level_scene.html" title="This is the inheriting sub class of Scene and as such overloads the appropratie methods (e..." alt="" coords="5,189,167,487"/>
-<area shape="rect" id="node3" href="$class_menu_scene.html" title="{MenuScene\n|+ m_background_music\l+ selected_slot\l+ m_current_state\l+ m_current_menu_item\l+ m_current_options_item\l+ m_current_slot\l|+ MenuScene()\l+ ~MenuScene()\l+ update()\l+ render()\l+ handleEvent()\l+ handleInput()\l+ moveUp()\l+ moveDown()\l+ moveRight()\l+ moveLeft()\land 10 more...\l}" alt="" coords="191,189,365,487"/>
+<area shape="rect" id="node3" href="$class_menu_scene.html" title="This is the Menu scene for the rendering, updating and mangaing the menu state of the game..." alt="" coords="191,189,365,487"/>
 <area shape="rect" id="node4" href="$class_world_scene.html" title="This class is responcable for creating, managing of the map as well as save the game, move the player around the map and loads changes state. " alt="" coords="389,189,533,487"/>
 </map>

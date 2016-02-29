@@ -1,0 +1,6 @@
+<map id="WorldScene::loadSaveSlot" name="WorldScene::loadSaveSlot">
+<area shape="rect" id="node2" href="$class_world_map.html#a73e1b3ad73523fb395d27dc7029ebf08" title="This Function generates the hard coded map of nodes for the world map. " alt="" coords="229,5,380,32"/>
+<area shape="rect" id="node3" href="$class_world_map.html#a777b1f38905036b07f434b7f8796edc6" title="Calls the Plot arcs on the Nodes to connect each of them up to one another. " alt="" coords="428,5,565,32"/>
+<area shape="rect" id="node4" href="$class_world_map.html#a91ef189bafa24a32ac331fc702c5f015" title="This method checks the center of each node and determines which side of l2 is in regards to l1 then a..." alt="" coords="613,5,745,32"/>
+<area shape="rect" id="node5" href="$class_world_map.html#ae07476c5ede73d4e0e7efe5709c76401" title="Calculates the center of the map taking each of the nodes and arcs into account. " alt="" coords="793,5,939,32"/>
+</map>

@@ -17,10 +17,7 @@ var hierarchy =
     ] ],
     [ "FGSorter", "struct_f_g_sorter.html", null ],
     [ "Game", "class_game.html", null ],
-    [ "gz_header_s", "structgz__header__s.html", null ],
-    [ "gzFile_s", "structgz_file__s.html", null ],
     [ "HUD", "class_h_u_d.html", null ],
-    [ "internal_state", "structinternal__state.html", null ],
     [ "Level", "class_level.html", null ],
     [ "OBJ", "struct_o_b_j.html", null ],
     [ "Platform", "class_platform.html", null ],
@@ -55,6 +52,5 @@ var hierarchy =
     ] ],
     [ "WorldMap", "class_world_map.html", null ],
     [ "XBOXController", "class_x_b_o_x_controller.html", null ],
-    [ "XMLLoader", "class_x_m_l_loader.html", null ],
-    [ "z_stream_s", "structz__stream__s.html", null ]
+    [ "XMLLoader", "class_x_m_l_loader.html", null ]
 ];

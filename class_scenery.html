@@ -31,7 +31,7 @@
 <table cellspacing="0" cellpadding="0">
  <tbody>
  <tr style="height: 56px;">
-  <td id="projectlogo"><img alt="Logo" src="Logo.png"/></td>
+  <td id="projectlogo"><img alt="Logo" src="Logo_original.png"/></td>
  </tr>
  </tbody>
 </table>
@@ -111,7 +111,7 @@ $(document).ready(function(){initNavTree('class_scenery.html','');});
 </div><!--header-->
 <div class="contents">
 
-<p>This class manages the paralax background for the game by storing two vectors of <a class="el" href="class_parallax_sprite.html">ParallaxSprite</a> one for Background images and another for the Foreground.  
+<p>This class manages the paralax background for the game by storing two vectors of <a class="el" href="class_parallax_sprite.html" title="This is a wrapped for the SFML Sprite class. This class inherits from sf::Sprite and uses a Vector3f ...">ParallaxSprite</a> one for Background images and another for the Foreground.  
  <a href="class_scenery.html#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="_scenery_8hpp_source.html">Scenery.hpp</a>&gt;</code></p>
@@ -137,10 +137,10 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 <tr class="memdesc:aefbbabd55ded3dabe93e136ec2792ca2"><td class="mdescLeft">&#160;</td><td class="mdescRight">This function uses std::sort and <a class="el" href="struct_f_g_sorter.html" title="Is a short struct used as a sorting operator for the backgound images sorting the ParallaxSprite&#39;s pa...">FGSorter</a> to organise the bakcgrounds from front to back. This method should be called whenever all the backgrounds have been added to the <a class="el" href="class_scenery.html" title="This class manages the paralax background for the game by storing two vectors of ParallaxSprite one f...">Scenery</a> class. <br /></td></tr>
 <tr class="separator:aefbbabd55ded3dabe93e136ec2792ca2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa4798d6c67fb6a51abc61521672a9044"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_scenery.html#aa4798d6c67fb6a51abc61521672a9044">insertBG</a> (<a class="el" href="class_parallax_sprite.html">ParallaxSprite</a> &amp;ps)</td></tr>
-<tr class="memdesc:aa4798d6c67fb6a51abc61521672a9044"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds the passed in <a class="el" href="class_parallax_sprite.html">ParallaxSprite</a> to the background queue for rendering. To keep the <a class="el" href="class_parallax_sprite.html">ParallaxSprite</a> in correct order ensure to call sortBG after each addition to the new queue or once the scenerys sprites had been added.  <a href="#aa4798d6c67fb6a51abc61521672a9044">More...</a><br /></td></tr>
+<tr class="memdesc:aa4798d6c67fb6a51abc61521672a9044"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds the passed in <a class="el" href="class_parallax_sprite.html" title="This is a wrapped for the SFML Sprite class. This class inherits from sf::Sprite and uses a Vector3f ...">ParallaxSprite</a> to the background queue for rendering. To keep the <a class="el" href="class_parallax_sprite.html" title="This is a wrapped for the SFML Sprite class. This class inherits from sf::Sprite and uses a Vector3f ...">ParallaxSprite</a> in correct order ensure to call sortBG after each addition to the new queue or once the scenerys sprites had been added.  <a href="#aa4798d6c67fb6a51abc61521672a9044">More...</a><br /></td></tr>
 <tr class="separator:aa4798d6c67fb6a51abc61521672a9044"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9d484c7bfc6f83724e4563063712def5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_scenery.html#a9d484c7bfc6f83724e4563063712def5">insertFG</a> (<a class="el" href="class_parallax_sprite.html">ParallaxSprite</a> &amp;ps)</td></tr>
-<tr class="memdesc:a9d484c7bfc6f83724e4563063712def5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds the passed in <a class="el" href="class_parallax_sprite.html">ParallaxSprite</a> to the foreground queue for rendering. To keep the <a class="el" href="class_parallax_sprite.html">ParallaxSprite</a> in correct order ensure to call sortBG after each addition to the new queue or once the scenerys sprites had been added.  <a href="#a9d484c7bfc6f83724e4563063712def5">More...</a><br /></td></tr>
+<tr class="memdesc:a9d484c7bfc6f83724e4563063712def5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds the passed in <a class="el" href="class_parallax_sprite.html" title="This is a wrapped for the SFML Sprite class. This class inherits from sf::Sprite and uses a Vector3f ...">ParallaxSprite</a> to the foreground queue for rendering. To keep the <a class="el" href="class_parallax_sprite.html" title="This is a wrapped for the SFML Sprite class. This class inherits from sf::Sprite and uses a Vector3f ...">ParallaxSprite</a> in correct order ensure to call sortBG after each addition to the new queue or once the scenerys sprites had been added.  <a href="#a9d484c7bfc6f83724e4563063712def5">More...</a><br /></td></tr>
 <tr class="separator:a9d484c7bfc6f83724e4563063712def5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8decdbe6257a1bd8e4e444e2f1ae8693"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a8decdbe6257a1bd8e4e444e2f1ae8693"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_scenery.html#a8decdbe6257a1bd8e4e444e2f1ae8693">clear</a> ()</td></tr>
@@ -148,7 +148,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 <tr class="separator:a8decdbe6257a1bd8e4e444e2f1ae8693"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>This class manages the paralax background for the game by storing two vectors of <a class="el" href="class_parallax_sprite.html">ParallaxSprite</a> one for Background images and another for the Foreground. </p>
+<div class="textblock"><p>This class manages the paralax background for the game by storing two vectors of <a class="el" href="class_parallax_sprite.html" title="This is a wrapped for the SFML Sprite class. This class inherits from sf::Sprite and uses a Vector3f ...">ParallaxSprite</a> one for Background images and another for the Foreground. </p>
 </div><h2 class="groupheader">Member Function Documentation</h2>
 <a class="anchor" id="aa4798d6c67fb6a51abc61521672a9044"></a>
 <div class="memitem">
@@ -164,10 +164,10 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
       </table>
 </div><div class="memdoc">
 
-<p>Adds the passed in <a class="el" href="class_parallax_sprite.html">ParallaxSprite</a> to the background queue for rendering. To keep the <a class="el" href="class_parallax_sprite.html">ParallaxSprite</a> in correct order ensure to call sortBG after each addition to the new queue or once the scenerys sprites had been added. </p>
+<p>Adds the passed in <a class="el" href="class_parallax_sprite.html" title="This is a wrapped for the SFML Sprite class. This class inherits from sf::Sprite and uses a Vector3f ...">ParallaxSprite</a> to the background queue for rendering. To keep the <a class="el" href="class_parallax_sprite.html" title="This is a wrapped for the SFML Sprite class. This class inherits from sf::Sprite and uses a Vector3f ...">ParallaxSprite</a> in correct order ensure to call sortBG after each addition to the new queue or once the scenerys sprites had been added. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname"><a class="el" href="class_parallax_sprite.html">ParallaxSprite</a></td><td>Is the Sprite to be added to the background queue </td></tr>
+    <tr><td class="paramname"><a class="el" href="class_parallax_sprite.html" title="This is a wrapped for the SFML Sprite class. This class inherits from sf::Sprite and uses a Vector3f ...">ParallaxSprite</a></td><td>Is the Sprite to be added to the background queue </td></tr>
   </table>
   </dd>
 </dl>
@@ -200,10 +200,10 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p>Adds the passed in <a class="el" href="class_parallax_sprite.html">ParallaxSprite</a> to the foreground queue for rendering. To keep the <a class="el" href="class_parallax_sprite.html">ParallaxSprite</a> in correct order ensure to call sortBG after each addition to the new queue or once the scenerys sprites had been added. </p>
+<p>Adds the passed in <a class="el" href="class_parallax_sprite.html" title="This is a wrapped for the SFML Sprite class. This class inherits from sf::Sprite and uses a Vector3f ...">ParallaxSprite</a> to the foreground queue for rendering. To keep the <a class="el" href="class_parallax_sprite.html" title="This is a wrapped for the SFML Sprite class. This class inherits from sf::Sprite and uses a Vector3f ...">ParallaxSprite</a> in correct order ensure to call sortBG after each addition to the new queue or once the scenerys sprites had been added. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname"><a class="el" href="class_parallax_sprite.html">ParallaxSprite</a></td><td>Is the Sprite to be added to the foreground queue </td></tr>
+    <tr><td class="paramname"><a class="el" href="class_parallax_sprite.html" title="This is a wrapped for the SFML Sprite class. This class inherits from sf::Sprite and uses a Vector3f ...">ParallaxSprite</a></td><td>Is the Sprite to be added to the foreground queue </td></tr>
   </table>
   </dd>
 </dl>
@@ -250,10 +250,20 @@ Here is the caller graph for this function:</div>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">sf::RenderWindow</td><td>This is the SFML Render window being used by the game and which is to be rendered to. </td></tr>
-    <tr><td class="paramname"><a class="el" href="classv_camera.html">vCamera</a></td><td>This is the game camera to set the <a class="el" href="class_parallax_sprite.html">ParallaxSprite</a> offset to. </td></tr>
+    <tr><td class="paramname"><a class="el" href="classv_camera.html" title="This class is the vector camera class responsible for adjusting the view and keeping the player in th...">vCamera</a></td><td>This is the game camera to set the <a class="el" href="class_parallax_sprite.html" title="This is a wrapped for the SFML Sprite class. This class inherits from sf::Sprite and uses a Vector3f ...">ParallaxSprite</a> offset to. </td></tr>
   </table>
   </dd>
 </dl>
+
+<p><div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_scenery_acc814b138288f85c9e11720fe3e633d1_cgraph.png" border="0" usemap="#class_scenery_acc814b138288f85c9e11720fe3e633d1_cgraph" alt=""/></div>
+<map name="class_scenery_acc814b138288f85c9e11720fe3e633d1_cgraph" id="class_scenery_acc814b138288f85c9e11720fe3e633d1_cgraph">
+<area shape="rect" id="node2" href="classv_camera.html#a48d70d8adc0920710130d6271dd5b669" title="Gets the X value of the camera. " alt="" coords="187,5,292,32"/>
+</map>
+</div>
+</p>
 
 </div>
 </div>
@@ -285,10 +295,20 @@ Here is the caller graph for this function:</div>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">sf::RenderWindow</td><td>This is the SFML Render window being used by the game and which is to be rendered to. </td></tr>
-    <tr><td class="paramname"><a class="el" href="classv_camera.html">vCamera</a></td><td>This is the game camera to set the <a class="el" href="class_parallax_sprite.html">ParallaxSprite</a> offset to. </td></tr>
+    <tr><td class="paramname"><a class="el" href="classv_camera.html" title="This class is the vector camera class responsible for adjusting the view and keeping the player in th...">vCamera</a></td><td>This is the game camera to set the <a class="el" href="class_parallax_sprite.html" title="This is a wrapped for the SFML Sprite class. This class inherits from sf::Sprite and uses a Vector3f ...">ParallaxSprite</a> offset to. </td></tr>
   </table>
   </dd>
 </dl>
+
+<p><div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_scenery_abed8744175832d0d45e69f6b7f994c86_cgraph.png" border="0" usemap="#class_scenery_abed8744175832d0d45e69f6b7f994c86_cgraph" alt=""/></div>
+<map name="class_scenery_abed8744175832d0d45e69f6b7f994c86_cgraph" id="class_scenery_abed8744175832d0d45e69f6b7f994c86_cgraph">
+<area shape="rect" id="node2" href="classv_camera.html#a48d70d8adc0920710130d6271dd5b669" title="Gets the X value of the camera. " alt="" coords="185,5,291,32"/>
+</map>
+</div>
+</p>
 
 </div>
 </div>

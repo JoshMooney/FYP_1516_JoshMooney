@@ -1,0 +1,3 @@
+<map id="WorldMap::render" name="WorldMap::render">
+<area shape="rect" id="node2" href="$class_world_scene.html#afdcb19b38ae966b638abed07d61d4659" title="This renders all the assets in the scene, aswell as sets the view of the camera to the window and res..." alt="" coords="179,5,316,32"/>
+</map>

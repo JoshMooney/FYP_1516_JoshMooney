@@ -31,7 +31,7 @@
 <table cellspacing="0" cellpadding="0">
  <tbody>
  <tr style="height: 56px;">
-  <td id="projectlogo"><img alt="Logo" src="Logo.png"/></td>
+  <td id="projectlogo"><img alt="Logo" src="Logo_original.png"/></td>
  </tr>
  </tbody>
 </table>
@@ -111,46 +111,385 @@ $(document).ready(function(){initNavTree('class_spawner.html','');});
 <div class="title">Spawner Class Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p>This class is responible for creating the enemies in the game. These enemies are pushed back onto a list and are updated and rendered from inside here. This class currently also creates the <a class="el" href="class_crumble_block.html" title="This is the single class that is responable for generating a CrumbleBlock depending on the passed in ...">CrumbleBlock</a> objects also.  
+ <a href="class_spawner.html#details">More...</a></p>
+
+<p><code>#include &lt;<a class="el" href="_spawner_8hpp_source.html">Spawner.hpp</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-types"></a>
 Public Types</h2></td></tr>
-<tr class="memitem:af783ad0abd1a80779f2497d0d3ced4e2"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="af783ad0abd1a80779f2497d0d3ced4e2"></a>enum &#160;</td><td class="memItemRight" valign="bottom"><b>SPAWN_TYPE</b> { <b>SKELETON</b>
- }</td></tr>
+<tr class="memitem:af783ad0abd1a80779f2497d0d3ced4e2"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_spawner.html#af783ad0abd1a80779f2497d0d3ced4e2">SPAWN_TYPE</a> { <a class="el" href="class_spawner.html#af783ad0abd1a80779f2497d0d3ced4e2a2b59f2465a66cd59b40d071957160463">SKELETON</a>
+ }<tr class="memdesc:af783ad0abd1a80779f2497d0d3ced4e2"><td class="mdescLeft">&#160;</td><td class="mdescRight">This enum keeps track of all the different types of enemies the spawner can create.  <a href="class_spawner.html#af783ad0abd1a80779f2497d0d3ced4e2">More...</a><br /></td></tr>
+</td></tr>
 <tr class="separator:af783ad0abd1a80779f2497d0d3ced4e2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a371977ae0647dd57dd922a33e5894e6b"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a371977ae0647dd57dd922a33e5894e6b"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>Spawner</b> (b2World *world)</td></tr>
+<tr class="memitem:a3e3aa3ccff73556625359e75f64d0dd0"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a3e3aa3ccff73556625359e75f64d0dd0"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_spawner.html#a3e3aa3ccff73556625359e75f64d0dd0">Spawner</a> ()</td></tr>
+<tr class="memdesc:a3e3aa3ccff73556625359e75f64d0dd0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Default constructor for the spawner class. <br /></td></tr>
+<tr class="separator:a3e3aa3ccff73556625359e75f64d0dd0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a371977ae0647dd57dd922a33e5894e6b"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_spawner.html#a371977ae0647dd57dd922a33e5894e6b">Spawner</a> (b2World *world)</td></tr>
+<tr class="memdesc:a371977ae0647dd57dd922a33e5894e6b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates the <a class="el" href="class_spawner.html" title="This class is responible for creating the enemies in the game. These enemies are pushed back onto a l...">Spawner</a> with a pointer to the world for creating all of the required boxbodies.  <a href="#a371977ae0647dd57dd922a33e5894e6b">More...</a><br /></td></tr>
 <tr class="separator:a371977ae0647dd57dd922a33e5894e6b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3728d33ef0517064d42a8f6aaecb513e"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a3728d33ef0517064d42a8f6aaecb513e"></a>
-b2Body *&#160;</td><td class="memItemRight" valign="bottom"><b>GenerateBody</b> (SPAWN_TYPE type)</td></tr>
+<tr class="memitem:a59d8e3d4d6dc6c25f38ce5d4fcc5e8e6"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a59d8e3d4d6dc6c25f38ce5d4fcc5e8e6"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_spawner.html#a59d8e3d4d6dc6c25f38ce5d4fcc5e8e6">~Spawner</a> ()</td></tr>
+<tr class="memdesc:a59d8e3d4d6dc6c25f38ce5d4fcc5e8e6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Default constructor for the spawner class. <br /></td></tr>
+<tr class="separator:a59d8e3d4d6dc6c25f38ce5d4fcc5e8e6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3728d33ef0517064d42a8f6aaecb513e"><td class="memItemLeft" align="right" valign="top">b2Body *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_spawner.html#a3728d33ef0517064d42a8f6aaecb513e">GenerateBody</a> (<a class="el" href="class_spawner.html#af783ad0abd1a80779f2497d0d3ced4e2">SPAWN_TYPE</a> type)</td></tr>
+<tr class="memdesc:a3728d33ef0517064d42a8f6aaecb513e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Takes a type of unit to spawn and creates the appropreate body for that class and returns it.  <a href="#a3728d33ef0517064d42a8f6aaecb513e">More...</a><br /></td></tr>
 <tr class="separator:a3728d33ef0517064d42a8f6aaecb513e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:afe9d8d8c89a3bbd3d771d18bed58c524"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="afe9d8d8c89a3bbd3d771d18bed58c524"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>SpawnSkeleton</b> (sf::Vector2f pos)</td></tr>
+<tr class="memitem:afe9d8d8c89a3bbd3d771d18bed58c524"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_spawner.html#afe9d8d8c89a3bbd3d771d18bed58c524">SpawnSkeleton</a> (sf::Vector2f pos)</td></tr>
+<tr class="memdesc:afe9d8d8c89a3bbd3d771d18bed58c524"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calls the generate body function and pushes the new body onto the entity list.  <a href="#afe9d8d8c89a3bbd3d771d18bed58c524">More...</a><br /></td></tr>
 <tr class="separator:afe9d8d8c89a3bbd3d771d18bed58c524"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a37fc2bc08b1e2ca88604854a5ef8dad9"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a37fc2bc08b1e2ca88604854a5ef8dad9"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>SpawnBlock</b> (sf::Vector2f pos, <a class="el" href="class_crumble_block.html#ac4f508d4903d3b8b6cb0ae5d6cc572ab">CrumbleBlock::TYPE</a> t, <a class="el" href="class_crumble_block.html#ab0d033075fa5c05291fd4e86ec8df74f">CrumbleBlock::SIZE</a> s)</td></tr>
+<tr class="memitem:a37fc2bc08b1e2ca88604854a5ef8dad9"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_spawner.html#a37fc2bc08b1e2ca88604854a5ef8dad9">SpawnBlock</a> (sf::Vector2f pos, <a class="el" href="class_crumble_block.html#ac4f508d4903d3b8b6cb0ae5d6cc572ab">CrumbleBlock::TYPE</a> t, <a class="el" href="class_crumble_block.html#ab0d033075fa5c05291fd4e86ec8df74f">CrumbleBlock::SIZE</a> s)</td></tr>
+<tr class="memdesc:a37fc2bc08b1e2ca88604854a5ef8dad9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates the appropreate body for the Block and pushes it onto a vector of blocks.  <a href="#a37fc2bc08b1e2ca88604854a5ef8dad9">More...</a><br /></td></tr>
 <tr class="separator:a37fc2bc08b1e2ca88604854a5ef8dad9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9105c55d0d407f1b80c538c7472be28c"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a9105c55d0d407f1b80c538c7472be28c"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>CullBodies</b> ()</td></tr>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_spawner.html#a9105c55d0d407f1b80c538c7472be28c">CullBodies</a> ()</td></tr>
+<tr class="memdesc:a9105c55d0d407f1b80c538c7472be28c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks for any dead body flags in the entity list and destructs them with the box2d world. <br /></td></tr>
 <tr class="separator:a9105c55d0d407f1b80c538c7472be28c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0c3fd631637a25820b3771bb65387bd9"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a0c3fd631637a25820b3771bb65387bd9"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>DespawnObject</b> ()</td></tr>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_spawner.html#a0c3fd631637a25820b3771bb65387bd9">DespawnObject</a> ()</td></tr>
+<tr class="memdesc:a0c3fd631637a25820b3771bb65387bd9"><td class="mdescLeft">&#160;</td><td class="mdescRight">If the despawn flag is rasied then the object is no longer used and does not need to be rendered and updated these Blocks will be destroyed. <br /></td></tr>
 <tr class="separator:a0c3fd631637a25820b3771bb65387bd9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9b48d243ff322625d440adab8dc18b01"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a9b48d243ff322625d440adab8dc18b01"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>CullInActiveEnemies</b> ()</td></tr>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_spawner.html#a9b48d243ff322625d440adab8dc18b01">CullInActiveEnemies</a> ()</td></tr>
+<tr class="memdesc:a9b48d243ff322625d440adab8dc18b01"><td class="mdescLeft">&#160;</td><td class="mdescRight">If the despawn flag is rasied then the object is no longer used and does not need to be rendered and updated these units will be destroyed. <br /></td></tr>
 <tr class="separator:a9b48d243ff322625d440adab8dc18b01"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abcaafe5e9152654b1b7fbd788581c979"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="abcaafe5e9152654b1b7fbd788581c979"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>update</b> (FTS fts, <a class="el" href="class_player.html">Player</a> *p)</td></tr>
+<tr class="memitem:abcaafe5e9152654b1b7fbd788581c979"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_spawner.html#abcaafe5e9152654b1b7fbd788581c979">update</a> (FTS fts, <a class="el" href="class_player.html">Player</a> *p)</td></tr>
+<tr class="memdesc:abcaafe5e9152654b1b7fbd788581c979"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calls the update in the <a class="el" href="class_enemy.html" title="This is the base Enemy class for every type of enemy, This class also helps the CrumbleBlock class po...">Enemy</a> units.  <a href="#abcaafe5e9152654b1b7fbd788581c979">More...</a><br /></td></tr>
 <tr class="separator:abcaafe5e9152654b1b7fbd788581c979"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1423123cdc4081f1f2c8bb6e22a269e4"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a1423123cdc4081f1f2c8bb6e22a269e4"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>render</b> (sf::RenderWindow &amp;w, sf::Time frames)</td></tr>
+<tr class="memitem:a1423123cdc4081f1f2c8bb6e22a269e4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_spawner.html#a1423123cdc4081f1f2c8bb6e22a269e4">render</a> (sf::RenderWindow &amp;w, sf::Time frames)</td></tr>
+<tr class="memdesc:a1423123cdc4081f1f2c8bb6e22a269e4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Renders all of the enemies and blocks in the game world.  <a href="#a1423123cdc4081f1f2c8bb6e22a269e4">More...</a><br /></td></tr>
 <tr class="separator:a1423123cdc4081f1f2c8bb6e22a269e4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5296fdc40dcd460ad3a1b1febcf956ec"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a5296fdc40dcd460ad3a1b1febcf956ec"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>clear</b> ()</td></tr>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_spawner.html#a5296fdc40dcd460ad3a1b1febcf956ec">clear</a> ()</td></tr>
+<tr class="memdesc:a5296fdc40dcd460ad3a1b1febcf956ec"><td class="mdescLeft">&#160;</td><td class="mdescRight">This clears both the enemy list and the block list to get ready for the next level. <br /></td></tr>
 <tr class="separator:a5296fdc40dcd460ad3a1b1febcf956ec"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>This class is responible for creating the enemies in the game. These enemies are pushed back onto a list and are updated and rendered from inside here. This class currently also creates the <a class="el" href="class_crumble_block.html" title="This is the single class that is responable for generating a CrumbleBlock depending on the passed in ...">CrumbleBlock</a> objects also. </p>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="class_crumble_block.html" title="This is the single class that is responable for generating a CrumbleBlock depending on the passed in ...">CrumbleBlock</a> </dd>
+<dd>
+<a class="el" href="class_skeleton.html" title="This is the ground enemy for the gamme and will need to hold multiple animations, AI&#39;s and informatio...">Skeleton</a> </dd>
+<dd>
+<a class="el" href="class_weed.html">Weed</a> </dd>
+<dd>
+<a class="el" href="class_flyer.html">Flyer</a> </dd></dl>
+</div><h2 class="groupheader">Member Enumeration Documentation</h2>
+<a class="anchor" id="af783ad0abd1a80779f2497d0d3ced4e2"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum <a class="el" href="class_spawner.html#af783ad0abd1a80779f2497d0d3ced4e2">Spawner::SPAWN_TYPE</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>This enum keeps track of all the different types of enemies the spawner can create. </p>
+<table class="fieldtable">
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a class="anchor" id="af783ad0abd1a80779f2497d0d3ced4e2a2b59f2465a66cd59b40d071957160463"></a>SKELETON&#160;</td><td class="fielddoc">
+<p>Spawn type of a <a class="el" href="class_skeleton.html" title="This is the ground enemy for the gamme and will need to hold multiple animations, AI&#39;s and informatio...">Skeleton</a>. </p>
+</td></tr>
+</table>
+
+</div>
+</div>
+<h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a class="anchor" id="a371977ae0647dd57dd922a33e5894e6b"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">Spawner::Spawner </td>
+          <td>(</td>
+          <td class="paramtype">b2World *&#160;</td>
+          <td class="paramname"><em>world</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Creates the <a class="el" href="class_spawner.html" title="This class is responible for creating the enemies in the game. These enemies are pushed back onto a l...">Spawner</a> with a pointer to the world for creating all of the required boxbodies. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">b2World*</td><td>The Box2D world. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a class="anchor" id="a3728d33ef0517064d42a8f6aaecb513e"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">b2Body * Spawner::GenerateBody </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_spawner.html#af783ad0abd1a80779f2497d0d3ced4e2">SPAWN_TYPE</a>&#160;</td>
+          <td class="paramname"><em>type</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Takes a type of unit to spawn and creates the appropreate body for that class and returns it. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">SPAWN_TYPE</td><td>The type of body to spawn. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>b2Body* The body post generation. </dd></dl>
+
+<p><div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_spawner_a3728d33ef0517064d42a8f6aaecb513e_cgraph.png" border="0" usemap="#class_spawner_a3728d33ef0517064d42a8f6aaecb513e_cgraph" alt=""/></div>
+<map name="class_spawner_a3728d33ef0517064d42a8f6aaecb513e_cgraph" id="class_spawner_a3728d33ef0517064d42a8f6aaecb513e_cgraph">
+<area shape="rect" id="node2" href="class_skeleton.html#adec55a386507818f90b7424aff95d8f1" title="Gets the width and height of the texture in a sf::Vector2u. " alt="" coords="216,81,384,108"/>
+<area shape="rect" id="node3" href="class_skeleton.html#ac9f426767ffa60975218cc915e31b114" title="Sets the terrrain toucher to the terrain passed in. " alt="" coords="442,5,585,32"/>
+<area shape="rect" id="node4" href="class_skeleton.html#acb477101295504fa27e6ee6920b57852" title="Tell the unit it has reached the edge. " alt="" coords="432,56,595,83"/>
+<area shape="rect" id="node6" href="class_skeleton.html#a6db5460d0f2e07b5bb0395b6279c89cc" title="Tell the unit it has reached the player. " alt="" coords="436,157,591,184"/>
+<area shape="rect" id="node8" href="class_skeleton.html#a6d83a409914e8ab9821ed022f597b350" title="Tell the unit it has reached the player. " alt="" coords="441,107,585,133"/>
+<area shape="rect" id="node5" href="class_skeleton.html#aba5d37609d32fe3d3e7044514639297c" title="Change the direction of the enemy and flip the sprite so the texture is reversed. ..." alt="" coords="643,81,819,108"/>
+<area shape="rect" id="node7" href="class_skeleton.html#a90927f96174510cebe29d6bb39f4387c" title="Attack and play the attack animaiton. " alt="" coords="672,157,789,184"/>
+</map>
+</div>
+</p>
+
+<p><div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_spawner_a3728d33ef0517064d42a8f6aaecb513e_icgraph.png" border="0" usemap="#class_spawner_a3728d33ef0517064d42a8f6aaecb513e_icgraph" alt=""/></div>
+<map name="class_spawner_a3728d33ef0517064d42a8f6aaecb513e_icgraph" id="class_spawner_a3728d33ef0517064d42a8f6aaecb513e_icgraph">
+<area shape="rect" id="node2" href="class_spawner.html#afe9d8d8c89a3bbd3d771d18bed58c524" title="Calls the generate body function and pushes the new body onto the entity list. " alt="" coords="216,5,387,32"/>
+<area shape="rect" id="node6" href="class_spawner.html#a3e3aa3ccff73556625359e75f64d0dd0" title="Default constructor for the spawner class. " alt="" coords="451,56,581,83"/>
+<area shape="rect" id="node3" href="class_level.html#a241e5877fba91eabfd4b1588a6005c5f" title="Reads through the object layer creating the Enemies and populating the enemy list within the Spawner ..." alt="" coords="435,5,597,32"/>
+<area shape="rect" id="node4" href="class_level.html#ad425a302e250841b4ee9dd02b9a8b764" title="This is the highest stage of loading the map from .tmx. This method calls the rest of the parse metho..." alt="" coords="645,5,803,32"/>
+<area shape="rect" id="node5" href="class_level.html#aebf863a4012a921c82a833744980ec43" title="The overloaded constructor for the Level class which assignes the level, calls loadMap, initalises the scenery and calls the ParseMapLayers method to fully intialise the Level. " alt="" coords="851,5,939,32"/>
+</map>
+</div>
+</p>
+
+</div>
+</div>
+<a class="anchor" id="a1423123cdc4081f1f2c8bb6e22a269e4"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Spawner::render </td>
+          <td>(</td>
+          <td class="paramtype">sf::RenderWindow &amp;&#160;</td>
+          <td class="paramname"><em>w</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">sf::Time&#160;</td>
+          <td class="paramname"><em>frames</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Renders all of the enemies and blocks in the game world. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">sf::RenderWindow</td><td>This is the SFML window to draw to. </td></tr>
+    <tr><td class="paramname">sf::Time</td><td>This is the elapse time which is used for animations. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p><div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_spawner_a1423123cdc4081f1f2c8bb6e22a269e4_icgraph.png" border="0" usemap="#class_spawner_a1423123cdc4081f1f2c8bb6e22a269e4_icgraph" alt=""/></div>
+<map name="class_spawner_a1423123cdc4081f1f2c8bb6e22a269e4_icgraph" id="class_spawner_a1423123cdc4081f1f2c8bb6e22a269e4_icgraph">
+<area shape="rect" id="node2" href="class_level_scene.html#ace730bc6ccd5d585b1f96dfe85039cb4" title="Draws the scenes objects such as player, blocks and enemies including the foreground and background..." alt="" coords="169,5,301,32"/>
+<area shape="rect" id="node3" href="class_spawner.html#a3e3aa3ccff73556625359e75f64d0dd0" title="Default constructor for the spawner class. " alt="" coords="170,56,301,83"/>
+</map>
+</div>
+</p>
+
+</div>
+</div>
+<a class="anchor" id="a37fc2bc08b1e2ca88604854a5ef8dad9"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Spawner::SpawnBlock </td>
+          <td>(</td>
+          <td class="paramtype">sf::Vector2f&#160;</td>
+          <td class="paramname"><em>pos</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="class_crumble_block.html#ac4f508d4903d3b8b6cb0ae5d6cc572ab">CrumbleBlock::TYPE</a>&#160;</td>
+          <td class="paramname"><em>t</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="class_crumble_block.html#ab0d033075fa5c05291fd4e86ec8df74f">CrumbleBlock::SIZE</a>&#160;</td>
+          <td class="paramname"><em>s</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Creates the appropreate body for the Block and pushes it onto a vector of blocks. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">sf::Vector2f</td><td>This position to spawn the <a class="el" href="class_skeleton.html" title="This is the ground enemy for the gamme and will need to hold multiple animations, AI&#39;s and informatio...">Skeleton</a> at. </td></tr>
+    <tr><td class="paramname"><a class="el" href="class_crumble_block.html#ac4f508d4903d3b8b6cb0ae5d6cc572ab" title="Enum for representing the current type of the Block. ">CrumbleBlock::TYPE</a></td><td>The Type of block to spawn. </td></tr>
+    <tr><td class="paramname"><a class="el" href="class_crumble_block.html#ab0d033075fa5c05291fd4e86ec8df74f" title="Enum for representing the current size of the Block. ">CrumbleBlock::SIZE</a></td><td>The </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p><div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_spawner_a37fc2bc08b1e2ca88604854a5ef8dad9_icgraph.png" border="0" usemap="#class_spawner_a37fc2bc08b1e2ca88604854a5ef8dad9_icgraph" alt=""/></div>
+<map name="class_spawner_a37fc2bc08b1e2ca88604854a5ef8dad9_icgraph" id="class_spawner_a37fc2bc08b1e2ca88604854a5ef8dad9_icgraph">
+<area shape="rect" id="node2" href="class_level.html#a9ba2723c3e84d1693ddaab34afbfc009" title="Reads through the object layer creating the CrumbleBlocks and populating the block list within the Sp..." alt="" coords="205,5,357,32"/>
+<area shape="rect" id="node5" href="class_spawner.html#a3e3aa3ccff73556625359e75f64d0dd0" title="Default constructor for the spawner class. " alt="" coords="216,56,347,83"/>
+<area shape="rect" id="node3" href="class_level.html#ad425a302e250841b4ee9dd02b9a8b764" title="This is the highest stage of loading the map from .tmx. This method calls the rest of the parse metho..." alt="" coords="405,5,563,32"/>
+<area shape="rect" id="node4" href="class_level.html#aebf863a4012a921c82a833744980ec43" title="The overloaded constructor for the Level class which assignes the level, calls loadMap, initalises the scenery and calls the ParseMapLayers method to fully intialise the Level. " alt="" coords="611,5,699,32"/>
+</map>
+</div>
+</p>
+
+</div>
+</div>
+<a class="anchor" id="afe9d8d8c89a3bbd3d771d18bed58c524"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Spawner::SpawnSkeleton </td>
+          <td>(</td>
+          <td class="paramtype">sf::Vector2f&#160;</td>
+          <td class="paramname"><em>pos</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Calls the generate body function and pushes the new body onto the entity list. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">sf::Vector2f</td><td>The position to spawn the <a class="el" href="class_skeleton.html" title="This is the ground enemy for the gamme and will need to hold multiple animations, AI&#39;s and informatio...">Skeleton</a>. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p><div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_spawner_afe9d8d8c89a3bbd3d771d18bed58c524_cgraph.png" border="0" usemap="#class_spawner_afe9d8d8c89a3bbd3d771d18bed58c524_cgraph" alt=""/></div>
+<map name="class_spawner_afe9d8d8c89a3bbd3d771d18bed58c524_cgraph" id="class_spawner_afe9d8d8c89a3bbd3d771d18bed58c524_cgraph">
+<area shape="rect" id="node2" href="class_spawner.html#a3728d33ef0517064d42a8f6aaecb513e" title="Takes a type of unit to spawn and creates the appropreate body for that class and returns it..." alt="" coords="224,81,387,108"/>
+<area shape="rect" id="node3" href="class_skeleton.html#adec55a386507818f90b7424aff95d8f1" title="Gets the width and height of the texture in a sf::Vector2u. " alt="" coords="435,81,603,108"/>
+<area shape="rect" id="node4" href="class_skeleton.html#ac9f426767ffa60975218cc915e31b114" title="Sets the terrrain toucher to the terrain passed in. " alt="" coords="661,5,803,32"/>
+<area shape="rect" id="node5" href="class_skeleton.html#acb477101295504fa27e6ee6920b57852" title="Tell the unit it has reached the edge. " alt="" coords="651,56,813,83"/>
+<area shape="rect" id="node7" href="class_skeleton.html#a6db5460d0f2e07b5bb0395b6279c89cc" title="Tell the unit it has reached the player. " alt="" coords="655,157,809,184"/>
+<area shape="rect" id="node9" href="class_skeleton.html#a6d83a409914e8ab9821ed022f597b350" title="Tell the unit it has reached the player. " alt="" coords="660,107,804,133"/>
+<area shape="rect" id="node6" href="class_skeleton.html#aba5d37609d32fe3d3e7044514639297c" title="Change the direction of the enemy and flip the sprite so the texture is reversed. ..." alt="" coords="861,81,1037,108"/>
+<area shape="rect" id="node8" href="class_skeleton.html#a90927f96174510cebe29d6bb39f4387c" title="Attack and play the attack animaiton. " alt="" coords="891,157,1008,184"/>
+</map>
+</div>
+</p>
+
+<p><div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_spawner_afe9d8d8c89a3bbd3d771d18bed58c524_icgraph.png" border="0" usemap="#class_spawner_afe9d8d8c89a3bbd3d771d18bed58c524_icgraph" alt=""/></div>
+<map name="class_spawner_afe9d8d8c89a3bbd3d771d18bed58c524_icgraph" id="class_spawner_afe9d8d8c89a3bbd3d771d18bed58c524_icgraph">
+<area shape="rect" id="node2" href="class_level.html#a241e5877fba91eabfd4b1588a6005c5f" title="Reads through the object layer creating the Enemies and populating the enemy list within the Spawner ..." alt="" coords="224,5,387,32"/>
+<area shape="rect" id="node5" href="class_spawner.html#a3e3aa3ccff73556625359e75f64d0dd0" title="Default constructor for the spawner class. " alt="" coords="240,56,371,83"/>
+<area shape="rect" id="node3" href="class_level.html#ad425a302e250841b4ee9dd02b9a8b764" title="This is the highest stage of loading the map from .tmx. This method calls the rest of the parse metho..." alt="" coords="435,5,592,32"/>
+<area shape="rect" id="node4" href="class_level.html#aebf863a4012a921c82a833744980ec43" title="The overloaded constructor for the Level class which assignes the level, calls loadMap, initalises the scenery and calls the ParseMapLayers method to fully intialise the Level. " alt="" coords="640,5,728,32"/>
+</map>
+</div>
+</p>
+
+</div>
+</div>
+<a class="anchor" id="abcaafe5e9152654b1b7fbd788581c979"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Spawner::update </td>
+          <td>(</td>
+          <td class="paramtype">FTS&#160;</td>
+          <td class="paramname"><em>fts</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="class_player.html">Player</a> *&#160;</td>
+          <td class="paramname"><em>p</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Calls the update in the <a class="el" href="class_enemy.html" title="This is the base Enemy class for every type of enemy, This class also helps the CrumbleBlock class po...">Enemy</a> units. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">FTS</td><td>Fixed Time Step of the game. </td></tr>
+    <tr><td class="paramname">Player*</td><td>Pointer to the player. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p><div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_spawner_abcaafe5e9152654b1b7fbd788581c979_cgraph.png" border="0" usemap="#class_spawner_abcaafe5e9152654b1b7fbd788581c979_cgraph" alt=""/></div>
+<map name="class_spawner_abcaafe5e9152654b1b7fbd788581c979_cgraph" id="class_spawner_abcaafe5e9152654b1b7fbd788581c979_cgraph">
+<area shape="rect" id="node2" href="class_player.html#abeaa6fb79495a647ffd4ca8cf2442d37" title="Finds the center of the player in Global coordinates. " alt="" coords="172,5,295,32"/>
+</map>
+</div>
+</p>
+
+<p><div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_spawner_abcaafe5e9152654b1b7fbd788581c979_icgraph.png" border="0" usemap="#class_spawner_abcaafe5e9152654b1b7fbd788581c979_icgraph" alt=""/></div>
+<map name="class_spawner_abcaafe5e9152654b1b7fbd788581c979_icgraph" id="class_spawner_abcaafe5e9152654b1b7fbd788581c979_icgraph">
+<area shape="rect" id="node2" href="class_level_scene.html#a7f624c9fb01a52dad4a6d441203aac8c" title="Updates the player and spawner and calculates the Fixed Time Step(FTS). Also updates the camera to ke..." alt="" coords="172,5,307,32"/>
+<area shape="rect" id="node3" href="class_spawner.html#a3e3aa3ccff73556625359e75f64d0dd0" title="Default constructor for the spawner class. " alt="" coords="174,56,305,83"/>
+</map>
+</div>
+</p>
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following files:<ul>
 <li>FYP_FallenHero/<a class="el" href="_spawner_8hpp_source.html">Spawner.hpp</a></li>
 <li>FYP_FallenHero/Spawner.cpp</li>

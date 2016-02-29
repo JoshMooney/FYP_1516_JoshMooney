@@ -31,7 +31,7 @@
 <table cellspacing="0" cellpadding="0">
  <tbody>
  <tr style="height: 56px;">
-  <td id="projectlogo"><img alt="Logo" src="Logo.png"/></td>
+  <td id="projectlogo"><img alt="Logo" src="Logo_original.png"/></td>
  </tr>
  </tbody>
 </table>
@@ -110,23 +110,80 @@ $(document).ready(function(){initNavTree('class_parallax_sprite.html','');});
 <div class="title">ParallaxSprite Class Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p>This is a wrapped for the SFML Sprite class. This class inherits from sf::Sprite and uses a Vector3f instead of the V2f with the z component being used as the scale of parallax on the surface.  
+ <a href="class_parallax_sprite.html#details">More...</a></p>
+
+<p><code>#include &lt;<a class="el" href="_parallax_sprite_8hpp_source.html">ParallaxSprite.hpp</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a5b6b9c6fc466f70b537b5ae3dea2cb2c"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a5b6b9c6fc466f70b537b5ae3dea2cb2c"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>ParallaxSprite</b> (string text, sf::Vector3f pos)</td></tr>
+<tr class="memitem:ad9cb9ac63dae60e01167f510c3337afa"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ad9cb9ac63dae60e01167f510c3337afa"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_parallax_sprite.html#ad9cb9ac63dae60e01167f510c3337afa">ParallaxSprite</a> ()</td></tr>
+<tr class="memdesc:ad9cb9ac63dae60e01167f510c3337afa"><td class="mdescLeft">&#160;</td><td class="mdescRight">Is the default constructor for a parallax sprite. <br /></td></tr>
+<tr class="separator:ad9cb9ac63dae60e01167f510c3337afa"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5b6b9c6fc466f70b537b5ae3dea2cb2c"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_parallax_sprite.html#a5b6b9c6fc466f70b537b5ae3dea2cb2c">ParallaxSprite</a> (string text, sf::Vector3f pos)</td></tr>
+<tr class="memdesc:a5b6b9c6fc466f70b537b5ae3dea2cb2c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Overloaded constructor for the parallax sprite. The resource manager will be responcible for loading the asset at the path passed in as a string.  <a href="#a5b6b9c6fc466f70b537b5ae3dea2cb2c">More...</a><br /></td></tr>
 <tr class="separator:a5b6b9c6fc466f70b537b5ae3dea2cb2c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a459282c4d1053fa8498f687d696b5981"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a459282c4d1053fa8498f687d696b5981"></a>
-sf::Vector3f&#160;</td><td class="memItemRight" valign="bottom"><b>getDefaultPosition</b> ()</td></tr>
+sf::Vector3f&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_parallax_sprite.html#a459282c4d1053fa8498f687d696b5981">getDefaultPosition</a> ()</td></tr>
+<tr class="memdesc:a459282c4d1053fa8498f687d696b5981"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the position of the sprite. <br /></td></tr>
 <tr class="separator:a459282c4d1053fa8498f687d696b5981"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a62add48bae6bf530f963bbcdeb3eeac7"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a62add48bae6bf530f963bbcdeb3eeac7"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>setDefaultPosition</b> (sf::Vector3f p)</td></tr>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_parallax_sprite.html#a62add48bae6bf530f963bbcdeb3eeac7">setDefaultPosition</a> (sf::Vector3f p)</td></tr>
+<tr class="memdesc:a62add48bae6bf530f963bbcdeb3eeac7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the default position of the sprite. <br /></td></tr>
 <tr class="separator:a62add48bae6bf530f963bbcdeb3eeac7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<div class="dynheader">
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>This is a wrapped for the SFML Sprite class. This class inherits from sf::Sprite and uses a Vector3f instead of the V2f with the z component being used as the scale of parallax on the surface. </p>
+</div><div class="dynheader">
 Inheritance diagram for ParallaxSprite:</div>
 <div class="dyncontent">
 <div class="center"><img src="class_parallax_sprite__inherit__graph.png" border="0" usemap="#_parallax_sprite_inherit__map" alt="Inheritance graph"/></div>
+</div>
+<h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a class="anchor" id="a5b6b9c6fc466f70b537b5ae3dea2cb2c"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">ParallaxSprite::ParallaxSprite </td>
+          <td>(</td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>text</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">sf::Vector3f&#160;</td>
+          <td class="paramname"><em>pos</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Overloaded constructor for the parallax sprite. The resource manager will be responcible for loading the asset at the path passed in as a string. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">string</td><td>The path to the texture to be loaded. </td></tr>
+    <tr><td class="paramname">sf::Vector3f</td><td>The x&amp;y position and z for the parallax scale. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
 </div>
 <hr/>The documentation for this class was generated from the following file:<ul>
 <li>FYP_FallenHero/<a class="el" href="_parallax_sprite_8hpp_source.html">ParallaxSprite.hpp</a></li>

@@ -1,0 +1,5 @@
+<map id="vCamera::refresh" name="vCamera::refresh">
+<area shape="rect" id="node2" href="$classv_camera.html#a4b45ad5e539cc744c4afe1a780695e87" title="Finds the player offset taking an allowence and the paralax effect into account. " alt="" coords="172,5,341,32"/>
+<area shape="rect" id="node3" href="$classv_camera.html#afe75f8d396a4961bfbec02b4fcf9687c" title="Checks if the camera view has stepped outside the bounds of the camera. " alt="" coords="389,5,548,32"/>
+<area shape="rect" id="node4" href="$classv_camera.html#a05c1563acb39f160db5970a20e93f7e7" title="Creates a sf::FloatRect of the current viewport of the camera. " alt="" coords="596,5,771,32"/>
+</map>

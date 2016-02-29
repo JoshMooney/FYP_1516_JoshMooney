@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['xboxcontroller',['XBOXController',['../class_x_b_o_x_controller.html#a70682aee5da9f1472f3f761c9a045dbc',1,'XBOXController::XBOXController()'],['../class_x_b_o_x_controller.html#afe5af228b157eeaeb020d7dc78ed9160',1,'XBOXController::XBOXController(bool is_output)']]],
-  ['xmlloader',['XMLLoader',['../class_x_m_l_loader.html#a252642cfb4422345dad88585c477d4a5',1,'XMLLoader']]]
+  ['vcamera',['vCamera',['../classv_camera.html#a3395cc8f402bf6c0b7211f4a5805a72f',1,'vCamera::vCamera()'],['../classv_camera.html#aed472723a0fa8cda5206bfbbd2fc941c',1,'vCamera::vCamera(sf::Vector2f screen_size)'],['../classv_camera.html#a18a32e38aa6c9b9b9858664e457381d3',1,'vCamera::vCamera(sf::Vector2f screen_size, sf::FloatRect bounds)'],['../classv_camera.html#a9ffdb42ec68642c48457288b7a92def0',1,'vCamera::vCamera(sf::Vector2f screen_size, sf::FloatRect bounds, pair&lt; bool, bool &gt; locked_axis)']]]
 ];

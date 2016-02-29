@@ -1,5 +1,30 @@
 var searchData=
 [
-  ['takedamage',['TakeDamage',['../class_crumble_block.html#a545e741ffa02d9fed9f79985958ae37a',1,'CrumbleBlock::TakeDamage()'],['../class_enemy.html#a0a2d76baeb22f41d169f82cf86fa118e',1,'Enemy::TakeDamage()'],['../class_skeleton.html#a4f79a60c35f768e20a72db8c2dd2b0e7',1,'Skeleton::TakeDamage()'],['../class_weed.html#a6db14d91406d52fd6badd448abf8e39c',1,'Weed::TakeDamage()']]],
-  ['tiledmap',['tiledMap',['../class_level.html#a868545a927d82ab11560f236230a3291',1,'Level']]]
+  ['save',['save',['../class_x_m_l_loader.html#aa0bb64a3dfa2c8e65ecad2df57311381',1,'XMLLoader']]],
+  ['saveslot',['SaveSlot',['../struct_save_slot.html#ad3bfbaf7369f235c1c8127fc3aaf2f19',1,'SaveSlot::SaveSlot(int id)'],['../struct_save_slot.html#a831d59639d64ad78516c021b520e22e4',1,'SaveSlot::SaveSlot(int id, int time, int gold, map&lt; string, bool &gt; data, int num_lvls_unlocked)']]],
+  ['scenery',['Scenery',['../class_scenery.html#a430e7d158b02733b779122a4d65cd2fd',1,'Scenery']]],
+  ['select',['select',['../class_menu_scene.html#a7c472d0e317df10174e1d31a404a4313',1,'MenuScene::select()'],['../class_world_scene.html#a93e63f5226b909c5b7aa069ab18a9979',1,'WorldScene::select()']]],
+  ['setactive',['setActive',['../class_enemy.html#aff6991f819e59562f3969d4951928c90',1,'Enemy']]],
+  ['setbackgroundposition',['setBackgroundPosition',['../class_simple_g_u_i.html#a36d95b42f733893410cf1e4aa0ce1f9c',1,'SimpleGUI']]],
+  ['setbounds',['setBounds',['../classv_camera.html#aefc8bc9a4ef56caa717fc284e29b1efc',1,'vCamera']]],
+  ['setcenter',['setCenter',['../class_player_icon.html#a22fde2f4faaa8ddd1d672626287e7d91',1,'PlayerIcon']]],
+  ['setcollidingsword',['setCollidingSword',['../class_enemy.html#ad3e89c53dfcb25e51c0fd70d1605fe4b',1,'Enemy']]],
+  ['setdefaultposition',['setDefaultPosition',['../class_parallax_sprite.html#a62add48bae6bf530f963bbcdeb3eeac7',1,'ParallaxSprite']]],
+  ['setdirection',['setDirection',['../class_player.html#ab92500fc590fa0a523479b46f23a702e',1,'Player::setDirection()'],['../class_skeleton.html#ad8f2d78625b61b18ed75262b5c4bfd68',1,'Skeleton::setDirection()']]],
+  ['setifmoving',['setIfMoving',['../class_player.html#ac1f3ce820337430ef7fc9bf5acd5db08',1,'Player']]],
+  ['setjumping',['setJumping',['../class_player.html#a3d1b2def6b0b9e88ebde048aae4b3211',1,'Player']]],
+  ['setloader',['setLoader',['../class_menu_scene.html#a2d37f8f48a2c30c0f6e1e576e86212a5',1,'MenuScene']]],
+  ['setplayer',['setPlayer',['../class_level_scene.html#abe1cf831543139b8350811b2e220c723',1,'LevelScene']]],
+  ['settag',['setTag',['../class_player_icon.html#a688e789e546f2c1c3d1b6c18d60f75e7',1,'PlayerIcon']]],
+  ['settext',['setText',['../class_simple_g_u_i.html#ae8fb875ae0eb8d0ac8982b70b1b9ac77',1,'SimpleGUI']]],
+  ['settextoffet',['setTextOffet',['../class_simple_g_u_i.html#a122ed24443c46f1358d52f3e4a7ab355',1,'SimpleGUI']]],
+  ['simplegui',['SimpleGUI',['../class_simple_g_u_i.html#af6fb61d1672abc543b5256e338b0c6d0',1,'SimpleGUI::SimpleGUI(string texture, string font, string text)'],['../class_simple_g_u_i.html#aa91f27d62c02b4448ea110d1ba1caca0',1,'SimpleGUI::SimpleGUI(string texture, sf::Vector2f bg_pos, string font, string text, sf::Vector2f t_offset)'],['../class_simple_g_u_i.html#aed781fc9b6bd8c7e35bb03c2603ccbd4',1,'SimpleGUI::SimpleGUI(string texture, sf::Vector2f bg_pos, string font, string text, sf::Vector2f t_offset, string title_texture)']]],
+  ['skeleton',['Skeleton',['../class_skeleton.html#af01a02f1ce9ae4c801cd6e66ccf7407f',1,'Skeleton::Skeleton()'],['../class_skeleton.html#a50e6e7bb6cf8297b2a7e374da1b0a9fd',1,'Skeleton::Skeleton(b2Body *b, sf::Vector2f pos, bool dir)'],['../class_skeleton.html#a3e538abd8f8cceb17839df82c8963f3b',1,'Skeleton::Skeleton(b2World *world)']]],
+  ['sortbg',['sortBG',['../class_scenery.html#ae3c1ca3c3e8b7066a6dc87bf10719ff4',1,'Scenery']]],
+  ['sortfg',['sortFG',['../class_scenery.html#aefbbabd55ded3dabe93e136ec2792ca2',1,'Scenery']]],
+  ['spawn',['Spawn',['../class_player.html#af99c17372865d29c79ea1a17c5d8a935',1,'Player']]],
+  ['spawnblock',['SpawnBlock',['../class_spawner.html#a37fc2bc08b1e2ca88604854a5ef8dad9',1,'Spawner']]],
+  ['spawner',['Spawner',['../class_spawner.html#a3e3aa3ccff73556625359e75f64d0dd0',1,'Spawner::Spawner()'],['../class_spawner.html#a371977ae0647dd57dd922a33e5894e6b',1,'Spawner::Spawner(b2World *world)']]],
+  ['spawnskeleton',['SpawnSkeleton',['../class_spawner.html#afe9d8d8c89a3bbd3d771d18bed58c524',1,'Spawner']]],
+  ['strtolvl',['strtolvl',['../class_world_map.html#a0fb76571a7d56a07bf515d69e56aab79',1,'WorldMap']]]
 ];

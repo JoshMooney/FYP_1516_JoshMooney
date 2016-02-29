@@ -1,5 +1,6 @@
 var searchData=
 [
-  ['map',['MAP',['../class_world_scene.html#a2df500ab9085993b91fac3dd80d29627af8554f166052834337694a3c1b3ff775',1,'WorldScene']]],
-  ['menu',['MENU',['../class_game.html#a126d999138acc80d63a8f96909b7887ca27b5e3ff6ff653679f76c97fa644b5b4',1,'Game']]]
+  ['game',['GAME',['../class_menu_scene.html#a8756ba62c8ea0c38859f170ffeae3007a83478127ea4947bc09c0182224f24895',1,'MenuScene']]],
+  ['gameover',['GAMEOVER',['../class_menu_scene.html#a8756ba62c8ea0c38859f170ffeae3007a4c6034f8ebe2c996bff74bd66b1630f3',1,'MenuScene']]],
+  ['grey',['GREY',['../class_skeleton.html#ab21a4550f166a4d5723f146fceabeddba3d25d99b9aaa16443cb3996594169314',1,'Skeleton']]]
 ];

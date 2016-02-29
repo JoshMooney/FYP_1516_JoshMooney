@@ -1,3 +1,4 @@
 <map id="LevelScene::render" name="LevelScene::render">
-<area shape="rect" id="node2" href="$class_h_u_d.html#aba8a84f29f268062dac11eba1cb30718" title="Draws all the HUD&#39;s Items to the window. " alt="" coords="185,5,279,32"/>
+<area shape="rect" id="node2" href="$class_spawner.html#a1423123cdc4081f1f2c8bb6e22a269e4" title="Renders all of the enemies and blocks in the game world. " alt="" coords="185,5,301,32"/>
+<area shape="rect" id="node3" href="$class_h_u_d.html#aba8a84f29f268062dac11eba1cb30718" title="Draws all the HUD&#39;s Items to the window. " alt="" coords="197,56,290,83"/>
 </map>

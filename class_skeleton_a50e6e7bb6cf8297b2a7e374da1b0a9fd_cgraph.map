@@ -1,0 +1,6 @@
+<map id="Skeleton::Skeleton" name="Skeleton::Skeleton">
+<area shape="rect" id="node2" href="$class_skeleton.html#af7cbd179a1da7c960d48213cd0ff827e" title="Initalises the enemy class and all its variables. " alt="" coords="185,31,284,57"/>
+<area shape="rect" id="node3" href="$class_skeleton.html#a285563fdaff4e453907335bd837c8e4e" title="Load all the animations frames, images and audio for the enemy class. " alt="" coords="332,31,472,57"/>
+<area shape="rect" id="node4" href="$class_resource_manager.html#a3dcdce6201a938ee51be3d23879e46e1" title="Fetches the current instance of the Manager is required to achieve the singleton pattern. " alt="" coords="520,5,704,32"/>
+<area shape="rect" id="node5" href="$class_skeleton.html#a3a84b0eb4454f029e8a6f2a8256d6b2e" title="This adds a single thor::FrameAnimation to the animator. " alt="" coords="539,56,685,83"/>
+</map>

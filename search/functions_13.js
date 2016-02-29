@@ -1,11 +1,7 @@
 var searchData=
 [
-  ['_7ecrumbleblock',['~CrumbleBlock',['../class_crumble_block.html#ab2210445bf246867be1f23a4d9876418',1,'CrumbleBlock']]],
-  ['_7egame',['~Game',['../class_game.html#ae3d112ca6e0e55150d2fdbc704474530',1,'Game']]],
-  ['_7ehud',['~HUD',['../class_h_u_d.html#a1e1140a40e4bf72a45acf9f7b2119323',1,'HUD']]],
-  ['_7elevel',['~Level',['../class_level.html#a249eac1e8f19ff44134efa5e986feaca',1,'Level']]],
-  ['_7elevelscene',['~LevelScene',['../class_level_scene.html#a4bbebd9d6f2c3222dee15dd4403c7e49',1,'LevelScene']]],
-  ['_7eresourcemanager',['~ResourceManager',['../class_resource_manager.html#acd90291b1c06708a7ea2ba015455bb1a',1,'ResourceManager']]],
-  ['_7eworldscene',['~WorldScene',['../class_world_scene.html#a96919a2cba5b6b6e544cc9b749e13ac8',1,'WorldScene']]],
-  ['_7exboxcontroller',['~XBOXController',['../class_x_b_o_x_controller.html#a69228859bd86fe0c4e600ae80f51bc3a',1,'XBOXController']]]
+  ['worldmap',['WorldMap',['../class_world_map.html#ad079799989e80b5469c880b8b40e000e',1,'WorldMap::WorldMap()'],['../class_world_map.html#ae71d5f5e9e523a3e94a82122bec74a9d',1,'WorldMap::WorldMap(sf::Vector2f origin_pos)']]],
+  ['worldnode',['WorldNode',['../class_world_node.html#a15f13dc2e7a912d1e70420bface95563',1,'WorldNode::WorldNode(string id, sf::Vector2f pos, bool locked)'],['../class_world_node.html#a4dae417ed9b3306c10db06440361f54c',1,'WorldNode::WorldNode(string id, sf::Vector2f pos, bool locked, bool complete)'],['../class_world_node.html#ad2e8d50858da83e575261bb6e3dcb080',1,'WorldNode::WorldNode(string id, sf::Vector2f pos, bool locked, bool complete, string text)']]],
+  ['worldscene',['WorldScene',['../class_world_scene.html#a86c5a4b83213d28ce5c62eba9d35da64',1,'WorldScene']]],
+  ['writesaveslot',['WriteSaveSlot',['../class_x_m_l_loader.html#a1b030a184dff4e01c92361e56373f4c3',1,'XMLLoader']]]
 ];

@@ -1,0 +1,9 @@
+<map id="Skeleton::assignBody" name="Skeleton::assignBody">
+<area shape="rect" id="node2" href="$class_skeleton.html#abc6f15953f742a76512cdc31abd96e5d" title="This advances the unit a step using there direction and speed. " alt="" coords="223,56,333,83"/>
+<area shape="rect" id="node5" href="$class_skeleton.html#aba5d37609d32fe3d3e7044514639297c" title="Change the direction of the enemy and flip the sprite so the texture is reversed. ..." alt="" coords="612,81,788,108"/>
+<area shape="rect" id="node6" href="$class_skeleton.html#a90927f96174510cebe29d6bb39f4387c" title="Attack and play the attack animaiton. " alt="" coords="219,157,337,184"/>
+<area shape="rect" id="node7" href="$class_skeleton.html#a11804a8e47367676f146a1e87dfdb058" title="Position the sprite with the boxbody. " alt="" coords="207,208,349,235"/>
+<area shape="rect" id="node8" href="$class_skeleton.html#ad8f2d78625b61b18ed75262b5c4bfd68" title="Set the direction of the unit which also calss the ChangeDirection function. " alt="" coords="203,259,353,285"/>
+<area shape="rect" id="node3" href="$class_skeleton.html#a61c73a0e54fcbc2d6cf5aa51e507260b" title="Create a rectangle. " alt="" coords="411,5,554,32"/>
+<area shape="rect" id="node4" href="$class_skeleton.html#acb477101295504fa27e6ee6920b57852" title="Tell the unit it has reached the edge. " alt="" coords="401,56,564,83"/>
+</map>

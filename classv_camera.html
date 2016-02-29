@@ -31,7 +31,7 @@
 <table cellspacing="0" cellpadding="0">
  <tbody>
  <tr style="height: 56px;">
-  <td id="projectlogo"><img alt="Logo" src="Logo.png"/></td>
+  <td id="projectlogo"><img alt="Logo" src="Logo_original.png"/></td>
  </tr>
  </tbody>
 </table>
@@ -110,56 +110,455 @@ $(document).ready(function(){initNavTree('classv_camera.html','');});
 <div class="title">vCamera Class Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p>This class is the vector camera class responsible for adjusting the view and keeping the player in the approprate position on screen.  
+ <a href="classv_camera.html#details">More...</a></p>
+
+<p><code>#include &lt;<a class="el" href="v_camera_8hpp_source.html">vCamera.hpp</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:aed472723a0fa8cda5206bfbbd2fc941c"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aed472723a0fa8cda5206bfbbd2fc941c"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>vCamera</b> (sf::Vector2f screen_size)</td></tr>
+<tr class="memitem:a3395cc8f402bf6c0b7211f4a5805a72f"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a3395cc8f402bf6c0b7211f4a5805a72f"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classv_camera.html#a3395cc8f402bf6c0b7211f4a5805a72f">vCamera</a> ()</td></tr>
+<tr class="memdesc:a3395cc8f402bf6c0b7211f4a5805a72f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Default constructor which has been deprecated. <br /></td></tr>
+<tr class="separator:a3395cc8f402bf6c0b7211f4a5805a72f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aed472723a0fa8cda5206bfbbd2fc941c"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classv_camera.html#aed472723a0fa8cda5206bfbbd2fc941c">vCamera</a> (sf::Vector2f screen_size)</td></tr>
+<tr class="memdesc:aed472723a0fa8cda5206bfbbd2fc941c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Overloaded constructor for the Camera which takes a sf::Vector2f for the screen_size.  <a href="#aed472723a0fa8cda5206bfbbd2fc941c">More...</a><br /></td></tr>
 <tr class="separator:aed472723a0fa8cda5206bfbbd2fc941c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a18a32e38aa6c9b9b9858664e457381d3"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a18a32e38aa6c9b9b9858664e457381d3"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>vCamera</b> (sf::Vector2f screen_size, sf::FloatRect bounds)</td></tr>
+<tr class="memitem:a18a32e38aa6c9b9b9858664e457381d3"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classv_camera.html#a18a32e38aa6c9b9b9858664e457381d3">vCamera</a> (sf::Vector2f screen_size, sf::FloatRect bounds)</td></tr>
+<tr class="memdesc:a18a32e38aa6c9b9b9858664e457381d3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Overloaded constructor for the Camera which takes a sf::Vector2f for the screen_size and a sf::FloatRect for the bounds of the camera.  <a href="#a18a32e38aa6c9b9b9858664e457381d3">More...</a><br /></td></tr>
 <tr class="separator:a18a32e38aa6c9b9b9858664e457381d3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9ffdb42ec68642c48457288b7a92def0"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a9ffdb42ec68642c48457288b7a92def0"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>vCamera</b> (sf::Vector2f screen_size, sf::FloatRect bounds, pair&lt; bool, bool &gt; locked_axis)</td></tr>
+<tr class="memitem:a9ffdb42ec68642c48457288b7a92def0"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classv_camera.html#a9ffdb42ec68642c48457288b7a92def0">vCamera</a> (sf::Vector2f screen_size, sf::FloatRect bounds, pair&lt; bool, bool &gt; locked_axis)</td></tr>
+<tr class="memdesc:a9ffdb42ec68642c48457288b7a92def0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Overloaded constructor for the Camera which takes a sf::Vector2f for the screen_size , a sf::FloatRect for the bounds of the camera and a pair of bools if the camera is ever needed to be constructed with specific locking.  <a href="#a9ffdb42ec68642c48457288b7a92def0">More...</a><br /></td></tr>
 <tr class="separator:a9ffdb42ec68642c48457288b7a92def0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab0af95ab7e5dc541f63bf81a81dcd2e6"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ab0af95ab7e5dc541f63bf81a81dcd2e6"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>refresh</b> (sf::Vector2f player_center)</td></tr>
+<tr class="memitem:a79cd408dc2be69f42419a68e28ffc688"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a79cd408dc2be69f42419a68e28ffc688"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classv_camera.html#a79cd408dc2be69f42419a68e28ffc688">~vCamera</a> ()</td></tr>
+<tr class="memdesc:a79cd408dc2be69f42419a68e28ffc688"><td class="mdescLeft">&#160;</td><td class="mdescRight">Deconstructor of the camera. <br /></td></tr>
+<tr class="separator:a79cd408dc2be69f42419a68e28ffc688"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab0af95ab7e5dc541f63bf81a81dcd2e6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classv_camera.html#ab0af95ab7e5dc541f63bf81a81dcd2e6">refresh</a> (sf::Vector2f player_center)</td></tr>
+<tr class="memdesc:ab0af95ab7e5dc541f63bf81a81dcd2e6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Resets all the variables of the camera and points it at the sf::Vector2f passed in.  <a href="#ab0af95ab7e5dc541f63bf81a81dcd2e6">More...</a><br /></td></tr>
 <tr class="separator:ab0af95ab7e5dc541f63bf81a81dcd2e6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4b45ad5e539cc744c4afe1a780695e87"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a4b45ad5e539cc744c4afe1a780695e87"></a>
-sf::Vector2f&#160;</td><td class="memItemRight" valign="bottom"><b>getPlayerOffset</b> (sf::Vector2f player_center)</td></tr>
+<tr class="memitem:a4b45ad5e539cc744c4afe1a780695e87"><td class="memItemLeft" align="right" valign="top">sf::Vector2f&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classv_camera.html#a4b45ad5e539cc744c4afe1a780695e87">getPlayerOffset</a> (sf::Vector2f player_center)</td></tr>
+<tr class="memdesc:a4b45ad5e539cc744c4afe1a780695e87"><td class="mdescLeft">&#160;</td><td class="mdescRight">Finds the player offset taking an allowence and the paralax effect into account.  <a href="#a4b45ad5e539cc744c4afe1a780695e87">More...</a><br /></td></tr>
 <tr class="separator:a4b45ad5e539cc744c4afe1a780695e87"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aefc8bc9a4ef56caa717fc284e29b1efc"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aefc8bc9a4ef56caa717fc284e29b1efc"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>setBounds</b> (sf::FloatRect bounds)</td></tr>
+<tr class="memitem:aefc8bc9a4ef56caa717fc284e29b1efc"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classv_camera.html#aefc8bc9a4ef56caa717fc284e29b1efc">setBounds</a> (sf::FloatRect bounds)</td></tr>
+<tr class="memdesc:aefc8bc9a4ef56caa717fc284e29b1efc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the bounds of the camera after construction.  <a href="#aefc8bc9a4ef56caa717fc284e29b1efc">More...</a><br /></td></tr>
 <tr class="separator:aefc8bc9a4ef56caa717fc284e29b1efc"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:afe75f8d396a4961bfbec02b4fcf9687c"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="afe75f8d396a4961bfbec02b4fcf9687c"></a>
-sf::FloatRect&#160;</td><td class="memItemRight" valign="bottom"><b>checkBounds</b> (sf::Vector2f player_center)</td></tr>
+<tr class="memitem:afe75f8d396a4961bfbec02b4fcf9687c"><td class="memItemLeft" align="right" valign="top">sf::FloatRect&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classv_camera.html#afe75f8d396a4961bfbec02b4fcf9687c">checkBounds</a> (sf::Vector2f player_center)</td></tr>
+<tr class="memdesc:afe75f8d396a4961bfbec02b4fcf9687c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if the camera view has stepped outside the bounds of the camera.  <a href="#afe75f8d396a4961bfbec02b4fcf9687c">More...</a><br /></td></tr>
 <tr class="separator:afe75f8d396a4961bfbec02b4fcf9687c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a05c1563acb39f160db5970a20e93f7e7"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a05c1563acb39f160db5970a20e93f7e7"></a>
-sf::FloatRect&#160;</td><td class="memItemRight" valign="bottom"><b>getRectViewport</b> ()</td></tr>
+<tr class="memitem:a05c1563acb39f160db5970a20e93f7e7"><td class="memItemLeft" align="right" valign="top">sf::FloatRect&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classv_camera.html#a05c1563acb39f160db5970a20e93f7e7">getRectViewport</a> ()</td></tr>
+<tr class="memdesc:a05c1563acb39f160db5970a20e93f7e7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a sf::FloatRect of the current viewport of the camera.  <a href="#a05c1563acb39f160db5970a20e93f7e7">More...</a><br /></td></tr>
 <tr class="separator:a05c1563acb39f160db5970a20e93f7e7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a22afb0a931e009eb6c956381193beea0"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a22afb0a931e009eb6c956381193beea0"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>addBounds</b> (sf::FloatRect bounds)</td></tr>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classv_camera.html#a22afb0a931e009eb6c956381193beea0">addBounds</a> (sf::FloatRect bounds)</td></tr>
+<tr class="memdesc:a22afb0a931e009eb6c956381193beea0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds a boundary to the camera. <br /></td></tr>
 <tr class="separator:a22afb0a931e009eb6c956381193beea0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a67cdbca23247d3bea6c64cb2c834abbf"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a67cdbca23247d3bea6c64cb2c834abbf"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>LockX</b> (bool b)</td></tr>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classv_camera.html#a67cdbca23247d3bea6c64cb2c834abbf">LockX</a> (bool b)</td></tr>
+<tr class="memdesc:a67cdbca23247d3bea6c64cb2c834abbf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Setter for the locking the X axis. <br /></td></tr>
 <tr class="separator:a67cdbca23247d3bea6c64cb2c834abbf"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aed6b6bce7c86eb72ae9e420822df95f7"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aed6b6bce7c86eb72ae9e420822df95f7"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>LockY</b> (bool b)</td></tr>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classv_camera.html#aed6b6bce7c86eb72ae9e420822df95f7">LockY</a> (bool b)</td></tr>
+<tr class="memdesc:aed6b6bce7c86eb72ae9e420822df95f7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Setter for the locking the Y axis. <br /></td></tr>
 <tr class="separator:aed6b6bce7c86eb72ae9e420822df95f7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a48d70d8adc0920710130d6271dd5b669"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a48d70d8adc0920710130d6271dd5b669"></a>
-float&#160;</td><td class="memItemRight" valign="bottom"><b>getX</b> ()</td></tr>
+float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classv_camera.html#a48d70d8adc0920710130d6271dd5b669">getX</a> ()</td></tr>
+<tr class="memdesc:a48d70d8adc0920710130d6271dd5b669"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the X value of the camera. <br /></td></tr>
 <tr class="separator:a48d70d8adc0920710130d6271dd5b669"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a92c7b7e8776df0851f61477219006f01"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a92c7b7e8776df0851f61477219006f01"></a>
-float&#160;</td><td class="memItemRight" valign="bottom"><b>getY</b> ()</td></tr>
+float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classv_camera.html#a92c7b7e8776df0851f61477219006f01">getY</a> ()</td></tr>
+<tr class="memdesc:a92c7b7e8776df0851f61477219006f01"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the Y value of the camera. <br /></td></tr>
 <tr class="separator:a92c7b7e8776df0851f61477219006f01"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9cda96fb088c948fe662af5274116751"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a9cda96fb088c948fe662af5274116751"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>outOfBounds</b> (sf::FloatRect &amp;rec)</td></tr>
+<tr class="memitem:a9cda96fb088c948fe662af5274116751"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classv_camera.html#a9cda96fb088c948fe662af5274116751">outOfBounds</a> (sf::FloatRect &amp;rec)</td></tr>
+<tr class="memdesc:a9cda96fb088c948fe662af5274116751"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if the rectangle passed in is continaed within the bounds of the camera.  <a href="#a9cda96fb088c948fe662af5274116751">More...</a><br /></td></tr>
 <tr class="separator:a9cda96fb088c948fe662af5274116751"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<div class="dynheader">
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>This class is the vector camera class responsible for adjusting the view and keeping the player in the approprate position on screen. </p>
+</div><div class="dynheader">
 Inheritance diagram for vCamera:</div>
 <div class="dyncontent">
 <div class="center"><img src="classv_camera__inherit__graph.png" border="0" usemap="#v_camera_inherit__map" alt="Inheritance graph"/></div>
+</div>
+<h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a class="anchor" id="aed472723a0fa8cda5206bfbbd2fc941c"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">vCamera::vCamera </td>
+          <td>(</td>
+          <td class="paramtype">sf::Vector2f&#160;</td>
+          <td class="paramname"><em>screen_size</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Overloaded constructor for the Camera which takes a sf::Vector2f for the screen_size. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">sf::Vector2f</td><td>The width and height of the screen. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="a18a32e38aa6c9b9b9858664e457381d3"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">vCamera::vCamera </td>
+          <td>(</td>
+          <td class="paramtype">sf::Vector2f&#160;</td>
+          <td class="paramname"><em>screen_size</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">sf::FloatRect&#160;</td>
+          <td class="paramname"><em>bounds</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Overloaded constructor for the Camera which takes a sf::Vector2f for the screen_size and a sf::FloatRect for the bounds of the camera. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">sf::Vector2f</td><td>The width and height of the screen. </td></tr>
+    <tr><td class="paramname">sf::FloatRect</td><td>The width and height of the camera bounds. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="a9ffdb42ec68642c48457288b7a92def0"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">vCamera::vCamera </td>
+          <td>(</td>
+          <td class="paramtype">sf::Vector2f&#160;</td>
+          <td class="paramname"><em>screen_size</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">sf::FloatRect&#160;</td>
+          <td class="paramname"><em>bounds</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">pair&lt; bool, bool &gt;&#160;</td>
+          <td class="paramname"><em>locked_axis</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Overloaded constructor for the Camera which takes a sf::Vector2f for the screen_size , a sf::FloatRect for the bounds of the camera and a pair of bools if the camera is ever needed to be constructed with specific locking. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">sf::Vector2f</td><td>The width and height of the screen. </td></tr>
+    <tr><td class="paramname">sf::FloatRect</td><td>The width and height of the camera bounds. </td></tr>
+    <tr><td class="paramname">pair&lt;bool,bool&gt;</td><td>Whether the x and y axis are locked. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a class="anchor" id="afe75f8d396a4961bfbec02b4fcf9687c"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">sf::FloatRect vCamera::checkBounds </td>
+          <td>(</td>
+          <td class="paramtype">sf::Vector2f&#160;</td>
+          <td class="paramname"><em>player_center</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Checks if the camera view has stepped outside the bounds of the camera. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">sf::Vector2f</td><td>The center of the screen. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The new viewport after the bounds have been taken into consideration. </dd></dl>
+
+<p><div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classv_camera_afe75f8d396a4961bfbec02b4fcf9687c_cgraph.png" border="0" usemap="#classv_camera_afe75f8d396a4961bfbec02b4fcf9687c_cgraph" alt=""/></div>
+<map name="classv_camera_afe75f8d396a4961bfbec02b4fcf9687c_cgraph" id="classv_camera_afe75f8d396a4961bfbec02b4fcf9687c_cgraph">
+<area shape="rect" id="node2" href="classv_camera.html#a05c1563acb39f160db5970a20e93f7e7" title="Creates a sf::FloatRect of the current viewport of the camera. " alt="" coords="212,5,387,32"/>
+</map>
+</div>
+</p>
+
+<p><div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classv_camera_afe75f8d396a4961bfbec02b4fcf9687c_icgraph.png" border="0" usemap="#classv_camera_afe75f8d396a4961bfbec02b4fcf9687c_icgraph" alt=""/></div>
+<map name="classv_camera_afe75f8d396a4961bfbec02b4fcf9687c_icgraph" id="classv_camera_afe75f8d396a4961bfbec02b4fcf9687c_icgraph">
+<area shape="rect" id="node2" href="classv_camera.html#a4b45ad5e539cc744c4afe1a780695e87" title="Finds the player offset taking an allowence and the paralax effect into account. " alt="" coords="212,5,381,32"/>
+<area shape="rect" id="node3" href="class_level_scene.html#a7f624c9fb01a52dad4a6d441203aac8c" title="Updates the player and spawner and calculates the Fixed Time Step(FTS). Also updates the camera to ke..." alt="" coords="847,5,981,32"/>
+<area shape="rect" id="node4" href="classv_camera.html#ab0af95ab7e5dc541f63bf81a81dcd2e6" title="Resets all the variables of the camera and points it at the sf::Vector2f passed in. " alt="" coords="429,56,548,83"/>
+<area shape="rect" id="node5" href="class_level_scene.html#aab23b4f39173835669a0c603952b4842" title="Initalises the Level and calls the appropratie load functions to intialise the level from the string ..." alt="" coords="839,107,989,133"/>
+<area shape="rect" id="node9" href="class_level_scene.html#ac747d494f40ad993c3da23d4dcab62b7" title="Resets the player and respawns them at the closes checkpoint. " alt="" coords="596,56,777,83"/>
+<area shape="rect" id="node11" href="class_level_scene.html#a9ee140e399671353f88f8ebe35aa0c27" title="Refreshes the camera, restarts the game music and repositiions the player. " alt="" coords="851,157,977,184"/>
+<area shape="rect" id="node6" href="class_game.html#ad9382758bb4b0c156fa1973eea33cbb8" title="Change States and initalise them appropratly. " alt="" coords="1053,107,1210,133"/>
+<area shape="rect" id="node7" href="class_game.html#a9137882533a1d2e234c03d73fae68af6" title="Checks the active scene for completion and if so class goToNextScene. " alt="" coords="1260,132,1441,159"/>
+<area shape="rect" id="node8" href="class_game.html#a1ab78f5ed0d5ea879157357cf2fb2afa" title="This is the main game loop that the game runs and calls all the methods for running the game..." alt="" coords="1489,132,1572,159"/>
+<area shape="rect" id="node10" href="class_level_scene.html#a8a3ba27a5b9d2bfba500c6ea14e4f82e" title="Gets the ID associated with the current level. " alt="" coords="825,56,1003,83"/>
+<area shape="rect" id="node12" href="class_level_scene.html#a599f06e317b66dd0fb260046ea8c2da3" title="Call to check if the level has finished. " alt="" coords="1051,157,1212,184"/>
+</map>
+</div>
+</p>
+
+</div>
+</div>
+<a class="anchor" id="a4b45ad5e539cc744c4afe1a780695e87"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">sf::Vector2f vCamera::getPlayerOffset </td>
+          <td>(</td>
+          <td class="paramtype">sf::Vector2f&#160;</td>
+          <td class="paramname"><em>player_center</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Finds the player offset taking an allowence and the paralax effect into account. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">sf::Vector2f</td><td>The players Center point </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>sf::Vector2f The new center of the player. </dd></dl>
+
+<p><div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classv_camera_a4b45ad5e539cc744c4afe1a780695e87_cgraph.png" border="0" usemap="#classv_camera_a4b45ad5e539cc744c4afe1a780695e87_cgraph" alt=""/></div>
+<map name="classv_camera_a4b45ad5e539cc744c4afe1a780695e87_cgraph" id="classv_camera_a4b45ad5e539cc744c4afe1a780695e87_cgraph">
+<area shape="rect" id="node2" href="classv_camera.html#afe75f8d396a4961bfbec02b4fcf9687c" title="Checks if the camera view has stepped outside the bounds of the camera. " alt="" coords="223,5,381,32"/>
+<area shape="rect" id="node3" href="classv_camera.html#a05c1563acb39f160db5970a20e93f7e7" title="Creates a sf::FloatRect of the current viewport of the camera. " alt="" coords="429,5,604,32"/>
+</map>
+</div>
+</p>
+
+<p><div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classv_camera_a4b45ad5e539cc744c4afe1a780695e87_icgraph.png" border="0" usemap="#classv_camera_a4b45ad5e539cc744c4afe1a780695e87_icgraph" alt=""/></div>
+<map name="classv_camera_a4b45ad5e539cc744c4afe1a780695e87_icgraph" id="classv_camera_a4b45ad5e539cc744c4afe1a780695e87_icgraph">
+<area shape="rect" id="node2" href="class_level_scene.html#a7f624c9fb01a52dad4a6d441203aac8c" title="Updates the player and spawner and calculates the Fixed Time Step(FTS). Also updates the camera to ke..." alt="" coords="640,5,775,32"/>
+<area shape="rect" id="node3" href="classv_camera.html#ab0af95ab7e5dc541f63bf81a81dcd2e6" title="Resets all the variables of the camera and points it at the sf::Vector2f passed in. " alt="" coords="223,56,341,83"/>
+<area shape="rect" id="node4" href="class_level_scene.html#aab23b4f39173835669a0c603952b4842" title="Initalises the Level and calls the appropratie load functions to intialise the level from the string ..." alt="" coords="633,107,782,133"/>
+<area shape="rect" id="node8" href="class_level_scene.html#ac747d494f40ad993c3da23d4dcab62b7" title="Resets the player and respawns them at the closes checkpoint. " alt="" coords="389,56,571,83"/>
+<area shape="rect" id="node10" href="class_level_scene.html#a9ee140e399671353f88f8ebe35aa0c27" title="Refreshes the camera, restarts the game music and repositiions the player. " alt="" coords="645,157,770,184"/>
+<area shape="rect" id="node5" href="class_game.html#ad9382758bb4b0c156fa1973eea33cbb8" title="Change States and initalise them appropratly. " alt="" coords="846,107,1003,133"/>
+<area shape="rect" id="node6" href="class_game.html#a9137882533a1d2e234c03d73fae68af6" title="Checks the active scene for completion and if so class goToNextScene. " alt="" coords="1053,132,1235,159"/>
+<area shape="rect" id="node7" href="class_game.html#a1ab78f5ed0d5ea879157357cf2fb2afa" title="This is the main game loop that the game runs and calls all the methods for running the game..." alt="" coords="1283,132,1365,159"/>
+<area shape="rect" id="node9" href="class_level_scene.html#a8a3ba27a5b9d2bfba500c6ea14e4f82e" title="Gets the ID associated with the current level. " alt="" coords="619,56,796,83"/>
+<area shape="rect" id="node11" href="class_level_scene.html#a599f06e317b66dd0fb260046ea8c2da3" title="Call to check if the level has finished. " alt="" coords="844,157,1005,184"/>
+</map>
+</div>
+</p>
+
+</div>
+</div>
+<a class="anchor" id="a05c1563acb39f160db5970a20e93f7e7"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">sf::FloatRect vCamera::getRectViewport </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Creates a sf::FloatRect of the current viewport of the camera. </p>
+<dl class="section return"><dt>Returns</dt><dd>The viewport of the camera. </dd></dl>
+
+<p><div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classv_camera_a05c1563acb39f160db5970a20e93f7e7_icgraph.png" border="0" usemap="#classv_camera_a05c1563acb39f160db5970a20e93f7e7_icgraph" alt=""/></div>
+<map name="classv_camera_a05c1563acb39f160db5970a20e93f7e7_icgraph" id="classv_camera_a05c1563acb39f160db5970a20e93f7e7_icgraph">
+<area shape="rect" id="node2" href="classv_camera.html#afe75f8d396a4961bfbec02b4fcf9687c" title="Checks if the camera view has stepped outside the bounds of the camera. " alt="" coords="228,5,387,32"/>
+<area shape="rect" id="node3" href="classv_camera.html#a4b45ad5e539cc744c4afe1a780695e87" title="Finds the player offset taking an allowence and the paralax effect into account. " alt="" coords="435,5,604,32"/>
+<area shape="rect" id="node4" href="class_level_scene.html#a7f624c9fb01a52dad4a6d441203aac8c" title="Updates the player and spawner and calculates the Fixed Time Step(FTS). Also updates the camera to ke..." alt="" coords="1069,5,1204,32"/>
+<area shape="rect" id="node5" href="classv_camera.html#ab0af95ab7e5dc541f63bf81a81dcd2e6" title="Resets all the variables of the camera and points it at the sf::Vector2f passed in. " alt="" coords="652,56,771,83"/>
+<area shape="rect" id="node6" href="class_level_scene.html#aab23b4f39173835669a0c603952b4842" title="Initalises the Level and calls the appropratie load functions to intialise the level from the string ..." alt="" coords="1062,107,1211,133"/>
+<area shape="rect" id="node10" href="class_level_scene.html#ac747d494f40ad993c3da23d4dcab62b7" title="Resets the player and respawns them at the closes checkpoint. " alt="" coords="819,56,1000,83"/>
+<area shape="rect" id="node12" href="class_level_scene.html#a9ee140e399671353f88f8ebe35aa0c27" title="Refreshes the camera, restarts the game music and repositiions the player. " alt="" coords="1074,157,1199,184"/>
+<area shape="rect" id="node7" href="class_game.html#ad9382758bb4b0c156fa1973eea33cbb8" title="Change States and initalise them appropratly. " alt="" coords="1275,107,1433,133"/>
+<area shape="rect" id="node8" href="class_game.html#a9137882533a1d2e234c03d73fae68af6" title="Checks the active scene for completion and if so class goToNextScene. " alt="" coords="1483,132,1664,159"/>
+<area shape="rect" id="node9" href="class_game.html#a1ab78f5ed0d5ea879157357cf2fb2afa" title="This is the main game loop that the game runs and calls all the methods for running the game..." alt="" coords="1712,132,1795,159"/>
+<area shape="rect" id="node11" href="class_level_scene.html#a8a3ba27a5b9d2bfba500c6ea14e4f82e" title="Gets the ID associated with the current level. " alt="" coords="1048,56,1225,83"/>
+<area shape="rect" id="node13" href="class_level_scene.html#a599f06e317b66dd0fb260046ea8c2da3" title="Call to check if the level has finished. " alt="" coords="1273,157,1435,184"/>
+</map>
+</div>
+</p>
+
+</div>
+</div>
+<a class="anchor" id="a9cda96fb088c948fe662af5274116751"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool vCamera::outOfBounds </td>
+          <td>(</td>
+          <td class="paramtype">sf::FloatRect &amp;&#160;</td>
+          <td class="paramname"><em>rec</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Checks if the rectangle passed in is continaed within the bounds of the camera. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">sf::FloatRect</td><td>The Shape to check </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>bool for whether or not the shape is inside the bounds. </dd></dl>
+
+<p><div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classv_camera_a9cda96fb088c948fe662af5274116751_icgraph.png" border="0" usemap="#classv_camera_a9cda96fb088c948fe662af5274116751_icgraph" alt=""/></div>
+<map name="classv_camera_a9cda96fb088c948fe662af5274116751_icgraph" id="classv_camera_a9cda96fb088c948fe662af5274116751_icgraph">
+<area shape="rect" id="node2" href="class_level_scene.html#a7f624c9fb01a52dad4a6d441203aac8c" title="Updates the player and spawner and calculates the Fixed Time Step(FTS). Also updates the camera to ke..." alt="" coords="213,5,348,32"/>
+<area shape="rect" id="node3" href="classv_camera.html#a22afb0a931e009eb6c956381193beea0" title="Adds a boundary to the camera. " alt="" coords="208,56,353,83"/>
+</map>
+</div>
+</p>
+
+</div>
+</div>
+<a class="anchor" id="ab0af95ab7e5dc541f63bf81a81dcd2e6"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void vCamera::refresh </td>
+          <td>(</td>
+          <td class="paramtype">sf::Vector2f&#160;</td>
+          <td class="paramname"><em>player_center</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Resets all the variables of the camera and points it at the sf::Vector2f passed in. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">sf::Vector2f</td><td>The center to fix the camera to. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p><div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classv_camera_ab0af95ab7e5dc541f63bf81a81dcd2e6_cgraph.png" border="0" usemap="#classv_camera_ab0af95ab7e5dc541f63bf81a81dcd2e6_cgraph" alt=""/></div>
+<map name="classv_camera_ab0af95ab7e5dc541f63bf81a81dcd2e6_cgraph" id="classv_camera_ab0af95ab7e5dc541f63bf81a81dcd2e6_cgraph">
+<area shape="rect" id="node2" href="classv_camera.html#a4b45ad5e539cc744c4afe1a780695e87" title="Finds the player offset taking an allowence and the paralax effect into account. " alt="" coords="172,5,341,32"/>
+<area shape="rect" id="node3" href="classv_camera.html#afe75f8d396a4961bfbec02b4fcf9687c" title="Checks if the camera view has stepped outside the bounds of the camera. " alt="" coords="389,5,548,32"/>
+<area shape="rect" id="node4" href="classv_camera.html#a05c1563acb39f160db5970a20e93f7e7" title="Creates a sf::FloatRect of the current viewport of the camera. " alt="" coords="596,5,771,32"/>
+</map>
+</div>
+</p>
+
+<p><div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classv_camera_ab0af95ab7e5dc541f63bf81a81dcd2e6_icgraph.png" border="0" usemap="#classv_camera_ab0af95ab7e5dc541f63bf81a81dcd2e6_icgraph" alt=""/></div>
+<map name="classv_camera_ab0af95ab7e5dc541f63bf81a81dcd2e6_icgraph" id="classv_camera_ab0af95ab7e5dc541f63bf81a81dcd2e6_icgraph">
+<area shape="rect" id="node2" href="class_level_scene.html#a7f624c9fb01a52dad4a6d441203aac8c" title="Updates the player and spawner and calculates the Fixed Time Step(FTS). Also updates the camera to ke..." alt="" coords="423,5,557,32"/>
+<area shape="rect" id="node3" href="class_level_scene.html#aab23b4f39173835669a0c603952b4842" title="Initalises the Level and calls the appropratie load functions to intialise the level from the string ..." alt="" coords="415,107,565,133"/>
+<area shape="rect" id="node7" href="class_level_scene.html#ac747d494f40ad993c3da23d4dcab62b7" title="Resets the player and respawns them at the closes checkpoint. " alt="" coords="172,56,353,83"/>
+<area shape="rect" id="node9" href="class_level_scene.html#a9ee140e399671353f88f8ebe35aa0c27" title="Refreshes the camera, restarts the game music and repositiions the player. " alt="" coords="427,157,553,184"/>
+<area shape="rect" id="node4" href="class_game.html#ad9382758bb4b0c156fa1973eea33cbb8" title="Change States and initalise them appropratly. " alt="" coords="629,107,786,133"/>
+<area shape="rect" id="node5" href="class_game.html#a9137882533a1d2e234c03d73fae68af6" title="Checks the active scene for completion and if so class goToNextScene. " alt="" coords="836,132,1017,159"/>
+<area shape="rect" id="node6" href="class_game.html#a1ab78f5ed0d5ea879157357cf2fb2afa" title="This is the main game loop that the game runs and calls all the methods for running the game..." alt="" coords="1065,132,1148,159"/>
+<area shape="rect" id="node8" href="class_level_scene.html#a8a3ba27a5b9d2bfba500c6ea14e4f82e" title="Gets the ID associated with the current level. " alt="" coords="401,56,579,83"/>
+<area shape="rect" id="node10" href="class_level_scene.html#a599f06e317b66dd0fb260046ea8c2da3" title="Call to check if the level has finished. " alt="" coords="627,157,788,184"/>
+</map>
+</div>
+</p>
+
+</div>
+</div>
+<a class="anchor" id="aefc8bc9a4ef56caa717fc284e29b1efc"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void vCamera::setBounds </td>
+          <td>(</td>
+          <td class="paramtype">sf::FloatRect&#160;</td>
+          <td class="paramname"><em>bounds</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Set the bounds of the camera after construction. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">sf::FloatRect</td><td>The new bounds of the camera </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p><div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classv_camera_aefc8bc9a4ef56caa717fc284e29b1efc_icgraph.png" border="0" usemap="#classv_camera_aefc8bc9a4ef56caa717fc284e29b1efc_icgraph" alt=""/></div>
+<map name="classv_camera_aefc8bc9a4ef56caa717fc284e29b1efc_icgraph" id="classv_camera_aefc8bc9a4ef56caa717fc284e29b1efc_icgraph">
+<area shape="rect" id="node2" href="class_level_scene.html#aab23b4f39173835669a0c603952b4842" title="Initalises the Level and calls the appropratie load functions to intialise the level from the string ..." alt="" coords="196,5,345,32"/>
+<area shape="rect" id="node3" href="class_game.html#ad9382758bb4b0c156fa1973eea33cbb8" title="Change States and initalise them appropratly. " alt="" coords="393,5,551,32"/>
+<area shape="rect" id="node4" href="class_game.html#a9137882533a1d2e234c03d73fae68af6" title="Checks the active scene for completion and if so class goToNextScene. " alt="" coords="599,5,780,32"/>
+<area shape="rect" id="node5" href="class_game.html#a1ab78f5ed0d5ea879157357cf2fb2afa" title="This is the main game loop that the game runs and calls all the methods for running the game..." alt="" coords="828,5,911,32"/>
+</map>
+</div>
+</p>
+
+</div>
 </div>
 <hr/>The documentation for this class was generated from the following files:<ul>
 <li>FYP_FallenHero/<a class="el" href="v_camera_8hpp_source.html">vCamera.hpp</a></li>

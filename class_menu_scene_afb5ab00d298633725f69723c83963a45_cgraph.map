@@ -1,0 +1,11 @@
+<map id="MenuScene::handleInput" name="MenuScene::handleInput">
+<area shape="rect" id="node2" href="$class_menu_scene.html#a5ed3f355df6299c8cda9247d86069632" title="Move the menu indicator up one, play the appropreate sounds effect and change change the animation st..." alt="" coords="227,5,372,32"/>
+<area shape="rect" id="node3" href="$class_menu_scene.html#a6f67ac6aedbb3af33e9934dc739afd96" title="Move the menu indicator down one, play the appropreate sounds effect and change change the animation ..." alt="" coords="219,56,380,83"/>
+<area shape="rect" id="node4" href="$class_menu_scene.html#a7c472d0e317df10174e1d31a404a4313" title="This selects the currently hightlighted menu indicator. " alt="" coords="232,107,367,133"/>
+<area shape="rect" id="node9" href="$class_menu_scene.html#aaaaf519ec3a80c876c91b1a3f777d293" title="This cchanged the menu scene to the previous scene for backing through menus. " alt="" coords="236,157,363,184"/>
+<area shape="rect" id="node10" href="$class_x_b_o_x_controller.html#ae5a4157aedb10a91f95940c78dac5fbe" title="Simple check to see whether or not the controller is idle this compairs the isPressed_cleared against..." alt="" coords="225,208,373,235"/>
+<area shape="rect" id="node5" href="$classc_log.html#a6f776cb395514ae99f44011017da6562" title="This fetches the instance of the Logger. " alt="" coords="475,56,553,83"/>
+<area shape="rect" id="node6" href="$classc_log.html#a8e588a9775eaa288adb969c4e5bcefe0" title="Print message using the cLoggers cout function. " alt="" coords="473,107,555,133"/>
+<area shape="rect" id="node7" href="$class_menu_scene.html#a26ba40cddeb933df757acd9d9bdc1030" title="This changes the state of the Menu scene for intitalising events and what not. " alt="" coords="428,157,600,184"/>
+<area shape="rect" id="node8" href="$class_menu_scene.html#a1249c574034f8cbc4f0a86a419e843aa" title="This creates the appropreate save data in raw code to save into the .xml file. " alt="" coords="648,157,851,184"/>
+</map>

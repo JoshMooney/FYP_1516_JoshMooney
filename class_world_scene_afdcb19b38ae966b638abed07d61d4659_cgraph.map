@@ -1,0 +1,3 @@
+<map id="WorldScene::render" name="WorldScene::render">
+<area shape="rect" id="node2" href="$class_world_map.html#aff7ed2a5ad580d9cc833f9328f25f137" title="Render the WorldMap which includes all the nodes and the arcs connecting those nodes. " alt="" coords="191,5,316,32"/>
+</map>

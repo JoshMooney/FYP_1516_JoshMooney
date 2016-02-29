@@ -1,22 +1,14 @@
 var searchData=
 [
-  ['save',['save',['../class_x_m_l_loader.html#aa0bb64a3dfa2c8e65ecad2df57311381',1,'XMLLoader']]],
-  ['saveslot',['SaveSlot',['../struct_save_slot.html#ad3bfbaf7369f235c1c8127fc3aaf2f19',1,'SaveSlot::SaveSlot(int id)'],['../struct_save_slot.html#a831d59639d64ad78516c021b520e22e4',1,'SaveSlot::SaveSlot(int id, int time, int gold, map&lt; string, bool &gt; data, int num_lvls_unlocked)']]],
-  ['scenery',['Scenery',['../class_scenery.html#a430e7d158b02733b779122a4d65cd2fd',1,'Scenery']]],
-  ['select',['select',['../class_world_scene.html#a93e63f5226b909c5b7aa069ab18a9979',1,'WorldScene']]],
-  ['setactive',['setActive',['../class_enemy.html#aff6991f819e59562f3969d4951928c90',1,'Enemy']]],
-  ['setbackgroundposition',['setBackgroundPosition',['../class_simple_g_u_i.html#a36d95b42f733893410cf1e4aa0ce1f9c',1,'SimpleGUI']]],
-  ['setcenter',['setCenter',['../class_player_icon.html#a22fde2f4faaa8ddd1d672626287e7d91',1,'PlayerIcon']]],
-  ['setcollidingsword',['setCollidingSword',['../class_enemy.html#ad3e89c53dfcb25e51c0fd70d1605fe4b',1,'Enemy']]],
-  ['setdirection',['setDirection',['../class_player.html#ab92500fc590fa0a523479b46f23a702e',1,'Player']]],
-  ['setifmoving',['setIfMoving',['../class_player.html#ac1f3ce820337430ef7fc9bf5acd5db08',1,'Player']]],
-  ['setjumping',['setJumping',['../class_player.html#a3d1b2def6b0b9e88ebde048aae4b3211',1,'Player']]],
-  ['setplayer',['setPlayer',['../class_level_scene.html#abe1cf831543139b8350811b2e220c723',1,'LevelScene']]],
-  ['settag',['setTag',['../class_player_icon.html#a688e789e546f2c1c3d1b6c18d60f75e7',1,'PlayerIcon']]],
-  ['settext',['setText',['../class_simple_g_u_i.html#ae8fb875ae0eb8d0ac8982b70b1b9ac77',1,'SimpleGUI']]],
-  ['settextoffet',['setTextOffet',['../class_simple_g_u_i.html#a122ed24443c46f1358d52f3e4a7ab355',1,'SimpleGUI']]],
-  ['simplegui',['SimpleGUI',['../class_simple_g_u_i.html#af6fb61d1672abc543b5256e338b0c6d0',1,'SimpleGUI::SimpleGUI(string texture, string font, string text)'],['../class_simple_g_u_i.html#aa91f27d62c02b4448ea110d1ba1caca0',1,'SimpleGUI::SimpleGUI(string texture, sf::Vector2f bg_pos, string font, string text, sf::Vector2f t_offset)'],['../class_simple_g_u_i.html#aed781fc9b6bd8c7e35bb03c2603ccbd4',1,'SimpleGUI::SimpleGUI(string texture, sf::Vector2f bg_pos, string font, string text, sf::Vector2f t_offset, string title_texture)']]],
-  ['sortbg',['sortBG',['../class_scenery.html#ae3c1ca3c3e8b7066a6dc87bf10719ff4',1,'Scenery']]],
-  ['sortfg',['sortFG',['../class_scenery.html#aefbbabd55ded3dabe93e136ec2792ca2',1,'Scenery']]],
-  ['spawn',['Spawn',['../class_player.html#af99c17372865d29c79ea1a17c5d8a935',1,'Player']]]
+  ['reachededge',['ReachedEdge',['../class_skeleton.html#acb477101295504fa27e6ee6920b57852',1,'Skeleton']]],
+  ['reachplayer',['ReachPlayer',['../class_skeleton.html#a6db5460d0f2e07b5bb0395b6279c89cc',1,'Skeleton']]],
+  ['reachwall',['ReachWall',['../class_skeleton.html#a6d83a409914e8ab9821ed022f597b350',1,'Skeleton']]],
+  ['refresh',['refresh',['../class_h_u_d.html#ad4992410c7e309b94ec5430bbe54323b',1,'HUD::refresh()'],['../classv_camera.html#ab0af95ab7e5dc541f63bf81a81dcd2e6',1,'vCamera::refresh()']]],
+  ['render',['render',['../class_crumble_block.html#a2c65172ebbdec52e3964f61b20c53de9',1,'CrumbleBlock::render()'],['../class_enemy.html#aa158957c195a1ac88cc16231922f3d67',1,'Enemy::render()'],['../class_game.html#a15ddd769261d923827a3cdf41499c843',1,'Game::render()'],['../class_h_u_d.html#aba8a84f29f268062dac11eba1cb30718',1,'HUD::render()'],['../class_level.html#af2a3a23859c390aefdac793b0b52597a',1,'Level::render()'],['../class_level_scene.html#ace730bc6ccd5d585b1f96dfe85039cb4',1,'LevelScene::render()'],['../class_menu_scene.html#a0b4307921a1398e571ec8f26eefd70ff',1,'MenuScene::render()'],['../struct_scene.html#a6d1270074b9eca3f44d3e01c17ab3a40',1,'Scene::render()'],['../class_simple_g_u_i.html#a380ffc85313795968f248b8202a00eb3',1,'SimpleGUI::render()'],['../class_skeleton.html#a58906e9ae41c4eee248bf529111846ef',1,'Skeleton::render()'],['../class_spawner.html#a1423123cdc4081f1f2c8bb6e22a269e4',1,'Spawner::render()'],['../class_weed.html#a6ca3deb696438ad2d95380535eacc94b',1,'Weed::render()'],['../class_world_map.html#aff7ed2a5ad580d9cc833f9328f25f137',1,'WorldMap::render()'],['../class_world_scene.html#afdcb19b38ae966b638abed07d61d4659',1,'WorldScene::render()']]],
+  ['renderbg',['renderBG',['../class_scenery.html#acc814b138288f85c9e11720fe3e633d1',1,'Scenery']]],
+  ['renderfg',['renderFG',['../class_scenery.html#abed8744175832d0d45e69f6b7f994c86',1,'Scenery']]],
+  ['reset',['reset',['../class_level_scene.html#a9ee140e399671353f88f8ebe35aa0c27',1,'LevelScene::reset()'],['../class_player.html#ab34d543e0ce8136ffd34777576d7c720',1,'Player::reset()'],['../class_world_scene.html#a8a1258250759b79622f34e73da2ad7d8',1,'WorldScene::reset()']]],
+  ['respawnplayer',['respawnPlayer',['../class_level_scene.html#ac747d494f40ad993c3da23d4dcab62b7',1,'LevelScene']]],
+  ['rumble',['Rumble',['../class_x_b_o_x_controller.html#a87d44c7173766f787d9dff29f6118452',1,'XBOXController']]],
+  ['run',['run',['../class_game.html#a1ab78f5ed0d5ea879157357cf2fb2afa',1,'Game']]]
 ];

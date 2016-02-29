@@ -1,0 +1,10 @@
+<map id="WorldMap::PlotArc" name="WorldMap::PlotArc">
+<area shape="rect" id="node2" href="$class_world_map.html#a777b1f38905036b07f434b7f8796edc6" title="Calls the Plot arcs on the Nodes to connect each of them up to one another. " alt="" coords="185,31,323,57"/>
+<area shape="rect" id="node3" href="$class_world_map.html#a73e1b3ad73523fb395d27dc7029ebf08" title="This Function generates the hard coded map of nodes for the world map. " alt="" coords="371,31,521,57"/>
+<area shape="rect" id="node4" href="$class_world_map.html#ae71d5f5e9e523a3e94a82122bec74a9d" title="Overloaded Contructor allowing for the origin of the plotted map to to be set. " alt="" coords="583,5,731,32"/>
+<area shape="rect" id="node5" href="$class_world_scene.html#af7a21c6bc886430402024ab537485f34" title="The method takes a SaveSlot and creates a map depending on the information in the save..." alt="" coords="569,56,745,83"/>
+<area shape="rect" id="node6" href="$class_game.html#ad9382758bb4b0c156fa1973eea33cbb8" title="Change States and initalise them appropratly. " alt="" coords="1032,56,1189,83"/>
+<area shape="rect" id="node9" href="$class_world_scene.html#abf9bc046024c7c2225ecba9bbb22e7ee" title="Get the ID of the level the player is standing on. " alt="" coords="793,81,984,108"/>
+<area shape="rect" id="node7" href="$class_game.html#a9137882533a1d2e234c03d73fae68af6" title="Checks the active scene for completion and if so class goToNextScene. " alt="" coords="1237,56,1419,83"/>
+<area shape="rect" id="node8" href="$class_game.html#a1ab78f5ed0d5ea879157357cf2fb2afa" title="This is the main game loop that the game runs and calls all the methods for running the game..." alt="" coords="1467,56,1549,83"/>
+</map>

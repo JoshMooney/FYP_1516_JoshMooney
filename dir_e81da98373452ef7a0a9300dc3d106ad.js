@@ -38,7 +38,5 @@ var dir_e81da98373452ef7a0a9300dc3d106ad =
     [ "WorldNode.hpp", "_world_node_8hpp_source.html", null ],
     [ "WorldScene.hpp", "_world_scene_8hpp_source.html", null ],
     [ "XBOXController.hpp", "_x_b_o_x_controller_8hpp_source.html", null ],
-    [ "XMLLoader.hpp", "_x_m_l_loader_8hpp_source.html", null ],
-    [ "zconf.h", "zconf_8h_source.html", null ],
-    [ "zlib.h", "zlib_8h_source.html", null ]
+    [ "XMLLoader.hpp", "_x_m_l_loader_8hpp_source.html", null ]
 ];

@@ -1,0 +1,9 @@
+<map id="WorldMap::WorldMap" name="WorldMap::WorldMap">
+<area shape="rect" id="node2" href="$class_world_map.html#a9e15a7b259b360a8cad685496ef1b046" title="Loads the required assets for the Arcs needed for between nodes. " alt="" coords="219,5,367,32"/>
+<area shape="rect" id="node4" href="$class_world_map.html#a73e1b3ad73523fb395d27dc7029ebf08" title="This Function generates the hard coded map of nodes for the world map. " alt="" coords="217,56,368,83"/>
+<area shape="rect" id="node8" href="$class_world_map.html#ae2c630f993b5c0a0672ca0c770c36d5e" title="Creates the m_bound Float Rect here for the bounds of the map. " alt="" coords="201,107,384,133"/>
+<area shape="rect" id="node3" href="$class_resource_manager.html#a3dcdce6201a938ee51be3d23879e46e1" title="Fetches the current instance of the Manager is required to achieve the singleton pattern. " alt="" coords="432,5,616,32"/>
+<area shape="rect" id="node5" href="$class_world_map.html#a777b1f38905036b07f434b7f8796edc6" title="Calls the Plot arcs on the Nodes to connect each of them up to one another. " alt="" coords="455,56,593,83"/>
+<area shape="rect" id="node6" href="$class_world_map.html#a91ef189bafa24a32ac331fc702c5f015" title="This method checks the center of each node and determines which side of l2 is in regards to l1 then a..." alt="" coords="664,56,796,83"/>
+<area shape="rect" id="node7" href="$class_world_map.html#ae07476c5ede73d4e0e7efe5709c76401" title="Calculates the center of the map taking each of the nodes and arcs into account. " alt="" coords="844,56,989,83"/>
+</map>

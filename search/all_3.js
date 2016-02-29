@@ -1,6 +1,8 @@
 var searchData=
 [
   ['dead',['DEAD',['../class_crumble_block.html#ad56109756a37ee84c1ae5ede20fe6738aeeb28c507cce52389c924209725a54c9',1,'CrumbleBlock']]],
+  ['death',['DEATH',['../class_skeleton.html#aebe199234436d5e5d7930afe38ba41e1a5b27c939402dd9be4e48109be7c75c7c',1,'Skeleton']]],
+  ['despawnobject',['DespawnObject',['../class_spawner.html#a0c3fd631637a25820b3771bb65387bd9',1,'Spawner']]],
   ['destroy',['Destroy',['../class_level.html#a24d81d9f4fab68ce1a63dc07910e8eac',1,'Level']]],
   ['die',['Die',['../class_crumble_block.html#a699c236260e5bac09b3a13030adbd37a',1,'CrumbleBlock::Die()'],['../class_enemy.html#ad74144872a2d7f3e361f286db9ce47f6',1,'Enemy::Die()'],['../class_skeleton.html#af7691d8faab04f35c72712c084ad0b27',1,'Skeleton::Die()'],['../class_weed.html#aa1f700d204e9f25dc7d57a90fcc34ddd',1,'Weed::Die()']]],
   ['dirt',['DIRT',['../class_crumble_block.html#ac4f508d4903d3b8b6cb0ae5d6cc572abae1bc9760a3fb08caa14a0fe5076d3fe6',1,'CrumbleBlock']]],

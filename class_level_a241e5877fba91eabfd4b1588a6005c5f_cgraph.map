@@ -1,0 +1,11 @@
+<map id="Level::GenerateEnemies" name="Level::GenerateEnemies">
+<area shape="rect" id="node2" href="$class_spawner.html#afe9d8d8c89a3bbd3d771d18bed58c524" title="Calls the generate body function and pushes the new body onto the entity list. " alt="" coords="216,81,387,108"/>
+<area shape="rect" id="node3" href="$class_spawner.html#a3728d33ef0517064d42a8f6aaecb513e" title="Takes a type of unit to spawn and creates the appropreate body for that class and returns it..." alt="" coords="435,81,597,108"/>
+<area shape="rect" id="node4" href="$class_skeleton.html#adec55a386507818f90b7424aff95d8f1" title="Gets the width and height of the texture in a sf::Vector2u. " alt="" coords="645,81,813,108"/>
+<area shape="rect" id="node5" href="$class_skeleton.html#ac9f426767ffa60975218cc915e31b114" title="Sets the terrrain toucher to the terrain passed in. " alt="" coords="871,5,1014,32"/>
+<area shape="rect" id="node6" href="$class_skeleton.html#acb477101295504fa27e6ee6920b57852" title="Tell the unit it has reached the edge. " alt="" coords="861,56,1024,83"/>
+<area shape="rect" id="node8" href="$class_skeleton.html#a6db5460d0f2e07b5bb0395b6279c89cc" title="Tell the unit it has reached the player. " alt="" coords="865,157,1020,184"/>
+<area shape="rect" id="node10" href="$class_skeleton.html#a6d83a409914e8ab9821ed022f597b350" title="Tell the unit it has reached the player. " alt="" coords="871,107,1015,133"/>
+<area shape="rect" id="node7" href="$class_skeleton.html#aba5d37609d32fe3d3e7044514639297c" title="Change the direction of the enemy and flip the sprite so the texture is reversed. ..." alt="" coords="1072,81,1248,108"/>
+<area shape="rect" id="node9" href="$class_skeleton.html#a90927f96174510cebe29d6bb39f4387c" title="Attack and play the attack animaiton. " alt="" coords="1101,157,1219,184"/>
+</map>

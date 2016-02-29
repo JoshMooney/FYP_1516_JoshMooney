@@ -31,7 +31,7 @@
 <table cellspacing="0" cellpadding="0">
  <tbody>
  <tr style="height: 56px;">
-  <td id="projectlogo"><img alt="Logo" src="Logo.png"/></td>
+  <td id="projectlogo"><img alt="Logo" src="Logo_original.png"/></td>
  </tr>
  </tbody>
 </table>
@@ -84,8 +84,10 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   </div>
   <div id="navrow4" class="tabs3">
     <ul class="tablist">
+      <li><a href="#index_a"><span>a</span></a></li>
       <li><a href="#index_b"><span>b</span></a></li>
       <li><a href="#index_e"><span>e</span></a></li>
+      <li><a href="#index_g"><span>g</span></a></li>
       <li><a href="#index_i"><span>i</span></a></li>
       <li><a href="#index_m"><span>m</span></a></li>
       <li><a href="#index_s"><span>s</span></a></li>
@@ -124,7 +126,17 @@ $(document).ready(function(){initNavTree('functions_vars.html','');});
 <div class="contents">
 &#160;
 
+<h3><a class="anchor" id="index_a"></a>- a -</h3><ul>
+<li>ai
+: <a class="el" href="class_skeleton.html#ab52b1c435128bfc5416e5506d0e2126c">Skeleton</a>
+</li>
+</ul>
+
+
 <h3><a class="anchor" id="index_b"></a>- b -</h3><ul>
+<li>body
+: <a class="el" href="struct_terrain.html#a3816bf10dea2a4e325f028ebafac0a22">Terrain</a>
+</li>
 <li>buttonA_
 : <a class="el" href="class_level_scene.html#a74f231604896fddd411805e223e8cedf">LevelScene</a>
 </li>
@@ -172,6 +184,13 @@ $(document).ready(function(){initNavTree('functions_vars.html','');});
 </ul>
 
 
+<h3><a class="anchor" id="index_g"></a>- g -</h3><ul>
+<li>geometry
+: <a class="el" href="struct_terrain.html#a6bb2638718e460f947a304b4c27229b6">Terrain</a>
+</li>
+</ul>
+
+
 <h3><a class="anchor" id="index_i"></a>- i -</h3><ul>
 <li>is_hit
 : <a class="el" href="class_enemy.html#a9b43c8604db5ed231ddef3b501ac4fea">Enemy</a>
@@ -194,18 +213,29 @@ $(document).ready(function(){initNavTree('functions_vars.html','');});
 <h3><a class="anchor" id="index_m"></a>- m -</h3><ul>
 <li>m_animator
 : <a class="el" href="class_crumble_block.html#a26401329b05e5be8cc7de5eb2f867119">CrumbleBlock</a>
+, <a class="el" href="class_skeleton.html#ac81e65a397497b4381d682f75bb4a256">Skeleton</a>
 </li>
 <li>m_background_music
 : <a class="el" href="class_level_scene.html#a60b51b35f2ca590d8e62c7c21eafe5dc">LevelScene</a>
+, <a class="el" href="class_menu_scene.html#abc42387734c9595d4a7b9676f02b0a29">MenuScene</a>
+</li>
+<li>m_current_menu_item
+: <a class="el" href="class_menu_scene.html#a1e046e8255eb4ec40bb6fb0c61109b2f">MenuScene</a>
+</li>
+<li>m_current_options_item
+: <a class="el" href="class_menu_scene.html#a2a129b8d926f2d47fd5a6af283c56ab2">MenuScene</a>
 </li>
 <li>m_current_scene
 : <a class="el" href="class_game.html#a63e08c81bf21544f8178d57a750e302b">Game</a>
 </li>
 <li>m_current_slot
-: <a class="el" href="class_world_scene.html#a8a1383304b628f0d2c470adc2f166019">WorldScene</a>
+: <a class="el" href="class_menu_scene.html#a1d9b5c7e525fbfee3f8b17f69f1534fb">MenuScene</a>
+, <a class="el" href="class_world_scene.html#a8a1383304b628f0d2c470adc2f166019">WorldScene</a>
 </li>
 <li>m_current_state
 : <a class="el" href="class_crumble_block.html#a5006012f43277e8414e2c7c8ac1aae8f">CrumbleBlock</a>
+, <a class="el" href="class_menu_scene.html#a3af61916d7d943c3fd73b28d032e3d0d">MenuScene</a>
+, <a class="el" href="class_skeleton.html#a69631ff7799ac70b7a9ebd5351f8f99d">Skeleton</a>
 , <a class="el" href="class_world_scene.html#a8455266923f408b28def2989be33d81b">WorldScene</a>
 </li>
 <li>m_currentGold
@@ -246,6 +276,7 @@ $(document).ready(function(){initNavTree('functions_vars.html','');});
 </li>
 <li>m_previous_state
 : <a class="el" href="class_crumble_block.html#a1cf82e4936d722605c7455253e0b7ef7">CrumbleBlock</a>
+, <a class="el" href="class_skeleton.html#a1edc04c552ac7648d70781bd2bb8eafa">Skeleton</a>
 </li>
 <li>m_size
 : <a class="el" href="class_crumble_block.html#a948c9b3535fc77319b25f49b20541375">CrumbleBlock</a>
@@ -284,6 +315,9 @@ $(document).ready(function(){initNavTree('functions_vars.html','');});
 </li>
 <li>scenery
 : <a class="el" href="class_level.html#a7845b10ea9e2584c94cd5e78c93ba271">Level</a>
+</li>
+<li>selected_slot
+: <a class="el" href="class_menu_scene.html#ac4fdbef37e687d011fc9df34c631373d">MenuScene</a>
 </li>
 </ul>
 

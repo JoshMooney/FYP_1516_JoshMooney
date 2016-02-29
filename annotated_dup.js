@@ -12,10 +12,7 @@ var annotated_dup =
     [ "FireCommand", "class_fire_command.html", "class_fire_command" ],
     [ "Flyer", "class_flyer.html", "class_flyer" ],
     [ "Game", "class_game.html", "class_game" ],
-    [ "gz_header_s", "structgz__header__s.html", "structgz__header__s" ],
-    [ "gzFile_s", "structgz_file__s.html", "structgz_file__s" ],
     [ "HUD", "class_h_u_d.html", "class_h_u_d" ],
-    [ "internal_state", "structinternal__state.html", "structinternal__state" ],
     [ "JumpCommand", "class_jump_command.html", "class_jump_command" ],
     [ "Level", "class_level.html", "class_level" ],
     [ "LevelScene", "class_level_scene.html", "class_level_scene" ],
@@ -43,6 +40,5 @@ var annotated_dup =
     [ "WorldNode", "class_world_node.html", "class_world_node" ],
     [ "WorldScene", "class_world_scene.html", "class_world_scene" ],
     [ "XBOXController", "class_x_b_o_x_controller.html", "class_x_b_o_x_controller" ],
-    [ "XMLLoader", "class_x_m_l_loader.html", "class_x_m_l_loader" ],
-    [ "z_stream_s", "structz__stream__s.html", "structz__stream__s" ]
+    [ "XMLLoader", "class_x_m_l_loader.html", "class_x_m_l_loader" ]
 ];

@@ -1,0 +1,10 @@
+<map id="Spawner::SpawnSkeleton" name="Spawner::SpawnSkeleton">
+<area shape="rect" id="node2" href="$class_spawner.html#a3728d33ef0517064d42a8f6aaecb513e" title="Takes a type of unit to spawn and creates the appropreate body for that class and returns it..." alt="" coords="224,81,387,108"/>
+<area shape="rect" id="node3" href="$class_skeleton.html#adec55a386507818f90b7424aff95d8f1" title="Gets the width and height of the texture in a sf::Vector2u. " alt="" coords="435,81,603,108"/>
+<area shape="rect" id="node4" href="$class_skeleton.html#ac9f426767ffa60975218cc915e31b114" title="Sets the terrrain toucher to the terrain passed in. " alt="" coords="661,5,803,32"/>
+<area shape="rect" id="node5" href="$class_skeleton.html#acb477101295504fa27e6ee6920b57852" title="Tell the unit it has reached the edge. " alt="" coords="651,56,813,83"/>
+<area shape="rect" id="node7" href="$class_skeleton.html#a6db5460d0f2e07b5bb0395b6279c89cc" title="Tell the unit it has reached the player. " alt="" coords="655,157,809,184"/>
+<area shape="rect" id="node9" href="$class_skeleton.html#a6d83a409914e8ab9821ed022f597b350" title="Tell the unit it has reached the player. " alt="" coords="660,107,804,133"/>
+<area shape="rect" id="node6" href="$class_skeleton.html#aba5d37609d32fe3d3e7044514639297c" title="Change the direction of the enemy and flip the sprite so the texture is reversed. ..." alt="" coords="861,81,1037,108"/>
+<area shape="rect" id="node8" href="$class_skeleton.html#a90927f96174510cebe29d6bb39f4387c" title="Attack and play the attack animaiton. " alt="" coords="891,157,1008,184"/>
+</map>

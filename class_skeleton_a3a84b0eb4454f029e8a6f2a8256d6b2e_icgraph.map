@@ -1,0 +1,5 @@
+<map id="Skeleton::addFrames" name="Skeleton::addFrames">
+<area shape="rect" id="node2" href="$class_skeleton.html#a285563fdaff4e453907335bd837c8e4e" title="Load all the animations frames, images and audio for the enemy class. " alt="" coords="200,5,340,32"/>
+<area shape="rect" id="node3" href="$class_skeleton.html#af7cbd179a1da7c960d48213cd0ff827e" title="Initalises the enemy class and all its variables. " alt="" coords="388,5,487,32"/>
+<area shape="rect" id="node4" href="$class_skeleton.html#af01a02f1ce9ae4c801cd6e66ccf7407f" title="The default constructor for the skeleton enemy. This method is a old method of creating the skeleton ..." alt="" coords="535,5,667,32"/>
+</map>

@@ -1,0 +1,5 @@
+<map id="WorldMap::createMap" name="WorldMap::createMap">
+<area shape="rect" id="node2" href="$class_world_map.html#a777b1f38905036b07f434b7f8796edc6" title="Calls the Plot arcs on the Nodes to connect each of them up to one another. " alt="" coords="204,5,341,32"/>
+<area shape="rect" id="node3" href="$class_world_map.html#a91ef189bafa24a32ac331fc702c5f015" title="This method checks the center of each node and determines which side of l2 is in regards to l1 then a..." alt="" coords="389,5,521,32"/>
+<area shape="rect" id="node4" href="$class_world_map.html#ae07476c5ede73d4e0e7efe5709c76401" title="Calculates the center of the map taking each of the nodes and arcs into account. " alt="" coords="569,5,715,32"/>
+</map>

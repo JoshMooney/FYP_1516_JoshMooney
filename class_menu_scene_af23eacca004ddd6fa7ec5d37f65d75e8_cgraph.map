@@ -1,0 +1,12 @@
+<map id="MenuScene::handleEvent" name="MenuScene::handleEvent">
+<area shape="rect" id="node2" href="$class_menu_scene.html#a5ed3f355df6299c8cda9247d86069632" title="Move the menu indicator up one, play the appropreate sounds effect and change change the animation st..." alt="" coords="231,5,376,32"/>
+<area shape="rect" id="node3" href="$class_menu_scene.html#a6f67ac6aedbb3af33e9934dc739afd96" title="Move the menu indicator down one, play the appropreate sounds effect and change change the animation ..." alt="" coords="223,56,384,83"/>
+<area shape="rect" id="node4" href="$class_menu_scene.html#a1fd8619ace30e2d32f1d7ccef66b988b" title="Move the menu indicator right one, play the appropreate sounds effect and change change the animation..." alt="" coords="224,107,383,133"/>
+<area shape="rect" id="node5" href="$class_menu_scene.html#aaa9fc0247ee690f945e527c1a444d2be" title="Move the menu indicator left one, play the appropreate sounds effect and change change the animation ..." alt="" coords="228,157,379,184"/>
+<area shape="rect" id="node6" href="$class_menu_scene.html#a7c472d0e317df10174e1d31a404a4313" title="This selects the currently hightlighted menu indicator. " alt="" coords="236,208,371,235"/>
+<area shape="rect" id="node11" href="$class_menu_scene.html#aaaaf519ec3a80c876c91b1a3f777d293" title="This cchanged the menu scene to the previous scene for backing through menus. " alt="" coords="240,259,367,285"/>
+<area shape="rect" id="node7" href="$classc_log.html#a6f776cb395514ae99f44011017da6562" title="This fetches the instance of the Logger. " alt="" coords="479,157,557,184"/>
+<area shape="rect" id="node8" href="$classc_log.html#a8e588a9775eaa288adb969c4e5bcefe0" title="Print message using the cLoggers cout function. " alt="" coords="477,208,559,235"/>
+<area shape="rect" id="node9" href="$class_menu_scene.html#a26ba40cddeb933df757acd9d9bdc1030" title="This changes the state of the Menu scene for intitalising events and what not. " alt="" coords="432,259,604,285"/>
+<area shape="rect" id="node10" href="$class_menu_scene.html#a1249c574034f8cbc4f0a86a419e843aa" title="This creates the appropreate save data in raw code to save into the .xml file. " alt="" coords="652,259,855,285"/>
+</map>

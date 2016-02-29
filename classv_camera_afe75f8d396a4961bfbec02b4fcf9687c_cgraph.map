@@ -1,0 +1,3 @@
+<map id="vCamera::checkBounds" name="vCamera::checkBounds">
+<area shape="rect" id="node2" href="$classv_camera.html#a05c1563acb39f160db5970a20e93f7e7" title="Creates a sf::FloatRect of the current viewport of the camera. " alt="" coords="212,5,387,32"/>
+</map>

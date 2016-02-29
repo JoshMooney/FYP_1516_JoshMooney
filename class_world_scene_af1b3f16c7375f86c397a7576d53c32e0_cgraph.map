@@ -1,10 +1,11 @@
 <map id="WorldScene::movePlayer" name="WorldScene::movePlayer">
-<area shape="rect" id="node2" href="$class_player_icon.html#a6c6a19d6b9e6712850b185b3a1c0840b" title="Fetchs the m_lvl_tag. " alt="" coords="258,5,389,32"/>
-<area shape="rect" id="node3" href="$class_world_node.html#a73b30c3aa899e3828f58932b83ee61f9" title="This checks for neightbouring nodes in the direction passed in. " alt="" coords="230,56,417,83"/>
-<area shape="rect" id="node4" href="$class_world_node.html#a4691335c0b464a3c2252fd325009eacf" title="This fetches the neighbouring node of the current node with a string for identifying the direction..." alt="" coords="221,107,425,133"/>
-<area shape="rect" id="node5" href="$class_player_icon.html#a688e789e546f2c1c3d1b6c18d60f75e7" title="Sets the m_lvl_tag to a new passed in string s. " alt="" coords="258,157,389,184"/>
-<area shape="rect" id="node6" href="$class_player_icon.html#a22fde2f4faaa8ddd1d672626287e7d91" title="Sets the center of the sf::Sprite instead of the top left corner as is standerd. I find it easier whe..." alt="" coords="250,208,397,235"/>
-<area shape="rect" id="node8" href="$class_world_node.html#a853181cb23258158f97cb7237633a47a" title="This fetches the center of the current node. " alt="" coords="248,259,399,285"/>
-<area shape="rect" id="node9" href="$class_player_icon.html#ae5ee98fcc6804c1b0f7e7696f5de7999" title="To play a sound and animation when the player attempts to move in a direction that is blocked or lock..." alt="" coords="262,309,385,336"/>
-<area shape="rect" id="node7" href="$class_resource_manager.html#a3dcdce6201a938ee51be3d23879e46e1" title="Fetches the current instance of the Manager is required to achieve the singleton pattern. " alt="" coords="473,233,657,260"/>
+<area shape="rect" id="node2" href="$class_world_map.html#aa22135598bd731d814efe402a2d2ee47" title="Gets a node in the map with the enum of the passed in LEVEL. " alt="" coords="255,5,392,32"/>
+<area shape="rect" id="node3" href="$class_player_icon.html#a6c6a19d6b9e6712850b185b3a1c0840b" title="Fetchs the m_lvl_tag. " alt="" coords="258,56,389,83"/>
+<area shape="rect" id="node4" href="$class_world_node.html#a73b30c3aa899e3828f58932b83ee61f9" title="This checks for neightbouring nodes in the direction passed in. " alt="" coords="230,107,417,133"/>
+<area shape="rect" id="node5" href="$class_world_node.html#a4691335c0b464a3c2252fd325009eacf" title="This fetches the neighbouring node of the current node with a string for identifying the direction..." alt="" coords="221,157,425,184"/>
+<area shape="rect" id="node6" href="$class_player_icon.html#a688e789e546f2c1c3d1b6c18d60f75e7" title="Sets the m_lvl_tag to a new passed in string s. " alt="" coords="258,208,389,235"/>
+<area shape="rect" id="node7" href="$class_player_icon.html#a22fde2f4faaa8ddd1d672626287e7d91" title="Sets the center of the sf::Sprite instead of the top left corner as is standerd. I find it easier whe..." alt="" coords="250,259,397,285"/>
+<area shape="rect" id="node9" href="$class_world_node.html#a853181cb23258158f97cb7237633a47a" title="This fetches the center of the current node. " alt="" coords="248,309,399,336"/>
+<area shape="rect" id="node10" href="$class_player_icon.html#ae5ee98fcc6804c1b0f7e7696f5de7999" title="To play a sound and animation when the player attempts to move in a direction that is blocked or lock..." alt="" coords="262,360,385,387"/>
+<area shape="rect" id="node8" href="$class_resource_manager.html#a3dcdce6201a938ee51be3d23879e46e1" title="Fetches the current instance of the Manager is required to achieve the singleton pattern. " alt="" coords="473,284,657,311"/>
 </map>

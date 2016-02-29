@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['type',['TYPE',['../class_crumble_block.html#ac4f508d4903d3b8b6cb0ae5d6cc572ab',1,'CrumbleBlock']]]
+  ['level',['LEVEL',['../class_world_map.html#ad2fb27b12f2d42614c970a55c8950ff8',1,'WorldMap']]]
 ];

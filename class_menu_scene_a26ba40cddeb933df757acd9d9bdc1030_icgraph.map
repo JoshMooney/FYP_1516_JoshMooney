@@ -1,0 +1,6 @@
+<map id="MenuScene::changeState" name="MenuScene::changeState">
+<area shape="rect" id="node2" href="$class_menu_scene.html#a7c472d0e317df10174e1d31a404a4313" title="This selects the currently hightlighted menu indicator. " alt="" coords="225,5,360,32"/>
+<area shape="rect" id="node5" href="$class_menu_scene.html#aaaaf519ec3a80c876c91b1a3f777d293" title="This cchanged the menu scene to the previous scene for backing through menus. " alt="" coords="229,56,356,83"/>
+<area shape="rect" id="node3" href="$class_menu_scene.html#af23eacca004ddd6fa7ec5d37f65d75e8" title="This handles and registers all keyboard input for this scene and responds appropreatly. " alt="" coords="408,5,577,32"/>
+<area shape="rect" id="node4" href="$class_menu_scene.html#afb5ab00d298633725f69723c83963a45" title="This handles and registers all XBOXController input for this scene and responds appropreatly. " alt="" coords="410,56,575,83"/>
+</map>
