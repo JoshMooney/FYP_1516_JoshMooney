@@ -10,6 +10,8 @@ LevelScene::LevelScene() :
 
 	m_gem_mine = GemMine(m_world);
 	m_spawner = Spawner(m_world);
+
+	m_spawner.AttachGemMine(&m_gem_mine);
 	
 	loadMedia();
 	buttonX_ = new JumpCommand();

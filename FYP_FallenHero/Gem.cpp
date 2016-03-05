@@ -55,7 +55,7 @@ void Gem::loadMedia(){
 }
 
 void Gem::update(FTS fts) {
-
+	alineSprite();
 }
 
 void Gem::alineSprite() {
@@ -65,6 +65,7 @@ void Gem::alineSprite() {
 int Gem::pickup(){
 	float value = 0;
 	m_pickup.play();
+	e_box_body->GetFixtureList()->SetSensor(true);
 	e_body_active = false;
 
 	switch (type_){

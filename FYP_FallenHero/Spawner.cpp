@@ -75,7 +75,7 @@ void Spawner::SpawnBlock(sf::Vector2f pos, CrumbleBlock::TYPE t, CrumbleBlock::S
 
 	m_blocks.push_back(new CrumbleBlock(body, pos, t, s));
 }
-
+/*
 void Spawner::CullBodies() {
 	//Delete any box bodies for the Blocks
 	for (auto it = m_blocks.begin(); it != m_blocks.end();) {
@@ -96,7 +96,7 @@ void Spawner::DespawnObject() {
 		}
 		else ++it;
 	}
-}
+}*/
 
 void Spawner::CullInActiveEnemies() {
 	//Loop through all of the Enemies
@@ -133,6 +133,7 @@ void Spawner::update(FTS fts, Player * p) {
 		if (update_dist > distanceToPlayer(e->getCenter(), p->getCenter())) { 
 			e->update(fts);
 		}
+
 	}
 
 	//Check Swing of player against the Blocks
@@ -147,6 +148,9 @@ void Spawner::update(FTS fts, Player * p) {
 		else {
 			m_blocks[i]->update(fts);
 		}
+
+		if (m_blocks[i]->e_body_active == false && m_blocks[i]->canGemSpawn())
+			m_mine->SpawnBlock(m_blocks[i]->m_type, m_blocks[i]->m_size, m_blocks[i]->getCenter());
 	}
 
 	//CullBodies();

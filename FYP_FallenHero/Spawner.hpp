@@ -8,6 +8,7 @@
 #include "Skeleton.hpp"
 #include "CrumbleBlock.hpp"
 
+#include "GemMine.hpp"
 #include "Player.hpp"
 
 /**
@@ -29,7 +30,7 @@ private:
 	Skeleton* prototype_Skeleton;
 	vector<Enemy *> m_enemies;
 	vector<CrumbleBlock *> m_blocks;
-
+	GemMine *m_mine;
 public:
 	//!This enum keeps track of all the different types of enemies the spawner can create.
 	enum SPAWN_TYPE { 
@@ -99,6 +100,13 @@ public:
 	*	@brief This clears both the enemy list and the block list to get ready for the next level.
 	*/
 	void clear();
+	/**
+	*	@brief 
+	*/
+	void AttachGemMine(GemMine *mine) {
+		m_mine = mine;
+	}
+
 };
 
 #endif

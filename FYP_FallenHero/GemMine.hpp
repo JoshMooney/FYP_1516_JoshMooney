@@ -7,6 +7,7 @@
 #include "Box2D\Box2D.h"
 #include "Player.hpp"
 #include <map>
+#include "CrumbleBlock.hpp"
 
 /**
 *	@class GemMine
@@ -24,9 +25,26 @@ private:
 	vector<Gem *> m_cart;
 	map<Gem::TYPE, sf::IntRect> m_gem_chart;
 public:
+	//!This is the default constructor for the gem mine 
 	GemMine()	{		}
+	/**
+	*	@brief
+	*	@param
+	*/
 	GemMine(b2World *world);
 
+	/**
+	*	@brief
+	*	@param
+	*	@param
+	*/
+	void SpawnBlock(CrumbleBlock::TYPE type, CrumbleBlock::SIZE size, sf::Vector2f pos);
+	/**
+	*	@brief 
+	*	@param 
+	*	@param
+	*	@param
+	*/
 	void SpawnGem(Gem::TYPE type, sf::Vector2f pos, bool grav);
 	/**
 	*	@brief Takes a type of unit to spawn and creates the appropreate body for that class

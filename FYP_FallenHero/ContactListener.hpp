@@ -342,7 +342,33 @@ public:
 		void* fixAType = contact->GetFixtureA()->GetUserData();
 		void* fixBType = contact->GetFixtureB()->GetUserData();
 
-		
+		//Block and Gem
+		if (fixAType == "Gem" && fixBType == "Block"
+			|| fixAType == "Block" && fixBType == "Gem") {
+
+			if (fixAType == "Gem") {
+				//if bottom of player touches top of enenmy
+				void* bodyUserData1 = contact->GetFixtureA()->GetBody()->GetUserData();
+				void* bodyUserData2 = contact->GetFixtureB()->GetBody()->GetUserData();
+
+				Gem* g = static_cast<Gem*>(bodyUserData1);
+				CrumbleBlock* b = static_cast<CrumbleBlock*>(bodyUserData2);
+				if (g->e_body_active && !b->e_body_active) {
+					contact->SetEnabled(false);
+				}
+			}
+			else if (fixBType == "Gem") {
+				//if bottom of player touches top of enenmy
+				void* bodyUserData1 = contact->GetFixtureB()->GetBody()->GetUserData();
+				void* bodyUserData2 = contact->GetFixtureA()->GetBody()->GetUserData();
+
+				Gem* g = static_cast<Gem*>(bodyUserData1);
+				CrumbleBlock* b = static_cast<CrumbleBlock*>(bodyUserData2);
+				if (g->e_body_active && !b->e_body_active) {
+					contact->SetEnabled(false);
+				}
+			}
+		}
 	}
 
 	/**

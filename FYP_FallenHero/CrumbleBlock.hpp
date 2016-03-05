@@ -20,6 +20,7 @@ private:
 	thor::FrameAnimation frame_alive;
 	thor::FrameAnimation frame_crumble;
 	sf::Vector2u m_text_size;
+	int gemCount;
 public:
 	//!	Enum for representing the current state of the Block
 	enum STATE { 
@@ -127,6 +128,16 @@ public:
 	sf::FloatRect getBounds() override  {
 		sf::Vector2f position(getPosition().x - (m_text_size.x / 2), getPosition().y - (m_text_size.y / 2));
 		return sf::FloatRect{ position.x, position.y, (float)m_text_size.x, (float)m_text_size.y };
+	}
+	/**
+	*	@brief
+	*/
+	bool canGemSpawn() {
+		if (gemCount > 0) {
+			gemCount--;
+			return true;
+		}
+		return false;
 	}
 };
 
