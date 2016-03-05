@@ -15,34 +15,52 @@ private:
 	sf::Sound m_pickup;
 	sf::IntRect m_texture_rect;
 public:
-	enum TYPE {B_10, P_20, O_50,R_100, B_150, W_250};
-	TYPE type_;
+	//!The Type and value of the gem when it is created.
+	enum TYPE {
+		B_10,		//!<Brown Gem value: 10
+		P_20, 		//!<Purple Gem value: 20
+		O_50,		//!<Orange Gem value: 50
+		R_100, 		//!<Red Gem value: 100
+		B_150, 		//!<Blue Gem value: 150
+		W_250		//!<White Gem value: 250
+	};
+	TYPE type_;		//!<The current type of the gem
 	/**
-	*	@brief 
+	*	@brief The unused default constructor of the Gem
 	*/
 	Gem();
 	/**
-	*	@brief
+	*	@brief Overloaded constructor taking the required components to make up a gem
+	*	object.
+	*	@param b2Body The box2d body associated with the object
+	*	@param The position to be at.
+	*	@param The type the gem is.
 	*/
 	Gem(b2Body *b, sf::Vector2f pos, TYPE t);
 	/**
-	*	@brief
+	*	@brief The deconstructor for the gem
 	*/
 	~Gem();
 
 	/**
-	*	@brief
+	*	@brief The initaliser for the object. Creates the nessary variables required for
+	*	the class to function.
 	*/
 	void init();
 	/**
-	*	@brief
+	*	@brief Loads all the assets for the Gem object
 	*/
 	void loadMedia();
 	/**
-	*	@brief
+	*	@brief Updates the gem whatever that is for even i dont know.
+	*	@param FTS The Fixed Time Step
 	*/
 	void update(FTS fts);
-
+	/**
+	*	@breif This gets the value of the gem, raises the required flags for despawning the object
+	*	and sets the body to be a sensor.
+	*	@return The value of the Gem to be added to the players gold.
+	*/
 	int pickup();
 
 	/**
@@ -55,6 +73,10 @@ public:
 	*/
 	sf::Vector2f getCenter() { return vHelper::toSF(e_box_body->GetPosition()); }
 
+	/**
+	*	@brief Whether or not the Gem can be despawned.
+	*@return bool if it can be despawned.
+	*/
 	bool canDespawn()	{ return !(m_pickup.getStatus() == sf::Sound::Playing); }
 };
 

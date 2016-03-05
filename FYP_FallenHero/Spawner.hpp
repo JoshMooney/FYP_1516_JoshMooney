@@ -101,7 +101,8 @@ public:
 	*/
 	void clear();
 	/**
-	*	@brief 
+	*	@brief This attaches the gem mine to the Spawner so gems can be created on the death of 
+	*	enemies.
 	*/
 	void AttachGemMine(GemMine *mine) {
 		m_mine = mine;

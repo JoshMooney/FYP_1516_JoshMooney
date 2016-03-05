@@ -28,22 +28,27 @@ public:
 	//!This is the default constructor for the gem mine 
 	GemMine()	{		}
 	/**
-	*	@brief
-	*	@param
+	*	@brief The overloaded constructor for the Gem Spawner
+	*	@param b2World The box2d world for creating bodues.
 	*/
 	GemMine(b2World *world);
 
 	/**
-	*	@brief
-	*	@param
-	*	@param
+	*	@brief This function creates a gem for a block when it is destroyed it uses the information of
+	*	the block to generate the approprate gem. The spawner will use this to create gems for blocks.
+	*	@param CrumbleBlock::TYPE The Type of block the gem comes from.
+	*	@param CrumbleBlock::SIZE size The size of the gem can be used and taken into account when spawning
+	*	@param sf::Vector2f The posiiton of the block
+	*	@see Spawner
 	*/
 	void SpawnBlock(CrumbleBlock::TYPE type, CrumbleBlock::SIZE size, sf::Vector2f pos);
 	/**
-	*	@brief 
-	*	@param 
-	*	@param
-	*	@param
+	*	@brief This is the default spawn gem method. The Parse Level_data method in the Level class
+	*	will use this method for spawning inital gems.
+	*	@param Gem::TYPE The type of gem to be.
+	*	@param sf::Vector2f The position of the gem
+	*	@param bool Whether its effected by gravity
+	*	@see Level::GenerateLevelItems
 	*/
 	void SpawnGem(Gem::TYPE type, sf::Vector2f pos, bool grav);
 	/**
