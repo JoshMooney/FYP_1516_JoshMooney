@@ -106,6 +106,7 @@
     <ClInclude Include="Scene.hpp" />
     <ClInclude Include="ParallaxSprite.hpp" />
     <ClInclude Include="Scenery.hpp" />
+    <ClInclude Include="Sensor.hpp" />
     <ClInclude Include="SFMLDebugDraw.h" />
     <ClInclude Include="SimpleGUI.hpp" />
     <ClInclude Include="Skeleton.hpp" />
