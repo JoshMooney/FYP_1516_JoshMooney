@@ -10,7 +10,7 @@
 #include "Platform.hpp"
 #include "XBOXController.hpp"
 #include "vCamera.hpp"
-#include "Exit.hpp"
+//#include "Exit.hpp"
 #include "STP\TMXLoader.hpp"
 #include "vHelper.hpp"
 #include "Level.hpp"
@@ -53,6 +53,7 @@ private:
 	sf::Clock m_animation_clock;
 	sf::Time frame_elapse;
 	string s_background_music;
+	sf::Vector2f m_spawn_pos;
 public:
 	sf::Music m_background_music;
 	Command* buttonX_;

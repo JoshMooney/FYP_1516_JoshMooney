@@ -105,9 +105,6 @@
     <ClInclude Include="Player.hpp">
       <Filter>Header Files\Entities</Filter>
     </ClInclude>
-    <ClInclude Include="Exit.hpp">
-      <Filter>Header Files\Level</Filter>
-    </ClInclude>
     <ClInclude Include="Level.hpp">
       <Filter>Header Files\Level</Filter>
     </ClInclude>
@@ -160,6 +157,9 @@
       <Filter>Header Files\Entities</Filter>
     </ClInclude>
     <ClInclude Include="Sensor.hpp">
+      <Filter>Header Files\Level</Filter>
+    </ClInclude>
+    <ClInclude Include="Checkpoint.hpp">
       <Filter>Header Files\Level</Filter>
     </ClInclude>
   </ItemGroup>

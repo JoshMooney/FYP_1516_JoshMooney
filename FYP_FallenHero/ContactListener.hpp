@@ -5,6 +5,8 @@
 
 #include "Player.hpp"
 #include "CrumbleBlock.hpp"
+#include "Sensor.hpp"
+#include "Checkpoint.hpp"
 #include "Terrain.hpp"
 #include "Enemy.hpp"
 #include "Skeleton.hpp"
@@ -150,6 +152,54 @@ public:
 				else {
 					Terrain* t = static_cast<Terrain*>(bodyUserData2);
 					static_cast<Skeleton*>(bodyUserData1)->isTouching(t);
+				}
+			}
+		}
+
+		//Sensor and Player
+		else if (fixAType == "Sensor" && fixBType == "Player"
+			|| fixAType == "Player" && fixBType == "Sensor") {
+
+			if (fixAType == "Player") {
+				void* player_data = contact->GetFixtureA()->GetBody()->GetUserData();
+				void* sensor_data = contact->GetFixtureB()->GetBody()->GetUserData();
+
+				Sensor* s = static_cast<Sensor*>(sensor_data);
+				if (!s->hasTripped()) {
+					s->trip();
+				}
+			}
+			else if (fixBType == "Player") {
+				void* sensor_data = contact->GetFixtureA()->GetBody()->GetUserData();
+				void* player_data = contact->GetFixtureB()->GetBody()->GetUserData();
+
+				Sensor* s = static_cast<Sensor*>(sensor_data);
+				if (!s->hasTripped()) {
+					s->trip();
+				}
+			}
+		}
+
+		//Checkpoint and Player
+		else if (fixAType == "Checkpoint" && fixBType == "Player"
+			|| fixAType == "Player" && fixBType == "Checkpoint") {
+
+			if (fixAType == "Player") {
+				void* player_data = contact->GetFixtureA()->GetBody()->GetUserData();
+				void* sensor_data = contact->GetFixtureB()->GetBody()->GetUserData();
+
+				Checkpoint* s = static_cast<Checkpoint*>(sensor_data);
+				if (!s->hasTripped()) {
+					s->trip();
+				}
+			}
+			else if (fixBType == "Player") {
+				void* sensor_data = contact->GetFixtureA()->GetBody()->GetUserData();
+				void* player_data = contact->GetFixtureB()->GetBody()->GetUserData();
+
+				Checkpoint* s = static_cast<Checkpoint*>(sensor_data);
+				if (!s->hasTripped()) {
+					s->trip();
 				}
 			}
 		}

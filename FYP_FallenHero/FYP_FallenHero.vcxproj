@@ -91,7 +91,7 @@
     <ClInclude Include="CrumbleBlock.hpp" />
     <ClInclude Include="Enemy.hpp" />
     <ClInclude Include="Entity.hpp" />
-    <ClInclude Include="Exit.hpp" />
+    <ClInclude Include="Checkpoint.hpp" />
     <ClInclude Include="Flyer.hpp" />
     <ClInclude Include="Game.hpp" />
     <ClInclude Include="HUD.hpp" />

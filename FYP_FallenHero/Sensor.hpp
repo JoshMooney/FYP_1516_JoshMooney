@@ -12,8 +12,11 @@ private:
 	string m_id;
 	b2Body *m_body;
 	bool m_tripped;
+	sf::Vector2f m_position;
 protected:
 	b2Body* createBody(b2World* w, sf::Vector2f pos, sf::Vector2u size) {
+		body_active = true;
+
 		b2BodyDef myBodyDef;
 		myBodyDef.type = b2_staticBody; //this will be a dynamic body
 		myBodyDef.position = vHelper::toB2(pos); //set the starting position
@@ -40,6 +43,11 @@ protected:
 		m_tripped = t;
 	}
 public:
+	bool body_active;
+
+	Sensor() {
+
+	}
 	/**
 	*	@brief
 	*	@param
@@ -48,7 +56,9 @@ public:
 	*/
 	Sensor(b2World *w, sf::Vector2f pos, sf::Vector2u size) {
 		m_tripped = false;
+		m_position = pos;
 		m_body = createBody(w, pos, size);
+		m_body->SetUserData(this);
 	}
 	/**
 	*	@brief
@@ -57,9 +67,11 @@ public:
 	*	@param
 	*	@param
 	*/
-	Sensor(b2World *w, sf::Vector2f pos, sf::Vector2u size, string id) : m_body(b), m_id(id) {
+	Sensor(b2World *w, sf::Vector2f pos, sf::Vector2u size, string id) : m_id(id) {
 		m_tripped = false;
+		m_position = pos;
 		m_body = createBody(w, pos, size);
+		m_body->SetUserData(this);
 	}
 	/**
 	*	@brief
@@ -88,6 +100,11 @@ public:
 	void setBody(b2Body* b) {
 		m_body = b;
 	}
+	/**
+	*	@brief
+	*	@return
+	*/
+	sf::Vector2f& position() { return m_position; }
 };
 
 #endif

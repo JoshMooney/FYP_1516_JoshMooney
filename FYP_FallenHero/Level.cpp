@@ -29,7 +29,8 @@ struct OBJ {
 };
 
 Level::~Level() {
-	
+	delete m_checkpoint;
+	delete m_exit;
 }
 
 void Level::render(sf::RenderWindow &w, vCamera *cam){	
@@ -37,7 +38,8 @@ void Level::render(sf::RenderWindow &w, vCamera *cam){
 	//scene.setPosition(sf::Vector2f(x, scene.getDefaultPosition().y));
 
 	w.draw(*tiled_map);				//Render Tiled Map
-	w.draw(m_exit);					//Render Exit point
+	
+									//w.draw(m_exit);					//Render Exit point
 }
 
 void Level::ParseMapLayers(b2World * world, Spawner *s) {
@@ -132,22 +134,34 @@ void Level::CreateTerrain(b2World * world, tmx::ObjectGroup &layer) {
 	}
 }
 void Level::GeneratePlayerItems(b2World * world, tmx::ObjectGroup &layer) {
-	string x, y;
+	string x, y, w, h;
 	string type;
 	int lenght = layer.objects_.size();
+	
+	sf::Vector2u size = ResourceManager<sf::Texture>::instance()->get("Assets/Game/cp_ps_ex.png").getSize();
 
 	for (int i = 0; i < lenght; i++) {
 		//if (type == "Checkpoint")	{
-		string type = layer.objects_[i].GetPropertyValue("label"); 	
-		if (type == "Exit") {
-			x = layer.objects_[1].GetPropertyValue("x");
-			y = layer.objects_[1].GetPropertyValue("y");
-			m_exit = Exit(sf::Vector2f(atoi(x.c_str()), atoi(y.c_str())));
+		string type = layer.objects_[i].GetPropertyValue("type"); 	
+
+		x = layer.objects_[i].GetPropertyValue("x");
+		y = layer.objects_[i].GetPropertyValue("y");
+		sf::Vector2f pos(atoi(x.c_str()), atoi(y.c_str()));
+
+		if (type == "checkpoint") {
+			//w = layer.objects_[i].GetPropertyValue("w");
+			//h = layer.objects_[i].GetPropertyValue("h");
+			//sf::Vector2u size(atoi(w.c_str()), atoi(h.c_str()));
+			m_checkpoint = new Checkpoint(world, pos, size);
 		}
-		if (type == "Spawn") {
-			x = layer.objects_[0].GetPropertyValue("x");
-			y = layer.objects_[0].GetPropertyValue("y");
-			m_player_spawn = sf::Vector2f(atoi(x.c_str()), atoi(y.c_str()));
+		if (type == "exit") {
+			w = layer.objects_[i].GetPropertyValue("w");
+			h = layer.objects_[i].GetPropertyValue("h");
+			sf::Vector2u size(atoi(w.c_str()), atoi(h.c_str()));
+			m_exit = new Sensor(world, pos, size);
+		}
+		if (type == "spawn") {
+			m_player_spawn = pos;
 		}
 	}
 }

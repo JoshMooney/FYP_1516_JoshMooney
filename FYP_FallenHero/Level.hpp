@@ -16,7 +16,8 @@
 
 #include "vCamera.hpp"
 #include "Platform.hpp"
-#include "Exit.hpp"
+#include "Sensor.hpp"
+#include "Checkpoint.hpp"
 #include "Terrain.hpp"
 #include "Scenery.hpp"
 #include "Spawner.hpp"
@@ -31,7 +32,6 @@ private:
 	ParallaxSprite scene;
 
 	shared_ptr<tmx::TileMap> tiled_map;
-	Exit m_exit;
 
 	vector<Terrain *> terrain_data;			//Terrain of the level
 	vector<Platform> platform_data;			//Platform Data
@@ -41,6 +41,9 @@ private:
 	sf::Vector2f m_player_spawn;
 	sf::FloatRect bounds;			//This is the bounds of the level
 public:
+	Sensor *m_exit;
+	Checkpoint *m_checkpoint;  
+
 	Scenery scenery;
 
 	Level();
@@ -64,7 +67,7 @@ public:
 
 	void loadMap(string lvl_name);
 	shared_ptr<tmx::TileMap> tiledMap() { return tiled_map; }
-	bool hasEnded(sf::FloatRect player) { return m_exit.isCollided(player); }
+	bool hasEnded(sf::FloatRect player) { return m_exit->hasTripped(); }
 	sf::Vector2f getSpawn() { return m_player_spawn; }
 	void destroy(b2World *world);
 	sf::FloatRect Bounds() { return bounds; }
