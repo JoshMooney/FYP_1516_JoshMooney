@@ -11,28 +11,28 @@ private:
 	string s_death;
 	sf::Sound m_death;
 
-	thor::FrameAnimation frame_excited;
+	thor::FrameAnimation frame_jump;
+	thor::FrameAnimation frame_land;
 	thor::FrameAnimation frame_attack;
 	thor::FrameAnimation frame_idle;
 	thor::FrameAnimation frame_death;
-
 	
 public:
 	enum AI { GREEN, BLUE, RED };
 	AI ai;
-	enum STATE { ATTACKING, IDLE, DEATH, EXCITED };
+	enum STATE { ATTACK, IDLE, DEATH, JUMP, LAND };
 	STATE m_current_state, m_previous_state;
 	thor::Animator<sf::Sprite, STATE> m_animator;
 
 	Weed();
 	Weed(b2Body *b, sf::Vector2f pos, bool dir);
-	~Weed();
+	//~Weed();
 
 	void TakeDamage() override;
 	void Die() override;
 
 	void checkAnimation();
-	void addFrames(thor::FrameAnimation& animation, int x, int yFirst, int yLast, int xSep, int ySep, float duration);
+	void addFrames(thor::FrameAnimation& animation, int y, int xFirst, int xLast, int xSep, int ySep, float duration);
 	void loadMedia();
 	void init();
 

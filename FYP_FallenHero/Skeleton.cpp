@@ -140,11 +140,9 @@ void Skeleton::update(FTS fts) {
 	if (e_body_active) {
 		if(m_current_state == WALKING)
 			move();
-		
 		// If no other animation is playing, play idle animation
 		//if (!m_animator.isPlayingAnimation())
 		//	m_animator.playAnimation(IDLE);
-
 		alineSprite();
 	}
 	else	{

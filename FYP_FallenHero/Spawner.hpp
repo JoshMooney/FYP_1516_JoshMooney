@@ -11,6 +11,7 @@
 #include "CrumbleBlock.hpp"
 
 #include "Player.hpp"
+#include <memory>
 
 class Spawner {
 private:
@@ -20,6 +21,7 @@ private:
 
 	Skeleton* prototype_Skeleton;
 	vector<Enemy *> m_enemies;
+	//vector<shared_ptr<Enemy>> m_enemies;
 	vector<CrumbleBlock *> m_blocks;
 
 public:

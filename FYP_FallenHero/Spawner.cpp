@@ -65,7 +65,6 @@ b2Body * Spawner::GenerateBody(SPAWN_TYPE type) {
 void Spawner::SpawnWeed(sf::Vector2f pos, bool dir) {
 	m_enemies.push_back(new Weed(GenerateBody(WEED), pos, dir));
 }
-
 void Spawner::SpawnSkeleton(sf::Vector2f pos) {
 	m_enemies.push_back(new Skeleton(GenerateBody(SKELETON), pos, true));
 }
@@ -124,7 +123,9 @@ void Spawner::CullInActiveEnemies() {
 		//If the Enemy is not alive
 		if (!(*it)->isAlive() && (*it)->canDespawn()) {
 			m_world->DestroyBody((*it)->e_box_body);		//Destroy the b2body of the enemy
-			delete * it;				//delete the pointer
+
+			Enemy* e = *it;
+			delete e;				//delete the pointer
 			it = m_enemies.erase(it);	//erase the object(calls the objects destructor)
 			cLog::inst()->print(0, "Spawner", "Enemy Removed");
 		}
@@ -136,7 +137,7 @@ void Spawner::CullInActiveEnemies() {
 		//If the Block is not alive
 		if (!(*it)->isAlive() && (*it)->canDespawn()) {
 			m_world->DestroyBody((*it)->e_box_body);		//Destroy the b2body of the enemy
-			delete * it;				//delete the pointer
+			delete *it;				//delete the pointer
 			it = m_blocks.erase(it);	//erase the object(calls the objects destructor)
 			cLog::inst()->print(0, "Spawner", "Block Removed");
 		}
@@ -189,7 +190,7 @@ void Spawner::render(sf::RenderWindow &w, sf::Time frames) {
 void Spawner::clear() {
 	for (auto it = m_enemies.begin(); it != m_enemies.end();) {
 		m_world->DestroyBody((*it)->e_box_body);		//Destroy the b2body of the enemy
-		delete * it;				//delete the pointer
+		delete *it;				//delete the pointer
 		it = m_enemies.erase(it);	//erase the object(calls the objects destructor)
 		//cLog::inst()->print(0, "Spawner", "Enemy cleared from spawner");
 	}
