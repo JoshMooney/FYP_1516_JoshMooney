@@ -6,6 +6,8 @@
 #include "Box2D\Box2D.h"
 #include "Enemy.hpp"
 #include "Skeleton.hpp"
+#include "Weed.hpp"
+
 #include "CrumbleBlock.hpp"
 
 #include "Player.hpp"
@@ -21,13 +23,14 @@ private:
 	vector<CrumbleBlock *> m_blocks;
 
 public:
-	enum SPAWN_TYPE { SKELETON };
+	enum SPAWN_TYPE { SKELETON, WEED };
 	Spawner()	{		}
 	Spawner(b2World *world);
 	~Spawner();
 
 	b2Body* GenerateBody(SPAWN_TYPE type);
 
+	void SpawnWeed(sf::Vector2f pos);
 	void SpawnSkeleton(sf::Vector2f pos);
 	void SpawnBlock(sf::Vector2f pos, CrumbleBlock::TYPE t, CrumbleBlock::SIZE s);
 

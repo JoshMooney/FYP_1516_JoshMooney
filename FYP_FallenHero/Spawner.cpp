@@ -18,22 +18,21 @@ Spawner::~Spawner() {
 }
 
 b2Body * Spawner::GenerateBody(SPAWN_TYPE type) {
+	b2BodyDef myBodyDef;
+	b2PolygonShape shape;
+	b2FixtureDef myFixtureDef;
+
 	switch (type) {
+	b2Body* body;
 	case SKELETON:
-		b2BodyDef myBodyDef;
 		myBodyDef.type = b2_dynamicBody; //this will be a dynamic body
 		myBodyDef.position = vHelper::toB2(sf::Vector2f(100,100)); //set the starting position
 		myBodyDef.angle = 0; //set the starting angle
 		myBodyDef.fixedRotation = true;
 
-		b2Body* body = m_world->CreateBody(&myBodyDef);
-
-		//Define the shape of the body
-		b2PolygonShape shape;
-		//shape.SetAsBox(m_text_size.x / 32.0f, m_text_size.y / 32.0f);
+		body = m_world->CreateBody(&myBodyDef);
 		shape.SetAsBox((prototype_Skeleton->getTextureSize().x / vHelper::B2_SCALE) / 2.0f, (prototype_Skeleton->getTextureSize().y / vHelper::B2_SCALE) / 2.0f);
 
-		b2FixtureDef myFixtureDef;
 		myFixtureDef.density = 1.0f;
 		myFixtureDef.friction = 1.5f;
 		myFixtureDef.shape = &shape;
@@ -42,12 +41,33 @@ b2Body * Spawner::GenerateBody(SPAWN_TYPE type) {
 		body->CreateFixture(&myFixtureDef);
 		return body;
 		break;
+	case WEED:
+		myBodyDef.type = b2_dynamicBody; //this will be a dynamic body
+		myBodyDef.position = vHelper::toB2(sf::Vector2f(100, 100)); //set the starting position
+		myBodyDef.angle = 0; //set the starting angle
+		myBodyDef.fixedRotation = true;
+
+		body = m_world->CreateBody(&myBodyDef);
+		shape.SetAsBox((39 / vHelper::B2_SCALE) / 2.0f, (37 / vHelper::B2_SCALE) / 2.0f);
+
+		myFixtureDef.density = 1.0f;
+		myFixtureDef.friction = 1.5f;
+		myFixtureDef.shape = &shape;
+		//Left on purpose so all the collision detection is the same. For now...
+		myFixtureDef.userData = "Skeleton";
+
+		body->CreateFixture(&myFixtureDef);
+		return body;
+		break;
 	}
 }
 
+void Spawner::SpawnWeed(sf::Vector2f pos) {
+	m_enemies.push_back(new Weed(GenerateBody(WEED), pos, false));
+}
+
 void Spawner::SpawnSkeleton(sf::Vector2f pos) {
-	b2Body* b  = GenerateBody(SKELETON);
-	m_enemies.push_back(new Skeleton(b, pos, true));
+	m_enemies.push_back(new Skeleton(GenerateBody(SKELETON), pos, true));
 }
 void Spawner::SpawnBlock(sf::Vector2f pos, CrumbleBlock::TYPE t, CrumbleBlock::SIZE s) {
 	b2BodyDef block_Def;
