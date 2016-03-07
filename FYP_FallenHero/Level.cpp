@@ -223,7 +223,10 @@ void Level::GenerateEnemies(b2World *world, tmx::ObjectGroup &layer, Spawner* s)
 			num = layer.objects_[i].GetPropertyValue("y");
 			position.y = atoi(num.c_str());
 
-			s->SpawnWeed(position);
+			num = layer.objects_[i].GetPropertyValue("direction");
+			bool dir = atoi(num.c_str());
+
+			s->SpawnWeed(position, dir);
 		}
 	}
 }

@@ -62,8 +62,8 @@ b2Body * Spawner::GenerateBody(SPAWN_TYPE type) {
 	}
 }
 
-void Spawner::SpawnWeed(sf::Vector2f pos) {
-	m_enemies.push_back(new Weed(GenerateBody(WEED), pos, false));
+void Spawner::SpawnWeed(sf::Vector2f pos, bool dir) {
+	m_enemies.push_back(new Weed(GenerateBody(WEED), pos, dir));
 }
 
 void Spawner::SpawnSkeleton(sf::Vector2f pos) {

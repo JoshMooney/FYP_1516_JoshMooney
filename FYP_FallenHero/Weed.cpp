@@ -5,12 +5,11 @@ Weed::Weed() {
 
 }
 Weed::Weed(b2Body *b, sf::Vector2f pos, bool dir) {
+	e_direction = dir;
 	b->SetUserData(this);
 	b->SetTransform(vHelper::toB2(pos), 0.0f);
 	e_box_body = b;
-	init();
-
-	e_direction = dir;
+	init();	
 	alineSprite();
 }
 Weed::~Weed() {
@@ -22,12 +21,13 @@ void Weed::loadMedia() {
 	setTexture(ResourceManager<sf::Texture>::instance()->get(e_texture));
 	m_text_size = sf::Vector2u(39, 37);
 	setOrigin(m_text_size.x / 2, m_text_size.y / 2);
+	setColor(sf::Color::Green);
 
 	s_death = "Assets/Audio/Game/skeleton_kill.wav";
 	m_death.setBuffer(ResourceManager<sf::SoundBuffer>::instance()->get(s_death));
 
-	if (e_direction)	setScale(1, 1);
-	else                setScale(-1, 1);
+	if (e_direction)	setScale(-1, 1);
+	else                setScale(1, 1);
 }
 
 void Weed::init() {

@@ -30,7 +30,7 @@ public:
 
 	b2Body* GenerateBody(SPAWN_TYPE type);
 
-	void SpawnWeed(sf::Vector2f pos);
+	void SpawnWeed(sf::Vector2f pos, bool dir);
 	void SpawnSkeleton(sf::Vector2f pos);
 	void SpawnBlock(sf::Vector2f pos, CrumbleBlock::TYPE t, CrumbleBlock::SIZE s);
 
