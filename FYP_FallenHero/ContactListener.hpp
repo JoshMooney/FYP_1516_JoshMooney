@@ -5,8 +5,8 @@
 
 #include "Player.hpp"
 #include "CrumbleBlock.hpp"
-#include "Sensor.hpp"
 #include "Checkpoint.hpp"
+#include "Sensor.hpp"
 #include "Terrain.hpp"
 #include "Enemy.hpp"
 #include "Skeleton.hpp"

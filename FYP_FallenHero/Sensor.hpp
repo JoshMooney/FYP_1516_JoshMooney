@@ -5,7 +5,8 @@
 
 /**
 *	@class Sensor
-*	@brief
+*	@brief This class will be used as a trigger class to detect a trip in an area,
+*	This has future applications such as trigger cutscenes or enemy spawning.
 */
 class Sensor {
 private:
@@ -43,16 +44,15 @@ protected:
 		m_tripped = t;
 	}
 public:
+	//!Whether or not the body is active or not.
 	bool body_active;
-
-	Sensor() {
-
-	}
+	//!Deprecated default constructor for the sensor class.
+	Sensor() {		}
 	/**
-	*	@brief
-	*	@param
-	*	@param
-	*	@param
+	*	@brief This is the overloaded constructor that creates and sets up the sensor.
+	*	@param b2World The Box2D world used for creating bodies.
+	*	@param pos The position of the senesor
+	*	@param size A Vector2 of ints of the dimentions of the sensor.
 	*/
 	Sensor(b2World *w, sf::Vector2f pos, sf::Vector2u size) {
 		m_tripped = false;
@@ -61,11 +61,11 @@ public:
 		m_body->SetUserData(this);
 	}
 	/**
-	*	@brief
-	*	@param
-	*	@param
-	*	@param
-	*	@param
+	*	@brief This is the overloaded constructor that creates and sets up the sensor.
+	*	@param b2World The Box2D world used for creating bodies.
+	*	@param pos The position of the senesor
+	*	@param size A Vector2 of ints of the dimentions of the sensor.
+	*	@param string This is the ID string used for identifvstion of the sensor.
 	*/
 	Sensor(b2World *w, sf::Vector2f pos, sf::Vector2u size, string id) : m_id(id) {
 		m_tripped = false;
@@ -74,21 +74,22 @@ public:
 		m_body->SetUserData(this);
 	}
 	/**
-	*	@brief
+	*	@brief This is the main funtion of the class inheriting classes should overload
+	*	this method as this is what will be called in the contact listener.
 	*/
 	virtual void trip() {
 		m_tripped = true;
 	}
 	/**
-	*	@brief
-	*	@return
+	*	@brief Check for whether the sensor has been tripped or not.
+	*	@return True or false if the sensor has been tripped.
 	*/
 	bool hasTripped() const{
 		return m_tripped;
 	}
 	/**
-	*	@brief
-	*	@return
+	*	@brief Gets the body associated with the Sensor
+	*	@return Apointer to the body of the sensor
 	*/
 	b2Body* getBody() {
 		return m_body;
@@ -97,12 +98,12 @@ public:
 	*	@brief
 	*	@param
 	*/
-	void setBody(b2Body* b) {
-		m_body = b;
-	}
+	//void setBody(b2Body* b) {
+	//	m_body = b;
+	//}
 	/**
-	*	@brief
-	*	@return
+	*	@brief Returns the position of the sensor
+	*	@return Vector2f of the position of the sensor
 	*/
 	sf::Vector2f& position() { return m_position; }
 };

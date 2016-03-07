@@ -23,6 +23,8 @@
 #include "Spawner.hpp"
 #include "ParallaxSprite.hpp"
 
+#include <queue>
+
 class Level {
 private:
 	string path;
@@ -42,6 +44,7 @@ private:
 	sf::FloatRect bounds;			//This is the bounds of the level
 public:
 	Sensor *m_exit;
+	//queue<Checkpoint*> m_checkpoints;
 	Checkpoint *m_checkpoint;  
 
 	Scenery scenery;

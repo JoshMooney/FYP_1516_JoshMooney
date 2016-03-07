@@ -19,27 +19,37 @@ private:
 	string s_noise;
 	sf::Sound m_noise;
 
-	thor::FrameAnimation frame_walk;
-	thor::FrameAnimation frame_attack;
 	thor::FrameAnimation frame_idle;
-	thor::FrameAnimation frame_death;
+	thor::FrameAnimation frame_trip;
+	thor::FrameAnimation frame_active;
 
 	void init() {
+		m_current_state = IDLE;
+
 		getBody()->GetFixtureList()->SetUserData("Checkpoint");
 		getBody()->SetUserData(this);
 
 		//Load Texture
-		s_texture = "Assets/Game/cp_ps_ex.png";
-		m_text_size = ResourceManager<sf::Texture>::instance()->get(s_texture).getSize();
+		s_texture = "Assets/Game/cp_ps.png";
+		m_text_size = sf::Vector2u(42, 94);
 		m_sprite.setTexture(ResourceManager<sf::Texture>::instance()->get(s_texture));
 		m_sprite.setOrigin(m_text_size.x / 2, 55);
 		m_sprite.setPosition(vHelper::toSF(getBody()->GetPosition()));
 
-		//Load Audio
+		addFrames(frame_idle,	0, 0, 1, 42, 94, 1.0f);
+		addFrames(frame_trip,	1, 0, 5, 42, 94, 1.0f);
+		addFrames(frame_active, 2, 0, 3, 42, 94, 1.0f);
 
+		m_animator.addAnimation(IDLE,	frame_idle,		sf::seconds(1.0f));
+		m_animator.addAnimation(TRIP,	frame_trip,		sf::seconds(0.4f));
+		m_animator.addAnimation(ACTIVE, frame_active,	sf::seconds(0.3f));
+
+		//Load Audio
+		s_noise = "Assets/Audio/Game/cp.wav";
+		m_noise.setBuffer(ResourceManager<sf::SoundBuffer>::instance()->get(s_noise));
 	}
 public:
-	enum STATE { ON, OFF };
+	enum STATE { IDLE, TRIP, ACTIVE };
 	STATE m_current_state;
 	thor::Animator<sf::Sprite, STATE> m_animator;
 	Checkpoint()	{	}
@@ -72,25 +82,38 @@ public:
 	*/
 	void trip() override {
 		setTrip(true);
+
+		m_noise.play();
+		m_current_state = TRIP;
+		m_animator.playAnimation(TRIP);
 	}
 
 	void addFrames(thor::FrameAnimation& animation, int y, int xFirst, int xLast, int xSep, int ySep, float duration) {
-		/*if (y == 0)
+		if (y == 0)
 			y = 0;
 		else if (y == 1)
-			y = 47;
+			y = 94;
 		else if (y == 2)
-			y = 91;
-		else if (y == 3)
-			y = 135;
+			y = 188;
 
 		for (int x = xFirst; x != xLast; x += 1)
-			animation.addFrame(duration, sf::IntRect(xSep * x, y, xSep, ySep));*/
+			animation.addFrame(duration, sf::IntRect(xSep * x, y, xSep, ySep));
+	}
+
+	void checkAnimation() {
+		if (m_current_state == IDLE)
+			m_animator.playAnimation(IDLE);
+		else if (m_current_state == TRIP && !m_animator.isPlayingAnimation())
+			m_current_state = ACTIVE;
+		else if (m_current_state == ACTIVE && !m_animator.isPlayingAnimation())
+			m_animator.playAnimation(ACTIVE);
 	}
 
 	void render(sf::RenderWindow &w, sf::Time frames) {
-		//m_animator.update(frames);
-		//m_animator.animate(*m_sprite);
+		checkAnimation();
+
+		m_animator.update(frames);
+		m_animator.animate(m_sprite);
 		w.draw(m_sprite);
 	}
 };
