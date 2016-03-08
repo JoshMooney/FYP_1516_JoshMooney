@@ -13,7 +13,9 @@ namespace vHelper{
 	static sf::IntRect FloatToInt(const sf::FloatRect& f) {
 		return sf::IntRect((int)f.left, (int)f.top, (int)f.width, (int)f.height);
 	}
-	//float distance(sf::Vector2f p1, sf::Vector2f p2) { return sqrt((p1.x - p2.x)*(p1.x - p2.x) + (p1.y - p2.y)*(p1.y - p1.y)); }
+	static float distance(sf::Vector2f p1, sf::Vector2f p2) {
+		return sqrt(pow(p2.x - p1.x, 2) + pow(p2.y - p1.y, 2));//sqrt((p1.getX() - p2.getX())*(p1.getX() - p2.getX()) + (p1.getY() - p2.getY())*(p1.getY() - p1.getY())); 
+	}
 }
 
 #endif

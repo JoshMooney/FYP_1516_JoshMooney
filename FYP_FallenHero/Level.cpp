@@ -11,6 +11,8 @@ Level::Level(string s, b2World *world, Spawner *spawner) {
 	format = ".tmx";
 	tile_size = 32;
 
+	m_point_map = PointMap();
+
 	scene = ParallaxSprite(path + "Backgrounds/Mountains.png", sf::Vector3f(0, 0, 0.5f));
 
 	loadMap(s);
@@ -129,6 +131,34 @@ void Level::CreateTerrain(b2World * world, tmx::ObjectGroup &layer) {
 		terrain->geometry = sf::FloatRect{ (float)object.x, (float)object.y, (float)object.width, (float)object.height };
 		terrain_data.push_back(terrain);
 		terrain_data.back()->body->SetUserData(terrain_data.back());
+	}
+}
+void Level::CreatePlatforms(b2World * world, tmx::ObjectGroup & layer) {
+	string x, y;
+	string type, id;
+	sf::Vector2f position;
+	int lenght = layer.objects_.size();
+
+	for (int i = 0; i < lenght; i++) {
+		string type = layer.objects_[i].GetPropertyValue("type");
+		if (type == "Platform") {
+			x = layer.objects_[i].GetPropertyValue("x");
+			y = layer.objects_[i].GetPropertyValue("y");
+			position = sf::Vector2f(atoi(x.c_str()), atoi(y.c_str()));
+			
+			id = layer.objects_[i].GetPropertyValue("id");
+		}
+		if (type == "Node") {
+			string next, previous, id;
+			x = layer.objects_[i].GetPropertyValue("x");
+			y = layer.objects_[i].GetPropertyValue("y");
+			position = sf::Vector2f(atoi(x.c_str()), atoi(y.c_str()));
+
+			id = layer.objects_[i].GetPropertyValue("id");
+			next = layer.objects_[i].GetPropertyValue("n");
+			previous = layer.objects_[i].GetPropertyValue("p");
+			m_point_map.append(id, make_shared<PointNode>(position, std::pair<string, string>(next, previous)));
+		}
 	}
 }
 void Level::GeneratePlayerItems(b2World * world, tmx::ObjectGroup &layer) {
@@ -266,4 +296,3 @@ void Level::loadMap(string lvl_name) {
 	tiled_map->ShowObjects(true);
 	
 }
-
