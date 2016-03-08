@@ -21,6 +21,10 @@ public:
 	bool e_sword_col;
 	bool is_hit;
 
+	virtual ~Enemy() {
+		cLog::inst()->print("Enemy Deconstructor called");
+	}
+
 	virtual void update(FTS fts) = 0;
 	virtual void render(sf::RenderWindow &w, sf::Time frames) = 0;
 	virtual void alineSprite() = 0;

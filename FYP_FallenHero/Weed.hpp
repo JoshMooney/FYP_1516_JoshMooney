@@ -26,7 +26,11 @@ public:
 
 	Weed();
 	Weed(b2Body *b, sf::Vector2f pos, bool dir);
-	//~Weed();
+	virtual ~Weed() {
+		cLog::inst()->print("Weed Deconstructor called");
+		//Enemy::~Enemy();
+		//return;
+	}
 
 	void TakeDamage() override;
 	void Die() override;
