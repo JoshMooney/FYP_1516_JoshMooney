@@ -123,12 +123,12 @@ void Spawner::CullInActiveEnemies() {
 		//If the Enemy is not alive
 		if (!(*it)->isAlive() && (*it)->canDespawn()) {
 			m_world->DestroyBody((*it)->e_box_body);		//Destroy the b2body of the enemy
-
+			cLog::inst()->print(0, "Spawner", "Enemy Body Destroyed");
 			Enemy* e = *it;
 			//delete e;				//delete the pointer
 			m_dead_enemies.push_back(e);
 			it = m_enemies.erase(it);	//erase the object(calls the objects destructor)
-			cLog::inst()->print(0, "Spawner", "Enemy Removed");
+			cLog::inst()->print(0, "Spawner", "Enemy removed from m_enemies list and put into m_remove_enemies");
 		}
 		else ++it;
 	}
@@ -197,7 +197,9 @@ void Spawner::clear() {
 	}
 
 	for (auto it = m_dead_enemies.begin(); it != m_dead_enemies.end();) {
+		cLog::inst()->print(0, "Spawner", "Delete Enemy");
 		delete *it;				//delete the pointer
+		cLog::inst()->print(0, "Spawner", "Delete Successful");
 		it = m_dead_enemies.erase(it);	//erase the object(calls the objects destructor)
 	}
 
