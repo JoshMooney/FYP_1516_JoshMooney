@@ -15,7 +15,7 @@
 #include <vector>
 
 #include "vCamera.hpp"
-#include "Platform.hpp"
+//#include "Platform.hpp"
 #include "Exit.hpp"
 #include "Terrain.hpp"
 #include "Scenery.hpp"
@@ -34,7 +34,7 @@ private:
 	Exit m_exit;
 
 	vector<Terrain *> terrain_data;			//Terrain of the level
-	vector<Platform> platform_data;			//Platform Data
+	//vector<Platform> platform_data;			//Platform Data
 	vector<ParallaxSprite> scenery_data;			//Platform Data
 	//vector<LevelItem> player_data;		//Player Level Data Spawn, Exit, checkpoints.
 	//vector<Collectible> level_data;		//Coins, collectibles

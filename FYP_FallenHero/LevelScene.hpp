@@ -7,7 +7,8 @@
 #include <vector>
 
 #include "Player.hpp"
-#include "Platform.hpp"
+//#include "Platform.hpp"
+#include "PauseScreen.hpp"
 #include "XBOXController.hpp"
 #include "vCamera.hpp"
 #include "Exit.hpp"
@@ -53,7 +54,10 @@ private:
 	sf::Clock m_animation_clock;
 	sf::Time frame_elapse;
 	string s_background_music;
+	bool m_key_pressed;
+	bool m_level_quit;
 public:
+	PauseScreen *m_pause_menu;
 	sf::Music m_background_music;
 	Command* buttonX_;
 	Command* buttonY_;
@@ -81,6 +85,7 @@ public:
 	void respawnPlayer();
 
 	bool isComplete() { return m_level_complete; }
+	bool hasQuit() { return m_level_quit; }
 	void reset();
 };
 

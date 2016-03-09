@@ -17,6 +17,7 @@ LevelScene::LevelScene() :
 	buttonA_ = new SwapCommand();
 
 	m_level_complete = false;
+	m_level_quit = false;
 	m_camera = vCamera(sf::Vector2f(SCREEN_WIDTH, SCREEN_HEIGHT), sf::FloatRect{0.0f, 0.0f, 960.0f, 640.0f});
 	m_camera.LockX(false);
 	m_camera.LockY(false);
@@ -24,11 +25,14 @@ LevelScene::LevelScene() :
 
 	//tiled_map = new tmx::TileMap("test.tmx");
 	//m_time_per_frame = sf::seconds(1.f / 30.0f);
+	m_key_pressed = false;
 	isPaused = false;
 	m_player = new Player(*m_world);
 	m_player_HUD = HUD(m_player);
 	player_size = m_player->getSize();
 	m_animation_clock.restart();
+
+	m_pause_menu = new PauseScreen();
 }
 LevelScene::LevelScene(string lvl_name, Player *p){
 	m_player = p;
@@ -37,7 +41,7 @@ LevelScene::LevelScene(string lvl_name, Player *p){
 	//Dont use !
 }
 LevelScene::~LevelScene(){
-	
+	delete m_pause_menu;
 }
 
 void LevelScene::loadMedia() {
@@ -49,7 +53,7 @@ void LevelScene::loadMedia() {
 void LevelScene::update(){
 	//cLog::inst()->print(1, "LevelScene", "Deprecated update called");
 	
-	while (game_clock.now() - timeOfLastTick >= timePerTick && !isPaused){
+	while (game_clock.now() - timeOfLastTick >= timePerTick && !m_pause_menu->isPaused()){
 		timeOfLastTick = game_clock.now();
 		frame_elapse = m_animation_clock.restart();
 
@@ -74,10 +78,24 @@ void LevelScene::update(){
 			m_level_complete = true;
 		}
 	}
+	if (m_pause_menu->isPaused()){
+		PauseScreen::RESULT result = m_pause_menu->getResult();
+		if (result != PauseScreen::NA) {
+			if (result == PauseScreen::RESUME)
+				m_pause_menu->setPaused(false);
+			else if (result == PauseScreen::QUIT){
+				m_pause_menu->setPaused(false);
+				m_level_quit = true;
+			}
+		}
+	}
 
 	//m_camera.checkBounds();
 }
 void LevelScene::render(sf::RenderWindow &w){
+	if (m_pause_menu->isPaused())
+		frame_elapse = sf::seconds(0.0f);
+
 	w.setView(m_camera);		//Set the Camera
 	m_level->scenery.renderBG(w, &m_camera);	//Render Background	
 
@@ -89,12 +107,16 @@ void LevelScene::render(sf::RenderWindow &w){
 
 	m_world->DrawDebugData();
 	m_level->scenery.renderFG(w, &m_camera);	//Render Foreground	
+
 	w.setView(w.getDefaultView());		//Reset the windows view before exiting renderer
 	m_player_HUD.render(&w);
+
+	if (m_pause_menu->isPaused())
+		m_pause_menu->render(w, frame_elapse);
 }
 
 void LevelScene::handleEvent(sf::Event &e){
-	if (!isPaused){
+	if (!m_pause_menu->isPaused()) {
 		if (e.type == sf::Event::KeyPressed){
 			switch (e.key.code){
 			#pragma region Movement Keys
@@ -124,7 +146,7 @@ void LevelScene::handleEvent(sf::Event &e){
 				break;
 			//Execute command pattern commands here
 			case sf::Keyboard::P:
-				m_player->setJumping(false);
+				
 				break;
 			case sf::Keyboard::W:
 				buttonY_->execute(m_player);
@@ -163,6 +185,9 @@ void LevelScene::handleEvent(sf::Event &e){
 				m_player->setIfMoving(false);
 				break;
 #pragma endregion
+			case sf::Keyboard::P:
+				m_pause_menu->setPaused(true);
+				break;
 			case sf::Keyboard::Return:
 				break;
 			case sf::Keyboard::Space:
@@ -170,15 +195,41 @@ void LevelScene::handleEvent(sf::Event &e){
 			}
 		}
 	}
-	else{
-
+	else {
+		if (e.type == sf::Event::KeyReleased) {
+			switch (e.key.code){
+			#pragma region Movement Keys
+			case sf::Keyboard::Up:
+				if (!m_key_pressed) {
+					m_key_pressed = true;
+					m_pause_menu->moveUp();
+				}
+				break;
+			case sf::Keyboard::Down:
+				if (!m_key_pressed) {
+					m_key_pressed = true;
+					m_pause_menu->moveDown();
+				}
+				break;
+			case sf::Keyboard::Space:
+				if (!m_key_pressed) {
+					m_key_pressed = true;
+					m_pause_menu->select();
+				}
+				break;
+			#pragma endregion
+			}
+		}
+		else
+			m_key_pressed = false;
 	}
+
 }
 void LevelScene::handleInput(XBOXController &controller){
 	if (controller.isPressed["START"] && !controller.wasPressed["START"]){
 		isPaused = !isPaused;	//This Flips the pause of the game on and off.
 	}
-	if (!isPaused){
+	if (!m_pause_menu->isPaused()){
 		if (controller.isPressed["D_UP"] || controller.isPressed["A"]){
 			m_player->jump();
 		}
@@ -191,6 +242,9 @@ void LevelScene::handleInput(XBOXController &controller){
 		if (controller.isPressed["D_LEFT"] || controller.isPressed["AL_LEFT"]){
 			m_player->moveLeft();
 		}
+		if (controller.isPressed["START"]){
+			m_pause_menu->setPaused(true);
+		}
 
 		//If there is input being recieved or not
 		if (!controller.isPressed["D_LEFT"] && !controller.isPressed["D_RIGHT"] &&
@@ -201,7 +255,23 @@ void LevelScene::handleInput(XBOXController &controller){
 			m_key_pressed = false;*/
 	}
 	else{
-
+		//if (controller.isPressed["START"] || controller.isPressed["START"]){
+			//m_pause_menu->setPaused(false);
+		//}
+		if (controller.isPressed["D_UP"] || controller.isPressed["AL_UP"] && !m_key_pressed){
+			m_pause_menu->moveUp();
+			m_key_pressed = true;
+		}
+		if (controller.isPressed["D_DOWN"] || controller.isPressed["AL_DOWN"] && !m_key_pressed){
+			m_pause_menu->moveDown();
+			m_key_pressed = true;
+		}
+		if (!controller.isPressed["A"] && controller.wasPressed["A"]){
+			m_pause_menu->select();
+			m_key_pressed = true;
+		}
+		if (controller.isIdle())
+			m_key_pressed = false;
 	}
 }
 
@@ -231,6 +301,7 @@ void LevelScene::respawnPlayer() {
 void LevelScene::reset() {
 	m_background_music.stop();
 	m_level_complete = false;
+	m_level_quit = false;
 	m_player->reset(sf::Vector2f(0,0));
 	m_camera.refresh(m_player->getCenter());
 

@@ -17,7 +17,6 @@ private:
 	string s_main_bg_text, s_player_icon_text;
 	sf::Sprite m_main_bg_sprt, m_player_icon_sprt;
 	PlayerIcon m_player_icon;
-	bool m_key_pressed;
 	bool has_selected;
 	vCamera m_camera;
 	std::shared_ptr<SimpleGUI> m_gui;
@@ -31,6 +30,7 @@ private:
 	sf::Sound m_select;
 	sf::Music m_background_music;
 public:
+	bool m_key_pressed;
 	SaveSlot *m_current_slot;
 	enum STATE {MAP, EXIT};
 	STATE m_current_state;
