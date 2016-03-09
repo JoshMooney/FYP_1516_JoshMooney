@@ -98,7 +98,6 @@
     <ClInclude Include="Level.hpp" />
     <ClInclude Include="LevelScene.hpp" />
     <ClInclude Include="MenuScene.hpp" />
-    <ClInclude Include="Platform.hpp" />
     <ClInclude Include="Player.hpp" />
     <ClInclude Include="PlayerIcon.hpp" />
     <ClInclude Include="ResourceManager.hpp" />
@@ -132,7 +131,6 @@
     <ClCompile Include="Level.cpp" />
     <ClCompile Include="LevelScene.cpp" />
     <ClCompile Include="MenuScene.cpp" />
-    <ClCompile Include="Platform.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="Scenery.cpp" />
     <ClCompile Include="SFMLDebugDraw.cpp" />
