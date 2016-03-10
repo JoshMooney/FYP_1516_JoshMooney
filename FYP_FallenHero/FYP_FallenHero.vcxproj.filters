@@ -158,6 +158,12 @@
     </ClInclude>
     <ClInclude Include="PauseScreen.hpp">
       <Filter>Header Files\Level</Filter>
+	</ClInclude>
+    <ClInclude Include="Gem.hpp">
+      <Filter>Header Files\Entities</Filter>
+    </ClInclude>
+    <ClInclude Include="GemMine.hpp">
+      <Filter>Header Files\Entities</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -223,6 +229,12 @@
     </ClCompile>
     <ClCompile Include="PauseScreen.cpp">
       <Filter>Source Files\Level</Filter>
+	</ClCompile>
+    <ClCompile Include="Gem.cpp">
+      <Filter>Source Files\Entities</Filter>
+    </ClCompile>
+    <ClCompile Include="GemMine.cpp">
+      <Filter>Source Files\Entities</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

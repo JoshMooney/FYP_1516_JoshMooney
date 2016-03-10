@@ -8,7 +8,7 @@ Player::Player(b2World &m_world){
 	e_max_hp = 100;
 	m_xp = 100;
 	m_max_xp = 100;
-	m_gold = 9001;
+	m_gold = 0;
 
 	loadMedia();
 

@@ -7,6 +7,7 @@ CrumbleBlock::CrumbleBlock() {
 CrumbleBlock::CrumbleBlock(b2Body *b, sf::Vector2f pos, TYPE t, SIZE s) {
 	b->SetUserData(this);
 
+	gemCount = 1;
 	m_type = t;
 	m_size = s; 
 
@@ -125,6 +126,7 @@ void CrumbleBlock::TakeDamage() {
 	e_hp -= 10;
 	if (e_hp <= 0) {
 		m_current_state = DEAD;
+		e_box_body->GetFixtureList()->SetSensor(true);
 		e_body_active = false;
 	}
 	else if (e_hp <= 10 && m_type == ROCK) {

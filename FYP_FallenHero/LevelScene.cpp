@@ -8,7 +8,10 @@ LevelScene::LevelScene() :
 	m_world = new b2World(vHelper::toB2(GRAVITY));
 	m_world->SetContactListener(&contact_listener);
 
+	m_gem_mine = GemMine(m_world);
 	m_spawner = Spawner(m_world);
+
+	m_spawner.AttachGemMine(&m_gem_mine);
 	
 	loadMedia();
 	buttonX_ = new JumpCommand();
@@ -21,7 +24,7 @@ LevelScene::LevelScene() :
 	m_camera = vCamera(sf::Vector2f(SCREEN_WIDTH, SCREEN_HEIGHT), sf::FloatRect{0.0f, 0.0f, 960.0f, 640.0f});
 	m_camera.LockX(false);
 	m_camera.LockY(false);
-	m_camera.zoom(0.50f);
+	m_camera.zoom(0.5f);
 
 	//tiled_map = new tmx::TileMap("test.tmx");
 	//m_time_per_frame = sf::seconds(1.f / 30.0f);
@@ -56,6 +59,8 @@ void LevelScene::update(){
 	while (game_clock.now() - timeOfLastTick >= timePerTick && !m_pause_menu->isPaused()){
 		timeOfLastTick = game_clock.now();
 		frame_elapse = m_animation_clock.restart();
+
+		m_gem_mine.update(timeOfLastTick, m_player);
 
 		m_spawner.update(timeOfLastTick, m_player);
 		m_spawner.CullInActiveEnemies();
@@ -104,8 +109,9 @@ void LevelScene::render(sf::RenderWindow &w){
 	m_player->render(frame_elapse);
 	w.draw(*m_player);					//render Player
 	m_spawner.render(w, frame_elapse);
+	m_gem_mine.render(w, frame_elapse);
 
-	m_world->DrawDebugData();
+	//m_world->DrawDebugData();
 	m_level->scenery.renderFG(w, &m_camera);	//Render Foreground	
 
 	w.setView(w.getDefaultView());		//Reset the windows view before exiting renderer
@@ -282,8 +288,9 @@ void LevelScene::loadLevel(string lvl_name){
 	if (m_level != nullptr)		m_level->Destroy(m_world);			//If there was a previous level destroy all the b2Bodies in that level 
 	
 	m_spawner.clear();
+	m_gem_mine.clear();
 
-	m_level = make_shared<Level>(lvl_name, m_world, &m_spawner);				//Create a new level
+	m_level = make_shared<Level>(lvl_name, m_world, &m_spawner, &m_gem_mine);				//Create a new level
 	m_camera.setBounds(m_level->Bounds());
 	
 	//m_player->reset(m_level->getSpawn());			//Reset the player for the new level
@@ -304,5 +311,4 @@ void LevelScene::reset() {
 	m_level_quit = false;
 	m_player->reset(sf::Vector2f(0,0));
 	m_camera.refresh(m_player->getCenter());
-
 }

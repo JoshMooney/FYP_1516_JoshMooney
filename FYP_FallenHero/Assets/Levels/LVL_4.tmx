@@ -51,4 +51,5 @@
  <objectgroup name="FG"/>
  <objectgroup name="Blocks"/>
  <objectgroup name="Enemy_Data"/>
+ <objectgroup name="Level_Data"/>
 </map>

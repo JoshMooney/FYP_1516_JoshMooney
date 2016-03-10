@@ -94,6 +94,8 @@
     <ClInclude Include="Exit.hpp" />
     <ClInclude Include="Flyer.hpp" />
     <ClInclude Include="Game.hpp" />
+    <ClInclude Include="Gem.hpp" />
+    <ClInclude Include="GemMine.hpp" />
     <ClInclude Include="HUD.hpp" />
     <ClInclude Include="Level.hpp" />
     <ClInclude Include="LevelScene.hpp" />
@@ -128,6 +130,8 @@
     <ClCompile Include="CrumbleBlock.cpp" />
     <ClCompile Include="FYP_FallenHero.cpp" />
     <ClCompile Include="Game.cpp" />
+    <ClCompile Include="Gem.cpp" />
+    <ClCompile Include="GemMine.cpp" />
     <ClCompile Include="HUD.cpp" />
     <ClCompile Include="Level.cpp" />
     <ClCompile Include="LevelScene.cpp" />

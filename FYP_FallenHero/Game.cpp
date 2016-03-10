@@ -59,6 +59,9 @@ void Game::run(){
 		sf::Event l_event;
 		m_window->pollEvent(l_event);
 
+		if (l_event.key.code == sf::Keyboard::Escape)
+			isRunning = false;
+
 		controller_connected = checkController();		//Checks controller connections and compaires to previous state.
 		if (controller_connected)	
 			m_xbox_controller->UpdateButtons();
