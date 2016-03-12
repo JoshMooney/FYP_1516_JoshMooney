@@ -190,7 +190,7 @@ void Spawner::render(sf::RenderWindow &w, sf::Time frames) {
 
 void Spawner::clear() {
 	for (auto it = m_enemies.begin(); it != m_enemies.end();) {
-		//m_world->DestroyBody((*it)->e_box_body);		//Destroy the b2body of the enemy
+		m_world->DestroyBody((*it)->e_box_body);		//Destroy the b2body of the enemy
 		delete *it;				//delete the pointer
 		it = m_enemies.erase(it);	//erase the object(calls the objects destructor)
 		//cLog::inst()->print(0, "Spawner", "Enemy cleared from spawner");

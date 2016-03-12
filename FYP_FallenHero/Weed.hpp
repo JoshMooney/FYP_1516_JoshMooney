@@ -8,12 +8,12 @@ private:
 	sf::Vector2u m_text_size;
 	float speedFactor;
 	float m_jump;
-	string s_death;
-	sf::Sound m_death;
+	//string s_death;
+	//sf::Sound m_death;
 
-	thor::FrameAnimation frame_jump;
-	thor::FrameAnimation frame_land;
-	thor::FrameAnimation frame_attack;
+	//thor::FrameAnimation frame_jump;
+	//thor::FrameAnimation frame_land;
+	//thor::FrameAnimation frame_attack;
 	thor::FrameAnimation frame_idle;
 	thor::FrameAnimation frame_death;
 	
@@ -28,8 +28,6 @@ public:
 	Weed(b2Body *b, sf::Vector2f pos, bool dir);
 	virtual ~Weed() {
 		cLog::inst()->print("Weed Deconstructor called");
-		//Enemy::~Enemy();
-		//return;
 	}
 
 	void TakeDamage() override;

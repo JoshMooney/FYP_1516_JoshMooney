@@ -23,7 +23,7 @@ public:
 
 	virtual ~Enemy() {
 		cLog::inst()->print("Enemy Deconstructor called");
-		e_box_body->GetWorld()->DestroyBody(e_box_body);
+		//e_box_body->GetWorld()->DestroyBody(e_box_body);
 	}
 
 	virtual void update(FTS fts) = 0;
