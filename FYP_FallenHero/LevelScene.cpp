@@ -72,9 +72,17 @@ void LevelScene::update(){
 			respawnPlayer();
 		m_player_HUD.update();
 
+		if (m_level->m_checkpoint != nullptr && m_level->m_checkpoint->hasTripped()) {
+			if (m_level->m_checkpoint->body_active) {
+				m_world->DestroyBody(m_level->m_checkpoint->getBody());
+				m_level->m_checkpoint->body_active = false;
+				m_spawn_pos = m_level->m_checkpoint->position();
+			}
+		}
+
 		if (m_camera.outOfBounds(m_player->getBounds())) {
 			m_camera.refresh(m_player->getCenter());
-			m_player->FallOffMap(m_level->getSpawn());
+			m_player->FallOffMap(m_spawn_pos);
 		}
 		m_camera.setCenter(m_camera.getPlayerOffset(m_player->getCenter()));
 
@@ -105,7 +113,8 @@ void LevelScene::render(sf::RenderWindow &w){
 	m_level->scenery.renderBG(w, &m_camera);	//Render Background	
 
 	m_level->render(w, &m_camera);		//render the level
-	
+	if (m_level->m_checkpoint != nullptr) m_level->m_checkpoint->render(w, frame_elapse);
+
 	m_player->render(frame_elapse);
 	w.draw(*m_player);					//render Player
 	m_spawner.render(w, frame_elapse);
@@ -290,7 +299,10 @@ void LevelScene::loadLevel(string lvl_name){
 	m_spawner.clear();
 	m_gem_mine.clear();
 
+
 	m_level = make_shared<Level>(lvl_name, m_world, &m_spawner, &m_gem_mine);				//Create a new level
+	m_spawn_pos = m_level->getSpawn();
+
 	m_camera.setBounds(m_level->Bounds());
 	
 	//m_player->reset(m_level->getSpawn());			//Reset the player for the new level
@@ -301,7 +313,7 @@ void LevelScene::loadLevel(string lvl_name){
 }
 
 void LevelScene::respawnPlayer() {
-	m_player->reset(m_level->getSpawn());
+	m_player->reset(m_spawn_pos);
 	m_camera.refresh(m_player->getCenter());
 }
 

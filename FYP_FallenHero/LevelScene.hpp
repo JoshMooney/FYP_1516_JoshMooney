@@ -11,7 +11,7 @@
 #include "PauseScreen.hpp"
 #include "XBOXController.hpp"
 #include "vCamera.hpp"
-#include "Exit.hpp"
+//#include "Exit.hpp"
 #include "STP\TMXLoader.hpp"
 #include "vHelper.hpp"
 #include "Level.hpp"
@@ -66,6 +66,8 @@ private:
 	string s_background_music;
 	bool m_key_pressed;
 	bool m_level_quit;
+
+	sf::Vector2f m_spawn_pos;
 public:
 
 	PauseScreen *m_pause_menu;

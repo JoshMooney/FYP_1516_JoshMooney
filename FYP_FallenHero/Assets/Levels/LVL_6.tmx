@@ -88,7 +88,7 @@
   <object id="5" name="End Level" type="Exit" x="2784" y="288" width="64" height="64">
    <properties>
     <property name="h" value="64"/>
-    <property name="label" value="Exit"/>
+    <property name="type" value="exit"/>
     <property name="w" value="64"/>
     <property name="x" value="2784"/>
     <property name="y" value="288"/>

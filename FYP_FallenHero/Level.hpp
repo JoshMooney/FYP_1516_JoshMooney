@@ -15,8 +15,9 @@
 #include <vector>
 
 #include "vCamera.hpp"
-//#include "Platform.hpp"
-#include "Exit.hpp"
+#include "Platform.hpp"
+#include "Sensor.hpp"
+#include "Checkpoint.hpp"
 #include "Terrain.hpp"
 #include "Scenery.hpp"
 #include "Spawner.hpp"
@@ -30,6 +31,7 @@
 *	forground items as well as loads key information for the level from the .tmx file such as Enemies
 *	Gold and the CrumbleBlock.
 */
+#include <queue>
 class Level {
 private:
 	string path;
@@ -39,7 +41,6 @@ private:
 	ParallaxSprite scene;
 
 	shared_ptr<tmx::TileMap> tiled_map;
-	Exit m_exit;
 
 	vector<Terrain *> terrain_data;			//Terrain of the level
 	//vector<Platform> platform_data;			//Platform Data
@@ -49,6 +50,10 @@ private:
 	sf::Vector2f m_player_spawn;
 	sf::FloatRect bounds;			//This is the bounds of the level
 public:
+	Sensor *m_exit;
+	//queue<Checkpoint*> m_checkpoints;
+	Checkpoint *m_checkpoint;  
+
 	/**
 	*	@brief This is the levels scenery this will be loaded into memory from the GenerateSceneryBG 
 	*	and GenerateSceneryFG methods respectivly. This data can later be drawn to the screen when
@@ -154,7 +159,7 @@ public:
 	*/
 	void loadMap(string lvl_name);
 	shared_ptr<tmx::TileMap> tiledMap() { return tiled_map; }					//!<Fetches the tiled map frpm the Level
-	bool hasEnded(sf::FloatRect player) { return m_exit.isCollided(player); }   //!<Bool check for if the level has ended or not
+	bool hasEnded(sf::FloatRect player) { return m_exit->hasTripped();  }   //!<Bool check for if the level has ended or not
 	sf::Vector2f getSpawn() { return m_player_spawn; }                          //!<fetches the next spawn for the player.
 
 	sf::FloatRect Bounds() { return bounds; }									//!<Get the bounds of the level in the format of 

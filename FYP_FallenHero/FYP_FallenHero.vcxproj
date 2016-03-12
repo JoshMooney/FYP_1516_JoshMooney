@@ -91,7 +91,7 @@
     <ClInclude Include="CrumbleBlock.hpp" />
     <ClInclude Include="Enemy.hpp" />
     <ClInclude Include="Entity.hpp" />
-    <ClInclude Include="Exit.hpp" />
+    <ClInclude Include="Checkpoint.hpp" />
     <ClInclude Include="Flyer.hpp" />
     <ClInclude Include="Game.hpp" />
     <ClInclude Include="Gem.hpp" />
@@ -108,6 +108,7 @@
     <ClInclude Include="Scene.hpp" />
     <ClInclude Include="ParallaxSprite.hpp" />
     <ClInclude Include="Scenery.hpp" />
+    <ClInclude Include="Sensor.hpp" />
     <ClInclude Include="SFMLDebugDraw.h" />
     <ClInclude Include="SimpleGUI.hpp" />
     <ClInclude Include="Skeleton.hpp" />
