@@ -57,7 +57,7 @@ void Level::fetchSpawn() {
 	std::list<Checkpoint*>::const_iterator iterator;
 	auto begin = m_checkpoint_list.begin();
 	auto end = m_checkpoint_list.end();
-	if ((*begin) != nullptr) {
+	if (!m_checkpoint_list.empty()) {
 		iterator = begin;
 		for (iterator = begin; iterator != end; ++iterator) {
 			Checkpoint* cp = (*iterator);
