@@ -16,6 +16,7 @@ Level::Level(string s, b2World *world, Spawner *spawner, GemMine *mine) {
 
 	loadMap(s);
 	scenery = Scenery();
+	m_world = world;
 	ParseMapLayers(world, spawner, mine);
 }
 
@@ -30,17 +31,41 @@ struct OBJ {
 };
 
 Level::~Level() {
-	delete m_checkpoint;
 	delete m_exit;
+
+	while (!m_checkpoints_HC.empty()) {
+		delete m_checkpoints_HC.front();
+		m_checkpoints_HC.pop_front();
+	}
+	m_checkpoints_HC.clear();
+	m_checkpoint_list.clear();
 }
 
-void Level::render(sf::RenderWindow &w, vCamera *cam){	
+void Level::render(sf::RenderWindow &w, vCamera *cam, sf::Time frames){
 	//float x = cam->getX() * scene.getDefaultPosition().z;
 	//scene.setPosition(sf::Vector2f(x, scene.getDefaultPosition().y));
 
 	w.draw(*tiled_map);				//Render Tiled Map
-	
-									//w.draw(m_exit);					//Render Exit point
+	std::list<Checkpoint*>::const_iterator iterator;
+	for (iterator = m_checkpoints_HC.begin(); iterator != m_checkpoints_HC.end(); ++iterator) {
+		(*iterator)->update();
+		(*iterator)->render(w, frames);
+	}
+}
+
+void Level::fetchSpawn() {
+	std::list<Checkpoint*>::const_iterator iterator;
+	auto begin = m_checkpoint_list.begin();
+	auto end = m_checkpoint_list.end();
+	if ((*begin) != nullptr) {
+		iterator = begin;
+		for (iterator = begin; iterator != end; ++iterator) {
+			Checkpoint* cp = (*iterator);
+			if (cp->firstTrip()) {
+				m_player_spawn = cp->position();
+			}
+		}
+	}
 }
 
 void Level::ParseMapLayers(b2World * world, Spawner *s, GemMine *mine) {
@@ -124,7 +149,7 @@ void Level::CreateTerrain(b2World * world, tmx::ObjectGroup &layer) {
 		shape.SetAsBox((object.width / vHelper::B2_SCALE) / 2, (object.height / vHelper::B2_SCALE) / 2);
 
 		b2FixtureDef myFixtureDef;
-		myFixtureDef.density = 0.0f;
+		myFixtureDef.density = 1.0f;
 		myFixtureDef.friction = 0.5f;
 		myFixtureDef.shape = &shape;
 		myFixtureDef.userData = "Terrain";
@@ -157,7 +182,7 @@ void Level::GeneratePlayerItems(b2World * world, tmx::ObjectGroup &layer) {
 			//w = layer.objects_[i].GetPropertyValue("w");
 			//h = layer.objects_[i].GetPropertyValue("h");
 			//sf::Vector2u size(atoi(w.c_str()), atoi(h.c_str()));
-			m_checkpoint = new Checkpoint(world, pos, size);
+			m_checkpoints_HC.push_back(new Checkpoint(world, pos, size));
 		}
 		if (type == "exit") {
 			w = layer.objects_[i].GetPropertyValue("w");
@@ -169,6 +194,8 @@ void Level::GeneratePlayerItems(b2World * world, tmx::ObjectGroup &layer) {
 			m_player_spawn = pos;
 		}
 	}
+
+	m_checkpoint_list = m_checkpoints_HC;
 }
 void Level::GenerateLevelItems(b2World *world, tmx::ObjectGroup &layer, GemMine* mine) {
 	string x, y;

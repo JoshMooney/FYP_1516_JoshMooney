@@ -23,7 +23,10 @@ private:
 	thor::FrameAnimation frame_trip;
 	thor::FrameAnimation frame_active;
 
+	bool m_first_trip;
+
 	void init() {
+		m_first_trip = false;
 		m_current_state = IDLE;
 
 		getBody()->GetFixtureList()->SetUserData("Checkpoint");
@@ -83,9 +86,25 @@ public:
 	void trip() override {
 		setTrip(true);
 
+		m_first_trip = true;
 		m_noise.play();
 		m_current_state = TRIP;
 		m_animator.playAnimation(TRIP);
+	}
+
+	void update() {
+		if (hasTripped() && body_active) {
+			getBody()->GetWorld()->DestroyBody(getBody());
+			body_active = false;
+		}
+	}
+
+	bool firstTrip() {
+		if (m_first_trip && hasTripped()) {
+			return hasTripped();
+			m_first_trip = false;
+		}
+		return false;
 	}
 
 	void addFrames(thor::FrameAnimation& animation, int y, int xFirst, int xLast, int xSep, int ySep, float duration) {

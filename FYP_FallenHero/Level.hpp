@@ -13,6 +13,7 @@
 #include <memory>
 #include <string>
 #include <vector>
+#include <list>
 
 #include "vCamera.hpp"
 #include "Platform.hpp"
@@ -34,6 +35,7 @@
 #include <queue>
 class Level {
 private:
+	b2World* m_world;
 	string path;
 	string format;
 	int tile_size;
@@ -52,6 +54,8 @@ private:
 public:
 	Sensor *m_exit;
 	//queue<Checkpoint*> m_checkpoints;
+	list<Checkpoint*> m_checkpoints_HC;
+	list<Checkpoint*> m_checkpoint_list;
 	Checkpoint *m_checkpoint;  
 
 	/**
@@ -77,7 +81,7 @@ public:
 	*	@param sf::RenderWindow The Games render window to be drawn to
 	*	@param vCamera The Scenes current camera used for applying parallax effect
 	*/
-	void render(sf::RenderWindow &w, vCamera *cam);
+	void render(sf::RenderWindow &w, vCamera *cam, sf::Time frames);
 
 	/**
 	*	@brief This is the highest stage of loading the map from .tmx. This method calls the rest
@@ -160,7 +164,12 @@ public:
 	void loadMap(string lvl_name);
 	shared_ptr<tmx::TileMap> tiledMap() { return tiled_map; }					//!<Fetches the tiled map frpm the Level
 	bool hasEnded(sf::FloatRect player) { return m_exit->hasTripped();  }   //!<Bool check for if the level has ended or not
-	sf::Vector2f getSpawn() { return m_player_spawn; }                          //!<fetches the next spawn for the player.
+	void fetchSpawn();
+	sf::Vector2f getSpawn() { 
+		fetchSpawn();
+		return m_player_spawn; 
+	}                          //!<fetches the next spawn for the player.
+
 
 	sf::FloatRect Bounds() { return bounds; }									//!<Get the bounds of the level in the format of 
 };
