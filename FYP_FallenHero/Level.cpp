@@ -54,7 +54,7 @@ void Level::render(sf::RenderWindow &w, vCamera *cam, sf::Time frames){
 }
 
 void Level::fetchSpawn() {
-	std::list<Checkpoint*>::const_iterator iterator;
+    std::list<Checkpoint*>::const_iterator iterator;
 	auto begin = m_checkpoint_list.begin();
 	auto end = m_checkpoint_list.end();
 	if (!m_checkpoint_list.empty()) {
