@@ -22,7 +22,7 @@ NodePlatform::~NodePlatform() {
 
 void NodePlatform::update(FTS fts) {
 	if (m_is_moving && m_nextNode != nullptr) {
-		if (vHelper::distance(getPosition(), m_nextNode->position()) < 5) {
+		if (vHelper::distance(getPosition(), m_nextNode->position()) < 4) {
 			m_node_id = m_nextNode->getNext();
 			m_new_node = true;
 		}
