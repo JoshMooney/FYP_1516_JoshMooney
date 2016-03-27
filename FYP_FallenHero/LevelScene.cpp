@@ -9,6 +9,7 @@ LevelScene::LevelScene() :
 	m_world->SetContactListener(&contact_listener);
 
 	m_spawner = Spawner(m_world);
+	m_platform_creator = PlatformCreator(m_world);
 	
 	loadMedia();
 	buttonX_ = new JumpCommand();
@@ -55,6 +56,8 @@ void LevelScene::update(){
 
 		m_spawner.update(timeOfLastTick, m_player);
 		m_spawner.CullInActiveEnemies();
+
+		m_platform_creator.update(timeOfLastTick);
 		m_world->Step(B2_TIMESTEP, VEL_ITER, POS_ITER);
 
 		if (m_player->isAlive())
@@ -86,6 +89,7 @@ void LevelScene::render(sf::RenderWindow &w){
 	m_player->render(frame_elapse);
 	w.draw(*m_player);					//render Player
 	m_spawner.render(w, frame_elapse);
+	m_platform_creator.render(w, frame_elapse);
 
 	m_world->DrawDebugData();
 	m_level->scenery.renderFG(w, &m_camera);	//Render Foreground	
@@ -212,8 +216,9 @@ void LevelScene::loadLevel(string lvl_name){
 	if (m_level != nullptr)		m_level->Destroy(m_world);			//If there was a previous level destroy all the b2Bodies in that level 
 	
 	m_spawner.clear();
+	m_platform_creator.clear();
 
-	m_level = make_shared<Level>(lvl_name, m_world, &m_spawner);				//Create a new level
+	m_level = make_shared<Level>(lvl_name, m_world, &m_spawner, &m_platform_creator);				//Create a new level
 	m_camera.setBounds(m_level->Bounds());
 	
 	//m_player->reset(m_level->getSpawn());			//Reset the player for the new level

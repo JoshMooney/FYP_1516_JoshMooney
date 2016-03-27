@@ -14,6 +14,7 @@
 #include <string>
 #include <vector>
 
+#include "PlatformCreator.hpp"
 #include "vCamera.hpp"
 #include "PointMap.hpp"
 #include "NodePlatform.hpp"
@@ -45,14 +46,14 @@ public:
 	Scenery scenery;
 
 	Level();
-	Level(string s, b2World *world, Spawner *spawner);
+	Level(string s, b2World *world, Spawner *spawner, PlatformCreator *p);
 	~Level();
 
 	void render(sf::RenderWindow &w, vCamera *cam);
 
-	void ParseMapLayers(b2World *world, Spawner *spawner);
+	void ParseMapLayers(b2World *world, Spawner *spawner, PlatformCreator *p);
 	void CreateTerrain(b2World *world, tmx::ObjectGroup &layer);
-	void CreatePlatforms(b2World *world, tmx::ObjectGroup &layer);
+	void CreatePlatforms(b2World *world, tmx::ObjectGroup &layer, PlatformCreator *p);
 	void GeneratePlayerItems(b2World *world, tmx::ObjectGroup &layer);
 	void GenerateLevelItems(b2World *world, tmx::ObjectGroup &layer);
 	void GenerateSceneryBG(b2World *world, tmx::ObjectGroup &layer);

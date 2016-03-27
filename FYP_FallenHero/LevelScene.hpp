@@ -26,6 +26,7 @@
 #include "SFML\Audio.hpp"
 #include "HUD.hpp"
 #include "CrumbleBlock.hpp"
+#include "PlatformCreator.hpp"
 
 class LevelScene : public Scene{
 private:
@@ -50,6 +51,7 @@ private:
 
 	bool isPaused;
 	Spawner m_spawner;
+	PlatformCreator m_platform_creator;
 	sf::Clock m_animation_clock;
 	sf::Time frame_elapse;
 	string s_background_music;

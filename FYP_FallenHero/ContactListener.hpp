@@ -8,6 +8,7 @@
 #include "Terrain.hpp"
 #include "Enemy.hpp"
 #include "Skeleton.hpp"
+#include "Platform.hpp"
 
 class ContactListener : public b2ContactListener {
 private:
@@ -67,6 +68,34 @@ public:
 						player_geo.top + player_geo.height <= terrain_geo.top)
 						p->setJumping(false);
 				}
+			}
+		}
+
+		//Player and Platform
+		if (fixAType == "Platform" && fixBType == "Player"
+			|| fixAType == "Player" && fixBType == "Platform") {
+
+			void* player_userdata;
+			void* platform_userdata;
+			if (fixAType == "Player") {
+				player_userdata = contact->GetFixtureA()->GetBody()->GetUserData();
+				platform_userdata = contact->GetFixtureB()->GetBody()->GetUserData();
+			}
+			else {
+				player_userdata = contact->GetFixtureB()->GetBody()->GetUserData();
+				platform_userdata = contact->GetFixtureA()->GetBody()->GetUserData();
+			}
+
+			Player* player = static_cast<Player*>(player_userdata);
+			Platform* platform = static_cast<Platform*>(platform_userdata);
+
+			if (player->isJumping()) {
+				sf::FloatRect plat_geo = platform->geometry();
+				sf::FloatRect player_geo = player->getBounds();
+
+				if (player_geo.top + player_geo.height >= plat_geo.top - player_jump_y_offset &&
+					player_geo.top + player_geo.height <= plat_geo.top)
+					player->setJumping(false);
 			}
 		}
 

@@ -6,7 +6,7 @@
 Level::Level() {
 	cLog::inst()->print(3, "Level", "Default constructor of level called");
 }
-Level::Level(string s, b2World *world, Spawner *spawner) {
+Level::Level(string s, b2World *world, Spawner *spawner, PlatformCreator *p) {
 	path = "Assets/Levels/";
 	format = ".tmx";
 	tile_size = 32;
@@ -17,7 +17,7 @@ Level::Level(string s, b2World *world, Spawner *spawner) {
 
 	loadMap(s);
 	scenery = Scenery();
-	ParseMapLayers(world, spawner);
+	ParseMapLayers(world, spawner, p);
 }
 
 /*TEMP*/
@@ -42,7 +42,7 @@ void Level::render(sf::RenderWindow &w, vCamera *cam){
 	w.draw(m_exit);					//Render Exit point
 }
 
-void Level::ParseMapLayers(b2World * world, Spawner *s) {
+void Level::ParseMapLayers(b2World * world, Spawner *s, PlatformCreator *p) {
 	//map.GetObjectLayer("Layer Name");
 	//Load size of the Map
 	int tile_size = 32;
@@ -76,6 +76,10 @@ void Level::ParseMapLayers(b2World * world, Spawner *s) {
 	lay = tiled_map->GetObjectGroup("Blocks");
 	GenerateBlocks(world, lay, s);
 	tiled_map->GetObjectGroup("Blocks").visible = false;
+
+	lay = tiled_map->GetObjectGroup("Platform");
+	CreatePlatforms(world, lay, p);
+	tiled_map->GetObjectGroup("Platform").visible = false;
 
 	//l = make_shared<tmx::ObjectGroup>(tiled_map->GetObjectGroup("Platform"));
 	//CreatePlatforms(world, layer);
@@ -133,7 +137,7 @@ void Level::CreateTerrain(b2World * world, tmx::ObjectGroup &layer) {
 		terrain_data.back()->body->SetUserData(terrain_data.back());
 	}
 }
-void Level::CreatePlatforms(b2World * world, tmx::ObjectGroup & layer) {
+void Level::CreatePlatforms(b2World * world, tmx::ObjectGroup & layer, PlatformCreator *p) {
 	string x, y;
 	string type, id;
 	sf::Vector2f position;
@@ -146,7 +150,8 @@ void Level::CreatePlatforms(b2World * world, tmx::ObjectGroup & layer) {
 			y = layer.objects_[i].GetPropertyValue("y");
 			position = sf::Vector2f(atoi(x.c_str()), atoi(y.c_str()));
 			
-			id = layer.objects_[i].GetPropertyValue("id");
+			//id = layer.objects_[i].GetPropertyValue("id");
+			p->SpawnPlatform(position);
 		}
 		if (type == "Node") {
 			string next, previous, id;

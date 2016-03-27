@@ -99,6 +99,7 @@
     <ClInclude Include="LevelScene.hpp" />
     <ClInclude Include="MenuScene.hpp" />
     <ClInclude Include="NodePlatform.hpp" />
+    <ClInclude Include="Platform.hpp" />
     <ClInclude Include="PlatformCreator.hpp" />
     <ClInclude Include="Player.hpp" />
     <ClInclude Include="PlayerIcon.hpp" />
@@ -136,6 +137,7 @@
     <ClCompile Include="LevelScene.cpp" />
     <ClCompile Include="MenuScene.cpp" />
     <ClCompile Include="NodePlatform.cpp" />
+    <ClCompile Include="Platform.cpp" />
     <ClCompile Include="PlatformCreator.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="Scenery.cpp" />

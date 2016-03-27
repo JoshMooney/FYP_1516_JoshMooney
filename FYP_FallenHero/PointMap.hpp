@@ -13,8 +13,12 @@ class PointMap {
 private:
 	map<string, shared_ptr<PointNode>> m_map;
 public:
-	PointMap();
-	~PointMap();
+	PointMap() {
+
+	}
+	~PointMap() {
+
+	}
 
 	void append(string id, shared_ptr<PointNode> node) {
 		m_map.insert(std::pair<string, shared_ptr<PointNode>>(id, node));
@@ -25,7 +29,7 @@ public:
 	bool has(string s) {
 		return (m_map.count(s) > 0);
 	}
-	PointNode* get(string s) {
+	shared_ptr<PointNode> get(string s) {
 		if (has(s))
 			return m_map[s];
 		else
