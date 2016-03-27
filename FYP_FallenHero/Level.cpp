@@ -81,9 +81,6 @@ void Level::ParseMapLayers(b2World * world, Spawner *s, PlatformCreator *p) {
 	CreatePlatforms(world, lay, p);
 	tiled_map->GetObjectGroup("Platform").visible = false;
 
-	//l = make_shared<tmx::ObjectGroup>(tiled_map->GetObjectGroup("Platform"));
-	//CreatePlatforms(world, layer);
-
 	//l = make_shared<tmx::ObjectGroup>(tiled_map->GetObjectGroup("Level_Data"));
 	//GenerateLevelItems(world, layer);
 
@@ -152,6 +149,14 @@ void Level::CreatePlatforms(b2World * world, tmx::ObjectGroup & layer, PlatformC
 			
 			//id = layer.objects_[i].GetPropertyValue("id");
 			p->SpawnPlatform(position);
+		}
+		if (type == "OneWayPlatform") {
+			x = layer.objects_[i].GetPropertyValue("x");
+			y = layer.objects_[i].GetPropertyValue("y");
+			position = sf::Vector2f(atoi(x.c_str()), atoi(y.c_str()));
+
+			//id = layer.objects_[i].GetPropertyValue("id");
+			p->SpawnOneWay(position);
 		}
 		if (type == "NodePlatform") {
 			x = layer.objects_[i].GetPropertyValue("x");

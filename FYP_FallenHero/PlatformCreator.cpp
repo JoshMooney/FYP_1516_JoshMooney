@@ -6,7 +6,7 @@ PlatformCreator::PlatformCreator(b2World * w) {
 	
 }
 
-b2Body * PlatformCreator::generateBody(sf::Vector2f position) {
+b2Body * PlatformCreator::generateBody(sf::Vector2f position, string type) {
 	b2BodyDef myBodyDef;
 	myBodyDef.type = b2_kinematicBody;
 	myBodyDef.position = vHelper::toB2(position); //set the starting position
@@ -24,17 +24,26 @@ b2Body * PlatformCreator::generateBody(sf::Vector2f position) {
 	myFixtureDef.density = 1.0f;
 	myFixtureDef.friction = 1.5f;
 	myFixtureDef.shape = &shape;
-	myFixtureDef.userData = "Platform";
+
+	if(type == "Platform")
+		myFixtureDef.userData = "Platform";
+	else if(type == "OneWay-Platform")
+		myFixtureDef.userData = "OneWay-Platform";
 
 	body->CreateFixture(&myFixtureDef);
 	return body;
 }
+
 void PlatformCreator::SpawnPlatform(sf::Vector2f pos) {
-	m_platforms.push_back(std::make_shared<Platform>(generateBody(pos)));
+	m_platforms.push_back(std::make_shared<Platform>(generateBody(pos, "Platform")));
 }
 void PlatformCreator::SpawnNodePlatform(sf::Vector2f pos, string id_node, bool dir) {
-	m_platforms_node.push_back(std::make_shared<NodePlatform>(generateBody(pos), id_node, dir));
+	m_platforms_node.push_back(std::make_shared<NodePlatform>(generateBody(pos, "Platform"), id_node, dir));
 	//cLog::inst()->print(0, "PlatformCreator", "Node Platform created.");
+}
+
+void PlatformCreator::SpawnOneWay(sf::Vector2f pos) {
+	m_platforms.push_back(std::make_shared<OneWayPlatform>(generateBody(pos, "OneWay-Platform")));
 }
 
 void PlatformCreator::linkNodes(PointMap * map) {

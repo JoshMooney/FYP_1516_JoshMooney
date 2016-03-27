@@ -4,6 +4,7 @@
 #include "NodePlatform.hpp"
 #include "Platform.hpp"
 #include "PointMap.hpp"
+#include "OneWayPlatform.hpp"
 
 class PlatformCreator {
 private:
@@ -17,8 +18,9 @@ public:
 	}
 	PlatformCreator(b2World* w);
 
-	b2Body* generateBody(sf::Vector2f position);
+	b2Body* generateBody(sf::Vector2f position, string type);
 	void SpawnPlatform(sf::Vector2f pos);
+	void SpawnOneWay(sf::Vector2f pos);
 	void SpawnNodePlatform(sf::Vector2f pos, string id_node, bool dir);
 
 	void linkNodes(PointMap *map);
