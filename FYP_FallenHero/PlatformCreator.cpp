@@ -32,22 +32,39 @@ b2Body * PlatformCreator::generateBody(sf::Vector2f position) {
 void PlatformCreator::SpawnPlatform(sf::Vector2f pos) {
 	m_platforms.push_back(std::make_shared<Platform>(generateBody(pos)));
 }
-void PlatformCreator::SpawnNodePlatform(sf::Vector2f pos, std::pair<string, string> nodes, bool dir) {
-	//m_platforms_node.push_back(std::make_shared<NodePlatform>(generateBody(), nodes, dir));
+void PlatformCreator::SpawnNodePlatform(sf::Vector2f pos, string id_node, bool dir) {
+	m_platforms_node.push_back(std::make_shared<NodePlatform>(generateBody(pos), id_node, dir));
+	//cLog::inst()->print(0, "PlatformCreator", "Node Platform created.");
 }
 
 void PlatformCreator::linkNodes(PointMap * map) {
+	m_point_map = map;
 
+	for (int i = 0; i < m_platforms_node.size(); i++) {
+		if (m_platforms_node[i]->needsNode()) {
+			PointNode* node = m_point_map->get(m_platforms_node[i]->getNodeID()).get();
+			if(node != nullptr)
+				m_platforms_node[i]->setNode(node);
+		}
+	}
 }
 
 void PlatformCreator::update(FTS fts) {
-	for (int i = 0; i < m_platforms.size(); i++)
+	for (int i = 0; i < m_platforms.size(); i++) 
 		m_platforms[i]->update(fts);
+
+	for (int i = 0; i < m_platforms_node.size(); i++) {
+		m_platforms_node[i]->update(fts);
+		if (m_platforms_node[i]->needsNode())
+			m_platforms_node[i]->setNode(m_point_map->get(m_platforms_node[i]->getNodeID()).get());
+	}
 }
 
 void PlatformCreator::render(sf::RenderWindow & w, sf::Time frames) {
 	for (int i = 0; i < m_platforms.size(); i++)
 		m_platforms[i]->render(w, frames);
+	for (int i = 0; i < m_platforms_node.size(); i++)
+		m_platforms_node[i]->render(w, frames);
 }
 
 void PlatformCreator::clear() {

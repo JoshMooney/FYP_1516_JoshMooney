@@ -153,6 +153,14 @@ void Level::CreatePlatforms(b2World * world, tmx::ObjectGroup & layer, PlatformC
 			//id = layer.objects_[i].GetPropertyValue("id");
 			p->SpawnPlatform(position);
 		}
+		if (type == "NodePlatform") {
+			x = layer.objects_[i].GetPropertyValue("x");
+			y = layer.objects_[i].GetPropertyValue("y");
+			position = sf::Vector2f(atoi(x.c_str()), atoi(y.c_str()));
+
+			id = layer.objects_[i].GetPropertyValue("id");
+			p->SpawnNodePlatform(position, id, true);
+		}
 		if (type == "Node") {
 			string next, previous, id;
 			x = layer.objects_[i].GetPropertyValue("x");
@@ -161,10 +169,12 @@ void Level::CreatePlatforms(b2World * world, tmx::ObjectGroup & layer, PlatformC
 
 			id = layer.objects_[i].GetPropertyValue("id");
 			next = layer.objects_[i].GetPropertyValue("n");
-			previous = layer.objects_[i].GetPropertyValue("p");
-			m_point_map.append(id, make_shared<PointNode>(position, std::pair<string, string>(next, previous)));
+			//previous = layer.objects_[i].GetPropertyValue("p");
+			m_point_map.append(id, make_shared<PointNode>(position, next));
 		}
 	}
+
+	p->linkNodes(&m_point_map);
 }
 void Level::GeneratePlayerItems(b2World * world, tmx::ObjectGroup &layer) {
 	string x, y;

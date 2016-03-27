@@ -8,18 +8,22 @@
 
 class Platform : public sf::Sprite {
 private:
+	
+public:
 	b2Body *m_box_body;
 	string s_texture;
 	sf::Vector2u m_size;
-public:
 	bool m_body_active;
 
+	Platform() {
+
+	}
 	Platform(b2Body* b);
 	~Platform();
 
-	void update(FTS fts);
-	void render(sf::RenderWindow &w, sf::Time frames);
-	void loadMedia();
+	virtual void update(FTS fts);
+	virtual void render(sf::RenderWindow &w, sf::Time frames);
+	virtual void loadMedia();
 
 	void alineSprite();
 	b2Body* getBody() { return m_box_body; }

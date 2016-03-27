@@ -10,6 +10,7 @@ private:
 	b2World* m_world;
 	std::vector<shared_ptr<Platform>> m_platforms;
 	std::vector<shared_ptr<NodePlatform>> m_platforms_node;
+	PointMap* m_point_map;
 public:
 	PlatformCreator() {
 
@@ -18,7 +19,7 @@ public:
 
 	b2Body* generateBody(sf::Vector2f position);
 	void SpawnPlatform(sf::Vector2f pos);
-	void SpawnNodePlatform(sf::Vector2f pos, std::pair<string, string> nodes, bool dir);
+	void SpawnNodePlatform(sf::Vector2f pos, string id_node, bool dir);
 
 	void linkNodes(PointMap *map);
 
