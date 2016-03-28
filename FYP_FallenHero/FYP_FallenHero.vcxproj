@@ -92,6 +92,7 @@
     <ClInclude Include="Enemy.hpp" />
     <ClInclude Include="Entity.hpp" />
     <ClInclude Include="Exit.hpp" />
+    <ClInclude Include="FadePlatform.hpp" />
     <ClInclude Include="Flyer.hpp" />
     <ClInclude Include="Game.hpp" />
     <ClInclude Include="HUD.hpp" />
@@ -131,6 +132,7 @@
   <ItemGroup>
     <ClCompile Include="cLog.cpp" />
     <ClCompile Include="CrumbleBlock.cpp" />
+    <ClCompile Include="FadePlatform.cpp" />
     <ClCompile Include="FYP_FallenHero.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="HUD.cpp" />

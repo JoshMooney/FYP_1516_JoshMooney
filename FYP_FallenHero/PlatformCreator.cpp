@@ -45,6 +45,16 @@ void PlatformCreator::SpawnNodePlatform(sf::Vector2f pos, string id_node, bool d
 void PlatformCreator::SpawnOneWay(sf::Vector2f pos) {
 	m_platforms.push_back(std::make_shared<OneWayPlatform>(generateBody(pos, "OneWay-Platform")));
 }
+void PlatformCreator::SpawnFade(sf::Vector2f pos) {
+	m_platforms.push_back(std::make_shared<FadePlatform>(generateBody(pos, "Platform")));
+}
+void PlatformCreator::SpawnFade(sf::Vector2f pos, sf::Vector2f fade) {
+	m_platforms.push_back(std::make_shared<FadePlatform>(generateBody(pos, "Platform"), fade.x, fade.y));
+}
+void PlatformCreator::SpawnFade(sf::Vector2f pos, sf::Vector2f fade, sf::Vector2f timing) {
+	m_platforms.push_back(std::make_shared<FadePlatform>(generateBody(pos, "Platform"), fade.x, fade.y, timing.x, timing.y));
+}
+
 
 void PlatformCreator::linkNodes(PointMap * map) {
 	m_point_map = map;

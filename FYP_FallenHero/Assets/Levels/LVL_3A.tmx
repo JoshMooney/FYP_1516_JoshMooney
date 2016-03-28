@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="90" height="25" tilewidth="32" tileheight="32" nextobjectid="18">
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="90" height="25" tilewidth="32" tileheight="32" nextobjectid="20">
  <tileset firstgid="1" name="tile_set" tilewidth="32" tileheight="32" tilecount="3">
   <image source="Tiles/tile_set.png" width="96" height="32"/>
  </tileset>
@@ -52,12 +52,12 @@
  <objectgroup name="Blocks"/>
  <objectgroup name="Enemy_Data"/>
  <objectgroup name="Platform">
-  <object id="8" x="448" y="448" width="160" height="16">
+  <object id="8" x="896" y="384" width="160" height="16">
    <properties>
     <property name="id" value="pf1"/>
     <property name="type" value="Platform"/>
-    <property name="x" value="448"/>
-    <property name="y" value="448"/>
+    <property name="x" value="896"/>
+    <property name="y" value="384"/>
    </properties>
   </object>
   <object id="10" x="864" y="448" width="160" height="16">
@@ -109,6 +109,30 @@
     <property name="id" value=""/>
     <property name="type" value="OneWayPlatform"/>
     <property name="x" value="128"/>
+    <property name="y" value="448"/>
+   </properties>
+  </object>
+  <object id="18" x="128" y="320" width="160" height="16">
+   <properties>
+    <property name="a" value=""/>
+    <property name="d" value=""/>
+    <property name="i" value="5"/>
+    <property name="id" value=""/>
+    <property name="o" value="1"/>
+    <property name="type" value="FadePlatform"/>
+    <property name="x" value="128"/>
+    <property name="y" value="320"/>
+   </properties>
+  </object>
+  <object id="19" x="448" y="448" width="160" height="16">
+   <properties>
+    <property name="a" value="2"/>
+    <property name="d" value="2"/>
+    <property name="i" value="1"/>
+    <property name="id" value=""/>
+    <property name="o" value="1"/>
+    <property name="type" value="FadePlatform"/>
+    <property name="x" value="448"/>
     <property name="y" value="448"/>
    </properties>
   </object>

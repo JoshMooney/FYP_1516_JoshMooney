@@ -3,6 +3,8 @@
 #include <string>
 #include "vHelper.hpp"
 
+#include <iostream>
+
 Level::Level() {
 	cLog::inst()->print(3, "Level", "Default constructor of level called");
 }
@@ -149,6 +151,37 @@ void Level::CreatePlatforms(b2World * world, tmx::ObjectGroup & layer, PlatformC
 			
 			//id = layer.objects_[i].GetPropertyValue("id");
 			p->SpawnPlatform(position);
+		}
+		if (type == "FadePlatform") {
+			x = layer.objects_[i].GetPropertyValue("x");
+			y = layer.objects_[i].GetPropertyValue("y");
+			position = sf::Vector2f(atoi(x.c_str()), atoi(y.c_str()));
+
+			string in = layer.objects_[i].GetPropertyValue("i");
+			string out = layer.objects_[i].GetPropertyValue("o");
+			sf::Vector2f fade;
+			if(in != "" && out != "")
+				fade = sf::Vector2f(std::stof(in.c_str()), std::stof(out.c_str()));
+
+			string alive = layer.objects_[i].GetPropertyValue("a");
+			string dead = layer.objects_[i].GetPropertyValue("d");
+			sf::Vector2f timing;
+			if (alive != "" && dead != "")
+				timing = sf::Vector2f(std::stof(alive.c_str()), std::stof(dead.c_str()));
+
+			if (!(timing == sf::Vector2f(0.0f, 0.0f)) && !(fade == sf::Vector2f(0.0f, 0.0f))) {
+				p->SpawnFade(position, fade, timing);
+			}
+			else if (!(fade == sf::Vector2f(0.0f, 0.0f))) {
+				p->SpawnFade(position, fade);
+			}
+			else {
+				p->SpawnFade(position);
+			}
+			
+
+			//id = layer.objects_[i].GetPropertyValue("id");
+			
 		}
 		if (type == "OneWayPlatform") {
 			x = layer.objects_[i].GetPropertyValue("x");
