@@ -155,7 +155,7 @@
     </ClInclude>
     <ClInclude Include="PauseScreen.hpp">
       <Filter>Header Files\Level</Filter>
-	</ClInclude>
+    </ClInclude>
     <ClInclude Include="Gem.hpp">
       <Filter>Header Files\Entities</Filter>
     </ClInclude>
@@ -166,6 +166,12 @@
       <Filter>Header Files\Level</Filter>
     </ClInclude>
     <ClInclude Include="Checkpoint.hpp">
+      <Filter>Header Files\Level</Filter>
+    </ClInclude>
+    <ClInclude Include="Projectile.hpp">
+      <Filter>Header Files\Level</Filter>
+    </ClInclude>
+    <ClInclude Include="ProjectileManager.hpp">
       <Filter>Header Files\Level</Filter>
     </ClInclude>
   </ItemGroup>
@@ -232,12 +238,18 @@
     </ClCompile>
     <ClCompile Include="PauseScreen.cpp">
       <Filter>Source Files\Level</Filter>
-	</ClCompile>
+    </ClCompile>
     <ClCompile Include="Gem.cpp">
       <Filter>Source Files\Entities</Filter>
     </ClCompile>
     <ClCompile Include="GemMine.cpp">
       <Filter>Source Files\Entities</Filter>
+    </ClCompile>
+    <ClCompile Include="Projectile.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ProjectileManager.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

@@ -10,6 +10,7 @@ LevelScene::LevelScene() :
 
 	m_gem_mine = GemMine(m_world);
 	m_spawner = Spawner(m_world);
+	m_projectiles = ProjectileManager(m_world);
 
 	m_spawner.AttachGemMine(&m_gem_mine);
 	
@@ -66,6 +67,9 @@ void LevelScene::update(){
 		m_spawner.CullInActiveEnemies();
 		m_world->Step(B2_TIMESTEP, VEL_ITER, POS_ITER);
 
+		m_projectiles.update(timeOfLastTick);
+		m_projectiles.cull();
+
 		if (m_player->isAlive())
 			m_player->update(timeOfLastTick);
 		else
@@ -110,6 +114,7 @@ void LevelScene::render(sf::RenderWindow &w){
 	w.draw(*m_player);					//render Player
 	m_spawner.render(w, frame_elapse);
 	m_gem_mine.render(w, frame_elapse);
+	m_projectiles.render(w, frame_elapse);
 
 	//m_world->DrawDebugData();
 	m_level->scenery.renderFG(w, &m_camera);	//Render Foreground	
@@ -289,6 +294,8 @@ void LevelScene::loadLevel(string lvl_name){
 	
 	m_spawner.clear();
 	m_gem_mine.clear();
+	m_projectiles.clear();
+	m_projectiles.spawnBullet(sf::Vector2f(500, 500), sf::Vector2f(-1, 0));
 
 	m_level = make_shared<Level>(lvl_name, m_world, &m_spawner, &m_gem_mine);				//Create a new level
 	m_spawn_pos = m_level->getSpawn();

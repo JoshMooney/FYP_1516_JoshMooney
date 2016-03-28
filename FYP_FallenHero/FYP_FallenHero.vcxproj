@@ -103,6 +103,8 @@
     <ClInclude Include="PauseScreen.hpp" />
     <ClInclude Include="Player.hpp" />
     <ClInclude Include="PlayerIcon.hpp" />
+    <ClInclude Include="Projectile.hpp" />
+    <ClInclude Include="ProjectileManager.hpp" />
     <ClInclude Include="ResourceManager.hpp" />
     <ClInclude Include="SaveSlot.hpp" />
     <ClInclude Include="Scene.hpp" />
@@ -139,6 +141,8 @@
     <ClCompile Include="MenuScene.cpp" />
     <ClCompile Include="PauseScreen.cpp" />
     <ClCompile Include="Player.cpp" />
+    <ClCompile Include="Projectile.cpp" />
+    <ClCompile Include="ProjectileManager.cpp" />
     <ClCompile Include="Scenery.cpp" />
     <ClCompile Include="SFMLDebugDraw.cpp" />
     <ClCompile Include="SimpleGUI.cpp" />

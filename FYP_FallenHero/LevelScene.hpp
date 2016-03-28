@@ -29,6 +29,7 @@
 #include "CrumbleBlock.hpp"
 
 #include "GemMine.hpp"
+#include "ProjectileManager.hpp"
 
 /**
 *	@class LevelScene
@@ -61,6 +62,7 @@ private:
 	bool isPaused;
 	GemMine m_gem_mine;
 	Spawner m_spawner;
+	ProjectileManager m_projectiles;
 	sf::Clock m_animation_clock;
 	sf::Time frame_elapse;
 	string s_background_music;
