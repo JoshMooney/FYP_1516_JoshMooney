@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="90" height="25" tilewidth="32" tileheight="32" nextobjectid="20">
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="90" height="25" tilewidth="32" tileheight="32" nextobjectid="21">
  <tileset firstgid="1" name="tile_set" tilewidth="32" tileheight="32" tilecount="3">
   <image source="Tiles/tile_set.png" width="96" height="32"/>
  </tileset>
@@ -134,6 +134,14 @@
     <property name="type" value="FadePlatform"/>
     <property name="x" value="448"/>
     <property name="y" value="448"/>
+   </properties>
+  </object>
+  <object id="20" x="864" y="256" width="160" height="16">
+   <properties>
+    <property name="id" value="n_1"/>
+    <property name="type" value="NodePlatform"/>
+    <property name="x" value="864"/>
+    <property name="y" value="256"/>
    </properties>
   </object>
  </objectgroup>
