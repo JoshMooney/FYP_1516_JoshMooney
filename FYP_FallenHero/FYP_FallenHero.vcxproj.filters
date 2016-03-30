@@ -158,7 +158,7 @@
     </ClInclude>
     <ClInclude Include="PauseScreen.hpp">
       <Filter>Header Files\Level</Filter>
-	</ClInclude>
+    </ClInclude>
     <ClInclude Include="Gem.hpp">
       <Filter>Header Files\Entities</Filter>
     </ClInclude>
@@ -224,16 +224,16 @@
     <ClCompile Include="SFMLDebugDraw.cpp">
       <Filter>Source Files\Util</Filter>
     </ClCompile>
-    <ClCompile Include="CrumbleBlock.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="PauseScreen.cpp">
       <Filter>Source Files\Level</Filter>
-	</ClCompile>
+    </ClCompile>
     <ClCompile Include="Gem.cpp">
       <Filter>Source Files\Entities</Filter>
     </ClCompile>
     <ClCompile Include="GemMine.cpp">
+      <Filter>Source Files\Entities</Filter>
+    </ClCompile>
+    <ClCompile Include="CrumbleBlock.cpp">
       <Filter>Source Files\Entities</Filter>
     </ClCompile>
   </ItemGroup>
