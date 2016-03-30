@@ -72,9 +72,6 @@
     <ClInclude Include="LevelScene.hpp">
       <Filter>Header Files\Scenes</Filter>
     </ClInclude>
-    <ClInclude Include="Platform.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="vHelper.hpp">
       <Filter>Header Files\Util</Filter>
     </ClInclude>
@@ -178,9 +175,6 @@
     </ClCompile>
     <ClCompile Include="LevelScene.cpp">
       <Filter>Source Files\Scenes</Filter>
-    </ClCompile>
-    <ClCompile Include="Platform.cpp">
-      <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="cLog.cpp">
       <Filter>Source Files\Util</Filter>

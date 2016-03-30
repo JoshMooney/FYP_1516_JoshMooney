@@ -28,8 +28,9 @@ void Weed::loadMedia() {
 	addFrames(frame_land,	3, 0, 4, 40, 46, 1.0f);
 	addFrames(frame_death,	4, 0, 8, 42, 42, 1.0f);
 	*/
-	//m_animator.addAnimation(IDLE,	frame_idle,		sf::seconds(0.4f));
-	//m_animator.addAnimation(DEATH, frame_death,		sf::seconds(0.25f));
+	m_animator.addAnimation(IDLE,	frame_idle,		sf::seconds(0.4f));
+	m_animator.addAnimation(DEATH, frame_death,		sf::seconds(0.4f));
+
 	/*m_animator.addAnimation(ATTACK, frame_attack,	sf::seconds(0.2f));
 	m_animator.addAnimation(JUMP,	frame_jump,		sf::seconds(0.6f));
 	m_animator.addAnimation(LAND,	frame_land,		sf::seconds(0.2f));
@@ -61,7 +62,7 @@ void Weed::update(FTS fts) {
 		alineSprite();
 	}
 	else {
-		if (!m_animator.isPlayingAnimation())
+		if (!m_animator.isPlayingAnimation() && m_death.getStatus() != sf::Sound::Playing)
 			e_can_despawn = true;
 	}
 }
@@ -72,9 +73,11 @@ void Weed::render(sf::RenderWindow & w, sf::Time frames) {
 }
 
 void Weed::TakeDamage() {
+	if (e_body_active) {
 		e_hp -= 10;
 		if (e_hp <= 0)
 			Die();
+	}
 }
 
 void Weed::Die() {

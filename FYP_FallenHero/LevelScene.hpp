@@ -7,7 +7,7 @@
 #include <vector>
 
 #include "Player.hpp"
-#include "Platform.hpp"
+//#include "Platform.hpp"
 #include "XBOXController.hpp"
 #include "vCamera.hpp"
 #include "Exit.hpp"
