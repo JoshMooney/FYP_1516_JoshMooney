@@ -9,8 +9,12 @@ private:
 	sf::Vector2u m_text_size;
 	float speedFactor;
 	float m_jump;
-	string s_death;
-	sf::Sound m_death;
+	float m_shoot_dis;
+	sf::Clock m_fire_clock;
+	bool can_fire;
+	float cooldown_time;
+	//string s_death;
+	//sf::Sound m_death;
 
 	thor::FrameAnimation frame_jump;
 	thor::FrameAnimation frame_land;

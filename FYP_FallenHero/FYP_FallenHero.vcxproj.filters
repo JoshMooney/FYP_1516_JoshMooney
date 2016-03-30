@@ -158,11 +158,14 @@
     </ClInclude>
     <ClInclude Include="PauseScreen.hpp">
       <Filter>Header Files\Level</Filter>
-	</ClInclude>
+    </ClInclude>
     <ClInclude Include="Gem.hpp">
       <Filter>Header Files\Entities</Filter>
     </ClInclude>
     <ClInclude Include="GemMine.hpp">
+      <Filter>Header Files\Entities</Filter>
+    </ClInclude>
+    <ClInclude Include="Cannon.hpp">
       <Filter>Header Files\Entities</Filter>
     </ClInclude>
   </ItemGroup>
@@ -229,7 +232,7 @@
     </ClCompile>
     <ClCompile Include="PauseScreen.cpp">
       <Filter>Source Files\Level</Filter>
-	</ClCompile>
+    </ClCompile>
     <ClCompile Include="Gem.cpp">
       <Filter>Source Files\Entities</Filter>
     </ClCompile>
@@ -238,6 +241,9 @@
     </ClCompile>
     <ClCompile Include="Weed.cpp">
       <Filter>Source Files\Entities</Filter>
+    </ClCompile>
+    <ClCompile Include="Cannon.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

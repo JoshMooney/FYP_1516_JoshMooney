@@ -11,6 +11,11 @@ Weed::Weed(b2Body *b, sf::Vector2f pos, bool dir) {
 	e_box_body = b;
 	init();	
 	alineSprite();
+	m_shoot_dis = 600;
+
+	can_fire = true;
+	cooldown_time = 2.0f;
+	m_fire_clock.restart();
 }
 
 void Weed::loadMedia() {
@@ -36,8 +41,8 @@ void Weed::loadMedia() {
 	m_animator.addAnimation(LAND,	frame_land,		sf::seconds(0.2f));
 	m_animator.addAnimation(DEATH,	frame_death,	sf::seconds(0.5f));
 	*/
-	s_death = "Assets/Audio/Game/skeleton_kill.wav";
-	m_death.setBuffer(ResourceManager<sf::SoundBuffer>::instance()->get(s_death));
+	//s_death = "Assets/Audio/Game/skeleton_kill.wav";
+	//m_death.setBuffer(ResourceManager<sf::SoundBuffer>::instance()->get(s_death));
 
 	if (e_direction)	setScale(-1, 1);
 	else                setScale(1, 1);
@@ -56,14 +61,16 @@ void Weed::init() {
 }
 
 void Weed::update(FTS fts, Player *p) {
-	checkAnimation();
-	
+	if(!e_can_despawn)
+		checkAnimation();
+
 	if (e_body_active) {
 		alineSprite();
-		
+		if (vHelper::distance(getPosition(), p->getPosition()) < m_shoot_dis)
+			attack();
 	}
 	else {
-		if (!m_animator.isPlayingAnimation() && m_death.getStatus() != sf::Sound::Playing)
+		if (!m_animator.isPlayingAnimation() /*&& m_death.getStatus() != sf::Sound::Playing*/)
 			e_can_despawn = true;
 	}
 }
@@ -82,7 +89,7 @@ void Weed::TakeDamage() {
 }
 
 void Weed::Die() {
-	m_death.play();
+	//m_death.play();
 	e_box_body->GetFixtureList()->SetSensor(true);
 	e_body_active = false;
 	e_can_despawn = false;
@@ -117,7 +124,17 @@ void Weed::addFrames(thor::FrameAnimation& animation, int y, int xFirst, int xLa
 }
 
 void Weed::attack() {
+	sf::Time elapsed = m_fire_clock.getElapsedTime();
+	if(elapsed.asSeconds() > cooldown_time) {
+		sf::Vector2f dir;
+		if (e_direction)
+			dir = sf::Vector2f(1, 0);
+		else
+			dir = sf::Vector2f(-1, 0);
 
+		m_fire_clock.restart();
+		//ProjectileHandler.SpawnBullet(getPosition(), dir);
+	}
 }
 
 void Weed::alineSprite() {

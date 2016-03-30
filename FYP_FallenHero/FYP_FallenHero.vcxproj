@@ -85,6 +85,7 @@
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Cannon.hpp" />
     <ClInclude Include="cLog.hpp" />
     <ClInclude Include="Command.hpp" />
     <ClInclude Include="ContactListener.hpp" />
@@ -126,6 +127,7 @@
     <ClInclude Include="XMLLoader.hpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Cannon.cpp" />
     <ClCompile Include="cLog.cpp" />
     <ClCompile Include="CrumbleBlock.cpp" />
     <ClCompile Include="FYP_FallenHero.cpp" />

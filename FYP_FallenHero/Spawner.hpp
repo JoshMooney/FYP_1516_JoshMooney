@@ -7,6 +7,7 @@
 #include "Enemy.hpp"
 #include "Skeleton.hpp"
 #include "Weed.hpp"
+#include "Cannon.hpp"
 
 #include "CrumbleBlock.hpp"
 
@@ -40,7 +41,8 @@ public:
 	//!This enum keeps track of all the different types of enemies the spawner can create.
 	enum SPAWN_TYPE { 
 	SKELETON, 		//!<Spawn type of a Skeleton
-	WEED 			//!<Spawn type of a Weed
+	WEED, 			//!<Spawn type of a Weed
+	CANNON,			//!<Spawn type of a Cannon
 	};
 	//!Default constructor for the spawner class
 
@@ -81,6 +83,12 @@ public:
 	*	@param CrumbleBlock::SIZE The 
 	*/
 	void SpawnBlock(sf::Vector2f pos, CrumbleBlock::TYPE t, CrumbleBlock::SIZE s);
+	/**
+	*	@brief Creates the appropreate body for the Block and pushes it onto a vector of blocks
+	*	@param sf::Vector2f This position to spawn the Skeleton at.
+	*	@param bool The direction to point the cannon in so it can fire.
+	*/
+	void SpawnCannon(sf::Vector2f pos, bool dir);
 
 	/**
 	*	@brief Checks for any dead body flags in the entity list and destructs them with 

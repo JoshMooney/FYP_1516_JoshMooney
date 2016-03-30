@@ -59,6 +59,23 @@ b2Body * Spawner::GenerateBody(SPAWN_TYPE type) {
 		body->CreateFixture(&myFixtureDef);
 		return body;
 		break;
+	case CANNON:
+		myBodyDef.type = b2_staticBody; //this will be a dynamic body
+		myBodyDef.position = vHelper::toB2(sf::Vector2f(100, 100)); //set the starting position
+		myBodyDef.angle = 0; //set the starting angle
+		myBodyDef.fixedRotation = true;
+
+		body = m_world->CreateBody(&myBodyDef);
+		shape.SetAsBox((32 / vHelper::B2_SCALE) / 2.0f, (32 / vHelper::B2_SCALE) / 2.0f);
+
+		myFixtureDef.density = 1.0f;
+		myFixtureDef.friction = 1.0f;
+		myFixtureDef.shape = &shape;
+		myFixtureDef.userData = "Cannon";
+
+		body->CreateFixture(&myFixtureDef);
+		return body;
+		break;
 	}
 }
 
@@ -106,6 +123,12 @@ void Spawner::SpawnBlock(sf::Vector2f pos, CrumbleBlock::TYPE t, CrumbleBlock::S
 
 	m_blocks.push_back(new CrumbleBlock(body, pos, t, s));
 }
+void Spawner::SpawnCannon(sf::Vector2f pos, bool dir) {
+	b2Body* bod = GenerateBody(CANNON);
+	bod->SetTransform(vHelper::toB2(sf::Vector2f(pos.x, pos.y + 16)), 0.0f);
+	m_enemies.push_back(new Cannon(bod, dir));
+}
+
 /*
 void Spawner::CullBodies() {
 	//Delete any box bodies for the Blocks
@@ -164,6 +187,9 @@ void Spawner::update(FTS fts, Player * p) {
 		//Check for collision before checking the distance
 		if (e->isCollidingSword() && p->isAttacking() && p->getAttackBounds().intersects(e->getBounds())) {
 			e->TakeDamage();
+		}
+		if (!p->isAttacking() && e->is_hit) {
+			e->is_hit = false;
 		}
 		if (update_dist > distanceToPlayer(e->getCenter(), p->getCenter())) { 
 			e->update(fts, p);
