@@ -64,6 +64,18 @@ b2Body * Spawner::GenerateBody(SPAWN_TYPE type) {
 
 void Spawner::SpawnWeed(sf::Vector2f pos, bool dir) {
 	m_enemies.push_back(new Weed(GenerateBody(WEED), pos, dir));
+
+	/*if (m_enemies.size() >= 2){
+		for (auto it = m_enemies.begin(); it != m_enemies.end();) {
+			m_world->DestroyBody((*it)->e_box_body);		//Destroy the b2body of the enemy
+			(*it)->e_box_body = nullptr;
+			Enemy* e = *it;
+			delete e;				//delete the pointer
+			it = m_enemies.erase(it);	//erase the object(calls the objects destructor)
+			cLog::inst()->print(0, "Spawner", "Enemy Removed");
+		}
+	}*/
+
 }
 void Spawner::SpawnSkeleton(sf::Vector2f pos) {
 	m_enemies.push_back(new Skeleton(GenerateBody(SKELETON), pos, true));
@@ -123,7 +135,7 @@ void Spawner::CullInActiveEnemies() {
 		//If the Enemy is not alive
 		if (!(*it)->isAlive() && (*it)->canDespawn()) {
 			m_world->DestroyBody((*it)->e_box_body);		//Destroy the b2body of the enemy
-
+			(*it)->e_box_body = nullptr;
 			Enemy* e = *it;
 			delete e;				//delete the pointer
 			it = m_enemies.erase(it);	//erase the object(calls the objects destructor)

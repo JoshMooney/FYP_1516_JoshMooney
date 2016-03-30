@@ -20,16 +20,16 @@ void Weed::loadMedia() {
 	setOrigin(m_text_size.x / 2, m_text_size.y / 2);
 	//setColor(sf::Color::Green);
 	
-	addFrames(frame_idle,	0, 0, 4, 39, 37, 1.0f);
-	addFrames(frame_death,	4, 0, 8, 42, 42, 1.0f);
+	//addFrames(frame_idle,	0, 0, 4, 39, 37, 1.0f);
+	//addFrames(frame_death,	4, 0, 8, 42, 42, 1.0f);
 
 	/*addFrames(frame_attack, 1, 0, 5, 40, 40, 1.0f);
 	addFrames(frame_jump, 2, 0, 5, 40, 46, 1.0f);
 	addFrames(frame_land,	3, 0, 4, 40, 46, 1.0f);
 	addFrames(frame_death,	4, 0, 8, 42, 42, 1.0f);
 	*/
-	m_animator.addAnimation(IDLE,	frame_idle,		sf::seconds(0.4f));
-	m_animator.addAnimation(DEATH, frame_death,		sf::seconds(0.25f));
+	//m_animator.addAnimation(IDLE,	frame_idle,		sf::seconds(0.4f));
+	//m_animator.addAnimation(DEATH, frame_death,		sf::seconds(0.25f));
 	/*m_animator.addAnimation(ATTACK, frame_attack,	sf::seconds(0.2f));
 	m_animator.addAnimation(JUMP,	frame_jump,		sf::seconds(0.6f));
 	m_animator.addAnimation(LAND,	frame_land,		sf::seconds(0.2f));
@@ -67,8 +67,8 @@ void Weed::update(FTS fts) {
 }
 
 void Weed::render(sf::RenderWindow & w, sf::Time frames) {
-	m_animator.update(frames);
-	m_animator.animate(*this);
+	//m_animator.update(frames);
+	//m_animator.animate(*this);
 }
 
 void Weed::TakeDamage() {
