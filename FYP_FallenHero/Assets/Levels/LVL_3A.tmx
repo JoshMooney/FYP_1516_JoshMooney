@@ -68,4 +68,5 @@
    </properties>
   </object>
  </objectgroup>
+ <objectgroup name="Level_Data"/>
 </map>

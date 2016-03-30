@@ -19,6 +19,14 @@
 #include "cLog.hpp"
 #include <utility>
 
+/**
+*	@class XBOXController
+*	@brief This is an instance of the XBOX controller which uses xinput v9.1.0 to detect and store
+*	information on the first controller connected to the system. This class will be passed around 
+*	by the game to different scenes to detect input only if the controller is actually connected.
+*	Otherwise the keyboard is passed around for input checking.
+*/
+
 class XBOXController {
 private:
 	XINPUT_STATE state, prev_state;
@@ -71,26 +79,70 @@ private:
 	float left_trigger, right_trigger;
 	const BYTE TRIGGER_MAX = 255;
 public:
-	map<string, bool> isPressed;
-	map<string, bool> wasPressed;
-	map<string, bool> isPressed_cleared;
+	map<string, bool> isPressed;			//!<Is a map of strings to bools used for identlifing the keys to a bool for whether its pressed.
+	map<string, bool> wasPressed;           //!<Is a map of strings to bools used for identlifing the keys to a bool for whether the key was pressed.
+	map<string, bool> isPressed_cleared;    //!<This is a cleared lists of keys to false bools.
 
+	/**
+	*	@brief The default constructor for the Xbox contrller class, the variables for triggers, bumpers and
+	*	analog will be initalised and the isPressed map must be set up.
+	*/
 	XBOXController();
+	/**
+	*	@brief The overloaded constructor for the Xbox contrller class, the variables for triggers, bumpers and
+	*	analog will be initalised and the isPressed map must be set up. This object will output button presses.
+	*	@param bool Wheather or not there is debug output for the controller.
+	*/
 	XBOXController(bool is_output);
+	/**
+	*	@brief This is the deconstructor for the XBOX Controller class
+	*/
 	~XBOXController();
 
-	//Check if controller is connected
+	/**
+	*	@brief A check for if the controller is connected or not.
+	*	@return bool return true if connected else return false if not connected
+	*/
 	bool isConnected();
 
-	//Make the controller rumble
+	/**
+	*	@brief This function rumbles the controller by the amount of the values passed in.
+	*	@param l_rm is the amount of rumble of the left motor
+	*	@param r_rm is the amount of rumble of the right motor
+	*/
 	void Rumble(int l_rm, int r_rm);
 
+	/**
+	*	@brief This method calls all the individual update button private methods in the 
+	*	class eg. UpdateA(), UpdateAnalogSticks() etc.
+	*/
 	void UpdateButtons();
+	/**
+	*	@brief Simple check to see whether or not the controller is idle this compairs the
+	*	isPressed_cleared against the isPressed and returns the result.
+	*	@return bool if the controller is idle or not.
+	*/
 	bool isIdle();
 
+	/**
+	*	@brief This function gets the value of the Right Trigger press
+	*	@return float Value of right trigger press
+	*/
 	float getRT();
+	/**
+	*	@brief This function gets the value of the Left Trigger press
+	*	@return float Value of left trigger press 
+	*/
 	float getLT();
+	/**
+	*	@brief This function fetchs the x and y axis of the right analog stick.
+	*	@return std::pair Of floats to the x and y values.
+	*/
 	std::pair<float, float> getRightAnalog();
+	/**
+	*	@brief This function fetchs the x and y axis of the left analog stick.
+	*	@return std::pair Of floats to the x and y values.
+	*/
 	std::pair<float, float> getLeftAnalog();
 };
 

@@ -44,4 +44,6 @@
  </objectgroup>
  <objectgroup name="BG"/>
  <objectgroup name="FG"/>
+ <objectgroup name="Blocks"/>
+ <objectgroup name="Enemy_Data"/>
 </map>
