@@ -166,7 +166,7 @@ void Spawner::update(FTS fts, Player * p) {
 			e->TakeDamage();
 		}
 		if (update_dist > distanceToPlayer(e->getCenter(), p->getCenter())) { 
-			e->update(fts);
+			e->update(fts, p);
 		}
 	}
 

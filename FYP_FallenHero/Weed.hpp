@@ -2,6 +2,7 @@
 #define _WEED_HPP
 #include "stdafx.h"
 #include "Enemy.hpp"
+#include "Player.hpp"
 
 class Weed : public Enemy {
 private:
@@ -40,7 +41,7 @@ public:
 	void loadMedia();
 	void init();
 
-	void update(FTS fts);
+	void update(FTS fts, Player *p);
 	void render(sf::RenderWindow &w, sf::Time frames);
 	void assignBody(b2Body *b) { e_box_body = b; }
 	void attack();

@@ -35,7 +35,7 @@ public:
 	void loadMedia();
 	void checkAnimation();
 	void addFrames(thor::FrameAnimation& animation, int x, int yFirst, int yLast, int xSep, int ySep, float duration);
-	void update(FTS fts);
+	void update(FTS fts, Player *p);
 	void render(sf::RenderWindow &w, sf::Time frames);
 
 	void TakeDamage() override;

@@ -26,7 +26,7 @@ public:
 		e_box_body->GetWorld()->DestroyBody(e_box_body);
 	}
 
-	virtual void update(FTS fts) = 0;
+	virtual void update(FTS fts, Player *p) = 0;
 	virtual void render(sf::RenderWindow &w, sf::Time frames) = 0;
 	virtual void alineSprite() = 0;
 	virtual void TakeDamage() = 0;
