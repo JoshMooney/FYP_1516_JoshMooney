@@ -58,7 +58,7 @@ public:
 	*	@param sf::Vector2f The position of the skeleton to draw and spawn at.
 	*	@param bool This direction the Skeleton is facing and will begin the to walk in.
 	*/
-	Skeleton(b2Body *b, sf::Vector2f pos, bool dir);
+	Skeleton(b2Body *b, bool dir);
 	/**
 	*	@brief This is and even older way of creating the Skeleton where the enemy
 	*	creates its own body.

@@ -32,7 +32,7 @@ public:
 	thor::Animator<sf::Sprite, STATE> m_animator;
 
 	Weed();
-	Weed(b2Body *b, sf::Vector2f pos, bool dir);
+	Weed(b2Body *b, bool dir);
 	virtual ~Weed() {
 		cLog::inst()->print("Weed Deconstructor called");
 	}

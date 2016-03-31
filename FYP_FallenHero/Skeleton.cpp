@@ -7,9 +7,8 @@ Skeleton::Skeleton() {
 	setPosition(-500, -500);
 	setTexture(sf::Texture());
 }
-Skeleton::Skeleton(b2Body *b, sf::Vector2f pos, bool dir) {
+Skeleton::Skeleton(b2Body *b, bool dir) {
 	b->SetUserData(this);
-	b->SetTransform(vHelper::toB2(pos), 0.0f);
 	e_box_body = b;
 	init();
 

@@ -4,10 +4,9 @@
 Weed::Weed() {
 
 }
-Weed::Weed(b2Body *b, sf::Vector2f pos, bool dir) {
+Weed::Weed(b2Body *b, bool dir) {
 	e_direction = dir;
 	b->SetUserData(this);
-	b->SetTransform(vHelper::toB2(pos), 0.0f);
 	e_box_body = b;
 	init();	
 	alineSprite();

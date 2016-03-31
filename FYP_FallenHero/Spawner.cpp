@@ -17,21 +17,25 @@ Spawner::~Spawner() {
 
 }
 
-b2Body * Spawner::GenerateBody(SPAWN_TYPE type) {
+b2Body * Spawner::GenerateBody(SPAWN_TYPE type, sf::Vector2f pos) {
 	b2BodyDef myBodyDef;
 	b2PolygonShape shape;
 	b2FixtureDef myFixtureDef;
+	sf::Vector2f size;
+	sf::Vector2f pos_off;
 
 	switch (type) {
 	b2Body* body;
 	case SKELETON:
 		myBodyDef.type = b2_dynamicBody; //this will be a dynamic body
-		myBodyDef.position = vHelper::toB2(sf::Vector2f(100,100)); //set the starting position
+		size = sf::Vector2f(27, 44);
+		pos_off = sf::Vector2f(pos.x + size.x / 2, pos.y + size.y / 2);
+		myBodyDef.position = vHelper::toB2(pos_off); //set the starting position
 		myBodyDef.angle = 0; //set the starting angle
 		myBodyDef.fixedRotation = true;
 
 		body = m_world->CreateBody(&myBodyDef);
-		shape.SetAsBox((prototype_Skeleton->getTextureSize().x / vHelper::B2_SCALE) / 2.0f, (prototype_Skeleton->getTextureSize().y / vHelper::B2_SCALE) / 2.0f);
+		shape.SetAsBox((size.x / vHelper::B2_SCALE) / 2.0f, (size.y / vHelper::B2_SCALE) / 2.0f);
 
 		myFixtureDef.density = 1.0f;
 		myFixtureDef.friction = 1.5f;
@@ -46,12 +50,14 @@ b2Body * Spawner::GenerateBody(SPAWN_TYPE type) {
 		break;
 	case WEED:
 		myBodyDef.type = b2_dynamicBody; //this will be a dynamic body
-		myBodyDef.position = vHelper::toB2(sf::Vector2f(100, 100)); //set the starting position
+		size = sf::Vector2f(39, 37);
+		pos_off = sf::Vector2f(pos.x + size.x / 2, pos.y + size.y / 2);
+		myBodyDef.position = vHelper::toB2(pos_off); //set the starting position
 		myBodyDef.angle = 0; //set the starting angle
 		myBodyDef.fixedRotation = true;
 
 		body = m_world->CreateBody(&myBodyDef);
-		shape.SetAsBox((39 / vHelper::B2_SCALE) / 2.0f, (37 / vHelper::B2_SCALE) / 2.0f);
+		shape.SetAsBox((size.x / vHelper::B2_SCALE) / 2.0f, (size.y / vHelper::B2_SCALE) / 2.0f);
 
 		myFixtureDef.density = 1.0f;
 		myFixtureDef.friction = 1.5f;
@@ -67,12 +73,14 @@ b2Body * Spawner::GenerateBody(SPAWN_TYPE type) {
 		break;
 	case CANNON:
 		myBodyDef.type = b2_staticBody; //this will be a dynamic body
-		myBodyDef.position = vHelper::toB2(sf::Vector2f(100, 100)); //set the starting position
+		size = sf::Vector2f(32, 32);
+		pos_off = sf::Vector2f(pos.x + size.x/2, pos.y + size.y / 2);
+		myBodyDef.position = vHelper::toB2(pos_off); //set the starting position
 		myBodyDef.angle = 0; //set the starting angle
 		myBodyDef.fixedRotation = true;
 
 		body = m_world->CreateBody(&myBodyDef);
-		shape.SetAsBox((32 / vHelper::B2_SCALE) / 2.0f, (32 / vHelper::B2_SCALE) / 2.0f);
+		shape.SetAsBox((size.x / vHelper::B2_SCALE) / 2.0f, (size.y / vHelper::B2_SCALE) / 2.0f);
 
 		myFixtureDef.density = 1.0f;
 		myFixtureDef.friction = 1.0f;
@@ -89,7 +97,7 @@ b2Body * Spawner::GenerateBody(SPAWN_TYPE type) {
 }
 
 void Spawner::SpawnWeed(sf::Vector2f pos, bool dir) {
-	m_enemies.push_back(new Weed(GenerateBody(WEED), pos, dir));
+	m_enemies.push_back(new Weed(GenerateBody(WEED, pos), dir));
 
 	/*if (m_enemies.size() >= 2){
 		for (auto it = m_enemies.begin(); it != m_enemies.end();) {
@@ -104,27 +112,31 @@ void Spawner::SpawnWeed(sf::Vector2f pos, bool dir) {
 
 }
 void Spawner::SpawnSkeleton(sf::Vector2f pos) {
-	m_enemies.push_back(new Skeleton(GenerateBody(SKELETON), pos, true));
+	m_enemies.push_back(new Skeleton(GenerateBody(SKELETON, pos), true));
 }
 void Spawner::SpawnBlock(sf::Vector2f pos, CrumbleBlock::TYPE t, CrumbleBlock::SIZE s) {
+	sf::Vector2f size;
+	b2PolygonShape block_Shape;
+	if (s == CrumbleBlock::LARGE)
+		size = sf::Vector2f(64, 64);
+	if (s == CrumbleBlock::SMALL)
+		size = sf::Vector2f(32, 32);
+
 	b2BodyDef block_Def;
-	block_Def.type = b2_staticBody;
-	block_Def.position = vHelper::toB2(sf::Vector2f(-100, -100)); //set the starting position
+	block_Def.type = b2_dynamicBody;
+	sf::Vector2f pos_off = sf::Vector2f(pos.x - size.x / 2, pos.y - size.y / 2);
+	block_Def.position = vHelper::toB2(pos); //set the starting position
 	block_Def.angle = 0; //set the starting angle
 	block_Def.fixedRotation = true;
 
 	b2Body* body = m_world->CreateBody(&block_Def);
 
 	//Define the shape of the body
-	b2PolygonShape block_Shape;
-	if (s == CrumbleBlock::LARGE)
-		block_Shape.SetAsBox((64 / vHelper::B2_SCALE) / 2.0f, (64 / vHelper::B2_SCALE) / 2.0f);
-	if(s == CrumbleBlock::SMALL)
-		block_Shape.SetAsBox((32 / vHelper::B2_SCALE) / 2.0f, (32 / vHelper::B2_SCALE) / 2.0f);
+	block_Shape.SetAsBox((size.x / vHelper::B2_SCALE) / 2.0f, (size.y / vHelper::B2_SCALE) / 2.0f);
 
 	b2FixtureDef block_Fix;
 	block_Fix.density = 1.0f;
-	block_Fix.friction = 1.5f;
+	block_Fix.friction = 900.0f;
 	block_Fix.shape = &block_Shape;
 	block_Fix.userData = "Block";
 
@@ -136,13 +148,11 @@ void Spawner::SpawnBlock(sf::Vector2f pos, CrumbleBlock::TYPE t, CrumbleBlock::S
 	m_blocks.push_back(new CrumbleBlock(body, pos, t, s));
 }
 void Spawner::SpawnCannon(sf::Vector2f pos, bool dir) {
-	b2Body* bod = GenerateBody(CANNON);
-	bod->SetTransform(vHelper::toB2(sf::Vector2f(pos.x, pos.y + 16)), 0.0f);
+	b2Body* bod = GenerateBody(CANNON, pos);
 	m_enemies.push_back(new Cannon(bod, dir, m_gun));
 }
 void Spawner::SpawnCannon(sf::Vector2f pos, bool dir, float cd, Projectile::STATE type) {
-	b2Body* bod = GenerateBody(CANNON);
-	bod->SetTransform(vHelper::toB2(sf::Vector2f(pos.x, pos.y + 16)), 0.0f);
+	b2Body* bod = GenerateBody(CANNON, pos);
 	m_enemies.push_back(new Cannon(bod, dir, m_gun, cd, type));
 }
 

@@ -9,7 +9,9 @@ PlatformCreator::PlatformCreator(b2World * w) {
 b2Body * PlatformCreator::generateBody(sf::Vector2f position, string type) {
 	b2BodyDef myBodyDef;
 	myBodyDef.type = b2_kinematicBody;
-	myBodyDef.position = vHelper::toB2(position); //set the starting position
+	sf::Vector2f size = sf::Vector2f(160, 16);
+	sf::Vector2f pos_off = sf::Vector2f(position.x + size.x/2, position.y + size.y / 2);
+	myBodyDef.position = vHelper::toB2(pos_off); //set the starting position
 	myBodyDef.angle = 0; //set the starting angle
 	myBodyDef.fixedRotation = true;
 
@@ -18,7 +20,7 @@ b2Body * PlatformCreator::generateBody(sf::Vector2f position, string type) {
 	//Define the shape of the body
 	b2PolygonShape shape;
 	//shape.SetAsBox(m_text_size.x / 32.0f, m_text_size.y / 32.0f);
-	shape.SetAsBox((160 / vHelper::B2_SCALE) / 2.0f, (16 / vHelper::B2_SCALE) / 2.0f);
+	shape.SetAsBox((size.x / vHelper::B2_SCALE) / 2.0f, (size.y / vHelper::B2_SCALE) / 2.0f);
 
 	b2FixtureDef myFixtureDef;
 	myFixtureDef.density = 1.0f;

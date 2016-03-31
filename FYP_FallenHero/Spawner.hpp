@@ -64,7 +64,7 @@ public:
 	*	@param SPAWN_TYPE The type of body to spawn.  
 	*	@return b2Body* The body post generation.
 	*/
-	b2Body* GenerateBody(SPAWN_TYPE type);
+	b2Body* GenerateBody(SPAWN_TYPE type, sf::Vector2f pos);
 
 	/**
 	*	@brief Calls the generate body function and pushes the new body onto the entity list

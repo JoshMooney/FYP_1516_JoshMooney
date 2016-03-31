@@ -5,12 +5,14 @@
 Gem::Gem() {		}
 Gem::Gem(b2Body *b, sf::Vector2f pos, TYPE t){
 	b->SetUserData(this);
-	b->SetTransform(vHelper::toB2(pos), 0.0f);
-	e_box_body = b;
+	
 	type_ = t;
 
 	init();
 	
+	sf::Vector2f pos_off = sf::Vector2f(pos.x + m_texture_rect.width / 2, pos.y + m_texture_rect.height / 2);
+	b->SetTransform(vHelper::toB2(pos_off), 0.0f);
+	e_box_body = b;
 	alineSprite();
 }
 Gem::~Gem()	{	}

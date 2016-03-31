@@ -140,6 +140,8 @@ void CrumbleBlock::Die() {
 
 void CrumbleBlock::update(FTS fts, Player* p) {
 	checkAnimation();
+	if(isAlive())
+		alineSprite();
 }
 
 void CrumbleBlock::render(sf::RenderWindow &w, sf::Time frames) {
