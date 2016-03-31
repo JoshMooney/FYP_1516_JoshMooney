@@ -37,6 +37,9 @@ protected:
 		myFixtureDef.shape = &shape;
 		myFixtureDef.userData = "Sensor";
 
+		myFixtureDef.filter.categoryBits = _filterCategory::SENSOR;
+		myFixtureDef.filter.maskBits = PLAYER | TERRAIN | PLATFORM;
+
 		body->CreateFixture(&myFixtureDef);
 		return body;
 	}

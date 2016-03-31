@@ -22,7 +22,7 @@ Cannon::Cannon(b2Body * b, bool dir, ProjectileManager* p) {
 	m_gun = p;
 }
 
-Cannon::Cannon(b2Body* b, bool dir, ProjectileManager* p, Projectile::STATE type) {
+Cannon::Cannon(b2Body* b, bool dir, ProjectileManager* p, float cooldown, Projectile::STATE type) {
 	b->SetUserData(this);
 	e_box_body = b;
 	e_body_active = true;
@@ -37,7 +37,7 @@ Cannon::Cannon(b2Body* b, bool dir, ProjectileManager* p, Projectile::STATE type
 
 	e_hp = 0;
 	m_fire_clock.restart();
-	cooldown_time = 3;
+	cooldown_time = cooldown;
 	m_gun = p;
 }
 

@@ -26,6 +26,9 @@ b2Body * ProjectileManager::GenerateBody(sf::Vector2f pos) {
 	myFixtureDef.shape = &shape;
 	myFixtureDef.userData = "Projectile";
 
+	myFixtureDef.filter.categoryBits = _filterCategory::BULLET;
+	myFixtureDef.filter.maskBits = PLAYER | TERRAIN | PLATFORM;
+
 	body->CreateFixture(&myFixtureDef);
 	return body;
 }

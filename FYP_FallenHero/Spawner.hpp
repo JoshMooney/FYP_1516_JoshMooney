@@ -97,7 +97,7 @@ public:
 	*	@param bool The direction to point the cannon in so it can fire.
 	*	@param Projectile::STATE
 	*/
-	void SpawnCannon(sf::Vector2f pos, bool dir, Projectile::STATE type);
+	void SpawnCannon(sf::Vector2f pos, bool dir, float cd, Projectile::STATE type);
 
 	/**
 	*	@brief Checks for any dead body flags in the entity list and destructs them with 

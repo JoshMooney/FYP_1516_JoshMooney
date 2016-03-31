@@ -155,7 +155,7 @@ void Level::CreateTerrain(b2World * world, tmx::ObjectGroup &layer) {
 		myFixtureDef.userData = "Terrain";
 
 		myFixtureDef.filter.categoryBits = _filterCategory::TERRAIN;
-		myFixtureDef.filter.maskBits = PLAYER | ENEMY | BULLET | TERRAIN | PLATFORM | GEM;
+		myFixtureDef.filter.maskBits = PLAYER | ENEMY | BULLET | TERRAIN | PLATFORM | GEM | SENSOR;
 
 		box_body->CreateFixture(&myFixtureDef);
 
@@ -326,6 +326,12 @@ void Level::GenerateEnemies(b2World *world, tmx::ObjectGroup &layer, Spawner* s)
 			num = layer.objects_[i].GetPropertyValue("direction");
 			bool dir = atoi(num.c_str());
 
+			string cooldown = layer.objects_[i].GetPropertyValue("cool");
+			float val;
+			if (cooldown == "")
+				val = 3.0f;
+			else val = std::atof(cooldown.c_str());
+
 			string bullet_type = layer.objects_[i].GetPropertyValue("bullet_type");
 			Projectile::STATE var;
 			if (bullet_type == "Fire")
@@ -338,7 +344,7 @@ void Level::GenerateEnemies(b2World *world, tmx::ObjectGroup &layer, Spawner* s)
 			if (bullet_type == "")
 				s->SpawnCannon(position, dir);
 			else
-				s->SpawnCannon(position, dir, var);
+				s->SpawnCannon(position, dir, val, var);
 		}
 	}
 }

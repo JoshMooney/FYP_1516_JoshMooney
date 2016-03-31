@@ -59,6 +59,9 @@ b2Body * Spawner::GenerateBody(SPAWN_TYPE type) {
 		//Left on purpose so all the collision detection is the same. For now...
 		myFixtureDef.userData = "Skeleton";
 
+		myFixtureDef.filter.categoryBits = _filterCategory::ENEMY;
+		myFixtureDef.filter.maskBits = ENEMY | PLAYER | TERRAIN | PLATFORM;
+
 		body->CreateFixture(&myFixtureDef);
 		return body;
 		break;
@@ -75,6 +78,9 @@ b2Body * Spawner::GenerateBody(SPAWN_TYPE type) {
 		myFixtureDef.friction = 1.0f;
 		myFixtureDef.shape = &shape;
 		myFixtureDef.userData = "Cannon";
+
+		myFixtureDef.filter.categoryBits = _filterCategory::ENEMY;
+		myFixtureDef.filter.maskBits = ENEMY | PLAYER | TERRAIN | PLATFORM;
 
 		body->CreateFixture(&myFixtureDef);
 		return body;
@@ -134,10 +140,10 @@ void Spawner::SpawnCannon(sf::Vector2f pos, bool dir) {
 	bod->SetTransform(vHelper::toB2(sf::Vector2f(pos.x, pos.y + 16)), 0.0f);
 	m_enemies.push_back(new Cannon(bod, dir, m_gun));
 }
-void Spawner::SpawnCannon(sf::Vector2f pos, bool dir, Projectile::STATE type) {
+void Spawner::SpawnCannon(sf::Vector2f pos, bool dir, float cd, Projectile::STATE type) {
 	b2Body* bod = GenerateBody(CANNON);
 	bod->SetTransform(vHelper::toB2(sf::Vector2f(pos.x, pos.y + 16)), 0.0f);
-	m_enemies.push_back(new Cannon(bod, dir, m_gun, type));
+	m_enemies.push_back(new Cannon(bod, dir, m_gun, cd, type));
 }
 
 /*

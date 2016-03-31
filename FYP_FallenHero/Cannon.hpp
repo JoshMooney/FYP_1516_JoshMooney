@@ -17,7 +17,7 @@ private:
 public:
 	Cannon();
 	Cannon(b2Body* b, bool dir, ProjectileManager* p);
-	Cannon(b2Body* b, bool dir, ProjectileManager* p, Projectile::STATE type);
+	Cannon(b2Body* b, bool dir, ProjectileManager* p, float cooldown, Projectile::STATE type);
 	~Cannon();
 
 	void update(FTS fts, Player *p);
