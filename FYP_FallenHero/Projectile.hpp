@@ -38,6 +38,7 @@ public:
 	b2Body* getBody() { return m_box_body; }
 
 	void applySpeed();
+	bool getBoolDirection();
 };
 
 #endif

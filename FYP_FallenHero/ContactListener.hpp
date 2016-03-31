@@ -12,6 +12,7 @@
 #include "Skeleton.hpp"
 
 #include "Gem.hpp"
+#include "Projectile.hpp"
 
 /**
 *	@class ContactListener
@@ -84,6 +85,29 @@ public:
 						p->setJumping(false);
 				}
 			}
+		}
+
+		//Projectile and Player
+		if (fixAType == "Projectile" && fixBType == "Player"
+			|| fixAType == "Player" && fixBType == "Projectile") {
+
+			Projectile* b;
+			void* player_data;
+			void* bullet_data;
+
+			if (fixAType == "Player") {
+				player_data = contact->GetFixtureA()->GetBody()->GetUserData();
+				bullet_data = contact->GetFixtureB()->GetBody()->GetUserData();
+			}
+			else {
+				bullet_data = contact->GetFixtureA()->GetBody()->GetUserData();
+				player_data = contact->GetFixtureB()->GetBody()->GetUserData();
+			}
+
+			b = static_cast<Projectile*>(bullet_data);
+			bool dir = !b->getBoolDirection();
+			static_cast<Player*>(player_data)->TakeDamage(dir);
+			b->Die();
 		}
 
 		//Player and Blocks

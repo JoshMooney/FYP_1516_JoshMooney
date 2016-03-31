@@ -51,3 +51,14 @@ void Projectile::applySpeed() {
 	sf::Vector2f force = m_direction * m_speed;
 	m_box_body->SetLinearVelocity(vHelper::toB2(force));
 }
+
+bool Projectile::getBoolDirection() {
+	if (m_direction == sf::Vector2f(1, 0))
+		return true;
+	if (m_direction == sf::Vector2f(-1, 0))
+		return false;
+	if (m_direction == sf::Vector2f(0, 1))
+		return true;
+	if (m_direction == sf::Vector2f(0, -1))
+		return false;
+}
