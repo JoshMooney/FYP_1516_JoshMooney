@@ -175,6 +175,7 @@ void Player::loadMedia() {
 }
 
 void Player::update(FTS fts){
+	e_box_body->SetAwake(true);
 	checkAnimation();
 	alineSprite();
 	Idle();

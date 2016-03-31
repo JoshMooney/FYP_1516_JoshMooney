@@ -10,6 +10,8 @@
 #include "Terrain.hpp"
 #include "Enemy.hpp"
 #include "Skeleton.hpp"
+#include "Platform.hpp"
+#include "OneWayPlatform.hpp"
 
 #include "Cannon.hpp"
 #include "Gem.hpp"
@@ -156,6 +158,62 @@ public:
 				void* bodyUserData2 = contact->GetFixtureA()->GetBody()->GetUserData();
 
 				static_cast<Cannon*>(bodyUserData2)->setCollidingSword(true);
+			}
+		}
+
+		//Player and Platform
+		if (fixAType == "Platform" && fixBType == "Player"
+			|| fixAType == "Player" && fixBType == "Platform") {
+
+			void* player_userdata;
+			void* platform_userdata;
+			if (fixAType == "Player") {
+				player_userdata = contact->GetFixtureA()->GetBody()->GetUserData();
+				platform_userdata = contact->GetFixtureB()->GetBody()->GetUserData();
+			}
+			else {
+				player_userdata = contact->GetFixtureB()->GetBody()->GetUserData();
+				platform_userdata = contact->GetFixtureA()->GetBody()->GetUserData();
+			}
+
+			Player* player = static_cast<Player*>(player_userdata);
+			Platform* platform = static_cast<Platform*>(platform_userdata);
+
+			if (player->isJumping()) {
+				sf::FloatRect plat_geo = platform->geometry();
+				sf::FloatRect player_geo = player->getBounds();
+
+				if (player_geo.top + player_geo.height >= plat_geo.top - player_jump_y_offset &&
+					player_geo.top + player_geo.height <= plat_geo.top)
+					player->setJumping(false);
+			}
+		}
+
+		//Player and OneWay Platform
+		if (fixAType == "OneWay-Platform" && fixBType == "Player"
+			|| fixAType == "Player" && fixBType == "OneWay-Platform") {
+
+			void* player_userdata;
+			void* platform_userdata;
+			if (fixAType == "Player") {
+				player_userdata = contact->GetFixtureA()->GetBody()->GetUserData();
+				platform_userdata = contact->GetFixtureB()->GetBody()->GetUserData();
+			}
+			else {
+				player_userdata = contact->GetFixtureB()->GetBody()->GetUserData();
+				platform_userdata = contact->GetFixtureA()->GetBody()->GetUserData();
+			}
+
+			Player* player = static_cast<Player*>(player_userdata);
+			OneWayPlatform* platform = static_cast<OneWayPlatform*>(platform_userdata);
+
+			if (player->isJumping()) {
+				sf::FloatRect plat_geo = platform->geometry();
+				sf::FloatRect player_geo = player->getBounds();
+
+				if (player_geo.top + player_geo.height >= plat_geo.top - player_jump_y_offset &&
+					player_geo.top + player_geo.height <= plat_geo.top)
+					player->setJumping(false);
 			}
 		}
 
@@ -492,6 +550,40 @@ public:
 				}
 			}
 		}
+			
+		//Player and OneWay Platform
+		if (fixAType == "OneWay-Platform" && fixBType == "Player"
+			|| fixAType == "Player" && fixBType == "OneWay-Platform") {
+
+			void* player_userdata;
+			void* platform_userdata;
+			if (fixAType == "Player") {
+				player_userdata = contact->GetFixtureA()->GetBody()->GetUserData();
+				platform_userdata = contact->GetFixtureB()->GetBody()->GetUserData();
+			}
+			else {
+				player_userdata = contact->GetFixtureB()->GetBody()->GetUserData();
+				platform_userdata = contact->GetFixtureA()->GetBody()->GetUserData();
+			}
+
+			Player* player = static_cast<Player*>(player_userdata);
+			OneWayPlatform* platform = static_cast<OneWayPlatform*>(platform_userdata);
+
+			if (player->isJumping()) {
+				int numPoints = contact->GetManifold()->pointCount;
+				b2WorldManifold worldManifold;
+				contact->GetWorldManifold(&worldManifold);
+
+				//check if contact points are moving downward
+				for (int i = 0; i < numPoints; i++) {
+					b2Vec2 pointVel =
+						player->getBody()->GetLinearVelocityFromWorldPoint(worldManifold.points[i]);
+					if (pointVel.y > 0)
+						return;//point is moving down, leave contact solid and exit
+				}
+				contact->SetEnabled(false);
+			}
+		}
 	}
 
 	/**
@@ -520,6 +612,24 @@ public:
 
 				static_cast<Skeleton*>(bodyUserData1)->setCollidingSword(false);
 			}
+		}
+
+		//Player and OneWay Platform
+		if (fixAType == "OneWay-Platform" && fixBType == "Player"
+			|| fixAType == "Player" && fixBType == "OneWay-Platform") {
+
+			void* player_userdata;
+			void* platform_userdata;
+			if (fixAType == "Player") {
+				player_userdata = contact->GetFixtureA()->GetBody()->GetUserData();
+				platform_userdata = contact->GetFixtureB()->GetBody()->GetUserData();
+			}
+			else {
+				player_userdata = contact->GetFixtureB()->GetBody()->GetUserData();
+				platform_userdata = contact->GetFixtureA()->GetBody()->GetUserData();
+			}
+
+			contact->SetEnabled(true);
 		}
 
 		//Player Sword and Block

@@ -3,13 +3,17 @@
 #include <string>
 #include "vHelper.hpp"
 
+#include <iostream>
+
 Level::Level() {
 	cLog::inst()->print(3, "Level", "Default constructor of level called");
 }
-Level::Level(string s, b2World *world, Spawner *spawner, GemMine *mine) {
+Level::Level(string s, b2World *world, Spawner *spawner, GemMine *mine, PlatformCreator *p) {
 	path = "Assets/Levels/";
 	format = ".tmx";
 	tile_size = 32;
+
+	m_point_map = PointMap();
 
 	scene = ParallaxSprite(path + "Backgrounds/Mountains.png", sf::Vector3f(0, 0, 0.5f));
 	m_checkpoint = nullptr;
@@ -17,7 +21,7 @@ Level::Level(string s, b2World *world, Spawner *spawner, GemMine *mine) {
 	loadMap(s);
 	scenery = Scenery();
 	m_world = world;
-	ParseMapLayers(world, spawner, mine);
+	ParseMapLayers(world, spawner, mine, p);
 }
 
 /*TEMP*/
@@ -68,7 +72,7 @@ void Level::fetchSpawn() {
 	}
 }
 
-void Level::ParseMapLayers(b2World * world, Spawner *s, GemMine *mine) {
+void Level::ParseMapLayers(b2World * world, Spawner *s, GemMine *mine, PlatformCreator *p) {
 	//map.GetObjectLayer("Layer Name");
 	//Load size of the Map
 	int tile_size = 32;
@@ -107,8 +111,9 @@ void Level::ParseMapLayers(b2World * world, Spawner *s, GemMine *mine) {
 	GenerateBlocks(world, lay, s);
 	tiled_map->GetObjectGroup("Blocks").visible = false;
 
-	//l = make_shared<tmx::ObjectGroup>(tiled_map->GetObjectGroup("Platform"));
-	//CreatePlatforms(world, layer);
+	lay = tiled_map->GetObjectGroup("Platform");
+	CreatePlatforms(world, lay, p);
+	tiled_map->GetObjectGroup("Platform").visible = false;
 
 	//l = make_shared<tmx::ObjectGroup>(tiled_map->GetObjectGroup("Level_Data"));
 	//GenerateLevelItems(world, layer);
@@ -165,6 +170,84 @@ void Level::CreateTerrain(b2World * world, tmx::ObjectGroup &layer) {
 		terrain_data.push_back(terrain);
 		terrain_data.back()->body->SetUserData(terrain_data.back());
 	}
+}
+void Level::CreatePlatforms(b2World * world, tmx::ObjectGroup & layer, PlatformCreator *p) {
+	string x, y;
+	string type, id;
+	sf::Vector2f position;
+	int lenght = layer.objects_.size();
+
+	for (int i = 0; i < lenght; i++) {
+		string type = layer.objects_[i].GetPropertyValue("type");
+		if (type == "Platform") {
+			x = layer.objects_[i].GetPropertyValue("x");
+			y = layer.objects_[i].GetPropertyValue("y");
+			position = sf::Vector2f(atoi(x.c_str()), atoi(y.c_str()));
+			
+			//id = layer.objects_[i].GetPropertyValue("id");
+			p->SpawnPlatform(position);
+		}
+		if (type == "FadePlatform") {
+			x = layer.objects_[i].GetPropertyValue("x");
+			y = layer.objects_[i].GetPropertyValue("y");
+			position = sf::Vector2f(atoi(x.c_str()), atoi(y.c_str()));
+
+			string in = layer.objects_[i].GetPropertyValue("i");
+			string out = layer.objects_[i].GetPropertyValue("o");
+			sf::Vector2f fade;
+			if(in != "" && out != "")
+				fade = sf::Vector2f(std::stof(in.c_str()), std::stof(out.c_str()));
+
+			string alive = layer.objects_[i].GetPropertyValue("a");
+			string dead = layer.objects_[i].GetPropertyValue("d");
+			sf::Vector2f timing;
+			if (alive != "" && dead != "")
+				timing = sf::Vector2f(std::stof(alive.c_str()), std::stof(dead.c_str()));
+
+			if (!(timing == sf::Vector2f(0.0f, 0.0f)) && !(fade == sf::Vector2f(0.0f, 0.0f))) {
+				p->SpawnFade(position, fade, timing);
+			}
+			else if (!(fade == sf::Vector2f(0.0f, 0.0f))) {
+				p->SpawnFade(position, fade);
+			}
+			else {
+				p->SpawnFade(position);
+			}
+			
+
+			//id = layer.objects_[i].GetPropertyValue("id");
+			
+		}
+		if (type == "OneWayPlatform") {
+			x = layer.objects_[i].GetPropertyValue("x");
+			y = layer.objects_[i].GetPropertyValue("y");
+			position = sf::Vector2f(atoi(x.c_str()), atoi(y.c_str()));
+
+			//id = layer.objects_[i].GetPropertyValue("id");
+			p->SpawnOneWay(position);
+		}
+		if (type == "NodePlatform") {
+			x = layer.objects_[i].GetPropertyValue("x");
+			y = layer.objects_[i].GetPropertyValue("y");
+			position = sf::Vector2f(atoi(x.c_str()), atoi(y.c_str()));
+
+			id = layer.objects_[i].GetPropertyValue("id");
+			p->SpawnNodePlatform(position, id, true);
+		}
+		if (type == "Node") {
+			string next, previous, id;
+			x = layer.objects_[i].GetPropertyValue("x");
+			y = layer.objects_[i].GetPropertyValue("y");
+			position = sf::Vector2f(atoi(x.c_str()), atoi(y.c_str()));
+
+			id = layer.objects_[i].GetPropertyValue("id");
+			next = layer.objects_[i].GetPropertyValue("n");
+			//previous = layer.objects_[i].GetPropertyValue("p");
+			m_point_map.append(id, make_shared<PointNode>(position, next));
+		}
+	}
+
+	p->linkNodes(&m_point_map);
 }
 void Level::GeneratePlayerItems(b2World * world, tmx::ObjectGroup &layer) {
 	string x, y, w, h;
@@ -396,4 +479,3 @@ void Level::loadMap(string lvl_name) {
 	tiled_map->ShowObjects(true);
 	
 }
-

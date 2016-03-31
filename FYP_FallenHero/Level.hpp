@@ -20,6 +20,9 @@
 #include "Sensor.hpp"
 #include "Checkpoint.hpp"
 
+#include "PlatformCreator.hpp"
+#include "PointMap.hpp"
+#include "NodePlatform.hpp"
 #include "Terrain.hpp"
 #include "Scenery.hpp"
 #include "Spawner.hpp"
@@ -47,7 +50,7 @@ private:
 	shared_ptr<tmx::TileMap> tiled_map;
 
 	vector<Terrain *> terrain_data;			//Terrain of the level
-	//vector<Platform> platform_data;			//Platform Data
+	PointMap m_point_map;
 	vector<ParallaxSprite> scenery_data;			//Platform Data
 	//vector<LevelItem> player_data;		//Player Level Data Spawn, Exit, checkpoints.
 	//vector<Collectible> level_data;		//Coins, collectibles
@@ -75,7 +78,7 @@ public:
 	*	@param b2World a pointer to the box 2d world for creating bodies.
 	*	@param Spawner Entity spawner.
 	*/
-	Level(string s, b2World *world, Spawner *spawner, GemMine *mine);
+	Level(string s, b2World *world, Spawner *spawner, GemMine *mine, PlatformCreator *p);
 	~Level();					//!<Deconstructor for the Level class
 
 	/**
@@ -92,7 +95,7 @@ public:
 	*	@param b2World Is the box2d world, this is needed here as we will be doing alot of boxbody creation here.
 	*	@param Spawner This is the handler class for creating and managing the entites and blocks in the level.
 	*/
-	void ParseMapLayers(b2World *world, Spawner *spawner, GemMine *mine);
+	void ParseMapLayers(b2World *world, Spawner *spawner, GemMine *mine, PlatformCreator *p);
 	/**
 	*	@brief This steps through the object layer reading in each object and translating it into my c++ OBJ
 	*	. This reads the X, Y Width and Height creates the box body using this information and pushes the new 
@@ -107,7 +110,7 @@ public:
 	*	@param b2World Is the box2d world, this is needed as the platforms require bodies to be constructed
 	*	@param tmx::ObjectGroup The object layer of which the platforms are located on within the .tmx 
 	*/
-	void CreatePlatforms(b2World *world, tmx::ObjectGroup &layer);
+	void CreatePlatforms(b2World *world, tmx::ObjectGroup &layer, PlatformCreator *p);
 	/**
 	*	@brief Steps throught the object layer creating Player interactive items using the information inside the object 
 	*	in the .tmx file and push them back onto the player_data container.

@@ -26,6 +26,7 @@
 #include "SFML\Audio.hpp"
 #include "HUD.hpp"
 #include "CrumbleBlock.hpp"
+#include "PlatformCreator.hpp"
 
 #include "GemMine.hpp"
 #include "ProjectileManager.hpp"
@@ -62,6 +63,8 @@ private:
 	shared_ptr<GemMine> m_gem_mine;
 	shared_ptr<Spawner> m_spawner;
 	shared_ptr<ProjectileManager> m_projectiles;
+	shared_ptr<PlatformCreator> m_platform_creator;
+
 	sf::Clock m_animation_clock;
 	sf::Time frame_elapse;
 	string s_background_music;

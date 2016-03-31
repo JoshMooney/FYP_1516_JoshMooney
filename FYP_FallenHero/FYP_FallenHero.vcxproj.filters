@@ -176,6 +176,27 @@
 	</ClInclude>
     <ClInclude Include="Cannon.hpp">
       <Filter>Header Files\Entities</Filter>
+	</ClInclude>
+    <ClInclude Include="PointNode.hpp">
+      <Filter>Header Files\Level</Filter>
+    </ClInclude>
+    <ClInclude Include="NodePlatform.hpp">
+      <Filter>Header Files\Level</Filter>
+    </ClInclude>
+    <ClInclude Include="PointMap.hpp">
+      <Filter>Header Files\Level</Filter>
+    </ClInclude>
+    <ClInclude Include="PlatformCreator.hpp">
+      <Filter>Header Files\Level</Filter>
+    </ClInclude>
+    <ClInclude Include="Platform.hpp">
+      <Filter>Header Files\Level</Filter>
+    </ClInclude>
+    <ClInclude Include="OneWayPlatform.hpp">
+      <Filter>Header Files\Level</Filter>
+    </ClInclude>
+    <ClInclude Include="FadePlatform.hpp">
+      <Filter>Header Files\Level</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -261,6 +282,18 @@
       <Filter>Source Files\Entities</Filter>
     </ClCompile>
     <ClCompile Include="Cannon.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="NodePlatform.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PlatformCreator.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Platform.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="FadePlatform.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
