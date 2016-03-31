@@ -154,6 +154,7 @@
     </ClCompile>
     <ClCompile Include="tinyxml2.cpp" />
     <ClCompile Include="vCamera.cpp" />
+    <ClCompile Include="Weed.cpp" />
     <ClCompile Include="WorldMap.cpp" />
     <ClCompile Include="WorldScene.cpp" />
     <ClCompile Include="XBOXController.cpp" />

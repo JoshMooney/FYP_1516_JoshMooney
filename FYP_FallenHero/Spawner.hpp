@@ -6,10 +6,13 @@
 #include "Box2D\Box2D.h"
 #include "Enemy.hpp"
 #include "Skeleton.hpp"
+#include "Weed.hpp"
+
 #include "CrumbleBlock.hpp"
 
 #include "GemMine.hpp"
 #include "Player.hpp"
+#include <memory>
 
 /**
 *	@class Spawner
@@ -29,12 +32,16 @@ private:
 
 	Skeleton* prototype_Skeleton;
 	vector<Enemy *> m_enemies;
+	vector<Enemy *> m_dead_enemies;
+	//vector<shared_ptr<Enemy>> m_enemies;
 	vector<CrumbleBlock *> m_blocks;
 	GemMine *m_mine;
 public:
 	//!This enum keeps track of all the different types of enemies the spawner can create.
 	enum SPAWN_TYPE { 
-	SKELETON 		//!<Spawn type of a Skeleton
+	SKELETON, 		//!<Spawn type of a Skeleton
+	WEED,	 		//!<Spawn type of a Skeleton
+	CANNON 		//!<Spawn type of a Skeleton
 	};
 	//!Default constructor for the spawner class
 	Spawner()	{		}
@@ -55,6 +62,11 @@ public:
 	*/
 	b2Body* GenerateBody(SPAWN_TYPE type);
 
+	/**
+	*	@brief Calls the generate body function and pushes the new body onto the entity list
+	*	@param sf::Vector2f The position to spawn the Weed.
+	*/
+	void SpawnWeed(sf::Vector2f pos, bool dir);
 	/**
 	*	@brief Calls the generate body function and pushes the new body onto the entity list
 	*	@param sf::Vector2f The position to spawn the Skeleton.

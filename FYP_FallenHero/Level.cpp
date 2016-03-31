@@ -301,6 +301,18 @@ void Level::GenerateEnemies(b2World *world, tmx::ObjectGroup &layer, Spawner* s)
 			
 			s->SpawnSkeleton(position);
 		}
+		if (type == "Weed") {
+			num = layer.objects_[i].GetPropertyValue("x");
+			position.x = atoi(num.c_str());
+
+			num = layer.objects_[i].GetPropertyValue("y");
+			position.y = atoi(num.c_str());
+
+			num = layer.objects_[i].GetPropertyValue("direction");
+			bool dir = atoi(num.c_str());
+
+			s->SpawnWeed(position, dir);
+		}
 	}
 }
 void Level::GenerateBlocks(b2World * world, tmx::ObjectGroup & layer, Spawner * spawner) {

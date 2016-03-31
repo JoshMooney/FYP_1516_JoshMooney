@@ -33,6 +33,12 @@ public:
 	*	overloaded in any derived classes.
 	*	@param FTS This is the Fixed Time Step passed to the enemy for moving within delta time
 	*/
+	virtual ~Enemy() {
+		cLog::inst()->print("Enemy Deconstructor called");
+		//e_box_body->GetWorld()->DestroyBody(e_box_body);
+	}
+
+
 	virtual void update(FTS fts) = 0;
 	/**
 	*	@brief This pure virtual function for rendering the enemy object and must be

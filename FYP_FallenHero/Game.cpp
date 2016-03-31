@@ -20,7 +20,7 @@ Game::Game() :
 	m_xbox_controller = make_shared<XBOXController>();
 	m_xbox_controller->UpdateButtons();
 	cLog::inst()->print("Game class initialised");
-
+	
 	m_menu_scene = new MenuScene();
 	m_level_scene = new LevelScene();
 	m_world_scene = new WorldScene();
