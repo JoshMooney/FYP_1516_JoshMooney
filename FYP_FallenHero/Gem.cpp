@@ -38,7 +38,7 @@ void Gem::loadMedia(){
 		m_texture_rect = sf::IntRect{ 48, 4, 9, 12 };
 		break;
 	case R_100:
-		m_texture_rect = sf::IntRect{ 67, 7, 13, 3 };
+		m_texture_rect = sf::IntRect{ 67, 7, 13, 9 };
 		break;
 	case B_150:
 		m_texture_rect = sf::IntRect{ 86, 3, 17, 13 };

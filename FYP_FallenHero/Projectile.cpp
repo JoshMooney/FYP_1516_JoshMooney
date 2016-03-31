@@ -6,8 +6,8 @@ Projectile::Projectile() {		}
 Projectile::Projectile(b2Body* b, sf::Vector2f dir) {
 	b->SetUserData(this);
 	m_box_body = b;
-	
 	m_direction = dir;
+	m_current_state = FIRE;
 
 	init();
 
@@ -15,15 +15,14 @@ Projectile::Projectile(b2Body* b, sf::Vector2f dir) {
 	alineSprite();
 	applySpeed();
 
-	m_current_state = FIRE;
 	m_animator.playAnimation(m_current_state);
 }
 
 Projectile::Projectile(b2Body* b, sf::Vector2f dir, STATE type) {
 	b->SetUserData(this);
 	m_box_body = b;
-
 	m_direction = dir;
+	m_current_state = type;
 
 	init();
 
@@ -31,16 +30,25 @@ Projectile::Projectile(b2Body* b, sf::Vector2f dir, STATE type) {
 	alineSprite();
 	applySpeed();
 
-	m_current_state = type;
 	m_animator.playAnimation(m_current_state);
 }
 
 Projectile::~Projectile() {		}
 
 void Projectile::init() {
+	switch (m_current_state) {
+	case FIRE:
+		m_speed = 15.0f;
+		break;
+	case RED:
+		m_speed = 20.0f;
+		break;
+	case BLUE:
+		m_speed = 25.0f;
+		break;
+	}
 	m_body_active = true;
 	can_despawn = false;
-	m_speed = 15.0f;
 	m_spawn_point = vHelper::toSF(getBody()->GetPosition());
 
 	if (m_direction == sf::Vector2f(1, 0))	setScale(-1, 1);

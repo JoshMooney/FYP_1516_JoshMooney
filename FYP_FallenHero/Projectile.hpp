@@ -68,6 +68,7 @@ public:
 
 	void applySpeed();
 	bool getBoolDirection();
+	
 };
 
 #endif

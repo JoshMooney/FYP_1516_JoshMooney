@@ -53,7 +53,7 @@ void ProjectileManager::cull() {
 
 void ProjectileManager::update(FTS fts) {
 	for (Projectile* p : m_projectiles) {
-		if (vHelper::distance(p->m_spawn_point, p->getPosition()) > 5000.0f) {
+		if (vHelper::distance(p->m_spawn_point, p->getPosition()) > 1000.0f && p->isAlive()) {
 			p->Die();
 			cLog::inst()->print(0, "ProjectileManager", "Bullet has gone too far and has been destructed.");
 		}

@@ -169,7 +169,7 @@ void Player::loadMedia() {
 	m_animator.addAnimation(RUN,	frame_run,		sf::seconds(0.5f));
 	m_animator.addAnimation(IDLE,	frame_idle,		sf::seconds(1.5f));
 	m_animator.addAnimation(JUMP,	frame_jump,		sf::seconds(1.2f));
-	m_animator.addAnimation(HIT,	frame_hit,		sf::seconds(1.2f));
+	m_animator.addAnimation(HIT,	frame_hit,		sf::seconds(0.8f));
 }
 
 void Player::update(FTS fts){
