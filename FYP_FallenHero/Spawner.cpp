@@ -38,6 +38,9 @@ b2Body * Spawner::GenerateBody(SPAWN_TYPE type) {
 		myFixtureDef.shape = &shape;
 		myFixtureDef.userData = "Skeleton";
 
+		myFixtureDef.filter.categoryBits = _filterCategory::ENEMY;
+		myFixtureDef.filter.maskBits = ENEMY | PLAYER | TERRAIN | PLATFORM;
+
 		body->CreateFixture(&myFixtureDef);
 		return body;
 		break;
@@ -118,6 +121,9 @@ void Spawner::SpawnBlock(sf::Vector2f pos, CrumbleBlock::TYPE t, CrumbleBlock::S
 	block_Fix.friction = 1.5f;
 	block_Fix.shape = &block_Shape;
 	block_Fix.userData = "Block";
+
+	block_Fix.filter.categoryBits = _filterCategory::TERRAIN;
+	block_Fix.filter.maskBits = PLAYER | ENEMY | BULLET | TERRAIN | PLATFORM | GEM;
 
 	body->CreateFixture(&block_Fix);
 

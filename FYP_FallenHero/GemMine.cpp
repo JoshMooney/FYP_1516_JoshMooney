@@ -98,6 +98,10 @@ b2Body* GemMine::GenerateBody(Gem::TYPE type, bool grav) {
 
 	myFixtureDef.shape = &shape;
 	myFixtureDef.userData = "Gem";
+
+	myFixtureDef.filter.categoryBits = _filterCategory::GEM;
+	myFixtureDef.filter.maskBits = PLAYER | TERRAIN | PLATFORM;
+
 	body->CreateFixture(&myFixtureDef);
 	return body;
 }

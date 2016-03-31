@@ -44,7 +44,9 @@ Player::Player(b2World &m_world){
 	myFixtureDef.friction = 1.5f;
 	myFixtureDef.shape = &shape;
 	myFixtureDef.userData = "Player";
-	
+
+	myFixtureDef.filter.categoryBits = _filterCategory::PLAYER;
+	myFixtureDef.filter.maskBits = ENEMY | BULLET | TERRAIN | PLATFORM | GEM | SENSOR;
 
 	e_box_body->CreateFixture(&myFixtureDef);
 	//e_box_body->CreateFixture(&shape, 0.0f);
