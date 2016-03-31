@@ -114,10 +114,9 @@ void LevelScene::render(sf::RenderWindow &w){
 	m_player->render(frame_elapse);
 	w.draw(*m_player);					//render Player
 	
-
+	m_projectiles->render(w, frame_elapse);
 	m_spawner->render(w, frame_elapse);
 	m_gem_mine->render(w, frame_elapse);
-	m_projectiles->render(w, frame_elapse);
 
 	//m_world->DrawDebugData();
 	m_level->scenery.renderFG(w, &m_camera);	//Render Foreground	

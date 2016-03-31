@@ -43,10 +43,8 @@ void Projectile::init() {
 	m_speed = 15.0f;
 	m_spawn_point = vHelper::toSF(getBody()->GetPosition());
 
-	
 	if (m_direction == sf::Vector2f(1, 0))	setScale(-1, 1);
 	if (m_direction == sf::Vector2f(-1, 0)) setScale(1, 1);
-	
 }
 
 void Projectile::update() {
