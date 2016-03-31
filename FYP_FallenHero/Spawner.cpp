@@ -59,11 +59,40 @@ b2Body * Spawner::GenerateBody(SPAWN_TYPE type) {
 		body->CreateFixture(&myFixtureDef);
 		return body;
 		break;
+	case CANNON:
+		myBodyDef.type = b2_staticBody; //this will be a dynamic body
+		myBodyDef.position = vHelper::toB2(sf::Vector2f(100, 100)); //set the starting position
+		myBodyDef.angle = 0; //set the starting angle
+		myBodyDef.fixedRotation = true;
+
+		body = m_world->CreateBody(&myBodyDef);
+		shape.SetAsBox((32 / vHelper::B2_SCALE) / 2.0f, (32 / vHelper::B2_SCALE) / 2.0f);
+
+		myFixtureDef.density = 1.0f;
+		myFixtureDef.friction = 1.0f;
+		myFixtureDef.shape = &shape;
+		myFixtureDef.userData = "Cannon";
+
+		body->CreateFixture(&myFixtureDef);
+		return body;
+		break;
 	}
 }
 
 void Spawner::SpawnWeed(sf::Vector2f pos, bool dir) {
 	m_enemies.push_back(new Weed(GenerateBody(WEED), pos, dir));
+
+	/*if (m_enemies.size() >= 2){
+		for (auto it = m_enemies.begin(); it != m_enemies.end();) {
+			m_world->DestroyBody((*it)->e_box_body);		//Destroy the b2body of the enemy
+			(*it)->e_box_body = nullptr;
+			Enemy* e = *it;
+			delete e;				//delete the pointer
+			it = m_enemies.erase(it);	//erase the object(calls the objects destructor)
+			cLog::inst()->print(0, "Spawner", "Enemy Removed");
+		}
+	}*/
+
 }
 void Spawner::SpawnSkeleton(sf::Vector2f pos) {
 	m_enemies.push_back(new Skeleton(GenerateBody(SKELETON), pos, true));
@@ -94,6 +123,17 @@ void Spawner::SpawnBlock(sf::Vector2f pos, CrumbleBlock::TYPE t, CrumbleBlock::S
 
 	m_blocks.push_back(new CrumbleBlock(body, pos, t, s));
 }
+void Spawner::SpawnCannon(sf::Vector2f pos, bool dir) {
+	b2Body* bod = GenerateBody(CANNON);
+	bod->SetTransform(vHelper::toB2(sf::Vector2f(pos.x, pos.y + 16)), 0.0f);
+	m_enemies.push_back(new Cannon(bod, dir, m_gun));
+}
+void Spawner::SpawnCannon(sf::Vector2f pos, bool dir, Projectile::STATE type) {
+	b2Body* bod = GenerateBody(CANNON);
+	bod->SetTransform(vHelper::toB2(sf::Vector2f(pos.x, pos.y + 16)), 0.0f);
+	m_enemies.push_back(new Cannon(bod, dir, m_gun, type));
+}
+
 /*
 void Spawner::CullBodies() {
 	//Delete any box bodies for the Blocks
@@ -123,6 +163,7 @@ void Spawner::CullInActiveEnemies() {
 		//If the Enemy is not alive
 		if (!(*it)->isAlive() && (*it)->canDespawn()) {
 			m_world->DestroyBody((*it)->e_box_body);		//Destroy the b2body of the enemy
+			//(*it)->e_box_body = nullptr;
 			cLog::inst()->print(0, "Spawner", "Enemy Body Destroyed");
 			Enemy* e = *it;
 			//delete e;				//delete the pointer
@@ -152,8 +193,11 @@ void Spawner::update(FTS fts, Player * p) {
 		if (e->isCollidingSword() && p->isAttacking() && p->getAttackBounds().intersects(e->getBounds())) {
 			e->TakeDamage();
 		}
+		if (!p->isAttacking() && e->is_hit) {
+			e->is_hit = false;
+		}
 		if (update_dist > distanceToPlayer(e->getCenter(), p->getCenter())) { 
-			e->update(fts);
+			e->update(fts, p);
 		}
 
 	}
@@ -168,7 +212,7 @@ void Spawner::update(FTS fts, Player * p) {
 			m_blocks[i]->is_hit = true;
 		}
 		else {
-			m_blocks[i]->update(fts);
+			m_blocks[i]->update(fts, p);
 		}
 
 		if (m_blocks[i]->e_body_active == false && m_blocks[i]->canGemSpawn())

@@ -2,6 +2,7 @@
 #define _ENEMY_HPP
 #include "stdafx.h"
 
+#include "Player.hpp"
 #include "SFML\Graphics.hpp"
 #include "Box2D\Box2D.h"
 #include "ResourceManager.hpp"
@@ -38,8 +39,7 @@ public:
 		//e_box_body->GetWorld()->DestroyBody(e_box_body);
 	}
 
-
-	virtual void update(FTS fts) = 0;
+	virtual void update(FTS fts, Player *p) = 0;	
 	/**
 	*	@brief This pure virtual function for rendering the enemy object and must be
 	*	overloaded in any derived classes.

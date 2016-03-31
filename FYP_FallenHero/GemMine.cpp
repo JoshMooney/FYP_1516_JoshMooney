@@ -8,7 +8,7 @@ GemMine::GemMine(b2World *world) {
 	m_gem_chart[Gem::TYPE::B_10] = sf::IntRect{ 7, 10, 6, 6 };
 	m_gem_chart[Gem::TYPE::P_20] = sf::IntRect{ 27, 8, 8, 8 };
 	m_gem_chart[Gem::TYPE::O_50] = sf::IntRect{ 48, 4, 9, 12 };
-	m_gem_chart[Gem::TYPE::R_100] = sf::IntRect{ 67, 7, 13, 3 };
+	m_gem_chart[Gem::TYPE::R_100] = sf::IntRect{ 67, 7, 13, 9 };
 	m_gem_chart[Gem::TYPE::B_150] = sf::IntRect{ 86, 3, 17, 13 };
 	m_gem_chart[Gem::TYPE::W_250] = sf::IntRect{ 105, 0, 21, 16 };
 
@@ -30,10 +30,10 @@ void GemMine::SpawnBlock(CrumbleBlock::TYPE type, CrumbleBlock::SIZE size, sf::V
 		}
 		break; 
 	case CrumbleBlock::TYPE::DIRT:
-		if (prob >= 0 && prob < 3) {
+		if (prob >= 0 && prob <= 3) {
 			value = Gem::TYPE::O_50;
 		}
-		if (prob >= 3 && prob < 6) {
+		if (prob >= 3 && prob <= 6) {
 			value = Gem::TYPE::R_100;
 		}
 		if (prob >= 6 && prob <= 9) {
@@ -41,10 +41,10 @@ void GemMine::SpawnBlock(CrumbleBlock::TYPE type, CrumbleBlock::SIZE size, sf::V
 		}
 		break;
 	case CrumbleBlock::TYPE::ROCK:
-		if (prob >= 0 && prob < 3) {
+		if (prob >= 0 && prob <= 3) {
 			value = Gem::TYPE::R_100;
 		}
-		if (prob >= 3 && prob < 6) {
+		if (prob >= 3 && prob <= 6) {
 			value = Gem::TYPE::B_150;
 		}
 		if (prob >= 6 && prob <= 9) {

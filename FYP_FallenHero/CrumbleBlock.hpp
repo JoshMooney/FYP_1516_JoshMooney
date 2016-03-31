@@ -112,7 +112,7 @@ public:
 	*	@brief Updates any requirements for the Block currently its empty
 	*	@param FTS This is the Fixed Time Step the game is running.
 	*/
-	void update(FTS fts);
+	void update(FTS fts, Player *p);
 	/**
 	*	@brief This renders the Block and its approprate animation
 	*	@param sf::RenderWindow The Window to render things to.

@@ -95,12 +95,13 @@ public:
 	*	@param duration The duration of the frames.
 	*/
 	void addFrames(thor::FrameAnimation& animation, int x, int yFirst, int yLast, int xSep, int ySep, float duration);
+
 	/**
 	*	@brief This updates the unit in any way possible. The function calls the checkAnimation
 	*	to keep the animation in step as well as alines the sprite.
 	*	@param FTS The Fixed time step to update the entity with.
 	*/
-	void update(FTS fts);
+	void update(FTS fts, Player *p);
 	/**
 	*	@brief This renders the enemy to the SFML window.
 	*	@param sf::RenderWindow This is the SFML window to render everything to.

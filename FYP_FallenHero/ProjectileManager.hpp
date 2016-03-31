@@ -37,7 +37,12 @@ public:
 	*	@brief
 	*	@param
 	*/
-	void spawnBullet(sf::Vector2f pos, sf::Vector2f dir);
+	void fireBullet(sf::Vector2f pos, sf::Vector2f dir);
+	/**
+	*	@brief
+	*	@param
+	*/
+	void fire(sf::Vector2f pos, sf::Vector2f dir, Projectile::STATE type);
 
 	/**
 	*	@brief

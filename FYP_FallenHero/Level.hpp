@@ -19,11 +19,13 @@
 #include "Platform.hpp"
 #include "Sensor.hpp"
 #include "Checkpoint.hpp"
+
 #include "Terrain.hpp"
 #include "Scenery.hpp"
 #include "Spawner.hpp"
 #include "GemMine.hpp"
 #include "ParallaxSprite.hpp"
+#include "ProjectileManager.hpp"
 
 /**
 *	@class Level

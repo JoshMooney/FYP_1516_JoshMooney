@@ -2,12 +2,19 @@
 #define _WEED_HPP
 #include "stdafx.h"
 #include "Enemy.hpp"
+#include "Player.hpp"
 
 class Weed : public Enemy {
 private:
 	sf::Vector2u m_text_size;
 	float speedFactor;
 	float m_jump;
+
+	float m_shoot_dis;
+	sf::Clock m_fire_clock;
+	bool can_fire;
+	float cooldown_time;
+
 	//string s_death;
 	//sf::Sound m_death;
 
@@ -38,7 +45,7 @@ public:
 	void loadMedia();
 	void init();
 
-	void update(FTS fts);
+	void update(FTS fts, Player *p);
 	void render(sf::RenderWindow &w, sf::Time frames);
 	void assignBody(b2Body *b) { e_box_body = b; }
 	void attack();

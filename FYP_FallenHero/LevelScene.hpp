@@ -7,8 +7,6 @@
 #include <vector>
 
 #include "Player.hpp"
-//#include "Platform.hpp"
-
 #include "PauseScreen.hpp"
 #include "XBOXController.hpp"
 #include "vCamera.hpp"
@@ -61,9 +59,9 @@ private:
 	const int POS_ITER = 2;
 
 	bool isPaused;
-	GemMine m_gem_mine;
-	Spawner m_spawner;
-	ProjectileManager m_projectiles;
+	shared_ptr<GemMine> m_gem_mine;
+	shared_ptr<Spawner> m_spawner;
+	shared_ptr<ProjectileManager> m_projectiles;
 	sf::Clock m_animation_clock;
 	sf::Time frame_elapse;
 	string s_background_music;

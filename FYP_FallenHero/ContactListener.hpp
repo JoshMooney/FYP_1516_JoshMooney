@@ -11,6 +11,7 @@
 #include "Enemy.hpp"
 #include "Skeleton.hpp"
 
+#include "Cannon.hpp"
 #include "Gem.hpp"
 #include "Projectile.hpp"
 
@@ -108,6 +109,54 @@ public:
 			bool dir = !b->getBoolDirection();
 			static_cast<Player*>(player_data)->TakeDamage(dir);
 			b->Die();
+		}
+		
+		//Player and Cannon
+		if (fixAType == "Cannon" && fixBType == "Player"
+			|| fixAType == "Player" && fixBType == "Cannon") {
+			Player* p;
+			void* player_data;
+			void* cannon_data;
+
+			if (fixAType == "Player") {
+				player_data = contact->GetFixtureA()->GetBody()->GetUserData();
+				cannon_data = contact->GetFixtureB()->GetBody()->GetUserData();
+				p = static_cast<Player*>(player_data);
+			}
+			else {
+				cannon_data = contact->GetFixtureA()->GetBody()->GetUserData();
+				player_data = contact->GetFixtureB()->GetBody()->GetUserData();
+				p = static_cast<Player*>(player_data);
+			}
+
+			if (p->isJumping()) {
+				sf::FloatRect player_geo = p->getBounds();
+				sf::FloatRect cannon_geo = static_cast<Cannon*>(cannon_data)->getBounds();
+
+				if (player_geo.top + player_geo.height >= cannon_geo.top - player_jump_y_offset &&
+					player_geo.top + player_geo.height <= cannon_geo.top)
+					p->setJumping(false);
+			}
+		}
+
+		//Player Sword and Skeleton
+		if (fixAType == "Cannon" && fixBType == "Player_Sword"
+			|| fixAType == "Player_Sword" && fixBType == "Cannon") {
+
+			if (fixAType == "Player_Sword") {
+				//if bottom of player touches top of enenmy
+				void* bodyUserData1 = contact->GetFixtureA()->GetBody()->GetUserData();
+				void* bodyUserData2 = contact->GetFixtureB()->GetBody()->GetUserData();
+
+				static_cast<Cannon*>(bodyUserData2)->setCollidingSword(true);
+			}
+			else if (fixBType == "Player_Sword") {
+				//if bottom of player touches top of enenmy
+				void* bodyUserData1 = contact->GetFixtureB()->GetBody()->GetUserData();
+				void* bodyUserData2 = contact->GetFixtureA()->GetBody()->GetUserData();
+
+				static_cast<Cannon*>(bodyUserData2)->setCollidingSword(true);
+			}
 		}
 
 		//Player and Blocks

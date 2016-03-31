@@ -2,8 +2,8 @@
 #include "ProjectileManager.hpp"
 
 ProjectileManager::ProjectileManager() {	}
-ProjectileManager::ProjectileManager(b2World * world) : m_world(world) {
-
+ProjectileManager::ProjectileManager(b2World * world) {
+	m_world = world;
 }
 ProjectileManager::~ProjectileManager() {	}
 
@@ -14,7 +14,9 @@ b2Body * ProjectileManager::GenerateBody(sf::Vector2f pos) {
 	pro_body_Def.angle = 0; //set the starting angle
 	pro_body_Def.fixedRotation = true;
 
-	b2Body* body = m_world->CreateBody(&pro_body_Def);
+	b2Body* body;
+	m_world;
+	body = m_world->CreateBody(&pro_body_Def);
 	b2PolygonShape shape;
 	shape.SetAsBox((16 / vHelper::B2_SCALE) / 2.0f, (16 / vHelper::B2_SCALE) / 2.0f);
 
@@ -28,8 +30,11 @@ b2Body * ProjectileManager::GenerateBody(sf::Vector2f pos) {
 	return body;
 }
 
-void ProjectileManager::spawnBullet(sf::Vector2f pos, sf::Vector2f dir) {
+void ProjectileManager::fireBullet(sf::Vector2f pos, sf::Vector2f dir) {
 	m_projectiles.push_back(new Projectile(GenerateBody(pos), dir));
+}
+void ProjectileManager::fire(sf::Vector2f pos, sf::Vector2f dir, Projectile::STATE type) {
+	m_projectiles.push_back(new Projectile(GenerateBody(pos), dir, type));
 }
 
 void ProjectileManager::cull() {
@@ -58,8 +63,10 @@ void ProjectileManager::update(FTS fts) {
 }
 
 void ProjectileManager::render(sf::RenderWindow & w, sf::Time frames) {
-	for (Projectile* p : m_projectiles) 
+	for (Projectile* p : m_projectiles) {
 		p->render(w, frames);
+		w.draw(*p);
+	}
 }
 
 void ProjectileManager::clear() {

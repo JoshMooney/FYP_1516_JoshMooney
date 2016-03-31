@@ -138,7 +138,7 @@ void CrumbleBlock::Die() {
 	e_can_despawn = true;
 }
 
-void CrumbleBlock::update(FTS fts) {
+void CrumbleBlock::update(FTS fts, Player* p) {
 	checkAnimation();
 }
 

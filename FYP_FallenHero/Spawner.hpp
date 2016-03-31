@@ -7,6 +7,8 @@
 #include "Enemy.hpp"
 #include "Skeleton.hpp"
 #include "Weed.hpp"
+#include "Cannon.hpp"
+#include "ProjectileManager.hpp"
 
 #include "CrumbleBlock.hpp"
 
@@ -36,14 +38,16 @@ private:
 	//vector<shared_ptr<Enemy>> m_enemies;
 	vector<CrumbleBlock *> m_blocks;
 	GemMine *m_mine;
+	ProjectileManager *m_gun;
 public:
 	//!This enum keeps track of all the different types of enemies the spawner can create.
 	enum SPAWN_TYPE { 
 	SKELETON, 		//!<Spawn type of a Skeleton
-	WEED,	 		//!<Spawn type of a Skeleton
-	CANNON 		//!<Spawn type of a Skeleton
+	WEED, 			//!<Spawn type of a Weed
+	CANNON,			//!<Spawn type of a Cannon
 	};
 	//!Default constructor for the spawner class
+
 	Spawner()	{		}
 	/**
 	*	@brief Creates the Spawner with a pointer to the world for creating all of the 
@@ -64,7 +68,9 @@ public:
 
 	/**
 	*	@brief Calls the generate body function and pushes the new body onto the entity list
-	*	@param sf::Vector2f The position to spawn the Weed.
+	*	@param sf::Vector2f The position to spawn the Skeleton.
+	*	@param bool This is the direciton the enemy is looking and which is also the direction 
+	*	the enemy can shoot in.
 	*/
 	void SpawnWeed(sf::Vector2f pos, bool dir);
 	/**
@@ -79,6 +85,19 @@ public:
 	*	@param CrumbleBlock::SIZE The 
 	*/
 	void SpawnBlock(sf::Vector2f pos, CrumbleBlock::TYPE t, CrumbleBlock::SIZE s);
+	/**
+	*	@brief Creates the appropreate body for the Block and pushes it onto a vector of blocks
+	*	@param sf::Vector2f This position to spawn the Skeleton at.
+	*	@param bool The direction to point the cannon in so it can fire.
+	*/
+	void SpawnCannon(sf::Vector2f pos, bool dir);
+	/**
+	*	@brief Creates the appropreate body for the Block and pushes it onto a vector of blocks
+	*	@param sf::Vector2f This position to spawn the Skeleton at.
+	*	@param bool The direction to point the cannon in so it can fire.
+	*	@param Projectile::STATE
+	*/
+	void SpawnCannon(sf::Vector2f pos, bool dir, Projectile::STATE type);
 
 	/**
 	*	@brief Checks for any dead body flags in the entity list and destructs them with 
@@ -118,6 +137,13 @@ public:
 	*/
 	void AttachGemMine(GemMine *mine) {
 		m_mine = mine;
+	}
+	/**
+	*	@brief This attaches the gem mine to the Spawner so gems can be created on the death of
+	*	enemies.
+	*/
+	void AttachProjectileMgr(ProjectileManager *p) {
+		m_gun = p;
 	}
 
 };

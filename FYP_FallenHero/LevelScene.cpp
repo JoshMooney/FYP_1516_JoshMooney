@@ -8,11 +8,12 @@ LevelScene::LevelScene() :
 	m_world = new b2World(vHelper::toB2(GRAVITY));
 	m_world->SetContactListener(&contact_listener);
 
-	m_gem_mine = GemMine(m_world);
-	m_spawner = Spawner(m_world);
-	m_projectiles = ProjectileManager(m_world);
+	m_gem_mine = make_shared<GemMine>(m_world);
+	m_spawner = make_shared<Spawner>(m_world);
+	m_projectiles = make_shared<ProjectileManager>(m_world);
 
-	m_spawner.AttachGemMine(&m_gem_mine);
+	m_spawner->AttachGemMine(m_gem_mine.get());
+	m_spawner->AttachProjectileMgr(m_projectiles.get());
 	
 	loadMedia();
 	buttonX_ = new JumpCommand();
@@ -61,14 +62,14 @@ void LevelScene::update(){
 		timeOfLastTick = game_clock.now();
 		frame_elapse = m_animation_clock.restart();
 
-		m_gem_mine.update(timeOfLastTick, m_player);
+		m_gem_mine->update(timeOfLastTick, m_player);
 
-		m_spawner.update(timeOfLastTick, m_player);
-		m_spawner.CullInActiveEnemies();
+		m_spawner->update(timeOfLastTick, m_player);
+		m_spawner->CullInActiveEnemies();
 		m_world->Step(B2_TIMESTEP, VEL_ITER, POS_ITER);
 
-		m_projectiles.update(timeOfLastTick);
-		m_projectiles.cull();
+		m_projectiles->update(timeOfLastTick);
+		m_projectiles->cull();
 
 		if (m_player->isAlive())
 			m_player->update(timeOfLastTick);
@@ -112,9 +113,11 @@ void LevelScene::render(sf::RenderWindow &w){
 
 	m_player->render(frame_elapse);
 	w.draw(*m_player);					//render Player
-	m_spawner.render(w, frame_elapse);
-	m_gem_mine.render(w, frame_elapse);
-	m_projectiles.render(w, frame_elapse);
+	
+
+	m_spawner->render(w, frame_elapse);
+	m_gem_mine->render(w, frame_elapse);
+	m_projectiles->render(w, frame_elapse);
 
 	//m_world->DrawDebugData();
 	m_level->scenery.renderFG(w, &m_camera);	//Render Foreground	
@@ -292,12 +295,11 @@ void LevelScene::loadLevel(string lvl_name){
 	level_id = lvl_name;		//Store the currently loaded levels ID
 	if (m_level != nullptr)		m_level->Destroy(m_world);			//If there was a previous level destroy all the b2Bodies in that level 
 	
-	m_spawner.clear();
-	m_gem_mine.clear();
-	m_projectiles.clear();
-	m_projectiles.spawnBullet(sf::Vector2f(500, 500), sf::Vector2f(-1, 0));
+	m_spawner->clear();
+	m_gem_mine->clear();
+	m_projectiles->clear();
 
-	m_level = make_shared<Level>(lvl_name, m_world, &m_spawner, &m_gem_mine);				//Create a new level
+	m_level = make_shared<Level>(lvl_name, m_world, m_spawner.get(), m_gem_mine.get());				//Create a new level
 	m_spawn_pos = m_level->getSpawn();
 
 	m_camera.setBounds(m_level->Bounds());

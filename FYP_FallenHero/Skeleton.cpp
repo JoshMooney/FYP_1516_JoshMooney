@@ -135,7 +135,7 @@ void Skeleton::addFrames(thor::FrameAnimation& animation, int y, int xFirst, int
 		animation.addFrame(duration, sf::IntRect(xSep * x, y, xSep, ySep));
 }
 
-void Skeleton::update(FTS fts) {
+void Skeleton::update(FTS fts, Player *p) {
 	checkAnimation();
 	if (e_body_active) {
 		if(m_current_state == WALKING)
