@@ -59,6 +59,9 @@ void Game::run(){
 		sf::Event l_event;
 		m_window->pollEvent(l_event);
 
+		if (l_event.key.code == sf::Keyboard::Escape)
+			isRunning = false;
+
 		controller_connected = checkController();		//Checks controller connections and compaires to previous state.
 		if (controller_connected)	
 			m_xbox_controller->UpdateButtons();
@@ -107,6 +110,8 @@ void Game::goToNextScene() {
 		break;
 	case WORLD:
 		m_world_scene->reset();
+		m_level_scene->reset();
+
 		m_current_scene = m_level_scene;
 		m_current_state = LEVEL;
 
@@ -116,11 +121,15 @@ void Game::goToNextScene() {
 		//m_level_scene->createPlatforms(m_world);
 		break;
 	case LEVEL:
-		m_world_scene->checkUnlocks(m_level_scene->getLevelName());
+		if (m_level_scene->isComplete())
+			m_world_scene->checkUnlocks(m_level_scene->getLevelName());
 		//Save Game here
 		m_loader->save();
 
+		//m_world_scene->m_key_pressed = true;
+		m_world_scene->reset();
 		m_level_scene->reset();
+
 		m_current_scene = m_world_scene;
 		m_current_state = WORLD;
 		break;
@@ -132,8 +141,9 @@ void Game::checkSceneChange() {
 		goToNextScene();
 	if (m_current_state == WORLD && m_world_scene->LevelSelected())
 		goToNextScene();
-	if (m_current_state == LEVEL && m_level_scene->isComplete())
+	if (m_current_state == LEVEL && (m_level_scene->isComplete() || m_level_scene->hasQuit()))
 		goToNextScene();
+		
 }
 
 #pragma region Notes:

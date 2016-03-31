@@ -24,7 +24,7 @@ public:
 	PlayerIcon(){
 		is_moving = false;
 		m_lvl_tag = "LVL_1";
-		s_texture = "Assets/World/playericon.png";
+		s_texture = "Assets/World/player_icon.png";
 
 		loadMedia();
 	}
@@ -42,14 +42,14 @@ public:
 	*/
 	void loadMedia(){
 		setTexture(ResourceManager<sf::Texture>::instance()->get(s_texture));
+		sf::Vector2u size = ResourceManager<sf::Texture>::instance()->get(s_texture).getSize();
+		setOrigin(size.x / 2, size.y / 2);
 	}
 	/**
 	*	@brief Sets the center of the sf::Sprite instead of the top left corner as is standerd. I find it easier when working with small classes like this
 	*/
 	void setCenter(sf::Vector2f v)	{
-		sf::Vector2u size = ResourceManager<sf::Texture>::instance()->get(s_texture).getSize();
-		sf::Vector2f pos = getPosition();
-		setPosition(sf::Vector2f(v.x - size.x / 2, v.y - size.y / 2));
+		setPosition(v);
 	}
 	//!Fetchs the m_lvl_tag
 	string& getTag()	{ return m_lvl_tag; }

@@ -54,7 +54,7 @@ void WorldScene::handleEvent(sf::Event &e){
 		switch (e.key.code){
 		#pragma region Movement Controls
 		case sf::Keyboard::Left:
-			if (!m_key_pressed){
+ 			if (!m_key_pressed){
 				m_key_pressed = true;
 				movePlayer("LEFT");
 			}
@@ -83,7 +83,7 @@ void WorldScene::handleEvent(sf::Event &e){
 			m_key_pressed = true;
 			break;
 		case sf::Keyboard::Space:
-			if (!m_key_pressed) {
+  			if (!m_key_pressed) {
 				m_key_pressed = true;
 				select();
 			}
@@ -153,6 +153,7 @@ void WorldScene::select() {
 
 void WorldScene::reset() {
 	has_selected = false;
+	m_key_pressed = true;
 }
 
 void WorldScene::checkUnlocks(string lvl_name) {

@@ -7,6 +7,13 @@
 #include <vector>
 #include <assert.h>
 
+/**
+*	@class XMLLoader
+*	@brief This class uses tinyXML and my code to read from .xml files and 
+*	parse that data into usable information. This class must read from the
+*	saveData.xml file and load it into three save slots each holding the
+*	data of the save.
+*/
 class XMLLoader {
 private:
 	tinyxml2::XMLDocument backupDoc;
@@ -27,8 +34,12 @@ private:
 		return false;
 	}
 public:
-	vector<SaveSlot *> saved_data;
+	vector<SaveSlot *> saved_data;			//!<This is a vector of saveslots to store each of the saves that are loaded into memory
 
+	/**
+	*	@brief This is the default constructor for the XMLLoader. This sets up the root
+	*	node and initalises the tinyxml2::XMLElement to start on the first save slot 
+	*/
 	XMLLoader(){
 		//tinyxml2::XMLError eResult = xmlDoc.LoadFile("Assets/SaveData.xml");
 		assert(xmlDoc.LoadFile("Assets/save_data.xml") != tinyxml2::XML_ERROR_FILE_NOT_FOUND);
@@ -59,6 +70,12 @@ public:
 		const string image_ext = texture->Attribute("EXT");
 		const string file_name = image_name + '.' + image_ext;*/
 	}
+	/**
+	*	@brief Cycles through the XMLElement saveGame and reads in each of the required fields
+	*	into the approprate holder in the SaveSlot for access later. This process is looped to 
+	*	read through each of the three save slots.
+	*	@see SaveSlot
+	*/
 	void loadSaveSlots(){
 		string name = "SaveSlot";
 
@@ -120,6 +137,11 @@ public:
 			saved_data.push_back(new SaveSlot(i + 1, time, gold, map, levels_unlocked));
 		}
 	}
+	/**
+	*	@brief This generates a new saveData.xml for the game insertting all the approprate
+	*	formatting for reading later.
+	*	@see SaveSlot
+	*/
 	void GenerateSaveFile(){
 		cLog::inst()->print(3, "XML Loader", "Generating new save_data.xml");
 
@@ -162,6 +184,9 @@ public:
 		tinyxml2::XMLError eResult = xmlDoc.SaveFile("Assets/save_data.xml");
 
 	}
+	/**
+	*	@brief This initalises the required variables for the XMLLoader class. 
+	*/
 	void initFile(){
 		//xmlDoc = tinyxml2::XMLDocument();
 		pRoot = xmlDoc.NewElement("Root");
@@ -169,6 +194,10 @@ public:
 
 		saveGame = xmlDoc.NewElement("SaveGame");
 	}
+	/**
+	*	@brief This function takes the passed in SaveSlot, and writes it to the .xml file.
+	*	@param This is the SaveSlot to be written.
+	*/
 	void WriteSaveSlot(SaveSlot s){
 		string d = "SaveSlot" + std::to_string(s.m_id);
 		const char * c = d.c_str();
@@ -197,6 +226,10 @@ public:
 			saveGame->InsertEndChild(saveSlot);
 		}
 	}
+	/**
+	*	@brief This function calls WriteSaveSlot using each of the three save slots loaded 
+	*	from earlier and saves the saveData.xml file.
+	*/
 	void save()	{
 		xmlDoc.SaveFile("Backup_SavedData.xml");
 		xmlDoc.Clear();

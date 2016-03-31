@@ -6,7 +6,7 @@
 Level::Level() {
 	cLog::inst()->print(3, "Level", "Default constructor of level called");
 }
-Level::Level(string s, b2World *world, Spawner *spawner) {
+Level::Level(string s, b2World *world, Spawner *spawner, GemMine *mine) {
 	path = "Assets/Levels/";
 	format = ".tmx";
 	tile_size = 32;
@@ -15,7 +15,7 @@ Level::Level(string s, b2World *world, Spawner *spawner) {
 
 	loadMap(s);
 	scenery = Scenery();
-	ParseMapLayers(world, spawner);
+	ParseMapLayers(world, spawner, mine);
 }
 
 /*TEMP*/
@@ -40,7 +40,7 @@ void Level::render(sf::RenderWindow &w, vCamera *cam){
 	w.draw(m_exit);					//Render Exit point
 }
 
-void Level::ParseMapLayers(b2World * world, Spawner *s) {
+void Level::ParseMapLayers(b2World * world, Spawner *s, GemMine *mine) {
 	//map.GetObjectLayer("Layer Name");
 	//Load size of the Map
 	int tile_size = 32;
@@ -70,6 +70,10 @@ void Level::ParseMapLayers(b2World * world, Spawner *s) {
 	lay = tiled_map->GetObjectGroup("Enemy_Data");
 	GenerateEnemies(world, lay, s);
 	tiled_map->GetObjectGroup("Enemy_Data").visible = false;
+
+	lay = tiled_map->GetObjectGroup("Level_Data");
+	GenerateLevelItems(world, lay, mine);
+	tiled_map->GetObjectGroup("Level_Data").visible = false;
 
 	lay = tiled_map->GetObjectGroup("Blocks");
 	GenerateBlocks(world, lay, s);
@@ -151,6 +155,45 @@ void Level::GeneratePlayerItems(b2World * world, tmx::ObjectGroup &layer) {
 		}
 	}
 }
+void Level::GenerateLevelItems(b2World *world, tmx::ObjectGroup &layer, GemMine* mine) {
+	string x, y;
+	string type;
+	int lenght = layer.objects_.size();
+
+	for (int i = 0; i < lenght; i++) {
+		string type = layer.objects_[i].GetPropertyValue("value");
+		if (type == "10") {
+			x = layer.objects_[i].GetPropertyValue("x");
+			y = layer.objects_[i].GetPropertyValue("y");
+			mine->SpawnGem(Gem::TYPE::B_10, sf::Vector2f(atof(x.c_str()), atof(y.c_str())), false);
+		}
+		if (type == "20") {
+			x = layer.objects_[i].GetPropertyValue("x");
+			y = layer.objects_[i].GetPropertyValue("y");
+			mine->SpawnGem(Gem::TYPE::P_20, sf::Vector2f(atof(x.c_str()), atof(y.c_str())), false);
+		}
+		if (type == "50") {
+			x = layer.objects_[i].GetPropertyValue("x");
+			y = layer.objects_[i].GetPropertyValue("y");
+			mine->SpawnGem(Gem::TYPE::O_50, sf::Vector2f(atof(x.c_str()), atof(y.c_str())), false);
+		}
+		if (type == "100") {
+			x = layer.objects_[i].GetPropertyValue("x");
+			y = layer.objects_[i].GetPropertyValue("y");
+			mine->SpawnGem(Gem::TYPE::R_100, sf::Vector2f(atof(x.c_str()), atof(y.c_str())), false);
+		}
+		if (type == "150") {
+			x = layer.objects_[i].GetPropertyValue("x");
+			y = layer.objects_[i].GetPropertyValue("y");
+			mine->SpawnGem(Gem::TYPE::B_150, sf::Vector2f(atof(x.c_str()), atof(y.c_str())), false);
+		}
+		if (type == "250") {
+			x = layer.objects_[i].GetPropertyValue("x");
+			y = layer.objects_[i].GetPropertyValue("y");
+			mine->SpawnGem(Gem::TYPE::W_250, sf::Vector2f(atof(x.c_str()), atof(y.c_str())), false);
+		}
+	}
+}
 void Level::GenerateSceneryBG(b2World *world, tmx::ObjectGroup &layer) {
 	int lenght = layer.objects_.size();
 	string path = "Assets/Levels/Backgrounds/";
@@ -227,6 +270,18 @@ void Level::GenerateEnemies(b2World *world, tmx::ObjectGroup &layer, Spawner* s)
 			bool dir = atoi(num.c_str());
 
 			s->SpawnWeed(position, dir);
+		}
+		if (type == "Cannon") {
+			num = layer.objects_[i].GetPropertyValue("x");
+			position.x = atoi(num.c_str());
+
+			num = layer.objects_[i].GetPropertyValue("y");
+			position.y = atoi(num.c_str());
+
+			num = layer.objects_[i].GetPropertyValue("direction");
+			bool dir = atoi(num.c_str());
+
+			s->SpawnCannon(position, dir);
 		}
 	}
 }

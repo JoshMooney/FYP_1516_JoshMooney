@@ -9,17 +9,32 @@
 #include "Enemy.hpp"
 #include "Skeleton.hpp"
 
+#include "Cannon.hpp"
+#include "Gem.hpp"
+
+/**
+*	@class ContactListener
+*	@brief This is the box2D contactlistener that detects and responds to collision 	
+*	as it happens using callbacks.
+*/
 class ContactListener : public b2ContactListener {
 private:
 	const float player_jump_y_offset = 15;
 	const float entity_wall_offset = 10;
 public:
+	/**
+	*	@brief
+	*/
 	ContactListener() : b2ContactListener() {	}
 	/*void PreSolve(b2Contact* contact, const b2Manifold* oldManifold)
 	{
 	
 	}*/
-
+	
+	/**
+	*	@brief This is the Box2d callback called when two box bodies begin colliding 
+	*	@param b2Contact This is the colliding point of two boxbodies
+	*/
 	void BeginContact(b2Contact* contact) {
 		void* fixAType = contact->GetFixtureA()->GetUserData();
 		void* fixBType = contact->GetFixtureB()->GetUserData();
@@ -67,6 +82,54 @@ public:
 						player_geo.top + player_geo.height <= terrain_geo.top)
 						p->setJumping(false);
 				}
+			}
+		}
+
+		//Player and Cannon
+		if (fixAType == "Cannon" && fixBType == "Player"
+			|| fixAType == "Player" && fixBType == "Cannon") {
+			Player* p;
+			void* player_data;
+			void* cannon_data;
+
+			if (fixAType == "Player") {
+				player_data = contact->GetFixtureA()->GetBody()->GetUserData();
+				cannon_data = contact->GetFixtureB()->GetBody()->GetUserData();
+				p = static_cast<Player*>(player_data);
+			}
+			else {
+				cannon_data = contact->GetFixtureA()->GetBody()->GetUserData();
+				player_data = contact->GetFixtureB()->GetBody()->GetUserData();
+				p = static_cast<Player*>(player_data);
+			}
+
+			if (p->isJumping()) {
+				sf::FloatRect player_geo = p->getBounds();
+				sf::FloatRect cannon_geo = static_cast<Cannon*>(cannon_data)->getBounds();
+
+				if (player_geo.top + player_geo.height >= cannon_geo.top - player_jump_y_offset &&
+					player_geo.top + player_geo.height <= cannon_geo.top)
+					p->setJumping(false);
+			}
+		}
+
+		//Player Sword and Skeleton
+		if (fixAType == "Cannon" && fixBType == "Player_Sword"
+			|| fixAType == "Player_Sword" && fixBType == "Cannon") {
+
+			if (fixAType == "Player_Sword") {
+				//if bottom of player touches top of enenmy
+				void* bodyUserData1 = contact->GetFixtureA()->GetBody()->GetUserData();
+				void* bodyUserData2 = contact->GetFixtureB()->GetBody()->GetUserData();
+
+				static_cast<Cannon*>(bodyUserData2)->setCollidingSword(true);
+			}
+			else if (fixBType == "Player_Sword") {
+				//if bottom of player touches top of enenmy
+				void* bodyUserData1 = contact->GetFixtureB()->GetBody()->GetUserData();
+				void* bodyUserData2 = contact->GetFixtureA()->GetBody()->GetUserData();
+
+				static_cast<Cannon*>(bodyUserData2)->setCollidingSword(true);
 			}
 		}
 
@@ -202,6 +265,34 @@ public:
 			}
 		}
 
+		//Player and Gem
+		else if (fixAType == "Gem" && fixBType == "Player"
+			|| fixAType == "Player" && fixBType == "Gem") {
+
+			if (fixAType == "Gem") {
+				//if bottom of player touches top of enenmy
+				void* bodyUserData1 = contact->GetFixtureA()->GetBody()->GetUserData();
+				void* bodyUserData2 = contact->GetFixtureB()->GetBody()->GetUserData();
+
+				Gem* g = static_cast<Gem*>(bodyUserData1); 
+				Player* p = static_cast<Player*>(bodyUserData2);
+				if (g->e_body_active) {
+					p->addGold(g->pickup());
+				}
+			}
+			else if (fixBType == "Gem") {
+				//if bottom of player touches top of enenmy
+				void* bodyUserData1 = contact->GetFixtureB()->GetBody()->GetUserData();
+				void* bodyUserData2 = contact->GetFixtureA()->GetBody()->GetUserData();
+
+				Gem* g = static_cast<Gem*>(bodyUserData1);
+				Player* p = static_cast<Player*>(bodyUserData2);
+				if (g->e_body_active) {
+					p->addGold(g->pickup());
+				}
+			}
+		}
+
 		//Player and Skeleton
 		else if (fixAType == "Skeleton" && fixBType == "Player"
 			|| fixAType == "Player" && fixBType == "Skeleton") {
@@ -289,13 +380,50 @@ public:
 		}
 	}
 
+	/**
+	*	@brief This is the presolve for box2d this is the function called when 
+	*	a collision has taken place and continues to collide with another bodyUserData
+	*	aka. If colliding but not the first 
+	*	@param b2Contact This is the colliding point of two boxbodies
+	*	@param b2Manifold
+	*/
 	void PreSolve(b2Contact* contact, const b2Manifold* oldManifold) {
 		void* fixAType = contact->GetFixtureA()->GetUserData();
 		void* fixBType = contact->GetFixtureB()->GetUserData();
 
-		
+		//Block and Gem
+		if (fixAType == "Gem" && fixBType == "Block"
+			|| fixAType == "Block" && fixBType == "Gem") {
+
+			if (fixAType == "Gem") {
+				//if bottom of player touches top of enenmy
+				void* bodyUserData1 = contact->GetFixtureA()->GetBody()->GetUserData();
+				void* bodyUserData2 = contact->GetFixtureB()->GetBody()->GetUserData();
+
+				Gem* g = static_cast<Gem*>(bodyUserData1);
+				CrumbleBlock* b = static_cast<CrumbleBlock*>(bodyUserData2);
+				if (g->e_body_active && !b->e_body_active) {
+					contact->SetEnabled(false);
+				}
+			}
+			else if (fixBType == "Gem") {
+				//if bottom of player touches top of enenmy
+				void* bodyUserData1 = contact->GetFixtureB()->GetBody()->GetUserData();
+				void* bodyUserData2 = contact->GetFixtureA()->GetBody()->GetUserData();
+
+				Gem* g = static_cast<Gem*>(bodyUserData1);
+				CrumbleBlock* b = static_cast<CrumbleBlock*>(bodyUserData2);
+				if (g->e_body_active && !b->e_body_active) {
+					contact->SetEnabled(false);
+				}
+			}
+		}
 	}
 
+	/**
+	*	@brief This is the Box2d callback called when two box bodies end contact. 
+	*	@param b2Contact This is the colliding point of two boxbodies
+	*/
 	void EndContact(b2Contact* contact) {
 		void* fixAType = contact->GetFixtureA()->GetBody()->GetUserData();
 		void* fixBType = contact->GetFixtureB()->GetBody()->GetUserData();

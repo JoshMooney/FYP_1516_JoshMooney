@@ -30,6 +30,11 @@ namespace sfdd
 	const float SCALE = (float)_SCALE_;
 }
 
+/**
+*	@class SFMLDebugDraw
+*	@brief This is the Box2D debug draw curtsey of Davy. Not sure what part of the
+*	internet he downloaded it from but it works great so i used it. 
+*/
 class SFMLDebugDraw : public b2Draw
 {
 private:
