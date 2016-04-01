@@ -173,10 +173,10 @@
     </ClInclude>
     <ClInclude Include="ProjectileManager.hpp">
       <Filter>Header Files\Level</Filter>
-	</ClInclude>
+    </ClInclude>
     <ClInclude Include="Cannon.hpp">
       <Filter>Header Files\Entities</Filter>
-	</ClInclude>
+    </ClInclude>
     <ClInclude Include="PointNode.hpp">
       <Filter>Header Files\Level</Filter>
     </ClInclude>
@@ -197,6 +197,24 @@
     </ClInclude>
     <ClInclude Include="FadePlatform.hpp">
       <Filter>Header Files\Level</Filter>
+    </ClInclude>
+    <ClInclude Include="Exit.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="MenuScene.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PauseScreen.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Player.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerIcon.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Chest.hpp">
+      <Filter>Header Files\Entities</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -86,6 +86,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Cannon.hpp" />
+    <ClInclude Include="Chest.hpp" />
     <ClInclude Include="cLog.hpp" />
     <ClInclude Include="Command.hpp" />
     <ClInclude Include="ContactListener.hpp" />

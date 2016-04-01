@@ -135,8 +135,8 @@ void Spawner::SpawnBlock(sf::Vector2f pos, CrumbleBlock::TYPE t, CrumbleBlock::S
 	block_Shape.SetAsBox((size.x / vHelper::B2_SCALE) / 2.0f, (size.y / vHelper::B2_SCALE) / 2.0f);
 
 	b2FixtureDef block_Fix;
-	block_Fix.density = 1.0f;
-	block_Fix.friction = 900.0f;
+	block_Fix.density = 1000.0f;
+	block_Fix.friction = 1.0f;
 	block_Fix.shape = &block_Shape;
 	block_Fix.userData = "Block";
 

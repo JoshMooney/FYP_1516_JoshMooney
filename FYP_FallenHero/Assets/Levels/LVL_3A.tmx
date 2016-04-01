@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="90" height="25" tilewidth="32" tileheight="32" nextobjectid="35">
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="90" height="25" tilewidth="32" tileheight="32" nextobjectid="36">
  <tileset firstgid="1" name="tile_set" tilewidth="32" tileheight="32" tilecount="3">
   <image source="Tiles/tile_set.png" width="96" height="32"/>
  </tileset>
@@ -28,13 +28,13 @@
   </object>
  </objectgroup>
  <objectgroup name="Player_Data">
-  <object id="4" name="Start Level" type="Spawn" x="896" y="320" width="64" height="64">
+  <object id="4" name="Start Level" type="Spawn" x="224" y="224" width="64" height="64">
    <properties>
     <property name="h" value="64"/>
     <property name="type" value="spawn"/>
     <property name="w" value="64"/>
-    <property name="x" value="896"/>
-    <property name="y" value="320"/>
+    <property name="x" value="224"/>
+    <property name="y" value="224"/>
    </properties>
   </object>
   <object id="5" name="End Level" type="Exit" x="1728" y="480" width="64" height="64">
@@ -95,6 +95,14 @@
     <property name="w" value="32"/>
     <property name="x" value="1024"/>
     <property name="y" value="320"/>
+   </properties>
+  </object>
+  <object id="35" x="160" y="288" width="32" height="32">
+   <properties>
+    <property name="type" value="sand"/>
+    <property name="w" value="32"/>
+    <property name="x" value="160"/>
+    <property name="y" value="288"/>
    </properties>
   </object>
  </objectgroup>

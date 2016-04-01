@@ -21,6 +21,7 @@ private:
 	thor::FrameAnimation frame_crumble;
 	sf::Vector2u m_text_size;
 	int gemCount;
+	bool m_touching_fade;
 public:
 	//!	Enum for representing the current state of the Block
 	enum STATE { 
@@ -138,6 +139,12 @@ public:
 			return true;
 		}
 		return false;
+	}
+
+	void setTouchingFade(bool b) {
+		m_touching_fade = b;
+		/*if (!m_touching_fade)
+			e_box_body->SetAwake(false);*/
 	}
 };
 

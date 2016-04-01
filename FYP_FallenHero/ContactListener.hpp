@@ -12,6 +12,7 @@
 #include "Skeleton.hpp"
 #include "Platform.hpp"
 #include "OneWayPlatform.hpp"
+#include "FadePlatform.hpp"
 
 #include "Cannon.hpp"
 #include "Gem.hpp"
@@ -141,7 +142,7 @@ public:
 			}
 		}
 
-		//Player Sword and Skeleton
+		//Player Sword and Cannon
 		if (fixAType == "Cannon" && fixBType == "Player_Sword"
 			|| fixAType == "Player_Sword" && fixBType == "Cannon") {
 
@@ -217,6 +218,53 @@ public:
 			}
 		}
 
+		//Player and Fade-Platform
+		if (fixAType == "Fade-Platform" && fixBType == "Player"
+			|| fixAType == "Player" && fixBType == "Fade-Platform") {
+
+			void* player_userdata;
+			void* platform_userdata;
+			if (fixAType == "Player") {
+				player_userdata = contact->GetFixtureA()->GetBody()->GetUserData();
+				platform_userdata = contact->GetFixtureB()->GetBody()->GetUserData();
+			}
+			else {
+				player_userdata = contact->GetFixtureB()->GetBody()->GetUserData();
+				platform_userdata = contact->GetFixtureA()->GetBody()->GetUserData();
+			}
+
+			Player* player = static_cast<Player*>(player_userdata);
+			FadePlatform* platform = static_cast<FadePlatform*>(platform_userdata);
+
+			if (player->isJumping()) {
+				sf::FloatRect plat_geo = platform->geometry();
+				sf::FloatRect player_geo = player->getBounds();
+
+				if (player_geo.top + player_geo.height >= plat_geo.top - player_jump_y_offset &&
+					player_geo.top + player_geo.height <= plat_geo.top)
+					player->setJumping(false);
+			}
+		}
+
+		//Platform and Block
+		if (fixAType == "Fade-Platform" && fixBType == "Block"
+			|| fixAType == "Block" && fixBType == "Fade-Platform") {
+
+			void* block_userdata;
+			void* platform_userdata;
+			if (fixAType == "Block") {
+				block_userdata = contact->GetFixtureA()->GetBody()->GetUserData();
+				platform_userdata = contact->GetFixtureB()->GetBody()->GetUserData();
+			}
+			else {
+				block_userdata = contact->GetFixtureB()->GetBody()->GetUserData();
+				platform_userdata = contact->GetFixtureA()->GetBody()->GetUserData();
+			}
+			static_cast<CrumbleBlock*>(block_userdata)->setTouchingFade(true);
+			//CrumbleBlock* block = static_cast<CrumbleBlock*>(block_userdata);
+			//block->setTouchingFade(true);
+		}
+
 		//Player and Blocks
 		if (fixAType == "Block" && fixBType == "Player"
 			|| fixAType == "Player" && fixBType == "Block") {
@@ -252,7 +300,7 @@ public:
 			}
 		}
 
-		//Ground and Skeleton
+		//Terrain and Skeleton
 		else if (fixAType == "Skeleton" && fixBType == "Terrain"
 			|| fixAType == "Terrain" && fixBType == "Skeleton") {
 			
@@ -349,7 +397,7 @@ public:
 			}
 		}
 
-		//Ground and Skeleton
+		//Block and Skeleton
 		else if (fixAType == "Skeleton" && fixBType == "Block"
 			|| fixAType == "Block" && fixBType == "Skeleton") {
 
@@ -630,6 +678,22 @@ public:
 			}
 
 			contact->SetEnabled(true);
+		}
+		//Platform and Block
+		if (fixAType == "Fade-Platform" && fixBType == "Block"
+			|| fixAType == "Block" && fixBType == "Fade-Platform") {
+
+			void* block_userdata;
+			void* platform_userdata;
+			if (fixAType == "Block") {
+				block_userdata = contact->GetFixtureA()->GetBody()->GetUserData();
+				platform_userdata = contact->GetFixtureB()->GetBody()->GetUserData();
+			}
+			else {
+				block_userdata = contact->GetFixtureB()->GetBody()->GetUserData();
+				platform_userdata = contact->GetFixtureA()->GetBody()->GetUserData();
+			}
+			static_cast<CrumbleBlock*>(block_userdata)->setTouchingFade(false);
 		}
 
 		//Player Sword and Block

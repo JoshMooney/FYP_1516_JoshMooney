@@ -29,6 +29,8 @@ b2Body * PlatformCreator::generateBody(sf::Vector2f position, string type) {
 
 	if(type == "Platform")
 		myFixtureDef.userData = "Platform";
+	else if (type == "Fade-Platform")
+		myFixtureDef.userData = "Fade-Platform";
 	else if(type == "OneWay-Platform")
 		myFixtureDef.userData = "OneWay-Platform";
 
@@ -51,13 +53,13 @@ void PlatformCreator::SpawnOneWay(sf::Vector2f pos) {
 	m_platforms.push_back(std::make_shared<OneWayPlatform>(generateBody(pos, "OneWay-Platform")));
 }
 void PlatformCreator::SpawnFade(sf::Vector2f pos) {
-	m_platforms.push_back(std::make_shared<FadePlatform>(generateBody(pos, "Platform")));
+	m_platforms.push_back(std::make_shared<FadePlatform>(generateBody(pos, "Fade-Platform")));
 }
 void PlatformCreator::SpawnFade(sf::Vector2f pos, sf::Vector2f fade) {
-	m_platforms.push_back(std::make_shared<FadePlatform>(generateBody(pos, "Platform"), fade.x, fade.y));
+	m_platforms.push_back(std::make_shared<FadePlatform>(generateBody(pos, "Fade-Platform"), fade.x, fade.y));
 }
 void PlatformCreator::SpawnFade(sf::Vector2f pos, sf::Vector2f fade, sf::Vector2f timing) {
-	m_platforms.push_back(std::make_shared<FadePlatform>(generateBody(pos, "Platform"), fade.x, fade.y, timing.x, timing.y));
+	m_platforms.push_back(std::make_shared<FadePlatform>(generateBody(pos, "Fade-Platform"), fade.x, fade.y, timing.x, timing.y));
 }
 
 

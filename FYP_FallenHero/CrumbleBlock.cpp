@@ -10,6 +10,7 @@ CrumbleBlock::CrumbleBlock(b2Body *b, sf::Vector2f pos, TYPE t, SIZE s) {
 	gemCount = 1;
 	m_type = t;
 	m_size = s; 
+	m_touching_fade = false;
 
 	loadMedia();
 
@@ -142,6 +143,8 @@ void CrumbleBlock::update(FTS fts, Player* p) {
 	checkAnimation();
 	if(isAlive())
 		alineSprite();
+	if (m_touching_fade)
+		e_box_body->SetAwake(true);
 }
 
 void CrumbleBlock::render(sf::RenderWindow &w, sf::Time frames) {

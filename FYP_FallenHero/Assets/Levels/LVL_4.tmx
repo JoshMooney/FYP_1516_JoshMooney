@@ -1,14 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="90" height="25" tilewidth="32" tileheight="32" nextobjectid="7">
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="200" height="150" tilewidth="32" tileheight="32" nextobjectid="9">
  <tileset firstgid="1" name="tile_set" tilewidth="32" tileheight="32" tilecount="3">
   <image source="Tiles/tile_set.png" width="96" height="32"/>
  </tileset>
  <tileset firstgid="4" name="Lvl_2_ground" tilewidth="32" tileheight="32" tilecount="9">
   <image source="Tiles/different_tileset.png" width="288" height="32"/>
  </tileset>
- <layer name="Textures" width="90" height="25">
+ <tileset firstgid="13" name="Cave" tilewidth="32" tileheight="32" tilecount="28">
+  <image source="Tiles/Cave_OG.png" width="896" height="32"/>
+ </tileset>
+ <layer name="Textures" width="200" height="150">
   <data encoding="base64" compression="zlib">
-   eJztltsKgCAQBU26/v8P50sQIqm7m2XNwIFIKB0OW84BANzDUBmQgec2HP68S3v10RrIuPLsE9cgI9fneA1klMwN5rOeeA6f53HqHsjgf6MNeIYeeKKHf+w+ntvwds9jyKrIZL/9It7w/ap55xyyKbLYb7+I+Iyarlgk17eveNacwSI5D3ju27N27tfmr561z+0teMbzl4JnPFtmB+hTFTM=
+   eJzt3dtKw1AQQNH8gEWKL0LVePf/v9CICBIybS4nyTRZC+bNxhTObs1Ji4eqn5tmTjPNoec5wNL6rk19sEf6gJg+IKYPiOkDYvqAmD4gpg+I6QNi+oCYPiCmD4jpA2L6gJg+IKYPiI3t47mZ20LzUOapQHFj+/Cazx5M7eM0x0lBEt4/IDa2j9dm7lrzGDz2qeNnp070u6CkEvtXP9fqxyq+zq6r+Nr85cxx7XmxthJ9tI8x5Jpk7L6xPljCHH0MoQ8y0wfE1u6jrtxTJK+1+4DM+q7tulr2tfy9mY8ZjgtDZH3t/2zma+2TYPfm7qPr7zG4FhnfP4bcb/+7j97VYPs47rkzVMY+huz5njv/Pp+J0Q3nbLmPurJXzDRb7gOmGrK+ltpz1QdZDFlfl/ZcS+1V6YMsMq4vfZBFe0/nOPP02TvSB1mM+exsyela3/ogi631MfaaZ+zj2Lat9TFWnz4u3dd3n3F79PHrfx9RB28LnQt5XHsf0WdGpsylDvSxH9feR6bRx/ZkXFP6IIuMa0ofZJFxTemDLDKuKX2QxX1rDgtP13cv6qrc/xZZcnyPBAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA9uEbWO2eog==
   </data>
  </layer>
  <objectgroup name="Terrain">
@@ -18,32 +21,48 @@
    <property name="x" value=""/>
    <property name="y" value=""/>
   </properties>
-  <object id="1" name="pf_1" type="Platform" x="-5" y="544" width="1063" height="268">
+  <object id="1" name="pf_1" type="Platform" x="0" y="1216" width="1063" height="384">
    <properties>
-    <property name="h" value="268"/>
+    <property name="h" value="384"/>
     <property name="w" value="1063"/>
     <property name="x" value="0"/>
-    <property name="y" value="544"/>
+    <property name="y" value="1216"/>
+   </properties>
+  </object>
+  <object id="7" name="pf_1" type="Platform" x="320" y="0" width="160" height="928">
+   <properties>
+    <property name="h" value="928"/>
+    <property name="w" value="160"/>
+    <property name="x" value="320"/>
+    <property name="y" value="0"/>
+   </properties>
+  </object>
+  <object id="8" name="pf_1" type="Platform" x="0" y="0" width="32" height="1216">
+   <properties>
+    <property name="h" value="1216"/>
+    <property name="w" value="32"/>
+    <property name="x" value="0"/>
+    <property name="y" value="0"/>
    </properties>
   </object>
  </objectgroup>
  <objectgroup name="Player_Data">
-  <object id="4" name="Start Level" type="Spawn" x="32" y="448" width="64" height="64">
+  <object id="4" name="Start Level" type="Spawn" x="128" y="0" width="64" height="64">
    <properties>
     <property name="h" value="64"/>
-    <property name="label" value="Spawn"/>
+    <property name="type" value="spawn"/>
     <property name="w" value="64"/>
-    <property name="x" value="32"/>
-    <property name="y" value="448"/>
+    <property name="x" value="128"/>
+    <property name="y" value="0"/>
    </properties>
   </object>
-  <object id="5" name="End Level" type="Exit" x="961" y="447" width="64" height="64">
+  <object id="5" name="End Level" type="Exit" x="960" y="1120" width="64" height="64">
    <properties>
     <property name="h" value="64"/>
     <property name="type" value="exit"/>
     <property name="w" value="64"/>
-    <property name="x" value="961"/>
-    <property name="y" value="447"/>
+    <property name="x" value="960"/>
+    <property name="y" value="1120"/>
    </properties>
   </object>
  </objectgroup>
@@ -52,4 +71,5 @@
  <objectgroup name="Blocks"/>
  <objectgroup name="Enemy_Data"/>
  <objectgroup name="Level_Data"/>
+ <objectgroup name="Platform"/>
 </map>
