@@ -190,6 +190,24 @@ public:
 			}
 		}
 
+		//Player_Sword and Chest
+		if (fixAType == "Chest" && fixBType == "Player_Sword"
+			|| fixAType == "Player_Sword" && fixBType == "Chest") {
+
+			void* sword_userdata;
+			void* chest_userdata;
+			if (fixAType == "Player_Sword") {
+				sword_userdata = contact->GetFixtureA()->GetBody()->GetUserData();
+				chest_userdata = contact->GetFixtureB()->GetBody()->GetUserData();
+			}
+			else {
+				sword_userdata = contact->GetFixtureB()->GetBody()->GetUserData();
+				chest_userdata = contact->GetFixtureA()->GetBody()->GetUserData();
+			}
+
+			static_cast<Chest*>(chest_userdata)->setCollidingSword(true);
+		}
+
 		//Player and OneWay Platform
 		if (fixAType == "OneWay-Platform" && fixBType == "Player"
 			|| fixAType == "Player" && fixBType == "OneWay-Platform") {

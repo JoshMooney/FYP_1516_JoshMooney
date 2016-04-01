@@ -93,6 +93,29 @@ b2Body * Spawner::GenerateBody(SPAWN_TYPE type, sf::Vector2f pos) {
 		body->CreateFixture(&myFixtureDef);
 		return body;
 		break;
+	case CHEST:
+		myBodyDef.type = b2_staticBody; //this will be a dynamic body
+		size = sf::Vector2f(27, 15);
+		pos_off = sf::Vector2f(pos.x + size.x / 2, pos.y + (size.y / 2) + 17);
+		myBodyDef.position = vHelper::toB2(pos_off); //set the starting position
+		myBodyDef.angle = 0; //set the starting angle
+		myBodyDef.fixedRotation = true;
+
+		body = m_world->CreateBody(&myBodyDef);
+		shape.SetAsBox((size.x / vHelper::B2_SCALE) / 2.0f, (size.y / vHelper::B2_SCALE) / 2.0f);
+
+		myFixtureDef.density = 100.0f;
+		myFixtureDef.friction = 1.5f;
+		myFixtureDef.shape = &shape;
+		myFixtureDef.userData = "Chest";
+		//myFixtureDef.isSensor = true;
+
+		myFixtureDef.filter.categoryBits = _filterCategory::ENEMY;
+		myFixtureDef.filter.maskBits = ENEMY | PLAYER | TERRAIN | PLATFORM;
+
+		body->CreateFixture(&myFixtureDef);
+		return body;
+		break;
 	}
 }
 
@@ -154,6 +177,10 @@ void Spawner::SpawnCannon(sf::Vector2f pos, bool dir) {
 void Spawner::SpawnCannon(sf::Vector2f pos, bool dir, float cd, Projectile::STATE type) {
 	b2Body* bod = GenerateBody(CANNON, pos);
 	m_enemies.push_back(new Cannon(bod, dir, m_gun, cd, type));
+}
+void Spawner::SpawnChest(sf::Vector2f pos, bool dir) {
+	b2Body* bod = GenerateBody(CHEST, pos);
+	m_enemies.push_back(new Chest(bod, dir, m_mine));
 }
 
 /*

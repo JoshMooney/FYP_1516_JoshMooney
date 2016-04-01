@@ -124,7 +124,7 @@ public:
 	*	@param b2World Is the box2d world, this is needed as the level items need bodies to be made for its instances
 	*	@param tmx::ObjectGroup The object layer of which the level items are located on within the .tmx 
 	*/
-	void GenerateLevelItems(b2World *world, tmx::ObjectGroup &layer, GemMine* mine);
+	void GenerateLevelItems(b2World *world, tmx::ObjectGroup &layer, GemMine* mine, Spawner *spawner);
 	/**
 	*	@brief Steps throught the object layer creating the scenerys background sprites using the information inside the object 
 	*	in the .tmx file and push these new objects onto the scenery class.

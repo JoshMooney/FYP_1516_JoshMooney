@@ -11,6 +11,7 @@
 #include "ProjectileManager.hpp"
 
 #include "CrumbleBlock.hpp"
+#include "Chest.hpp"
 
 #include "GemMine.hpp"
 #include "Player.hpp"
@@ -45,6 +46,7 @@ public:
 	SKELETON, 		//!<Spawn type of a Skeleton
 	WEED, 			//!<Spawn type of a Weed
 	CANNON,			//!<Spawn type of a Cannon
+	CHEST,			//!<Spawn type of a Chest
 	};
 	//!Default constructor for the spawner class
 
@@ -98,6 +100,11 @@ public:
 	*	@param Projectile::STATE
 	*/
 	void SpawnCannon(sf::Vector2f pos, bool dir, float cd, Projectile::STATE type);
+	/**
+	*	@brief 
+	*	@param
+	*/
+	void SpawnChest(sf::Vector2f pos, bool dir);
 
 	/**
 	*	@brief Checks for any dead body flags in the entity list and destructs them with 

@@ -104,7 +104,7 @@ void Level::ParseMapLayers(b2World * world, Spawner *s, GemMine *mine, PlatformC
 	tiled_map->GetObjectGroup("Enemy_Data").visible = false;
 
 	lay = tiled_map->GetObjectGroup("Level_Data");
-	GenerateLevelItems(world, lay, mine);
+	GenerateLevelItems(world, lay, mine, s);
 	tiled_map->GetObjectGroup("Level_Data").visible = false;
 
 	lay = tiled_map->GetObjectGroup("Blocks");
@@ -283,7 +283,7 @@ void Level::GeneratePlayerItems(b2World * world, tmx::ObjectGroup &layer) {
 
 	m_checkpoint_list = m_checkpoints_HC;
 }
-void Level::GenerateLevelItems(b2World *world, tmx::ObjectGroup &layer, GemMine* mine) {
+void Level::GenerateLevelItems(b2World *world, tmx::ObjectGroup &layer, GemMine* mine, Spawner *spawner) {
 	string x, y;
 	string type;
 	int lenght = layer.objects_.size();
@@ -319,6 +319,15 @@ void Level::GenerateLevelItems(b2World *world, tmx::ObjectGroup &layer, GemMine*
 			x = layer.objects_[i].GetPropertyValue("x");
 			y = layer.objects_[i].GetPropertyValue("y");
 			mine->SpawnGem(Gem::TYPE::W_250, sf::Vector2f(atof(x.c_str()), atof(y.c_str())), false);
+		}
+		if (type == "chest") {
+			x = layer.objects_[i].GetPropertyValue("x");
+			y = layer.objects_[i].GetPropertyValue("y");
+			sf::Vector2f position = sf::Vector2f(atof(x.c_str()), atof(y.c_str()));
+			string num = layer.objects_[i].GetPropertyValue("direction");
+			bool dir = atoi(num.c_str());
+
+			spawner->SpawnChest(position, dir);
 		}
 	}
 }
