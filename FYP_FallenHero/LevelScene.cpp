@@ -125,7 +125,7 @@ void LevelScene::render(sf::RenderWindow &w){
 	m_player->render(frame_elapse);
 	w.draw(*m_player);					//render Player
 
-	//m_world->DrawDebugData();
+	m_world->DrawDebugData();
 	m_level->scenery.renderFG(w, &m_camera);	//Render Foreground	
 
 	w.setView(w.getDefaultView());		//Reset the windows view before exiting renderer
@@ -305,6 +305,8 @@ void LevelScene::loadLevel(string lvl_name){
 	m_gem_mine->clear();
 	m_projectiles->clear();
 	m_platform_creator->clear();
+
+	m_platform_creator->SpawnXY(sf::Vector2f(150, 400));
 
 	m_level = make_shared<Level>(lvl_name, m_world, m_spawner.get(), m_gem_mine.get(), m_platform_creator.get());				//Create a new level
 	m_spawn_pos = m_level->getSpawn();

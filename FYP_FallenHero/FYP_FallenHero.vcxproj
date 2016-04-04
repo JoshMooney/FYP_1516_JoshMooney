@@ -141,6 +141,7 @@
     <ClInclude Include="WorldScene.hpp" />
     <ClInclude Include="XBOXController.hpp" />
     <ClInclude Include="XMLLoader.hpp" />
+    <ClInclude Include="XYPlatform.hpp" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Cannon.cpp" />
@@ -178,6 +179,7 @@
     <ClCompile Include="WorldMap.cpp" />
     <ClCompile Include="WorldScene.cpp" />
     <ClCompile Include="XBOXController.cpp" />
+    <ClCompile Include="XYPlatform.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

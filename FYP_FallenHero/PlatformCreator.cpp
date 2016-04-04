@@ -48,7 +48,36 @@ void PlatformCreator::SpawnNodePlatform(sf::Vector2f pos, string id_node, bool d
 	m_platforms_node.push_back(std::make_shared<NodePlatform>(generateBody(pos, "Platform"), id_node, dir));
 	//cLog::inst()->print(0, "PlatformCreator", "Node Platform created.");
 }
+void PlatformCreator::SpawnXY(sf::Vector2f pos) {
+	b2BodyDef xyDef;
+	xyDef.type = b2_kinematicBody;
+	sf::Vector2f size = sf::Vector2f(32, 32);
+	sf::Vector2f pos_off = sf::Vector2f(pos.x + size.x / 2, pos.y + size.y / 2);
+	xyDef.position = vHelper::toB2(pos_off); //set the starting position
+	xyDef.angle = 0; //set the starting angle
+	xyDef.fixedRotation = true;
 
+	b2Body* body = m_world->CreateBody(&xyDef);
+
+	//Define the shape of the body
+	b2PolygonShape xy_shape;
+	//shape.SetAsBox(m_text_size.x / 32.0f, m_text_size.y / 32.0f);
+	xy_shape.SetAsBox((size.x / vHelper::B2_SCALE) / 2.0f, (size.y / vHelper::B2_SCALE) / 2.0f);
+
+	b2FixtureDef xyFix;
+	xyFix.density = 1.0f;
+	xyFix.friction = 900.0f;
+	xyFix.shape = &xy_shape;
+	xyFix.userData = "XY-Platform";
+
+	xyFix.filter.categoryBits = _filterCategory::PLATFORM;
+	xyFix.filter.maskBits = PLAYER | ENEMY | BULLET | TERRAIN | GEM;
+
+	body->CreateFixture(&xyFix);
+	
+	//m_platforms.push_back(std::make_shared<XYPlatform>(body));
+	m_platforms.push_back(std::make_shared<XYPlatform>(body, xyDef, xy_shape, xyFix));
+}
 void PlatformCreator::SpawnOneWay(sf::Vector2f pos) {
 	m_platforms.push_back(std::make_shared<OneWayPlatform>(generateBody(pos, "OneWay-Platform")));
 }
@@ -61,7 +90,6 @@ void PlatformCreator::SpawnFade(sf::Vector2f pos, sf::Vector2f fade) {
 void PlatformCreator::SpawnFade(sf::Vector2f pos, sf::Vector2f fade, sf::Vector2f timing) {
 	m_platforms.push_back(std::make_shared<FadePlatform>(generateBody(pos, "Fade-Platform"), fade.x, fade.y, timing.x, timing.y));
 }
-
 
 void PlatformCreator::linkNodes(PointMap * map) {
 	m_point_map = map;
