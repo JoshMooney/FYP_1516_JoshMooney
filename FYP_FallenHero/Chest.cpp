@@ -37,9 +37,7 @@ void Lock::update(FTS fts) {
 	if (vHelper::distance(spawn_pos, vHelper::toSF(e_box_body->GetPosition())) > 350)
 		e_body_active = false;
 }
-
 void Lock::render(sf::RenderWindow & w) {	}
-
 void Lock::alineSprite() {
 	setPosition(vHelper::toSF(e_box_body->GetPosition()));
 }
@@ -50,6 +48,7 @@ Chest::Chest(b2Body * bod, bool dir, GemMine * g) {
 	e_box_body = bod;
 	e_body_active = true;
 
+	spawn_loot = false;
 	e_sword_col = false;
 	e_can_despawn = false;
 	
@@ -80,8 +79,17 @@ void Chest::update(FTS fts, Player * p) {
 		else
 			m_lock->update(fts);
 	}
-}
 
+	if (spawn_loot) {
+		if (loot_pos == m_loot.size())
+			spawn_loot = false;
+		if (m_clock.getElapsedTime().asSeconds() > 0.25) {
+			m_mine->SpawnGem(m_loot[loot_pos], getPosition(), true, e_direction);
+			loot_pos++;
+			m_clock.restart();
+		}
+	}
+}
 void Chest::addFrames(thor::FrameAnimation& animation, int y, int xFirst, int xLast, int xSep, int ySep, float duration) {
 	if (y == 0)
 		y = 0;
@@ -91,8 +99,6 @@ void Chest::addFrames(thor::FrameAnimation& animation, int y, int xFirst, int xL
 	for (int x = xFirst; x != xLast; x += 1)
 		animation.addFrame(duration, sf::IntRect(xSep * x, y, xSep, ySep));
 }
-
-
 void Chest::render(sf::RenderWindow & w, sf::Time frames) {
 	m_animator.update(frames);
 	m_animator.animate(*this);
@@ -113,8 +119,10 @@ void Chest::loadMedia() {
 	m_animator.addAnimation(OPEN, frame_open, sf::seconds(1.0f));
 	m_animator.addAnimation(CLOSE, frame_close, sf::seconds(1.0f));
 
-	//s_death = "Assets/Audio/Game/skeleton_kill.wav";
-	//m_death.setBuffer(ResourceManager<sf::SoundBuffer>::instance()->get(s_death));
+	s_open = "Assets/Audio/Game/chest_gems.wav";
+	m_open.setBuffer(ResourceManager<sf::SoundBuffer>::instance()->get(s_open));
+	s_hit = "Assets/Audio/Game/chest_hit.wav";
+	m_hit.setBuffer(ResourceManager<sf::SoundBuffer>::instance()->get(s_hit));
 }
 
 void Chest::alineSprite() {
@@ -122,9 +130,10 @@ void Chest::alineSprite() {
 }
 
 void Chest::TakeDamage() {
-	if (!is_hit) {
+	if (!is_hit && e_hp > 0) {
 		e_hp -= 10;
 		is_hit = true;
+		m_hit.play();
 	}
 	if (e_hp <= 0 && !create_lock) {
 		b2BodyDef myBodyDef;
@@ -161,12 +170,21 @@ void Chest::TakeDamage() {
 		m_lock = make_shared<Lock>(body, direction, e_texture);
 		create_lock = true;
 		m_lock_alive = true;
+		m_open.play();
 		Die();
 	}
 }
 
 void Chest::Die() {
+	int loot_value = rand() % 500;
+	loot_value += 190;
+
+	loot_pos = 0;
+	spawn_loot = true;
+	calculateDrop(loot_value);
+
 	e_body_active = false;
+	e_box_body->GetFixtureList()->SetSensor(true);
 
 	m_size = sf::Vector2u(33, 23 + 8);
 	setOrigin(m_size.x / 2, m_size.y / 2);
@@ -175,4 +193,40 @@ void Chest::Die() {
 	m_animator.playAnimation(m_current_state);
 
 	is_hit = true;
+	m_clock.restart();
+}
+
+void Chest::calculateDrop(int amount) {
+	int needs_spawn = amount;
+	int num_spawn = 0;
+
+	num_spawn = needs_spawn / Gem::TYPE::W_250;
+	for (int i = 0; i < num_spawn; i++)
+		m_loot.push_back(Gem::TYPE::W_250);
+	needs_spawn = needs_spawn % Gem::TYPE::W_250;
+
+	num_spawn = needs_spawn / Gem::TYPE::B_150;
+	for (int i = 0; i < num_spawn; i++)
+		m_loot.push_back(Gem::TYPE::B_150);
+	needs_spawn = needs_spawn % Gem::TYPE::B_150;
+
+	num_spawn = needs_spawn / Gem::TYPE::R_100;
+	for (int i = 0; i < num_spawn; i++)
+		m_loot.push_back(Gem::TYPE::R_100);
+	needs_spawn = needs_spawn % Gem::TYPE::R_100;
+
+	num_spawn = needs_spawn / Gem::TYPE::O_50;
+	for (int i = 0; i < num_spawn; i++)
+		m_loot.push_back(Gem::TYPE::O_50);
+	needs_spawn = needs_spawn % Gem::TYPE::O_50;
+
+	num_spawn = needs_spawn / Gem::TYPE::P_20;
+	for (int i = 0; i < num_spawn; i++)
+		m_loot.push_back(Gem::TYPE::P_20);
+	needs_spawn = needs_spawn % Gem::TYPE::P_20;
+
+	num_spawn = needs_spawn / Gem::TYPE::B_10;
+	for (int i = 0; i < num_spawn; i++)
+		m_loot.push_back(Gem::TYPE::B_10);
+	needs_spawn = needs_spawn % Gem::TYPE::B_10;
 }

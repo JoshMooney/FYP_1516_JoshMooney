@@ -19,8 +19,6 @@
 #include "Game.hpp"
 
 int main(){
-	srand(NULL);		//Initalise random
-
 	Game game = Game();
 	while (game.isRunning) {
 		game.run();

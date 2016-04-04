@@ -9,6 +9,9 @@ LevelScene::LevelScene() :
 	m_world->SetContactListener(&contact_listener);
 
 	m_gem_mine = make_shared<GemMine>(m_world);
+
+	m_gem_mine->SpawnChest(sf::Vector2f(0, 0));
+
 	m_spawner = make_shared<Spawner>(m_world);
 	m_projectiles = make_shared<ProjectileManager>(m_world);
 	m_platform_creator = make_shared<PlatformCreator>(m_world);
@@ -113,16 +116,16 @@ void LevelScene::render(sf::RenderWindow &w){
 	m_level->scenery.renderBG(w, &m_camera);	//Render Background	
 
 	m_level->render(w, &m_camera, frame_elapse);		//render the level
-
-	m_player->render(frame_elapse);
-	w.draw(*m_player);					//render Player
 	
 	m_projectiles->render(w, frame_elapse);
 	m_spawner->render(w, frame_elapse);
 	m_gem_mine->render(w, frame_elapse);
 	m_platform_creator->render(w, frame_elapse);
 
-	m_world->DrawDebugData();
+	m_player->render(frame_elapse);
+	w.draw(*m_player);					//render Player
+
+	//m_world->DrawDebugData();
 	m_level->scenery.renderFG(w, &m_camera);	//Render Foreground	
 
 	w.setView(w.getDefaultView());		//Reset the windows view before exiting renderer

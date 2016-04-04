@@ -30,6 +30,10 @@ private:
 	thor::FrameAnimation frame_open;
 	thor::FrameAnimation frame_close;
 	shared_ptr<Lock> m_lock;
+	vector<Gem::TYPE> m_loot;
+	sf::Clock m_clock;
+	bool spawn_loot;
+	int loot_pos;
 	bool create_lock;
 public:
 	enum STATE {
@@ -66,6 +70,7 @@ public:
 	void alineSprite();
 	void TakeDamage();
 	void Die();
+	void calculateDrop(int amount);
 };
 
 #endif

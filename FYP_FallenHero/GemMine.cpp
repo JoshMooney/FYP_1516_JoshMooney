@@ -5,13 +5,21 @@
 GemMine::GemMine(b2World *world) {
 	m_world = world;
 
-	m_gem_chart[Gem::TYPE::B_10] = sf::IntRect{ 7, 10, 6, 6 };
-	m_gem_chart[Gem::TYPE::P_20] = sf::IntRect{ 27, 8, 8, 8 };
-	m_gem_chart[Gem::TYPE::O_50] = sf::IntRect{ 48, 4, 9, 12 };
+	m_gem_chart[Gem::TYPE::B_10] =	sf::IntRect{ 7, 10, 6, 6 };
+	m_gem_chart[Gem::TYPE::P_20] =	sf::IntRect{ 27, 8, 8, 8 };
+	m_gem_chart[Gem::TYPE::O_50] =	sf::IntRect{ 48, 4, 9, 12 };
 	m_gem_chart[Gem::TYPE::R_100] = sf::IntRect{ 67, 7, 13, 9 };
 	m_gem_chart[Gem::TYPE::B_150] = sf::IntRect{ 86, 3, 17, 13 };
 	m_gem_chart[Gem::TYPE::W_250] = sf::IntRect{ 105, 0, 21, 16 };
 
+	//Probability for each gem, from 0-1
+	m_gem_probablity[Gem::TYPE::B_10] =		1.0f;
+	m_gem_probablity[Gem::TYPE::P_20] =		0.75f;
+	m_gem_probablity[Gem::TYPE::O_50] =		0.50f;
+	m_gem_probablity[Gem::TYPE::R_100] =	0.50f;
+	m_gem_probablity[Gem::TYPE::B_150] =	0.25f;
+	m_gem_probablity[Gem::TYPE::W_250] =	0.10f;
+	
 }
 
 void GemMine::SpawnBlock(CrumbleBlock::TYPE type, CrumbleBlock::SIZE size, sf::Vector2f pos) {
@@ -70,8 +78,31 @@ void GemMine::SpawnBlock(CrumbleBlock::TYPE type, CrumbleBlock::SIZE size, sf::V
 	m_cart.push_back(new Gem(b, pos, value));
 }
 
+void GemMine::SpawnChest(sf::Vector2f pos) {
+	
+}
+
 void GemMine::SpawnGem(Gem::TYPE type, sf::Vector2f pos, bool grav) {
 	b2Body* b = GenerateBody(type, grav);
+	m_cart.push_back(new Gem(b, pos, type));
+}
+
+void GemMine::SpawnGem(Gem::TYPE type, sf::Vector2f pos, bool grav, bool dir) {
+	b2Body* b = GenerateBody(type, grav);
+
+	//Get Pop Angle
+	sf::Vector2f direction(0, -1);
+	float x = rand() % 200 + 1;
+	if (x < 101)
+		direction.x = (-x / 100.0f) + 0.2f;
+	else
+		direction.x = ((x - 100.0f) / 100.0f) - 0.2f;
+
+	float speed = 4;
+	b->GetFixtureList()->SetSensor(false);
+	direction = sf::Vector2f(direction.x * speed/2, direction.y * speed);
+	b->ApplyForce(b2Vec2(direction.x, direction.y), vHelper::toB2(pos), false);
+
 	m_cart.push_back(new Gem(b, pos, type));
 }
 

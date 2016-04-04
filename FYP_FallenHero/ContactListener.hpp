@@ -254,7 +254,7 @@ public:
 			Player* player = static_cast<Player*>(player_userdata);
 			FadePlatform* platform = static_cast<FadePlatform*>(platform_userdata);
 
-			if (player->isJumping()) {
+			if (player->isJumping() && !platform->getBody()->GetFixtureList()->IsSensor()) {
 				sf::FloatRect plat_geo = platform->geometry();
 				sf::FloatRect player_geo = player->getBounds();
 

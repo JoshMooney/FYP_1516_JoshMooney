@@ -23,7 +23,9 @@ private:
 	float update_dist;
 	b2World *m_world;
 	vector<Gem *> m_cart;
+	vector<Gem::TYPE> m_ore;
 	map<Gem::TYPE, sf::IntRect> m_gem_chart;
+	map<Gem::TYPE, float> m_gem_probablity;
 public:
 	//!This is the default constructor for the gem mine 
 	GemMine()	{		}
@@ -43,6 +45,11 @@ public:
 	*/
 	void SpawnBlock(CrumbleBlock::TYPE type, CrumbleBlock::SIZE size, sf::Vector2f pos);
 	/**
+	*	@brief 
+	*	@param 
+	*/
+	void SpawnChest(sf::Vector2f pos);
+	/**
 	*	@brief This is the default spawn gem method. The Parse Level_data method in the Level class
 	*	will use this method for spawning inital gems.
 	*	@param Gem::TYPE The type of gem to be.
@@ -51,6 +58,15 @@ public:
 	*	@see Level::GenerateLevelItems
 	*/
 	void SpawnGem(Gem::TYPE type, sf::Vector2f pos, bool grav);
+	/**
+	*	@brief This is the default spawn gem method. The Parse Level_data method in the Level class
+	*	will use this method for spawning inital gems.
+	*	@param Gem::TYPE The type of gem to be.
+	*	@param sf::Vector2f The position of the gem
+	*	@param bool Whether its effected by gravity
+	*	@see Level::GenerateLevelItems
+	*/
+	void SpawnGem(Gem::TYPE type, sf::Vector2f pos, bool grav, bool dir);
 	/**
 	*	@brief Takes a type of unit to spawn and creates the appropreate body for that class
 	*	and returns it.

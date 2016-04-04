@@ -17,12 +17,12 @@ private:
 public:
 	//!The Type and value of the gem when it is created.
 	enum TYPE {
-		B_10,		//!<Brown Gem value: 10
-		P_20, 		//!<Purple Gem value: 20
-		O_50,		//!<Orange Gem value: 50
-		R_100, 		//!<Red Gem value: 100
-		B_150, 		//!<Blue Gem value: 150
-		W_250		//!<White Gem value: 250
+		B_10 = 10,		//!<Brown Gem value: 10
+		P_20 = 20, 		//!<Purple Gem value: 20
+		O_50 = 50,		//!<Orange Gem value: 50
+		R_100 = 100, 		//!<Red Gem value: 100
+		B_150 = 150, 		//!<Blue Gem value: 150
+		W_250 = 250		//!<White Gem value: 250
 	};
 	TYPE type_;		//!<The current type of the gem
 	/**
