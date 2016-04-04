@@ -75,7 +75,7 @@ Chest::Chest(b2Body * bod, bool dir, GemMine * g, Chest::TYPE type) {
 		loot_num = 260;
 		break;
 	case PURPLE:
-		e_hp = 20;
+		e_hp = 30;
 		loot_num = 370;
 		break;
 	}
