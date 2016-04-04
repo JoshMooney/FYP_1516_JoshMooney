@@ -323,11 +323,12 @@ void Level::GenerateLevelItems(b2World *world, tmx::ObjectGroup &layer, GemMine*
 		if (type == "chest") {
 			x = layer.objects_[i].GetPropertyValue("x");
 			y = layer.objects_[i].GetPropertyValue("y");
+			type = layer.objects_[i].GetPropertyValue("type");
 			sf::Vector2f position = sf::Vector2f(atof(x.c_str()), atof(y.c_str()));
 			string num = layer.objects_[i].GetPropertyValue("direction");
 			bool dir = atoi(num.c_str());
 
-			spawner->SpawnChest(position, dir);
+			spawner->SpawnChest(position, dir, type);
 		}
 	}
 }

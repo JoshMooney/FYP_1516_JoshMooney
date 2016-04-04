@@ -35,7 +35,15 @@ private:
 	bool spawn_loot;
 	int loot_pos;
 	bool create_lock;
+	float gem_timing;
+	int loot_num;
 public:
+	enum TYPE {
+		BROWN, 		//!<
+		GREEN,		//!<
+		PURPLE,		//!<
+	};
+	TYPE m_type;
 	enum STATE {
 		OPEN, 	//!<
 		CLOSE,  //!<
@@ -44,7 +52,7 @@ public:
 	thor::Animator<sf::Sprite, STATE> m_animator;		//!<This is the THOR::Animator for stepping through a sprite sheet
 
 	Chest();
-	Chest(b2Body* bod, bool dir, GemMine *g);
+	Chest(b2Body* bod, bool dir, GemMine *g, Chest::TYPE type);
 	~Chest();
 
 	void update(FTS fts, Player *p);

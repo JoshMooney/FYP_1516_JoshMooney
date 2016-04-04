@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="left-down" width="100" height="100" tilewidth="32" tileheight="32" nextobjectid="33">
+<map version="1.0" orientation="orthogonal" renderorder="left-down" width="100" height="100" tilewidth="32" tileheight="32" nextobjectid="36">
  <layer name="Tile Layer 1" width="100" height="100">
   <data encoding="base64" compression="zlib">
    eJztwTEBAAAAwqD1T+1lC6AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAbnEAAAQ==
@@ -236,6 +236,33 @@
     <property name="value" value="250"/>
     <property name="x" value=""/>
     <property name="y" value=""/>
+   </properties>
+  </object>
+  <object id="33" name="Brown Chest" x="1152" y="64" width="32" height="32">
+   <properties>
+    <property name="direction" value="0"/>
+    <property name="type" value="brown"/>
+    <property name="value" value="chest"/>
+    <property name="x" value="384"/>
+    <property name="y" value="512"/>
+   </properties>
+  </object>
+  <object id="34" name="Green Chest" x="1152" y="128" width="32" height="32">
+   <properties>
+    <property name="direction" value="0"/>
+    <property name="type" value="green"/>
+    <property name="value" value="chest"/>
+    <property name="x" value="480"/>
+    <property name="y" value="512"/>
+   </properties>
+  </object>
+  <object id="35" name="Purple Chest" x="1152" y="192" width="32" height="32">
+   <properties>
+    <property name="direction" value="0"/>
+    <property name="type" value="purple"/>
+    <property name="value" value="chest"/>
+    <property name="x" value="576"/>
+    <property name="y" value="512"/>
    </properties>
   </object>
  </objectgroup>

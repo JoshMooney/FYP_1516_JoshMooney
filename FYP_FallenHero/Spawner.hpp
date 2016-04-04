@@ -104,7 +104,7 @@ public:
 	*	@brief 
 	*	@param
 	*/
-	void SpawnChest(sf::Vector2f pos, bool dir);
+	void SpawnChest(sf::Vector2f pos, bool dir, string type);
 
 	/**
 	*	@brief Checks for any dead body flags in the entity list and destructs them with 

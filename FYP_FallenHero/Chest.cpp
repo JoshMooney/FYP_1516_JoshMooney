@@ -43,7 +43,8 @@ void Lock::alineSprite() {
 }
 
 Chest::Chest() {	}
-Chest::Chest(b2Body * bod, bool dir, GemMine * g) {
+Chest::Chest(b2Body * bod, bool dir, GemMine * g, Chest::TYPE type) {
+	m_type = type;
 	bod->SetUserData(this);
 	e_box_body = bod;
 	e_body_active = true;
@@ -56,14 +57,29 @@ Chest::Chest(b2Body * bod, bool dir, GemMine * g) {
 	alineSprite();
 
  	m_current_state = CLOSE;
-	m_animator.playAnimation(m_current_state);
-	e_hp = 10;
+	m_animator.playAnimation(m_current_state, true);
 	create_lock = false;
 	
 	e_direction = dir;
 	if (e_direction)	setScale(-1, 1);
 	else setScale(1, 1);
 	m_mine = g;
+
+	switch (m_type) {
+	case BROWN:
+		e_hp = 10;
+		loot_num = 190;
+		break;
+	case GREEN:
+		e_hp = 20;
+		loot_num = 260;
+		break;
+	case PURPLE:
+		e_hp = 20;
+		loot_num = 370;
+		break;
+	}
+
 }
 Chest::~Chest()	{	
 	cLog::inst()->print(0, "Chest", "Chest Despawned.");
@@ -91,11 +107,6 @@ void Chest::update(FTS fts, Player * p) {
 	}
 }
 void Chest::addFrames(thor::FrameAnimation& animation, int y, int xFirst, int xLast, int xSep, int ySep, float duration) {
-	if (y == 0)
-		y = 0;
-	else if (y == 1)
-		y = 15;
-
 	for (int x = xFirst; x != xLast; x += 1)
 		animation.addFrame(duration, sf::IntRect(xSep * x, y, xSep, ySep));
 }
@@ -108,14 +119,28 @@ void Chest::render(sf::RenderWindow & w, sf::Time frames) {
 }
 
 void Chest::loadMedia() {
-	e_texture = "Assets/Game/brown_chest.png";
+	switch (m_type) {
+	case BROWN:
+		m_size = sf::Vector2u(27, 15);
+		addFrames(frame_close, 0, 0, 1, 27, 15, 1.0f);
+		addFrames(frame_open, 15, 0, 1, 33, 23, 1.0f);
+		e_texture = "Assets/Game/brown_chest.png";
+		break;
+	case GREEN:
+		m_size = sf::Vector2u(37, 18);
+		addFrames(frame_close, 0, 0, 1, 37, 18, 1.0f);
+		addFrames(frame_open, 18, 0, 1, 42, 23, 1.0f);
+		e_texture = "Assets/Game/green_chest.png";
+		break;
+	case PURPLE:
+		m_size = sf::Vector2u(37, 18);
+		addFrames(frame_close, 0, 0, 1, 37, 18, 1.0f);
+		addFrames(frame_open, 18, 0, 1, 42, 23, 1.0f);
+		e_texture = "Assets/Game/purple_chest.png";
+		break;
+	}
 	setTexture(ResourceManager<sf::Texture>::instance()->get(e_texture));
-	m_size = sf::Vector2u(27, 15);
 	setOrigin(m_size.x / 2, m_size.y / 2);
-
-	addFrames(frame_close,	0, 0, 1, 27, 15, 1.0f);
-	addFrames(frame_open,	1, 0, 1, 33, 23, 1.0f);
-
 	m_animator.addAnimation(OPEN, frame_open, sf::seconds(1.0f));
 	m_animator.addAnimation(CLOSE, frame_close, sf::seconds(1.0f));
 
@@ -185,12 +210,14 @@ void Chest::Die() {
 
 	e_body_active = false;
 	e_box_body->GetFixtureList()->SetSensor(true);
-
-	m_size = sf::Vector2u(33, 23 + 8);
+	if(m_type == BROWN)
+		m_size = sf::Vector2u(33, 23 + 8);
+	if (!m_type == BROWN)
+		m_size = sf::Vector2u(42, 23 + 6);
 	setOrigin(m_size.x / 2, m_size.y / 2);
 
 	m_current_state = OPEN;
-	m_animator.playAnimation(m_current_state);
+	m_animator.playAnimation(m_current_state, true);
 
 	is_hit = true;
 	m_clock.restart();
