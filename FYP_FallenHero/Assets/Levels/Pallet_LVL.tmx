@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="left-down" width="100" height="100" tilewidth="32" tileheight="32" nextobjectid="36">
+<map version="1.0" orientation="orthogonal" renderorder="left-down" width="100" height="100" tilewidth="32" tileheight="32" nextobjectid="37">
  <layer name="Tile Layer 1" width="100" height="100">
   <data encoding="base64" compression="zlib">
    eJztwTEBAAAAwqD1T+1lC6AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAbnEAAAQ==
@@ -110,63 +110,6 @@
     <property name="y" value="480"/>
    </properties>
   </object>
-  <object id="11" name="Rock Small" x="736" y="288" width="32" height="32">
-   <properties>
-    <property name="type" value="rock"/>
-    <property name="w" value="32"/>
-    <property name="x" value="1024"/>
-    <property name="y" value="320"/>
-   </properties>
-  </object>
-  <object id="12" name="Rock Large" x="640" y="256" width="64" height="64">
-   <properties>
-    <property name="type" value="rock"/>
-    <property name="w" value="64"/>
-    <property name="x" value="1024"/>
-    <property name="y" value="320"/>
-   </properties>
-  </object>
-  <object id="13" name="Dirt Large" x="640" y="352" width="64" height="64">
-   <properties>
-    <property name="type" value="dirt"/>
-    <property name="w" value="64"/>
-    <property name="x" value="1024"/>
-    <property name="y" value="320"/>
-   </properties>
-  </object>
-  <object id="14" name="Sand Large" x="640" y="448" width="64" height="64">
-   <properties>
-    <property name="type" value="sand"/>
-    <property name="w" value="64"/>
-    <property name="x" value="1024"/>
-    <property name="y" value="320"/>
-   </properties>
-  </object>
-  <object id="15" name="Dirt Small" x="736" y="384" width="32" height="32">
-   <properties>
-    <property name="type" value="dirt"/>
-    <property name="w" value="32"/>
-    <property name="x" value="1024"/>
-    <property name="y" value="320"/>
-   </properties>
-  </object>
-  <object id="16" name="Sand Small" x="736" y="480" width="32" height="32">
-   <properties>
-    <property name="type" value="sand"/>
-    <property name="w" value="32"/>
-    <property name="x" value="1024"/>
-    <property name="y" value="320"/>
-   </properties>
-  </object>
-  <object id="28" name="Checkpoint" type="Exit" x="640" y="160" width="64" height="64">
-   <properties>
-    <property name="h" value="64"/>
-    <property name="type" value="checkpoint"/>
-    <property name="w" value="64"/>
-    <property name="x" value="1728"/>
-    <property name="y" value="480"/>
-   </properties>
-  </object>
  </objectgroup>
  <objectgroup name="Enemy_Data">
   <object id="17" name="Skeleton" x="864" y="64" width="64" height="64">
@@ -191,6 +134,15 @@
     <property name="direction" value="1"/>
     <property name="type" value="Cannon"/>
     <property name="x" value="384"/>
+    <property name="y" value="512"/>
+   </properties>
+  </object>
+  <object id="36" name="Checkpoint" type="Exit" x="640" y="192" width="32" height="32">
+   <properties>
+    <property name="h" value="64"/>
+    <property name="type" value="checkpoint"/>
+    <property name="w" value="64"/>
+    <property name="x" value="736"/>
     <property name="y" value="512"/>
    </properties>
   </object>
@@ -263,6 +215,56 @@
     <property name="value" value="chest"/>
     <property name="x" value="576"/>
     <property name="y" value="512"/>
+   </properties>
+  </object>
+ </objectgroup>
+ <objectgroup name="Blocks">
+  <object id="14" name="Sand Large" x="640" y="448" width="64" height="64">
+   <properties>
+    <property name="type" value="sand"/>
+    <property name="w" value="64"/>
+    <property name="x" value="1024"/>
+    <property name="y" value="320"/>
+   </properties>
+  </object>
+  <object id="15" name="Dirt Small" x="736" y="384" width="32" height="32">
+   <properties>
+    <property name="type" value="dirt"/>
+    <property name="w" value="32"/>
+    <property name="x" value="1024"/>
+    <property name="y" value="320"/>
+   </properties>
+  </object>
+  <object id="13" name="Dirt Large" x="640" y="352" width="64" height="64">
+   <properties>
+    <property name="type" value="dirt"/>
+    <property name="w" value="64"/>
+    <property name="x" value="1024"/>
+    <property name="y" value="320"/>
+   </properties>
+  </object>
+  <object id="11" name="Rock Small" x="736" y="288" width="32" height="32">
+   <properties>
+    <property name="type" value="rock"/>
+    <property name="w" value="32"/>
+    <property name="x" value="1024"/>
+    <property name="y" value="320"/>
+   </properties>
+  </object>
+  <object id="12" name="Rock Large" x="640" y="256" width="64" height="64">
+   <properties>
+    <property name="type" value="rock"/>
+    <property name="w" value="64"/>
+    <property name="x" value="1024"/>
+    <property name="y" value="320"/>
+   </properties>
+  </object>
+  <object id="16" name="Sand Small" x="736" y="480" width="32" height="32">
+   <properties>
+    <property name="type" value="sand"/>
+    <property name="w" value="32"/>
+    <property name="x" value="1024"/>
+    <property name="y" value="320"/>
    </properties>
   </object>
  </objectgroup>
