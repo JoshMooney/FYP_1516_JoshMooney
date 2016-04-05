@@ -42,10 +42,20 @@ void NodePlatform::loadMedia() {
 	m_size = sf::Vector2u(160, 16);
 	sf::Texture l_texture = ResourceManager<sf::Texture>::instance()->get(s_texture);
 	setOrigin(m_size.x / 2, m_size.y / 2);
+
+	int ySep = 16;
+	for (int i = 0; i < 4; i++)
+		frame_hover.addFrame(0.25f, sf::IntRect(0, ySep * i, 160, 16));
+
+	m_animator.addAnimation("Hover", frame_hover, sf::seconds(0.15f));
+	m_animator.playAnimation("Hover", true);
 }
 
 void NodePlatform::render(sf::RenderWindow & w, sf::Time frames) {
 	w.draw(*this);
+
+	m_animator.update(frames);
+	m_animator.animate(*this);
 }
 
 sf::Vector2f& NodePlatform::calculateVelocity() {

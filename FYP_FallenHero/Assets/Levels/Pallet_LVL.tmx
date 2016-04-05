@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="left-down" width="100" height="100" tilewidth="32" tileheight="32" nextobjectid="37">
+<map version="1.0" orientation="orthogonal" renderorder="left-down" width="100" height="100" tilewidth="32" tileheight="32" nextobjectid="38">
  <layer name="Tile Layer 1" width="100" height="100">
   <data encoding="base64" compression="zlib">
    eJztwTEBAAAAwqD1T+1lC6AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAbnEAAAQ==
@@ -60,6 +60,13 @@
     <property name="y" value="256"/>
    </properties>
   </object>
+  <object id="37" name="XY Platform" x="96" y="320" width="32" height="32">
+   <properties>
+    <property name="type" value="XYPlatform"/>
+    <property name="x" value="480"/>
+    <property name="y" value="416"/>
+   </properties>
+  </object>
  </objectgroup>
  <objectgroup name="Terrain">
   <object id="8" name="Terrain" type="Platform" x="416" y="64" width="165" height="160">
@@ -72,7 +79,7 @@
   </object>
  </objectgroup>
  <objectgroup name="BG">
-  <object id="29" name="Background Image" x="32" y="320" width="96" height="64">
+  <object id="29" name="Background Image" x="32" y="416" width="96" height="64">
    <properties>
     <property name="filename" value="In BG Folder"/>
     <property name="x" value=""/>
@@ -82,7 +89,7 @@
   </object>
  </objectgroup>
  <objectgroup name="FG">
-  <object id="32" name="Foreground Image" x="32" y="416" width="96" height="64">
+  <object id="32" name="Foreground Image" x="32" y="544" width="96" height="64">
    <properties>
     <property name="filename" value="In FGFolder"/>
     <property name="x" value=""/>

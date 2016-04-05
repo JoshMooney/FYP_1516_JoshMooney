@@ -182,7 +182,8 @@ void Chest::TakeDamage() {
 		shape.SetAsBox((size.x / vHelper::B2_SCALE) / 2.0f, (size.y / vHelper::B2_SCALE) / 2.0f);
 
 		myFixtureDef.density = 1.0f;
-		myFixtureDef.friction = 1.5f;
+		myFixtureDef.friction = 0.25f;
+		myFixtureDef.restitution = 1.5f;
 		myFixtureDef.shape = &shape;
 		//Left on purpose so all the collision detection is the same. For now...
 		myFixtureDef.userData = "Lock";

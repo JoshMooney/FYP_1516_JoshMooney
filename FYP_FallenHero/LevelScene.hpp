@@ -141,6 +141,8 @@ public:
 	*	@brief Refreshes the camera, restarts the game music and repositiions the player.
 	*/
 	void reset();
+
+	Player* getPlayer() { return m_player; }
 };
 
 #endif

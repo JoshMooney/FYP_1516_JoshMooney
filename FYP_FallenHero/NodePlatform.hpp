@@ -3,6 +3,7 @@
 #include "stdafx.h"
 #include "SFML\Graphics.hpp"
 #include "Box2D\Box2D.h"
+#include "Thor\Animations.hpp"
 
 #include "ResourceManager.hpp"
 #include "Platform.hpp"
@@ -19,7 +20,12 @@ private:
 	bool m_is_moving;
 	string m_node_id;
 	bool m_new_node;
+
+	thor::FrameAnimation frame_hover;
 public:
+	thor::Animator<sf::Sprite, string> m_animator;		//!<This is the THOR::Animator for stepping through a sprite sheet
+
+
 	NodePlatform(b2Body *b, string id, bool d);
 	NodePlatform(b2Body *b, string id, bool d, float speed);
 	~NodePlatform();

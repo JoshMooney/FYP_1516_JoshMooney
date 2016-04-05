@@ -125,4 +125,8 @@ void PlatformCreator::clear() {
 	for (int i = 0; i < m_platforms.size(); i++)
 		m_platforms[i]->destroyBody();
 	m_platforms.clear();
+
+	for (int i = 0; i < m_platforms_node.size(); i++)
+		m_platforms_node[i]->destroyBody();
+	m_platforms_node.clear();
 }

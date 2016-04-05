@@ -52,8 +52,6 @@ private:
 	vector<Terrain *> terrain_data;			//Terrain of the level
 	PointMap m_point_map;
 	vector<ParallaxSprite> scenery_data;			//Platform Data
-	//vector<LevelItem> player_data;		//Player Level Data Spawn, Exit, checkpoints.
-	//vector<Collectible> level_data;		//Coins, collectibles
 	sf::Vector2f m_player_spawn;
 	sf::FloatRect bounds;			//This is the bounds of the level
 public:

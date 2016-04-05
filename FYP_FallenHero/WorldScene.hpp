@@ -10,6 +10,7 @@
 #include "vCamera.hpp"
 #include "SimpleGUI.hpp"
 #include "SaveSlot.hpp"
+#include "Player.hpp"
 
 /**
 *	@class WorldScene
@@ -97,7 +98,7 @@ public:
 	*	@brief This function checks the level name as askes the WorldNode if it has a unlock or not.
 	*	@param lvl_name This is the name of the level just complete
 	*/
-	void checkUnlocks(string lvl_name);			
+	void checkUnlocks(string lvl_name, Player *p);
 	/**
 	*	@brief This generates the new Map data of srings to bool to save the game data when new levels
 	*	have been unlocked.

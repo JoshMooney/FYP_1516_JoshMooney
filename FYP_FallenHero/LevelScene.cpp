@@ -63,6 +63,7 @@ void LevelScene::update(){
 	//cLog::inst()->print(1, "LevelScene", "Deprecated update called");
 	
 	while (game_clock.now() - timeOfLastTick >= timePerTick && !m_pause_menu->isPaused()){
+		m_world->Step(B2_TIMESTEP, VEL_ITER, POS_ITER);
 		timeOfLastTick = game_clock.now();
 		frame_elapse = m_animation_clock.restart();
 
@@ -72,7 +73,6 @@ void LevelScene::update(){
 		m_spawner->CullInActiveEnemies();
 
 		m_platform_creator->update(timeOfLastTick);
-		m_world->Step(B2_TIMESTEP, VEL_ITER, POS_ITER);
 
 		m_projectiles->update(timeOfLastTick);
 		m_projectiles->cull();
@@ -116,16 +116,16 @@ void LevelScene::render(sf::RenderWindow &w){
 	m_level->scenery.renderBG(w, &m_camera);	//Render Background	
 
 	m_level->render(w, &m_camera, frame_elapse);		//render the level
-	
+
+	m_player->render(frame_elapse);
+	w.draw(*m_player);					//render Player
+
 	m_projectiles->render(w, frame_elapse);
 	m_spawner->render(w, frame_elapse);
 	m_gem_mine->render(w, frame_elapse);
 	m_platform_creator->render(w, frame_elapse);
 
-	m_player->render(frame_elapse);
-	w.draw(*m_player);					//render Player
-
-	//m_world->DrawDebugData();
+	m_world->DrawDebugData();
 	m_level->scenery.renderFG(w, &m_camera);	//Render Foreground	
 
 	w.setView(w.getDefaultView());		//Reset the windows view before exiting renderer
@@ -305,8 +305,6 @@ void LevelScene::loadLevel(string lvl_name){
 	m_gem_mine->clear();
 	m_projectiles->clear();
 	m_platform_creator->clear();
-
-	m_platform_creator->SpawnXY(sf::Vector2f(150, 400));
 
 	m_level = make_shared<Level>(lvl_name, m_world, m_spawner.get(), m_gem_mine.get(), m_platform_creator.get());				//Create a new level
 	m_spawn_pos = m_level->getSpawn();

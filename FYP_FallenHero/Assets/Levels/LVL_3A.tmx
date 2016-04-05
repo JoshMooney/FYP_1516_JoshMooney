@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="90" height="25" tilewidth="32" tileheight="32" nextobjectid="38">
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="90" height="25" tilewidth="32" tileheight="32" nextobjectid="39">
  <tileset firstgid="1" name="tile_set" tilewidth="32" tileheight="32" tilecount="3">
   <image source="Tiles/tile_set.png" width="96" height="32"/>
  </tileset>
@@ -63,38 +63,6 @@
     <property name="w" value="32"/>
     <property name="x" value="192"/>
     <property name="y" value="416"/>
-   </properties>
-  </object>
-  <object id="28" x="864" y="416" width="32" height="32">
-   <properties>
-    <property name="type" value="dirt"/>
-    <property name="w" value="32"/>
-    <property name="x" value="864"/>
-    <property name="y" value="416"/>
-   </properties>
-  </object>
-  <object id="29" x="992" y="352" width="32" height="32">
-   <properties>
-    <property name="type" value="sand"/>
-    <property name="w" value="32"/>
-    <property name="x" value="992"/>
-    <property name="y" value="352"/>
-   </properties>
-  </object>
-  <object id="30" x="1024" y="352" width="32" height="32">
-   <properties>
-    <property name="type" value="rock"/>
-    <property name="w" value="32"/>
-    <property name="x" value="1024"/>
-    <property name="y" value="352"/>
-   </properties>
-  </object>
-  <object id="31" x="1024" y="320" width="32" height="32">
-   <properties>
-    <property name="type" value="rock"/>
-    <property name="w" value="32"/>
-    <property name="x" value="1024"/>
-    <property name="y" value="320"/>
    </properties>
   </object>
   <object id="35" x="160" y="288" width="32" height="32">
@@ -189,7 +157,7 @@
     <property name="y" value="448"/>
    </properties>
   </object>
-  <object id="19" x="448" y="448" width="160" height="16">
+  <object id="19" x="704" y="320" width="160" height="16">
    <properties>
     <property name="a" value="2"/>
     <property name="d" value="2"/>
@@ -197,8 +165,8 @@
     <property name="id" value=""/>
     <property name="o" value="1"/>
     <property name="type" value="FadePlatform"/>
-    <property name="x" value="448"/>
-    <property name="y" value="448"/>
+    <property name="x" value="704"/>
+    <property name="y" value="320"/>
    </properties>
   </object>
   <object id="20" x="864" y="256" width="160" height="16">
@@ -231,6 +199,13 @@
     <property name="type" value="FadePlatform"/>
     <property name="x" value="0"/>
     <property name="y" value="224"/>
+   </properties>
+  </object>
+  <object id="38" name="XY Platform" x="512" y="448" width="32" height="32">
+   <properties>
+    <property name="type" value="XYPlatform"/>
+    <property name="x" value="512"/>
+    <property name="y" value="448"/>
    </properties>
   </object>
  </objectgroup>

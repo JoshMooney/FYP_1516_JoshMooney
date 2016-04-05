@@ -76,6 +76,9 @@ public:
 		m_body = createBody(w, pos, size);
 		m_body->SetUserData(this);
 	}
+	/*~Sensor() {
+		m_body->GetWorld()->DestroyBody(m_body);
+	}*/
 	/**
 	*	@brief This is the main funtion of the class inheriting classes should overload
 	*	this method as this is what will be called in the contact listener.

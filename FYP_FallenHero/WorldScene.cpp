@@ -156,12 +156,13 @@ void WorldScene::reset() {
 	m_key_pressed = true;
 }
 
-void WorldScene::checkUnlocks(string lvl_name) {
+void WorldScene::checkUnlocks(string lvl_name, Player *p) {
 	WorldNode* node = m_world_map->getNode(lvl_name);
 	if(node->m_next_lvl != nullptr)
 		if (node->m_next_lvl->m_is_locked)
 			node->m_next_lvl->unlock();
 	generateMapData();
+	m_current_slot->m_currentGold = p->getGold();
 }
 
 //Regenerates and copys map data to the current loaded save slot
