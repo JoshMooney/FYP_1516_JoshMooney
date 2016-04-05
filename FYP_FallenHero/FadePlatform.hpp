@@ -25,6 +25,9 @@ public:
 	void update(FTS fts);
 	void render(sf::RenderWindow &w, sf::Time frames);
 	void loadMedia();
+	void destroyBody() {
+		m_box_body->GetWorld()->DestroyBody(m_box_body);
+	}
 };
 
 #endif

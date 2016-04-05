@@ -76,7 +76,7 @@ void PlatformCreator::SpawnXY(sf::Vector2f pos) {
 	body->CreateFixture(&xyFix);
 	
 	//m_platforms.push_back(std::make_shared<XYPlatform>(body));
-	m_platforms.push_back(std::make_shared<XYPlatform>(body, xyDef, xy_shape, xyFix));
+	m_platforms.push_back(std::make_shared<XYPlatform>(body, vHelper::toSF(body->GetPosition()), xyDef, xy_shape, xyFix));
 }
 void PlatformCreator::SpawnOneWay(sf::Vector2f pos) {
 	m_platforms.push_back(std::make_shared<OneWayPlatform>(generateBody(pos, "OneWay-Platform")));
@@ -123,6 +123,6 @@ void PlatformCreator::render(sf::RenderWindow & w, sf::Time frames) {
 
 void PlatformCreator::clear() {
 	for (int i = 0; i < m_platforms.size(); i++)
-		m_world->DestroyBody(m_platforms[i]->getBody());
+		m_platforms[i]->destroyBody();
 	m_platforms.clear();
 }

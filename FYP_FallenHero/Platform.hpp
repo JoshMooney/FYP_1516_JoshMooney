@@ -26,6 +26,9 @@ public:
 	virtual void loadMedia();
 
 	void alineSprite();
+	virtual void destroyBody() {
+		m_box_body->GetWorld()->DestroyBody(m_box_body);
+	}
 	b2Body* getBody() { return m_box_body; }
 	sf::FloatRect geometry() {
 		sf::Vector2f position(getPosition().x - (m_size.x / 2), getPosition().y - (m_size.y / 2));

@@ -32,6 +32,9 @@ public:
 		sf::Texture l_texture = ResourceManager<sf::Texture>::instance()->get(s_texture);
 		setOrigin(m_size.x / 2, m_size.y / 2);
 	}
+	void destroyBody() {
+		m_box_body->GetWorld()->DestroyBody(m_box_body);
+	}
 };
 
 #endif

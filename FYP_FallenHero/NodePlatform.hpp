@@ -29,6 +29,9 @@ public:
 	void loadMedia();
 
 	sf::Vector2f& calculateVelocity();
+	void destroyBody() {
+		m_box_body->GetWorld()->DestroyBody(m_box_body);
+	}
 
 	void setNode(PointNode* n) {
 		m_nextNode = n;
