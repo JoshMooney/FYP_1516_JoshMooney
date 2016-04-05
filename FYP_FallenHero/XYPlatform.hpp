@@ -32,6 +32,11 @@ public:
 	void alineSprite();
 	b2Body* getBody() { return m_box_body; }
 	sf::Vector2f getDestination() { return m_destin_pos; }
+	sf::FloatRect geometry() {
+		sf::Vector2f bod_pos = vHelper::toSF(m_box_body->GetPosition());
+		sf::Vector2f position(bod_pos.x - (m_size.x / 2), bod_pos.y - (m_size.y / 2));
+		return sf::FloatRect{ position.x, position.y, (float)m_size.x, (float)m_size.y };
+	}
 };
 
 /**
@@ -76,9 +81,26 @@ public:
 	void destroyBody() override;
 	sf::Vector2f& calculateVelocity(XYTile &tile);
 
-	sf::FloatRect geometry() {
-		sf::Vector2f position(m_box_body->GetPosition().x - (m_size.x / 2), m_box_body->GetPosition().y - (m_size.y / 2));
-		return sf::FloatRect{ position.x, position.y, (float)m_size.x, (float)m_size.y };
+	sf::FloatRect&  geometry() {
+		sf::Vector2f largest_pos, smallest_pos;
+		sf::Vector2f size;
+
+		largest_pos = m_root_tile->getPosition();
+		smallest_pos = largest_pos;
+		for (auto const &t : m_neighbour_tile) {
+			sf::Vector2f pos = t->getPosition();
+			if (pos.x > largest_pos.x)
+				pos.x = largest_pos.x;
+			if (pos.y > largest_pos.y)
+				pos.y = largest_pos.y;
+
+			if (pos.x < smallest_pos.x)
+				pos.x = smallest_pos.x;
+			if (pos.y < smallest_pos.y)
+				pos.y = smallest_pos.y;
+		}
+		size = largest_pos - smallest_pos;
+		return sf::FloatRect{ smallest_pos.x, smallest_pos.y, (float)size.x, (float)size.y };
 	}
 };
 

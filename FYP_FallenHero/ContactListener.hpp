@@ -13,6 +13,7 @@
 #include "Platform.hpp"
 #include "OneWayPlatform.hpp"
 #include "FadePlatform.hpp"
+#include "XYPlatform.hpp"
 
 #include "Cannon.hpp"
 #include "Gem.hpp"
@@ -113,6 +114,7 @@ public:
 			static_cast<Player*>(player_data)->TakeDamage(dir);
 			b->Die();
 		}
+
 		
 		//Player and Cannon
 		if (fixAType == "Cannon" && fixBType == "Player"
@@ -182,6 +184,62 @@ public:
 
 			if (player->isJumping()) {
 				sf::FloatRect plat_geo = platform->geometry();
+				sf::FloatRect player_geo = player->getBounds();
+
+				if (player_geo.top + player_geo.height >= plat_geo.top - player_jump_y_offset &&
+					player_geo.top + player_geo.height <= plat_geo.top)
+					player->setJumping(false);
+			}
+		}
+
+		//Player and Chest
+		if (fixAType == "Chest" && fixBType == "Player"
+			|| fixAType == "Player" && fixBType == "Chest") {
+
+			void* player_userdata;
+			void* chest_userdata;
+			if (fixAType == "Player") {
+				player_userdata = contact->GetFixtureA()->GetBody()->GetUserData();
+				chest_userdata = contact->GetFixtureB()->GetBody()->GetUserData();
+			}
+			else {
+				player_userdata = contact->GetFixtureB()->GetBody()->GetUserData();
+				chest_userdata = contact->GetFixtureA()->GetBody()->GetUserData();
+			}
+
+			Player* player = static_cast<Player*>(player_userdata);
+			Chest* chest = static_cast<Chest*>(chest_userdata);
+
+			if (player->isJumping()) {
+				sf::FloatRect chest_geo = chest->geometry();
+				sf::FloatRect player_geo = player->getBounds();
+
+				if (player_geo.top + player_geo.height >= chest_geo.top - player_jump_y_offset &&
+					player_geo.top + player_geo.height <= chest_geo.top)
+					player->setJumping(false);
+			}
+		}
+
+		//Player and XY-Platform
+		if (fixAType == "XY-Platform" && fixBType == "Player"
+			|| fixAType == "Player" && fixBType == "XY-Platform") {
+
+			void* player_userdata;
+			void* plat_userdata;
+			if (fixAType == "Player") {
+				player_userdata = contact->GetFixtureA()->GetBody()->GetUserData();
+				plat_userdata = contact->GetFixtureB()->GetBody()->GetUserData();
+			}
+			else {
+				player_userdata = contact->GetFixtureB()->GetBody()->GetUserData();
+				plat_userdata = contact->GetFixtureA()->GetBody()->GetUserData();
+			}
+
+			Player* player = static_cast<Player*>(player_userdata);
+			XYPlatform* plat = static_cast<XYPlatform*>(plat_userdata);
+
+			if (player->isJumping()) {
+				sf::FloatRect plat_geo = plat->geometry();
 				sf::FloatRect player_geo = player->getBounds();
 
 				if (player_geo.top + player_geo.height >= plat_geo.top - player_jump_y_offset &&

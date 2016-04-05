@@ -179,7 +179,7 @@ void XYPlatform::createNeighbours() {
 			body = l_world->CreateBody(&m_bod_def);
 			body->CreateFixture(&m_bod_fix);
 		}
-
+		body->SetUserData(this);
 		m_neighbour_tile.push_back(make_shared<XYTile>(body, m_spawn_pos));
 	}
 }

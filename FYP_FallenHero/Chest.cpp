@@ -101,11 +101,12 @@ void Chest::update(FTS fts, Player * p) {
 	}
 
 	if (spawn_loot) {
-		if (loot_pos == m_loot.size())
-			spawn_loot = false;
 		if (m_clock.getElapsedTime().asSeconds() > 0.25) {
-			m_mine->SpawnGem(m_loot[loot_pos], getPosition(), true, e_direction);
-			loot_pos++;
+			m_mine->SpawnGem((*m_loot_iter), getPosition(), true, e_direction);
+			if (m_loot_iter == m_loot.begin())
+				spawn_loot = false;
+			else 
+				m_loot_iter--;
 			m_clock.restart();
 		}
 	}
@@ -153,11 +154,9 @@ void Chest::loadMedia() {
 	s_hit = "Assets/Audio/Game/chest_hit.wav";
 	m_hit.setBuffer(ResourceManager<sf::SoundBuffer>::instance()->get(s_hit));
 }
-
 void Chest::alineSprite() {
 	setPosition(vHelper::toSF(e_box_body->GetPosition()));
 }
-
 void Chest::TakeDamage() {
 	if (!is_hit && e_hp > 0) {
 		e_hp -= 10;
@@ -203,7 +202,6 @@ void Chest::TakeDamage() {
 		Die();
 	}
 }
-
 void Chest::Die() {
 	int loot_value = rand() % 500;
 	loot_value += 190;
@@ -211,6 +209,7 @@ void Chest::Die() {
 	loot_pos = 0;
 	spawn_loot = true;
 	calculateDrop(loot_value);
+	m_loot_iter = --m_loot.end();
 
 	e_body_active = false;
 	e_box_body->GetFixtureList()->SetSensor(true);

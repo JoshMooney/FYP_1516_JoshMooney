@@ -218,6 +218,12 @@ void Level::CreatePlatforms(b2World * world, tmx::ObjectGroup & layer, PlatformC
 			//id = layer.objects_[i].GetPropertyValue("id");
 			
 		}
+		if (type == "XYPlatform") {
+			x = layer.objects_[i].GetPropertyValue("x");
+			y = layer.objects_[i].GetPropertyValue("y");
+			position = sf::Vector2f(atoi(x.c_str()), atoi(y.c_str()));
+			p->SpawnXY(position);
+		}
 		if (type == "OneWayPlatform") {
 			x = layer.objects_[i].GetPropertyValue("x");
 			y = layer.objects_[i].GetPropertyValue("y");

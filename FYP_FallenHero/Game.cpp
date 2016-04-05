@@ -7,7 +7,7 @@ Game::Game() :
 	m_window(new sf::RenderWindow(sf::VideoMode(SCREEN_WIDTH, SCREEN_HEIGHT, 32), "Fallen Hero", sf::Style::Titlebar)),
 	dd(*m_window)
 {
-	srand(NULL);		//Initalise random
+	srand(time(NULL));		//Initalise random
 
 	/*sf::Sprite title;
 	title.setTexture(ResourceManager<sf::Texture>::instance()->get("Assets\title_screen.png"));

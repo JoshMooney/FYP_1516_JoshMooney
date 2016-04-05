@@ -37,6 +37,7 @@ private:
 	bool create_lock;
 	float gem_timing;
 	int loot_num;
+	vector<Gem::TYPE>::iterator m_loot_iter;
 public:
 	enum TYPE {
 		BROWN, 		//!<
@@ -79,6 +80,11 @@ public:
 	void TakeDamage();
 	void Die();
 	void calculateDrop(int amount);
+
+	sf::FloatRect geometry() {
+		sf::Vector2f position(e_box_body->GetPosition().x - (m_size.x / 2), e_box_body->GetPosition().y - (m_size.y / 2));
+		return sf::FloatRect{ position.x, position.y, (float)m_size.x, (float)m_size.y };
+	}
 };
 
 #endif
