@@ -89,7 +89,5 @@
    </properties>
   </object>
  </objectgroup>
- <objectgroup name="Platform">
-  <object id="14" x="320" y="64" width="160" height="16"/>
- </objectgroup>
+ <objectgroup name="Platform"/>
 </map>

@@ -5,7 +5,11 @@ Lock::Lock(b2Body *b, bool dir, string text) {
 	float m_speed = 185;
 	e_texture = text;
 	setTexture(ResourceManager<sf::Texture>::instance()->get(e_texture));
-	lock_pos = sf::IntRect{ 0, 38, 10, 11 };
+
+	if (text == "Assets/Game/brown_chest.png")
+		lock_pos = sf::IntRect{ 0, 38, 10, 11 };
+	else
+		lock_pos = sf::IntRect{ 0, 41, 10, 11 };
 	setOrigin(sf::Vector2f((float)lock_pos.width / 2, (float)lock_pos.height / 2));
 	setTextureRect(lock_pos);
 
@@ -183,7 +187,7 @@ void Chest::TakeDamage() {
 		myFixtureDef.shape = &shape;
 		//Left on purpose so all the collision detection is the same. For now...
 		myFixtureDef.userData = "Lock";
-		myFixtureDef.isSensor = true;
+		myFixtureDef.isSensor = false;
 
 		myFixtureDef.filter.categoryBits = _filterCategory::ENEMY;
 		myFixtureDef.filter.maskBits = ENEMY | TERRAIN | PLATFORM;

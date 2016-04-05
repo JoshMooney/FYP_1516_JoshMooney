@@ -21,13 +21,14 @@ private:
 	bool m_stage;
 
 public:
+	bool m_reched;
 	XYTile();
 	XYTile(b2Body* b, sf::Vector2f root_pos);
 	~XYTile();
 
 	void loadMedia();
-	void update(FTS fts);
-	void move();
+	void update(FTS fts, sf::Vector2f dir);
+	void setDestination(string s, bool vert);
 	void alineSprite();
 	b2Body* getBody() { return m_box_body; }
 	sf::Vector2f getDestination() { return m_destin_pos; }
@@ -53,6 +54,7 @@ private:
 	b2BodyDef m_bod_def;
 	b2PolygonShape m_bod_shape;
 	b2FixtureDef m_bod_fix;
+	bool m_is_vert;
 public:
 	enum STATE {
 		IDLE,

@@ -68,7 +68,6 @@ void FadePlatform::update(FTS fts) {
 			if (elapsed_time.asSeconds() > (fade_in / 4.0) *3) {
 				m_box_body->GetFixtureList()->SetSensor(true);
 			}
-
 		}
 		else if (!fade_step) {
 			perframe = 255.0 / fade_out;

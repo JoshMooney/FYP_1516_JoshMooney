@@ -9,7 +9,9 @@ XYTile::XYTile(b2Body* b, sf::Vector2f root_pos) {
 	m_body_active = true;
 	m_root_pos = root_pos;
 	m_spawn_pos = vHelper::toSF(m_box_body->GetPosition());
-	m_destin_pos = m_spawn_pos;
+	m_destin_pos = m_root_pos;
+
+	m_reched = false;
 
 	loadMedia();
 	alineSprite();
@@ -18,20 +20,42 @@ XYTile::~XYTile()	{	}
 
 void XYTile::loadMedia() {
 	if(m_root_pos == m_spawn_pos)
-		s_texture = "Assets/Game/xy_platform.png";
-	else
 		s_texture = "Assets/Game/xy_platform_root.png";
+	else
+		s_texture = "Assets/Game/xy_platform.png";
 	setTexture(ResourceManager<sf::Texture>::instance()->get(s_texture));
 	sf::Texture l_texture = ResourceManager<sf::Texture>::instance()->get(s_texture);
 	m_size = sf::Vector2u(32, 32);
 	setOrigin(m_size.x / 2, m_size.y / 2);
 }
-void XYTile::update(FTS fts) {
-	alineSprite();
-
-}
-void XYTile::move() {
+void XYTile::update(FTS fts, sf::Vector2f dir) {
+	sf::Vector2f direction = dir * 2.0f;
+	m_box_body->SetLinearVelocity(vHelper::toB2(direction));
 	
+	alineSprite();
+}
+void XYTile::setDestination(string s, bool vert) {
+	if (s == "OPEN" && vert) {
+		m_destin_pos = m_spawn_pos;
+		
+	}
+	if (s == "CLOSE" && vert) {
+		m_destin_pos = m_root_pos;
+
+	}
+
+	if (s == "OPEN" && !vert) {
+		//m_destin_pos = m_spawn_pos;
+		sf::Vector2f pos;
+		pos = m_root_pos - m_spawn_pos;
+		pos.y = pos.x;
+		pos.x = 0;
+		m_destin_pos = m_root_pos + pos;
+
+	}
+	if (s == "CLOSE" && !vert) {
+		m_destin_pos = m_root_pos;
+	}
 }
 void XYTile::alineSprite() {
 	setPosition(vHelper::toSF(m_box_body->GetPosition()));
@@ -58,6 +82,7 @@ XYPlatform::XYPlatform(b2Body * b, sf::Vector2f spawn, b2BodyDef bodDef, b2Polyg
 
 	m_current_state = OPEN;
 	m_previous_state = m_current_state;
+	m_is_vert = true;
 
 	m_bod_def = bodDef;
 	m_bod_shape = xy_shape;
@@ -65,14 +90,53 @@ XYPlatform::XYPlatform(b2Body * b, sf::Vector2f spawn, b2BodyDef bodDef, b2Polyg
 
 	createNeighbours();
 	alineSprite();
+	m_timer.restart();
 }
 XYPlatform::~XYPlatform() {		}
 
 void XYPlatform::update(FTS fts) {
-	for (auto const &t : m_neighbour_tile) {
-		t->update(fts);
+	/*if (m_current_state == OPEN)
+
+	if (m_current_state == CLOSE)
+		t->setDestination("CLOSE");
+	if (!m_current_state == IDLE)
+		t->update(fts, calculateVelocity(*t));
+	*/
+	if (m_timer.getElapsedTime().asSeconds() > 3.5f) {
+		if (m_is_vert) {
+			if (m_current_state == OPEN) {
+				m_current_state = CLOSE;
+				for (auto const &t : m_neighbour_tile)
+					t->setDestination("CLOSE", true);
+				m_timer.restart();
+			}
+			else if (m_current_state == CLOSE) {
+				m_is_vert = false;
+				m_current_state = OPEN;
+				for (auto const &t : m_neighbour_tile)
+					t->setDestination("OPEN", false);
+				m_timer.restart();
+			}
+		}
+		else {
+			if (m_current_state == OPEN) {
+				m_current_state = CLOSE;
+				for (auto const &t : m_neighbour_tile)
+					t->setDestination("CLOSE", false);
+				m_timer.restart();
+			}
+			else if (m_current_state == CLOSE) {
+				m_is_vert = true;
+				m_current_state = OPEN;
+				for (auto const &t : m_neighbour_tile)
+					t->setDestination("OPEN", true);
+				m_timer.restart();
+			}
+		}
 	}
-	m_root_tile->update(fts);
+
+	for (auto const &t : m_neighbour_tile)
+		t->update(fts, calculateVelocity(*t));
 }
 void XYPlatform::render(sf::RenderWindow & w, sf::Time frames) {
 	for (auto const &t : m_neighbour_tile)
@@ -132,9 +196,9 @@ void XYPlatform::destroyBody() {
 }
 
 sf::Vector2f& XYPlatform::calculateVelocity(XYTile &tile) {
-	sf::Vector2f position = vHelper::toSF(m_box_body->GetPosition());
+	sf::Vector2f position = vHelper::toSF(tile.getBody()->GetPosition());
 	
-	sf::Vector2f dir = sf::Vector2f(tile.getDestination().x - getPosition().x, tile.getDestination().y - getPosition().y);
+	sf::Vector2f dir = sf::Vector2f(tile.getDestination().x - position.x, tile.getDestination().y - position.y);
 
 	//Normalise direction Vector
 	float mag = sqrt(dir.x * dir.x + dir.y * dir.y);

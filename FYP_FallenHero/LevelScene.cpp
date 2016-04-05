@@ -125,7 +125,7 @@ void LevelScene::render(sf::RenderWindow &w){
 	m_player->render(frame_elapse);
 	w.draw(*m_player);					//render Player
 
-	m_world->DrawDebugData();
+	//m_world->DrawDebugData();
 	m_level->scenery.renderFG(w, &m_camera);	//Render Foreground	
 
 	w.setView(w.getDefaultView());		//Reset the windows view before exiting renderer
