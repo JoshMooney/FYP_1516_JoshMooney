@@ -82,7 +82,7 @@ public:
 	void calculateDrop(int amount);
 
 	sf::FloatRect geometry() {
-		sf::Vector2f position(e_box_body->GetPosition().x - (m_size.x / 2), e_box_body->GetPosition().y - (m_size.y / 2));
+		sf::Vector2f position(vHelper::toSF(e_box_body->GetPosition()).x - (m_size.x / 2), vHelper::toSF(e_box_body->GetPosition()).y - (m_size.y / 2));
 		return sf::FloatRect{ position.x, position.y, (float)m_size.x, (float)m_size.y };
 	}
 };

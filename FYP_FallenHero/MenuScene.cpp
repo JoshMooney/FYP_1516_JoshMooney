@@ -488,7 +488,17 @@ void MenuScene::generateSaveText() {
 		text.setPosition(origin + text_pos);
 		text.setCharacterSize(22);
 		text_pos = text_pos + text_sep;
-		data << "Time " << loader->saved_data[i]->m_timePlayed;
+
+		int time_left = loader->saved_data[i]->m_timePlayed;
+		int hours = time_left / 3600;
+		time_left = time_left % 3600;
+
+		int mins = time_left / 60;
+		time_left = time_left % 60;
+
+		int sec = time_left;
+
+		data << "Time " << hours << ":" << mins << ":" << sec;
 		text.setString(data.str());
 		save_text.push_back(text);
 		

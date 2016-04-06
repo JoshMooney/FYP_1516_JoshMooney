@@ -54,6 +54,7 @@ private:
 	vector<ParallaxSprite> scenery_data;			//Platform Data
 	sf::Vector2f m_player_spawn;
 	sf::FloatRect bounds;			//This is the bounds of the level
+
 public:
 	Sensor *m_exit;
 	//queue<Checkpoint*> m_checkpoints;

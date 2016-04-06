@@ -156,12 +156,13 @@ void WorldScene::reset() {
 	m_key_pressed = true;
 }
 
-void WorldScene::checkUnlocks(string lvl_name, Player *p) {
+void WorldScene::checkUnlocks(string lvl_name, Player *p, sf::Time lvl_time) {
 	WorldNode* node = m_world_map->getNode(lvl_name);
 	if(node->m_next_lvl != nullptr)
 		if (node->m_next_lvl->m_is_locked)
 			node->m_next_lvl->unlock();
 	generateMapData();
+	addLevelTime(lvl_time);
 	m_current_slot->m_currentGold = p->getGold();
 }
 
@@ -182,4 +183,8 @@ void WorldScene::generateMapData() {
 void WorldScene::loadSaveSlot(SaveSlot * ss) {
 	m_current_slot = ss;
 	m_world_map->createMap(ss->m_LVL_DATA);
+}
+
+void WorldScene::addLevelTime(sf::Time time) {
+	m_current_slot->m_timePlayed += (int)time.asSeconds();
 }

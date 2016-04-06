@@ -72,6 +72,7 @@ private:
 	bool m_level_quit;
 
 	sf::Vector2f m_spawn_pos;
+	sf::Clock m_level_clock;
 public:
 
 	PauseScreen *m_pause_menu;
@@ -141,7 +142,7 @@ public:
 	*	@brief Refreshes the camera, restarts the game music and repositiions the player.
 	*/
 	void reset();
-
+	sf::Time& getElapsedTime() { return m_level_clock.restart(); }
 	Player* getPlayer() { return m_player; }
 };
 

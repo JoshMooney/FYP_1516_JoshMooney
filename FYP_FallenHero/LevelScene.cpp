@@ -314,7 +314,8 @@ void LevelScene::loadLevel(string lvl_name){
 	//m_player->reset(m_level->getSpawn());			//Reset the player for the new level
 	respawnPlayer();
 	m_camera.refresh(m_player->getCenter());
-	
+	m_level_clock.restart();
+
 	//Set the Cameras bounds here once loaded from the .tmx
 }
 

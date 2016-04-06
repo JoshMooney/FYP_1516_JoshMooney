@@ -124,7 +124,8 @@ void Game::goToNextScene() {
 		break;
 	case LEVEL:
 		if (m_level_scene->isComplete())
-			m_world_scene->checkUnlocks(m_level_scene->getLevelName(), m_level_scene->getPlayer());
+			m_world_scene->checkUnlocks(m_level_scene->getLevelName(), m_level_scene->getPlayer(), m_level_scene->getElapsedTime());
+		
 		//Save Game here
 		m_loader->save();
 

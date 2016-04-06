@@ -22,6 +22,7 @@ Level::Level(string s, b2World *world, Spawner *spawner, GemMine *mine, Platform
 	scenery = Scenery();
 	m_world = world;
 	ParseMapLayers(world, spawner, mine, p);
+	
 }
 
 /*TEMP*/

@@ -98,7 +98,7 @@ public:
 	*	@brief This function checks the level name as askes the WorldNode if it has a unlock or not.
 	*	@param lvl_name This is the name of the level just complete
 	*/
-	void checkUnlocks(string lvl_name, Player *p);
+	void checkUnlocks(string lvl_name, Player *p, sf::Time lvl_time);
 	/**
 	*	@brief This generates the new Map data of srings to bool to save the game data when new levels
 	*	have been unlocked.
@@ -108,7 +108,11 @@ public:
 	*	@brief The method takes a SaveSlot and creates a map depending on the information in the save.
 	*	@param SaveSlot This is the save slot that needs to be loaded into the map
 	*/	
-	void loadSaveSlot(SaveSlot * ss);			
+	void loadSaveSlot(SaveSlot * ss);
+	/**
+	*	@brief 
+	*/
+	void addLevelTime(sf::Time time);
 };
 
 #endif
