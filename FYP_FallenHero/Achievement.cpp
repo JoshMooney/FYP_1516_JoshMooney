@@ -1,54 +1,16 @@
 #include <stdafx.h>
 #include "Achievement.hpp"
 
-Achievements::Achievements(std::vector<std::unique_ptr<Entity>> *el) : entity_list(el) {
-	first_build = false;
-	first_upgrade = false;
-	built_ranged = false;
-	built_power = false;
-	varied_builder = false;
+Achievements::Achievements() {		}
+Achievements::Achievements(SaveSlot *cur) : m_current_slot(cur) {
 
-	v1Overkill = false;
-	v2Overkill = false;
-	v3Overkill = false;
-
-	first_kill = false;
-	melee_kill = false;
-	archer_kill = false;
-	siege_kill = false;
-	varied_kill = false;
-
-	first_spawn = false;
-	fifth_spawn = false;
-	spawn_count = 0;
-	melee_spawn = false;
-	archer_spawn = false;
-	siege_spawn = false;
-	varied_spawned = false;
-
-	oppsCheevo = false;
 }
-
 Achievements::~Achievements() {
 
 }
 
 void Achievements::update() {
-	if (melee_spawn && archer_spawn && siege_spawn
-		&& !varied_spawned) {
-		varied_spawned = true;
-		unlock("variedSpawn");
-	}
-	if (melee_kill && archer_kill && siege_kill
-		&& !varied_kill) {
-		varied_kill = true;
-		unlock("variedKill");
-	}
-	if (built_ranged && built_power
-		&& !varied_builder) {
-		varied_builder = true;
-		unlock("variedBuilder");
-	}
+
 }
 
 void Achievements::unlock(string s) {
@@ -66,6 +28,9 @@ void Achievements::unlock(string s) {
 }
 
 void Achievements::onNotify(Subject::EVENT evnt, Entity *entity) {
+	switch (evnt) {
+	
+	}
 	/*Component::FactionComponent::Team team;
 	string tag;*/
 	/*
