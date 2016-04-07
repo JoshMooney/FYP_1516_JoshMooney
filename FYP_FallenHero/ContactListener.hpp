@@ -115,6 +115,42 @@ public:
 			b->Die();
 		}
 
+		//Projectile and Terrain
+		if (fixAType == "Projectile" && fixBType == "Terrain"
+			|| fixAType == "Terrain" && fixBType == "Projectile") {
+			void* terrain_data;
+			void* bullet_data;
+
+			if (fixAType == "Terrain") {
+				terrain_data = contact->GetFixtureA()->GetBody()->GetUserData();
+				bullet_data = contact->GetFixtureB()->GetBody()->GetUserData();
+			}
+			else {
+				bullet_data = contact->GetFixtureA()->GetBody()->GetUserData();
+				terrain_data = contact->GetFixtureB()->GetBody()->GetUserData();
+			}
+
+			static_cast<Projectile*>(bullet_data)->Die();
+		}
+
+		//Projectile and Cannon
+		if (fixAType == "Projectile" && fixBType == "Cannon"
+			|| fixAType == "Cannon" && fixBType == "Projectile") {
+			void* cannon_data;
+			void* bullet_data;
+
+			if (fixAType == "Cannon") {
+				cannon_data = contact->GetFixtureA()->GetBody()->GetUserData();
+				bullet_data = contact->GetFixtureB()->GetBody()->GetUserData();
+			}
+			else {
+				bullet_data = contact->GetFixtureA()->GetBody()->GetUserData();
+				cannon_data = contact->GetFixtureB()->GetBody()->GetUserData();
+			}
+
+			static_cast<Projectile*>(bullet_data)->Die();
+			static_cast<Cannon*>(cannon_data)->TakeDamage();
+		}
 		
 		//Player and Cannon
 		if (fixAType == "Cannon" && fixBType == "Player"
