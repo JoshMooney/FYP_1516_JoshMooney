@@ -45,6 +45,7 @@ private:
 	const std::chrono::duration<long long, std::micro> timePerTick = std::chrono::microseconds(16);
 	FTS timeOfLastTick = game_clock.now();
 
+	bool m_b2_dd;
 	Player *m_player;
 	HUD m_player_HUD;
 	bool m_level_complete;

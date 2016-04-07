@@ -25,7 +25,6 @@ Level::Level(string s, b2World *world, Spawner *spawner, GemMine *mine, Platform
 	
 }
 
-/*TEMP*/
 struct OBJ {
 	int width;
 	int height;
