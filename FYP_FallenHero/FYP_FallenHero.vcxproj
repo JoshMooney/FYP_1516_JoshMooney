@@ -103,6 +103,7 @@
     <ClInclude Include="HUD.hpp" />
     <ClInclude Include="Level.hpp" />
     <ClInclude Include="LevelScene.hpp" />
+    <ClInclude Include="LockedDoor.hpp" />
     <ClInclude Include="MenuScene.hpp" />
     <ClInclude Include="PauseScreen.hpp" />
     <ClInclude Include="MenuScene.hpp" />
@@ -155,6 +156,7 @@
     <ClCompile Include="GemMine.cpp" />
     <ClCompile Include="HUD.cpp" />
     <ClCompile Include="Level.cpp" />
+    <ClCompile Include="LockedDoor.cpp" />
     <ClCompile Include="PauseScreen.cpp" />
     <ClCompile Include="LevelScene.cpp" />
     <ClCompile Include="MenuScene.cpp" />
