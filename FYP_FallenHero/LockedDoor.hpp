@@ -17,6 +17,7 @@ private:
 	string s_prompt_spt;
 	sf::Sprite m_prompt_spt;
 	sf::Vector2f m_prompt_pos;
+	string m_id;
 public:
 	enum TYPE {
 		BROWN, 		//!<
@@ -30,7 +31,7 @@ public:
 	thor::Animator<sf::Sprite, STATE> m_animator;
 
 	Door();
-	Door(b2Body *b);
+	Door(b2Body *b, string id);
 	~Door();
 
 	void update(FTS fts, Player *p);

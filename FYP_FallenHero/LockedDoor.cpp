@@ -2,7 +2,8 @@
 #include "LockedDoor.hpp"
 
 Door::Door() {		}
-Door::Door(b2Body * b) {
+Door::Door(b2Body * b, string id) {
+	m_id = id;
 	b->SetUserData(this);
 	e_box_body = b;
 	e_body_active = true;
@@ -15,6 +16,7 @@ Door::Door(b2Body * b) {
 	loadMedia();
 	alineSprite();
 	m_prompt_pos = sf::Vector2f(0, -50);
+
 }
 Door::~Door() {		}
 
@@ -66,7 +68,6 @@ void Door::alineSprite() {
 }
 void Door::TakeDamage() {
 	if (!is_hit) {
-
 
 		is_hit = true;
 	}

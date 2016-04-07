@@ -11,6 +11,7 @@
 #include "ProjectileManager.hpp"
 
 #include "CrumbleBlock.hpp"
+#include "LockedDoor.hpp"
 #include "Chest.hpp"
 
 #include "GemMine.hpp"
@@ -87,6 +88,10 @@ public:
 	*	@param CrumbleBlock::SIZE The 
 	*/
 	void SpawnBlock(sf::Vector2f pos, CrumbleBlock::TYPE t, CrumbleBlock::SIZE s);
+	/**
+	*	@brief 
+	*/
+	void SpawnDoor(sf::Vector2f pos, string id);
 	/**
 	*	@brief Creates the appropreate body for the Block and pushes it onto a vector of blocks
 	*	@param sf::Vector2f This position to spawn the Skeleton at.
