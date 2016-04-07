@@ -85,6 +85,7 @@
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Achievement.hpp" />
     <ClInclude Include="Cannon.hpp" />
     <ClInclude Include="Chest.hpp" />
     <ClInclude Include="cLog.hpp" />
@@ -104,6 +105,7 @@
     <ClInclude Include="Level.hpp" />
     <ClInclude Include="LevelScene.hpp" />
     <ClInclude Include="MenuScene.hpp" />
+    <ClInclude Include="Observer.hpp" />
     <ClInclude Include="PauseScreen.hpp" />
     <ClInclude Include="MenuScene.hpp" />
     <ClInclude Include="PauseScreen.hpp" />
@@ -130,6 +132,7 @@
     <ClInclude Include="Skeleton.hpp" />
     <ClInclude Include="Spawner.hpp" />
     <ClInclude Include="stdafx.h" />
+    <ClInclude Include="Subject.hpp" />
     <ClInclude Include="targetver.h" />
     <ClInclude Include="Terrain.hpp" />
     <ClInclude Include="tinyxml2.h" />
@@ -144,6 +147,7 @@
     <ClInclude Include="XYPlatform.hpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Achievement.cpp" />
     <ClCompile Include="Cannon.cpp" />
     <ClCompile Include="Chest.cpp" />
     <ClCompile Include="cLog.cpp" />
@@ -173,6 +177,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="Subject.cpp" />
     <ClCompile Include="tinyxml2.cpp" />
     <ClCompile Include="vCamera.cpp" />
     <ClCompile Include="Weed.cpp" />
