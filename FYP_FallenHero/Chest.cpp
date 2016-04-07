@@ -1,6 +1,8 @@
 #include "stdafx.h"
 #include "Chest.hpp"
 
+using namespace detail;
+
 Lock::Lock(b2Body *b, bool dir, string text) {
 	float m_speed = 185;
 	e_texture = text;

@@ -236,7 +236,7 @@ public:
 			}
 
 			Player* player = static_cast<Player*>(player_userdata);
-			XYPlatform* plat = static_cast<XYPlatform*>(plat_userdata);
+			XYTile* plat = static_cast<XYTile*>(plat_userdata);
 
 			if (player->isJumping()) {
 				sf::FloatRect plat_geo = plat->geometry();

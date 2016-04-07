@@ -5,6 +5,8 @@
 //XY Tile
 XYTile::XYTile()	{	}
 XYTile::XYTile(b2Body* b, sf::Vector2f root_pos) {
+	b->SetUserData(this);
+	m_size = sf::Vector2u(32, 32);
 	m_box_body = b;
 	m_body_active = true;
 	m_root_pos = root_pos;
@@ -76,7 +78,6 @@ XYPlatform::XYPlatform(b2Body *b, sf::Vector2f spawn) {
 
 }
 XYPlatform::XYPlatform(b2Body * b, sf::Vector2f spawn, b2BodyDef bodDef, b2PolygonShape xy_shape, b2FixtureDef xyFix) {
-	b->SetUserData(this);
 	m_root_tile = make_unique<XYTile>(b, spawn);
 	m_spawn_pos = spawn;
 
