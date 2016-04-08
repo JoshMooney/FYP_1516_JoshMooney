@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include "Player.hpp"
 #include "vHelper.hpp"
+#include "Subject.hpp"
 
 Player::Player(b2World &m_world){
 	m_alive = true;
@@ -227,6 +228,7 @@ void Player::jump() {
 		//e_box_body->SetLinearVelocity(b2Vec2(e_box_body->GetLinearVelocity().x, m_acceleration * DELTA_TIME.asSeconds()), -m_jump_force, m_jump_force);
 		e_box_body->SetLinearVelocity(b2Vec2(e_box_body->GetLinearVelocity().x, e_box_body->GetLinearVelocity().y - newYVel));
 		m_is_jumping = true;
+		Subject::instance()->notify(Subject::P_JUMP, this);
 	}
 }
 void Player::reset(sf::Vector2f pos) {

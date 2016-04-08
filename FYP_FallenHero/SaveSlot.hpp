@@ -35,12 +35,13 @@ struct SaveSlot {
 	*	@param data - This is loaded in from .xml to the m_LVL_DATA varible
 	*	@param num_lvls_unlocked - This is calculted using the data gathered from the .xml and stored in m_levels_unlocked
 	*/
-	SaveSlot(int id, int time, int gold, map<string, bool> data, int num_lvls_unlocked)
-		: m_id(id), m_timePlayed(time), m_currentGold(gold), m_LVL_DATA(data), m_levels_unlocked(num_lvls_unlocked){		}
+	SaveSlot(int id, int time, int gold, map<string, bool> data, int num_lvls_unlocked, map<string, bool> ach, int num_ach_unlocked)
+		: m_id(id), m_timePlayed(time), m_currentGold(gold), m_LVL_DATA(data), m_levels_unlocked(num_lvls_unlocked), m_ACH_DATA(ach), m_achieve_unlocked(num_ach_unlocked){		}
 	int m_id;						//!<This value is used for storing the current id of the save slot as the game only allows for 3 saveslots at a time
 	int m_timePlayed;               //!<This is the value for total time played it will be stored in seconds for now but later when that begins to become obsolete can be changed to Minutes or minutes and seconds
 	int m_currentGold;              //!<This value represents the total amount of gold on the players character at that time
 	int m_levels_unlocked;          //!<This number represents the number of levels unlocked this kind of information can be used on the main screen or save select.
+	int m_achieve_unlocked;          //!<
 	
 	/**
 	*	@brief This represents the Level information in raw data once it has been parsed from the xml file
@@ -48,6 +49,10 @@ struct SaveSlot {
 	*	@param bool - Whether the level is unlocked or not
 	*/
 	map<string, bool> m_LVL_DATA; 
+	/**
+	*	@brief 
+	*/
+	map<string, bool> m_ACH_DATA;
 };
 
 #endif

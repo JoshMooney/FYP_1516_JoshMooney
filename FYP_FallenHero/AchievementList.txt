@@ -1,0 +1,16 @@
+::Achievement List Fallen Hero::
+
+Elevator Pitch - Played your first 60 seconds
+Demo Day Cheevo - Played your first 5 minutes
+Get hit by 5 projectiles
+Ouch - Get Hurt the first time
+Die 15 times total
+Die 5 times in a level
+Fall off the map
+Complete Level 1 - 6
+Pick Up 100 Gems
+Pick Up 1000 Gems
+All Shapes and Sizes - Break One of each type of Crumble Block
+Open an unlocked door
+Run past 5 checkpoints
+Open one of each type of chest

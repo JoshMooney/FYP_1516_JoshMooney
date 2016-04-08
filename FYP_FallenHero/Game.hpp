@@ -15,6 +15,7 @@
 #include <memory>
 
 #include "SFMLDebugDraw.h"
+#include "Subject.hpp"
 
 /**
 *	@class Game

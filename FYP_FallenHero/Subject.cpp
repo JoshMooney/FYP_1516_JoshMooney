@@ -32,8 +32,13 @@ void Subject::update() {
 	}
 }
 
-Subject::~Subject() {
+void Subject::render(sf::RenderWindow * w) {
+	for (int i = 0; i < observers_.size(); i++) {
+		observers_[i]->render(w);
+	}
 }
+
+Subject::~Subject() {		}
 
 Subject* Subject::instance() {
 	if (!mInstance) {

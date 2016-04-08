@@ -11,6 +11,7 @@
 #include "SimpleGUI.hpp"
 #include "SaveSlot.hpp"
 #include "Player.hpp"
+#include "Achievement.hpp"
 
 /**
 *	@class WorldScene
@@ -36,6 +37,7 @@ private:
 	sf::Sound m_run_away;
 	sf::Sound m_select;
 	sf::Music m_background_music;
+	shared_ptr<Achievements> m_achievement_ob;
 public:
 	bool m_key_pressed;
 	SaveSlot *m_current_slot;		//!<This is the current save slot loaded into the game for pulling information for the map and saving to.

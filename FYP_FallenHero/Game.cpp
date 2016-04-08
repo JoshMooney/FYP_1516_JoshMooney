@@ -22,7 +22,7 @@ Game::Game() :
 	m_xbox_controller = make_shared<XBOXController>();
 	m_xbox_controller->UpdateButtons();
 	cLog::inst()->print("Game class initialised");
-	
+
 	m_menu_scene = new MenuScene();
 	m_level_scene = new LevelScene();
 	m_world_scene = new WorldScene();
@@ -61,6 +61,8 @@ void Game::run(){
 		sf::Event l_event;
 		m_window->pollEvent(l_event);
 
+		Subject::instance()->update();					//Update the Observers here
+
 		if (l_event.key.code == sf::Keyboard::Escape)
 			isRunning = false;
 
@@ -82,7 +84,8 @@ void Game::render(){
 	m_window->clear();
 
 	m_current_scene->render(*m_window);
-	//m_level_scene->m_world->DrawDebugData();
+	Subject::instance()->render(m_window);				//Render the Achievement System
+
 	m_window->display();
 }
 void Game::createPlayer(){

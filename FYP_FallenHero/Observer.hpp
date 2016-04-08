@@ -2,6 +2,7 @@
 #define _OBSERVER_HPP
 #include "Subject.hpp"
 #include "Entity.hpp"
+#include "SFML\Graphics.hpp"
 
 /**
 *	@class Observer
@@ -25,6 +26,10 @@ public:
 	*	@brief
 	*/
 	virtual void update() = 0;
+	/**
+	*	@brief
+	*/
+	virtual void render(sf::RenderWindow *w) = 0;
 };
 
 #endif

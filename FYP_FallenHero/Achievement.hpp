@@ -1,12 +1,13 @@
 #ifndef _ACHIEVEMENTS_HPP
 #define _ACHIEVEMENTS_HPP
 #include "Observer.hpp"
+
 #include "Entity.hpp"
 #include "ResourceManager.hpp"
 #include "SaveSlot.hpp"
 #include <memory>
-
 #include <iostream>
+#include <queue>
 
 /**
 *	@class Achievements
@@ -30,16 +31,28 @@ public:
 	/**
 	*	@brief
 	*/
-	void onNotify(Subject::EVENT evnt, Entity *entity);
+	void onNotify(Subject::EVENT evnt, Entity *entity) override;
 	/**
 	*	@brief
 	*/
-	void update();
+	void update() override;
+	/**
+	*	@brief
+	*/
+	void render(sf::RenderWindow *w) override;
 private:
-	SaveSlot *m_current_slot;
-	void unlock(string s);
+	void unlock(Subject::EVENT e);
 
-	//bool first_build;
+	SaveSlot *m_current_slot;
+	sf::Sprite m_cheevo;
+	sf::Vector2f m_cheevo_size;
+	sf::Clock m_cheevo_clock;
+	sf::Vector3f m_cheevo_colour;
+	sf::Vector2f m_border_sep;
+	queue<sf::Sprite> m_queue;
+	float m_cheevo_fade;
+
+	bool first_jump;
 };
 
 #endif

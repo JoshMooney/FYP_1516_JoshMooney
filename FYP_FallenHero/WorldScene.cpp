@@ -183,6 +183,10 @@ void WorldScene::generateMapData() {
 void WorldScene::loadSaveSlot(SaveSlot * ss) {
 	m_current_slot = ss;
 	m_world_map->createMap(ss->m_LVL_DATA);
+
+	m_achievement_ob = make_shared<Achievements>(m_current_slot);
+	Subject::instance()->addObserver(m_achievement_ob.get());
+	cLog::inst()->print(0, "WorldScene", "Achievement Observer added to Subject.");
 }
 
 void WorldScene::addLevelTime(sf::Time time) {
