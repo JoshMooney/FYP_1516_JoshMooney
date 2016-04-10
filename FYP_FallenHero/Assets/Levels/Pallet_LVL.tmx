@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="left-down" width="100" height="100" tilewidth="32" tileheight="32" nextobjectid="38">
+<map version="1.0" orientation="orthogonal" renderorder="left-down" width="100" height="100" tilewidth="32" tileheight="32" nextobjectid="46">
  <layer name="Tile Layer 1" width="100" height="100">
   <data encoding="base64" compression="zlib">
    eJztwTEBAAAAwqD1T+1lC6AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAbnEAAAQ==
@@ -221,6 +221,90 @@
     <property name="type" value="purple"/>
     <property name="value" value="chest"/>
     <property name="x" value="576"/>
+    <property name="y" value="512"/>
+   </properties>
+  </object>
+  <object id="38" name="Locked Door" x="992" y="288" width="32" height="160">
+   <properties>
+    <property name="id" value="dr1"/>
+    <property name="slot1" value="key1"/>
+    <property name="slot2" value="key2"/>
+    <property name="slot3" value="key3"/>
+    <property name="slot4" value="key4"/>
+    <property name="value" value="door"/>
+    <property name="x" value="352"/>
+    <property name="y" value="384"/>
+   </properties>
+  </object>
+  <object id="39" name="GOLD Key" x="1056" y="288" width="32" height="32">
+   <properties>
+    <property name="door" value="dr1"/>
+    <property name="id" value="key1"/>
+    <property name="type" value="gold"/>
+    <property name="value" value="key"/>
+    <property name="x" value="128"/>
+    <property name="y" value="448"/>
+   </properties>
+  </object>
+  <object id="40" name="SIL Key" x="1056" y="352" width="32" height="32">
+   <properties>
+    <property name="door" value="dr1"/>
+    <property name="id" value="key3"/>
+    <property name="type" value="silver"/>
+    <property name="value" value="key"/>
+    <property name="x" value="128"/>
+    <property name="y" value="448"/>
+   </properties>
+  </object>
+  <object id="41" name="GRN Key" x="1120" y="352" width="32" height="32">
+   <properties>
+    <property name="door" value="dr1"/>
+    <property name="id" value="key4"/>
+    <property name="type" value="green"/>
+    <property name="value" value="key"/>
+    <property name="x" value="128"/>
+    <property name="y" value="448"/>
+   </properties>
+  </object>
+  <object id="42" name="BLU Key" x="1120" y="288" width="32" height="32">
+   <properties>
+    <property name="door" value="dr1"/>
+    <property name="id" value="key2"/>
+    <property name="type" value="blue"/>
+    <property name="value" value="key"/>
+    <property name="x" value="128"/>
+    <property name="y" value="448"/>
+   </properties>
+  </object>
+  <object id="43" name="Duo Locked Door" x="992" y="480" width="32" height="160">
+   <properties>
+    <property name="id" value="dr1"/>
+    <property name="slot1" value="key1"/>
+    <property name="slot2" value="key2"/>
+    <property name="slot3" value=""/>
+    <property name="slot4" value=""/>
+    <property name="value" value="door"/>
+    <property name="x" value="352"/>
+    <property name="y" value="384"/>
+   </properties>
+  </object>
+  <object id="44" name="Gold Key " x="1056" y="608" width="32" height="32">
+   <properties>
+    <property name="door" value="dr1"/>
+    <property name="id" value="key1"/>
+    <property name="type" value="gold"/>
+    <property name="value" value="key"/>
+    <property name="x" value="224"/>
+    <property name="y" value="512"/>
+   </properties>
+  </object>
+  <object id="45" name="Blue Key" x="1120" y="608" width="32" height="32">
+   <properties>
+    <property name="door" value="dr1"/>
+    <property name="id" value="key2"/>
+    <property name="type" value="blue"/>
+    <property name="value" value="key"/>
+    <property name="x" value="256"/>
     <property name="y" value="512"/>
    </properties>
   </object>

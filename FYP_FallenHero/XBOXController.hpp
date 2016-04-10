@@ -26,7 +26,6 @@
 *	by the game to different scenes to detect input only if the controller is actually connected.
 *	Otherwise the keyboard is passed around for input checking.
 */
-
 class XBOXController {
 private:
 	XINPUT_STATE state, prev_state;

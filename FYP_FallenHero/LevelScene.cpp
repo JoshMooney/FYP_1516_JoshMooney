@@ -85,7 +85,7 @@ void LevelScene::update(){
 		if (m_player->isAlive())
 			m_player->update(timeOfLastTick);
 		else
-			respawnPlayer();
+			respawnPlayer();	
 		m_player_HUD.update();
 
 		if (m_camera.outOfBounds(m_player->getBounds())) {
@@ -96,6 +96,7 @@ void LevelScene::update(){
 
 		if (m_level->hasEnded(sf::FloatRect{ m_player->getPosition().x, m_player->getPosition().y, (float)player_size.x, (float)player_size.y }))
 		{
+			m_player->clearKeys();
 			m_level_complete = true;
 		}
 	}
@@ -106,6 +107,7 @@ void LevelScene::update(){
 				m_pause_menu->setPaused(false);
 			else if (result == PauseScreen::QUIT){
 				m_pause_menu->setPaused(false);
+				m_player->clearKeys();
 				m_level_quit = true;
 			}
 		}
@@ -122,15 +124,15 @@ void LevelScene::render(sf::RenderWindow &w){
 
 	m_level->render(w, &m_camera, frame_elapse);		//render the level
 
+	m_entity_creator->render(&w, frame_elapse);
+	m_spawner->render(w, frame_elapse);
+
 	m_player->render(&w, frame_elapse);
 	w.draw(*m_player);					//render Player
 
 	m_projectiles->render(w, frame_elapse);
-	m_spawner->render(w, frame_elapse);
 	m_gem_mine->render(w, frame_elapse);
 	m_platform_creator->render(w, frame_elapse);
-
-	m_entity_creator->render(&w, frame_elapse);
 	
 	if(m_b2_dd)
 		m_world->DrawDebugData();
@@ -342,6 +344,7 @@ void LevelScene::loadLevel(string lvl_name){
 }
 
 void LevelScene::respawnPlayer() {
+	m_player->clearKeys();
 	m_player->reset(m_level->getSpawn());
 	m_camera.refresh(m_player->getCenter());
 }

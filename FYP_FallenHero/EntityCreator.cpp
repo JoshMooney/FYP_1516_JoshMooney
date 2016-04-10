@@ -45,16 +45,16 @@ b2Body * EntityCreator::generateBody(SPAWN_TYPE type, sf::Vector2f pos) {
 
 void EntityCreator::spawnKey(sf::Vector2f pos, string type, string id, string door) {
 	Key::TYPE key_type;
-	if (type == "red")
-		key_type = Key::TYPE::RED;
+	if (type == "gold")
+		key_type = Key::TYPE::GOLD;
 	if (type == "blue")
 		key_type = Key::TYPE::BLU;
 	if (type == "green")
 		key_type = Key::TYPE::GRN;
-	if (type == "yellow")
-		key_type = Key::TYPE::YLW;
+	if (type == "silver")
+		key_type = Key::TYPE::SIL;
 
-	m_entities.push_back(new Key(generateBody(KEY, pos), key_type, door));
+	m_entities.push_back(new Key(generateBody(KEY, pos), key_type, door, id));
 }
 
 void EntityCreator::Cull() {
@@ -84,7 +84,8 @@ void EntityCreator::update(FTS fts, Player * p) {
 
 void EntityCreator::render(sf::RenderWindow *w, sf::Time frames) {
 	for (int i = 0; i < m_entities.size(); i++) {
-		w->draw(*m_entities[i]);
+		if(m_entities[i]->e_body_active)
+			w->draw(*m_entities[i]);
 	}
 }
 

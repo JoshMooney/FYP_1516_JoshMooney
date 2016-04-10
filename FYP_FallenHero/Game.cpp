@@ -65,6 +65,7 @@ void Game::run(){
 			isRunning = false;
 
 		controller_connected = checkController();		//Checks controller connections and compaires to previous state.
+		xboxConnector::inst()->connect(controller_connected);
 		if (controller_connected)	
 			m_xbox_controller->UpdateButtons();
 		if (controller_connected)	

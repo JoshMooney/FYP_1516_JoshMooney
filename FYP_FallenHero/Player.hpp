@@ -55,6 +55,7 @@ private:
 	sf::Vector2f const knock_back_factor = sf::Vector2f(0.5f, 0.8f);
 	map<string, string> m_keys;
 public:
+	bool m_controller_input;
 	float m_xp;
 	float m_max_xp;
 	/**
@@ -168,6 +169,7 @@ public:
 
 	void pickupKey(std::pair<string, string> key);
 	map<string, string>* getKeys() { return &m_keys; }
+	void clearKeys();
 };
 
 #endif

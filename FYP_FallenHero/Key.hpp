@@ -14,15 +14,15 @@ private:
 public:
 	//!The Type and value of the gem when it is created.
 	enum TYPE {
-		RED,		//!<
+		GOLD,		//!<
 		BLU,		//!<
 		GRN,		//!<
-		YLW,		//!<
+		SIL,		//!<
 	};
 	TYPE m_type;		//!<The current type of the gem
 
 	Key();
-	Key(b2Body *b, Key::TYPE t, string door);
+	Key(b2Body *b, Key::TYPE t, string door, string id);
 	~Key();
 
 	/**

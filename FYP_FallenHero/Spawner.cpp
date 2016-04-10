@@ -212,7 +212,7 @@ void Spawner::SpawnDoor(sf::Vector2f pos, string id, vector<string> *keys) {
 	sf::Vector2f size;
 	sf::Vector2f pos_off;
 
-	size = sf::Vector2f(32, 160);
+	size = sf::Vector2f(64, 160);
 
 	myBodyDef.type = b2_kinematicBody; //this will be a dynamic body
 	pos_off = sf::Vector2f(pos.x + size.x / 2, pos.y + (size.y / 2));
@@ -360,6 +360,8 @@ void Spawner::clear() {
 		it = m_blocks.erase(it);	//erase the object(calls the objects destructor)
 		//cLog::inst()->print(0, "Spawner", "Block cleared from spawner");
 	}
+
+	m_doors.clear();
 }
 
 void Spawner::CheckLockDoor(map<string, string>* keys)  {

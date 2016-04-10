@@ -296,6 +296,10 @@ void Player::pickupKey(std::pair<string, string> key) {
 	m_keys[key.first] = key.second;
 }
 
+void Player::clearKeys() {
+	m_keys.clear();
+}
+
 //clamp a value to a range
 inline float Player::clamp(float x, float min, float max)
 {

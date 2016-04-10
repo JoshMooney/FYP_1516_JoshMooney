@@ -65,6 +65,24 @@ public:
 			static_cast<Player*>(player_data)->pickupKey(static_cast<Key*>(key_data)->pickup());
 		}
 
+		//Player and Door
+		if (fixAType == "Player_Sword" && fixBType == "Door"
+			|| fixAType == "Door" && fixBType == "Player_Sword") {
+			void* player_data;
+			void* door_data;
+
+			if (fixAType == "Player_Sword") {
+				player_data = contact->GetFixtureA()->GetBody()->GetUserData();
+				door_data = contact->GetFixtureB()->GetBody()->GetUserData();
+			}
+			else {
+				door_data = contact->GetFixtureA()->GetBody()->GetUserData();
+				player_data = contact->GetFixtureB()->GetBody()->GetUserData();
+			}
+			
+			static_cast<Door*>(door_data)->setCollidingSword(true);
+		}
+
 		//Player and Terrain
 		if (fixAType == "Terrain" && fixBType == "Player"
 			|| fixAType == "Player" && fixBType == "Terrain") {
@@ -773,6 +791,46 @@ public:
 		void* fixAType = contact->GetFixtureA()->GetBody()->GetUserData();
 		void* fixBType = contact->GetFixtureB()->GetBody()->GetUserData();
 		
+		//Player Sword and Door
+		if (fixAType == "Door" && fixBType == "Player_Sword"
+			|| fixAType == "Player_Sword" && fixBType == "Door") {
+
+			if (fixAType == "Player_Sword") {
+				//if bottom of player touches top of enenmy
+				void* bodyUserData1 = contact->GetFixtureA()->GetBody()->GetUserData();
+				void* bodyUserData2 = contact->GetFixtureB()->GetBody()->GetUserData();
+
+				static_cast<Door*>(bodyUserData2)->setCollidingSword(false);
+			}
+			else if (fixBType == "Player_Sword") {
+				//if bottom of player touches top of enenmy
+				void* bodyUserData1 = contact->GetFixtureB()->GetBody()->GetUserData();
+				void* bodyUserData2 = contact->GetFixtureA()->GetBody()->GetUserData();
+
+				static_cast<Door*>(bodyUserData2)->setCollidingSword(false);
+			}
+		}
+
+		//Player Sword and Chest
+		if (fixAType == "Chest" && fixBType == "Player_Sword"
+			|| fixAType == "Player_Sword" && fixBType == "Chest") {
+
+			if (fixAType == "Player_Sword") {
+				//if bottom of player touches top of enenmy
+				void* sword = contact->GetFixtureA()->GetBody()->GetUserData();
+				void* chest = contact->GetFixtureB()->GetBody()->GetUserData();
+
+				static_cast<Chest*>(chest)->setCollidingSword(false);
+			}
+			else if (fixBType == "Player_Sword") {
+				//if bottom of player touches top of enenmy
+				void* sword = contact->GetFixtureB()->GetBody()->GetUserData();
+				void* chest = contact->GetFixtureA()->GetBody()->GetUserData();
+
+				static_cast<Chest*>(chest)->setCollidingSword(false);
+			}
+		}
+
 		//Player Sword and Skeleton
 		if (fixAType == "Skeleton" && fixBType == "Player_Sword"
 			|| fixAType == "Player_Sword" && fixBType == "Skeleton") {

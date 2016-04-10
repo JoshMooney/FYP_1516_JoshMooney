@@ -142,6 +142,7 @@
     <ClInclude Include="WorldMap.hpp" />
     <ClInclude Include="WorldNode.hpp" />
     <ClInclude Include="WorldScene.hpp" />
+    <ClInclude Include="xboxConnector.hpp" />
     <ClInclude Include="XBOXController.hpp" />
     <ClInclude Include="XMLLoader.hpp" />
     <ClInclude Include="XYPlatform.hpp" />
@@ -184,6 +185,7 @@
     <ClCompile Include="Weed.cpp" />
     <ClCompile Include="WorldMap.cpp" />
     <ClCompile Include="WorldScene.cpp" />
+    <ClCompile Include="xboxConnector.cpp" />
     <ClCompile Include="XBOXController.cpp" />
     <ClCompile Include="XYPlatform.cpp" />
   </ItemGroup>
