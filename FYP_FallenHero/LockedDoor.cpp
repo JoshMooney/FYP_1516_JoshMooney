@@ -2,13 +2,17 @@
 #include "LockedDoor.hpp"
 
 Door::Door() {		}
-Door::Door(b2Body * b, string id) {
+Door::Door(b2Body * b, string id, vector<string> *keys) {
 	m_id = id;
 	b->SetUserData(this);
 	e_box_body = b;
 	e_body_active = true;
 	m_dis_to_player = 250;
 
+	for (int i = 0; i < keys->size(); i++)
+		m_req_keys[keys->at(i)] = false;
+
+	m_lock = true;
 	e_sword_col = false;
 	e_can_despawn = false;
 
@@ -43,7 +47,7 @@ void Door::render(sf::RenderWindow & w, sf::Time frames) {
 void Door::loadMedia() {
 	s_prompt_spt = "Assets/Game/prompt.png";
 	m_prompt_spt.setTexture(ResourceManager<sf::Texture>::instance()->get(s_prompt_spt));
-	setOrigin(32 / 2, 32 / 2);
+	m_prompt_spt.setOrigin(32 / 2, 32 / 2);
 
 	e_texture = "Assets/Game/locked_door.png";
 	setTexture(ResourceManager<sf::Texture>::instance()->get(e_texture));
@@ -74,3 +78,41 @@ void Door::TakeDamage() {
 }
 void Door::Die() {		}
 void Door::attack() {		}
+
+bool Door::checkKeys(vector<string>* collected) {
+	//Compair the Key lists
+	for (int i = 0; i < collected->size(); i++) {
+		auto it = m_req_keys.find(collected->at(i));
+		if (it != m_req_keys.end())
+			(*it).second = true;
+	}
+
+	//Check if all keys have been gotten
+	auto first = m_req_keys.begin();
+	auto last = m_req_keys.end();
+	while (first != last) {
+		if (!(*first).second) return false;
+		++first;
+	}
+	return true;
+}
+
+bool Door::canUnlock() {
+	//Check if all keys have been gotten
+	auto first = m_req_keys.begin();
+	auto last = m_req_keys.end();
+	while (first != last) {
+		if (!(*first).second) return false;
+		++first;
+	}
+	return true;
+}
+
+void Door::unlock() {
+	m_lock = false;
+	e_box_body->GetFixtureList()->SetSensor(true);
+}
+
+void Door::lock() {
+
+}

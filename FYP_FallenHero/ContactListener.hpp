@@ -46,6 +46,25 @@ public:
 		void* fixAType = contact->GetFixtureA()->GetUserData();
 		void* fixBType = contact->GetFixtureB()->GetUserData();
 
+
+		//Player and Key
+		if (fixAType == "Player" && fixBType == "Key"
+			|| fixAType == "Key" && fixBType == "Player") {
+			void* player_data;
+			void* key_data;
+
+			if (fixAType == "Player") {
+				player_data = contact->GetFixtureA()->GetBody()->GetUserData();
+				key_data = contact->GetFixtureB()->GetBody()->GetUserData();
+			}
+			else {
+				key_data = contact->GetFixtureA()->GetBody()->GetUserData();
+				player_data = contact->GetFixtureB()->GetBody()->GetUserData();
+			}
+
+			static_cast<Player*>(player_data)->pickupKey(static_cast<Key*>(key_data)->pickup());
+		}
+
 		//Player and Terrain
 		if (fixAType == "Terrain" && fixBType == "Player"
 			|| fixAType == "Player" && fixBType == "Terrain") {

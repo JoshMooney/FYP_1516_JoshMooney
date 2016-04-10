@@ -23,6 +23,7 @@ static enum _filterCategory {
 	PLATFORM = 0x0010,			//	0000 0000 0001 0000
 	GEM = 0x0020,				//	0000 0000 0010 0000
 	SENSOR = 0x0040,			//	0000 0000 0100 0000
+	ENTITY = 0x0080,			//	0000 0000 1000 0000
 	//Unused
 	/*
 	

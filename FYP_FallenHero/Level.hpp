@@ -25,10 +25,13 @@
 #include "NodePlatform.hpp"
 #include "Terrain.hpp"
 #include "Scenery.hpp"
+
 #include "Spawner.hpp"
 #include "GemMine.hpp"
-#include "ParallaxSprite.hpp"
 #include "ProjectileManager.hpp"
+#include "EntityCreator.hpp"
+
+#include "ParallaxSprite.hpp"
 
 /**
 *	@class Level
@@ -77,7 +80,7 @@ public:
 	*	@param b2World a pointer to the box 2d world for creating bodies.
 	*	@param Spawner Entity spawner.
 	*/
-	Level(string s, b2World *world, Spawner *spawner, GemMine *mine, PlatformCreator *p);
+	Level(string s, b2World *world, Spawner *spawner, GemMine *mine, PlatformCreator *p, EntityCreator *ent_cre);
 	~Level();					//!<Deconstructor for the Level class
 
 	/**
@@ -94,7 +97,7 @@ public:
 	*	@param b2World Is the box2d world, this is needed here as we will be doing alot of boxbody creation here.
 	*	@param Spawner This is the handler class for creating and managing the entites and blocks in the level.
 	*/
-	void ParseMapLayers(b2World *world, Spawner *spawner, GemMine *mine, PlatformCreator *p);
+	void ParseMapLayers(b2World *world, Spawner *spawner, GemMine *mine, PlatformCreator *p, EntityCreator *ent_cre);
 	/**
 	*	@brief This steps through the object layer reading in each object and translating it into my c++ OBJ
 	*	. This reads the X, Y Width and Height creates the box body using this information and pushes the new 
@@ -123,7 +126,7 @@ public:
 	*	@param b2World Is the box2d world, this is needed as the level items need bodies to be made for its instances
 	*	@param tmx::ObjectGroup The object layer of which the level items are located on within the .tmx 
 	*/
-	void GenerateLevelItems(b2World *world, tmx::ObjectGroup &layer, GemMine* mine, Spawner *spawner);
+	void GenerateLevelItems(b2World *world, tmx::ObjectGroup &layer, GemMine* mine, Spawner *spawner, EntityCreator *ent_cre);
 	/**
 	*	@brief Steps throught the object layer creating the scenerys background sprites using the information inside the object 
 	*	in the .tmx file and push these new objects onto the scenery class.

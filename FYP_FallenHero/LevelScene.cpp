@@ -15,6 +15,7 @@ LevelScene::LevelScene() :
 	m_spawner = make_shared<Spawner>(m_world);
 	m_projectiles = make_shared<ProjectileManager>(m_world);
 	m_platform_creator = make_shared<PlatformCreator>(m_world);
+	m_entity_creator = make_shared<EntityCreator>(m_world);
 
 	m_spawner->AttachGemMine(m_gem_mine.get());
 	m_spawner->AttachProjectileMgr(m_projectiles.get());
@@ -76,6 +77,8 @@ void LevelScene::update(){
 
 		m_platform_creator->update(timeOfLastTick);
 
+		m_entity_creator->update(timeOfLastTick, m_player);
+
 		m_projectiles->update(timeOfLastTick);
 		m_projectiles->cull();
 
@@ -119,13 +122,15 @@ void LevelScene::render(sf::RenderWindow &w){
 
 	m_level->render(w, &m_camera, frame_elapse);		//render the level
 
-	m_player->render(frame_elapse);
+	m_player->render(&w, frame_elapse);
 	w.draw(*m_player);					//render Player
 
 	m_projectiles->render(w, frame_elapse);
 	m_spawner->render(w, frame_elapse);
 	m_gem_mine->render(w, frame_elapse);
 	m_platform_creator->render(w, frame_elapse);
+
+	m_entity_creator->render(&w, frame_elapse);
 	
 	if(m_b2_dd)
 		m_world->DrawDebugData();
@@ -170,6 +175,9 @@ void LevelScene::handleEvent(sf::Event &e){
 			//Execute command pattern commands here
 			case sf::Keyboard::P:
 				
+				break;
+			case sf::Keyboard::L:
+				m_spawner->CheckLockDoor(m_player->getKeys());
 				break;
 			case sf::Keyboard::W:
 				buttonY_->execute(m_player);
@@ -318,8 +326,9 @@ void LevelScene::loadLevel(string lvl_name){
 	m_gem_mine->clear();
 	m_projectiles->clear();
 	m_platform_creator->clear();
+	//m_entity_creator->clear();
 
-	m_level = make_shared<Level>(lvl_name, m_world, m_spawner.get(), m_gem_mine.get(), m_platform_creator.get());				//Create a new level
+	m_level = make_shared<Level>(lvl_name, m_world, m_spawner.get(), m_gem_mine.get(), m_platform_creator.get(), m_entity_creator.get());				//Create a new level
 	m_spawn_pos = m_level->getSpawn();
 
 	m_camera.setBounds(m_level->Bounds());

@@ -53,6 +53,7 @@ private:
 	thor::Animator<sf::Sprite, STATE> m_animator;
 	sf::Vector2i attack_frame_size;
 	sf::Vector2f const knock_back_factor = sf::Vector2f(0.5f, 0.8f);
+	map<string, string> m_keys;
 public:
 	float m_xp;
 	float m_max_xp;
@@ -66,7 +67,7 @@ public:
 
 	void checkAnimation();
 	void addFrames(thor::FrameAnimation& animation, STATE s, int xFirst, int xLast, int xSep, int ySep, float duration);
-	void render(sf::Time frames);
+	void render(sf::RenderWindow *w, sf::Time frames);
 
 	void loadMedia();
 	/**
@@ -107,6 +108,7 @@ public:
 	bool isAttacking() { return m_is_attacking; }
 	float getSpeed()	{ return m_speed; }                                                     //!<Finds the speed of the player
 	void ChangeDirection();
+	bool canDespawn() { return false; }		//Temp
 	void setDirection(bool b);                                          						//!<Sets the players direction to the value passed in
 	bool isJumping()	{ return m_is_jumping; }   
 	void setJumping(bool b) { 
@@ -163,7 +165,9 @@ public:
 	float experienceRatio() {
 		return m_xp / m_max_xp;
 	}
-	
+
+	void pickupKey(std::pair<string, string> key);
+	map<string, string>* getKeys() { return &m_keys; }
 };
 
 #endif

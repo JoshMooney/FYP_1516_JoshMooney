@@ -2,9 +2,11 @@
 #define _LOCKED_DOOR_HPP
 #include "stdafx.h"
 #include "Enemy.hpp"
+#include "Key.hpp"
 
 #include "SFML\Audio.hpp"
 #include "Thor\Animations.hpp"
+#include <map>
 
 class Door : public Enemy {
 private:
@@ -18,6 +20,8 @@ private:
 	sf::Sprite m_prompt_spt;
 	sf::Vector2f m_prompt_pos;
 	string m_id;
+	map<string, bool> m_req_keys;
+	bool m_lock;
 public:
 	enum TYPE {
 		BROWN, 		//!<
@@ -31,7 +35,7 @@ public:
 	thor::Animator<sf::Sprite, STATE> m_animator;
 
 	Door();
-	Door(b2Body *b, string id);
+	Door(b2Body *b, string id, vector<string> *keys);
 	~Door();
 
 	void update(FTS fts, Player *p);
@@ -50,6 +54,7 @@ public:
 	*/
 	void addFrames(thor::FrameAnimation& animation, int x, int yFirst, int yLast, int xSep, int ySep, float duration);
 
+
 	sf::FloatRect getBounds() override {
 		sf::Vector2f position(getPosition().x - (m_size.x / 2), getPosition().y - (m_size.y / 2));
 		return sf::FloatRect{ position.x, position.y, (float)m_size.x, (float)m_size.y };
@@ -59,6 +64,15 @@ public:
 	void Die();
 
 	void attack();
+	bool checkKeys(vector<string> *collected);
+	bool isPrompted() { return m_prompt_active; }
+	string getID() { return m_id; }
+	bool canUnlock();
+
+	void unlock();
+	void lock();
+	bool isLocked() { return m_lock; }
+	void setLock(bool b) { m_lock = b; }
 };
 
 #endif

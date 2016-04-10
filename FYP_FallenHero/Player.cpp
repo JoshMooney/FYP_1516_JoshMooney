@@ -46,7 +46,7 @@ Player::Player(b2World &m_world){
 	myFixtureDef.userData = "Player";
 
 	myFixtureDef.filter.categoryBits = _filterCategory::PLAYER;
-	myFixtureDef.filter.maskBits = ENEMY | BULLET | TERRAIN | PLATFORM | GEM | SENSOR;
+	myFixtureDef.filter.maskBits = ENEMY | BULLET | TERRAIN | PLATFORM | GEM | SENSOR | ENTITY;
 
 	e_box_body->CreateFixture(&myFixtureDef);
 	//e_box_body->CreateFixture(&shape, 0.0f);
@@ -134,7 +134,7 @@ void Player::addFrames(thor::FrameAnimation & animation, STATE s, int xFirst, in
 		animation.addFrame(duration, sf::IntRect(xSep * x, y, xSep, ySep), o);
 
 }
-void Player::render(sf::Time frames) {
+void Player::render(sf::RenderWindow *w, sf::Time frames) {
 	m_animator.update(frames);
 	m_animator.animate(*this);
 }
@@ -290,6 +290,10 @@ void Player::TakeDamage(bool knock_dir) {
 void Player::alineSprite(){
 	sf::Vector2f pos = vHelper::toSF(e_box_body->GetPosition());
 	setPosition(pos);
+}
+
+void Player::pickupKey(std::pair<string, string> key) {
+	m_keys[key.first] = key.second;
 }
 
 //clamp a value to a range

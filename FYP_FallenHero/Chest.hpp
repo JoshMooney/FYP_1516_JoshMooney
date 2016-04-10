@@ -17,7 +17,7 @@ namespace detail {
 		Lock(b2Body *b, bool dir, string text);
 		~Lock();
 		void update(FTS fts);
-		void render(sf::RenderWindow &w);
+		void render(sf::RenderWindow *w, sf::Time frames);
 		void alineSprite();
 	};
 }

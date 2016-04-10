@@ -205,7 +205,7 @@ void Spawner::SpawnChest(sf::Vector2f pos, bool dir, string type) {
 
 	m_enemies.push_back(new Chest(body, dir, m_mine, chest_type));
 }
-void Spawner::SpawnDoor(sf::Vector2f pos, string id) {
+void Spawner::SpawnDoor(sf::Vector2f pos, string id, vector<string> *keys) {
 	b2BodyDef myBodyDef;
 	b2PolygonShape shape;
 	b2FixtureDef myFixtureDef;
@@ -215,7 +215,7 @@ void Spawner::SpawnDoor(sf::Vector2f pos, string id) {
 	size = sf::Vector2f(32, 160);
 
 	myBodyDef.type = b2_kinematicBody; //this will be a dynamic body
-	pos_off = sf::Vector2f(pos.x + size.x / 2, pos.y + (size.y / 2) + 17);
+	pos_off = sf::Vector2f(pos.x + size.x / 2, pos.y + (size.y / 2));
 	myBodyDef.position = vHelper::toB2(pos_off); //set the starting position
 	myBodyDef.angle = 0; //set the starting angle
 	myBodyDef.fixedRotation = true;
@@ -234,7 +234,8 @@ void Spawner::SpawnDoor(sf::Vector2f pos, string id) {
 
 	body->CreateFixture(&myFixtureDef);
 	
-	m_enemies.push_back(new Door(body, id));
+	m_enemies.push_back(new Door(body, id, keys));
+	m_doors.push_back(dynamic_cast<Door*>((*--m_enemies.end())));		
 }
 /*
 void Spawner::CullBodies() {
@@ -360,3 +361,20 @@ void Spawner::clear() {
 		//cLog::inst()->print(0, "Spawner", "Block cleared from spawner");
 	}
 }
+
+void Spawner::CheckLockDoor(map<string, string>* keys)  {
+	for (int i = 0; i < m_doors.size(); i++) {
+		if (m_doors[i] != nullptr && m_doors[i]->isPrompted()) {
+			vector<string> door_keys;
+			for (map<string, string>::iterator it = keys->begin(); it != keys->end(); ++it) {
+				if((*it).second == m_doors[i]->getID())
+					door_keys.push_back(it->first);
+			}
+			if (m_doors[i]->checkKeys(&door_keys) && m_doors[i]->isLocked())
+				m_doors[i]->unlock();
+		}
+	}
+}
+//I was here last trying to check all the prompted doors and check there ids against the pasted in player keys and pass the door the ones it needs
+//check this against the door keys and change the bools
+

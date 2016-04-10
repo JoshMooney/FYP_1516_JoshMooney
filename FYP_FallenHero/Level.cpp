@@ -8,7 +8,7 @@
 Level::Level() {
 	cLog::inst()->print(3, "Level", "Default constructor of level called");
 }
-Level::Level(string s, b2World *world, Spawner *spawner, GemMine *mine, PlatformCreator *p) {
+Level::Level(string s, b2World *world, Spawner *spawner, GemMine *mine, PlatformCreator *p, EntityCreator *ent_cre) {
 	path = "Assets/Levels/";
 	format = ".tmx";
 	tile_size = 32;
@@ -21,7 +21,7 @@ Level::Level(string s, b2World *world, Spawner *spawner, GemMine *mine, Platform
 	loadMap(s);
 	scenery = Scenery();
 	m_world = world;
-	ParseMapLayers(world, spawner, mine, p);
+	ParseMapLayers(world, spawner, mine, p, ent_cre);
 	
 }
 
@@ -73,7 +73,7 @@ void Level::fetchSpawn() {
 	}
 }
 
-void Level::ParseMapLayers(b2World * world, Spawner *s, GemMine *mine, PlatformCreator *p) {
+void Level::ParseMapLayers(b2World * world, Spawner *s, GemMine *mine, PlatformCreator *p, EntityCreator *ent_cre) {
 	//map.GetObjectLayer("Layer Name");
 	//Load size of the Map
 	int tile_size = 32;
@@ -105,7 +105,7 @@ void Level::ParseMapLayers(b2World * world, Spawner *s, GemMine *mine, PlatformC
 	tiled_map->GetObjectGroup("Enemy_Data").visible = false;
 
 	lay = tiled_map->GetObjectGroup("Level_Data");
-	GenerateLevelItems(world, lay, mine, s);
+	GenerateLevelItems(world, lay, mine, s, ent_cre);
 	tiled_map->GetObjectGroup("Level_Data").visible = false;
 
 	lay = tiled_map->GetObjectGroup("Blocks");
@@ -290,7 +290,7 @@ void Level::GeneratePlayerItems(b2World * world, tmx::ObjectGroup &layer) {
 
 	m_checkpoint_list = m_checkpoints_HC;
 }
-void Level::GenerateLevelItems(b2World *world, tmx::ObjectGroup &layer, GemMine* mine, Spawner *spawner) {
+void Level::GenerateLevelItems(b2World *world, tmx::ObjectGroup &layer, GemMine* mine, Spawner *spawner, EntityCreator *ent_cre) {
 	string x, y;
 	string type;
 	int lenght = layer.objects_.size();
@@ -331,7 +331,30 @@ void Level::GenerateLevelItems(b2World *world, tmx::ObjectGroup &layer, GemMine*
 			x = layer.objects_[i].GetPropertyValue("x");
 			y = layer.objects_[i].GetPropertyValue("y");
 			string id = layer.objects_[i].GetPropertyValue("id");
-			spawner->SpawnDoor(sf::Vector2f(atof(x.c_str()), atof(y.c_str())), id);
+
+			vector<string> req_key;
+			string slot1 = layer.objects_[i].GetPropertyValue("slot1");
+			if (slot1 != "")
+				req_key.push_back(slot1);
+			string slot2 = layer.objects_[i].GetPropertyValue("slot2");
+			if (slot2 != "")
+				req_key.push_back(slot2);
+			string slot3 = layer.objects_[i].GetPropertyValue("slot3");
+			if (slot3 != "")
+				req_key.push_back(slot3);
+			string slot4 = layer.objects_[i].GetPropertyValue("slot4");
+			if (slot4 != "")
+				req_key.push_back(slot4);
+			
+			spawner->SpawnDoor(sf::Vector2f(atof(x.c_str()), atof(y.c_str())), id, &req_key);
+		}
+		if (type == "key") {
+			x = layer.objects_[i].GetPropertyValue("x");
+			y = layer.objects_[i].GetPropertyValue("y");
+			string id = layer.objects_[i].GetPropertyValue("id");
+			string door = layer.objects_[i].GetPropertyValue("door");
+			string key_type = layer.objects_[i].GetPropertyValue("type");
+			ent_cre->spawnKey(sf::Vector2f(atof(x.c_str()), atof(y.c_str())), key_type, id, door);
 		}
 		if (type == "chest") {
 			x = layer.objects_[i].GetPropertyValue("x");

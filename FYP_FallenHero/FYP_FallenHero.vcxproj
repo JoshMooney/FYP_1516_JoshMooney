@@ -94,6 +94,7 @@
     <ClInclude Include="Enemy.hpp" />
     <ClInclude Include="Entity.hpp" />
     <ClInclude Include="Checkpoint.hpp" />
+    <ClInclude Include="EntityCreator.hpp" />
     <ClInclude Include="Exit.hpp" />
     <ClInclude Include="FadePlatform.hpp" />
     <ClInclude Include="Flyer.hpp" />
@@ -101,6 +102,7 @@
     <ClInclude Include="Gem.hpp" />
     <ClInclude Include="GemMine.hpp" />
     <ClInclude Include="HUD.hpp" />
+    <ClInclude Include="Key.hpp" />
     <ClInclude Include="Level.hpp" />
     <ClInclude Include="LevelScene.hpp" />
     <ClInclude Include="LockedDoor.hpp" />
@@ -149,12 +151,14 @@
     <ClCompile Include="Chest.cpp" />
     <ClCompile Include="cLog.cpp" />
     <ClCompile Include="CrumbleBlock.cpp" />
+    <ClCompile Include="EntityCreator.cpp" />
     <ClCompile Include="FadePlatform.cpp" />
     <ClCompile Include="FYP_FallenHero.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="Gem.cpp" />
     <ClCompile Include="GemMine.cpp" />
     <ClCompile Include="HUD.cpp" />
+    <ClCompile Include="Key.cpp" />
     <ClCompile Include="Level.cpp" />
     <ClCompile Include="LockedDoor.cpp" />
     <ClCompile Include="PauseScreen.cpp" />
