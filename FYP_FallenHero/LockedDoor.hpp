@@ -13,6 +13,8 @@ class Door : public Enemy {
 private:
 	sf::Vector2u m_size;
 	float m_dis_to_player;
+	bool m_direction;
+
 
 	bool m_controller_input, m_prev_ci;
 	bool m_can_prompt;
@@ -54,7 +56,10 @@ public:
 	thor::Animator<sf::Sprite, STATE> m_animator;
 
 	Door();
+	Door(b2Body *b, string id, bool dir, bool locked);
 	Door(b2Body *b, string id, vector<string> *keys);
+	Door(b2Body *b, string id, vector<string> *keys, bool dir);
+	Door(b2Body *b, string id, vector<string> *keys, bool dir, bool locked);
 	~Door();
 
 	void update(FTS fts, Player *p);

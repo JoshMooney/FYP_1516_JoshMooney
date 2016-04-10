@@ -90,9 +90,33 @@ public:
 	*/
 	void SpawnBlock(sf::Vector2f pos, CrumbleBlock::TYPE t, CrumbleBlock::SIZE s);
 	/**
+	*	@brief
+	*	@param
+	*	@param
+	*	@param
+	*/
+	Door* SpawnDoor(sf::Vector2f pos, string id, bool dir, bool locked);
+	/**
 	*	@brief 
+	*	@param
+	*	@param
+	*	@param
 	*/
 	void SpawnDoor(sf::Vector2f pos, string id, vector<string> *keys);
+	/**
+	*	@brief
+	*	@param
+	*	@param
+	*	@param
+	*/
+	void SpawnDoor(sf::Vector2f pos, string id, vector<string> *keys, bool dir);
+	/**
+	*	@brief
+	*	@param
+	*	@param
+	*	@param
+	*/
+	void SpawnDoor(sf::Vector2f pos, string id, vector<string> *keys, bool dir, bool locked);
 	/**
 	*	@brief Creates the appropreate body for the Block and pushes it onto a vector of blocks
 	*	@param sf::Vector2f This position to spawn the Skeleton at.

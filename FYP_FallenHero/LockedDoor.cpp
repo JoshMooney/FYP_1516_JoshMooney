@@ -2,6 +2,45 @@
 #include "LockedDoor.hpp"
 
 Door::Door() {		}
+Door::Door(b2Body * b, string id, bool dir, bool locked) {
+	m_id = id;
+	b->SetUserData(this);
+	e_box_body = b;
+	e_body_active = true;
+	m_dis_to_player = 250;
+	
+	if (locked)
+		m_can_prompt = true;
+	else
+		m_can_prompt = false;
+
+	m_controller_input = xboxConnector::inst()->isConnected();
+	m_prev_ci = false;
+	m_lock = true;
+	e_sword_col = false;
+	e_can_despawn = false;
+
+	m_prompt_active = false;
+	loadMedia();
+	alineSprite();
+	m_prompt_pos = sf::Vector2f(0, -50);
+
+	if (locked)
+		m_current_state = LOCKED;
+	else {
+		m_current_state = HIDDEN;
+		e_box_body->GetFixtureList()->SetSensor(true);
+	}
+
+	//Flip sprite if direction needs to be changed
+	if (dir)
+		setScale(-1, 1);
+	else
+		setScale(1, 1);
+
+	m_previous_state = m_current_state;
+	m_animator.playAnimation(m_current_state, true);
+}
 Door::Door(b2Body * b, string id, vector<string> *keys) {
 	m_id = id;
 	b->SetUserData(this);
@@ -30,6 +69,82 @@ Door::Door(b2Body * b, string id, vector<string> *keys) {
 	m_current_state = LOCKED;
 	m_previous_state = m_current_state;
 	m_animator.playAnimation(m_current_state, true);
+}
+Door::Door(b2Body * b, string id, vector<string>* keys, bool dir) {
+	m_id = id;
+	b->SetUserData(this);
+	e_box_body = b;
+	e_body_active = true;
+	m_dis_to_player = 250;
+
+	for (int i = 0; i < keys->size(); i++)
+		m_req_keys[keys->at(i)] = false;
+	if (keys->size() > 0)
+		m_can_prompt = true;
+	else
+		m_can_prompt = false;
+
+	m_controller_input = xboxConnector::inst()->isConnected();
+	m_prev_ci = false;
+	m_lock = true;
+	e_sword_col = false;
+	e_can_despawn = false;
+
+	m_prompt_active = false;
+	loadMedia();
+	alineSprite();
+	m_prompt_pos = sf::Vector2f(0, -50);
+
+	m_current_state = LOCKED;
+	m_previous_state = m_current_state;
+	m_animator.playAnimation(m_current_state, true);
+
+	//Flip sprite if direction needs to be changed
+	if (dir) 
+		setScale(-1, 1);
+	else
+		setScale(1, 1);
+}
+Door::Door(b2Body * b, string id, vector<string>* keys, bool dir, bool locked) {
+	m_id = id;
+	b->SetUserData(this);
+	e_box_body = b;
+	e_body_active = true;
+	m_dis_to_player = 250;
+
+	for (int i = 0; i < keys->size(); i++)
+		m_req_keys[keys->at(i)] = false;
+	if (locked)
+		m_can_prompt = true;
+	else
+		m_can_prompt = false;
+
+	m_controller_input = xboxConnector::inst()->isConnected();
+	m_prev_ci = false;
+	m_lock = locked;
+	e_sword_col = false;
+	e_can_despawn = false;
+
+	m_prompt_active = false;
+	loadMedia();
+	alineSprite();
+	m_prompt_pos = sf::Vector2f(0, -50);
+
+	if (m_lock) {
+		m_current_state = LOCKED;
+	}
+	if (!m_lock) {
+		m_current_state = HIDDEN;
+		e_box_body->GetFixtureList()->SetSensor(true);
+	}
+	m_previous_state = m_current_state;
+	m_animator.playAnimation(m_current_state, true);
+
+	//Flip sprite if direction needs to be changed
+	if (dir)
+		setScale(-1, 1);
+	else
+		setScale(1, 1);
 }
 Door::~Door() {		
 	cLog::inst()->print("Door destroyed.");
@@ -77,6 +192,10 @@ void Door::loadMedia() {
 	setTexture(ResourceManager<sf::Texture>::instance()->get(e_texture));
 	m_size = sf::Vector2u(64, 160);
 	setOrigin(m_size.x / 2, m_size.y / 2);
+	if (m_req_keys.size() == 0) {
+		addFrames(frame_locked, 2, 0, 1, m_size.x, m_size.y, 1.0f);
+		addFrames(frame_unlock, 2, 0, 3, m_size.x, m_size.y, 1.0f);
+	}
 	if (m_req_keys.size() == 1) {
 		addFrames(frame_locked, 0, 0, 1, m_size.x, m_size.y, 1.0f);
 		addFrames(frame_unlock, 0, 0, 3, m_size.x, m_size.y, 1.0f);
@@ -129,6 +248,9 @@ void Door::checkAnimation() {
 		m_current_state = FADE_OUT;
 	else if (m_current_state == FADE_OUT && !m_animator.isPlayingAnimation()) {
 		m_current_state = HIDDEN;
+	}
+	else if (m_current_state == FADE_IN && !m_animator.isPlayingAnimation()) {
+		m_current_state = LOCKED;
 	}
 
 }
@@ -195,4 +317,8 @@ void Door::unlock() {
 
 void Door::lock() {
 	m_locked.play();
+	m_lock = true;
+	m_current_state = FADE_IN;
+	m_can_prompt = false;
+	e_box_body->GetFixtureList()->SetSensor(false);
 }

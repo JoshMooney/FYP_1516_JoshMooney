@@ -507,6 +507,7 @@ public:
 				void* sensor_data = contact->GetFixtureB()->GetBody()->GetUserData();
 
 				Sensor* s = static_cast<Sensor*>(sensor_data);
+				s->getBody()->GetFixtureList()->SetSensor(true);
 				if (!s->hasTripped()) {
 					s->trip();
 				}
@@ -516,6 +517,7 @@ public:
 				void* player_data = contact->GetFixtureB()->GetBody()->GetUserData();
 
 				Sensor* s = static_cast<Sensor*>(sensor_data);
+				s->getBody()->GetFixtureList()->SetSensor(true);
 				if (!s->hasTripped()) {
 					s->trip();
 				}

@@ -2,6 +2,7 @@
 #define _SENSOR_HPP
 #include "stdafx.h"
 #include "Box2D\Box2D.h"
+#include <functional>
 
 /**
 *	@class Sensor
@@ -14,8 +15,10 @@ private:
 	b2Body *m_body;
 	bool m_tripped;
 	sf::Vector2f m_position;
+	bool has_callback;
+	std::function<void()> m_callback;
 protected:
-	b2Body* createBody(b2World* w, sf::Vector2f pos, sf::Vector2u size) {
+	virtual b2Body* createBody(b2World* w, sf::Vector2f pos, sf::Vector2u size) {
 		body_active = true;
 
 		b2BodyDef myBodyDef;
@@ -24,11 +27,13 @@ protected:
 		myBodyDef.angle = 0; //set the starting angle
 		myBodyDef.fixedRotation = true;
 
+		sf::Vector2f pos_off = sf::Vector2f(pos.x + size.x / 2, pos.y + (size.y / 2));
+		myBodyDef.position = vHelper::toB2(pos_off); //set the starting position
+
 		b2Body* body = w->CreateBody(&myBodyDef);
 
 		//Define the shape of the body
 		b2PolygonShape shape;
-		//shape.SetAsBox(m_text_size.x / 32.0f, m_text_size.y / 32.0f);
 		shape.SetAsBox((size.x / vHelper::B2_SCALE) / 2.0f, (size.y / vHelper::B2_SCALE) / 2.0f);
 
 		b2FixtureDef myFixtureDef;
@@ -49,6 +54,7 @@ protected:
 public:
 	//!Whether or not the body is active or not.
 	bool body_active;
+	bool can_despawn;
 	//!Deprecated default constructor for the sensor class.
 	Sensor() {		}
 	/**
@@ -58,6 +64,7 @@ public:
 	*	@param size A Vector2 of ints of the dimentions of the sensor.
 	*/
 	Sensor(b2World *w, sf::Vector2f pos, sf::Vector2u size) {
+		has_callback = false;
 		m_tripped = false;
 		m_position = pos;
 		m_body = createBody(w, pos, size);
@@ -71,6 +78,22 @@ public:
 	*	@param string This is the ID string used for identifvstion of the sensor.
 	*/
 	Sensor(b2World *w, sf::Vector2f pos, sf::Vector2u size, string id) : m_id(id) {
+		has_callback = false;
+		m_tripped = false;
+		m_position = pos;
+		m_body = createBody(w, pos, size);
+		m_body->SetUserData(this);
+	}
+	/**
+	*	@brief This is the overloaded constructor that creates and sets up the sensor.
+	*	@param b2World The Box2D world used for creating bodies.
+	*	@param pos The position of the senesor
+	*	@param size A Vector2 of ints of the dimentions of the sensor.
+	*	@param string This is the ID string used for identifvstion of the sensor.
+	*/
+	Sensor(b2World *w, sf::Vector2f pos, sf::Vector2u size, string id, std::function<void()> callback) : m_id(id) {
+		m_callback = callback;
+		has_callback = true;
 		m_tripped = false;
 		m_position = pos;
 		m_body = createBody(w, pos, size);
@@ -84,7 +107,10 @@ public:
 	*	this method as this is what will be called in the contact listener.
 	*/
 	virtual void trip() {
+		if (has_callback)
+			m_callback();
 		m_tripped = true;
+		can_despawn = true;
 	}
 	/**
 	*	@brief Check for whether the sensor has been tripped or not.

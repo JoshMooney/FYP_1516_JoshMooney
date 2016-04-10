@@ -8,7 +8,7 @@
 Level::Level() {
 	cLog::inst()->print(3, "Level", "Default constructor of level called");
 }
-Level::Level(string s, b2World *world, Spawner *spawner, GemMine *mine, PlatformCreator *p, EntityCreator *ent_cre) {
+Level::Level(string s, b2World *world, Spawner *spawner, GemMine *mine, PlatformCreator *p, EntityCreator *ent_cre, SensorPool *sensor_pool) {
 	path = "Assets/Levels/";
 	format = ".tmx";
 	tile_size = 32;
@@ -21,7 +21,7 @@ Level::Level(string s, b2World *world, Spawner *spawner, GemMine *mine, Platform
 	loadMap(s);
 	scenery = Scenery();
 	m_world = world;
-	ParseMapLayers(world, spawner, mine, p, ent_cre);
+	ParseMapLayers(world, spawner, mine, p, ent_cre, sensor_pool);
 	
 }
 
@@ -74,7 +74,7 @@ void Level::fetchSpawn() {
 	}
 }
 
-void Level::ParseMapLayers(b2World * world, Spawner *s, GemMine *mine, PlatformCreator *p, EntityCreator *ent_cre) {
+void Level::ParseMapLayers(b2World * world, Spawner *s, GemMine *mine, PlatformCreator *p, EntityCreator *ent_cre, SensorPool *sensor_pool) {
 	//map.GetObjectLayer("Layer Name");
 	//Load size of the Map
 	int tile_size = 32;
@@ -106,7 +106,7 @@ void Level::ParseMapLayers(b2World * world, Spawner *s, GemMine *mine, PlatformC
 	tiled_map->GetObjectGroup("Enemy_Data").visible = false;
 
 	lay = tiled_map->GetObjectGroup("Level_Data");
-	GenerateLevelItems(world, lay, mine, s, ent_cre);
+	GenerateLevelItems(world, lay, mine, s, ent_cre, sensor_pool);
 	tiled_map->GetObjectGroup("Level_Data").visible = false;
 
 	lay = tiled_map->GetObjectGroup("Blocks");
@@ -291,7 +291,7 @@ void Level::GeneratePlayerItems(b2World * world, tmx::ObjectGroup &layer) {
 
 	m_checkpoint_list = m_checkpoints_HC;
 }
-void Level::GenerateLevelItems(b2World *world, tmx::ObjectGroup &layer, GemMine* mine, Spawner *spawner, EntityCreator *ent_cre) {
+void Level::GenerateLevelItems(b2World *world, tmx::ObjectGroup &layer, GemMine* mine, Spawner *spawner, EntityCreator *ent_cre, SensorPool *sensor_pool) {
 	string x, y;
 	string type;
 	int lenght = layer.objects_.size();
@@ -328,6 +328,22 @@ void Level::GenerateLevelItems(b2World *world, tmx::ObjectGroup &layer, GemMine*
 			y = layer.objects_[i].GetPropertyValue("y");
 			mine->SpawnGem(Gem::TYPE::W_250, sf::Vector2f(atof(x.c_str()), atof(y.c_str())), false);
 		}
+		if (type == "trip_door") {
+			x = layer.objects_[i].GetPropertyValue("x");
+			y = layer.objects_[i].GetPropertyValue("y");
+			string id = layer.objects_[i].GetPropertyValue("id");
+
+			string s_x = layer.objects_[i].GetPropertyValue("s_x");
+			string s_y = layer.objects_[i].GetPropertyValue("s_y");
+			string s_w = layer.objects_[i].GetPropertyValue("s_w");
+			string s_h = layer.objects_[i].GetPropertyValue("s_h");
+
+			string dir = layer.objects_[i].GetPropertyValue("direction");
+			string locked = layer.objects_[i].GetPropertyValue("locked");
+
+			Door* trip_door = spawner->SpawnDoor(sf::Vector2f(atof(x.c_str()), atof(y.c_str())), id, atof(dir.c_str()), atof(locked.c_str()));
+			sensor_pool->push_back(new Sensor(m_world, sf::Vector2f(atof(s_x.c_str()), atof(s_y.c_str())), sf::Vector2u(atoi(s_w.c_str()), atoi(s_h.c_str())), id, [trip_door]() { trip_door->lock(); }));
+		}
 		if (type == "door") {
 			x = layer.objects_[i].GetPropertyValue("x");
 			y = layer.objects_[i].GetPropertyValue("y");
@@ -346,8 +362,16 @@ void Level::GenerateLevelItems(b2World *world, tmx::ObjectGroup &layer, GemMine*
 			string slot4 = layer.objects_[i].GetPropertyValue("slot4");
 			if (slot4 != "")
 				req_key.push_back(slot4);
-			
-			spawner->SpawnDoor(sf::Vector2f(atof(x.c_str()), atof(y.c_str())), id, &req_key);
+
+			string direction = layer.objects_[i].GetPropertyValue("direction");
+			string locked = layer.objects_[i].GetPropertyValue("locked");
+
+			if (direction == "")
+				spawner->SpawnDoor(sf::Vector2f(atof(x.c_str()), atof(y.c_str())), id, &req_key);
+			else if (locked == "")
+				spawner->SpawnDoor(sf::Vector2f(atof(x.c_str()), atof(y.c_str())), id, &req_key, atoi(direction.c_str()));
+			else
+				spawner->SpawnDoor(sf::Vector2f(atof(x.c_str()), atof(y.c_str())), id, &req_key, atoi(direction.c_str()), atoi(locked.c_str()));
 		}
 		if (type == "key") {
 			x = layer.objects_[i].GetPropertyValue("x");

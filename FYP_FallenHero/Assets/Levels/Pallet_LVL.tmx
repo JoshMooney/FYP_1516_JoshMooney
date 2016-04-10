@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="left-down" width="100" height="100" tilewidth="32" tileheight="32" nextobjectid="46">
+<map version="1.0" orientation="orthogonal" renderorder="left-down" width="100" height="100" tilewidth="32" tileheight="32" nextobjectid="51">
  <layer name="Tile Layer 1" width="100" height="100">
   <data encoding="base64" compression="zlib">
    eJztwTEBAAAAwqD1T+1lC6AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAbnEAAAQ==
@@ -117,6 +117,20 @@
     <property name="y" value="480"/>
    </properties>
   </object>
+  <object id="36" name="Checkpoint" type="Exit" x="640" y="192" width="32" height="32">
+   <properties>
+    <property name="h" value="64"/>
+    <property name="type" value="checkpoint"/>
+    <property name="w" value="64"/>
+    <property name="x" value="736"/>
+    <property name="y" value="512"/>
+   </properties>
+  </object>
+  <object id="48" name="UnlockSensor" x="896" y="416" width="32" height="32">
+   <properties>
+    <property name="Des" value="Just a template for locked door to create sensor"/>
+   </properties>
+  </object>
  </objectgroup>
  <objectgroup name="Enemy_Data">
   <object id="17" name="Skeleton" x="864" y="64" width="64" height="64">
@@ -141,15 +155,6 @@
     <property name="direction" value="1"/>
     <property name="type" value="Cannon"/>
     <property name="x" value="384"/>
-    <property name="y" value="512"/>
-   </properties>
-  </object>
-  <object id="36" name="Checkpoint" type="Exit" x="640" y="192" width="32" height="32">
-   <properties>
-    <property name="h" value="64"/>
-    <property name="type" value="checkpoint"/>
-    <property name="w" value="64"/>
-    <property name="x" value="736"/>
     <property name="y" value="512"/>
    </properties>
   </object>
@@ -306,6 +311,20 @@
     <property name="value" value="key"/>
     <property name="x" value="256"/>
     <property name="y" value="512"/>
+   </properties>
+  </object>
+  <object id="50" name="Trip Door" x="896" y="480" width="32" height="160">
+   <properties>
+    <property name="direction" value="1"/>
+    <property name="id" value="dr1"/>
+    <property name="locked" value="0"/>
+    <property name="s_h" value="192"/>
+    <property name="s_w" value="224"/>
+    <property name="s_x" value="416"/>
+    <property name="s_y" value="352"/>
+    <property name="value" value="trip_door"/>
+    <property name="x" value="352"/>
+    <property name="y" value="384"/>
    </properties>
   </object>
  </objectgroup>

@@ -13,6 +13,7 @@ LevelScene::LevelScene() :
 	m_gem_mine->SpawnChest(sf::Vector2f(0, 0));
 
 	m_spawner = make_shared<Spawner>(m_world);
+	m_sensor_pool = make_shared<SensorPool>(m_world);
 	m_projectiles = make_shared<ProjectileManager>(m_world);
 	m_platform_creator = make_shared<PlatformCreator>(m_world);
 	m_entity_creator = make_shared<EntityCreator>(m_world);
@@ -81,6 +82,7 @@ void LevelScene::update(){
 
 		m_projectiles->update(timeOfLastTick);
 		m_projectiles->cull();
+		m_sensor_pool->cull();
 
 		if (m_player->isAlive())
 			m_player->update(timeOfLastTick);
@@ -328,9 +330,10 @@ void LevelScene::loadLevel(string lvl_name){
 	m_gem_mine->clear();
 	m_projectiles->clear();
 	m_platform_creator->clear();
-	//m_entity_creator->clear();
+	m_entity_creator->clear();
+	m_sensor_pool->clear();
 
-	m_level = make_shared<Level>(lvl_name, m_world, m_spawner.get(), m_gem_mine.get(), m_platform_creator.get(), m_entity_creator.get());				//Create a new level
+	m_level = make_shared<Level>(lvl_name, m_world, m_spawner.get(), m_gem_mine.get(), m_platform_creator.get(), m_entity_creator.get(), m_sensor_pool.get());				//Create a new level
 	m_spawn_pos = m_level->getSpawn();
 
 	m_camera.setBounds(m_level->Bounds());
