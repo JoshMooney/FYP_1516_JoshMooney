@@ -16,6 +16,7 @@
 
 #include "SFMLDebugDraw.h"
 #include "Subject.hpp"
+#include "xboxConnector.hpp"
 
 /**
 *	@class Game

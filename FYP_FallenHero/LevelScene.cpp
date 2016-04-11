@@ -13,8 +13,10 @@ LevelScene::LevelScene() :
 	m_gem_mine->SpawnChest(sf::Vector2f(0, 0));
 
 	m_spawner = make_shared<Spawner>(m_world);
+	m_sensor_pool = make_shared<SensorPool>(m_world);
 	m_projectiles = make_shared<ProjectileManager>(m_world);
 	m_platform_creator = make_shared<PlatformCreator>(m_world);
+	m_entity_creator = make_shared<EntityCreator>(m_world);
 
 	m_spawner->AttachGemMine(m_gem_mine.get());
 	m_spawner->AttachProjectileMgr(m_projectiles.get());
@@ -76,13 +78,16 @@ void LevelScene::update(){
 
 		m_platform_creator->update(timeOfLastTick);
 
+		m_entity_creator->update(timeOfLastTick, m_player);
+
 		m_projectiles->update(timeOfLastTick);
 		m_projectiles->cull();
+		m_sensor_pool->cull();
 
 		if (m_player->isAlive())
 			m_player->update(timeOfLastTick);
 		else
-			respawnPlayer();
+			respawnPlayer();	
 		m_player_HUD.update();
 
 		if (m_camera.outOfBounds(m_player->getBounds())) {
@@ -93,6 +98,7 @@ void LevelScene::update(){
 
 		if (m_level->hasEnded(sf::FloatRect{ m_player->getPosition().x, m_player->getPosition().y, (float)player_size.x, (float)player_size.y }))
 		{
+			m_player->clearKeys();
 			m_level_complete = true;
 		}
 	}
@@ -103,6 +109,7 @@ void LevelScene::update(){
 				m_pause_menu->setPaused(false);
 			else if (result == PauseScreen::QUIT){
 				m_pause_menu->setPaused(false);
+				m_player->clearKeys();
 				m_level_quit = true;
 			}
 		}
@@ -119,11 +126,13 @@ void LevelScene::render(sf::RenderWindow &w){
 
 	m_level->render(w, &m_camera, frame_elapse);		//render the level
 
-	m_player->render(frame_elapse);
+	m_entity_creator->render(&w, frame_elapse);
+	m_spawner->render(w, frame_elapse);
+
+	m_player->render(&w, frame_elapse);
 	w.draw(*m_player);					//render Player
 
 	m_projectiles->render(w, frame_elapse);
-	m_spawner->render(w, frame_elapse);
 	m_gem_mine->render(w, frame_elapse);
 	m_platform_creator->render(w, frame_elapse);
 	
@@ -170,6 +179,9 @@ void LevelScene::handleEvent(sf::Event &e){
 			//Execute command pattern commands here
 			case sf::Keyboard::P:
 				
+				break;
+			case sf::Keyboard::L:
+				m_spawner->CheckLockDoor(m_player->getKeys());
 				break;
 			case sf::Keyboard::W:
 				buttonY_->execute(m_player);
@@ -329,8 +341,10 @@ void LevelScene::loadLevel(string lvl_name){
 	m_gem_mine->clear();
 	m_projectiles->clear();
 	m_platform_creator->clear();
+	m_entity_creator->clear();
+	m_sensor_pool->clear();
 
-	m_level = make_shared<Level>(lvl_name, m_world, m_spawner.get(), m_gem_mine.get(), m_platform_creator.get());				//Create a new level
+	m_level = make_shared<Level>(lvl_name, m_world, m_spawner.get(), m_gem_mine.get(), m_platform_creator.get(), m_entity_creator.get(), m_sensor_pool.get());				//Create a new level
 	m_spawn_pos = m_level->getSpawn();
 
 	m_camera.setBounds(m_level->Bounds());
@@ -346,6 +360,7 @@ void LevelScene::loadLevel(string lvl_name){
 
 void LevelScene::respawnPlayer() {
 	Subject::instance()->notify(Subject::OUT_OF_CATS_LIVES, m_player);
+	m_player->clearKeys();
 	m_player->reset(m_level->getSpawn());
 	m_camera.refresh(m_player->getCenter());
 }

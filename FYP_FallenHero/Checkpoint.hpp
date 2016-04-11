@@ -36,7 +36,7 @@ private:
 		s_texture = "Assets/Game/cp_ps.png";
 		m_text_size = sf::Vector2u(42, 94);
 		m_sprite.setTexture(ResourceManager<sf::Texture>::instance()->get(s_texture));
-		m_sprite.setOrigin(m_text_size.x / 2, 55);
+		m_sprite.setOrigin(m_text_size.x / 2, m_text_size.y / 2);
 		m_sprite.setPosition(vHelper::toSF(getBody()->GetPosition()));
 
 		addFrames(frame_idle,	0, 0, 1, 42, 94, 1.0f);
@@ -65,7 +65,6 @@ public:
 	*/
 	Checkpoint(b2World *w, sf::Vector2f pos, sf::Vector2u size) : Sensor(w, pos, size), m_text_size(size) {
 		init();
-		
 	}
 	/**
 	*	@brief

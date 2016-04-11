@@ -43,7 +43,7 @@ void Lock::update(FTS fts) {
 	if (vHelper::distance(spawn_pos, vHelper::toSF(e_box_body->GetPosition())) > 350)
 		e_body_active = false;
 }
-void Lock::render(sf::RenderWindow & w) {	}
+void Lock::render(sf::RenderWindow *w, sf::Time frames) {	}
 void Lock::alineSprite() {
 	setPosition(vHelper::toSF(e_box_body->GetPosition()));
 }

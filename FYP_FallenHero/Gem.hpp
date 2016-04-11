@@ -75,9 +75,11 @@ public:
 
 	/**
 	*	@brief Whether or not the Gem can be despawned.
-	*@return bool if it can be despawned.
+	*	@return bool if it can be despawned.
 	*/
 	bool canDespawn()	{ return !(m_pickup.getStatus() == sf::Sound::Playing); }
+
+	void render(sf::RenderWindow *w, sf::Time frames) {		}
 };
 
 #endif

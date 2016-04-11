@@ -14,6 +14,7 @@
 #include "LockedDoor.hpp"
 #include "Chest.hpp"
 
+#include "Subject.hpp"
 #include "GemMine.hpp"
 #include "Player.hpp"
 #include <memory>
@@ -35,6 +36,7 @@ private:
 	b2World *m_world;
 
 	Skeleton* prototype_Skeleton;
+	vector<Door *> m_doors;
 	vector<Enemy *> m_enemies;
 	vector<Enemy *> m_dead_enemies;
 	//vector<shared_ptr<Enemy>> m_enemies;
@@ -89,9 +91,33 @@ public:
 	*/
 	void SpawnBlock(sf::Vector2f pos, CrumbleBlock::TYPE t, CrumbleBlock::SIZE s);
 	/**
-	*	@brief 
+	*	@brief
+	*	@param
+	*	@param
+	*	@param
 	*/
-	void SpawnDoor(sf::Vector2f pos, string id);
+	Door* SpawnDoor(sf::Vector2f pos, string id, bool dir, bool locked);
+	/**
+	*	@brief 
+	*	@param
+	*	@param
+	*	@param
+	*/
+	void SpawnDoor(sf::Vector2f pos, string id, vector<string> *keys);
+	/**
+	*	@brief
+	*	@param
+	*	@param
+	*	@param
+	*/
+	void SpawnDoor(sf::Vector2f pos, string id, vector<string> *keys, bool dir);
+	/**
+	*	@brief
+	*	@param
+	*	@param
+	*	@param
+	*/
+	void SpawnDoor(sf::Vector2f pos, string id, vector<string> *keys, bool dir, bool locked);
 	/**
 	*	@brief Creates the appropreate body for the Block and pushes it onto a vector of blocks
 	*	@param sf::Vector2f This position to spawn the Skeleton at.
@@ -157,6 +183,7 @@ public:
 	void AttachProjectileMgr(ProjectileManager *p) {
 		m_gun = p;
 	}
+	void CheckLockDoor(map<string,string> *keys);
 
 };
 

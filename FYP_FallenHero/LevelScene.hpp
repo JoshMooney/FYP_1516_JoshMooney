@@ -21,6 +21,7 @@
 
 #include "ContactListener.hpp"
 #include "Spawner.hpp"
+#include "SensorPool.hpp"
 #include "Skeleton.hpp"
 #include "SFMLDebugDraw.h"
 #include "SFML\Audio.hpp"
@@ -28,6 +29,7 @@
 #include "CrumbleBlock.hpp"
 #include "PlatformCreator.hpp"
 
+#include "EntityCreator.hpp"
 #include "GemMine.hpp"
 #include "ProjectileManager.hpp"
 
@@ -63,8 +65,10 @@ private:
 	bool isPaused;
 	shared_ptr<GemMine> m_gem_mine;
 	shared_ptr<Spawner> m_spawner;
+	shared_ptr<SensorPool> m_sensor_pool;
 	shared_ptr<ProjectileManager> m_projectiles;
 	shared_ptr<PlatformCreator> m_platform_creator;
+	shared_ptr<EntityCreator> m_entity_creator;
 
 	sf::Clock m_animation_clock;
 	sf::Time frame_elapse;

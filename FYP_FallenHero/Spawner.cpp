@@ -205,17 +205,51 @@ void Spawner::SpawnChest(sf::Vector2f pos, bool dir, string type) {
 
 	m_enemies.push_back(new Chest(body, dir, m_mine, chest_type));
 }
-void Spawner::SpawnDoor(sf::Vector2f pos, string id) {
+Door* Spawner::SpawnDoor(sf::Vector2f pos, string id, bool dir, bool locked) {
 	b2BodyDef myBodyDef;
 	b2PolygonShape shape;
 	b2FixtureDef myFixtureDef;
 	sf::Vector2f size;
 	sf::Vector2f pos_off;
 
-	size = sf::Vector2f(32, 160);
+	size = sf::Vector2f(64, 160);
 
 	myBodyDef.type = b2_kinematicBody; //this will be a dynamic body
-	pos_off = sf::Vector2f(pos.x + size.x / 2, pos.y + (size.y / 2) + 17);
+	pos_off = sf::Vector2f(pos.x + size.x / 2, pos.y + (size.y / 2));
+	myBodyDef.position = vHelper::toB2(pos_off); //set the starting position
+	myBodyDef.angle = 0; //set the starting angle
+	myBodyDef.fixedRotation = true;
+
+	b2Body *body;
+	body = m_world->CreateBody(&myBodyDef);
+	shape.SetAsBox((size.x / vHelper::B2_SCALE) / 2.0f, (size.y / vHelper::B2_SCALE) / 2.0f);
+
+	myFixtureDef.density = 1.0f;
+	myFixtureDef.friction = 1.0f;
+	myFixtureDef.shape = &shape;
+	myFixtureDef.userData = "Door";
+
+	myFixtureDef.filter.categoryBits = _filterCategory::ENEMY;
+	myFixtureDef.filter.maskBits = ENEMY | PLAYER | TERRAIN | PLATFORM;
+
+	body->CreateFixture(&myFixtureDef);
+
+	Door* door = new Door(body, id, dir, locked);
+	m_enemies.push_back(door);
+	m_doors.push_back(door);
+	return dynamic_cast<Door*>((*--m_enemies.end()));
+}
+void Spawner::SpawnDoor(sf::Vector2f pos, string id, vector<string> *keys) {
+	b2BodyDef myBodyDef;
+	b2PolygonShape shape;
+	b2FixtureDef myFixtureDef;
+	sf::Vector2f size;
+	sf::Vector2f pos_off;
+
+	size = sf::Vector2f(64, 160);
+
+	myBodyDef.type = b2_kinematicBody; //this will be a dynamic body
+	pos_off = sf::Vector2f(pos.x + size.x / 2, pos.y + (size.y / 2));
 	myBodyDef.position = vHelper::toB2(pos_off); //set the starting position
 	myBodyDef.angle = 0; //set the starting angle
 	myBodyDef.fixedRotation = true;
@@ -234,7 +268,72 @@ void Spawner::SpawnDoor(sf::Vector2f pos, string id) {
 
 	body->CreateFixture(&myFixtureDef);
 	
-	m_enemies.push_back(new Door(body, id));
+	m_enemies.push_back(new Door(body, id, keys));
+	m_doors.push_back(dynamic_cast<Door*>((*--m_enemies.end())));		
+}
+void Spawner::SpawnDoor(sf::Vector2f pos, string id, vector<string> *keys, bool dir) {
+	b2BodyDef myBodyDef;
+	b2PolygonShape shape;
+	b2FixtureDef myFixtureDef;
+	sf::Vector2f size;
+	sf::Vector2f pos_off;
+
+	size = sf::Vector2f(64, 160);
+
+	myBodyDef.type = b2_kinematicBody; //this will be a dynamic body
+	pos_off = sf::Vector2f(pos.x + size.x / 2, pos.y + (size.y / 2));
+	myBodyDef.position = vHelper::toB2(pos_off); //set the starting position
+	myBodyDef.angle = 0; //set the starting angle
+	myBodyDef.fixedRotation = true;
+
+	b2Body *body;
+	body = m_world->CreateBody(&myBodyDef);
+	shape.SetAsBox((size.x / vHelper::B2_SCALE) / 2.0f, (size.y / vHelper::B2_SCALE) / 2.0f);
+
+	myFixtureDef.density = 1.0f;
+	myFixtureDef.friction = 1.0f;
+	myFixtureDef.shape = &shape;
+	myFixtureDef.userData = "Door";
+
+	myFixtureDef.filter.categoryBits = _filterCategory::ENEMY;
+	myFixtureDef.filter.maskBits = ENEMY | PLAYER | TERRAIN | PLATFORM;
+
+	body->CreateFixture(&myFixtureDef);
+
+	m_enemies.push_back(new Door(body, id, keys, dir));
+	m_doors.push_back(dynamic_cast<Door*>((*--m_enemies.end())));
+}
+void Spawner::SpawnDoor(sf::Vector2f pos, string id, vector<string> *keys, bool dir, bool locked) {
+	b2BodyDef myBodyDef;
+	b2PolygonShape shape;
+	b2FixtureDef myFixtureDef;
+	sf::Vector2f size;
+	sf::Vector2f pos_off;
+
+	size = sf::Vector2f(64, 160);
+
+	myBodyDef.type = b2_kinematicBody; //this will be a dynamic body
+	pos_off = sf::Vector2f(pos.x + size.x / 2, pos.y + (size.y / 2));
+	myBodyDef.position = vHelper::toB2(pos_off); //set the starting position
+	myBodyDef.angle = 0; //set the starting angle
+	myBodyDef.fixedRotation = true;
+
+	b2Body *body;
+	body = m_world->CreateBody(&myBodyDef);
+	shape.SetAsBox((size.x / vHelper::B2_SCALE) / 2.0f, (size.y / vHelper::B2_SCALE) / 2.0f);
+
+	myFixtureDef.density = 1.0f;
+	myFixtureDef.friction = 1.0f;
+	myFixtureDef.shape = &shape;
+	myFixtureDef.userData = "Door";
+
+	myFixtureDef.filter.categoryBits = _filterCategory::ENEMY;
+	myFixtureDef.filter.maskBits = ENEMY | PLAYER | TERRAIN | PLATFORM;
+
+	body->CreateFixture(&myFixtureDef);
+
+	m_enemies.push_back(new Door(body, id, keys, dir, locked));
+	m_doors.push_back(dynamic_cast<Door*>((*--m_enemies.end())));
 }
 /*
 void Spawner::CullBodies() {
@@ -380,4 +479,25 @@ void Spawner::clear() {
 		it = m_blocks.erase(it);	//erase the object(calls the objects destructor)
 		//cLog::inst()->print(0, "Spawner", "Block cleared from spawner");
 	}
+
+	m_doors.clear();
 }
+
+void Spawner::CheckLockDoor(map<string, string>* keys)  {
+	for (int i = 0; i < m_doors.size(); i++) {
+		if (m_doors[i] != nullptr && m_doors[i]->isPrompted()) {
+			vector<string> door_keys;
+			for (map<string, string>::iterator it = keys->begin(); it != keys->end(); ++it) {
+				if((*it).second == m_doors[i]->getID())
+					door_keys.push_back(it->first);
+			}
+			if (m_doors[i]->checkKeys(&door_keys) && m_doors[i]->isLocked()) {
+				m_doors[i]->unlock();
+				Subject::instance()->notify(Subject::LOCK_SMITH, nullptr);
+			}
+		}
+	}
+}
+//I was here last trying to check all the prompted doors and check there ids against the pasted in player keys and pass the door the ones it needs
+//check this against the door keys and change the bools
+

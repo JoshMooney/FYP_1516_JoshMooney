@@ -38,7 +38,7 @@ public:
 		ATTACKING,  //!<Attacking stop walking and attack 
 		IDLE, 		//!<The Idle for when the unit is standing still.
 		DEATH     	//!<The deayj animation
-		};
+	};
 	STATE m_current_state;		//!<The Current animation state of the unit
 	STATE m_previous_state;		//!<The Current animation state of the unit
 	thor::Animator<sf::Sprite, STATE> m_animator;		//!<This is the THOR::Animator for stepping through a sprite sheet
