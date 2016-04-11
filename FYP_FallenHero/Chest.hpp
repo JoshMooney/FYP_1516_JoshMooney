@@ -3,21 +3,24 @@
 #include "stdafx.h"
 #include "Enemy.hpp"
 #include "Thor\Animations.hpp"
+#include "Thor\Particles.hpp"
 #include "GemMine.hpp"
 #include "Entity.hpp"
 #include <memory>
 
-class Lock : public Entity {
-private:
-	sf::IntRect lock_pos;
-	sf::Vector2f spawn_pos;
-public:
-	Lock(b2Body *b, bool dir, string text);
-	~Lock();
-	void update(FTS fts);
-	void render(sf::RenderWindow &w);
-	void alineSprite();
-};
+namespace detail {
+	class Lock : public Entity {
+	private:
+		sf::IntRect lock_pos;
+		sf::Vector2f spawn_pos;
+	public:
+		Lock(b2Body *b, bool dir, string text);
+		~Lock();
+		void update(FTS fts);
+		void render(sf::RenderWindow &w);
+		void alineSprite();
+	};
+}
 
 class Chest : public Enemy {
 private:
@@ -29,7 +32,7 @@ private:
 	sf::Vector2u m_size;
 	thor::FrameAnimation frame_open;
 	thor::FrameAnimation frame_close;
-	shared_ptr<Lock> m_lock;
+	shared_ptr<detail::Lock> m_lock;
 	vector<Gem::TYPE> m_loot;
 	sf::Clock m_clock;
 	bool spawn_loot;

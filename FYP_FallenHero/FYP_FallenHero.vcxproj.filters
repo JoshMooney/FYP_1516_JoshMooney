@@ -272,6 +272,9 @@
     </ClInclude>
     <ClInclude Include="Achievement.hpp">
       <Filter>Header Files\Util</Filter>
+	</ClInclude>
+    <ClInclude Include="LockedDoor.hpp">
+      <Filter>Header Files\Level</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -382,6 +385,9 @@
     </ClCompile>
     <ClCompile Include="Achievement.cpp">
       <Filter>Source Files\Util</Filter>
+	</ClCompile>
+    <ClCompile Include="LockedDoor.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

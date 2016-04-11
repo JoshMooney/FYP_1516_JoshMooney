@@ -205,7 +205,37 @@ void Spawner::SpawnChest(sf::Vector2f pos, bool dir, string type) {
 
 	m_enemies.push_back(new Chest(body, dir, m_mine, chest_type));
 }
+void Spawner::SpawnDoor(sf::Vector2f pos, string id) {
+	b2BodyDef myBodyDef;
+	b2PolygonShape shape;
+	b2FixtureDef myFixtureDef;
+	sf::Vector2f size;
+	sf::Vector2f pos_off;
 
+	size = sf::Vector2f(32, 160);
+
+	myBodyDef.type = b2_kinematicBody; //this will be a dynamic body
+	pos_off = sf::Vector2f(pos.x + size.x / 2, pos.y + (size.y / 2) + 17);
+	myBodyDef.position = vHelper::toB2(pos_off); //set the starting position
+	myBodyDef.angle = 0; //set the starting angle
+	myBodyDef.fixedRotation = true;
+
+	b2Body *body;
+	body = m_world->CreateBody(&myBodyDef);
+	shape.SetAsBox((size.x / vHelper::B2_SCALE) / 2.0f, (size.y / vHelper::B2_SCALE) / 2.0f);
+
+	myFixtureDef.density = 1.0f;
+	myFixtureDef.friction = 1.0f;
+	myFixtureDef.shape = &shape;
+	myFixtureDef.userData = "Door";
+
+	myFixtureDef.filter.categoryBits = _filterCategory::ENEMY;
+	myFixtureDef.filter.maskBits = ENEMY | PLAYER | TERRAIN | PLATFORM;
+
+	body->CreateFixture(&myFixtureDef);
+	
+	m_enemies.push_back(new Door(body, id));
+}
 /*
 void Spawner::CullBodies() {
 	//Delete any box bodies for the Blocks

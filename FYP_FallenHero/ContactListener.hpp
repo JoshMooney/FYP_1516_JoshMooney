@@ -119,6 +119,42 @@ public:
 			Subject::instance()->notify(Subject::BULLET_HIT, nullptr);
 		}
 
+		//Projectile and Terrain
+		if (fixAType == "Projectile" && fixBType == "Terrain"
+			|| fixAType == "Terrain" && fixBType == "Projectile") {
+			void* terrain_data;
+			void* bullet_data;
+
+			if (fixAType == "Terrain") {
+				terrain_data = contact->GetFixtureA()->GetBody()->GetUserData();
+				bullet_data = contact->GetFixtureB()->GetBody()->GetUserData();
+			}
+			else {
+				bullet_data = contact->GetFixtureA()->GetBody()->GetUserData();
+				terrain_data = contact->GetFixtureB()->GetBody()->GetUserData();
+			}
+
+			static_cast<Projectile*>(bullet_data)->Die();
+		}
+
+		//Projectile and Cannon
+		if (fixAType == "Projectile" && fixBType == "Cannon"
+			|| fixAType == "Cannon" && fixBType == "Projectile") {
+			void* cannon_data;
+			void* bullet_data;
+
+			if (fixAType == "Cannon") {
+				cannon_data = contact->GetFixtureA()->GetBody()->GetUserData();
+				bullet_data = contact->GetFixtureB()->GetBody()->GetUserData();
+			}
+			else {
+				bullet_data = contact->GetFixtureA()->GetBody()->GetUserData();
+				cannon_data = contact->GetFixtureB()->GetBody()->GetUserData();
+			}
+
+			static_cast<Projectile*>(bullet_data)->Die();
+			static_cast<Cannon*>(cannon_data)->TakeDamage();
+		}
 		
 		//Player and Cannon
 		if (fixAType == "Cannon" && fixBType == "Player"
@@ -240,7 +276,7 @@ public:
 			}
 
 			Player* player = static_cast<Player*>(player_userdata);
-			XYPlatform* plat = static_cast<XYPlatform*>(plat_userdata);
+			XYTile* plat = static_cast<XYTile*>(plat_userdata);
 
 			if (player->isJumping()) {
 				sf::FloatRect plat_geo = plat->geometry();

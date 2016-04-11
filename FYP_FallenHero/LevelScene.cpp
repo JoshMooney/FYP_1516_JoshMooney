@@ -36,6 +36,8 @@ LevelScene::LevelScene() :
 	//m_time_per_frame = sf::seconds(1.f / 30.0f);
 	m_key_pressed = false;
 	isPaused = false;
+	m_b2_dd = false;
+
 	m_player = new Player(*m_world);
 	m_player_HUD = HUD(m_player);
 	player_size = m_player->getSize();
@@ -124,8 +126,9 @@ void LevelScene::render(sf::RenderWindow &w){
 	m_spawner->render(w, frame_elapse);
 	m_gem_mine->render(w, frame_elapse);
 	m_platform_creator->render(w, frame_elapse);
-
-	m_world->DrawDebugData();
+	
+	if(m_b2_dd)
+		m_world->DrawDebugData();
 	m_level->scenery.renderFG(w, &m_camera);	//Render Foreground	
 
 	w.setView(w.getDefaultView());		//Reset the windows view before exiting renderer
@@ -137,7 +140,7 @@ void LevelScene::render(sf::RenderWindow &w){
 
 void LevelScene::handleEvent(sf::Event &e){
 	if (!m_pause_menu->isPaused()) {
-		if (e.type == sf::Event::KeyPressed){
+		if (e.type == sf::Event::KeyPressed) {
 			switch (e.key.code){
 			#pragma region Movement Keys
 			case sf::Keyboard::Up:
@@ -186,6 +189,13 @@ void LevelScene::handleEvent(sf::Event &e){
 			case sf::Keyboard::Space:
 				m_player->attack();
 				break;
+
+			case sf::Keyboard::B:
+				if (!m_key_pressed){
+					m_b2_dd = !m_b2_dd;
+					m_key_pressed = true;
+				}
+				break;
 			}
 		}
 
@@ -211,6 +221,9 @@ void LevelScene::handleEvent(sf::Event &e){
 			case sf::Keyboard::Return:
 				break;
 			case sf::Keyboard::Space:
+				break;
+			default:
+				m_key_pressed = false;
 				break;
 			}
 		}

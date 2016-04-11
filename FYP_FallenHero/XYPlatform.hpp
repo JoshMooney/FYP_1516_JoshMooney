@@ -90,17 +90,18 @@ public:
 		for (auto const &t : m_neighbour_tile) {
 			sf::Vector2f pos = t->getPosition();
 			if (pos.x > largest_pos.x)
-				pos.x = largest_pos.x;
+				largest_pos.x = pos.x;
 			if (pos.y > largest_pos.y)
-				pos.y = largest_pos.y;
+				largest_pos.y = pos.y;
 
 			if (pos.x < smallest_pos.x)
-				pos.x = smallest_pos.x;
+				smallest_pos.x = pos.x;
 			if (pos.y < smallest_pos.y)
-				pos.y = smallest_pos.y;
+				smallest_pos.y = pos.y;
 		}
-		size = largest_pos - smallest_pos;
-		return sf::FloatRect{ smallest_pos.x, smallest_pos.y, (float)size.x, (float)size.y };
+
+		size = sf::Vector2f(32,32);
+		return sf::FloatRect{ smallest_pos.x - (float)size.x, smallest_pos.y - (float)size.y, (float)size.x, (float)size.y };
 	}
 };
 

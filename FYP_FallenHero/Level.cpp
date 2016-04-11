@@ -25,7 +25,6 @@ Level::Level(string s, b2World *world, Spawner *spawner, GemMine *mine, Platform
 	
 }
 
-/*TEMP*/
 struct OBJ {
 	int width;
 	int height;
@@ -327,6 +326,12 @@ void Level::GenerateLevelItems(b2World *world, tmx::ObjectGroup &layer, GemMine*
 			x = layer.objects_[i].GetPropertyValue("x");
 			y = layer.objects_[i].GetPropertyValue("y");
 			mine->SpawnGem(Gem::TYPE::W_250, sf::Vector2f(atof(x.c_str()), atof(y.c_str())), false);
+		}
+		if (type == "door") {
+			x = layer.objects_[i].GetPropertyValue("x");
+			y = layer.objects_[i].GetPropertyValue("y");
+			string id = layer.objects_[i].GetPropertyValue("id");
+			spawner->SpawnDoor(sf::Vector2f(atof(x.c_str()), atof(y.c_str())), id);
 		}
 		if (type == "chest") {
 			x = layer.objects_[i].GetPropertyValue("x");
