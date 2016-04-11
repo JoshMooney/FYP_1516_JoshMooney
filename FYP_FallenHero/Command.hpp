@@ -39,34 +39,35 @@ public:
 };
 
 /**
-*	@class FireCommand
+*	@class AttackCommand
 *	@brief This is a sub class of the command base class. This class should
 *	override the execute command and this command calls the Fire function.
 */
-class FireCommand : public Command {
+class AttackCommand : public Command {
 public:
 	/**
 	*	@brief This function executes the task issued to the command.
 	*	@param Player This is the object to execute the command on
 	*/
 	void execute(Player* p) {
-		cLog::inst()->print(0, "Fire Command", "Fire was called using the command pattern");
+		p->attack();
+		cLog::inst()->print(0, "AttackCommand", "Fire was called using the command pattern");
 	}
 };
 
 /**
-*	@class SwapCommand
+*	@class InteractCommand
 *	@brief This is a sub class of the command base class. This class should
 *	override the execute command and this command calls the Swap function.
 */
-class SwapCommand : public Command {
+class InteractCommand : public Command {
 public:
 	/**
 	*	@brief This function executes the task issued to the command.
 	*	@param Player This is the object to execute the command on
 	*/
 	void execute(Player* p) {
-		cLog::inst()->print(0, "Swap Command", "Swap was called using the command pattern");
+		//cLog::inst()->print(0, "InteractCommand", "Swap was called using the command pattern");
 	}
 };
 

@@ -250,6 +250,27 @@ void Spawner::CullInActiveEnemies() {
 	for (auto it = m_blocks.begin(); it != m_blocks.end();) {
 		//If the Block is not alive
 		if (!(*it)->isAlive() && (*it)->canDespawn()) {
+			CrumbleBlock *cb = (*it);
+
+			//Tell the stat tracker that a block was destroyed
+			if (cb->m_type == CrumbleBlock::TYPE::DIRT) {
+				if (cb->m_size == CrumbleBlock::SIZE::SMALL)
+					Subject::instance()->notify(Subject::DIRT_32, nullptr);
+				if (cb->m_size == CrumbleBlock::SIZE::LARGE)
+					Subject::instance()->notify(Subject::DIRT_64, nullptr);
+			}
+			else if (cb->m_type == CrumbleBlock::TYPE::SAND) {
+				if (cb->m_size == CrumbleBlock::SIZE::SMALL)
+					Subject::instance()->notify(Subject::SAND_32, nullptr);
+				if (cb->m_size == CrumbleBlock::SIZE::LARGE)
+					Subject::instance()->notify(Subject::SAND_64, nullptr);
+			}
+			else {
+				if (cb->m_size == CrumbleBlock::SIZE::SMALL)
+					Subject::instance()->notify(Subject::ROCK_32, nullptr);
+				if (cb->m_size == CrumbleBlock::SIZE::LARGE)
+					Subject::instance()->notify(Subject::ROCK_64, nullptr);
+			}
 			m_world->DestroyBody((*it)->e_box_body);		//Destroy the b2body of the enemy
 			delete *it;				//delete the pointer
 			it = m_blocks.erase(it);	//erase the object(calls the objects destructor)

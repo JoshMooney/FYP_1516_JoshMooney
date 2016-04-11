@@ -135,13 +135,13 @@ void MenuScene::handleInput(XBOXController &controller){
 	if (controller.isPressed["D_RIGHT"] || controller.isPressed["AL_RIGHT"]){
 		if (!m_key_pressed){
 			m_key_pressed = true;
-			moveUp();
+			moveRight();
 		}
 	}
 	if (controller.isPressed["D_LEFT"] || controller.isPressed["AL_LEFT"]){
 		if (!m_key_pressed){
 			m_key_pressed = true;
-			moveDown();
+			moveLeft();
 		}
 	}
 	if (controller.isPressed["A"]){
@@ -330,6 +330,7 @@ void MenuScene::select() {
 		delete loader->saved_data[m_current_slot];
 		loader->saved_data[m_current_slot] = new SaveSlot(m_current_slot + 1);
 		selected_slot = loader->saved_data[m_current_slot];
+		selected_slot->m_LVL_DATA["LVL1"] = false;
 		changeState(GAME);
 	}
 	else if (m_current_state == SPLASH)

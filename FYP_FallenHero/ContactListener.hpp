@@ -19,6 +19,8 @@
 #include "Gem.hpp"
 #include "Projectile.hpp"
 
+#include "Subject.hpp"
+
 /**
 *	@class ContactListener
 *	@brief This is the box2D contactlistener that detects and responds to collision 	
@@ -113,6 +115,8 @@ public:
 			bool dir = !b->getBoolDirection();
 			static_cast<Player*>(player_data)->TakeDamage(dir);
 			b->Die();
+
+			Subject::instance()->notify(Subject::BULLET_HIT, nullptr);
 		}
 
 		
@@ -213,10 +217,10 @@ public:
 			if (player->isJumping()) {
 				sf::FloatRect chest_geo = chest->geometry();
 				sf::FloatRect player_geo = player->getBounds();
-
-				if (player_geo.top + player_geo.height >= chest_geo.top - player_jump_y_offset &&
+				player->setJumping(false);
+			/*	if (player_geo.top + player_geo.height >= chest_geo.top - player_jump_y_offset &&
 					player_geo.top + player_geo.height <= chest_geo.top)
-					player->setJumping(false);
+					player->setJumping(false);*/
 			}
 		}
 
@@ -461,6 +465,7 @@ public:
 				if (!s->hasTripped()) {
 					s->trip();
 				}
+				Subject::instance()->notify(Subject::CP_TRIP, nullptr);
 			}
 			else if (fixBType == "Player") {
 				void* sensor_data = contact->GetFixtureA()->GetBody()->GetUserData();
@@ -470,6 +475,7 @@ public:
 				if (!s->hasTripped()) {
 					s->trip();
 				}
+				Subject::instance()->notify(Subject::CP_TRIP, nullptr);
 			}
 		}
 

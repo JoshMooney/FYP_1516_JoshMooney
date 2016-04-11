@@ -20,10 +20,10 @@ LevelScene::LevelScene() :
 	m_spawner->AttachProjectileMgr(m_projectiles.get());
 	
 	loadMedia();
-	buttonX_ = new JumpCommand();
-	buttonY_ = new FireCommand();
-	buttonB_ = new LurchCommand();
-	buttonA_ = new SwapCommand();
+	buttonX_ = new AttackCommand();
+	buttonY_ = new NULLCommand();
+	buttonB_ = new InteractCommand();
+	buttonA_ = new JumpCommand();
 
 	m_level_complete = false;
 	m_level_quit = false;
@@ -245,36 +245,39 @@ void LevelScene::handleEvent(sf::Event &e){
 	}
 
 }
-void LevelScene::handleInput(XBOXController &controller){
-	if (controller.isPressed["START"] && !controller.wasPressed["START"]){
-		isPaused = !isPaused;	//This Flips the pause of the game on and off.
-	}
-	if (!m_pause_menu->isPaused()){
-		if (controller.isPressed["D_UP"] || controller.isPressed["A"]){
-			m_player->jump();
+void LevelScene::handleInput(XBOXController &controller) {
+	if(!m_pause_menu->isPaused()) {
+		if (controller.isPressed["START"] && !controller.wasPressed["START"]) {
+			isPaused = !isPaused;	//This Flips the pause of the game on and off.
 		}
-		//if (!controller.isPressed["A"] && controller.wasPressed["A"]){
-		//	m_player->jump();
-		//}
-		if (controller.isPressed["D_RIGHT"] || controller.isPressed["AL_RIGHT"]){
+		if (controller.isPressed["D_RIGHT"] || controller.isPressed["AL_RIGHT"]) {
 			m_player->moveRight();
 		}
-		if (controller.isPressed["D_LEFT"] || controller.isPressed["AL_LEFT"]){
+		if (controller.isPressed["D_LEFT"] || controller.isPressed["AL_LEFT"]) {
 			m_player->moveLeft();
 		}
-		if (controller.isPressed["START"]){
+		if (controller.isPressed["A"] && !m_key_pressed) {
+			buttonA_->execute(m_player);
+			m_key_pressed = true;
+		}
+		if (controller.isPressed["B"] && !m_key_pressed) {
+			buttonB_->execute(m_player);
+			m_key_pressed = true;
+		}
+		if (controller.isPressed["X"] && !m_key_pressed) {
+			buttonX_->execute(m_player);
+			m_key_pressed = true;
+		}
+		if (controller.isPressed["Y"]) {
+			buttonY_->execute(m_player);
+		}
+		if (controller.isPressed["START"]) {
 			m_pause_menu->setPaused(true);
 		}
-
-		//If there is input being recieved or not
-		if (!controller.isPressed["D_LEFT"] && !controller.isPressed["D_RIGHT"] &&
-			!controller.isPressed["AL_LEFT"] && !controller.isPressed["AL_RIGHT"])
-			m_player->setIfMoving(false);
-
-		/*if (controller.isIdle())
-			m_key_pressed = false;*/
+		if (controller.isIdle())
+			m_key_pressed = false;
 	}
-	else{
+	else {
 		//if (controller.isPressed["START"] || controller.isPressed["START"]){
 			//m_pause_menu->setPaused(false);
 		//}
@@ -293,6 +296,14 @@ void LevelScene::handleInput(XBOXController &controller){
 		if (controller.isIdle())
 			m_key_pressed = false;
 	}
+
+	//If there is input being recieved or not
+	if (!controller.isPressed["D_LEFT"] && !controller.isPressed["D_RIGHT"] &&
+		!controller.isPressed["AL_LEFT"] && !controller.isPressed["AL_RIGHT"])
+		m_player->setIfMoving(false);
+
+	/*if (controller.isIdle())
+	m_key_pressed = false;*/
 }
 
 void LevelScene::loadLevel(string lvl_name){
@@ -311,8 +322,9 @@ void LevelScene::loadLevel(string lvl_name){
 
 	m_camera.setBounds(m_level->Bounds());
 	
-	//m_player->reset(m_level->getSpawn());			//Reset the player for the new level
-	respawnPlayer();
+	m_player->reset(m_level->getSpawn());
+	m_camera.refresh(m_player->getCenter());
+
 	m_camera.refresh(m_player->getCenter());
 	m_level_clock.restart();
 
@@ -320,6 +332,7 @@ void LevelScene::loadLevel(string lvl_name){
 }
 
 void LevelScene::respawnPlayer() {
+	Subject::instance()->notify(Subject::OUT_OF_CATS_LIVES, m_player);
 	m_player->reset(m_level->getSpawn());
 	m_camera.refresh(m_player->getCenter());
 }

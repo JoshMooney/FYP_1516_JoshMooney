@@ -3,6 +3,7 @@
 #include "stdafx.h"
 #include "Entity.hpp"
 
+#include "Subject.hpp"
 #include "Box2D\Box2D.h"
 #include "Thor\Animations.hpp"
 #include "SFML\Audio.hpp"
@@ -99,7 +100,13 @@ public:
 
 	void attack();
 	
-	void addGold(int amount)	{ m_gold += amount; }
+	void addGold(int amount)	{ 
+		m_gold += amount; 
+		if (m_gold > 100)
+			Subject::instance()->notify(Subject::PICKUP_100, nullptr);
+		if (m_gold > 1000)
+			Subject::instance()->notify(Subject::PICKUP_1000, nullptr);
+	}
 	int getGold() { return m_gold; }
 	bool isAlive() { return m_alive; }
 	b2Body* getBody()	{ return e_box_body; }                                                  //!<Returns a pointer to the b2body associated with the player

@@ -141,19 +141,32 @@ public:
 			tinyxml2::XMLElement * achElement = slot->FirstChildElement("Achievements");
 			if (achElement == nullptr) throw tinyxml2::XML_ERROR_FILE_READ_ERROR;
 			//============================================================================================
+			
 			int ach_unlocked = 0;
 			string name = "ACH";
-			for (int i = 0; i < 3; i++) {
+			for (int i = 0; i < 21; i++) {
 				string tag = name + std::to_string(i + 1);
 				tinyxml2::XMLElement * ele = achElement->FirstChildElement(tag.c_str());
 				int text = string_to_int(ele->GetText());
 				if (text == 0)	ach_unlocked++;
 				m_achievements[tag] = text;
 			}
-
 			//============================================================================================
 
-			saved_data.push_back(new SaveSlot(i + 1, time, gold, map, levels_unlocked, m_achievements, ach_unlocked));
+			std::map<string, int> m_stats;
+			tinyxml2::XMLElement * statElement = slot->FirstChildElement("Statistics");
+			if (statElement == nullptr) throw tinyxml2::XML_ERROR_FILE_READ_ERROR;
+			//============================================================================================
+			string title = "STAT";
+			for (int i = 0; i < 10; i++) {
+				string tag = title + std::to_string(i + 1);
+				tinyxml2::XMLElement * ele = statElement->FirstChildElement(tag.c_str());
+
+				int text = string_to_int(ele->GetText());
+				m_stats[tag] = text;
+			}
+
+			saved_data.push_back(new SaveSlot(i + 1, time, gold, map, levels_unlocked, m_achievements, ach_unlocked , m_stats));
 		}
 	}
 	/**
@@ -199,9 +212,23 @@ public:
 
 			//Insert Achievement Tracking into the saveData.sav
 			pElement = xmlDoc.NewElement("Achievements");
-			for (int i = 0; i < 3; i++)
+			for (int i = 0; i < 21; i++)
 			{
 				string d = "ACH" + std::to_string(i + 1);
+				const char * c = d.c_str();
+				tinyxml2::XMLElement * pListElement = xmlDoc.NewElement(c);
+				pListElement->SetText(0);
+
+				pElement->InsertEndChild(pListElement);
+			}
+
+			saveSlot->InsertEndChild(pElement);
+
+			//Insert Stat Tracking into the saveData.sav
+			pElement = xmlDoc.NewElement("Statistics");
+			for (int i = 0; i < 10; i++)
+			{
+				string d = "STAT" + std::to_string(i + 1);
 				const char * c = d.c_str();
 				tinyxml2::XMLElement * pListElement = xmlDoc.NewElement(c);
 				pListElement->SetText(0);
@@ -261,11 +288,24 @@ public:
 		}
 
 		pElement = xmlDoc.NewElement("Achievements");
-		for (int i = 0; i < 3; i++) {
+		for (int i = 0; i < 21; i++) {
 			string ach = "ACH" + std::to_string(i + 1);
 			const char * c = ach.c_str();
 			tinyxml2::XMLElement * pListElement = xmlDoc.NewElement(c);
 			pListElement->SetText(s.m_ACH_DATA[ach]);
+
+			pElement->InsertEndChild(pListElement);
+
+			saveSlot->InsertEndChild(pElement);
+			saveGame->InsertEndChild(saveSlot);
+		}
+
+		pElement = xmlDoc.NewElement("Statistics");
+		for (int i = 0; i < 10; i++) {
+			string stat = "STAT" + std::to_string(i + 1);
+			const char * c = stat.c_str();
+			tinyxml2::XMLElement * pListElement = xmlDoc.NewElement(c);
+			pListElement->SetText(s.m_ACH_DATA[stat]);
 
 			pElement->InsertEndChild(pListElement);
 

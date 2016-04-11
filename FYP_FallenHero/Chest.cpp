@@ -204,6 +204,7 @@ void Chest::TakeDamage() {
 	}
 }
 void Chest::Die() {
+	Subject::instance()->notify(Subject::THIEF_OR_ADVENTURER, nullptr);
 	int loot_value = rand() % 500;
 	loot_value += 190;
 

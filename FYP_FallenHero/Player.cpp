@@ -26,7 +26,7 @@ Player::Player(b2World &m_world){
 
 	b2BodyDef myBodyDef;
 	myBodyDef.type = b2_dynamicBody; //this will be a dynamic body
-	myBodyDef.position = vHelper::toB2(sf::Vector2f(200, 0)); //set the starting position
+	myBodyDef.position = vHelper::toB2(sf::Vector2f(200, 200)); //set the starting position
 	myBodyDef.angle = 0; //set the starting angle
 	myBodyDef.userData = this;
 	myBodyDef.fixedRotation = true;
@@ -228,7 +228,7 @@ void Player::jump() {
 		//e_box_body->SetLinearVelocity(b2Vec2(e_box_body->GetLinearVelocity().x, m_acceleration * DELTA_TIME.asSeconds()), -m_jump_force, m_jump_force);
 		e_box_body->SetLinearVelocity(b2Vec2(e_box_body->GetLinearVelocity().x, e_box_body->GetLinearVelocity().y - newYVel));
 		m_is_jumping = true;
-		Subject::instance()->notify(Subject::P_JUMP, this);
+		Subject::instance()->notify(Subject::FIRST_JUMP, this);
 	}
 }
 void Player::reset(sf::Vector2f pos) {
@@ -243,6 +243,7 @@ void Player::reset(sf::Vector2f pos) {
 void Player::FallOffMap(sf::Vector2f pos) {
 	reset(pos);
 	m_fall.play();
+	Subject::instance()->notify(Subject::WILE_E_COYOTE, this);
 }
 
 void Player::attack() {
@@ -250,6 +251,7 @@ void Player::attack() {
 		//cLog::inst()->print("Player Attacked");
 		m_swing.play();
 		m_is_attacking = true;
+		Subject::instance()->notify(Subject::FIRST_ATTACK, nullptr);
 	}
 }
 
@@ -286,6 +288,8 @@ void Player::TakeDamage(bool knock_dir) {
 		if (e_hp <= 0) {
 			m_alive = false;
 		}
+
+		Subject::instance()->notify(Subject::OUCH, this);
 	}
 }
 

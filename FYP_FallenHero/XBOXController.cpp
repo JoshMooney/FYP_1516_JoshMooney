@@ -183,7 +183,7 @@ void XBOXController::UpdateX() {
 	{
 		if (isPressed["X"] == false)
 		{
-			isPressed["X"] = false;
+			isPressed["X"] = true;
 			if (output)		cLog::inst()->print("X");
 		}
 	}

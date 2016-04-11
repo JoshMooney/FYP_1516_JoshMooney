@@ -45,6 +45,7 @@ void WorldScene::render(sf::RenderWindow &w){
 	m_world_map->render(w);		//Renders the entire World Map
 	w.draw(m_player_icon);
 	m_gui->render(w, m_player_icon.m_lvl_tag);
+	Subject::instance()->render(&w);
 
 	w.setView(w.getDefaultView());
 }
@@ -162,6 +163,22 @@ void WorldScene::checkUnlocks(string lvl_name, Player *p, sf::Time lvl_time) {
 		if (node->m_next_lvl->m_is_locked)
 			node->m_next_lvl->unlock();
 	generateMapData();
+
+	if (lvl_name == "LVL_1")
+		Subject::instance()->notify(Subject::FINISH_LVL1, nullptr);
+	if (lvl_name == "LVL_2")
+		Subject::instance()->notify(Subject::FINISH_LVL2, nullptr);
+	if (lvl_name == "LVL_3A")
+		Subject::instance()->notify(Subject::FINISH_LVL3A, nullptr);
+	if (lvl_name == "LVL_3B")
+		Subject::instance()->notify(Subject::FINISH_LVL3B, nullptr);
+	if (lvl_name == "LVL_4")
+		Subject::instance()->notify(Subject::FINISH_LVL4, nullptr);
+	if (lvl_name == "LVL_5")
+		Subject::instance()->notify(Subject::FINISH_LVL5, nullptr);
+	if (lvl_name == "LVL_6")
+		Subject::instance()->notify(Subject::FINISH_LVL6, nullptr);
+
 	addLevelTime(lvl_time);
 	m_current_slot->m_currentGold = p->getGold();
 }
@@ -191,4 +208,8 @@ void WorldScene::loadSaveSlot(SaveSlot * ss) {
 
 void WorldScene::addLevelTime(sf::Time time) {
 	m_current_slot->m_timePlayed += (int)time.asSeconds();
+	if (m_current_slot->m_timePlayed > 60 && !m_current_slot->m_ACH_DATA["ACH" + Subject::ELEVATOR_PITCH])
+		Subject::instance()->notify(Subject::ELEVATOR_PITCH, nullptr);
+	if (m_current_slot->m_timePlayed > 300 && !m_current_slot->m_ACH_DATA["ACH" + Subject::DEMO_DAY])
+		Subject::instance()->notify(Subject::DEMO_DAY, nullptr);
 }

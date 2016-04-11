@@ -205,7 +205,7 @@
   <object id="4" name="Start Level" type="Spawn" x="96" y="320" width="64" height="64">
    <properties>
     <property name="h" value="64"/>
-    <property name="label" value="Spawn"/>
+    <property name="label" value="spawn"/>
     <property name="w" value="64"/>
     <property name="x" value="96"/>
     <property name="y" value="320"/>

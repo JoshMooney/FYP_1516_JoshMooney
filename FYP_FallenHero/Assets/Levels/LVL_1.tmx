@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="90" height="25" tilewidth="32" tileheight="32" nextobjectid="19">
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="90" height="25" tilewidth="32" tileheight="32" nextobjectid="31">
  <tileset firstgid="1" name="tile_set" tilewidth="32" tileheight="32" tilecount="3">
   <image source="Tiles/tile_set.png" width="96" height="32"/>
  </tileset>
@@ -28,15 +28,6 @@
   </object>
  </objectgroup>
  <objectgroup name="Player_Data">
-  <object id="4" name="Start Level" type="Spawn" x="32" y="448" width="64" height="64">
-   <properties>
-    <property name="h" value="64"/>
-    <property name="label" value="Spawn"/>
-    <property name="w" value="64"/>
-    <property name="x" value="32"/>
-    <property name="y" value="448"/>
-   </properties>
-  </object>
   <object id="5" name="End Level" type="Exit" x="961" y="447" width="64" height="64">
    <properties>
     <property name="h" value="64"/>
@@ -46,59 +37,73 @@
     <property name="y" value="447"/>
    </properties>
   </object>
-  <object id="13" name="Checkpoint" type="Exit" x="736" y="512" width="32" height="32">
+  <object id="20" name="Start Level" type="Spawn" x="96" y="448" width="64" height="64">
    <properties>
     <property name="h" value="64"/>
-    <property name="type" value="checkpoint"/>
+    <property name="label" value="spawn"/>
     <property name="w" value="64"/>
-    <property name="x" value="736"/>
-    <property name="y" value="512"/>
+    <property name="x" value="96"/>
+    <property name="y" value="448"/>
    </properties>
   </object>
  </objectgroup>
  <objectgroup name="BG"/>
  <objectgroup name="FG"/>
  <objectgroup name="Enemy_Data"/>
- <objectgroup name="Blocks"/>
- <objectgroup name="Level_Data">
-  <object id="7" name="Green Chest" x="480" y="512" width="32" height="32">
+ <objectgroup name="Blocks">
+  <object id="19" name="Dirt Small" x="256" y="512" width="32" height="32">
    <properties>
-    <property name="direction" value="0"/>
-    <property name="type" value="green"/>
-    <property name="value" value="chest"/>
-    <property name="x" value="480"/>
+    <property name="type" value="dirt"/>
+    <property name="w" value="32"/>
+    <property name="x" value="256"/>
     <property name="y" value="512"/>
    </properties>
   </object>
-  <object id="10" name="Purple Chest" x="576" y="512" width="32" height="32">
+  <object id="30" x="352" y="352" width="64" height="64">
    <properties>
-    <property name="direction" value="0"/>
-    <property name="type" value="purple"/>
-    <property name="value" value="chest"/>
-    <property name="x" value="576"/>
-    <property name="y" value="512"/>
+    <property name="type" value="rock"/>
+    <property name="w" value="64"/>
+    <property name="x" value="352"/>
+    <property name="y" value="352"/>
    </properties>
   </object>
-  <object id="11" name="Brown Chest" x="384" y="512" width="32" height="32">
+  <object id="27" name="Dirt Small" x="256" y="448" width="32" height="32">
    <properties>
-    <property name="direction" value="0"/>
-    <property name="type" value="brown"/>
-    <property name="value" value="chest"/>
-    <property name="x" value="384"/>
-    <property name="y" value="512"/>
+    <property name="type" value="sand"/>
+    <property name="w" value="32"/>
+    <property name="x" value="256"/>
+    <property name="y" value="448"/>
+   </properties>
+  </object>
+  <object id="28" x="352" y="480" width="64" height="64">
+   <properties>
+    <property name="type" value="dirt"/>
+    <property name="w" value="64"/>
+    <property name="x" value="352"/>
+    <property name="y" value="480"/>
+   </properties>
+  </object>
+  <object id="29" x="352" y="416" width="64" height="64">
+   <properties>
+    <property name="type" value="sand"/>
+    <property name="w" value="64"/>
+    <property name="x" value="352"/>
+    <property name="y" value="416"/>
+   </properties>
+  </object>
+  <object id="26" name="Dirt Small" x="256" y="480" width="32" height="32">
+   <properties>
+    <property name="type" value="rock"/>
+    <property name="w" value="32"/>
+    <property name="x" value="256"/>
+    <property name="y" value="480"/>
    </properties>
   </object>
  </objectgroup>
+ <objectgroup name="Level_Data"/>
  <objectgroup name="Platform">
   <properties>
    <property name="x" value=""/>
   </properties>
-  <object id="16" name="XY Platform" x="480" y="416" width="32" height="32">
-   <properties>
-    <property name="type" value="XYPlatform"/>
-    <property name="x" value="480"/>
-    <property name="y" value="416"/>
-   </properties>
-  </object>
  </objectgroup>
 </map>
