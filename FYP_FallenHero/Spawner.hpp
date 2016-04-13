@@ -14,6 +14,8 @@
 #include "LockedDoor.hpp"
 #include "Chest.hpp"
 
+#include "DarkDemon.hpp"
+
 #include "Subject.hpp"
 #include "GemMine.hpp"
 #include "Player.hpp"
@@ -50,6 +52,7 @@ public:
 	WEED, 			//!<Spawn type of a Weed
 	CANNON,			//!<Spawn type of a Cannon
 	CHEST,			//!<Spawn type of a Chest
+	DEMON,			//!<Spawn type of a Boss
 	};
 	//!Default constructor for the spawner class
 
@@ -71,6 +74,13 @@ public:
 	*/
 	b2Body* GenerateBody(SPAWN_TYPE type, sf::Vector2f pos);
 
+	/**
+	*	@brief Calls the generate body function and pushes the new body onto the entity list
+	*	@param sf::Vector2f The position to spawn the Skeleton.
+	*	@param bool This is the direciton the enemy is looking and which is also the direction
+	*	the enemy can shoot in.
+	*/
+	void SpawnDarkDemon(sf::Vector2f pos, bool dir);
 	/**
 	*	@brief Calls the generate body function and pushes the new body onto the entity list
 	*	@param sf::Vector2f The position to spawn the Skeleton.

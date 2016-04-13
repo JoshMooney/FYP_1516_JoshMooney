@@ -93,6 +93,28 @@ b2Body * Spawner::GenerateBody(SPAWN_TYPE type, sf::Vector2f pos) {
 		body->CreateFixture(&myFixtureDef);
 		return body;
 		break;
+	case DEMON:
+		myBodyDef.type = b2_dynamicBody; //this will be a dynamic body
+		size = sf::Vector2f(35, 40);
+		pos_off = sf::Vector2f(pos.x + size.x / 2, pos.y + size.y / 2);
+		myBodyDef.position = vHelper::toB2(pos_off); //set the starting position
+		myBodyDef.angle = 0; //set the starting angle
+		myBodyDef.fixedRotation = true;
+
+		body = m_world->CreateBody(&myBodyDef);
+		shape.SetAsBox((size.x / vHelper::B2_SCALE) / 2.0f, (size.y / vHelper::B2_SCALE) / 2.0f);
+
+		myFixtureDef.density = 0.5f;
+		myFixtureDef.friction = 1.0f;
+		myFixtureDef.shape = &shape;
+		myFixtureDef.userData = "Demon";
+
+		myFixtureDef.filter.categoryBits = _filterCategory::ENEMY;
+		myFixtureDef.filter.maskBits = ENEMY | PLAYER | TERRAIN | PLATFORM;
+
+		body->CreateFixture(&myFixtureDef);
+		return body;
+		break;
 	/*case CHEST:
 		//Moved to SpawnChest Method
 		return body;
@@ -100,6 +122,9 @@ b2Body * Spawner::GenerateBody(SPAWN_TYPE type, sf::Vector2f pos) {
 	}
 }
 
+void Spawner::SpawnDarkDemon(sf::Vector2f pos, bool dir) {
+	m_enemies.push_back(new DarkDemon(GenerateBody(DEMON, pos), m_gun, dir));
+}
 void Spawner::SpawnWeed(sf::Vector2f pos, bool dir) {
 	m_enemies.push_back(new Weed(GenerateBody(WEED, pos), dir));
 

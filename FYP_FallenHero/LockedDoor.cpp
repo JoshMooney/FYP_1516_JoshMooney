@@ -181,12 +181,11 @@ void Door::render(sf::RenderWindow & w, sf::Time frames) {
 }
 
 void Door::loadMedia() {
-	if(!m_controller_input)
-		s_prompt_spt = "Assets/Game/prompt.png";
-	else
-		s_prompt_spt = "Assets/Game/prompt_controller.png";
+	s_prompt_spt = "Assets/Game/door_prompt.png";
 	m_prompt_spt.setTexture(ResourceManager<sf::Texture>::instance()->get(s_prompt_spt));
 	m_prompt_spt.setOrigin(32 / 2, 32 / 2);
+
+	m_prompt_spt.setTextureRect(sf::IntRect{ 32 * m_controller_input, 0, 32, 32 });
 
 	e_texture = "Assets/Game/locked_door.png";
 	setTexture(ResourceManager<sf::Texture>::instance()->get(e_texture));
@@ -289,11 +288,8 @@ bool Door::checkKeys(vector<string>* collected) {
 }
 
 void Door::changePrompt() {
-	if (!m_controller_input)
-		s_prompt_spt = "Assets/Game/prompt.png";
-	else
-		s_prompt_spt = "Assets/Game/prompt_controller.png";
-	m_prompt_spt.setTexture(ResourceManager<sf::Texture>::instance()->get(s_prompt_spt));
+	m_prompt_spt.setTextureRect(sf::IntRect{ 32 * m_controller_input, 0, 32, 32 });
+	//m_prompt_spt.setTexture(ResourceManager<sf::Texture>::instance()->get(s_prompt_spt));
 }
 
 bool Door::canUnlock() {

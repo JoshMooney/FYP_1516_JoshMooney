@@ -92,6 +92,7 @@
     <ClInclude Include="Command.hpp" />
     <ClInclude Include="ContactListener.hpp" />
     <ClInclude Include="CrumbleBlock.hpp" />
+    <ClInclude Include="DarkDemon.hpp" />
     <ClInclude Include="Enemy.hpp" />
     <ClInclude Include="Entity.hpp" />
     <ClInclude Include="Checkpoint.hpp" />
@@ -157,6 +158,7 @@
     <ClCompile Include="Chest.cpp" />
     <ClCompile Include="cLog.cpp" />
     <ClCompile Include="CrumbleBlock.cpp" />
+    <ClCompile Include="DarkDemon.cpp" />
     <ClCompile Include="EntityCreator.cpp" />
     <ClCompile Include="FadePlatform.cpp" />
     <ClCompile Include="FYP_FallenHero.cpp" />

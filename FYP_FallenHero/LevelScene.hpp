@@ -1,4 +1,4 @@
-#ifndef LEVEL_SCENE_HPP
+ #ifndef LEVEL_SCENE_HPP
 #define LEVEL_SCENE_HPP
 #include "stdafx.h"
 #include "Scene.hpp"

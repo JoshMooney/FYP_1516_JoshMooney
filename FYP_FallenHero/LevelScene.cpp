@@ -66,40 +66,43 @@ void LevelScene::loadMedia() {
 void LevelScene::update(){
 	//cLog::inst()->print(1, "LevelScene", "Deprecated update called");
 	
-	while (game_clock.now() - timeOfLastTick >= timePerTick && !m_pause_menu->isPaused()){
-		m_world->Step(B2_TIMESTEP, VEL_ITER, POS_ITER);
+	while (game_clock.now() - timeOfLastTick >= timePerTick){
 		timeOfLastTick = game_clock.now();
-		frame_elapse = m_animation_clock.restart();
+		if (!m_pause_menu->isPaused()) {
+			m_world->Step(B2_TIMESTEP, VEL_ITER, POS_ITER);
 
-		m_gem_mine->update(timeOfLastTick, m_player);
+			frame_elapse = m_animation_clock.restart();
 
-		m_spawner->update(timeOfLastTick, m_player);
-		m_spawner->CullInActiveEnemies();
+			m_gem_mine->update(timeOfLastTick, m_player);
 
-		m_platform_creator->update(timeOfLastTick);
+			m_spawner->update(timeOfLastTick, m_player);
+			m_spawner->CullInActiveEnemies();
 
-		m_entity_creator->update(timeOfLastTick, m_player);
+			m_platform_creator->update(timeOfLastTick);
 
-		m_projectiles->update(timeOfLastTick);
-		m_projectiles->cull();
-		m_sensor_pool->cull();
+			m_entity_creator->update(timeOfLastTick, m_player);
 
-		if (m_player->isAlive())
-			m_player->update(timeOfLastTick);
-		else
-			respawnPlayer();	
-		m_player_HUD.update();
+			m_projectiles->update(timeOfLastTick);
+			m_projectiles->cull();
+			m_sensor_pool->cull();
 
-		if (m_camera.outOfBounds(m_player->getBounds())) {
-			m_camera.refresh(m_player->getCenter());
-			m_player->FallOffMap(m_level->getSpawn());
-		}
-		m_camera.setCenter(m_camera.getPlayerOffset(m_player->getCenter()));
+			if (m_player->isAlive())
+				m_player->update(timeOfLastTick);
+			else
+				respawnPlayer();
+			m_player_HUD.update();
 
-		if (m_level->hasEnded(sf::FloatRect{ m_player->getPosition().x, m_player->getPosition().y, (float)player_size.x, (float)player_size.y }))
-		{
-			m_player->clearKeys();
-			m_level_complete = true;
+			if (m_camera.outOfBounds(m_player->getBounds())) {
+				m_camera.refresh(m_player->getCenter());
+				m_player->FallOffMap(m_level->getSpawn());
+			}
+			m_camera.setCenter(m_camera.getPlayerOffset(m_player->getCenter()));
+
+			if (m_level->hasEnded(sf::FloatRect{ m_player->getPosition().x, m_player->getPosition().y, (float)player_size.x, (float)player_size.y }))
+			{
+				m_player->clearKeys();
+				m_level_complete = true;
+			}
 		}
 	}
 	if (m_pause_menu->isPaused()){
@@ -168,7 +171,7 @@ void LevelScene::handleEvent(sf::Event &e){
 				m_camera.LockX(false);
 				break;
 			case sf::Keyboard::E:
-				m_camera.LockX(true);
+				m_spawner->CheckLockDoor(m_player->getKeys());
 				break;
 			case sf::Keyboard::Z:
 				m_camera.LockY(false);
@@ -181,7 +184,7 @@ void LevelScene::handleEvent(sf::Event &e){
 				
 				break;
 			case sf::Keyboard::L:
-				m_spawner->CheckLockDoor(m_player->getKeys());
+				
 				break;
 			case sf::Keyboard::W:
 				buttonY_->execute(m_player);
@@ -287,6 +290,7 @@ void LevelScene::handleInput(XBOXController &controller) {
 		}
 		if (controller.isPressed["B"] && !m_key_pressed) {
 			buttonB_->execute(m_player);
+			m_spawner->CheckLockDoor(m_player->getKeys());
 			m_key_pressed = true;
 		}
 		if (controller.isPressed["X"] && !m_key_pressed) {
@@ -298,6 +302,12 @@ void LevelScene::handleInput(XBOXController &controller) {
 		}
 		if (controller.isPressed["START"]) {
 			m_pause_menu->setPaused(true);
+		}
+		if (controller.isPressed["SELECT"]) {
+			if (!m_key_pressed) {
+				m_b2_dd = !m_b2_dd;
+				m_key_pressed = true;
+			}
 		}
 		if (controller.isIdle())
 			m_key_pressed = false;
