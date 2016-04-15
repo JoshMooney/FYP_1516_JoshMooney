@@ -8,6 +8,7 @@ DemonAI::DemonAI() {
 
 	m_current_form = human.get();
 	m_current_type = Form::TYPE::HUMAN;
+	m_previous_type = m_current_type;
 }
 DemonAI::~DemonAI() {
 
@@ -17,7 +18,7 @@ void DemonAI::think(Player * p, sf::Vector2f pos, float health) {
 	//Check for change in transition
 	checkForm();
 	if (m_current_type != m_previous_type) {
-		m_current_type = m_previous_type;
+		m_previous_type = m_current_type;
 		m_current_form->reset();
 		switch (m_current_type) {
 		case Form::TYPE::HUMAN:
@@ -36,7 +37,7 @@ void DemonAI::think(Player * p, sf::Vector2f pos, float health) {
 }
 void DemonAI::checkForm() {
 	if (m_current_form->morphin()) {
-		int num;
+  		int num;
 		switch (m_current_form->m_form) {
 		case Form::TYPE::HUMAN:
 			num = rand() % 10;

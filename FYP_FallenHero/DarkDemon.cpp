@@ -14,6 +14,8 @@ DarkDemon::DarkDemon(b2Body * b, ProjectileManager* pm, bool dir) : m_projectile
 	loadMedia();
 	alineSprite();
 
+	m_animator.playAnimation(m_current_state, true);
+
 	e_body_active = true;
 	e_sword_col = false;
 	e_can_despawn = false;
@@ -34,16 +36,17 @@ void DarkDemon::ChangeState(STATE s) {
 	
 }
 void DarkDemon::loadMedia() {
-	e_texture = "Assets/Game/boss_temp.png";
+	e_texture = "Assets/Game/boss.png";
 	setTexture(ResourceManager<sf::Texture>::instance()->get(e_texture));
 	m_text_size = sf::Vector2u(35, 44);
 	setOrigin(m_text_size.x / 2, m_text_size.y / 2);
+	setScale(1.5, 1.5);
 	
 	//Add all the regular frames
 	addFrames(frame_idle,			0, 0, 3, 35, 40, 1.0f);
 	addFrames(frame_dash,			1, 0, 3, 30, 40, 1.0f);
 	addFrames(frame_hurt,			2, 0, 1, 33, 40, 1.0f);
-	addFrames(frame_recover,		3, 0, 1, 30, 47, 1.0f);
+	addFrames(frame_recover,		3, 0, 1, 30, 40, 1.0f);
 	addFrames(frame_ready,			4, 0, 2, 39, 40, 1.0f);
 	addFrames(frame_attack,			5, 0, 3, 58, 36, 1.0f);
 	addFrames(frame_transform,		6, 0, 3, 51, 44, 1.0f);
@@ -62,8 +65,8 @@ void DarkDemon::loadMedia() {
 	//Attach frame to the animator
 	m_animator.addAnimation(IDLE,				frame_idle,					sf::seconds(1.5f));
 	m_animator.addAnimation(DASH,				frame_dash,					sf::seconds(1.5f));
-	m_animator.addAnimation(HURT,				frame_hurt,					sf::seconds(1.5f));
-	m_animator.addAnimation(RECOVER,			frame_recover,				sf::seconds(1.5f));
+	m_animator.addAnimation(HURT,				frame_hurt,					sf::seconds(1.0f));
+	m_animator.addAnimation(RECOVER,			frame_recover,				sf::seconds(0.5f));
 	m_animator.addAnimation(READY,				frame_ready,				sf::seconds(1.5f));
 	m_animator.addAnimation(ATTACK,				frame_attack,				sf::seconds(1.5f));
 	m_animator.addAnimation(TRANS,				frame_transform,			sf::seconds(1.5f));
@@ -79,11 +82,16 @@ void DarkDemon::loadMedia() {
 	m_death.setBuffer(ResourceManager<sf::SoundBuffer>::instance()->get(s_death));*/
 }
 void DarkDemon::checkAnimation() {
-	/*if (m_previous_state != m_current_state) {
+	if (m_previous_state != m_current_state) {
 		m_previous_state = m_current_state;
-		m_animator.playAnimation(m_current_state);
+		m_animator.playAnimation(m_current_state, false);
 	}
 
+	if (m_current_state == HURT && !m_animator.isPlayingAnimation())
+		m_current_state = RECOVER;
+	else if (m_current_state == RECOVER && !m_animator.isPlayingAnimation())
+		m_current_state = IDLE;
+	/*
 	if(!m_animator.isPlayingAnimation() && (m_current_state == IDLE ||
 			m_current_state == ATTACK || m_current_state == REV_TRANS ||
 			m_current_state == READY))
@@ -120,6 +128,7 @@ void DarkDemon::addFrames(thor::FrameAnimation& animation, int y, int xFirst, in
 }
 
 void DarkDemon::update(FTS fts, Player * p) {
+	takeAction();
 	checkAnimation();
 	alineSprite();
 
@@ -136,13 +145,14 @@ void DarkDemon::update(FTS fts, Player * p) {
 	//cLog::inst()->print("" + std::to_string(m_action));
 }
 void DarkDemon::render(sf::RenderWindow & w, sf::Time frames) {
-	/*m_animator.update(frames);
-	m_animator.animate(*this);*/
+	m_animator.update(frames);
+	m_animator.animate(*this);
 }
 
 void DarkDemon::TakeDamage() {
 	if (!is_hit && m_can_take_damage) {
 		is_hit = true;
+		m_current_state = HURT;
 		e_hp -= 10;
 		if (e_hp <= 0)
 			Die();
@@ -231,22 +241,23 @@ void DarkDemon::takeAction() {
 		switch (m_action) {
 		case Form::MOVE:
 			//Play Dash
-			m_animator.playAnimation(DASH);
+			m_current_state = DASH;
 			break;
 		case Form::ATTACK:
 			//Play Attack
-			m_animator.playAnimation(ATTACK);
+			m_current_state = ATTACK;
 			break;
 		case Form::SHOOT:
 			//Play Shoot
-			m_animator.playAnimation(READY);
+			m_current_state = DASH;
 			break;
 		case Form::TRANS:
 			//Play Transform
-
+			m_current_state = TRANS;
 			break;
 		case Form::TAUNT:
 			//Play Taunt
+			m_current_state = IDLE;
 			break;
 		}
 		break;
@@ -255,13 +266,14 @@ void DarkDemon::takeAction() {
 	case Form::TYPE::SLIME:
 		switch (m_action) {
 		case Form::MOVE:
-			m_animator.playAnimation(DASH);
+			m_current_state = ATTACK_DASH;
 			break;
 		case Form::ATTACK:
 			break;
 		case Form::SHOOT:
 			break;
 		case Form::TRANS:
+			m_current_state = REV_TRANS_DASH;
 			break;
 		case Form::TAUNT:
 			break;
@@ -272,13 +284,15 @@ void DarkDemon::takeAction() {
 	case Form::TYPE::DEMON:
 		switch (m_action) {
 		case Form::MOVE:
-			m_animator.playAnimation(DASH);
+			m_current_state = ATTACK_TRANS;
 			break;
 		case Form::ATTACK:
+			m_current_state = ATTACK_TRANS;
 			break;
 		case Form::SHOOT:
 			break;
 		case Form::TRANS:
+			m_current_state = REV_TRANS;
 			break;
 		case Form::TAUNT:
 			break;
