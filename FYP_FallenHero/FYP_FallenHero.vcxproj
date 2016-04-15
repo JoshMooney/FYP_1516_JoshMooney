@@ -86,6 +86,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Achievement.hpp" />
+    <ClInclude Include="AI.hpp" />
     <ClInclude Include="Cannon.hpp" />
     <ClInclude Include="Chest.hpp" />
     <ClInclude Include="cLog.hpp" />
@@ -93,6 +94,7 @@
     <ClInclude Include="ContactListener.hpp" />
     <ClInclude Include="CrumbleBlock.hpp" />
     <ClInclude Include="DarkDemon.hpp" />
+    <ClInclude Include="DemonForm.hpp" />
     <ClInclude Include="Enemy.hpp" />
     <ClInclude Include="Entity.hpp" />
     <ClInclude Include="Checkpoint.hpp" />
@@ -100,10 +102,12 @@
     <ClInclude Include="Exit.hpp" />
     <ClInclude Include="FadePlatform.hpp" />
     <ClInclude Include="Flyer.hpp" />
+    <ClInclude Include="Form.hpp" />
     <ClInclude Include="Game.hpp" />
     <ClInclude Include="Gem.hpp" />
     <ClInclude Include="GemMine.hpp" />
     <ClInclude Include="HUD.hpp" />
+    <ClInclude Include="HumanForm.hpp" />
     <ClInclude Include="Key.hpp" />
     <ClInclude Include="Level.hpp" />
     <ClInclude Include="LevelScene.hpp" />
@@ -135,6 +139,7 @@
     <ClInclude Include="SFMLDebugDraw.h" />
     <ClInclude Include="SimpleGUI.hpp" />
     <ClInclude Include="Skeleton.hpp" />
+    <ClInclude Include="SlimeForm.hpp" />
     <ClInclude Include="Spawner.hpp" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="Subject.hpp" />
@@ -154,11 +159,13 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Achievement.cpp" />
+    <ClCompile Include="AI.cpp" />
     <ClCompile Include="Cannon.cpp" />
     <ClCompile Include="Chest.cpp" />
     <ClCompile Include="cLog.cpp" />
     <ClCompile Include="CrumbleBlock.cpp" />
     <ClCompile Include="DarkDemon.cpp" />
+    <ClCompile Include="DemonForm.cpp" />
     <ClCompile Include="EntityCreator.cpp" />
     <ClCompile Include="FadePlatform.cpp" />
     <ClCompile Include="FYP_FallenHero.cpp" />
@@ -166,6 +173,7 @@
     <ClCompile Include="Gem.cpp" />
     <ClCompile Include="GemMine.cpp" />
     <ClCompile Include="HUD.cpp" />
+    <ClCompile Include="HumanForm.cpp" />
     <ClCompile Include="Key.cpp" />
     <ClCompile Include="Level.cpp" />
     <ClCompile Include="LockedDoor.cpp" />
@@ -182,6 +190,7 @@
     <ClCompile Include="SFMLDebugDraw.cpp" />
     <ClCompile Include="SimpleGUI.cpp" />
     <ClCompile Include="Skeleton.cpp" />
+    <ClCompile Include="SlimeForm.cpp" />
     <ClCompile Include="Spawner.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
