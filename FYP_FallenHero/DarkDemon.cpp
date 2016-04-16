@@ -25,13 +25,12 @@ DarkDemon::DarkDemon(b2Body * b, ProjectileManager* pm, bool dir) : m_projectile
 	m_speed = 0.35f;
 	speedFactor = 0;
 	e_hp = 100;
+	m_cooldown = 4.0f;
 
 	m_ai = make_shared<DemonAI>();
 	m_can_take_damage = true;
 }
-DarkDemon::~DarkDemon() {
-	delete m_ai;
-}
+DarkDemon::~DarkDemon() {		}
 
 void DarkDemon::ChangeState(STATE s) {
 	
@@ -53,30 +52,30 @@ void DarkDemon::loadMedia() {
 	addFrames(frame_transform,		6, 0, 3, 51, 44, 1.0f);
 	addFrames(frame_attack_trans,	7, 0, 1, 66, 44, 1.0f);
 	addFrames(frame_transform_dash, 8, 0, 3, 66, 36, 1.0f);
-	addFrames(frame_attack_dash,	9, 0, 3, 66, 36, 1.0f);
+	addFrames(frame_attack_dash,	9, 0, 1, 66, 36, 1.0f);
 	addFrames(frame_die,		   10, 0, 5, 56, 36, 1.0f);
 
 	//Add the transforming frames but only backwards.
 	int i = 0;
-	for (i = 3 - 1; i > 0; i -= 1)
+	for (i = 2; i > -1; i -= 1)
 		frame_rev_transform.addFrame(1.0f, sf::IntRect(51 * i, 236, 51, 44));
-	for (i = 3 - 1; i > 0; i -= 1)
+	for (i = 2; i > -1; i -= 1)
 		frame_rev_transform_dash.addFrame(1.0f, sf::IntRect(66 * i, 324, 66, 36));
 
 	//Attach frame to the animator
-	m_animator.addAnimation(IDLE,				frame_idle,					sf::seconds(1.5f));
-	m_animator.addAnimation(DASH,				frame_dash,					sf::seconds(1.5f));
-	m_animator.addAnimation(HURT,				frame_hurt,					sf::seconds(1.0f));
-	m_animator.addAnimation(RECOVER,			frame_recover,				sf::seconds(0.5f));
-	m_animator.addAnimation(READY,				frame_ready,				sf::seconds(1.5f));
-	m_animator.addAnimation(ATTACK,				frame_attack,				sf::seconds(1.5f));
-	m_animator.addAnimation(TRANS,				frame_transform,			sf::seconds(1.5f));
-	m_animator.addAnimation(REV_TRANS,			frame_rev_transform,		sf::seconds(1.5f));
-	m_animator.addAnimation(ATTACK_TRANS,		frame_attack_trans,			sf::seconds(1.5f));
-	m_animator.addAnimation(TRANS_DASH,			frame_transform_dash,		sf::seconds(1.5f));
-	m_animator.addAnimation(REV_TRANS_DASH,		frame_rev_transform_dash,	sf::seconds(1.5f));
-	m_animator.addAnimation(ATTACK_DASH,		frame_attack_dash,			sf::seconds(1.5f));
-	m_animator.addAnimation(DIE,				frame_die,					sf::seconds(1.5f));
+	m_animator.addAnimation(IDLE,				frame_idle,					sf::seconds(0.25f));
+	m_animator.addAnimation(DASH,				frame_dash,					sf::seconds(1.0f));
+	m_animator.addAnimation(HURT,				frame_hurt,					sf::seconds(0.4f));
+	m_animator.addAnimation(RECOVER,			frame_recover,				sf::seconds(0.25f));
+	m_animator.addAnimation(READY,				frame_ready,				sf::seconds(0.20f));
+	m_animator.addAnimation(ATTACK,				frame_attack,				sf::seconds(0.1f));
+	m_animator.addAnimation(TRANS,				frame_transform,			sf::seconds(0.75f));
+	m_animator.addAnimation(REV_TRANS,			frame_rev_transform,		sf::seconds(1.50f));
+	m_animator.addAnimation(ATTACK_TRANS,		frame_attack_trans,			sf::seconds(1.0f));
+	m_animator.addAnimation(TRANS_DASH,			frame_transform_dash,		sf::seconds(1.0f));
+	m_animator.addAnimation(REV_TRANS_DASH,		frame_rev_transform_dash,	sf::seconds(1.50f));
+	m_animator.addAnimation(ATTACK_DASH,		frame_attack_dash,			sf::seconds(1.0f));
+	m_animator.addAnimation(DIE,				frame_die,					sf::seconds(1.0f));
 
 	/*
 	s_death = "Assets/Audio/Game/skeleton_kill.wav";
@@ -85,20 +84,55 @@ void DarkDemon::loadMedia() {
 void DarkDemon::checkAnimation() {
 	if (m_previous_state != m_current_state) {
 		m_previous_state = m_current_state;
-		m_animator.playAnimation(m_current_state, false);
+		if(m_current_state == IDLE)
+			m_animator.playAnimation(m_current_state, true);
+		else
+			m_animator.playAnimation(m_current_state, false);
 	}
 
-	if (m_current_state == HURT && !m_animator.isPlayingAnimation())
-		m_current_state = RECOVER;
-	else if (m_current_state == RECOVER && !m_animator.isPlayingAnimation())
-		m_current_state = IDLE;
-	/*
-	if(!m_animator.isPlayingAnimation() && (m_current_state == IDLE ||
-			m_current_state == ATTACK || m_current_state == REV_TRANS ||
-			m_current_state == READY))
+	if (!m_animator.isPlayingAnimation()) {
+		if (m_current_state == ATTACK) {
+			m_can_take_damage = true;
+			m_current_state = RECOVER;
+		}
+		//Demon
+		else if (m_current_state == TRANS) {
+			m_current_state = ATTACK_TRANS;
+			m_clock.restart();
+		}
+		else if (m_current_state == REV_TRANS) {
+			m_current_state = IDLE;
+			m_clock.restart();
+			m_can_take_damage = true;
+		}
+		//Slime
+		else if (m_current_state == TRANS_DASH) {
+			m_current_state = ATTACK_DASH;
+			m_clock.restart();
+		}
+		else if (m_current_state == REV_TRANS_DASH) {
+			m_current_state = IDLE;
+			m_clock.restart();
+			m_can_take_damage = true;
+		}
+		//Human
+		else if (m_current_state == HURT)
+			m_current_state = RECOVER;
+		else if (m_current_state == DASH)
+			m_current_state = RECOVER;
+		else if (m_current_state == RECOVER) {
+			m_current_state = IDLE;
+			m_can_take_damage = true;
+			m_clock.restart();
+		}
+		/*
+		if(!m_animator.isPlayingAnimation() && (m_current_state == IDLE ||
+				m_current_state == ATTACK || m_current_state == REV_TRANS ||
+				m_current_state == READY))
 
-	if (m_current_state == IDLE && !m_animator.isPlayingAnimation())
-		m_animator.playAnimation(IDLE);*/
+		if (m_current_state == IDLE && !m_animator.isPlayingAnimation())
+			m_animator.playAnimation(IDLE);*/
+	}
 }
 void DarkDemon::addFrames(thor::FrameAnimation& animation, int y, int xFirst, int xLast, int xSep, int ySep, float duration) {
 	if (y == 0)
@@ -129,7 +163,7 @@ void DarkDemon::addFrames(thor::FrameAnimation& animation, int y, int xFirst, in
 }
 
 void DarkDemon::update(FTS fts, Player * p) {
-	takeAction();
+	//takeAction();
 	checkAnimation();
 	alineSprite();
 
@@ -138,7 +172,7 @@ void DarkDemon::update(FTS fts, Player * p) {
 	else
 		setDirection(0);
 
-	if (/*ai_think &&*/ m_clock.getElapsedTime().asSeconds() > 4) {
+	if (canThink()) {
 		m_ai->think(p, getPosition(), e_hp);
 		takeAction();
 		m_clock.restart();
@@ -153,8 +187,12 @@ void DarkDemon::render(sf::RenderWindow & w, sf::Time frames) {
 void DarkDemon::TakeDamage() {
 	if (!is_hit && m_can_take_damage) {
 		is_hit = true;
+		m_can_take_damage = false;
 		m_current_state = HURT;
 		e_hp -= 10;
+
+		m_cooldown = 3.0 / 100 * e_hp;
+
 		if (e_hp <= 0)
 			Die();
 	}
@@ -232,6 +270,42 @@ void DarkDemon::ReachedWall() {
 void DarkDemon::ReachPlayer() {
 
 }
+bool DarkDemon::canThink() {
+	bool canThink = false;
+	m_type = m_ai->getForm();
+
+	if(m_ai->currentForm()->morphin())
+		canThink = true;
+
+	switch (m_type) {
+	#pragma region HUMAN
+	case Form::TYPE::HUMAN:
+		if (m_current_state == IDLE)
+			canThink = true;
+		break;
+	#pragma endregion
+	#pragma region SLIME
+	case Form::TYPE::SLIME:
+		if (m_current_state == ATTACK_DASH)
+			canThink = true;
+		break;
+	#pragma endregion
+	#pragma region DEMON
+	case Form::TYPE::DEMON:
+		if(m_current_state == ATTACK_TRANS)
+			canThink = true;
+		break;
+	#pragma endregion
+	}
+
+	if (canThink && m_clock.getElapsedTime().asSeconds() > m_cooldown)
+		return true;
+	return false;
+}
+bool DarkDemon::canTakeAction()
+{
+	return false;
+}
 void DarkDemon::takeAction() {
 	m_action = m_ai->getAction();
 	m_type = m_ai->getForm();
@@ -247,6 +321,7 @@ void DarkDemon::takeAction() {
 		case Form::ATTACK:
 			//Play Attack
 			m_current_state = ATTACK;
+			m_can_take_damage = false;
 			break;
 		case Form::SHOOT:
 			//Play Shoot
@@ -254,7 +329,16 @@ void DarkDemon::takeAction() {
 			break;
 		case Form::TRANS:
 			//Play Transform
-			m_current_state = TRANS;
+			m_ai->checkForm();
+			m_type = m_ai->getForm();
+			if (m_type == Form::TYPE::DEMON) {
+				m_current_state = TRANS;
+			}
+			else if (m_type == Form::TYPE::SLIME) {
+				m_current_state = TRANS_DASH;
+			}
+
+			m_can_take_damage = false;
 			break;
 		case Form::TAUNT:
 			//Play Taunt
@@ -274,6 +358,7 @@ void DarkDemon::takeAction() {
 		case Form::SHOOT:
 			break;
 		case Form::TRANS:
+			m_ai->checkForm();
 			m_current_state = REV_TRANS_DASH;
 			break;
 		case Form::TAUNT:
@@ -293,6 +378,7 @@ void DarkDemon::takeAction() {
 		case Form::SHOOT:
 			break;
 		case Form::TRANS:
+			m_ai->checkForm();
 			m_current_state = REV_TRANS;
 			break;
 		case Form::TAUNT:

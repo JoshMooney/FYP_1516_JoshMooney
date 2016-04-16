@@ -6,13 +6,15 @@ DemonForm::DemonForm() {
 	m_action_cool_down = false;
 	m_cool_down = 1.0f;
 
-	m_probablity.push_back(0.1f);
-	m_probablity.push_back(0.1f);
-	m_probablity.push_back(0.1f);
-	m_probablity.push_back(0.1f);
-	m_probablity.push_back(0.1f);
+	m_probablity.push_back(0.0f);
+	m_probablity.push_back(0.0f);
+	m_probablity.push_back(0.0f);
+	m_probablity.push_back(0.0f);
+	m_probablity.push_back(0.0f);
 
 	m_probablity[TRANS] = 0.01f;
+	m_probablity[MOVE] = 0.01f;
+	m_probablity[SHOOT] = 0.01f;
 	m_form = DEMON;
 }
 DemonForm::~DemonForm() {
@@ -22,14 +24,14 @@ DemonForm::~DemonForm() {
 void DemonForm::think(Player * p, sf::Vector2f pos, float health) {
 	//Pre Think Adjustments
 	if (vHelper::distance(pos, p->getPosition()) > 400) {
-		m_probablity[MOVE] += 0.2f;
-		m_probablity[TRANS] += 0.1f;
-		m_probablity[SHOOT] += 0.1f;
+		//m_probablity[MOVE] += 0.2f;
+		//m_probablity[TRANS] += 0.1f;
+		//m_probablity[SHOOT] += 0.1f;
 	}
 	else {
-		m_probablity[MOVE] -= 0.2f;
-		m_probablity[TRANS] -= 0.025f;
-		m_probablity[SHOOT] -= 0.1f;
+		//m_probablity[MOVE] -= 0.2f;
+		//m_probablity[TRANS] -= 0.025f;
+		//m_probablity[SHOOT] -= 0.1f;
 	}
 
 	//Clamp the Probablities
@@ -41,10 +43,13 @@ void DemonForm::think(Player * p, sf::Vector2f pos, float health) {
 	//Post Think Adjustments
 	switch (m_current_action) {
 	case MOVE:
+		m_probablity[MOVE] -= 0.1f;
 		break;
 	case ATTACK:
+		m_probablity[ATTACK] -= 0.1f;
 		break;
 	case SHOOT:
+		m_probablity[SHOOT] -= 0.1f;
 		break;
 	case TRANS:
 		break;
@@ -57,9 +62,11 @@ void DemonForm::setOrigin(sf::Sprite *s) {
 
 }
 void DemonForm::reset() {
+	m_probablity[ATTACK] = 0.0f;
+	m_probablity[TAUNT] = 0.0f;
+	m_probablity[TRANS] = 0.1f;
 	m_probablity[MOVE] = 0.1f;
-	m_probablity[ATTACK] = 0.1f;
 	m_probablity[SHOOT] = 0.1f;
-	m_probablity[TRANS] = 0.01f;
-	m_probablity[TAUNT] = 0.1f;
+
+	m_current_action = MOVE;
 }

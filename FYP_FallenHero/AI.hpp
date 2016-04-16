@@ -19,7 +19,7 @@ private:
 	shared_ptr<SlimeForm> slime;
 
 	Form* m_current_form;
-	Form::TYPE m_current_type, m_previous_type;
+	Form::TYPE m_cur_type, m_pre_type;
 public:
 	DemonAI();
 	~DemonAI();
@@ -28,11 +28,13 @@ public:
 
 	void checkForm();
 	Form::TYPE getForm() {
-		return m_current_type;
+		return m_cur_type;
 	}
 	Form::ACTIONS getAction() {
 		return m_current_form->m_current_action;
 	}
+
+	Form* currentForm() { return m_current_form; }
 };
 
 #include "DemonForm.hpp"

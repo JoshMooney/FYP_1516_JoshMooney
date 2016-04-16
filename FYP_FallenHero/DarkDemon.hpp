@@ -19,6 +19,13 @@ private:
 	Terrain* touching_terr;
 	float speedFactor;
 
+	thor::FrameAnimation frame_idle;
+	thor::FrameAnimation frame_dash;
+	thor::FrameAnimation frame_hurt;
+	thor::FrameAnimation frame_recover;
+	thor::FrameAnimation frame_ready;
+	thor::FrameAnimation frame_attack;
+	thor::FrameAnimation frame_transform;
 	thor::FrameAnimation frame_rev_transform;
 	thor::FrameAnimation frame_attack_trans;
 	thor::FrameAnimation frame_transform_dash;
@@ -37,6 +44,7 @@ private:
 	sf::Clock m_clock;
 	bool m_has_attacked;
 	bool m_can_take_damage;
+	float m_cooldown;
 public:
 	enum STATE {
 		IDLE,			//!<
@@ -153,6 +161,14 @@ public:
 		sf::Vector2f position(getPosition().x - (m_text_size.x / 2), getPosition().y - (m_text_size.y / 2));
 		return sf::FloatRect{ position.x, position.y, (float)m_text_size.x, (float)m_text_size.y };
 	}
+	/**
+	*	@brief
+	*/
+	bool canThink();
+	/**
+	*	@brief
+	*/
+	bool canTakeAction();
 	/**
 	*	@brief 
 	*/
