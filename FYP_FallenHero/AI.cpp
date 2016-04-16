@@ -2,72 +2,56 @@
 #include "AI.hpp"
 
 DemonAI::DemonAI() {
+	human = make_shared<HumanForm>();
+	demon = make_shared<DemonForm>();
+	slime = make_shared<SlimeForm>();
 
-}
-DemonAI::DemonAI(DarkDemon * d) {
-	human = new HumanForm();
-	demon = new DemonForm();
-	slime = new SlimeForm();
-
-	m_current_form = human;
-	m_animatior = &d->m_animator;
+	m_current_form = human.get();
+	m_current_type = Form::TYPE::HUMAN;
+	m_previous_type = m_current_type;
 }
 DemonAI::~DemonAI() {
 
 }
 
-void DemonAI::think(Player * p) {
+void DemonAI::think(Player * p, sf::Vector2f pos, float health) {
 	//Check for change in transition
 	checkForm();
-	if (m_form != m_prev_form) {
-		m_prev_form = m_form;
+	if (m_current_type != m_previous_type) {
+		m_previous_type = m_current_type;
 		m_current_form->reset();
-		switch (m_form) {
-		case HUMAN:
-			m_current_form = human;
+		switch (m_current_type) {
+		case Form::TYPE::HUMAN:
+			m_current_form = human.get();
 			break;
-		case DEMON:
-			m_current_form = demon;
+		case Form::TYPE::DEMON:
+			m_current_form = demon.get();
 			break;
-		case SLIME:
-			m_current_form = slime;
+		case Form::TYPE::SLIME:
+			m_current_form = slime.get();
 			break;
 		}
 	}
 
-	if (m_clock.getElapsedTime().asSeconds() > 4)
-		m_current_form->think(p);
-}
-void DemonAI::attack(ProjectileManager * p, b2World * w) {
-	if (m_current_form->m_current_action == Form::ATTACK && !m_current_form->has_attacked) {
-		m_current_form->has_attacked = true;
-	}
-}
-void DemonAI::move(b2Body * bod) {
-	if (m_current_form->m_current_action == Form::MOVE) {
-		m_current_form->move(bod);
-	}
+	m_current_form->think(p, pos, health);
 }
 void DemonAI::checkForm() {
 	if (m_current_form->morphin()) {
-		int num;
-		switch (m_form) {
-		case HUMAN:
+  		int num;
+		switch (m_current_form->m_form) {
+		case Form::TYPE::HUMAN:
 			num = rand() % 10;
 			if (num > 5)
-				m_form = SLIME;
+				m_current_type = Form::TYPE::SLIME;
 			else
-				m_form = DEMON;
+				m_current_type = Form::TYPE::DEMON;
 			break;
-		case DEMON:
-			m_form = HUMAN;
+		case Form::TYPE::DEMON:
+			m_current_type = Form::TYPE::HUMAN;
 			break;
-		case SLIME:
-			m_form = HUMAN;
+		case Form::TYPE::SLIME:
+			m_current_type = Form::TYPE::HUMAN;
 			break;
 		}
 	}
-}
-void DemonAI::setAnimation() {
-	
 }

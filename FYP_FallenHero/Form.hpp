@@ -10,27 +10,18 @@ class Form {
 private:
 	
 public:
-	enum STATE {
-	IDLE,			//!<
-	DASH,			//!<
-	HURT,			//!<
-	RECOVER,		//!<
-	READY,			//!<
-	ATTACK,			//!<
-	TRANS,			//!<
-	REV_TRANS,		//!<
-	ATTACK_TRANS,	//!<
-	TRANS_DASH,		//!<
-	REV_TRANS_DASH,	//!<
-	ATTACK_DASH,	//!<
-	DIE,			//!<
-}
-	STATE m_current_state;
 	bool m_action_cool_down;
 	float m_cool_down;
 	float m_speed;
 	sf::Vector2f m_position;
 	bool has_attacked;
+
+	enum TYPE {
+		HUMAN,
+		DEMON,
+		SLIME,
+	};
+	TYPE m_form;
 
 	enum ACTIONS {
 		MOVE,
@@ -40,26 +31,25 @@ public:
 		TAUNT,
 	};
 	ACTIONS m_current_action;
-	vector<float> m_probablity;
 
+	vector<float> m_probablity;
 	Form() {	}
 	~Form()	{	}
 
-	virtual void think(Player* p) = 0;
-	virtual void attack(ProjectileManager* p, b2World *w) = 0;
-	virtual void move(b2Body *bod) = 0;
 	virtual void setOrigin(sf::Sprite *s) = 0;
+	virtual void think(Player* p, sf::Vector2f pos, float health) = 0;
 	bool morphin() {
-		if (m_current_action == TRANS)
+  		if (m_current_action == TRANS)
 			return true;
 		return false;
 	}
 	ACTIONS getAction() {
-		int max = 0;
-		for (int i = 0; i <= m_probablity.size(); i++)
+		float max = 0;
+		for (int i = 0; i < m_probablity.size(); i++)
 			max += m_probablity[i];
 
-		float result = rand() % 0 - max;
+		float result;
+		result = static_cast <float> (rand()) / (static_cast <float> (RAND_MAX / max));
 		
 		for (int i = m_probablity.size() - 1; i >= 0; i--) {
 			max -= m_probablity[i];

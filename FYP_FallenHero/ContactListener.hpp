@@ -18,6 +18,7 @@
 #include "Cannon.hpp"
 #include "Gem.hpp"
 #include "Projectile.hpp"
+#include "DarkDemon.hpp"
 
 #include "Subject.hpp"
 
@@ -48,6 +49,23 @@ public:
 		void* fixAType = contact->GetFixtureA()->GetUserData();
 		void* fixBType = contact->GetFixtureB()->GetUserData();
 
+		//Player_Sword and Boss
+		if (fixAType == "Player_Sword" && fixBType == "Demon"
+			|| fixAType == "Demon" && fixBType == "Player_Sword") {
+			void* player_data;
+			void* boss_data;
+
+			if (fixAType == "Player_Sword") {
+				player_data = contact->GetFixtureA()->GetBody()->GetUserData();
+				boss_data = contact->GetFixtureB()->GetBody()->GetUserData();
+			}
+			else {
+				boss_data = contact->GetFixtureA()->GetBody()->GetUserData();
+				player_data = contact->GetFixtureB()->GetBody()->GetUserData();
+			}
+
+			static_cast<DarkDemon*>(boss_data)->setCollidingSword(true);
+		}
 
 		//Player and Key
 		if (fixAType == "Player" && fixBType == "Key"
@@ -799,6 +817,24 @@ public:
 		void* fixAType = contact->GetFixtureA()->GetBody()->GetUserData();
 		void* fixBType = contact->GetFixtureB()->GetBody()->GetUserData();
 		
+		//Player_Sword and Boss
+		if (fixAType == "Player_Sword" && fixBType == "Demon"
+			|| fixAType == "Demon" && fixBType == "Player_Sword") {
+			void* player_data;
+			void* boss_data;
+
+			if (fixAType == "Player_Sword") {
+				player_data = contact->GetFixtureA()->GetBody()->GetUserData();
+				boss_data = contact->GetFixtureB()->GetBody()->GetUserData();
+			}
+			else {
+				boss_data = contact->GetFixtureA()->GetBody()->GetUserData();
+				player_data = contact->GetFixtureB()->GetBody()->GetUserData();
+			}
+
+			static_cast<DarkDemon*>(boss_data)->setCollidingSword(false);
+		}
+
 		//Player Sword and Door
 		if (fixAType == "Door" && fixBType == "Player_Sword"
 			|| fixAType == "Player_Sword" && fixBType == "Door") {

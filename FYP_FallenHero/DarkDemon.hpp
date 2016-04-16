@@ -2,10 +2,14 @@
 #define _DARK_DEMON_HPP
 #include "stdafx.h"
 #include "Enemy.hpp"
+
 #include "ProjectileManager.hpp"
 #include "Terrain.hpp"
 
 #include "Thor\Animations.hpp"
+#include "Form.hpp"
+
+#include <memory>
 
 class DemonAI;
 class DarkDemon : public Enemy {
@@ -25,12 +29,16 @@ private:
 	string s_death;
 	sf::Sound m_death;
 
-	DemonAI *m_ai;
+	shared_ptr<DemonAI> m_ai;
+	Form::ACTIONS m_action;
+	Form::TYPE m_type;
 	bool ai_think;
 	ProjectileManager* m_projectile_mgr;
 	sf::Clock m_clock;
+	bool m_has_attacked;
+	bool m_can_take_damage;
 public:
-	/*enum STATE {
+	enum STATE {
 		IDLE,			//!<
 		DASH,			//!<
 		HURT,			//!<
@@ -44,9 +52,11 @@ public:
 		REV_TRANS_DASH,	//!<
 		ATTACK_DASH,	//!<
 		DIE,			//!<
-	}*/
-	//STATE m_current_state;		//!<The Current animation state of the unit
-	//STATE m_previous_state;		//!<The Current animation state of the unit
+
+	};
+	STATE m_current_state;		//!<The Current animation state of the unit
+	STATE m_previous_state;		//!<The Current animation state of the unit
+
 	thor::Animator<sf::Sprite, STATE> m_animator;		//!<This is the THOR::Animator for stepping through a sprite sheet
 
 	DarkDemon();
@@ -143,6 +153,10 @@ public:
 		sf::Vector2f position(getPosition().x - (m_text_size.x / 2), getPosition().y - (m_text_size.y / 2));
 		return sf::FloatRect{ position.x, position.y, (float)m_text_size.x, (float)m_text_size.y };
 	}
+	/**
+	*	@brief 
+	*/
+	void takeAction();
 };
 
 #include "AI.hpp"

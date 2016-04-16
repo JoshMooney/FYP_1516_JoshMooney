@@ -10,9 +10,7 @@ public:
 	DemonForm();
 	~DemonForm();
 
-	void think(Player* p);
-	void attack(ProjectileManager* p, b2World *w);
-	void move(b2Body *bod);
+	void think(Player* p, sf::Vector2f pos, float health);
 	void setOrigin(sf::Sprite *s);
 	void reset();
 };
