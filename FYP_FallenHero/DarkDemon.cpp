@@ -23,9 +23,11 @@ DarkDemon::DarkDemon(b2Body * b, ProjectileManager* pm, bool dir) : m_projectile
 	m_speed = 0.35f;
 	speedFactor = 0;
 	e_hp = 100;
+	m_ai = new DemonAI(this);
+
 }
 DarkDemon::~DarkDemon() {
-
+	delete m_ai;
 }
 
 void DarkDemon::ChangeState(STATE s) {
@@ -57,6 +59,10 @@ void DarkDemon::checkAnimation() {
 		m_animator.playAnimation(m_current_state);
 	}
 
+	if(!m_animator.isPlayingAnimation() && (m_current_state == IDLE ||
+			m_current_state == ATTACK || m_current_state == REV_TRANS ||
+			m_current_state == READY))
+
 	if (m_current_state == IDLE && !m_animator.isPlayingAnimation())
 		m_animator.playAnimation(IDLE);*/
 }
@@ -78,6 +84,11 @@ void DarkDemon::update(FTS fts, Player * p) {
 	checkAnimation();
 	alineSprite();
 
+	if (/*ai_think &&*/ m_clock.getElapsedTime().asSeconds() > 4) {
+		m_ai->think(p);
+		m_ai->attack(m_projectile_mgr, e_box_body->GetWorld());
+	}
+	m_ai->move(e_box_body);
 }
 void DarkDemon::render(sf::RenderWindow & w, sf::Time frames) {
 	/*m_animator.update(frames);

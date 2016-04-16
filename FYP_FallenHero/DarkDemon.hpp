@@ -7,6 +7,7 @@
 
 #include "Thor\Animations.hpp"
 
+class DemonAI;
 class DarkDemon : public Enemy {
 private:
 	sf::Vector2u m_text_size;
@@ -14,13 +15,6 @@ private:
 	Terrain* touching_terr;
 	float speedFactor;
 
-	thor::FrameAnimation frame_idle;
-	thor::FrameAnimation frame_dash;
-	thor::FrameAnimation frame_hurt;
-	thor::FrameAnimation frame_recover;
-	thor::FrameAnimation frame_ready;
-	thor::FrameAnimation frame_attack;
-	thor::FrameAnimation frame_transform;
 	thor::FrameAnimation frame_rev_transform;
 	thor::FrameAnimation frame_attack_trans;
 	thor::FrameAnimation frame_transform_dash;
@@ -31,9 +25,12 @@ private:
 	string s_death;
 	sf::Sound m_death;
 
+	DemonAI *m_ai;
+	bool ai_think;
 	ProjectileManager* m_projectile_mgr;
+	sf::Clock m_clock;
 public:
-	enum STATE {
+	/*enum STATE {
 		IDLE,			//!<
 		DASH,			//!<
 		HURT,			//!<
@@ -47,10 +44,10 @@ public:
 		REV_TRANS_DASH,	//!<
 		ATTACK_DASH,	//!<
 		DIE,			//!<
-	};
-	STATE m_current_state;		//!<The Current animation state of the unit
-	STATE m_previous_state;		//!<The Current animation state of the unit
-	//thor::Animator<sf::Sprite, STATE> m_animator;		//!<This is the THOR::Animator for stepping through a sprite sheet
+	}*/
+	//STATE m_current_state;		//!<The Current animation state of the unit
+	//STATE m_previous_state;		//!<The Current animation state of the unit
+	thor::Animator<sf::Sprite, STATE> m_animator;		//!<This is the THOR::Animator for stepping through a sprite sheet
 
 	DarkDemon();
 	DarkDemon(b2Body* b, ProjectileManager* pm, bool dir);
@@ -147,5 +144,7 @@ public:
 		return sf::FloatRect{ position.x, position.y, (float)m_text_size.x, (float)m_text_size.y };
 	}
 };
+
+#include "AI.hpp"
 
 #endif

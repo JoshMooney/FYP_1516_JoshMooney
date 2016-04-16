@@ -43,6 +43,12 @@
     <Filter Include="Source Files\Level">
       <UniqueIdentifier>{893aa20d-60dc-456e-9f63-a8324139b95c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Boss::Forms">
+      <UniqueIdentifier>{0c8cba5a-9b14-4bb5-853d-b54c0b8af5cb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Boss::Form">
+      <UniqueIdentifier>{801a8fa4-3444-4328-a8fc-ddf5becab44d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -339,6 +345,33 @@
     <ClInclude Include="PlayerIcon.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="MenuScene.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PauseScreen.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Player.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerIcon.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Form.hpp">
+      <Filter>Header Files\Boss::Forms</Filter>
+    </ClInclude>
+    <ClInclude Include="HumanForm.hpp">
+      <Filter>Header Files\Boss::Forms</Filter>
+    </ClInclude>
+    <ClInclude Include="DemonForm.hpp">
+      <Filter>Header Files\Boss::Forms</Filter>
+    </ClInclude>
+    <ClInclude Include="SlimeForm.hpp">
+      <Filter>Header Files\Boss::Forms</Filter>
+    </ClInclude>
+    <ClInclude Include="AI.hpp">
+      <Filter>Header Files\Boss::Forms</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -463,6 +496,18 @@
     </ClCompile>
     <ClCompile Include="DarkDemon.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="AI.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="HumanForm.cpp">
+      <Filter>Source Files\Boss::Form</Filter>
+    </ClCompile>
+    <ClCompile Include="SlimeForm.cpp">
+      <Filter>Source Files\Boss::Form</Filter>
+    </ClCompile>
+    <ClCompile Include="DemonForm.cpp">
+      <Filter>Source Files\Boss::Form</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
