@@ -31,6 +31,7 @@ class ContactListener : public b2ContactListener {
 private:
 	const float player_jump_y_offset = 15;
 	const float entity_wall_offset = 10;
+	const float boss_wall_offset = 5;
 public:
 	/**
 	*	@brief
@@ -468,6 +469,101 @@ public:
 						player_geo.top + player_geo.height <= block_geo.top)
 						p->setJumping(false);
 				}
+			}
+		}
+
+		//Player and Boss
+		if (fixAType == "Player" && fixBType == "Demon"
+			|| fixAType == "Demon" && fixBType == "Player") {
+			void* player_data;
+			void* boss_data;
+			static int m_hit_player = 0;
+
+			m_hit_player++;
+			if (fixAType == "Player") {
+				player_data = contact->GetFixtureA()->GetBody()->GetUserData();
+				boss_data = contact->GetFixtureB()->GetBody()->GetUserData();
+			}
+			else {
+				boss_data = contact->GetFixtureA()->GetBody()->GetUserData();
+				player_data = contact->GetFixtureB()->GetBody()->GetUserData();
+			}
+
+			DarkDemon* s = static_cast<DarkDemon*>(boss_data); //->ReachPlayer();
+			Player* p = static_cast<Player*>(player_data); //->TakeDamage();
+			s->ReachPlayer();
+
+ 			if (m_hit_player > 1) {
+				m_hit_player = 0;
+				s->finishCurrentAciton();
+			}
+
+			if (s->isAlive() && !p->isHit()) {
+				if (s->getCenter().x > p->getCenter().x)
+					p->TakeDamage(0);		//Knockback Left
+				else
+					p->TakeDamage(1);		//Knockback Right
+			}
+		}
+
+		//Door and Boss
+		if (fixAType == "Door" && fixBType == "Demon"
+			|| fixAType == "Demon" && fixBType == "Door") {
+			void* demon_data;
+			void* door_data;
+
+			if (fixAType == "Demon") {
+				demon_data = contact->GetFixtureA()->GetBody()->GetUserData();
+				door_data = contact->GetFixtureB()->GetBody()->GetUserData();
+			}
+			else {
+				door_data = contact->GetFixtureA()->GetBody()->GetUserData();
+				demon_data = contact->GetFixtureB()->GetBody()->GetUserData();
+			}
+
+			sf::FloatRect t = static_cast<Door*>(door_data)->getBounds();
+			sf::FloatRect s = static_cast<DarkDemon*>(demon_data)->getBounds();
+
+			//Right Side
+			if (s.left + s.width > t.left - boss_wall_offset &&
+				s.left + s.width < t.left) {
+				static_cast<DarkDemon*>(demon_data)->ReachedWall();
+				static_cast<DarkDemon*>(demon_data)->retract();
+			}
+			//Left Side
+			else if (s.left > t.left + t.width + boss_wall_offset &&
+				s.left < t.left + t.width) {
+				static_cast<DarkDemon*>(demon_data)->ReachedWall();
+				static_cast<DarkDemon*>(demon_data)->retract();
+			}
+		}
+
+		//Terrain and Boss
+		if (fixAType == "Terrain" && fixBType == "Demon"
+			|| fixAType == "Demon" && fixBType == "Terrain") {
+			void* terrain_data;
+			void* boss_data;
+
+			if (fixAType == "Terrain") {
+				terrain_data = contact->GetFixtureA()->GetBody()->GetUserData();
+				boss_data = contact->GetFixtureB()->GetBody()->GetUserData();
+			}
+			else {
+				boss_data = contact->GetFixtureA()->GetBody()->GetUserData();
+				terrain_data = contact->GetFixtureB()->GetBody()->GetUserData();
+			}
+
+			sf::FloatRect t = static_cast<Terrain*>(terrain_data)->geometry;
+			sf::FloatRect s = static_cast<DarkDemon*>(boss_data)->getBounds();
+
+			if (s.top + s.height >= t.top &&
+				s.left >= t.left && s.left + s.width <= t.left + t.width) {
+				Terrain* t = static_cast<Terrain*>(terrain_data);
+				static_cast<DarkDemon*>(boss_data)->isTouching(t);
+			}
+			else {
+				static_cast<DarkDemon*>(boss_data)->ReachedWall();
+				static_cast<DarkDemon*>(boss_data)->retract();
 			}
 		}
 

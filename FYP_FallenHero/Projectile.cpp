@@ -17,7 +17,6 @@ Projectile::Projectile(b2Body* b, sf::Vector2f dir) {
 
 	m_animator.playAnimation(m_current_state);
 }
-
 Projectile::Projectile(b2Body* b, sf::Vector2f dir, STATE type) {
 	b->SetUserData(this);
 	m_box_body = b;
@@ -30,9 +29,10 @@ Projectile::Projectile(b2Body* b, sf::Vector2f dir, STATE type) {
 	alineSprite();
 	applySpeed();
 
+	correctRotation(dir);
+
 	m_animator.playAnimation(m_current_state);
 }
-
 Projectile::~Projectile() {		}
 
 void Projectile::init() {
@@ -46,13 +46,17 @@ void Projectile::init() {
 	case BLUE:
 		m_speed = 25.0f;
 		break;
+	case BOSS:
+		m_speed = 25.0f;
+		break;
 	}
 	m_body_active = true;
 	can_despawn = false;
 	m_spawn_point = vHelper::toSF(getBody()->GetPosition());
-
-	if (m_direction == sf::Vector2f(1, 0))	setScale(-1, 1);
-	if (m_direction == sf::Vector2f(-1, 0)) setScale(1, 1);
+	if (m_current_state != BOSS) {
+		if (m_direction == sf::Vector2f(1, 0))	setScale(-1, 1);
+		if (m_direction == sf::Vector2f(-1, 0)) setScale(1, 1);
+	}
 }
 
 void Projectile::update() {
@@ -60,7 +64,11 @@ void Projectile::update() {
 		alineSprite();
 	checkAnimation();
 }
-
+void Projectile::correctRotation(sf::Vector2f dir) {
+	float desired_dir = atan2f(dir.y, dir.x);
+	setRotation(desired_dir);
+	m_box_body->SetTransform(m_box_body->GetPosition(), desired_dir);
+}
 void Projectile::render(sf::RenderWindow & w, sf::Time frames) {
 	m_animator.update(frames);
 	m_animator.animate(*this);
@@ -77,13 +85,15 @@ void Projectile::loadMedia() {
 	addFrames(frame_fire_rd,	0, 0, 3, 28, 20, 1.0f);
 	addFrames(frame_explode,	3, 0, 5, 28, 29, 1.0f);
 
+	addFrames(frame_fire_bk,	4, 0, 3, 28, 29, 1.0f);
+
 	m_animator.addAnimation(FIRE,		frame_fire,		sf::seconds(0.25f));
 	m_animator.addAnimation(RED,		frame_fire_rd,	sf::seconds(0.25f));
 	m_animator.addAnimation(BLUE,		frame_fire_bu,	sf::seconds(0.25f));
 	m_animator.addAnimation(EXPLODE,	frame_explode,	sf::seconds(0.25f));
 
+	m_animator.addAnimation(BOSS,		frame_fire_bk, sf::seconds(0.25f));
 }
-
 void Projectile::addFrames(thor::FrameAnimation& animation, int y, int xFirst, int xLast, int xSep, int ySep, float duration) {
 	if (y == 0)
 		y = 0;
@@ -93,10 +103,13 @@ void Projectile::addFrames(thor::FrameAnimation& animation, int y, int xFirst, i
 		y = 40;
 	else if (y == 3)
 		y = 56;
+	else if (y == 4)
+		y = 121;
 
 	for (int x = xFirst; x != xLast; x += 1)
 		animation.addFrame(duration, sf::IntRect(xSep * x, y, xSep, ySep));
 }
+
 void Projectile::checkAnimation() {
 	if (m_current_state != m_previous_state) {
 		m_previous_state = m_current_state;
@@ -104,30 +117,24 @@ void Projectile::checkAnimation() {
 	}
 	if (m_current_state == EXPLODE && !m_animator.isPlayingAnimation())
 		can_despawn = true;
-	if (m_current_state != EXPLODE && !m_body_active) {
+	if (m_current_state != EXPLODE && !m_body_active)
 		m_current_state = EXPLODE;
-	}
-	if (m_current_state != EXPLODE && !m_animator.isPlayingAnimation()) {
+	if (m_current_state != EXPLODE && !m_animator.isPlayingAnimation())
 		m_animator.playAnimation(m_current_state);
-	}
 }
-
 void Projectile::Die() {
 	m_body_active = false;
 	getBody()->GetFixtureList()->SetSensor(true);
 	setOrigin(28.0f / 2.0f, 28.0f / 2.0f); 
 	alineSprite();
 }
-
 void Projectile::alineSprite() {
 	setPosition(vHelper::toSF(m_box_body->GetPosition()));
 }
-
 void Projectile::applySpeed() {
 	sf::Vector2f force = m_direction * m_speed;
 	m_box_body->SetLinearVelocity(vHelper::toB2(force));
 }
-
 bool Projectile::getBoolDirection() {
 	if (m_direction == sf::Vector2f(1, 0))
 		return true;

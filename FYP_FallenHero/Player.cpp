@@ -13,6 +13,7 @@ Player::Player(b2World &m_world){
 
 	loadMedia();
 
+	is_hit = false;
 	m_jump_force = 1.5f;
 	m_is_moving = false;
 	m_is_jumping = false;
@@ -104,6 +105,7 @@ void Player::checkAnimation() {
 	}
 	if (m_current_state == HIT && !m_animator.isPlayingAnimation()) {
 		m_current_state = IDLE;
+		is_hit = false;
 	}
 }
 void Player::addFrames(thor::FrameAnimation & animation, STATE s, int xFirst, int xLast, int xSep, int ySep, float duration) {
@@ -172,7 +174,7 @@ void Player::loadMedia() {
 	m_animator.addAnimation(RUN,	frame_run,		sf::seconds(0.5f));
 	m_animator.addAnimation(IDLE,	frame_idle,		sf::seconds(1.5f));
 	m_animator.addAnimation(JUMP,	frame_jump,		sf::seconds(1.2f));
-	m_animator.addAnimation(HIT,	frame_hit,		sf::seconds(0.8f));
+	m_animator.addAnimation(HIT,	frame_hit,		sf::seconds(0.4f));
 }
 
 void Player::update(FTS fts){
@@ -268,22 +270,24 @@ void Player::setDirection(bool b) {
 }
 
 void Player::TakeDamage(bool knock_dir) {
-	if (m_current_state != HIT) {
+	if (m_current_state != HIT && !is_hit) {
 		e_box_body->SetLinearVelocity(b2Vec2(0, 0));
 		if (knock_dir) {
 			//float newXVel = clamp(e_box_body->GetLinearVelocity().x + (m_acceleration * DELTA_TIME.asSeconds()), 0, knock_back_factor.x);
 			//float newYVel = clamp(e_box_body->GetLinearVelocity().y + (m_acceleration * DELTA_TIME.asSeconds()), 0, knock_back_factor.y);
 			//e_box_body->SetLinearVelocity(b2Vec2(e_box_body->GetLinearVelocity().x + newXVel, e_box_body->GetLinearVelocity().y - newYVel));
-			e_box_body->ApplyForce(b2Vec2(5,-7), vHelper::toB2(getCenter()), true);
+			e_box_body->ApplyForce(b2Vec2(7,-10), vHelper::toB2(getCenter()), true);
 		}
 		else {
 			//float newXVel = clamp(e_box_body->GetLinearVelocity().x + (m_acceleration * DELTA_TIME.asSeconds()), 0, knock_back_factor.x);
 			//float newYVel = clamp(e_box_body->GetLinearVelocity().y + (m_acceleration * DELTA_TIME.asSeconds()), 0, knock_back_factor.y);
 			//e_box_body->SetLinearVelocity(b2Vec2(e_box_body->GetLinearVelocity().x - newXVel, e_box_body->GetLinearVelocity().y - newYVel));
-			e_box_body->ApplyForce(b2Vec2(-5, -7), vHelper::toB2(getCenter()), true);
+			e_box_body->ApplyForce(b2Vec2(-7, -10), vHelper::toB2(getCenter()), true);
 		}
 		m_hit.play();
 		m_current_state = HIT;
+		m_is_attacking = false;
+		is_hit = true;
 		e_hp -= 25;
 		if (e_hp <= 0) {
 			m_alive = false;

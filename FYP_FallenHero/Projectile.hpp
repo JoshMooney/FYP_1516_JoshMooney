@@ -19,16 +19,19 @@ private:
 	b2Body *m_box_body;     
 	sf::Vector2f m_direction;
 	bool can_despawn;
+
 	thor::FrameAnimation frame_fire;
 	thor::FrameAnimation frame_fire_bu;
 	thor::FrameAnimation frame_fire_rd;
 	thor::FrameAnimation frame_explode;
+	thor::FrameAnimation frame_fire_bk;
 public:
 	enum STATE {
 		FIRE,
 		BLUE,
 		RED,
-		EXPLODE
+		EXPLODE, 
+		BOSS
 	};
 
 	STATE m_current_state, m_previous_state;
@@ -61,6 +64,8 @@ public:
 	*/
 	void addFrames(thor::FrameAnimation& animation, int x, int yFirst, int yLast, int xSep, int ySep, float duration);
 	void checkAnimation();
+
+	void correctRotation(sf::Vector2f dir);
 
 	bool isAlive() { return m_body_active; }
 	bool canDespawn() { return can_despawn; }

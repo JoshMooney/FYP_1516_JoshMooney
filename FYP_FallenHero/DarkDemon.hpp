@@ -12,6 +12,11 @@
 #include <memory>
 
 class DemonAI;
+
+/**
+*	@class DarkDemon
+*	@brief 
+*/
 class DarkDemon : public Enemy {
 private:
 	sf::Vector2u m_text_size;
@@ -36,16 +41,25 @@ private:
 	string s_death;
 	sf::Sound m_death;
 
+	//AI variables
 	shared_ptr<DemonAI> m_ai;
-	Form::ACTIONS m_action;
+	Form::ACTIONS m_action, m_prev_action;
 	Form::TYPE m_type;
 	bool ai_think;
-	ProjectileManager* m_projectile_mgr;
+
 	sf::Clock m_clock;
+	bool m_has_taken_action;
+	bool m_has_finished_action;
 	bool m_has_attacked;
 	bool m_can_take_damage;
 	float m_cooldown;
+
+	int off_wall, max_off_wall;
+	ProjectileManager* m_projectile_mgr;
 public:
+	/**
+	*	@brief
+	*/
 	enum STATE {
 		IDLE,			//!<
 		DASH,			//!<
@@ -60,15 +74,24 @@ public:
 		REV_TRANS_DASH,	//!<
 		ATTACK_DASH,	//!<
 		DIE,			//!<
-
 	};
 	STATE m_current_state;		//!<The Current animation state of the unit
 	STATE m_previous_state;		//!<The Current animation state of the unit
 
-	thor::Animator<sf::Sprite, STATE> m_animator;		//!<This is the THOR::Animator for stepping through a sprite sheet
+	//! This is the THOR::Animator for stepping through a sprite sheet
+	thor::Animator<sf::Sprite, STATE> m_animator;		
 
+	/**
+	*	@brief
+	*/
 	DarkDemon();
+	/**
+	*	@brief
+	*/
 	DarkDemon(b2Body* b, ProjectileManager* pm, bool dir);
+	/**
+	*	@brief
+	*/
 	~DarkDemon();
 
 	/**
@@ -127,6 +150,11 @@ public:
 	*/
 	void attack();
 	/**
+	*	@brief Attack and play the attack animaiton
+	*/
+	void shoot();
+
+	/**
 	*	@brief Position the sprite with the boxbody.
 	*/
 	void alineSprite();
@@ -158,8 +186,18 @@ public:
 	*	@return sf::FloatRect The boundaries of the skeleton
 	*/
 	sf::FloatRect getBounds() override {
-		sf::Vector2f position(getPosition().x - (m_text_size.x / 2), getPosition().y - (m_text_size.y / 2));
+		sf::Vector2f position(getPosition().x - (40 / 2), getPosition().y - (44 / 2));
 		return sf::FloatRect{ position.x, position.y, (float)m_text_size.x, (float)m_text_size.y };
+	}
+	/**
+	*	@brief
+	*/
+	void retract() {
+		off_wall++;
+		if (off_wall > max_off_wall) {
+			off_wall = 0;
+			finishCurrentAciton();
+		}
 	}
 	/**
 	*	@brief
@@ -173,6 +211,15 @@ public:
 	*	@brief 
 	*/
 	void takeAction();
+	/**
+	*	@brief Sets the terrrain toucher to the terrain passed in.
+	*	@param Terrain* The terrain the unit is touching.
+	*/
+	void isTouching(Terrain* t);
+	/**
+	*	@brief 
+	*/
+	void finishCurrentAciton();
 };
 
 #include "AI.hpp"

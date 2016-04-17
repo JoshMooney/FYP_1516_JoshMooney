@@ -25,10 +25,14 @@ DarkDemon::DarkDemon(b2Body * b, ProjectileManager* pm, bool dir) : m_projectile
 	m_speed = 0.35f;
 	speedFactor = 0;
 	e_hp = 100;
-	m_cooldown = 4.0f;
+	m_cooldown = 2.0f;
 
 	m_ai = make_shared<DemonAI>();
 	m_can_take_damage = true;
+	m_has_taken_action = false;
+	m_has_finished_action = false;
+	off_wall = 0;
+	max_off_wall = 2;
 }
 DarkDemon::~DarkDemon() {		}
 
@@ -69,11 +73,11 @@ void DarkDemon::loadMedia() {
 	m_animator.addAnimation(RECOVER,			frame_recover,				sf::seconds(0.25f));
 	m_animator.addAnimation(READY,				frame_ready,				sf::seconds(0.20f));
 	m_animator.addAnimation(ATTACK,				frame_attack,				sf::seconds(0.1f));
-	m_animator.addAnimation(TRANS,				frame_transform,			sf::seconds(0.75f));
-	m_animator.addAnimation(REV_TRANS,			frame_rev_transform,		sf::seconds(1.50f));
+	m_animator.addAnimation(TRANS,				frame_transform,			sf::seconds(0.25f));
+	m_animator.addAnimation(REV_TRANS,			frame_rev_transform,		sf::seconds(1.25f));
 	m_animator.addAnimation(ATTACK_TRANS,		frame_attack_trans,			sf::seconds(1.0f));
-	m_animator.addAnimation(TRANS_DASH,			frame_transform_dash,		sf::seconds(1.0f));
-	m_animator.addAnimation(REV_TRANS_DASH,		frame_rev_transform_dash,	sf::seconds(1.50f));
+	m_animator.addAnimation(TRANS_DASH,			frame_transform_dash,		sf::seconds(0.25f));
+	m_animator.addAnimation(REV_TRANS_DASH,		frame_rev_transform_dash,	sf::seconds(0.25f));
 	m_animator.addAnimation(ATTACK_DASH,		frame_attack_dash,			sf::seconds(1.0f));
 	m_animator.addAnimation(DIE,				frame_die,					sf::seconds(1.0f));
 
@@ -84,7 +88,7 @@ void DarkDemon::loadMedia() {
 void DarkDemon::checkAnimation() {
 	if (m_previous_state != m_current_state) {
 		m_previous_state = m_current_state;
-		if(m_current_state == IDLE)
+		if(m_current_state == IDLE || m_current_state == ATTACK_TRANS || m_current_state == ATTACK_DASH)
 			m_animator.playAnimation(m_current_state, true);
 		else
 			m_animator.playAnimation(m_current_state, false);
@@ -164,19 +168,29 @@ void DarkDemon::addFrames(thor::FrameAnimation& animation, int y, int xFirst, in
 
 void DarkDemon::update(FTS fts, Player * p) {
 	//takeAction();
-	checkAnimation();
 	alineSprite();
-
-	if (p->getPosition().x > getPosition().x)
-		setDirection(1);
-	else
-		setDirection(0);
+	checkAnimation();
 
 	if (canThink()) {
+		m_prev_action = m_ai->getAction();
 		m_ai->think(p, getPosition(), e_hp);
-		takeAction();
 		m_clock.restart();
+		m_has_finished_action = false;
+		m_has_taken_action = false;
+
+		if (p->getPosition().x > getPosition().x)
+			setDirection(1);
+		else
+			setDirection(0);
 	}
+	if (canTakeAction() || m_has_finished_action) {
+		takeAction();
+	}
+
+	//if (m_action != m_prev_action && m_action != Form::ACTIONS::MOVE)
+		//e_box_body->SetLinearVelocity(b2Vec2(0, 0));
+
+	move();
 	//cLog::inst()->print("" + std::to_string(m_action));
 }
 void DarkDemon::render(sf::RenderWindow & w, sf::Time frames) {
@@ -192,6 +206,7 @@ void DarkDemon::TakeDamage() {
 		e_hp -= 10;
 
 		m_cooldown = 3.0 / 100 * e_hp;
+		m_has_taken_action = true;
 
 		if (e_hp <= 0)
 			Die();
@@ -200,32 +215,130 @@ void DarkDemon::TakeDamage() {
 void DarkDemon::Die() {
 	e_box_body->GetFixtureList()->SetSensor(true);
 	e_body_active = false;
+	
 }
+
 void DarkDemon::move() {
-	switch (m_type) {
-	#pragma region HUMAN
-	case Form::TYPE::HUMAN:
-		if (Form::MOVE == m_action) {
+	if (!is_hit) {
+		switch (m_type) {
+		case Form::TYPE::HUMAN:
+			if (Form::MOVE == m_action) {
+				if (touching_terr == nullptr) {
+					//In the air
+					//m_animator.playAnimation(IDLE);
+					//if (e_body_active) {
+					//	m_current_state = IDLE;
+				}
+				else {
+					sf::FloatRect b = getBounds();
+					m_speed = 2;
+					if (e_direction) {
+						if (touching_terr->geometry.left + touching_terr->geometry.width > b.left + b.width) {
+							if (speedFactor < 1.f)
+								speedFactor += 0.02f;
+							else if (speedFactor > 1.f)
+								speedFactor = 1.f;
 
-		}
-		break;
-	#pragma endregion
-	#pragma region SLIME
-	case Form::TYPE::SLIME:
-		if (Form::MOVE == m_action) {
+							e_box_body->SetLinearVelocity(b2Vec2(m_speed, e_box_body->GetLinearVelocity().y));
+						}
+						else
+							ReachedWall();
+					}
+					else {
+						if (touching_terr->geometry.left < b.left) {
+							if (speedFactor > -1.f)
+								speedFactor -= 0.02;
+							else if (speedFactor < -1.f)
+								speedFactor = -1.f;
 
-		}
-		break;
-	#pragma endregion
-	#pragma region DEMON
-	case Form::TYPE::DEMON:
-		if (Form::MOVE == m_action) {
+							e_box_body->SetLinearVelocity(b2Vec2(-m_speed, e_box_body->GetLinearVelocity().y));
+						}
+						else
+							ReachedWall();
+					}
+				}
+			}
+			break;
+		case Form::TYPE::SLIME:
+			if (Form::MOVE == m_action) {
+					if (touching_terr == nullptr) {
+						//In the air
+						//m_animator.playAnimation(IDLE);
+						//if (e_body_active) {
+						//	m_current_state = IDLE;
+					}
+					else {
+						sf::FloatRect b = getBounds();
+						m_speed = 3;
+						if (e_direction) {
+							if (touching_terr->geometry.left + touching_terr->geometry.width > b.left + b.width) {
+								if (speedFactor < 1.f)
+									speedFactor += 0.02f;
+								else if (speedFactor > 1.f)
+									speedFactor = 1.f;
 
+								e_box_body->SetLinearVelocity(b2Vec2(m_speed, e_box_body->GetLinearVelocity().y));
+							}
+							else
+								ReachedWall();
+						}
+						else {
+							if (touching_terr->geometry.left < b.left) {
+								if (speedFactor > -1.f)
+									speedFactor -= 0.02;
+								else if (speedFactor < -1.f)
+									speedFactor = -1.f;
+
+								e_box_body->SetLinearVelocity(b2Vec2(-m_speed, e_box_body->GetLinearVelocity().y));
+							}
+							else
+								ReachedWall();
+						}
+					}
+				}
+			break;
+		case Form::TYPE::DEMON:
+			if (Form::MOVE == m_action) {
+					if (touching_terr == nullptr) {
+						//In the air
+						//m_animator.playAnimation(IDLE);
+						//if (e_body_active) {
+						//	m_current_state = IDLE;
+					}
+					else {
+						sf::FloatRect b = getBounds();
+						m_speed = 4;
+						if (e_direction) {
+							if (touching_terr->geometry.left + touching_terr->geometry.width > b.left + b.width) {
+								if (speedFactor < 1.f)
+									speedFactor += 0.02f;
+								else if (speedFactor > 1.f)
+									speedFactor = 1.f;
+
+								e_box_body->SetLinearVelocity(b2Vec2(m_speed, e_box_body->GetLinearVelocity().y));
+							}
+							else
+								ReachedWall();
+						}
+						else {
+							if (touching_terr->geometry.left < b.left) {
+								if (speedFactor > -1.f)
+									speedFactor -= 0.02;
+								else if (speedFactor < -1.f)
+									speedFactor = -1.f;
+
+								e_box_body->SetLinearVelocity(b2Vec2(-m_speed, e_box_body->GetLinearVelocity().y));
+							}
+							else
+								ReachedWall();
+						}
+					}
+				}
+			break;
 		}
-		break;
-	#pragma endregion
 	}
 }
+
 void DarkDemon::attack() {
 	switch (m_type) {
 	#pragma region HUMAN
@@ -251,7 +364,77 @@ void DarkDemon::attack() {
 	#pragma endregion
 	}
 }
+void DarkDemon::shoot() {
+	switch (m_type) {
+	#pragma region HUMAN
+	case Form::TYPE::HUMAN:
+		if (Form::SHOOT == m_action && !m_has_attacked) {
+			m_has_attacked = true;
+		}
+		break;
+	#pragma endregion
+	#pragma region SLIME
+	case Form::TYPE::SLIME:
+		if (Form::SHOOT == m_action && !m_has_attacked) {
+			m_has_attacked = true;
+		}
+		break;
+	#pragma endregion
+	#pragma region DEMON
+	case Form::TYPE::DEMON:
+		if (Form::SHOOT == m_action && !m_has_attacked) {
+			m_has_attacked = true;
+		}
+		break;
+	#pragma endregion
+	}
+}
+
 void DarkDemon::alineSprite() {
+	m_text_size = sf::Vector2u(35, 44);
+	if (m_current_state != m_previous_state) {
+		switch (m_current_state) {
+		case IDLE:
+			setOrigin(m_text_size.x / 2, m_text_size.y / 2);
+			break;
+		case DASH:
+			setOrigin(m_text_size.x / 2, m_text_size.y / 2);
+			break;
+		case HURT:
+			setOrigin(m_text_size.x / 2, m_text_size.y / 2);
+			break;
+		case RECOVER:
+			setOrigin(m_text_size.x / 2, m_text_size.y / 2);
+			break;
+		case READY:
+			setOrigin(m_text_size.x / 2, m_text_size.y / 2);
+			break;
+		case ATTACK:
+			setOrigin(58 / 2, m_text_size.y / 2);
+			break;
+		case TRANS:
+			setOrigin(m_text_size.x + 10 / 2, m_text_size.y / 2);
+			break;
+		case REV_TRANS:
+			setOrigin(m_text_size.x + 10 / 2, m_text_size.y / 2);
+			break;
+		case ATTACK_TRANS:
+			setOrigin(m_text_size.x + 8 / 2, m_text_size.y / 2);
+			break;
+		case TRANS_DASH:
+			setOrigin(m_text_size.x + 6 / 2, m_text_size.y / 2);
+			break;
+		case REV_TRANS_DASH:
+			setOrigin(m_text_size.x / 2, m_text_size.y / 2);
+			break;
+		case ATTACK_DASH:
+			setOrigin(m_text_size.x / 2, m_text_size.y / 2);
+			break;
+		case DIE:
+			setOrigin(m_text_size.x  + 8 / 2, m_text_size.y / 2);
+			break;
+		}
+	}
 	setPosition(vHelper::toSF(e_box_body->GetPosition()));
 }
 void DarkDemon::ChangeDirection() {
@@ -265,16 +448,18 @@ void DarkDemon::setDirection(bool dir) {
 	else setScale(-1, 1);
 }
 void DarkDemon::ReachedWall() {
-
+	ChangeDirection();
 }
 void DarkDemon::ReachPlayer() {
-
+	ChangeDirection();
+	//e_box_body->SetLinearVelocity(b2Vec2(0, 0));
 }
+
 bool DarkDemon::canThink() {
 	bool canThink = false;
 	m_type = m_ai->getForm();
 
-	if(m_ai->currentForm()->morphin())
+	if(m_ai->currentForm()->morphin() || m_has_taken_action)
 		canThink = true;
 
 	switch (m_type) {
@@ -302,8 +487,11 @@ bool DarkDemon::canThink() {
 		return true;
 	return false;
 }
-bool DarkDemon::canTakeAction()
-{
+bool DarkDemon::canTakeAction() {
+	if (!is_hit && !m_has_taken_action) {
+		m_has_taken_action = true;
+		return true;
+	}
 	return false;
 }
 void DarkDemon::takeAction() {
@@ -321,10 +509,12 @@ void DarkDemon::takeAction() {
 		case Form::ATTACK:
 			//Play Attack
 			m_current_state = ATTACK;
+			attack();
 			m_can_take_damage = false;
 			break;
 		case Form::SHOOT:
 			//Play Shoot
+			shoot();
 			m_current_state = DASH;
 			break;
 		case Form::TRANS:
@@ -356,6 +546,7 @@ void DarkDemon::takeAction() {
 		case Form::ATTACK:
 			break;
 		case Form::SHOOT:
+			shoot();
 			break;
 		case Form::TRANS:
 			m_ai->checkForm();
@@ -374,8 +565,10 @@ void DarkDemon::takeAction() {
 			break;
 		case Form::ATTACK:
 			m_current_state = ATTACK_TRANS;
+			attack();
 			break;
 		case Form::SHOOT:
+			shoot();
 			break;
 		case Form::TRANS:
 			m_ai->checkForm();
@@ -386,5 +579,21 @@ void DarkDemon::takeAction() {
 		}
 		break;
 		#pragma endregion
+	}
+}
+
+void DarkDemon::isTouching(Terrain * t) {
+	touching_terr = t;
+}
+
+void DarkDemon::finishCurrentAciton() {
+	if (m_current_state == DASH && m_action == Form::ACTIONS::MOVE) {
+		m_has_taken_action = true;
+	}
+	if (m_current_state == ATTACK_DASH && m_action == Form::ACTIONS::MOVE) {
+		m_has_taken_action = true;
+	}
+	if (m_current_state == ATTACK_TRANS && m_action == Form::ACTIONS::MOVE) {
+		m_has_taken_action = true;
 	}
 }

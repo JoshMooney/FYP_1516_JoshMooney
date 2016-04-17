@@ -12,9 +12,9 @@ DemonForm::DemonForm() {
 	m_probablity.push_back(0.0f);
 	m_probablity.push_back(0.0f);
 
-	m_probablity[TRANS] = 0.01f;
-	m_probablity[MOVE] = 0.01f;
-	m_probablity[SHOOT] = 0.01f;
+	m_probablity[TRANS] = 0.05f;
+	m_probablity[MOVE] = 0.1f;
+	m_probablity[SHOOT] = 0.1f;
 	m_form = DEMON;
 }
 DemonForm::~DemonForm() {
@@ -43,13 +43,13 @@ void DemonForm::think(Player * p, sf::Vector2f pos, float health) {
 	//Post Think Adjustments
 	switch (m_current_action) {
 	case MOVE:
-		m_probablity[MOVE] -= 0.1f;
+		m_probablity[MOVE] -= 0.05f;
 		break;
 	case ATTACK:
-		m_probablity[ATTACK] -= 0.1f;
+		m_probablity[ATTACK] -= 0.05f;
 		break;
 	case SHOOT:
-		m_probablity[SHOOT] -= 0.1f;
+		m_probablity[SHOOT] -= 0.05f;
 		break;
 	case TRANS:
 		break;
@@ -64,7 +64,7 @@ void DemonForm::setOrigin(sf::Sprite *s) {
 void DemonForm::reset() {
 	m_probablity[ATTACK] = 0.0f;
 	m_probablity[TAUNT] = 0.0f;
-	m_probablity[TRANS] = 0.1f;
+	m_probablity[TRANS] = 0.05f;
 	m_probablity[MOVE] = 0.1f;
 	m_probablity[SHOOT] = 0.1f;
 

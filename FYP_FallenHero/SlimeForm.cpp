@@ -12,7 +12,7 @@ SlimeForm::SlimeForm() {
 	m_probablity.push_back(0.0f);
 	m_probablity.push_back(0.0f);
 
-	m_probablity[ATTACK] = 0.01f;
+	m_probablity[MOVE] = 0.1f;
 	m_probablity[TRANS] = 0.01f;
 	m_form = SLIME;
 }
@@ -56,8 +56,8 @@ void SlimeForm::setOrigin(sf::Sprite *s) {
 
 }
 void SlimeForm::reset() {
-	m_probablity[MOVE] = 0.0f;
-	m_probablity[ATTACK] = 0.1f;
+	m_probablity[MOVE] = 0.1f;
+	m_probablity[ATTACK] = 0.0f;
 	m_probablity[SHOOT] = 0.0f;
 	m_probablity[TRANS] = 0.1f;
 	m_probablity[TAUNT] = 0.0f;

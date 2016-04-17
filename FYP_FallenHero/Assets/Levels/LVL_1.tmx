@@ -1,14 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="90" height="25" tilewidth="32" tileheight="32" nextobjectid="40">
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="90" height="25" tilewidth="32" tileheight="32" nextobjectid="47">
  <tileset firstgid="1" name="tile_set" tilewidth="32" tileheight="32" tilecount="3">
   <image source="Tiles/tile_set.png" width="96" height="32"/>
  </tileset>
  <tileset firstgid="4" name="Lvl_2_ground" tilewidth="32" tileheight="32" tilecount="9">
   <image source="Tiles/different_tileset.png" width="288" height="32"/>
  </tileset>
+ <tileset firstgid="13" name="Castle" tilewidth="32" tileheight="32" tilecount="36">
+  <image source="Tiles/Castle.png" width="1152" height="32"/>
+ </tileset>
+ <tileset firstgid="49" name="Cave_OG" tilewidth="32" tileheight="32" tilecount="28">
+  <image source="Tiles/Cave_OG.png" width="896" height="32"/>
+ </tileset>
  <layer name="Textures" width="90" height="25">
   <data encoding="base64" compression="zlib">
-   eJztltsKgCAQBU26/v8P50sQIqm7m2XNwIFIKB0OW84BANzDUBmQgec2HP68S3v10RrIuPLsE9cgI9fneA1klMwN5rOeeA6f53HqHsjgf6MNeIYeeKKHf+w+ntvwds9jyKrIZL/9It7w/ap55xyyKbLYb7+I+Iyarlgk17eveNacwSI5D3ju27N27tfmr561z+0teMbzl4JnPFtmB+hTFTM=
+   eJztl7sKwkAQRfcH4gPtBB+xURtFrKxiQMTH/3+PN0VAFkeSwMws8R441TJk9zBNshDCAA6DHiuYw7XiN1InC+xsATvbwM42sLMNUucRHAszbc/YWe48gVNhpu0ZO7OzFexsQ5vOG7iN3DWYY2fusxVx5647+2uOneV93sODMNP17J+x+E8h6XS+w4fzHTRJpfMTvpzvoEkqnftO3blyDhdKLuGsgaXqa/347Jwn4FH3uW54dS7gFZ4iL6qv9aPubN24sq+7+w3rzkVgZ+6zHh6d69Y3eI4sVV/rh1dnyb7u+BukCzVc
   </data>
  </layer>
  <objectgroup name="Terrain">
@@ -18,12 +24,44 @@
    <property name="x" value=""/>
    <property name="y" value=""/>
   </properties>
-  <object id="1" name="pf_1" type="Platform" x="-5" y="544" width="1063" height="268">
+  <object id="1" name="pf_1" type="Platform" x="64" y="544" width="800" height="256">
    <properties>
-    <property name="h" value="268"/>
-    <property name="w" value="1063"/>
-    <property name="x" value="0"/>
+    <property name="h" value="256"/>
+    <property name="w" value="800"/>
+    <property name="x" value="64"/>
     <property name="y" value="544"/>
+   </properties>
+  </object>
+  <object id="40" name="pf_1" type="Platform" x="0" y="0" width="96" height="544">
+   <properties>
+    <property name="h" value="544"/>
+    <property name="w" value="96"/>
+    <property name="x" value="0"/>
+    <property name="y" value="0"/>
+   </properties>
+  </object>
+  <object id="41" name="pf_1" type="Platform" x="800" y="0" width="96" height="384">
+   <properties>
+    <property name="h" value="384"/>
+    <property name="w" value="96"/>
+    <property name="x" value="800"/>
+    <property name="y" value="0"/>
+   </properties>
+  </object>
+  <object id="45" name="pf_1" type="Platform" x="864" y="544" width="320" height="256">
+   <properties>
+    <property name="h" value="256"/>
+    <property name="w" value="320"/>
+    <property name="x" value="864"/>
+    <property name="y" value="544"/>
+   </properties>
+  </object>
+  <object id="46" name="pf_1" type="Platform" x="128" y="352" width="192" height="32">
+   <properties>
+    <property name="h" value="32"/>
+    <property name="w" value="192"/>
+    <property name="x" value="128"/>
+    <property name="y" value="352"/>
    </properties>
   </object>
  </objectgroup>
@@ -37,13 +75,13 @@
     <property name="y" value="447"/>
    </properties>
   </object>
-  <object id="13" name="Checkpoint" type="Exit" x="736" y="448" width="32" height="32">
+  <object id="44" name="Player_Spawn" type="Spawn" x="192" y="288" width="64" height="64">
    <properties>
     <property name="h" value="64"/>
-    <property name="label" value="spawn"/>
+    <property name="type" value="spawn"/>
     <property name="w" value="64"/>
-    <property name="x" value="736"/>
-    <property name="y" value="448"/>
+    <property name="x" value="192"/>
+    <property name="y" value="288"/>
    </properties>
   </object>
  </objectgroup>
@@ -61,46 +99,7 @@
  </objectgroup>
  <objectgroup name="Blocks"/>
  <objectgroup name="Level_Data">
-  <object id="35" name="UnlockSensor" x="256" y="352" width="224" height="192">
-   <properties>
-    <property name="Des" value="Just a template for locked door to create sensor"/>
-   </properties>
-  </object>
-  <object id="34" name="Trip Door" x="160" y="384" width="32" height="160">
-   <properties>
-    <property name="direction" value="1"/>
-    <property name="id" value="dr2"/>
-    <property name="locked" value="0"/>
-    <property name="s_h" value="192"/>
-    <property name="s_w" value="224"/>
-    <property name="s_x" value="256"/>
-    <property name="s_y" value="352"/>
-    <property name="value" value="trip_door"/>
-    <property name="x" value="160"/>
-    <property name="y" value="384"/>
-   </properties>
-  </object>
-  <object id="36" name="Gold Key " x="544" y="512" width="32" height="32">
-   <properties>
-    <property name="door" value="dr1"/>
-    <property name="id" value="key1"/>
-    <property name="type" value="gold"/>
-    <property name="value" value="key"/>
-    <property name="x" value="544"/>
-    <property name="y" value="512"/>
-   </properties>
-  </object>
-  <object id="37" name="Blue Key" x="320" y="512" width="32" height="32">
-   <properties>
-    <property name="door" value="dr1"/>
-    <property name="id" value="key2"/>
-    <property name="type" value="blue"/>
-    <property name="value" value="key"/>
-    <property name="x" value="320"/>
-    <property name="y" value="512"/>
-   </properties>
-  </object>
-  <object id="38" name="Duo Locked Door" x="640" y="384" width="32" height="160">
+  <object id="38" name="Duo Locked Door" x="832" y="384" width="32" height="160">
    <properties>
     <property name="direction" value="0"/>
     <property name="id" value="dr1"/>
@@ -109,8 +108,28 @@
     <property name="slot3" value=""/>
     <property name="slot4" value=""/>
     <property name="value" value="door"/>
-    <property name="x" value="640"/>
+    <property name="x" value="832"/>
     <property name="y" value="384"/>
+   </properties>
+  </object>
+  <object id="42" name="Blue Key" x="448" y="256" width="32" height="32">
+   <properties>
+    <property name="door" value="dr1"/>
+    <property name="id" value="key2"/>
+    <property name="type" value="blue"/>
+    <property name="value" value="key"/>
+    <property name="x" value="436"/>
+    <property name="y" value="224"/>
+   </properties>
+  </object>
+  <object id="43" name="Gold Key " x="320" y="512" width="32" height="32">
+   <properties>
+    <property name="door" value="dr1"/>
+    <property name="id" value="key1"/>
+    <property name="type" value="gold"/>
+    <property name="value" value="key"/>
+    <property name="x" value="320"/>
+    <property name="y" value="512"/>
    </properties>
   </object>
  </objectgroup>

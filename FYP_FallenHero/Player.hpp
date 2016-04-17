@@ -49,6 +49,7 @@ private:
 	thor::FrameAnimation frame_jump;
 	thor::FrameAnimation frame_hit;
 
+	bool is_hit;
 	enum STATE { ATTACK, RUN, JUMP, IDLE, HIT };
 	STATE m_current_state, m_previous_state;
 	thor::Animator<sf::Sprite, STATE> m_animator;
@@ -177,6 +178,7 @@ public:
 	void pickupKey(std::pair<string, string> key);
 	map<string, string>* getKeys() { return &m_keys; }
 	void clearKeys();
+	bool isHit() { return is_hit; }
 };
 
 #endif

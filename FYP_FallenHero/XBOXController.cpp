@@ -106,10 +106,7 @@ XBOXController::XBOXController(bool is_output)	{
 	isPressed["AR_RIGHT"] = false;
 	isPressed_cleared = isPressed;
 }
-XBOXController::~XBOXController()
-{
-
-}
+XBOXController::~XBOXController() {		}
 
 bool XBOXController::isConnected() {
 	if (output)		cLog::inst()->print(3, "XBOXController", "XBOXController is Checking for Xbox controller.");
