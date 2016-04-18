@@ -1,29 +1,29 @@
 <Root>
     <SaveGame>
         <SaveSlot1>
-            <TimePlayed>449</TimePlayed>
+            <TimePlayed>16</TimePlayed>
             <CurrentGold>0</CurrentGold>
             <Levels>
                 <LVL1>0</LVL1>
                 <LVL2>0</LVL2>
                 <LVL3>0</LVL3>
-                <LVL4>1</LVL4>
-                <LVL5>1</LVL5>
-                <LVL6>1</LVL6>
-                <LVL7>1</LVL7>
+                <LVL4>0</LVL4>
+                <LVL5>0</LVL5>
+                <LVL6>0</LVL6>
+                <LVL7>0</LVL7>
             </Levels>
             <Achievements>
                 <ACH1>1</ACH1>
                 <ACH2>1</ACH2>
                 <ACH3>0</ACH3>
-                <ACH4>1</ACH4>
-                <ACH5>1</ACH5>
+                <ACH4>0</ACH4>
+                <ACH5>0</ACH5>
                 <ACH6>0</ACH6>
-                <ACH7>0</ACH7>
+                <ACH7>1</ACH7>
                 <ACH8>0</ACH8>
-                <ACH9>1</ACH9>
+                <ACH9>0</ACH9>
                 <ACH10>1</ACH10>
-                <ACH11>1</ACH11>
+                <ACH11>0</ACH11>
                 <ACH12>0</ACH12>
                 <ACH13>0</ACH13>
                 <ACH14>0</ACH14>
@@ -49,38 +49,38 @@
             </Statistics>
         </SaveSlot1>
         <SaveSlot2>
-            <TimePlayed>85</TimePlayed>
-            <CurrentGold>940</CurrentGold>
+            <TimePlayed>0</TimePlayed>
+            <CurrentGold>0</CurrentGold>
             <Levels>
                 <LVL1>0</LVL1>
                 <LVL2>0</LVL2>
                 <LVL3>0</LVL3>
-                <LVL4>1</LVL4>
+                <LVL4>0</LVL4>
                 <LVL5>0</LVL5>
                 <LVL6>0</LVL6>
-                <LVL7>1</LVL7>
+                <LVL7>0</LVL7>
             </Levels>
             <Achievements>
-                <ACH1>1</ACH1>
-                <ACH2>1</ACH2>
-                <ACH3>1</ACH3>
-                <ACH4>1</ACH4>
+                <ACH1>0</ACH1>
+                <ACH2>0</ACH2>
+                <ACH3>0</ACH3>
+                <ACH4>0</ACH4>
                 <ACH5>0</ACH5>
                 <ACH6>0</ACH6>
                 <ACH7>0</ACH7>
                 <ACH8>0</ACH8>
-                <ACH9>1</ACH9>
-                <ACH10>1</ACH10>
-                <ACH11>1</ACH11>
-                <ACH12>1</ACH12>
+                <ACH9>0</ACH9>
+                <ACH10>0</ACH10>
+                <ACH11>0</ACH11>
+                <ACH12>0</ACH12>
                 <ACH13>0</ACH13>
-                <ACH14>1</ACH14>
+                <ACH14>0</ACH14>
                 <ACH15>0</ACH15>
                 <ACH16>0</ACH16>
                 <ACH17>0</ACH17>
                 <ACH18>0</ACH18>
-                <ACH19>1</ACH19>
-                <ACH20>1</ACH20>
+                <ACH19>0</ACH19>
+                <ACH20>0</ACH20>
                 <ACH21>0</ACH21>
             </Achievements>
             <Statistics>
@@ -101,12 +101,12 @@
             <CurrentGold>0</CurrentGold>
             <Levels>
                 <LVL1>0</LVL1>
-                <LVL2>1</LVL2>
-                <LVL3>1</LVL3>
-                <LVL4>1</LVL4>
-                <LVL5>1</LVL5>
-                <LVL6>1</LVL6>
-                <LVL7>1</LVL7>
+                <LVL2>0</LVL2>
+                <LVL3>0</LVL3>
+                <LVL4>0</LVL4>
+                <LVL5>0</LVL5>
+                <LVL6>0</LVL6>
+                <LVL7>0</LVL7>
             </Levels>
             <Achievements>
                 <ACH1>0</ACH1>

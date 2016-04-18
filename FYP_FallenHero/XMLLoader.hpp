@@ -44,7 +44,8 @@ public:
 	XMLLoader(){
 		//GenerateSaveFile();
 		//tinyxml2::XMLError eResult = xmlDoc.LoadFile("Assets/SaveData.xml");
-		assert(xmlDoc.LoadFile("Assets/save_data.xml") != tinyxml2::XML_ERROR_FILE_NOT_FOUND);
+		if(xmlDoc.LoadFile("Assets/save_data.xml") == tinyxml2::XML_ERROR_FILE_NOT_FOUND)
+			GenerateSaveFile();
 		
 		tinyxml2::XMLNode *pRoot = xmlDoc.FirstChild();
 		//cout << string_to_int(s) << endl;

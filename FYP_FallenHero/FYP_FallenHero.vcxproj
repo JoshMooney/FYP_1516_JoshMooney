@@ -26,7 +26,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
-    <PlatformToolset>v140</PlatformToolset>
+    <PlatformToolset>v120</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
@@ -42,8 +42,8 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>$(CHAI_SDK)/include;$(VC_IncludePath);$(WindowsSDK_IncludePath);</IncludePath>
-    <LibraryPath>$(CHAI_SDK)/lib;$(VC_LibraryPath_x86);$(WindowsSDK_LibraryPath_x86);</LibraryPath>
+    <IncludePath>$(VC_IncludePath);$(WindowsSDK_IncludePath);</IncludePath>
+    <LibraryPath>$(VC_LibraryPath_x86);$(WindowsSDK_LibraryPath_x86);</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
@@ -60,9 +60,21 @@
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>$(SFML_vs13)/lib; ./lib; $(STP)\doc\lib;</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(SFML_vs13)/lib; ./lib/Debug; $(STP)lib\Debug;</AdditionalLibraryDirectories>
       <AdditionalDependencies>Box2D.lib;STP-d.lib;thor-d.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
+    <PreBuildEvent>
+      <Command>xcopy "$(SFML_vs13)bin\sfml-audio-d-2.dll" "$(TargetDir)" /Q /D /Y 
+xcopy "$(SFML_vs13)bin\sfml-graphics-d-2.dll" "$(TargetDir)" /Q /D /Y 
+xcopy "$(SFML_vs13)bin\sfml-network-d-2.dll" "$(TargetDir)" /Q /D /Y 
+xcopy "$(SFML_vs13)bin\sfml-system-d-2.dll" "$(TargetDir)" /Q /D /Y 
+xcopy "$(SFML_vs13)bin\sfml-window-d-2.dll" "$(TargetDir)" /Q /D /Y 
+xcopy "$(SFML_vs13)bin\thor-d.dll" "$(TargetDir)" /Q /D /Y 
+
+xcopy "$(SolutionDir)FYP_FallenHero\Assets" "$(TargetDir)Assets" /Y /I /F /E
+xcopy "$(SolutionDir)FYP_FallenHero\lib\Debug" "$(TargetDir)" /Q /D /Y 
+xcopy "$(STP)lib\Debug" "$(TargetDir)"  /Q /D /Y </Command>
+    </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
@@ -73,13 +85,28 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
+      <AdditionalIncludeDirectories>$(SFML_vs13)/include; ./; $(STP)\include;</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
+      <AdditionalLibraryDirectories>$(SFML_vs13)/lib;./lib/Release;$(STP)lib\Release</AdditionalLibraryDirectories>
+      <AdditionalDependencies>Box2D.lib;STP.lib;thor.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
+    <PreBuildEvent>
+      <Command>xcopy "$(SFML_vs13)bin\sfml-audio-2.dll" "$(TargetDir)" /Q /D /Y 
+xcopy "$(SFML_vs13)bin\sfml-graphics-2.dll" "$(TargetDir)" /Q /D /Y 
+xcopy "$(SFML_vs13)bin\sfml-network-2.dll" "$(TargetDir)" /Q /D /Y 
+xcopy "$(SFML_vs13)bin\sfml-system-2.dll" "$(TargetDir)" /Q /D /Y 
+xcopy "$(SFML_vs13)bin\sfml-window-2.dll" "$(TargetDir)" /Q /D /Y 
+xcopy "$(SFML_vs13)bin\thor.dll" "$(TargetDir)" /Q /D /Y 
+
+xcopy "$(SolutionDir)FYP_FallenHero\Assets" "$(TargetDir)Assets" /Y /I /F /E
+xcopy "$(SolutionDir)FYP_FallenHero\lib\Release" "$(TargetDir)" /Q /D /Y 
+xcopy "$(STP)lib\Release" "$(TargetDir)"  /Q /D /Y </Command>
+    </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
