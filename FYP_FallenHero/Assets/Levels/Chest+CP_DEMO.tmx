@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="90" height="25" tilewidth="32" tileheight="32" nextobjectid="14">
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="90" height="25" tilewidth="32" tileheight="32" nextobjectid="16">
  <tileset firstgid="1" name="tile_set" tilewidth="32" tileheight="32" tilecount="3">
   <image source="Tiles/tile_set.png" width="96" height="32"/>
  </tileset>
@@ -31,7 +31,7 @@
   <object id="4" name="Start Level" type="Spawn" x="32" y="448" width="64" height="64">
    <properties>
     <property name="h" value="64"/>
-    <property name="label" value="Spawn"/>
+    <property name="label" value="spawn"/>
     <property name="w" value="64"/>
     <property name="x" value="32"/>
     <property name="y" value="448"/>
@@ -46,13 +46,31 @@
     <property name="y" value="447"/>
    </properties>
   </object>
-  <object id="13" name="Checkpoint" type="Exit" x="736" y="512" width="32" height="32">
+  <object id="15" name="Checkpoint" type="Exit" x="256" y="448" width="32" height="32">
+   <properties>
+    <property name="h" value="64"/>
+    <property name="type" value="checkpoint"/>
+    <property name="w" value="64"/>
+    <property name="x" value="256"/>
+    <property name="y" value="448"/>
+   </properties>
+  </object>
+  <object id="14" name="Checkpoint" type="Exit" x="672" y="448" width="32" height="32">
+   <properties>
+    <property name="h" value="64"/>
+    <property name="type" value="checkpoint"/>
+    <property name="w" value="64"/>
+    <property name="x" value="672"/>
+    <property name="y" value="448"/>
+   </properties>
+  </object>
+  <object id="13" name="Checkpoint" type="Exit" x="736" y="448" width="32" height="32">
    <properties>
     <property name="h" value="64"/>
     <property name="type" value="checkpoint"/>
     <property name="w" value="64"/>
     <property name="x" value="736"/>
-    <property name="y" value="512"/>
+    <property name="y" value="448"/>
    </properties>
   </object>
  </objectgroup>

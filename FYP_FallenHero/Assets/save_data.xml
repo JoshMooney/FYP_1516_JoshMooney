@@ -1,8 +1,8 @@
 <Root>
     <SaveGame>
         <SaveSlot1>
-            <TimePlayed>16</TimePlayed>
-            <CurrentGold>0</CurrentGold>
+            <TimePlayed>21</TimePlayed>
+            <CurrentGold>1080</CurrentGold>
             <Levels>
                 <LVL1>0</LVL1>
                 <LVL2>0</LVL2>
@@ -15,13 +15,13 @@
             <Achievements>
                 <ACH1>1</ACH1>
                 <ACH2>1</ACH2>
-                <ACH3>0</ACH3>
+                <ACH3>1</ACH3>
                 <ACH4>0</ACH4>
                 <ACH5>0</ACH5>
                 <ACH6>0</ACH6>
-                <ACH7>1</ACH7>
+                <ACH7>0</ACH7>
                 <ACH8>0</ACH8>
-                <ACH9>0</ACH9>
+                <ACH9>1</ACH9>
                 <ACH10>1</ACH10>
                 <ACH11>0</ACH11>
                 <ACH12>0</ACH12>
@@ -29,10 +29,10 @@
                 <ACH14>0</ACH14>
                 <ACH15>0</ACH15>
                 <ACH16>0</ACH16>
-                <ACH17>0</ACH17>
+                <ACH17>1</ACH17>
                 <ACH18>0</ACH18>
-                <ACH19>1</ACH19>
-                <ACH20>0</ACH20>
+                <ACH19>0</ACH19>
+                <ACH20>1</ACH20>
                 <ACH21>0</ACH21>
             </Achievements>
             <Statistics>

@@ -104,6 +104,8 @@ public:
 
 	void attack();
 	
+	void setGold(int g) { m_gold = g; }
+
 	void addGold(int amount)	{ 
 		m_gold += amount; 
 		if (m_gold > 100)

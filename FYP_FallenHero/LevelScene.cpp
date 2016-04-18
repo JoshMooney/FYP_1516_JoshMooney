@@ -84,7 +84,7 @@ void LevelScene::update(){
 
 			m_projectiles->update(timeOfLastTick);
 			m_projectiles->cull();
-			m_sensor_pool->cull();
+			//m_sensor_pool->cull();
 
 			if (m_player->isAlive())
 				m_player->update(timeOfLastTick);
@@ -98,8 +98,7 @@ void LevelScene::update(){
 			}
 			m_camera.setCenter(m_camera.getPlayerOffset(m_player->getCenter()));
 
-			if (m_level->hasEnded(sf::FloatRect{ m_player->getPosition().x, m_player->getPosition().y, (float)player_size.x, (float)player_size.y }))
-			{
+			if (m_sensor_pool->hasEnded())		{
 				m_player->clearKeys();
 				m_level_complete = true;
 			}

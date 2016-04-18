@@ -71,7 +71,7 @@ xcopy "$(SFML_vs13)bin\sfml-system-d-2.dll" "$(TargetDir)" /Q /D /Y
 xcopy "$(SFML_vs13)bin\sfml-window-d-2.dll" "$(TargetDir)" /Q /D /Y 
 xcopy "$(SFML_vs13)bin\thor-d.dll" "$(TargetDir)" /Q /D /Y 
 
-xcopy "$(SolutionDir)FYP_FallenHero\Assets" "$(TargetDir)Assets" /Y /I /F /E
+xcopy "$(SolutionDir)FYP_FallenHero\Assets" "$(TargetDir)Assets" /Y /D /I /F /E
 xcopy "$(SolutionDir)FYP_FallenHero\lib\Debug" "$(TargetDir)" /Q /D /Y 
 xcopy "$(STP)lib\Debug" "$(TargetDir)"  /Q /D /Y </Command>
     </PreBuildEvent>
@@ -103,7 +103,7 @@ xcopy "$(SFML_vs13)bin\sfml-system-2.dll" "$(TargetDir)" /Q /D /Y
 xcopy "$(SFML_vs13)bin\sfml-window-2.dll" "$(TargetDir)" /Q /D /Y 
 xcopy "$(SFML_vs13)bin\thor.dll" "$(TargetDir)" /Q /D /Y 
 
-xcopy "$(SolutionDir)FYP_FallenHero\Assets" "$(TargetDir)Assets" /Y /I /F /E
+xcopy "$(SolutionDir)FYP_FallenHero\Assets" "$(TargetDir)Assets" /Y /D /I /F /E
 xcopy "$(SolutionDir)FYP_FallenHero\lib\Release" "$(TargetDir)" /Q /D /Y 
 xcopy "$(STP)lib\Release" "$(TargetDir)"  /Q /D /Y </Command>
     </PreBuildEvent>

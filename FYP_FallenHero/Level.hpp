@@ -120,7 +120,7 @@ public:
 	*	@param b2World Is the box2d world, this is needed as the player items need bodies to be made for its instances
 	*	@param tmx::ObjectGroup The object layer of which the player items are located on within the .tmx 
 	*/
-	void GeneratePlayerItems(b2World *world, tmx::ObjectGroup &layer);
+	void GeneratePlayerItems(b2World *world, tmx::ObjectGroup &layer, SensorPool* sp);
 	/**
 	*	@brief Steps throught the object layer creating Level specific items using the information inside the object 
 	*	in the .tmx file and push these new objects back onto the level_data container.
@@ -171,7 +171,6 @@ public:
 	*/
 	void loadMap(string lvl_name);
 	shared_ptr<tmx::TileMap> tiledMap() { return tiled_map; }					//!<Fetches the tiled map frpm the Level
-	bool hasEnded(sf::FloatRect player) { return m_exit->hasTripped();  }   //!<Bool check for if the level has ended or not
 	void fetchSpawn();
 	sf::Vector2f getSpawn() { 
 		fetchSpawn();

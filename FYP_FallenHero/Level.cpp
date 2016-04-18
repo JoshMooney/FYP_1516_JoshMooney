@@ -10,6 +10,7 @@ Level::Level() {
 }
 Level::Level(string s, b2World *world, Spawner *spawner, GemMine *mine, PlatformCreator *p, EntityCreator *ent_cre, SensorPool *sensor_pool) {
 	path = "Assets/Levels/";
+	format = ".lvl";
 	format = ".tmx";
 	tile_size = 32;
 
@@ -90,7 +91,7 @@ void Level::ParseMapLayers(b2World * world, Spawner *s, GemMine *mine, PlatformC
 	tiled_map->GetObjectGroup("Terrain").visible = false;
 
 	lay = tiled_map->GetObjectGroup("Player_Data");
-	GeneratePlayerItems(world, lay);
+	GeneratePlayerItems(world, lay, sensor_pool);
 	tiled_map->GetObjectGroup("Player_Data").visible = false;
 
 	lay = tiled_map->GetObjectGroup("BG");
@@ -257,7 +258,7 @@ void Level::CreatePlatforms(b2World * world, tmx::ObjectGroup & layer, PlatformC
 
 	p->linkNodes(&m_point_map);
 }
-void Level::GeneratePlayerItems(b2World * world, tmx::ObjectGroup &layer) {
+void Level::GeneratePlayerItems(b2World * world, tmx::ObjectGroup &layer, SensorPool* sp) {
 	string x, y, w, h;
 	string type;
 	int lenght = layer.objects_.size();
@@ -276,6 +277,7 @@ void Level::GeneratePlayerItems(b2World * world, tmx::ObjectGroup &layer) {
 			//w = layer.objects_[i].GetPropertyValue("w");
 			//h = layer.objects_[i].GetPropertyValue("h");
 			//sf::Vector2u size(atoi(w.c_str()), atoi(h.c_str()));
+			//sp->push_back(new Checkpoint(world, pos, size));
 			m_checkpoints_HC.push_back(new Checkpoint(world, pos, size));
 		}
 		if (type == "exit") {
@@ -283,12 +285,13 @@ void Level::GeneratePlayerItems(b2World * world, tmx::ObjectGroup &layer) {
 			h = layer.objects_[i].GetPropertyValue("h");
 			sf::Vector2u size(atoi(w.c_str()), atoi(h.c_str()));
 			m_exit = new Sensor(world, pos, size);
+			sp->push_back(m_exit);
+			sp->m_end = m_exit;
 		}
 		if (type == "spawn") {
 			m_player_spawn = pos;
 		}
 	}
-
 	m_checkpoint_list = m_checkpoints_HC;
 }
 void Level::GenerateLevelItems(b2World *world, tmx::ObjectGroup &layer, GemMine* mine, Spawner *spawner, EntityCreator *ent_cre, SensorPool *sensor_pool) {

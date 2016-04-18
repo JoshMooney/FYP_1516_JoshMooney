@@ -111,8 +111,12 @@ void Game::goToNextScene() {
 	case MENU:
 		m_current_scene = m_world_scene;
 		m_current_state = WORLD;
+		
 		//Pass the Selected slot to the world
 		m_world_scene->loadSaveSlot(m_menu_scene->selected_slot);
+		int g;
+		g = m_menu_scene->selected_slot->m_currentGold;
+		m_level_scene->getPlayer()->setGold(g);
 		break;
 	case WORLD:
 		m_world_scene->reset();

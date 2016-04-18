@@ -2,6 +2,7 @@
 #define _SENSOR_POOL_HPP
 #include "stdafx.h"
 #include "Sensor.hpp"
+#include "Checkpoint.hpp"
 #include <vector>
 
 class SensorPool {
@@ -9,6 +10,9 @@ private:
 	b2World *m_world;
 	vector<Sensor *> m_list;
 public:
+	Sensor* m_end;
+	vector<Checkpoint *> m_checkpts;
+
 	SensorPool(b2World *world) : m_world(world){
 
 	}
@@ -39,7 +43,12 @@ public:
 			delete *it;				//delete the pointer
 			it = m_list.erase(it);	//erase the object(calls the objects destructor)
 		}
+
+		m_end = nullptr;
 	}
+
+	bool hasEnded() { return m_end->hasTripped(); }   //!<Bool check for if the level has ended or not
+
 };
 
 #endif
