@@ -37,6 +37,7 @@ private:
 	float update_dist;
 	b2World *m_world;
 
+	DarkDemon* m_boss;
 	Skeleton* prototype_Skeleton;
 	vector<Door *> m_doors;
 	vector<Enemy *> m_enemies;

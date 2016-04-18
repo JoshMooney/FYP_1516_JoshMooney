@@ -4,6 +4,7 @@
 #include "Subject.hpp"
 
 Player::Player(b2World &m_world){
+	e_sword_col = false;
 	m_alive = true;
 	e_hp = 100;
 	e_max_hp = 100;

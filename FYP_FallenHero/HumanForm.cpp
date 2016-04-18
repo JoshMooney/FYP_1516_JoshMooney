@@ -12,8 +12,8 @@ HumanForm::HumanForm() {
 	m_probablity.push_back(0.0f);
 	m_probablity.push_back(0.0f);
 
-	m_probablity[TRANS] = 0.5f;
-	m_probablity[MOVE] = 0.1f;
+	m_probablity[TRANS] = 0.00f;
+	m_probablity[ATTACK] = 0.1f;
 
 	m_form = HUMAN;
 }
@@ -43,7 +43,7 @@ void HumanForm::think(Player * p, sf::Vector2f pos, float health) {
 		//m_probablity[MOVE] -= 0.1f;
 		break;
 	case ATTACK:
-		m_probablity[ATTACK] -= 0.05f;
+		//m_probablity[ATTACK] -= 0.05f;
 		break;
 	case SHOOT:
 		//m_probablity[SHOOT] -= 0.1f;
@@ -61,10 +61,10 @@ void HumanForm::setOrigin(sf::Sprite *s) {
 
 }
 void HumanForm::reset() {
-	m_probablity[MOVE] =	0.10f;
+	m_probablity[MOVE] =	0.00f;
 	m_probablity[ATTACK] =	0.10f;
 	m_probablity[SHOOT] =	0.00f;
-	m_probablity[TRANS] =	0.10;
+	m_probablity[TRANS] =	0.00;
 	m_probablity[TAUNT] =	0.00f;
 
 	m_current_action = MOVE;

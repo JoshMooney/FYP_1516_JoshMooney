@@ -26,6 +26,7 @@ struct Entity : public sf::Sprite {
 	virtual void render(sf::RenderWindow *w, sf::Time frames) = 0;
 	virtual bool canDespawn() { return e_can_despawn; }
 
+	bool e_sword_col;   //!<This is the flag for weather the enemy is colliding with the players sword box.
 	float e_hp;				//!<The Health points of the entity
 	float e_max_hp;         //!<The Maximum Health points of the entity
 	string e_texture;       //!<A string to the name of the resource and its path location

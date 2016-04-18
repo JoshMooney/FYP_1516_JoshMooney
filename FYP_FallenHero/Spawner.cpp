@@ -113,6 +113,20 @@ b2Body * Spawner::GenerateBody(SPAWN_TYPE type, sf::Vector2f pos) {
 		myFixtureDef.filter.maskBits = ENEMY | PLAYER | TERRAIN | PLATFORM;
 
 		body->CreateFixture(&myFixtureDef);
+
+		//Create Fixture for the Attack swing 
+		b2PolygonShape sword_shape;
+		sword_shape.SetAsBox((81 / vHelper::B2_SCALE) / 2, (40 / vHelper::B2_SCALE) / 2, vHelper::toB2(sf::Vector2f(0, 4)), 0.0f);
+
+		b2FixtureDef mySwordDef;
+		mySwordDef.density = 1.0f;
+		mySwordDef.friction = 1.5f;
+		mySwordDef.shape = &sword_shape;
+		mySwordDef.userData = "Boss_Sword";
+		mySwordDef.isSensor = true;
+
+		body->CreateFixture(&mySwordDef);
+
 		return body;
 		break;
 	/*case CHEST:
@@ -123,7 +137,8 @@ b2Body * Spawner::GenerateBody(SPAWN_TYPE type, sf::Vector2f pos) {
 }
 
 void Spawner::SpawnDarkDemon(sf::Vector2f pos, bool dir) {
-	m_enemies.push_back(new DarkDemon(GenerateBody(DEMON, pos), m_gun, dir));
+	m_boss = new DarkDemon(GenerateBody(DEMON, pos), m_gun, dir);
+	m_enemies.push_back(m_boss);
 }
 void Spawner::SpawnWeed(sf::Vector2f pos, bool dir) {
 	m_enemies.push_back(new Weed(GenerateBody(WEED, pos), dir));
@@ -435,6 +450,11 @@ void Spawner::CullInActiveEnemies() {
 }
 
 void Spawner::update(FTS fts, Player * p) {
+	if (m_boss != nullptr && p->e_sword_col && m_boss->isAttacking() 
+		&& m_boss->getAttackBounds().intersects(p->getBounds())) {
+		p->TakeDamage(!m_boss->e_direction);
+	}
+
 	for(Enemy* e : m_enemies) {
 		//Check for collision before checking the distance
 		if (e->isCollidingSword() && p->isAttacking() && p->getAttackBounds().intersects(e->getBounds())) {

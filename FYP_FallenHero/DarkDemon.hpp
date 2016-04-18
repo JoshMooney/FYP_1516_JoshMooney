@@ -53,6 +53,7 @@ private:
 	bool m_has_attacked;
 	bool m_can_take_damage;
 	float m_cooldown;
+	sf::Vector2i attack_frame_size;
 
 	int off_wall, max_off_wall;
 	ProjectileManager* m_projectile_mgr;
@@ -220,6 +221,29 @@ public:
 	*	@brief 
 	*/
 	void finishCurrentAciton();
+	/**
+	*	@brief
+	*/
+	bool isAttacking() {
+		return (m_current_state == ATTACK);
+	}
+
+	/**
+	*	@brief
+	*/
+	sf::FloatRect getAttackBounds() {
+		sf::Vector2f center = getCenter();
+		if (e_direction) {
+			sf::Vector2f bot_left = sf::Vector2f(center.x - (m_text_size.x / 2), center.y + (m_text_size.y / 2));
+			sf::Vector2f position = sf::Vector2f(bot_left.x, bot_left.y - attack_frame_size.y);
+			return sf::FloatRect{ position.x, position.y, (float)attack_frame_size.x, (float)attack_frame_size.y };
+		}
+		else {
+			sf::Vector2f bot_right = sf::Vector2f(center.x + (m_text_size.x / 2), center.y + (m_text_size.y / 2));
+			sf::Vector2f position = sf::Vector2f(bot_right.x - attack_frame_size.x, bot_right.y - attack_frame_size.y);
+			return sf::FloatRect{ position.x, position.y, (float)attack_frame_size.x, (float)attack_frame_size.y };
+		}
+	}
 };
 
 #include "AI.hpp"

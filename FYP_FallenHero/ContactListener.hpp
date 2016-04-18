@@ -68,6 +68,24 @@ public:
 			static_cast<DarkDemon*>(boss_data)->setCollidingSword(true);
 		}
 
+		//Boss_Sword and Player
+		if (fixAType == "Boss_Sword" && fixBType == "Player"
+			|| fixAType == "Player" && fixBType == "Boss_Sword") {
+			void* player_data;
+			void* boss_data;
+
+			if (fixAType == "Boss_Sword") {
+				boss_data = contact->GetFixtureA()->GetBody()->GetUserData();
+				player_data = contact->GetFixtureB()->GetBody()->GetUserData();
+			}
+			else {
+				player_data = contact->GetFixtureA()->GetBody()->GetUserData();
+				boss_data = contact->GetFixtureB()->GetBody()->GetUserData();
+			}
+
+			static_cast<Player*>(player_data)->e_sword_col = true;
+		}
+
 		//Player and Key
 		if (fixAType == "Player" && fixBType == "Key"
 			|| fixAType == "Key" && fixBType == "Player") {
@@ -929,6 +947,24 @@ public:
 			}
 
 			static_cast<DarkDemon*>(boss_data)->setCollidingSword(false);
+		}
+
+		//Boss_Sword and Player
+		if (fixAType == "Boss_Sword" && fixBType == "Player"
+			|| fixAType == "Player" && fixBType == "Boss_Sword") {
+			void* player_data;
+			void* boss_data;
+
+			if (fixAType == "Boss_Sword") {
+				boss_data = contact->GetFixtureA()->GetBody()->GetUserData();
+				player_data = contact->GetFixtureB()->GetBody()->GetUserData();
+			}
+			else {
+				player_data = contact->GetFixtureA()->GetBody()->GetUserData();
+				boss_data = contact->GetFixtureB()->GetBody()->GetUserData();
+			}
+
+			static_cast<Player*>(player_data)->e_sword_col = false;
 		}
 
 		//Player Sword and Door

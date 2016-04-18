@@ -45,6 +45,7 @@ void DarkDemon::loadMedia() {
 	m_text_size = sf::Vector2u(35, 44);
 	setOrigin(m_text_size.x / 2, m_text_size.y / 2);
 	setScale(1.5, 1.5);
+	attack_frame_size = sf::Vector2i(58, 36);
 	
 	//Add all the regular frames
 	addFrames(frame_idle,			0, 0, 3, 35, 40, 1.0f);
