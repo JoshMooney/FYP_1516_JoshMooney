@@ -42,10 +42,12 @@ public:
 	*	node and initalises the tinyxml2::XMLElement to start on the first save slot 
 	*/
 	XMLLoader(){
-		string path = "Assets/game_data";
+		string path = "Assets/save_data";
 		string ext = ".sav";
 		ext = ".xml";
 		string result = path + ext;
+
+		//xmlDoc.LoadFile(result.c_str());
 
 		//Why does this load the old save_data all the time
 		if(xmlDoc.LoadFile(result.c_str()) == tinyxml2::XML_ERROR_FILE_NOT_FOUND)

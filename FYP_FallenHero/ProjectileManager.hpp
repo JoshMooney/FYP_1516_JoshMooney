@@ -37,12 +37,22 @@ public:
 	*	@brief
 	*	@param
 	*/
+	b2Body* GenerateBossBody(sf::Vector2f pos);
+	/**
+	*	@brief
+	*	@param
+	*/
 	void fireBullet(sf::Vector2f pos, sf::Vector2f dir);
 	/**
 	*	@brief
 	*	@param
 	*/
 	void fire(sf::Vector2f pos, sf::Vector2f dir, Projectile::STATE type);
+	/**
+	*	@brief
+	*	@param
+	*/
+	void shootBoss(sf::Vector2f pos, sf::Vector2f dir, string type);
 
 	/**
 	*	@brief

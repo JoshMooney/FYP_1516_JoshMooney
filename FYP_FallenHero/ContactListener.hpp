@@ -860,6 +860,34 @@ public:
 		void* fixAType = contact->GetFixtureA()->GetUserData();
 		void* fixBType = contact->GetFixtureB()->GetUserData();
 
+		//Boss_Sword and Player
+		if (fixAType == "Boss_Sword" && fixBType == "Player"
+			|| fixAType == "Player" && fixBType == "Boss_Sword") {
+			void* player_data;
+			void* boss_data;
+
+			if (fixAType == "Boss_Sword") {
+				player_data = contact->GetFixtureA()->GetBody()->GetUserData();
+				boss_data = contact->GetFixtureB()->GetBody()->GetUserData();
+			}
+			else {
+				boss_data = contact->GetFixtureA()->GetBody()->GetUserData();
+				player_data = contact->GetFixtureB()->GetBody()->GetUserData();
+			}
+			contact->SetEnabled(false);
+			static_cast<Player*>(player_data)->e_sword_col = true;
+		}
+		/*else if (fixAType == "Boss_Sword" || fixBType == "Boss_Sword") {
+			void* boss_data;
+
+			if (fixAType == "Boss_Sword") 
+				boss_data = contact->GetFixtureB()->GetBody()->GetUserData();
+			else 
+				boss_data = contact->GetFixtureA()->GetBody()->GetUserData();
+
+			contact->SetEnabled(false);
+		}*/
+
 		//Block and Gem
 		if (fixAType == "Gem" && fixBType == "Block"
 			|| fixAType == "Block" && fixBType == "Gem") {
@@ -931,6 +959,23 @@ public:
 		void* fixAType = contact->GetFixtureA()->GetBody()->GetUserData();
 		void* fixBType = contact->GetFixtureB()->GetBody()->GetUserData();
 		
+		//Boss_Sword and Player
+		if (fixAType == "Boss_Sword" && fixBType == "Player"
+			|| fixAType == "Player" && fixBType == "Boss_Sword") {
+			void* player_data;
+			void* boss_data;
+
+			if (fixAType == "Boss_Sword") {
+				player_data = contact->GetFixtureA()->GetBody()->GetUserData();
+				boss_data = contact->GetFixtureB()->GetBody()->GetUserData();
+			}
+			else {
+				boss_data = contact->GetFixtureA()->GetBody()->GetUserData();
+				player_data = contact->GetFixtureB()->GetBody()->GetUserData();
+			}
+			static_cast<Player*>(player_data)->e_sword_col = false;
+		}
+
 		//Player_Sword and Boss
 		if (fixAType == "Player_Sword" && fixBType == "Demon"
 			|| fixAType == "Demon" && fixBType == "Player_Sword") {

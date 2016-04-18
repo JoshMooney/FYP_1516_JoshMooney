@@ -13,6 +13,20 @@
 
 class DemonAI;
 
+namespace Prob {
+	enum B_TYPE {
+		AT_PLAYER,
+		UP,
+		DIRECT,
+		DIRECT_MORE,
+	};
+
+	enum A_TYPE {
+		DASH,
+
+	};
+}
+
 /**
 *	@class DarkDemon
 *	@brief 
@@ -48,12 +62,16 @@ private:
 	bool ai_think;
 
 	sf::Clock m_clock;
+	sf::Clock m_shoot_clock;
+	float shoot_cooldown;
 	bool m_has_taken_action;
 	bool m_has_finished_action;
 	bool m_has_attacked;
 	bool m_can_take_damage;
 	float m_cooldown;
 	sf::Vector2i attack_frame_size;
+	vector<float> m_shoot_prop;
+	vector<float> m_attack_prop;
 
 	int off_wall, max_off_wall;
 	ProjectileManager* m_projectile_mgr;
@@ -153,7 +171,7 @@ public:
 	/**
 	*	@brief Attack and play the attack animaiton
 	*/
-	void shoot();
+	void shoot(Player* p);
 
 	/**
 	*	@brief Position the sprite with the boxbody.
@@ -217,6 +235,15 @@ public:
 	*	@param Terrain* The terrain the unit is touching.
 	*/
 	void isTouching(Terrain* t);
+	/**
+	*	@brief
+	*/
+	Prob::B_TYPE chooseShoot();
+	/**
+	*	@brief
+	*/
+	Prob::A_TYPE chooseAttack();
+
 	/**
 	*	@brief 
 	*/

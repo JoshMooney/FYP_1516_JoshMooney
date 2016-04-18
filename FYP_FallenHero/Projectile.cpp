@@ -1,5 +1,6 @@
 #include "stdafx.h"
 #include "Projectile.hpp"
+#include "Thor\Vectors.hpp"
 
 Projectile::Projectile() {		}
 
@@ -20,7 +21,6 @@ Projectile::Projectile(b2Body* b, sf::Vector2f dir) {
 Projectile::Projectile(b2Body* b, sf::Vector2f dir, STATE type) {
 	b->SetUserData(this);
 	m_box_body = b;
-	m_direction = dir;
 	m_current_state = type;
 
 	init();
@@ -29,8 +29,34 @@ Projectile::Projectile(b2Body* b, sf::Vector2f dir, STATE type) {
 	alineSprite();
 	applySpeed();
 
-	correctRotation(dir);
+	m_direction = thor::unitVector(dir);
 
+	m_animator.playAnimation(m_current_state);
+}
+Projectile::Projectile(b2Body* b, sf::Vector2f dir, STATE type, string type_id) {
+	b->SetUserData(this);
+	m_box_body = b;
+	m_current_state = type;
+
+	init();
+
+	loadMedia();
+	alineSprite();
+
+	m_direction = thor::unitVector(dir);
+	if (type_id == "At-Player") {
+		m_speed = 15;
+		correctRotation(m_direction);
+	}
+	else if (type_id == "Up") {
+
+	}
+	else {
+
+	}
+
+	
+	applySpeed();
 	m_animator.playAnimation(m_current_state);
 }
 Projectile::~Projectile() {		}
@@ -65,7 +91,9 @@ void Projectile::update() {
 	checkAnimation();
 }
 void Projectile::correctRotation(sf::Vector2f dir) {
-	float desired_dir = atan2f(dir.y, dir.x);
+	float desired_dir = atan2f(-dir.y, dir.x);
+	float des_degrees = tan(desired_dir);
+	des_degrees = desired_dir * 180 / 3.14159265;
 	setRotation(desired_dir);
 	m_box_body->SetTransform(m_box_body->GetPosition(), desired_dir);
 }
@@ -84,8 +112,7 @@ void Projectile::loadMedia() {
 	addFrames(frame_fire_bu,	1, 0, 3, 28, 20, 1.0f);
 	addFrames(frame_fire_rd,	0, 0, 3, 28, 20, 1.0f);
 	addFrames(frame_explode,	3, 0, 5, 28, 29, 1.0f);
-
-	addFrames(frame_fire_bk,	4, 0, 3, 28, 29, 1.0f);
+	addFrames(frame_fire_bk,	4, 0, 3, 28, 20, 1.0f);
 
 	m_animator.addAnimation(FIRE,		frame_fire,		sf::seconds(0.25f));
 	m_animator.addAnimation(RED,		frame_fire_rd,	sf::seconds(0.25f));
@@ -104,7 +131,7 @@ void Projectile::addFrames(thor::FrameAnimation& animation, int y, int xFirst, i
 	else if (y == 3)
 		y = 56;
 	else if (y == 4)
-		y = 121;
+		y = 84;
 
 	for (int x = xFirst; x != xLast; x += 1)
 		animation.addFrame(duration, sf::IntRect(xSep * x, y, xSep, ySep));
@@ -128,8 +155,15 @@ void Projectile::Die() {
 	setOrigin(28.0f / 2.0f, 28.0f / 2.0f); 
 	alineSprite();
 }
+
 void Projectile::alineSprite() {
 	setPosition(vHelper::toSF(m_box_body->GetPosition()));
+
+	//Set Rotation
+	float desired_dir = atan2f(-m_direction.y, -m_direction.x);
+	float des_degrees = tan(desired_dir);
+	des_degrees = desired_dir * 180 / 3.14159265;
+	setRotation(des_degrees);
 }
 void Projectile::applySpeed() {
 	sf::Vector2f force = m_direction * m_speed;

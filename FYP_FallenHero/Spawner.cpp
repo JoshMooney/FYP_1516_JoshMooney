@@ -455,6 +455,9 @@ void Spawner::update(FTS fts, Player * p) {
 		p->TakeDamage(!m_boss->e_direction);
 	}
 
+	if (m_boss != nullptr && vHelper::distance(p->getPosition(), m_boss->getPosition()) < 55.0f)
+		p->e_sword_col = true;
+
 	for(Enemy* e : m_enemies) {
 		//Check for collision before checking the distance
 		if (e->isCollidingSword() && p->isAttacking() && p->getAttackBounds().intersects(e->getBounds())) {

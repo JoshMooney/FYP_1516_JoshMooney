@@ -33,11 +33,58 @@ b2Body * ProjectileManager::GenerateBody(sf::Vector2f pos) {
 	return body;
 }
 
+b2Body * ProjectileManager::GenerateBossBody(sf::Vector2f pos) {
+	b2BodyDef bull_body_Def;
+	bull_body_Def.type = b2_kinematicBody; //this will be a dynamic body
+	bull_body_Def.position = vHelper::toB2(pos); //set the starting position
+	bull_body_Def.angle = 0; //set the starting angle
+	bull_body_Def.fixedRotation = true;
+
+	b2Body* body;
+	body = m_world->CreateBody(&bull_body_Def);
+	b2PolygonShape shape;
+	shape.SetAsBox((16 / vHelper::B2_SCALE) / 2.0f, (16 / vHelper::B2_SCALE) / 2.0f);
+
+	b2FixtureDef myFixtureDef;
+	myFixtureDef.density = 1.0f;
+	myFixtureDef.friction = 1.0f;
+	myFixtureDef.shape = &shape;
+	myFixtureDef.userData = "Projectile";
+
+	myFixtureDef.filter.categoryBits = _filterCategory::BULLET;
+	myFixtureDef.filter.maskBits = PLAYER;
+	body->CreateFixture(&myFixtureDef);
+	return body;
+}
+
 void ProjectileManager::fireBullet(sf::Vector2f pos, sf::Vector2f dir) {
 	m_projectiles.push_back(new Projectile(GenerateBody(pos), dir));
 }
 void ProjectileManager::fire(sf::Vector2f pos, sf::Vector2f dir, Projectile::STATE type) {
 	m_projectiles.push_back(new Projectile(GenerateBody(pos), dir, type));
+}
+
+void ProjectileManager::shootBoss(sf::Vector2f pos, sf::Vector2f dir, string type) {
+	if (type == "Directional") {
+		m_projectiles.push_back(new Projectile(GenerateBossBody(pos), sf::Vector2f(-1, 0), Projectile::STATE::BOSS, type));
+		m_projectiles.push_back(new Projectile(GenerateBossBody(pos), sf::Vector2f(0, -1), Projectile::STATE::BOSS, type));
+		m_projectiles.push_back(new Projectile(GenerateBossBody(pos), sf::Vector2f(1, 0), Projectile::STATE::BOSS, type));
+	}
+	if (type == "Directional-More") {
+		m_projectiles.push_back(new Projectile(GenerateBossBody(pos), sf::Vector2f(-1, 0), Projectile::STATE::BOSS, type));
+		m_projectiles.push_back(new Projectile(GenerateBossBody(pos), sf::Vector2f(-0.5f, -0.5f), Projectile::STATE::BOSS, type));
+		m_projectiles.push_back(new Projectile(GenerateBossBody(pos), sf::Vector2f(-0.5f, 0.5f), Projectile::STATE::BOSS, type));
+		m_projectiles.push_back(new Projectile(GenerateBossBody(pos), sf::Vector2f(0, -1), Projectile::STATE::BOSS, type));
+		m_projectiles.push_back(new Projectile(GenerateBossBody(pos), sf::Vector2f(0.5f, 0.5f), Projectile::STATE::BOSS, type));
+		m_projectiles.push_back(new Projectile(GenerateBossBody(pos), sf::Vector2f(0.5f, -0.5f), Projectile::STATE::BOSS, type));
+		m_projectiles.push_back(new Projectile(GenerateBossBody(pos), sf::Vector2f(1, 0), Projectile::STATE::BOSS, type));
+	}
+	else if (type == "At-Player") {
+		m_projectiles.push_back(new Projectile(GenerateBossBody(pos), dir, Projectile::STATE::BOSS, type));
+	}
+	else if (type == "Up") {
+		m_projectiles.push_back(new Projectile(GenerateBossBody(pos), dir, Projectile::STATE::BOSS, type));
+	}	
 }
 
 void ProjectileManager::cull() {

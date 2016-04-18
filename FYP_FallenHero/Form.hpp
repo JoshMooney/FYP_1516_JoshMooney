@@ -58,7 +58,6 @@ public:
 				return m_current_action;
 			}
 		}
-
 	}
 	virtual void reset() = 0;
 	void clampProbablity() {

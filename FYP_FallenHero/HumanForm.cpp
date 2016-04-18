@@ -12,8 +12,10 @@ HumanForm::HumanForm() {
 	m_probablity.push_back(0.0f);
 	m_probablity.push_back(0.0f);
 
-	m_probablity[TRANS] = 0.00f;
-	m_probablity[ATTACK] = 0.1f;
+	m_probablity[TRANS]	 =	0.00f;
+	m_probablity[ATTACK] =	0.00f;
+	m_probablity[MOVE]	 =	0.0f;
+	m_probablity[SHOOT]	 =  0.10f;
 
 	m_form = HUMAN;
 }
@@ -62,9 +64,9 @@ void HumanForm::setOrigin(sf::Sprite *s) {
 }
 void HumanForm::reset() {
 	m_probablity[MOVE] =	0.00f;
-	m_probablity[ATTACK] =	0.10f;
-	m_probablity[SHOOT] =	0.00f;
-	m_probablity[TRANS] =	0.00;
+	m_probablity[ATTACK] =	0.00f;
+	m_probablity[SHOOT] =	0.10f;
+	m_probablity[TRANS] =	0.10;
 	m_probablity[TAUNT] =	0.00f;
 
 	m_current_action = MOVE;

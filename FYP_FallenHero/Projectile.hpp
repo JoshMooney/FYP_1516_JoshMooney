@@ -42,6 +42,7 @@ public:
 	Projectile();
 	Projectile(b2Body* b, sf::Vector2f dir);
 	Projectile(b2Body* b, sf::Vector2f dir, STATE type);
+	Projectile(b2Body* b, sf::Vector2f dir, STATE type, string type_id);
 	~Projectile();
 
 	void init();

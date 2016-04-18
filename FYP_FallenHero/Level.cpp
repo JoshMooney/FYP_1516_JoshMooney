@@ -36,8 +36,8 @@ struct OBJ {
 };
 
 Level::~Level() {
-	m_exit->getBody()->GetWorld()->DestroyBody(m_exit->getBody());
-	delete m_exit;
+	//m_exit->getBody()->GetWorld()->DestroyBody(m_exit->getBody());
+	//delete m_exit;
 	m_exit = nullptr;
 
 	while (!m_checkpoints_HC.empty()) {

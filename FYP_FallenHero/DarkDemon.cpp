@@ -8,6 +8,7 @@ DarkDemon::DarkDemon(b2Body * b, ProjectileManager* pm, bool dir) : m_projectile
 	b->SetUserData(this);
 	e_box_body = b;
 
+	shoot_cooldown = 2.0f;
 	m_current_state = IDLE;
 	m_previous_state = m_current_state;
 
@@ -33,6 +34,11 @@ DarkDemon::DarkDemon(b2Body * b, ProjectileManager* pm, bool dir) : m_projectile
 	m_has_finished_action = false;
 	off_wall = 0;
 	max_off_wall = 2;
+
+	m_shoot_prop.push_back(0.01f);
+	m_shoot_prop.push_back(0.01f);
+	m_shoot_prop.push_back(0.01f);
+	m_shoot_prop.push_back(0.01f);
 }
 DarkDemon::~DarkDemon() {		}
 
@@ -121,10 +127,12 @@ void DarkDemon::checkAnimation() {
 			m_can_take_damage = true;
 		}
 		//Human
-		else if (m_current_state == HURT)
+		else if (m_current_state == HURT) {
 			m_current_state = RECOVER;
-		else if (m_current_state == DASH)
+		}
+		else if (m_current_state == DASH) {
 			m_current_state = RECOVER;
+		}
 		else if (m_current_state == RECOVER) {
 			m_current_state = IDLE;
 			m_can_take_damage = true;
@@ -188,10 +196,18 @@ void DarkDemon::update(FTS fts, Player * p) {
 		takeAction();
 	}
 
+	if (m_action == Form::ACTIONS::SHOOT && !m_has_finished_action) {
+		shoot(p);
+	}
+
+	if (m_action == Form::ACTIONS::MOVE && m_type == Form::TYPE::HUMAN && m_current_state != DASH)
+		e_box_body->SetTransform(e_box_body->GetPosition(), 0.0f);
+	else if (m_action == Form::ACTIONS::MOVE && (m_current_state == DASH || m_current_state == ATTACK_TRANS || m_current_state == ATTACK_DASH))
+		move();
 	//if (m_action != m_prev_action && m_action != Form::ACTIONS::MOVE)
 		//e_box_body->SetLinearVelocity(b2Vec2(0, 0));
 
-	move();
+	//move();
 	//cLog::inst()->print("" + std::to_string(m_action));
 }
 void DarkDemon::render(sf::RenderWindow & w, sf::Time frames) {
@@ -365,29 +381,68 @@ void DarkDemon::attack() {
 	#pragma endregion
 	}
 }
-void DarkDemon::shoot() {
-	switch (m_type) {
-	#pragma region HUMAN
-	case Form::TYPE::HUMAN:
-		if (Form::SHOOT == m_action && !m_has_attacked) {
-			m_has_attacked = true;
-		}
+void DarkDemon::shoot(Player* p) {
+	//Make a choose of which type of attack to make
+	Prob::B_TYPE type = chooseShoot();
+	int j;
+	float rotation;
+	float adjustment;
+	sf::Vector2f between;
+	sf::Vector2f new_dir;
+
+	//Take Action
+	switch (type) {
+	case Prob::B_TYPE::AT_PLAYER:
+		m_has_finished_action = true;
+		between = p->getPosition() - getPosition();
+		rotation = atan2f(between.y, between.x);
+		adjustment = static_cast <float> (rand()) / (static_cast <float> (RAND_MAX / 0.4));
+		j = rand() % 2;
+		if (j == 1)	adjustment *-1;
+		else        adjustment * 1;
+
+		new_dir = sf::Vector2f(cosf(rotation + adjustment), sinf(rotation + adjustment));
+		m_projectile_mgr->shootBoss(getPosition(), new_dir, "At-Player");
+
+		m_shoot_prop[Prob::B_TYPE::AT_PLAYER]	-= 0.02f;
+		m_shoot_prop[Prob::B_TYPE::DIRECT]		+= 0.01f;
+		m_shoot_prop[Prob::B_TYPE::DIRECT_MORE] += 0.005f;
+		m_shoot_prop[Prob::B_TYPE::UP]			+= 0.01f;
 		break;
-	#pragma endregion
-	#pragma region SLIME
-	case Form::TYPE::SLIME:
-		if (Form::SHOOT == m_action && !m_has_attacked) {
-			m_has_attacked = true;
-		}
+	case Prob::B_TYPE::UP:
+		m_projectile_mgr->shootBoss(getPosition(), sf::Vector2f(0, -1), "Up");
+
+		m_shoot_prop[Prob::B_TYPE::AT_PLAYER]	+= 0.015f;
+		m_shoot_prop[Prob::B_TYPE::DIRECT]		+= 0.005f;
+		m_shoot_prop[Prob::B_TYPE::DIRECT_MORE] += 0.0025f;
+		m_shoot_prop[Prob::B_TYPE::UP]			-= 0.005f;
 		break;
-	#pragma endregion
-	#pragma region DEMON
-	case Form::TYPE::DEMON:
-		if (Form::SHOOT == m_action && !m_has_attacked) {
-			m_has_attacked = true;
-		}
+	case Prob::B_TYPE::DIRECT:
+		m_has_finished_action = true;
+		m_projectile_mgr->shootBoss(getPosition(), sf::Vector2f(0, 0), "Directional");
+
+		m_shoot_prop[Prob::B_TYPE::AT_PLAYER]	+= 0.02f;
+		m_shoot_prop[Prob::B_TYPE::DIRECT]		-= 0.015f;
+		m_shoot_prop[Prob::B_TYPE::DIRECT_MORE] += 0.005f;
+		m_shoot_prop[Prob::B_TYPE::UP]			+= 0.01f;
 		break;
-	#pragma endregion
+	case Prob::B_TYPE::DIRECT_MORE:
+		m_has_finished_action = true;
+		m_projectile_mgr->shootBoss(getPosition(), sf::Vector2f(0, 0), "Directional-More");
+
+		m_shoot_prop[Prob::B_TYPE::AT_PLAYER]	+= 0.02f;
+		m_shoot_prop[Prob::B_TYPE::DIRECT]		+= 0.005f;
+		m_shoot_prop[Prob::B_TYPE::DIRECT_MORE] -= 0.05f;
+		m_shoot_prop[Prob::B_TYPE::UP]			+= 0.01f;
+		break;
+	}
+
+	//Checks the probablity if its gone off scale.
+	for (int i = 0; i < m_shoot_prop.size(); i++) {
+		if (m_shoot_prop[i] < 0)
+			m_shoot_prop[i] = 0;
+		else if (m_shoot_prop[i] > 1)
+			m_shoot_prop[i] = 1;
 	}
 }
 
@@ -515,7 +570,6 @@ void DarkDemon::takeAction() {
 			break;
 		case Form::SHOOT:
 			//Play Shoot
-			shoot();
 			m_current_state = DASH;
 			break;
 		case Form::TRANS:
@@ -547,7 +601,6 @@ void DarkDemon::takeAction() {
 		case Form::ATTACK:
 			break;
 		case Form::SHOOT:
-			shoot();
 			break;
 		case Form::TRANS:
 			m_ai->checkForm();
@@ -569,7 +622,6 @@ void DarkDemon::takeAction() {
 			attack();
 			break;
 		case Form::SHOOT:
-			shoot();
 			break;
 		case Form::TRANS:
 			m_ai->checkForm();
@@ -585,6 +637,35 @@ void DarkDemon::takeAction() {
 
 void DarkDemon::isTouching(Terrain * t) {
 	touching_terr = t;
+}
+
+Prob::B_TYPE DarkDemon::chooseShoot() {
+	float max = 0;
+	for (int i = 0; i < m_shoot_prop.size(); i++)
+		max += m_shoot_prop[i];
+
+	float result;
+	result = static_cast <float> (rand()) / (static_cast <float> (RAND_MAX / max));
+
+	for (int i = m_shoot_prop.size() - 1; i >= 0; i--) {
+		max -= m_shoot_prop[i];
+		if (result > max)
+			return static_cast<Prob::B_TYPE>(i);
+	}
+}
+Prob::A_TYPE DarkDemon::chooseAttack() {
+	float max = 0;
+	for (int i = 0; i < m_shoot_prop.size(); i++)
+		max += m_attack_prop[i];
+
+	float result;
+	result = static_cast <float> (rand()) / (static_cast <float> (RAND_MAX / max));
+
+	for (int i = m_shoot_prop.size() - 1; i >= 0; i--) {
+		max -= m_shoot_prop[i];
+		if (result > max)
+			return static_cast<Prob::A_TYPE>(i);
+	}
 }
 
 void DarkDemon::finishCurrentAciton() {
