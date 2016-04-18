@@ -52,8 +52,8 @@ private:
 	thor::FrameAnimation frame_attack_dash;
 	thor::FrameAnimation frame_die;
 	
-	string s_death;
-	sf::Sound m_death;
+	string s_death, s_taunt;
+	sf::Sound m_death, m_taunt, m_demon_taunt;
 
 	//AI variables
 	shared_ptr<DemonAI> m_ai;
@@ -68,6 +68,7 @@ private:
 	bool m_has_finished_action;
 	bool m_has_attacked;
 	bool m_can_take_damage;
+	bool m_fully_formed;
 	float m_cooldown;
 	sf::Vector2i attack_frame_size;
 	vector<float> m_shoot_prop;

@@ -64,16 +64,8 @@
       <AdditionalDependencies>Box2D.lib;STP-d.lib;thor-d.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PreBuildEvent>
-      <Command>xcopy "$(SFML_vs13)bin\sfml-audio-d-2.dll" "$(TargetDir)" /Q /D /Y 
-xcopy "$(SFML_vs13)bin\sfml-graphics-d-2.dll" "$(TargetDir)" /Q /D /Y 
-xcopy "$(SFML_vs13)bin\sfml-network-d-2.dll" "$(TargetDir)" /Q /D /Y 
-xcopy "$(SFML_vs13)bin\sfml-system-d-2.dll" "$(TargetDir)" /Q /D /Y 
-xcopy "$(SFML_vs13)bin\sfml-window-d-2.dll" "$(TargetDir)" /Q /D /Y 
-xcopy "$(SFML_vs13)bin\thor-d.dll" "$(TargetDir)" /Q /D /Y 
-
-xcopy "$(SolutionDir)FYP_FallenHero\Assets" "$(TargetDir)Assets" /Y /D /I /F /E
-xcopy "$(SolutionDir)FYP_FallenHero\lib\Debug" "$(TargetDir)" /Q /D /Y 
-xcopy "$(STP)lib\Debug" "$(TargetDir)"  /Q /D /Y </Command>
+      <Command>
+      </Command>
     </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">

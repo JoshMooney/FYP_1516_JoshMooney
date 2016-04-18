@@ -32,6 +32,7 @@ private:
 	const float player_jump_y_offset = 15;
 	const float entity_wall_offset = 10;
 	const float boss_wall_offset = 5;
+	
 public:
 	/**
 	*	@brief
@@ -50,7 +51,7 @@ public:
 		void* fixAType = contact->GetFixtureA()->GetUserData();
 		void* fixBType = contact->GetFixtureB()->GetUserData();
 
-		//Player_Sword and Boss
+		//Player_Sword and Demon
 		if (fixAType == "Player_Sword" && fixBType == "Demon"
 			|| fixAType == "Demon" && fixBType == "Player_Sword") {
 			void* player_data;
@@ -490,12 +491,13 @@ public:
 			}
 		}
 
-		//Player and Boss
+		//Player and Demon
 		if (fixAType == "Player" && fixBType == "Demon"
 			|| fixAType == "Demon" && fixBType == "Player") {
 			void* player_data;
 			void* boss_data;
 			static int m_hit_player = 0;
+			static int m_hit_wall = 0;
 
 			m_hit_player++;
 			if (fixAType == "Player") {
@@ -530,6 +532,8 @@ public:
 			void* demon_data;
 			void* door_data;
 
+			static int m_hit_surface = 0;
+			m_hit_surface++;
 			if (fixAType == "Demon") {
 				demon_data = contact->GetFixtureA()->GetBody()->GetUserData();
 				door_data = contact->GetFixtureB()->GetBody()->GetUserData();
@@ -554,6 +558,11 @@ public:
 				static_cast<DarkDemon*>(demon_data)->ReachedWall();
 				static_cast<DarkDemon*>(demon_data)->retract();
 			}
+
+			if (m_hit_surface > 3) {
+				m_hit_surface = 0;
+				static_cast<DarkDemon*>(demon_data)->finishCurrentAciton();
+			}
 		}
 
 		//Terrain and Boss
@@ -562,6 +571,8 @@ public:
 			void* terrain_data;
 			void* boss_data;
 
+			static int m_hit_surface = 0;
+			m_hit_surface++;
 			if (fixAType == "Terrain") {
 				terrain_data = contact->GetFixtureA()->GetBody()->GetUserData();
 				boss_data = contact->GetFixtureB()->GetBody()->GetUserData();
@@ -582,6 +593,11 @@ public:
 			else {
 				static_cast<DarkDemon*>(boss_data)->ReachedWall();
 				static_cast<DarkDemon*>(boss_data)->retract();
+			}
+
+			if (m_hit_surface > 3) {
+				m_hit_surface = 0;
+				static_cast<DarkDemon*>(boss_data)->finishCurrentAciton();
 			}
 		}
 
@@ -859,6 +875,24 @@ public:
 	void PreSolve(b2Contact* contact, const b2Manifold* oldManifold) {
 		void* fixAType = contact->GetFixtureA()->GetUserData();
 		void* fixBType = contact->GetFixtureB()->GetUserData();
+
+		//Boss_Sword and Player
+		if (fixAType == "Key" && fixBType == "Player"
+			|| fixAType == "Player" && fixBType == "Key") {
+			void* player_data;
+			void* key_data;
+
+			if (fixAType == "Player") {
+				player_data = contact->GetFixtureA()->GetBody()->GetUserData();
+				key_data = contact->GetFixtureB()->GetBody()->GetUserData();
+			}
+			else {
+				key_data = contact->GetFixtureA()->GetBody()->GetUserData();
+				player_data = contact->GetFixtureB()->GetBody()->GetUserData();
+			}
+			contact->SetEnabled(false);
+			static_cast<Player*>(player_data)->pickupKey(static_cast<Key*>(key_data)->pickup());
+		}
 
 		//Boss_Sword and Player
 		if (fixAType == "Boss_Sword" && fixBType == "Player"

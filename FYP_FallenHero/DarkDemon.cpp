@@ -88,6 +88,9 @@ void DarkDemon::loadMedia() {
 	m_animator.addAnimation(ATTACK_DASH,		frame_attack_dash,			sf::seconds(1.0f));
 	m_animator.addAnimation(DIE,				frame_die,					sf::seconds(1.0f));
 
+	//Load Sound effects
+	s_taunt = "Assets/Audio/Game/Boss/laugh.wav";
+	m_taunt.setBuffer(ResourceManager<sf::SoundBuffer>::instance()->get(s_taunt));
 	/*
 	s_death = "Assets/Audio/Game/skeleton_kill.wav";
 	m_death.setBuffer(ResourceManager<sf::SoundBuffer>::instance()->get(s_death));*/
@@ -109,21 +112,25 @@ void DarkDemon::checkAnimation() {
 		//Demon
 		else if (m_current_state == TRANS) {
 			m_current_state = ATTACK_TRANS;
+			m_fully_formed = true;
 			m_clock.restart();
 		}
 		else if (m_current_state == REV_TRANS) {
 			m_current_state = IDLE;
 			m_clock.restart();
+			m_fully_formed = true;
 			m_can_take_damage = true;
 		}
 		//Slime
 		else if (m_current_state == TRANS_DASH) {
 			m_current_state = ATTACK_DASH;
+			m_fully_formed = true;
 			m_clock.restart();
 		}
 		else if (m_current_state == REV_TRANS_DASH) {
 			m_current_state = IDLE;
 			m_clock.restart();
+			m_fully_formed = true;
 			m_can_take_damage = true;
 		}
 		//Human
@@ -186,6 +193,7 @@ void DarkDemon::update(FTS fts, Player * p) {
 		m_clock.restart();
 		m_has_finished_action = false;
 		m_has_taken_action = false;
+		m_fully_formed = false;
 
 		if (p->getPosition().x > getPosition().x)
 			setDirection(1);
@@ -196,13 +204,13 @@ void DarkDemon::update(FTS fts, Player * p) {
 		takeAction();
 	}
 
-	if (m_action == Form::ACTIONS::SHOOT && !m_has_finished_action) {
+	if (m_action == Form::ACTIONS::SHOOT && !m_has_finished_action && !is_hit) {
 		shoot(p);
 	}
 
 	if (m_action == Form::ACTIONS::MOVE && m_type == Form::TYPE::HUMAN && m_current_state != DASH)
 		e_box_body->SetTransform(e_box_body->GetPosition(), 0.0f);
-	else if (m_action == Form::ACTIONS::MOVE && (m_current_state == DASH || m_current_state == ATTACK_TRANS || m_current_state == ATTACK_DASH))
+	else if (m_action == Form::ACTIONS::MOVE && !is_hit && (m_current_state == DASH || m_current_state == ATTACK_TRANS || m_current_state == ATTACK_DASH))
 		move();
 	//if (m_action != m_prev_action && m_action != Form::ACTIONS::MOVE)
 		//e_box_body->SetLinearVelocity(b2Vec2(0, 0));
@@ -218,7 +226,8 @@ void DarkDemon::render(sf::RenderWindow & w, sf::Time frames) {
 void DarkDemon::TakeDamage() {
 	if (!is_hit && m_can_take_damage) {
 		is_hit = true;
-		m_can_take_damage = false;
+		//m_can_take_damage = false;
+		//m_has_taken_action = true;
 		m_current_state = HURT;
 		e_hp -= 10;
 
@@ -444,6 +453,8 @@ void DarkDemon::shoot(Player* p) {
 		else if (m_shoot_prop[i] > 1)
 			m_shoot_prop[i] = 1;
 	}
+
+	m_shoot_clock.restart();
 }
 
 void DarkDemon::alineSprite() {
@@ -539,7 +550,7 @@ bool DarkDemon::canThink() {
 	#pragma endregion
 	}
 
-	if (canThink && m_clock.getElapsedTime().asSeconds() > m_cooldown)
+	if (canThink && (m_clock.getElapsedTime().asSeconds() > m_cooldown || m_fully_formed))
 		return true;
 	return false;
 }
@@ -570,7 +581,7 @@ void DarkDemon::takeAction() {
 			break;
 		case Form::SHOOT:
 			//Play Shoot
-			m_current_state = DASH;
+			//m_current_state = DASH;
 			break;
 		case Form::TRANS:
 			//Play Transform
@@ -588,6 +599,7 @@ void DarkDemon::takeAction() {
 		case Form::TAUNT:
 			//Play Taunt
 			m_current_state = IDLE;
+			m_taunt.play();
 			break;
 		}
 		break;
@@ -607,6 +619,7 @@ void DarkDemon::takeAction() {
 			m_current_state = REV_TRANS_DASH;
 			break;
 		case Form::TAUNT:
+			m_taunt.play();
 			break;
 		}
 		break;
@@ -628,6 +641,7 @@ void DarkDemon::takeAction() {
 			m_current_state = REV_TRANS;
 			break;
 		case Form::TAUNT:
+			m_taunt.play();
 			break;
 		}
 		break;

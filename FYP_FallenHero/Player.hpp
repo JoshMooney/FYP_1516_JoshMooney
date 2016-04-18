@@ -49,7 +49,6 @@ private:
 	thor::FrameAnimation frame_jump;
 	thor::FrameAnimation frame_hit;
 
-
 	bool is_hit;
 	enum STATE { ATTACK, RUN, JUMP, IDLE, HIT };
 	STATE m_current_state, m_previous_state;

@@ -92,22 +92,6 @@
     <property name="y" value="96"/>
    </properties>
   </object>
-  <object id="48" name="OneWay Platform" x="128" y="448" width="160" height="16">
-   <properties>
-    <property name="id" value=""/>
-    <property name="type" value="OneWayPlatform"/>
-    <property name="x" value="144"/>
-    <property name="y" value="448"/>
-   </properties>
-  </object>
-  <object id="49" name="OneWay Platform" x="576" y="448" width="160" height="16">
-   <properties>
-    <property name="id" value=""/>
-    <property name="type" value="OneWayPlatform"/>
-    <property name="x" value="144"/>
-    <property name="y" value="448"/>
-   </properties>
-  </object>
  </objectgroup>
  <objectgroup name="BG"/>
  <objectgroup name="FG"/>
@@ -161,5 +145,21 @@
   <properties>
    <property name="x" value=""/>
   </properties>
+  <object id="48" name="OneWay Platform" x="256" y="448" width="160" height="16">
+   <properties>
+    <property name="id" value=""/>
+    <property name="type" value="OneWayPlatform"/>
+    <property name="x" value="144"/>
+    <property name="y" value="448"/>
+   </properties>
+  </object>
+  <object id="49" name="OneWay Platform" x="448" y="448" width="160" height="16">
+   <properties>
+    <property name="id" value=""/>
+    <property name="type" value="OneWayPlatform"/>
+    <property name="x" value="448"/>
+    <property name="y" value="448"/>
+   </properties>
+  </object>
  </objectgroup>
 </map>
