@@ -77,7 +77,7 @@ void DarkDemon::loadMedia() {
 	//Attach frame to the animator
 	m_animator.addAnimation(IDLE,				frame_idle,					sf::seconds(0.25f));
 	m_animator.addAnimation(DASH,				frame_dash,					sf::seconds(1.0f));
-	m_animator.addAnimation(HURT,				frame_hurt,					sf::seconds(0.4f));
+	m_animator.addAnimation(HURT,				frame_hurt,					sf::seconds(0.5f));
 	m_animator.addAnimation(RECOVER,			frame_recover,				sf::seconds(0.25f));
 	m_animator.addAnimation(READY,				frame_ready,				sf::seconds(0.20f));
 	m_animator.addAnimation(ATTACK,				frame_attack,				sf::seconds(0.1f));
