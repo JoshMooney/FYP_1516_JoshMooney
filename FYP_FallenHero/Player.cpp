@@ -281,13 +281,13 @@ void Player::TakeDamage(bool knock_dir) {
 			//float newXVel = clamp(e_box_body->GetLinearVelocity().x + (m_acceleration * DELTA_TIME.asSeconds()), 0, knock_back_factor.x);
 			//float newYVel = clamp(e_box_body->GetLinearVelocity().y + (m_acceleration * DELTA_TIME.asSeconds()), 0, knock_back_factor.y);
 			//e_box_body->SetLinearVelocity(b2Vec2(e_box_body->GetLinearVelocity().x + newXVel, e_box_body->GetLinearVelocity().y - newYVel));
-			e_box_body->ApplyForce(b2Vec2(7,-10), vHelper::toB2(getCenter()), false);
+			e_box_body->ApplyForce(b2Vec2(12, -35), vHelper::toB2(getCenter()), false);
 		}
 		else {
 			//float newXVel = clamp(e_box_body->GetLinearVelocity().x + (m_acceleration * DELTA_TIME.asSeconds()), 0, knock_back_factor.x);
 			//float newYVel = clamp(e_box_body->GetLinearVelocity().y + (m_acceleration * DELTA_TIME.asSeconds()), 0, knock_back_factor.y);
 			//e_box_body->SetLinearVelocity(b2Vec2(e_box_body->GetLinearVelocity().x - newXVel, e_box_body->GetLinearVelocity().y - newYVel));
-			e_box_body->ApplyForce(b2Vec2(-7, -10), vHelper::toB2(getCenter()), false);
+			e_box_body->ApplyForce(b2Vec2(-12, -35), vHelper::toB2(getCenter()), false);
 		}
 		m_hit.play();
 		m_current_state = HIT;

@@ -91,7 +91,7 @@ void Skeleton::init() {
 
 	m_fire_clock.restart();
 	cooldown_time = 1.75f;
-	can_fire = true;
+	can_fire = false;
 }
 
 void Skeleton::ChangeState(STATE s) {

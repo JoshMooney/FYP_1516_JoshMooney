@@ -98,7 +98,7 @@ void GemMine::SpawnGem(Gem::TYPE type, sf::Vector2f pos, bool grav, bool dir) {
 	else
 		direction.x = ((x - 100.0f) / 100.0f) - 0.2f;
 
-	float speed = 4;
+	float speed = 16;
 	b->GetFixtureList()->SetSensor(false);
 	direction = sf::Vector2f(direction.x * speed/2, direction.y * speed);
 	b->ApplyForce(b2Vec2(direction.x, direction.y), vHelper::toB2(pos), false);
