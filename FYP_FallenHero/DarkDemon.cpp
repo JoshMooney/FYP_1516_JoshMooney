@@ -25,13 +25,14 @@ DarkDemon::DarkDemon(b2Body * b, ProjectileManager* pm, bool dir) : m_projectile
 
 	m_speed = 0.35f;
 	speedFactor = 0;
-	e_hp = 100;
+	e_hp = 10;
 	m_cooldown = 2.0f;
 
 	m_ai = make_shared<DemonAI>();
 	m_can_take_damage = true;
 	m_has_taken_action = false;
 	m_has_finished_action = false;
+	m_has_dropped_loot = false;
 	off_wall = 0;
 	max_off_wall = 2;
 
@@ -145,6 +146,8 @@ void DarkDemon::checkAnimation() {
 			m_can_take_damage = true;
 			m_clock.restart();
 		}
+		else if (m_current_state == DIE)
+			e_can_despawn = true;
 		/*
 		if(!m_animator.isPlayingAnimation() && (m_current_state == IDLE ||
 				m_current_state == ATTACK || m_current_state == REV_TRANS ||
@@ -183,35 +186,38 @@ void DarkDemon::addFrames(thor::FrameAnimation& animation, int y, int xFirst, in
 }
 
 void DarkDemon::update(FTS fts, Player * p) {
-	//takeAction();
+
 	alineSprite();
 	checkAnimation();
 
-	if (canThink()) {
-		m_prev_action = m_ai->getAction();
-		m_ai->think(p, getPosition(), e_hp);
-		m_clock.restart();
-		m_has_finished_action = false;
-		m_has_taken_action = false;
-		m_fully_formed = false;
+	if (e_body_active) {
+		if (canThink()) {
+			m_prev_action = m_ai->getAction();
+			m_ai->think(p, getPosition(), e_hp);
+			m_clock.restart();
+			m_has_finished_action = false;
+			m_has_taken_action = false;
+			m_fully_formed = false;
 
-		if (p->getPosition().x > getPosition().x)
-			setDirection(1);
-		else
-			setDirection(0);
-	}
-	if (canTakeAction() || m_has_finished_action) {
-		takeAction();
-	}
+			if (p->getPosition().x > getPosition().x)
+				setDirection(1);
+			else
+				setDirection(0);
+		}
+		if (canTakeAction() || m_has_finished_action) {
+			takeAction();
+		}
 
-	if (m_action == Form::ACTIONS::SHOOT && !m_has_finished_action && !is_hit) {
-		shoot(p);
-	}
+		if (m_action == Form::ACTIONS::SHOOT && !m_has_finished_action && !is_hit) {
+			shoot(p);
+		}
 
-	if (m_action == Form::ACTIONS::MOVE && m_type == Form::TYPE::HUMAN && m_current_state != DASH)
-		e_box_body->SetTransform(e_box_body->GetPosition(), 0.0f);
-	else if (m_action == Form::ACTIONS::MOVE && !is_hit && (m_current_state == DASH || m_current_state == ATTACK_TRANS || m_current_state == ATTACK_DASH))
-		move();
+		if (m_action == Form::ACTIONS::MOVE && m_type == Form::TYPE::HUMAN && m_current_state != DASH)
+			e_box_body->SetTransform(e_box_body->GetPosition(), 0.0f);
+		else if (m_action == Form::ACTIONS::MOVE && !is_hit && (m_current_state == DASH || m_current_state == ATTACK_TRANS || m_current_state == ATTACK_DASH))
+			move();
+	}
+	
 	//if (m_action != m_prev_action && m_action != Form::ACTIONS::MOVE)
 		//e_box_body->SetLinearVelocity(b2Vec2(0, 0));
 
@@ -241,7 +247,7 @@ void DarkDemon::TakeDamage() {
 void DarkDemon::Die() {
 	e_box_body->GetFixtureList()->SetSensor(true);
 	e_body_active = false;
-	
+	m_current_state = DIE;
 }
 
 void DarkDemon::move() {

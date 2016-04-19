@@ -396,6 +396,18 @@
     <ClInclude Include="PlayerIcon.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="MenuScene.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PauseScreen.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Player.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerIcon.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -518,9 +530,6 @@
     <ClCompile Include="xboxConnector.cpp">
       <Filter>Source Files\Util</Filter>
     </ClCompile>
-    <ClCompile Include="DarkDemon.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="AI.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -532,6 +541,9 @@
     </ClCompile>
     <ClCompile Include="DemonForm.cpp">
       <Filter>Source Files\Boss::Form</Filter>
+    </ClCompile>
+    <ClCompile Include="DarkDemon.cpp">
+      <Filter>Source Files\Entities</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

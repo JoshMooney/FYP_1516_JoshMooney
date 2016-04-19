@@ -20,6 +20,7 @@ LevelScene::LevelScene() :
 
 	m_spawner->AttachGemMine(m_gem_mine.get());
 	m_spawner->AttachProjectileMgr(m_projectiles.get());
+	m_spawner->AttachEntityCreator(m_entity_creator.get());
 	
 	loadMedia();
 	buttonX_ = new AttackCommand();

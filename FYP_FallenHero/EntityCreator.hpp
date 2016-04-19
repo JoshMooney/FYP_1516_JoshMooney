@@ -47,6 +47,12 @@ public:
 	*	@brief This clears both the enemy list and the block list to get ready for the next level.
 	*/
 	void clear();
+	/**
+	*	@brief 
+	*/
+	Entity* back() {
+		return --m_entities.back();
+	}
 };
 
 #endif

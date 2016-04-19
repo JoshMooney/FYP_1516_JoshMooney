@@ -4,6 +4,8 @@
 #include "Enemy.hpp"
 
 #include "ProjectileManager.hpp"
+#include "EntityCreator.hpp"
+#include "GemMine.hpp"
 #include "Terrain.hpp"
 
 #include "Thor\Animations.hpp"
@@ -69,6 +71,7 @@ private:
 	bool m_has_attacked;
 	bool m_can_take_damage;
 	bool m_fully_formed;
+	bool m_has_dropped_loot;
 	float m_cooldown;
 	sf::Vector2i attack_frame_size;
 	vector<float> m_shoot_prop;
@@ -249,6 +252,16 @@ public:
 	*	@brief 
 	*/
 	void finishCurrentAciton();
+	/**
+	*	@brief
+	*/
+	bool hasDroppedLoot() {
+		if (!m_has_dropped_loot) {
+			m_has_dropped_loot = true;
+			return false;
+		}
+		return true;
+	}
 	/**
 	*	@brief
 	*/

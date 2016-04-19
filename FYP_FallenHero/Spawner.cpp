@@ -450,13 +450,18 @@ void Spawner::CullInActiveEnemies() {
 }
 
 void Spawner::update(FTS fts, Player * p) {
-	if (m_boss != nullptr && p->e_sword_col && m_boss->isAttacking() 
-		&& m_boss->getAttackBounds().intersects(p->getBounds())) {
-		p->TakeDamage(!m_boss->e_direction);
-	}
+	//Do boss specific updates
+	if (m_boss != nullptr) {
+		if (p->e_sword_col && m_boss->isAttacking()	&& m_boss->getAttackBounds().intersects(p->getBounds()))
+			p->TakeDamage(!m_boss->e_direction);
 
-	if (m_boss != nullptr && vHelper::distance(p->getPosition(), m_boss->getPosition()) < 55.0f)
-		p->e_sword_col = true;
+		if (vHelper::distance(p->getPosition(), m_boss->getPosition()) < 55.0f)
+			p->e_sword_col = true;
+
+		if (!m_boss->e_body_active && !m_boss->hasDroppedLoot()) {
+			m_ent_cre->spawnKey(m_boss->getPosition() - sf::Vector2f(16, 16), "gold", "boss_key_1", "boss_door");
+		}
+	}
 
 	for(Enemy* e : m_enemies) {
 		//Check for collision before checking the distance
@@ -527,7 +532,6 @@ void Spawner::clear() {
 		it = m_blocks.erase(it);	//erase the object(calls the objects destructor)
 		//cLog::inst()->print(0, "Spawner", "Block cleared from spawner");
 	}
-
 	m_doors.clear();
 }
 

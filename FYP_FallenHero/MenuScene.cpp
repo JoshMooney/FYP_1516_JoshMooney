@@ -31,6 +31,7 @@ void MenuScene::render(sf::RenderWindow &w){
 	switch (m_current_state){
 	case SPLASH:
 		w.draw(m_splash_sprt);
+		w.draw(m_splash_text);
 		break;
 	case MAIN:
 		w.draw(m_main_bg_sprt);
@@ -428,6 +429,12 @@ void MenuScene::loadText(){
 	m_erase_select_text.setColor(sf::Color::Black);
 	m_erase_select_text.setCharacterSize(22);
 	m_erase_select_text.setPosition(195, 500);
+
+	m_splash_text.setFont(m_font);
+	m_splash_text.setString("Press any button to continue.");
+	m_splash_text.setColor(sf::Color::White);
+	m_splash_text.setCharacterSize(22);
+	m_splash_text.setPosition(400, 600);
 }
 void MenuScene::setLoader(XMLLoader *l){
 	loader = l;

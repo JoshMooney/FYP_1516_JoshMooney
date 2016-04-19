@@ -9,6 +9,7 @@
 #include "Weed.hpp"
 #include "Cannon.hpp"
 #include "ProjectileManager.hpp"
+#include "EntityCreator.hpp"
 
 #include "CrumbleBlock.hpp"
 #include "LockedDoor.hpp"
@@ -46,6 +47,7 @@ private:
 	vector<CrumbleBlock *> m_blocks;
 	GemMine *m_mine;
 	ProjectileManager *m_gun;
+	EntityCreator *m_ent_cre;
 public:
 	//!This enum keeps track of all the different types of enemies the spawner can create.
 	enum SPAWN_TYPE { 
@@ -188,11 +190,16 @@ public:
 		m_mine = mine;
 	}
 	/**
-	*	@brief This attaches the gem mine to the Spawner so gems can be created on the death of
-	*	enemies.
+	*	@brief 
 	*/
 	void AttachProjectileMgr(ProjectileManager *p) {
 		m_gun = p;
+	}
+	/**
+	*	@brief
+	*/
+	void AttachEntityCreator(EntityCreator *e) {
+		m_ent_cre = e;
 	}
 	void CheckLockDoor(map<string,string> *keys);
 
