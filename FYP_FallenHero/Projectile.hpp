@@ -25,13 +25,21 @@ private:
 	thor::FrameAnimation frame_fire_rd;
 	thor::FrameAnimation frame_explode;
 	thor::FrameAnimation frame_fire_bk;
+
+	thor::FrameAnimation frame_weed_l1;
+	thor::FrameAnimation frame_weed_l2;
+	thor::FrameAnimation frame_weed_l3;
+	thor::FrameAnimation frame_weed_explode;
 public:
 	enum STATE {
 		FIRE,
 		BLUE,
 		RED,
 		EXPLODE, 
-		BOSS
+		BOSS,
+		WEED_L1,
+		WEED_L2,
+		WEED_L3,
 	};
 
 	STATE m_current_state, m_previous_state;

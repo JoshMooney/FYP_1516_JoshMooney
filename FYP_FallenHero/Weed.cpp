@@ -4,15 +4,36 @@
 Weed::Weed() {
 
 }
-Weed::Weed(b2Body *b, bool dir) {
+Weed::Weed(b2Body *b, bool dir, ProjectileManager *gun) {
+	m_bullet_type = Projectile::STATE::WEED_L1;
+	m_gun = gun;
 	e_direction = dir;
 	b->SetUserData(this);
 	e_box_body = b;
+	e_body_active = true;
 	init();	
 	alineSprite();
 	m_shoot_dis = 600;
 
 	can_fire = true;
+	m_can_be_hurt = true;
+	cooldown_time = 2.0f;
+	m_fire_clock.restart();
+}
+
+Weed::Weed(b2Body * b, bool dir, ProjectileManager * g, Projectile::STATE type) {
+	m_bullet_type = type;
+	m_gun = g;
+	e_direction = dir;
+	b->SetUserData(this);
+	e_box_body = b;
+	e_body_active = true;
+	init();
+	alineSprite();
+	m_shoot_dis = 400;
+
+	can_fire = true;
+	m_can_be_hurt = true;
 	cooldown_time = 2.0f;
 	m_fire_clock.restart();
 }
@@ -26,14 +47,14 @@ void Weed::loadMedia() {
 	
 	addFrames(frame_idle,	0, 0, 4, 39, 37, 1.0f);
 	addFrames(frame_death,	4, 0, 8, 42, 42, 1.0f);
-
+	addFrames(frame_attack, 1, 0, 5, 40, 40, 1.0f);
 	/*addFrames(frame_attack, 1, 0, 5, 40, 40, 1.0f);
 	addFrames(frame_jump, 2, 0, 5, 40, 46, 1.0f);
 	addFrames(frame_land,	3, 0, 4, 40, 46, 1.0f);
 	addFrames(frame_death,	4, 0, 8, 42, 42, 1.0f);
 	*/
 	m_animator.addAnimation(IDLE,	frame_idle,		sf::seconds(0.4f));
-
+	m_animator.addAnimation(ATTACK, frame_attack,	sf::seconds(0.2f));
 	m_animator.addAnimation(DEATH,  frame_death,	sf::seconds(0.75f));
 	
 	/*m_animator.addAnimation(ATTACK, frame_attack,	sf::seconds(0.2f));
@@ -51,14 +72,18 @@ void Weed::loadMedia() {
 
 void Weed::init() {
 	e_sword_col = false;
-	m_jump = 5.0f;
+	//m_jump = 5.0f;
 	e_body_active = true;
+	e_can_despawn = false;
+	e_sword_col = false;
 	e_can_despawn = false;
 
 	loadMedia();
 	e_hp = 10;
 	m_current_state = IDLE;
 	m_previous_state = m_current_state;
+	m_fire_clock.restart();
+	cooldown_time = 3;
 }
 
 void Weed::update(FTS fts, Player *p) {
@@ -82,7 +107,8 @@ void Weed::render(sf::RenderWindow & w, sf::Time frames) {
 }
 
 void Weed::TakeDamage() {
-	if (e_body_active) {
+	if (e_body_active && !is_hit && m_can_be_hurt) {
+		is_hit = true;
 		e_hp -= 10;
 		if (e_hp <= 0)
 			Die();
@@ -103,8 +129,14 @@ void Weed::checkAnimation() {
 		m_animator.playAnimation(m_current_state);
 	}
 
-	if (m_current_state == IDLE && !m_animator.isPlayingAnimation())
-		m_animator.playAnimation(IDLE);
+	if (!m_animator.isPlayingAnimation()) {
+		if (m_current_state == IDLE)
+			m_animator.playAnimation(IDLE);
+		else if (m_current_state == ATTACK) {
+			m_current_state = IDLE;
+			m_can_be_hurt = true;
+		}
+	}
 
 }
 
@@ -126,15 +158,18 @@ void Weed::addFrames(thor::FrameAnimation& animation, int y, int xFirst, int xLa
 
 void Weed::attack() {
 	sf::Time elapsed = m_fire_clock.getElapsedTime();
-	if(elapsed.asSeconds() > cooldown_time) {
+	if (elapsed.asSeconds() > cooldown_time) {
 		sf::Vector2f dir;
 		if (e_direction)
 			dir = sf::Vector2f(1, 0);
 		else
 			dir = sf::Vector2f(-1, 0);
 
+		m_can_be_hurt = false;
+		m_current_state = ATTACK;
 		m_fire_clock.restart();
-		//ProjectileHandler.SpawnBullet(getPosition(), dir);
+		//m_fire.play();
+		m_gun->fire(getPosition(), dir, m_bullet_type);
 	}
 }
 

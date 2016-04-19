@@ -3,6 +3,7 @@
 #include "stdafx.h"
 #include "Enemy.hpp"
 #include "Player.hpp"
+#include "ProjectileManager.hpp"
 
 class Weed : public Enemy {
 private:
@@ -14,16 +15,18 @@ private:
 	sf::Clock m_fire_clock;
 	bool can_fire;
 	float cooldown_time;
+	Projectile::STATE m_bullet_type;
 
 	//string s_death;
 	//sf::Sound m_death;
 
 	//thor::FrameAnimation frame_jump;
 	//thor::FrameAnimation frame_land;
-	//thor::FrameAnimation frame_attack;
+	thor::FrameAnimation frame_attack;
 	thor::FrameAnimation frame_idle;
 	thor::FrameAnimation frame_death;
-	
+	bool m_can_be_hurt;
+	ProjectileManager *m_gun;
 public:
 	enum AI { GREEN, BLUE, RED };
 	AI ai;
@@ -32,7 +35,8 @@ public:
 	thor::Animator<sf::Sprite, STATE> m_animator;
 
 	Weed();
-	Weed(b2Body *b, bool dir);
+	Weed(b2Body *b, bool dir, ProjectileManager *g);
+	Weed(b2Body *b, bool dir, ProjectileManager *g, Projectile::STATE type);
 	virtual ~Weed() {
 		cLog::inst()->print("Weed Deconstructor called");
 	}

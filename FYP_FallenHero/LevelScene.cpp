@@ -124,12 +124,12 @@ void LevelScene::render(sf::RenderWindow &w){
 	m_level->render(w, &m_camera, frame_elapse);		//render the level
 
 	m_entity_creator->render(&w, frame_elapse);
-	m_spawner->render(w, frame_elapse);
 
 	m_player->render(&w, frame_elapse);
 	w.draw(*m_player);					//render Player
 
 	m_projectiles->render(w, frame_elapse);
+	m_spawner->render(w, frame_elapse);
 	m_gem_mine->render(w, frame_elapse);
 	m_platform_creator->render(w, frame_elapse);
 	

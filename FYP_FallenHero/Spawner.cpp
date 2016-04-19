@@ -142,7 +142,7 @@ void Spawner::SpawnDarkDemon(sf::Vector2f pos, bool dir) {
 	m_enemies.push_back(m_boss);
 }
 void Spawner::SpawnWeed(sf::Vector2f pos, bool dir) {
-	m_enemies.push_back(new Weed(GenerateBody(WEED, pos), dir));
+	m_enemies.push_back(new Weed(GenerateBody(WEED, pos), dir, m_gun));
 
 	/*if (m_enemies.size() >= 2){
 		for (auto it = m_enemies.begin(); it != m_enemies.end();) {
@@ -155,6 +155,9 @@ void Spawner::SpawnWeed(sf::Vector2f pos, bool dir) {
 		}
 	}*/
 
+}
+void Spawner::SpawnWeed(sf::Vector2f pos, bool dir, Projectile::STATE type) {
+	m_enemies.push_back(new Weed(GenerateBody(WEED, pos), dir, m_gun, type));
 }
 void Spawner::SpawnSkeleton(sf::Vector2f pos) {
 	m_enemies.push_back(new Skeleton(GenerateBody(SKELETON, pos), true));

@@ -73,6 +73,16 @@ void Projectile::init() {
 		m_speed = 120.0f;
 		break;
 	case BOSS:
+		m_speed = 150.0f;
+		break;
+
+	case WEED_L1:
+		m_speed = 75.0f;
+		break;
+	case WEED_L2:
+		m_speed = 90.0f;
+		break;
+	case WEED_L3:
 		m_speed = 120.0f;
 		break;
 	}
@@ -108,18 +118,57 @@ void Projectile::loadMedia() {
 	m_size = sf::Vector2f(16, 16);
 	setOrigin(m_size.x / 2, m_size.y / 2);
 
-	addFrames(frame_fire,		2, 0, 1, 16, 16, 1.0f);
-	addFrames(frame_fire_bu,	1, 0, 3, 28, 20, 1.0f);
-	addFrames(frame_fire_rd,	0, 0, 3, 28, 20, 1.0f);
-	addFrames(frame_explode,	3, 0, 5, 28, 29, 1.0f);
-	addFrames(frame_fire_bk,	4, 0, 3, 28, 20, 1.0f);
+	switch (m_current_state) {
+	case FIRE:
+		addFrames(frame_fire, 2, 0, 1, 16, 16, 1.0f);
+		addFrames(frame_explode, 3, 0, 5, 28, 29, 1.0f);
 
-	m_animator.addAnimation(FIRE,		frame_fire,		sf::seconds(0.25f));
-	m_animator.addAnimation(RED,		frame_fire_rd,	sf::seconds(0.25f));
-	m_animator.addAnimation(BLUE,		frame_fire_bu,	sf::seconds(0.25f));
-	m_animator.addAnimation(EXPLODE,	frame_explode,	sf::seconds(0.25f));
+		m_animator.addAnimation(FIRE, frame_fire, sf::seconds(0.25f));
+		m_animator.addAnimation(EXPLODE, frame_explode, sf::seconds(0.25f));
+		break;
+	case RED:
+		addFrames(frame_fire_rd, 0, 0, 3, 28, 20, 1.0f);
+		addFrames(frame_explode, 3, 0, 5, 28, 29, 1.0f);
 
-	m_animator.addAnimation(BOSS,		frame_fire_bk, sf::seconds(0.25f));
+		m_animator.addAnimation(RED, frame_fire_rd, sf::seconds(0.25f));
+		m_animator.addAnimation(EXPLODE, frame_explode, sf::seconds(0.25f));
+		break;
+	case BLUE:
+		addFrames(frame_fire_bu, 1, 0, 3, 28, 20, 1.0f);
+		addFrames(frame_explode, 3, 0, 5, 28, 29, 1.0f);
+
+		m_animator.addAnimation(BLUE, frame_fire_bu, sf::seconds(0.25f));
+		m_animator.addAnimation(EXPLODE, frame_explode, sf::seconds(0.25f));
+		break;
+	case BOSS:
+		addFrames(frame_fire_bk, 4, 0, 3, 28, 20, 1.0f);
+		addFrames(frame_explode, 3, 0, 5, 28, 29, 1.0f);
+
+		m_animator.addAnimation(BOSS, frame_fire_bk, sf::seconds(0.25f));
+		m_animator.addAnimation(EXPLODE, frame_explode, sf::seconds(0.25f));
+		break;
+	case WEED_L1:
+		addFrames(frame_weed_l1,		5, 0, 2, 24, 30, 1.0f);
+		addFrames(frame_weed_explode,	6, 0, 4, 24, 30, 1.0f);
+
+		m_animator.addAnimation(WEED_L1, frame_weed_l1, sf::seconds(0.25f));
+		m_animator.addAnimation(EXPLODE, frame_weed_explode, sf::seconds(0.25f));
+		break;
+	case WEED_L2:
+		addFrames(frame_weed_l2,		5, 0, 2, 24, 30, 1.0f);
+		addFrames(frame_weed_explode,	6, 0, 4, 24, 30, 1.0f);
+
+		m_animator.addAnimation(WEED_L2, frame_weed_l2, sf::seconds(0.25f));
+		m_animator.addAnimation(EXPLODE, frame_weed_explode, sf::seconds(0.25f));
+		break;
+	case WEED_L3:
+		addFrames(frame_weed_l3,		5, 0, 2, 24, 30, 1.0f);
+		addFrames(frame_weed_explode,	6, 0, 4, 24, 30, 1.0f);
+
+		m_animator.addAnimation(WEED_L3, frame_weed_l3, sf::seconds(0.25f));
+		m_animator.addAnimation(EXPLODE, frame_weed_explode, sf::seconds(0.25f));
+		break;
+	}
 }
 void Projectile::addFrames(thor::FrameAnimation& animation, int y, int xFirst, int xLast, int xSep, int ySep, float duration) {
 	if (y == 0)
@@ -132,6 +181,10 @@ void Projectile::addFrames(thor::FrameAnimation& animation, int y, int xFirst, i
 		y = 56;
 	else if (y == 4)
 		y = 84;
+	else if (y == 5)
+		y = 104;
+	else if (y == 6)
+		y = 134;
 
 	for (int x = xFirst; x != xLast; x += 1)
 		animation.addFrame(duration, sf::IntRect(xSep * x, y, xSep, ySep));
