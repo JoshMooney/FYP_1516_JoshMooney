@@ -158,7 +158,7 @@ void Level::CreateTerrain(b2World * world, tmx::ObjectGroup &layer) {
 
 		b2FixtureDef myFixtureDef;
 		myFixtureDef.density = 1.0f;
-		myFixtureDef.friction = 0.5f;
+		myFixtureDef.friction = 1.0f;
 		myFixtureDef.shape = &shape;
 		myFixtureDef.userData = "Terrain";
 

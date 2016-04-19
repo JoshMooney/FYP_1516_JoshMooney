@@ -57,7 +57,12 @@ Game::~Game(){
 }
 
 void Game::run(){
-	while (isRunning) {
+	//Get delta time since last frame
+	frameTime = frameClock.restart();
+	//Else add it on and do accumulator things
+	accumulator += frameTime;
+
+	while (isRunning && accumulator >= tickTime) {
 		sf::Event l_event;
 		m_window->pollEvent(l_event);
 
@@ -78,7 +83,11 @@ void Game::run(){
 
 		render();
 		checkSceneChange();
+
+		//Take this tick out of the accumulator
+		accumulator -= tickTime;
 	}
+
 }
 
 void Game::render(){

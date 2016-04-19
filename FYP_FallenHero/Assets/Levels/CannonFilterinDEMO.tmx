@@ -122,4 +122,5 @@
    </properties>
   </object>
  </objectgroup>
+ <objectgroup name="Platform"/>
 </map>

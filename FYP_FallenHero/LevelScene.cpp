@@ -5,12 +5,10 @@
 LevelScene::LevelScene() :
 	contact_listener(ContactListener())
 {
-	m_world = new b2World(vHelper::toB2(GRAVITY));
+	m_world = new b2World(b2Vec2(0, 2));
 	m_world->SetContactListener(&contact_listener);
 
 	m_gem_mine = make_shared<GemMine>(m_world);
-
-	m_gem_mine->SpawnChest(sf::Vector2f(0, 0));
 
 	m_spawner = make_shared<Spawner>(m_world);
 	m_sensor_pool = make_shared<SensorPool>(m_world);
@@ -66,59 +64,55 @@ void LevelScene::loadMedia() {
 }
 void LevelScene::update(){
 	//cLog::inst()->print(1, "LevelScene", "Deprecated update called");
-	
-	while (game_clock.now() - timeOfLastTick >= timePerTick){
-		timeOfLastTick = game_clock.now();
-		if (!m_pause_menu->isPaused()) {
-			m_world->Step(B2_TIMESTEP, VEL_ITER, POS_ITER);
+	timeOfLastTick = game_clock.now();
+	if (!m_pause_menu->isPaused()) {
+		m_world->Step(B2_TIMESTEP, VEL_ITER, POS_ITER);
+		frame_elapse = m_animation_clock.restart();
 
-			frame_elapse = m_animation_clock.restart();
+		m_gem_mine->update(timeOfLastTick, m_player);
 
-			m_gem_mine->update(timeOfLastTick, m_player);
+		m_spawner->update(timeOfLastTick, m_player);
+		m_spawner->CullInActiveEnemies();
 
-			m_spawner->update(timeOfLastTick, m_player);
-			m_spawner->CullInActiveEnemies();
+		m_platform_creator->update(timeOfLastTick);
 
-			m_platform_creator->update(timeOfLastTick);
+		m_entity_creator->update(timeOfLastTick, m_player);
 
-			m_entity_creator->update(timeOfLastTick, m_player);
+		m_projectiles->update(timeOfLastTick);
+		m_projectiles->cull();
+		//m_sensor_pool->cull();
 
-			m_projectiles->update(timeOfLastTick);
-			m_projectiles->cull();
-			//m_sensor_pool->cull();
+		if (m_player->isAlive())
+			m_player->update(timeOfLastTick);
+		else
+			respawnPlayer();
+		m_player_HUD.update();
 
-			if (m_player->isAlive())
-				m_player->update(timeOfLastTick);
-			else
-				respawnPlayer();
-			m_player_HUD.update();
+		if (m_camera.outOfBounds(m_player->getBounds())) {
+			m_camera.refresh(m_player->getCenter());
+			m_player->FallOffMap(m_level->getSpawn());
+		}
+		m_camera.setCenter(m_camera.getPlayerOffset(m_player->getCenter()));
 
-			if (m_camera.outOfBounds(m_player->getBounds())) {
-				m_camera.refresh(m_player->getCenter());
-				m_player->FallOffMap(m_level->getSpawn());
-			}
-			m_camera.setCenter(m_camera.getPlayerOffset(m_player->getCenter()));
-
-			if (m_sensor_pool->hasEnded())		{
-				m_player->clearKeys();
-				m_level_complete = true;
-			}
+		if (m_sensor_pool->hasEnded())	{
+			m_player->clearKeys();
+			m_level_complete = true;
 		}
 	}
-	if (m_pause_menu->isPaused()){
+
+	if (m_pause_menu->isPaused()) {
 		PauseScreen::RESULT result = m_pause_menu->getResult();
 		if (result != PauseScreen::NA) {
 			if (result == PauseScreen::RESUME)
 				m_pause_menu->setPaused(false);
-			else if (result == PauseScreen::QUIT){
+			else if (result == PauseScreen::QUIT) {
 				m_pause_menu->setPaused(false);
 				m_player->clearKeys();
 				m_level_quit = true;
 			}
 		}
+		//m_camera.checkBounds();
 	}
-
-	//m_camera.checkBounds();
 }
 void LevelScene::render(sf::RenderWindow &w){
 	if (m_pause_menu->isPaused())

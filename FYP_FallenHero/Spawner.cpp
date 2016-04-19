@@ -11,6 +11,7 @@ Spawner::Spawner(b2World * world) {
 	m_world = world;
 
 	prototype_Skeleton = new Skeleton();
+	m_boss = nullptr;
 }
 
 Spawner::~Spawner() {
@@ -66,7 +67,7 @@ b2Body * Spawner::GenerateBody(SPAWN_TYPE type, sf::Vector2f pos) {
 		myFixtureDef.userData = "Skeleton";
 
 		myFixtureDef.filter.categoryBits = _filterCategory::ENEMY;
-		myFixtureDef.filter.maskBits = ENEMY | PLAYER | TERRAIN | PLATFORM;
+		myFixtureDef.filter.maskBits = PLAYER | TERRAIN | PLATFORM;
 
 		body->CreateFixture(&myFixtureDef);
 		return body;
@@ -512,6 +513,7 @@ void Spawner::render(sf::RenderWindow &w, sf::Time frames) {
 }
 
 void Spawner::clear() {
+	m_boss = nullptr;
 	for (auto it = m_enemies.begin(); it != m_enemies.end();) {
 		m_world->DestroyBody((*it)->e_box_body);		//Destroy the b2body of the enemy
 		delete *it;				//delete the pointer

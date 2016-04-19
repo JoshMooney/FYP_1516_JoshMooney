@@ -51,6 +51,60 @@ public:
 		void* fixAType = contact->GetFixtureA()->GetUserData();
 		void* fixBType = contact->GetFixtureB()->GetUserData();
 
+		//Skeleton and Chest
+		if (fixAType == "Skeleton" && fixBType == "Door"
+			|| fixAType == "Door" && fixBType == "Skeleton") {
+			void* door_data;
+			void* skele_data;
+
+			if (fixAType == "Door") {
+				door_data = contact->GetFixtureA()->GetBody()->GetUserData();
+				skele_data = contact->GetFixtureB()->GetBody()->GetUserData();
+			}
+			else {
+				skele_data = contact->GetFixtureA()->GetBody()->GetUserData();
+				door_data = contact->GetFixtureB()->GetBody()->GetUserData();
+			}
+
+			static_cast<Skeleton*>(skele_data)->ReachWall();
+		}
+
+		//Skeleton and Chest
+		if (fixAType == "Skeleton" && fixBType == "Chest"
+			|| fixAType == "Chest" && fixBType == "Skeleton") {
+			void* chest_data;
+			void* skele_data;
+
+			if (fixAType == "Chest") {
+				chest_data = contact->GetFixtureA()->GetBody()->GetUserData();
+				skele_data = contact->GetFixtureB()->GetBody()->GetUserData();
+			}
+			else {
+				skele_data = contact->GetFixtureA()->GetBody()->GetUserData();
+				chest_data = contact->GetFixtureB()->GetBody()->GetUserData();
+			}
+
+			static_cast<Skeleton*>(skele_data)->ReachWall();
+		}
+
+		//Skeleton and Cannon
+		if (fixAType == "Skeleton" && fixBType == "Cannon"
+			|| fixAType == "Cannon" && fixBType == "Skeleton") {
+			void* cannon_data;
+			void* skele_data;
+
+			if (fixAType == "Cannon") {
+				cannon_data = contact->GetFixtureA()->GetBody()->GetUserData();
+				skele_data = contact->GetFixtureB()->GetBody()->GetUserData();
+			}
+			else {
+				skele_data = contact->GetFixtureA()->GetBody()->GetUserData();
+				cannon_data = contact->GetFixtureB()->GetBody()->GetUserData();
+			}
+
+			static_cast<Skeleton*>(skele_data)->ReachWall();
+		}
+
 		//Player_Sword and Demon
 		if (fixAType == "Player_Sword" && fixBType == "Demon"
 			|| fixAType == "Demon" && fixBType == "Player_Sword") {
@@ -149,6 +203,14 @@ public:
 					if (player_geo.top + player_geo.height >= terrain_geo.top - player_jump_y_offset &&
 						player_geo.top + player_geo.height <= terrain_geo.top)
 						p->setJumping(false);
+
+					else if (player_geo.left + player_geo.width <= terrain_geo.left ||
+						player_geo.left >= terrain_geo.left + terrain_geo.width)
+					{
+						b2Vec2 vel = p->getBody()->GetLinearVelocity();
+						vel.x = 0;
+						p->getBody()->SetLinearVelocity(vel);
+					}
 				}
 			}
 			else if (fixBType == "Player") {

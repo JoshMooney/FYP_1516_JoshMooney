@@ -15,11 +15,11 @@ Player::Player(b2World &m_world){
 	loadMedia();
 
 	is_hit = false;
-	m_jump_force = 1.5f;
+	m_jump_force = 3.8f;
 	m_is_moving = false;
 	m_is_jumping = false;
 	m_is_attacking = false;
-	m_speed = 1.5f;
+	m_speed = 5.0f;
 	m_direction = 1;	//true = 1 = Looing right and vice versa
 	speedFactor = 0;
 
@@ -43,8 +43,8 @@ Player::Player(b2World &m_world){
 	shape.SetAsBox((m_text_size.x / vHelper::B2_SCALE) / 2, (m_text_size.y / vHelper::B2_SCALE) / 2);
 
 	b2FixtureDef myFixtureDef;
-	myFixtureDef.density = 1.0f;
-	myFixtureDef.friction = 1.5f;
+	myFixtureDef.density = 2.0f;
+	myFixtureDef.friction = 0.5f;
 	myFixtureDef.shape = &shape;
 	myFixtureDef.userData = "Player";
 
@@ -60,7 +60,7 @@ Player::Player(b2World &m_world){
 
 	b2FixtureDef mySwordDef;
 	mySwordDef.density = 1.0f;
-	mySwordDef.friction = 1.5f;
+	mySwordDef.friction = 1.0f;
 	mySwordDef.shape = &sword_shape;
 	mySwordDef.userData = "Player_Sword";
 	mySwordDef.isSensor = true;
@@ -194,14 +194,16 @@ void Player::Idle() {
 	}
 }
 void Player::moveLeft(){
+	if (speedFactor > 0)
+		speedFactor = -0.2f;
 	if (!m_is_attacking && m_current_state != HIT) {
 		setDirection(false);
 		if (speedFactor > -1.f)
-			speedFactor -= 0.02;
+			speedFactor -= 0.01;
 		else if (speedFactor < -1.f)
 			speedFactor = -1.f;
 
-		e_box_body->SetLinearVelocity(b2Vec2(m_speed * speedFactor, e_box_body->GetLinearVelocity().y));
+		e_box_body->SetLinearVelocity(b2Vec2(-m_speed, e_box_body->GetLinearVelocity().y));
 		//float newXVel = clamp(e_box_body->GetLinearVelocity().x - (m_acceleration * DELTA_TIME.asSeconds()), -m_speed, m_speed);
 		//float newXVel = clamp(e_box_body->GetLinearVelocity().x - (m_speed * DELTA_TIME.asSeconds()), -m_deceleration, m_acceleration);
 		//e_box_body->SetLinearVelocity(b2Vec2(newXVel, e_box_body->GetLinearVelocity().y));
@@ -209,14 +211,16 @@ void Player::moveLeft(){
 	}
 }
 void Player::moveRight(){
+	if (speedFactor < 0)
+		speedFactor = 0.2f;
 	if (!m_is_attacking && m_current_state != HIT) {
 		setDirection(true);
 		if (speedFactor < 1.f)
-			speedFactor += 0.02f;
+			speedFactor += 0.01f;
 		else if (speedFactor > 1.f)
 			speedFactor = 1.f;
 
-		e_box_body->SetLinearVelocity(b2Vec2(m_speed * speedFactor, e_box_body->GetLinearVelocity().y));
+		e_box_body->SetLinearVelocity(b2Vec2(m_speed, e_box_body->GetLinearVelocity().y));
 		//float newXVel = clamp(e_box_body->GetLinearVelocity().x + (m_speed * DELTA_TIME.asSeconds()), -m_deceleration, m_acceleration);
 		//e_box_body->SetLinearVelocity(b2Vec2(newXVel, e_box_body->GetLinearVelocity().y));
 		m_is_moving = true;
@@ -289,7 +293,7 @@ void Player::TakeDamage(bool knock_dir) {
 		m_current_state = HIT;
 		m_is_attacking = false;
 		is_hit = true;
-		e_hp -= 25;
+		e_hp -= 10;
 		if (e_hp <= 0) {
 			m_alive = false;
 		}

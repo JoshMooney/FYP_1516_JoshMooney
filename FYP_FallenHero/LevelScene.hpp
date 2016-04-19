@@ -57,7 +57,7 @@ private:
 	sf::Vector2u player_size;
 	string level_id;
 
-	const float B2_TIMESTEP = 1.0f / 60.0f;
+	const float B2_TIMESTEP = 0.01666f;
 	const sf::Vector2f GRAVITY = sf::Vector2f(0, 9.81f);
 	const int VEL_ITER = 6;
 	const int POS_ITER = 2;

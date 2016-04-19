@@ -11,7 +11,7 @@ NodePlatform::NodePlatform(b2Body * b, string id, bool d) : m_direction(d) {
 
 	//alineSprite();
 	m_is_moving = true;
-	m_speed = 8.0f;
+	m_speed = 15.0f;
 	if(id != "")
 		m_new_node = true;
 }

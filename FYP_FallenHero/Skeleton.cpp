@@ -42,7 +42,7 @@ Skeleton::Skeleton(b2World * world) {
 
 void Skeleton::init() {
 	e_sword_col = false;
-	m_speed = 0.35f;
+	m_speed = 4.0f;
 	e_direction = 1;	//true = 1 = Looing right and vice versa
 	speedFactor = 0;
 	e_body_active = true;
@@ -182,7 +182,7 @@ void Skeleton::move() {
 	else {
 		sf::FloatRect b = getBounds();
 		if (e_direction) {
-			if (touching_terr->geometry.left + touching_terr->geometry.width > b.left + b.width) {
+			if (touching_terr->geometry.left + touching_terr->geometry.width > b.left + b.width + 50) {
 				if (speedFactor < 1.f)
 					speedFactor += 0.02f;
 				else if (speedFactor > 1.f)
@@ -194,7 +194,7 @@ void Skeleton::move() {
 				ReachedEdge();
 		}
 		else {
-			if (touching_terr->geometry.left < b.left) {
+			if (touching_terr->geometry.left < b.left - 50) {
 				if (speedFactor > -1.f)
 					speedFactor -= 0.02;
 				else if (speedFactor < -1.f)
@@ -239,7 +239,7 @@ void Skeleton::isTouching(Terrain* t) {
 
 void Skeleton::ReachedEdge() {
 	ChangeDirection();
-
+	e_box_body->SetLinearVelocity(b2Vec2(0, 0));
 }
 
 void Skeleton::ReachPlayer() {

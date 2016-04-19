@@ -25,11 +25,11 @@ Projectile::Projectile(b2Body* b, sf::Vector2f dir, STATE type) {
 
 	init();
 
+	m_direction = dir;
+
 	loadMedia();
 	alineSprite();
-	applySpeed();
-
-	m_direction = thor::unitVector(dir);
+	applySpeed();	
 
 	m_animator.playAnimation(m_current_state);
 }
@@ -45,14 +45,14 @@ Projectile::Projectile(b2Body* b, sf::Vector2f dir, STATE type, string type_id) 
 
 	m_direction = thor::unitVector(dir);
 	if (type_id == "At-Player") {
-		m_speed = 15;
+		m_speed = 90;
 		correctRotation(m_direction);
 	}
 	else if (type_id == "Up") {
-
+		m_speed = 120.0;
 	}
 	else {
-
+		m_speed = 150.0;
 	}
 
 	
@@ -64,16 +64,16 @@ Projectile::~Projectile() {		}
 void Projectile::init() {
 	switch (m_current_state) {
 	case FIRE:
-		m_speed = 15.0f;
+		m_speed = 75.0f;
 		break;
 	case RED:
-		m_speed = 20.0f;
+		m_speed = 90.0f;
 		break;
 	case BLUE:
-		m_speed = 25.0f;
+		m_speed = 120.0f;
 		break;
 	case BOSS:
-		m_speed = 25.0f;
+		m_speed = 120.0f;
 		break;
 	}
 	m_body_active = true;

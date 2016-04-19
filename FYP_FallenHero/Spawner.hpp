@@ -55,7 +55,7 @@ public:
 	WEED, 			//!<Spawn type of a Weed
 	CANNON,			//!<Spawn type of a Cannon
 	CHEST,			//!<Spawn type of a Chest
-	DEMON,			//!<Spawn type of a Boss
+	DEMON,			//!<Spawn type of a Demon
 	};
 	//!Default constructor for the spawner class
 

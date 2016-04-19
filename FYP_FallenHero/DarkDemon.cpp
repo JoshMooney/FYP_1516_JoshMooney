@@ -23,7 +23,7 @@ DarkDemon::DarkDemon(b2Body * b, ProjectileManager* pm, bool dir) : m_projectile
 	setDirection(dir);
 	e_direction = dir;
 
-	m_speed = 0.35f;
+	m_speed = 10.0f;
 	speedFactor = 0;
 	e_hp = 10;
 	m_cooldown = 2.0f;
@@ -92,6 +92,8 @@ void DarkDemon::loadMedia() {
 	//Load Sound effects
 	s_taunt = "Assets/Audio/Game/Boss/laugh.wav";
 	m_taunt.setBuffer(ResourceManager<sf::SoundBuffer>::instance()->get(s_taunt));
+	m_demon_taunt = m_taunt;
+	m_demon_taunt.setPitch(0.7f);
 	/*
 	s_death = "Assets/Audio/Game/skeleton_kill.wav";
 	m_death.setBuffer(ResourceManager<sf::SoundBuffer>::instance()->get(s_death));*/
@@ -186,7 +188,8 @@ void DarkDemon::addFrames(thor::FrameAnimation& animation, int y, int xFirst, in
 }
 
 void DarkDemon::update(FTS fts, Player * p) {
-
+	if (e_hp <= 20)
+		setColor(sf::Color::Red);
 	alineSprite();
 	checkAnimation();
 
@@ -263,7 +266,7 @@ void DarkDemon::move() {
 				}
 				else {
 					sf::FloatRect b = getBounds();
-					m_speed = 2;
+					m_speed = m_ai->currentForm()->m_speed;
 					if (e_direction) {
 						if (touching_terr->geometry.left + touching_terr->geometry.width > b.left + b.width) {
 							if (speedFactor < 1.f)
@@ -300,8 +303,8 @@ void DarkDemon::move() {
 						//	m_current_state = IDLE;
 					}
 					else {
+						m_speed = m_ai->currentForm()->m_speed;
 						sf::FloatRect b = getBounds();
-						m_speed = 3;
 						if (e_direction) {
 							if (touching_terr->geometry.left + touching_terr->geometry.width > b.left + b.width) {
 								if (speedFactor < 1.f)
@@ -339,7 +342,7 @@ void DarkDemon::move() {
 					}
 					else {
 						sf::FloatRect b = getBounds();
-						m_speed = 4;
+						m_speed = m_ai->currentForm()->m_speed;
 						if (e_direction) {
 							if (touching_terr->geometry.left + touching_terr->geometry.width > b.left + b.width) {
 								if (speedFactor < 1.f)
@@ -504,7 +507,7 @@ void DarkDemon::alineSprite() {
 			setOrigin(m_text_size.x / 2, m_text_size.y / 2);
 			break;
 		case DIE:
-			setOrigin(m_text_size.x  + 8 / 2, m_text_size.y / 2);
+			setOrigin(m_text_size.x + 6 / 2, m_text_size.y / 2);
 			break;
 		}
 	}
@@ -647,7 +650,7 @@ void DarkDemon::takeAction() {
 			m_current_state = REV_TRANS;
 			break;
 		case Form::TAUNT:
-			m_taunt.play();
+			m_demon_taunt.play();
 			break;
 		}
 		break;

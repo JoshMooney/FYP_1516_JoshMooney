@@ -24,7 +24,7 @@ b2Body * PlatformCreator::generateBody(sf::Vector2f position, string type) {
 
 	b2FixtureDef myFixtureDef;
 	myFixtureDef.density = 1.0f;
-	myFixtureDef.friction = 900.0f;
+	myFixtureDef.friction = 1.0f;
 	myFixtureDef.shape = &shape;
 
 	if(type == "Platform")

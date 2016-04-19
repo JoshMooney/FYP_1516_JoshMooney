@@ -32,6 +32,11 @@ private:
 
 	Player *m_player;
 
+	sf::Clock frameClock;
+	sf::Time frameTime = sf::Time::Zero;
+	sf::Time tickTime = sf::Time(sf::seconds(0.00833));
+	sf::Time accumulator = sf::Time::Zero;
+
 	sf::Clock m_delta_clock;
 	sf::Time m_delta_time;
 	sf::Time m_time_per_frame;
