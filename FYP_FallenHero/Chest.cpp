@@ -4,7 +4,7 @@
 using namespace detail;
 
 Lock::Lock(b2Body *b, bool dir, string text) {
-	float m_speed = 12.0;
+	float m_speed = 8.0;
 	e_texture = text;
 	setTexture(ResourceManager<sf::Texture>::instance()->get(e_texture));
 

@@ -51,6 +51,39 @@ public:
 		void* fixAType = contact->GetFixtureA()->GetUserData();
 		void* fixBType = contact->GetFixtureB()->GetUserData();
 
+		//Projectile and Chest
+		if (fixAType == "Projectile" && fixBType == "Chest"
+			|| fixAType == "Chest" && fixBType == "Projectile") {
+			void* chest_data;
+			void* proj_data;
+
+			if (fixAType == "Chest") {
+				chest_data = contact->GetFixtureA()->GetBody()->GetUserData();
+				proj_data = contact->GetFixtureB()->GetBody()->GetUserData();
+			}
+			else {
+				proj_data = contact->GetFixtureA()->GetBody()->GetUserData();
+				chest_data = contact->GetFixtureB()->GetBody()->GetUserData();
+			}
+
+			if(static_cast<Chest*>(chest_data)->e_body_active)
+				static_cast<Projectile*>(proj_data)->Die();
+		}
+
+		//Projectile and Door
+		if (fixAType == "Projectile" && fixBType == "Door"
+			|| fixAType == "Door" && fixBType == "Projectile") {
+			void* door_data;
+			void* proj_data;
+
+			if (fixAType == "Door")
+				proj_data = contact->GetFixtureB()->GetBody()->GetUserData();
+			else
+				proj_data = contact->GetFixtureA()->GetBody()->GetUserData();
+
+			static_cast<Projectile*>(proj_data)->Die();
+		}
+
 		//Skeleton and Chest
 		if (fixAType == "Skeleton" && fixBType == "Door"
 			|| fixAType == "Door" && fixBType == "Skeleton") {
