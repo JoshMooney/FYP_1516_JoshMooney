@@ -60,28 +60,11 @@
  <objectgroup name="FG"/>
  <objectgroup name="Blocks"/>
  <objectgroup name="Enemy_Data">
-  <object id="10" name="Green Weed" x="736" y="512" width="32" height="32">
-   <properties>
-    <property name="ai" value="blue"/>
-    <property name="direction" value="0"/>
-    <property name="type" value="Weed"/>
-    <property name="x" value="736"/>
-    <property name="y" value="512"/>
-   </properties>
-  </object>
   <object id="26" name="Black Skeleton" x="544" y="480" width="64" height="64">
    <properties>
     <property name="ai" value="black"/>
     <property name="type" value="Skeleton"/>
     <property name="x" value="544"/>
-    <property name="y" value="480"/>
-   </properties>
-  </object>
-  <object id="29" name="Black Skeleton" x="672" y="480" width="32" height="64">
-   <properties>
-    <property name="direction" value="0"/>
-    <property name="type" value="Boss"/>
-    <property name="x" value="672"/>
     <property name="y" value="480"/>
    </properties>
   </object>

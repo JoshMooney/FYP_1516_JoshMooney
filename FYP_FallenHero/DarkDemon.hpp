@@ -273,7 +273,7 @@ public:
 	*	@brief
 	*/
 	sf::FloatRect getAttackBounds() {
-		sf::Vector2f center = getCenter();
+		sf::Vector2f center = vHelper::toSF(e_box_body->GetPosition());
 		if (e_direction) {
 			sf::Vector2f bot_left = sf::Vector2f(center.x - (m_text_size.x / 2), center.y + (m_text_size.y / 2));
 			sf::Vector2f position = sf::Vector2f(bot_left.x, bot_left.y - attack_frame_size.y);

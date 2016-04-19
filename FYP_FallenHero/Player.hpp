@@ -181,6 +181,7 @@ public:
 	map<string, string>* getKeys() { return &m_keys; }
 	void clearKeys();
 	bool isHit() { return is_hit; }
+	bool getDirection() {	return m_direction;	}
 };
 
 #endif

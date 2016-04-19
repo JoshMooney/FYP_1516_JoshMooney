@@ -16,6 +16,21 @@ Skeleton::Skeleton(b2Body *b, bool dir, AI ai) {
 	//After Default initalisation
 	e_direction = dir;
 	setDirection(e_direction);
+	projectile_mgr = nullptr;
+}
+Skeleton::Skeleton(b2Body *b, bool dir, AI ai, ProjectileManager *p) {
+	b->SetUserData(this);
+	e_box_body = b;
+	m_ai = ai;
+	init();
+
+	//After Default initalisation
+	e_direction = dir;
+	setDirection(e_direction);
+	projectile_mgr = p;
+
+	low_lob = b2Vec2(65, -25);
+	high_lob = b2Vec2(30, -60);
 }
 Skeleton::Skeleton(b2World * world) {
 	/*
@@ -73,6 +88,10 @@ void Skeleton::init() {
 	if (touching_terr == nullptr) {
 		m_current_state = IDLE;
 	}
+
+	m_fire_clock.restart();
+	cooldown_time = 1.75f;
+	can_fire = true;
 }
 
 void Skeleton::ChangeState(STATE s) {
@@ -150,7 +169,31 @@ void Skeleton::addFrames(thor::FrameAnimation& animation, int y, int xFirst, int
 void Skeleton::update(FTS fts, Player *p) {
 	checkAnimation();
 	if (e_body_active) {
-		if(m_current_state == WALKING)
+		if (m_ai == BLACK)
+			CheckFire();
+		back_and_forth = false;
+		float dis_to_player = vHelper::distance(getPosition(), p->getPosition());
+		if (m_ai == BLACK && dis_to_player < 300) {
+			back_and_forth = true;
+			if (p->getPosition().x > getPosition().x)
+				setDirection(true);
+			else 
+				setDirection(false);
+			if (can_fire && projectile_mgr != nullptr) {
+				
+				b2Vec2 toss;
+
+				if (dis_to_player < 150)		toss = low_lob;
+				else                            toss = high_lob;
+
+				if (!e_direction)		toss.x *= -1;
+
+				projectile_mgr->lobBone(getPosition(), toss);
+				can_fire = false;
+				m_fire_clock.restart();
+			}
+		}
+		else if(m_current_state == WALKING)
 			move();
 		// If no other animation is playing, play idle animation
 		//if (!m_animator.isPlayingAnimation())
@@ -192,6 +235,28 @@ void Skeleton::move() {
 			m_current_state = IDLE;
 		}
 	}
+	else if (m_ai == BLACK && back_and_forth) {
+		sf::FloatRect b = getBounds();
+		if (e_direction) {
+			if (touching_terr->geometry.left + touching_terr->geometry.width > b.left + b.width + 50) {
+				int i = rand() % 2;
+				if (i == 0)			e_box_body->SetLinearVelocity(b2Vec2(m_speed *.75f, e_box_body->GetLinearVelocity().y));
+				else				e_box_body->SetLinearVelocity(b2Vec2(-m_speed *.75f, e_box_body->GetLinearVelocity().y));
+			}
+			else
+				ReachedEdge();
+		}
+		else {
+			if (touching_terr->geometry.left < b.left - 50) {
+				int i = rand() % 2;
+				if (i == 0)			e_box_body->SetLinearVelocity(b2Vec2(m_speed *.75f, e_box_body->GetLinearVelocity().y));
+				else				e_box_body->SetLinearVelocity(b2Vec2(-m_speed *.75f, e_box_body->GetLinearVelocity().y));
+			}
+			else
+				ReachedEdge();
+		}
+	}
+		
 	else {
 		sf::FloatRect b = getBounds();
 		if (e_direction) {
@@ -265,4 +330,13 @@ void Skeleton::ReachWall(){
 	//e_direction = !e_direction;
 
 	ChangeDirection();
+}
+
+void Skeleton::CheckFire() {
+	sf::Time elapsed = m_fire_clock.getElapsedTime();
+	if (elapsed.asSeconds() > cooldown_time) {
+		m_current_state = ATTACKING;
+		m_fire_clock.restart();
+		can_fire = true;
+	}
 }

@@ -5,6 +5,7 @@
 #include "Terrain.hpp"
 #include "Enemy.hpp"
 #include "Thor\Animations.hpp"
+#include "ProjectileManager.hpp"
 
 /**
 *	@class Skeleton 
@@ -23,7 +24,15 @@ private:
 	thor::FrameAnimation frame_death;
 	string s_death;
 	sf::Sound m_death;
+	ProjectileManager * projectile_mgr;
 
+	b2Vec2 low_lob;
+	b2Vec2 high_lob;
+
+	bool back_and_forth;
+	sf::Clock m_fire_clock;
+	bool can_fire;
+	float cooldown_time;
 public:
 	//!The three types of AI the Skeleton can use
 	enum AI { 
@@ -58,6 +67,15 @@ public:
 	*	@param bool This direction the Skeleton is facing and will begin the to walk in.
 	*/
 	Skeleton(b2Body *b, bool dir, AI ai);
+	/**
+	*	@brief This is the overloaded method for the skeleton enemy class where
+	*	the skeleton takes everything required for creation this method will be
+	*	located inside of the SpawnSkeleton function inside the spawner
+	*	@see Spawn::SpawnSkeleton
+	*	@param b2Body This is the Box2D body assocated with the entity.
+	*	@param bool This direction the Skeleton is facing and will begin the to walk in.
+	*/
+	Skeleton(b2Body *b, bool dir, AI ai, ProjectileManager *pj);
 	/**
 	*	@brief This is and even older way of creating the Skeleton where the enemy
 	*	creates its own body.
@@ -178,6 +196,8 @@ public:
 		sf::Vector2f position(getPosition().x - (m_text_size.x / 2), getPosition().y - (m_text_size.y / 2));
 		return sf::FloatRect{ position.x, position.y, (float)m_text_size.x, (float)m_text_size.y };
 	}
+
+	void CheckFire();
 };
 
 #endif

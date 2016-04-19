@@ -52,6 +52,16 @@ public:
 	*	@brief
 	*	@param
 	*/
+	void lobBone(sf::Vector2f pos, bool dir);
+	/**
+	*	@brief
+	*	@param
+	*/
+	void lobBone(sf::Vector2f pos, b2Vec2 force);
+	/**
+	*	@brief
+	*	@param
+	*/
 	void shootBoss(sf::Vector2f pos, sf::Vector2f dir, string type);
 
 	/**

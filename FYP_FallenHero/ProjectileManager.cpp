@@ -33,7 +33,6 @@ b2Body * ProjectileManager::GenerateBody(sf::Vector2f pos) {
 	body->CreateFixture(&myFixtureDef);
 	return body;
 }
-
 b2Body * ProjectileManager::GenerateBossBody(sf::Vector2f pos) {
 	b2BodyDef bull_body_Def;
 	bull_body_Def.type = b2_kinematicBody; //this will be a dynamic body
@@ -63,6 +62,56 @@ void ProjectileManager::fireBullet(sf::Vector2f pos, sf::Vector2f dir) {
 }
 void ProjectileManager::fire(sf::Vector2f pos, sf::Vector2f dir, Projectile::STATE type) {
 	m_projectiles.push_back(new Projectile(GenerateBody(pos), dir, type));
+}
+
+void ProjectileManager::lobBone(sf::Vector2f pos, bool dir) {
+	b2BodyDef bull_body_Def;
+	bull_body_Def.type = b2_dynamicBody; //this will be a dynamic body
+	bull_body_Def.position = vHelper::toB2(pos); //set the starting position
+	bull_body_Def.angle = 0; //set the starting angle
+	bull_body_Def.fixedRotation = true;
+
+	b2Body* body;
+	body = m_world->CreateBody(&bull_body_Def);
+	b2PolygonShape shape;
+	shape.SetAsBox((16 / vHelper::B2_SCALE) / 2.0f, (16 / vHelper::B2_SCALE) / 2.0f);
+
+	b2FixtureDef myFixtureDef;
+	myFixtureDef.density = 1.0f;
+	myFixtureDef.friction = 1.0f;
+	myFixtureDef.shape = &shape;
+	myFixtureDef.userData = "Projectile";
+
+	myFixtureDef.filter.categoryBits = _filterCategory::BULLET;
+	myFixtureDef.filter.maskBits = PLAYER;
+	body->CreateFixture(&myFixtureDef);
+
+	m_projectiles.push_back(new Bone(body, dir));
+}
+
+void ProjectileManager::lobBone(sf::Vector2f pos, b2Vec2 force) {
+	b2BodyDef bull_body_Def;
+	bull_body_Def.type = b2_dynamicBody; //this will be a dynamic body
+	bull_body_Def.position = vHelper::toB2(pos); //set the starting position
+	bull_body_Def.angle = 0; //set the starting angle
+	bull_body_Def.fixedRotation = true;
+
+	b2Body* body;
+	body = m_world->CreateBody(&bull_body_Def);
+	b2PolygonShape shape;
+	shape.SetAsBox((16 / vHelper::B2_SCALE) / 2.0f, (16 / vHelper::B2_SCALE) / 2.0f);
+
+	b2FixtureDef myFixtureDef;
+	myFixtureDef.density = 1.0f;
+	myFixtureDef.friction = 1.0f;
+	myFixtureDef.shape = &shape;
+	myFixtureDef.userData = "Projectile";
+
+	myFixtureDef.filter.categoryBits = _filterCategory::BULLET;
+	myFixtureDef.filter.maskBits = PLAYER;
+	body->CreateFixture(&myFixtureDef);
+
+	m_projectiles.push_back(new Bone(body, force));
 }
 
 void ProjectileManager::shootBoss(sf::Vector2f pos, sf::Vector2f dir, string type) {

@@ -33,17 +33,20 @@ Weed::Weed(b2Body * b, bool dir, ProjectileManager * g, AI type) {
 	switch (m_ai) {
 	case GREEN:
 		setColor(sf::Color::Green);
+		e_hp = 10;
 		cooldown_time = 2.5f;
 		m_shoot_dis = 500;
 		break;
 	case RED:
 		setColor(sf::Color::Red);
+		e_hp = 20;
 		cooldown_time = 1.5f;
 		m_shoot_dis = 450;
 		break;
 	case BLUE:
 		setColor(sf::Color::Blue);
 		cooldown_time = 0.9f;
+		e_hp = 10;
 		m_shoot_dis = 350;
 		break;
 	}
@@ -83,7 +86,6 @@ void Weed::loadMedia() {
 	if (e_direction)	setScale(-1, 1);
 	else                setScale(1, 1);
 }
-
 void Weed::init() {
 	e_sword_col = false;
 	//m_jump = 5.0f;
@@ -114,7 +116,6 @@ void Weed::update(FTS fts, Player *p) {
 			e_can_despawn = true;
 	}
 }
-
 void Weed::render(sf::RenderWindow & w, sf::Time frames) {
 	m_animator.update(frames);
 	m_animator.animate(*this);
@@ -128,7 +129,6 @@ void Weed::TakeDamage() {
 			Die();
 	}
 }
-
 void Weed::Die() {
 	//m_death.play();
 	e_box_body->GetFixtureList()->SetSensor(true);
@@ -136,7 +136,6 @@ void Weed::Die() {
 	e_can_despawn = false;
 	m_current_state = DEATH;
 }
-
 void Weed::checkAnimation() {
 	if (m_previous_state != m_current_state) {
 		m_previous_state = m_current_state;
@@ -169,7 +168,6 @@ void Weed::addFrames(thor::FrameAnimation& animation, int y, int xFirst, int xLa
 	for (int x = xFirst; x != xLast; x += 1)
 		animation.addFrame(duration, sf::IntRect(xSep * x, y, xSep, ySep));
 }
-
 void Weed::attack() {
 	sf::Time elapsed = m_fire_clock.getElapsedTime();
 	if (elapsed.asSeconds() > cooldown_time) {
@@ -196,7 +194,6 @@ void Weed::attack() {
 		}
 	}
 }
-
 void Weed::alineSprite() {
 	setPosition(vHelper::toSF(e_box_body->GetPosition()));
 }

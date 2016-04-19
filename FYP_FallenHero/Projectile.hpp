@@ -15,8 +15,7 @@ private:
 	float m_speed;
 	string s_texture;
 	sf::Vector2f m_size;
-	bool m_body_active;     
-	b2Body *m_box_body;     
+	bool m_body_active;     	 
 	sf::Vector2f m_direction;
 	bool can_despawn;
 
@@ -31,6 +30,7 @@ private:
 	thor::FrameAnimation frame_weed_l3;
 	thor::FrameAnimation frame_weed_explode;
 public:
+	b2Body *m_box_body;
 	enum STATE {
 		FIRE,
 		BLUE,
@@ -40,6 +40,7 @@ public:
 		WEED_L1,
 		WEED_L2,
 		WEED_L3,
+		BONE,
 	};
 
 	STATE m_current_state, m_previous_state;
@@ -55,12 +56,12 @@ public:
 
 	void init();
 
-	void update();
+	virtual void update();
 	void render(sf::RenderWindow &w, sf::Time frames);
-	void loadMedia();
+	virtual void loadMedia();
 
-	void Die();
-	void alineSprite();
+	virtual void Die();
+	virtual void alineSprite();
 	/**
 	*	@brief This adds a single thor::FrameAnimation to the animator.
 	*	@param thor::FrameAnimation The FrameAnimation to add the custom frame too.
@@ -77,12 +78,62 @@ public:
 	void correctRotation(sf::Vector2f dir);
 
 	bool isAlive() { return m_body_active; }
+	void setAlive(bool b) { m_body_active = b; }
 	bool canDespawn() { return can_despawn; }
 	b2Body* getBody() { return m_box_body; }
+	void setBody(b2Body* b) { m_box_body = b; }
 
 	void applySpeed();
 	bool getBoolDirection();
 	
+};
+
+class Bone : public Projectile {
+private:
+	string s_texture;
+	sf::Vector2f m_size;
+	bool m_direction;
+public:
+	Bone(b2Body*b, bool dir) {
+		b->SetUserData(this);
+		loadMedia();
+		m_spawn_point = vHelper::toSF(b->GetPosition());
+		if (dir)			b->ApplyForce(b2Vec2(30, -60), b->GetPosition(), true);
+		else 				b->ApplyForce(b2Vec2(-30, -60), b->GetPosition(), true);
+		setBody(b);
+		m_direction = dir;
+	}
+	Bone(b2Body*b, b2Vec2 force) {
+		b->SetUserData(this);
+		loadMedia();
+		m_spawn_point = vHelper::toSF(b->GetPosition());
+		b->ApplyForce(b2Vec2(force.x, force.y), b->GetPosition(), true);
+		setBody(b);
+		m_direction = true;
+	}
+	void Die() override {
+		setAlive(false);
+		m_box_body->GetFixtureList()->SetSensor(true);
+	}
+	void update() override {
+		alineSprite();
+		if (vHelper::distance(getPosition(), m_spawn_point) > 1000) {
+			Die();
+		}
+	}
+	void alineSprite() override {
+		setPosition(vHelper::toSF(m_box_body->GetPosition()));
+
+		float r = getRotation();
+		r += 1.5f;
+		setRotation(r);
+	}
+	void loadMedia() {
+		s_texture = "Assets/Game/bone.png";
+		setTexture(ResourceManager<sf::Texture>::instance()->get(s_texture));
+		m_size = sf::Vector2f(16, 16);
+		setOrigin(m_size.x / 2, m_size.y / 2);
+	}
 };
 
 #endif
