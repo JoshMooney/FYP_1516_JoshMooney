@@ -84,7 +84,8 @@ public:
 				chest_data = contact->GetFixtureB()->GetBody()->GetUserData();
 			}
 
-			static_cast<Skeleton*>(skele_data)->ReachWall();
+			if(static_cast<Chest*>(chest_data)->e_body_active)
+				static_cast<Skeleton*>(skele_data)->ReachWall();
 		}
 
 		//Skeleton and Cannon

@@ -5,6 +5,7 @@
 //XY Tile
 XYTile::XYTile()	{	}
 XYTile::XYTile(b2Body* b, sf::Vector2f root_pos) {
+	m_speed = 8.0f;
 	b->SetUserData(this);
 	m_size = sf::Vector2u(32, 32);
 	m_box_body = b;
@@ -31,7 +32,7 @@ void XYTile::loadMedia() {
 	setOrigin(m_size.x / 2, m_size.y / 2);
 }
 void XYTile::update(FTS fts, sf::Vector2f dir) {
-	sf::Vector2f direction = dir * 2.0f;
+	sf::Vector2f direction = dir * m_speed;
 	m_box_body->SetLinearVelocity(vHelper::toB2(direction));
 	
 	alineSprite();

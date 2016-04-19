@@ -15,8 +15,7 @@ private:
 	sf::Clock m_fire_clock;
 	bool can_fire;
 	float cooldown_time;
-	Projectile::STATE m_bullet_type;
-
+	
 	//string s_death;
 	//sf::Sound m_death;
 
@@ -29,14 +28,14 @@ private:
 	ProjectileManager *m_gun;
 public:
 	enum AI { GREEN, BLUE, RED };
-	AI ai;
+	AI m_ai;
 	enum STATE { ATTACK, IDLE, DEATH, JUMP, LAND };
 	STATE m_current_state, m_previous_state;
 	thor::Animator<sf::Sprite, STATE> m_animator;
 
 	Weed();
 	Weed(b2Body *b, bool dir, ProjectileManager *g);
-	Weed(b2Body *b, bool dir, ProjectileManager *g, Projectile::STATE type);
+	Weed(b2Body *b, bool dir, ProjectileManager *g, AI type);
 	virtual ~Weed() {
 		cLog::inst()->print("Weed Deconstructor called");
 	}

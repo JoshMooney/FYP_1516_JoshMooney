@@ -155,6 +155,7 @@ void Projectile::loadMedia() {
 		m_animator.addAnimation(EXPLODE, frame_weed_explode, sf::seconds(0.25f));
 		break;
 	case WEED_L2:
+		setColor(sf::Color::Red);
 		addFrames(frame_weed_l2,		5, 0, 2, 24, 30, 1.0f);
 		addFrames(frame_weed_explode,	6, 0, 4, 24, 30, 1.0f);
 
@@ -162,6 +163,7 @@ void Projectile::loadMedia() {
 		m_animator.addAnimation(EXPLODE, frame_weed_explode, sf::seconds(0.25f));
 		break;
 	case WEED_L3:
+		setColor(sf::Color::Blue);
 		addFrames(frame_weed_l3,		5, 0, 2, 24, 30, 1.0f);
 		addFrames(frame_weed_explode,	6, 0, 4, 24, 30, 1.0f);
 

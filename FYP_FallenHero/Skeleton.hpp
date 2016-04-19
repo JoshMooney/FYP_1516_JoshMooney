@@ -31,7 +31,7 @@ public:
 	GREY,       //!<Grey AI:
 	BLACK       //!<Black AI:
 	};
-	AI ai;		//!<The current AI of the Skeleton
+	AI m_ai;		//!<The current AI of the Skeleton
 	//!The three types of Animations the Skeleton can use
 	enum STATE {
 		WALKING, 	//!<Walking animation for walking arounds
@@ -51,14 +51,13 @@ public:
 	Skeleton();
 	/**
 	*	@brief This is the overloaded method for the skeleton enemy class where
-	*	the skeleton takes everything required for creation this method will be 
+	*	the skeleton takes everything required for creation this method will be
 	*	located inside of the SpawnSkeleton function inside the spawner
 	*	@see Spawn::SpawnSkeleton
 	*	@param b2Body This is the Box2D body assocated with the entity.
-	*	@param sf::Vector2f The position of the skeleton to draw and spawn at.
 	*	@param bool This direction the Skeleton is facing and will begin the to walk in.
 	*/
-	Skeleton(b2Body *b, bool dir);
+	Skeleton(b2Body *b, bool dir, AI ai);
 	/**
 	*	@brief This is and even older way of creating the Skeleton where the enemy
 	*	creates its own body.

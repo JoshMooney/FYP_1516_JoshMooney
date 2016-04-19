@@ -94,12 +94,12 @@ public:
 	/**
 	*	@brief 
 	*/
-	void SpawnWeed(sf::Vector2f pos, bool dir, Projectile::STATE type);
+	void SpawnWeed(sf::Vector2f pos, bool dir, Weed::AI type);
 	/**
 	*	@brief Calls the generate body function and pushes the new body onto the entity list
 	*	@param sf::Vector2f The position to spawn the Skeleton.
 	*/
-	void SpawnSkeleton(sf::Vector2f pos);
+	void SpawnSkeleton(sf::Vector2f pos, bool dir, Skeleton::AI type);
 	/**
 	*	@brief Creates the appropreate body for the Block and pushes it onto a vector of blocks
 	*	@param sf::Vector2f This position to spawn the Skeleton at.

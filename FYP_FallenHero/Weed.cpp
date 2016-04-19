@@ -5,7 +5,7 @@ Weed::Weed() {
 
 }
 Weed::Weed(b2Body *b, bool dir, ProjectileManager *gun) {
-	m_bullet_type = Projectile::STATE::WEED_L1;
+	m_ai = GREEN;
 	m_gun = gun;
 	e_direction = dir;
 	b->SetUserData(this);
@@ -20,9 +20,8 @@ Weed::Weed(b2Body *b, bool dir, ProjectileManager *gun) {
 	cooldown_time = 2.0f;
 	m_fire_clock.restart();
 }
-
-Weed::Weed(b2Body * b, bool dir, ProjectileManager * g, Projectile::STATE type) {
-	m_bullet_type = type;
+Weed::Weed(b2Body * b, bool dir, ProjectileManager * g, AI type) {
+	m_ai = type;
 	m_gun = g;
 	e_direction = dir;
 	b->SetUserData(this);
@@ -30,11 +29,27 @@ Weed::Weed(b2Body * b, bool dir, ProjectileManager * g, Projectile::STATE type) 
 	e_body_active = true;
 	init();
 	alineSprite();
-	m_shoot_dis = 400;
+	
+	switch (m_ai) {
+	case GREEN:
+		setColor(sf::Color::Green);
+		cooldown_time = 2.5f;
+		m_shoot_dis = 500;
+		break;
+	case RED:
+		setColor(sf::Color::Red);
+		cooldown_time = 1.5f;
+		m_shoot_dis = 450;
+		break;
+	case BLUE:
+		setColor(sf::Color::Blue);
+		cooldown_time = 0.9f;
+		m_shoot_dis = 350;
+		break;
+	}
 
 	can_fire = true;
 	m_can_be_hurt = true;
-	cooldown_time = 2.0f;
 	m_fire_clock.restart();
 }
 
@@ -43,7 +58,6 @@ void Weed::loadMedia() {
 	setTexture(ResourceManager<sf::Texture>::instance()->get(e_texture));
 	m_text_size = sf::Vector2u(39, 37);
 	setOrigin(m_text_size.x / 2, m_text_size.y / 2);
-	//setColor(sf::Color::Green);
 	
 	addFrames(frame_idle,	0, 0, 4, 39, 37, 1.0f);
 	addFrames(frame_death,	4, 0, 8, 42, 42, 1.0f);
@@ -54,7 +68,7 @@ void Weed::loadMedia() {
 	addFrames(frame_death,	4, 0, 8, 42, 42, 1.0f);
 	*/
 	m_animator.addAnimation(IDLE,	frame_idle,		sf::seconds(0.4f));
-	m_animator.addAnimation(ATTACK, frame_attack,	sf::seconds(0.2f));
+	m_animator.addAnimation(ATTACK, frame_attack,	sf::seconds(0.32f));
 	m_animator.addAnimation(DEATH,  frame_death,	sf::seconds(0.75f));
 	
 	/*m_animator.addAnimation(ATTACK, frame_attack,	sf::seconds(0.2f));
@@ -169,7 +183,17 @@ void Weed::attack() {
 		m_current_state = ATTACK;
 		m_fire_clock.restart();
 		//m_fire.play();
-		m_gun->fire(getPosition(), dir, m_bullet_type);
+		switch (m_ai) {
+		case GREEN:
+			m_gun->fire(getPosition(), dir, Projectile::WEED_L1);
+			break;
+		case RED:
+			m_gun->fire(getPosition(), dir, Projectile::WEED_L2);
+			break;
+		case BLUE:
+			m_gun->fire(getPosition(), dir, Projectile::WEED_L3);
+			break;
+		}
 	}
 }
 

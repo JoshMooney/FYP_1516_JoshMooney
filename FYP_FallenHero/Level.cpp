@@ -459,7 +459,21 @@ void Level::GenerateEnemies(b2World *world, tmx::ObjectGroup &layer, Spawner* s)
 			num = layer.objects_[i].GetPropertyValue("y");
 			position.y = atoi(num.c_str());			
 			
-			s->SpawnSkeleton(position);
+			num = layer.objects_[i].GetPropertyValue("direction");
+			bool dir = atoi(num.c_str());
+			string varient = layer.objects_[i].GetPropertyValue("ai");
+			if (varient != "") {
+				if (varient == "white")
+					s->SpawnSkeleton(position, dir, Skeleton::AI::WHITE);
+				else if (varient == "grey")
+					s->SpawnSkeleton(position, dir, Skeleton::AI::GREY);
+				else if (varient == "black")
+					s->SpawnSkeleton(position, dir, Skeleton::AI::BLACK);
+				else
+					cLog::inst()->print(1, "Level::ParseEnemyData", "Incorrect Skeleton type passed in !");
+			}
+			else
+				cLog::inst()->print(1, "Level::ParseEnemyData", "No Skeleton type was passed in !");
 		}
 		if (type == "Boss") {
 			num = layer.objects_[i].GetPropertyValue("x");
@@ -483,7 +497,19 @@ void Level::GenerateEnemies(b2World *world, tmx::ObjectGroup &layer, Spawner* s)
 			num = layer.objects_[i].GetPropertyValue("direction");
 			bool dir = atoi(num.c_str());
 
-			s->SpawnWeed(position, dir);
+			string varient = layer.objects_[i].GetPropertyValue("ai");
+			if (varient != "") {
+				if(varient == "green")
+					s->SpawnWeed(position, dir, Weed::AI::GREEN);
+				else if (varient == "blue")
+					s->SpawnWeed(position, dir, Weed::AI::BLUE);
+				else if (varient == "red")
+					s->SpawnWeed(position, dir, Weed::AI::RED);
+				else
+					cLog::inst()->print(1, "Level::ParseLevelData", "Incorrect Weed type passed in !");
+			}
+			else 
+				s->SpawnWeed(position, dir);
 		}
 		if (type == "Cannon") {
 			num = layer.objects_[i].GetPropertyValue("x");

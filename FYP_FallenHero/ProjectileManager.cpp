@@ -11,11 +11,7 @@ b2Body * ProjectileManager::GenerateBody(sf::Vector2f pos) {
 	b2BodyDef pro_body_Def;
 	pro_body_Def.type = b2_kinematicBody; //this will be a dynamic body
 
-	sf::Vector2f size = sf::Vector2f(32, 32);
-	sf::Vector2f pos_off = sf::Vector2f(pos.x - size.x / 2, pos.y - size.y / 2);
-	pro_body_Def.position = vHelper::toB2(pos_off);
-
-	//pro_body_Def.position = vHelper::toB2(pos); //set the starting position
+	pro_body_Def.position = vHelper::toB2(pos); //set the starting position
 	pro_body_Def.angle = 0; //set the starting angle
 	pro_body_Def.fixedRotation = true;
 

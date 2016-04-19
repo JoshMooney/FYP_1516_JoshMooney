@@ -7,13 +7,15 @@ Skeleton::Skeleton() {
 	setPosition(-500, -500);
 	setTexture(sf::Texture());
 }
-Skeleton::Skeleton(b2Body *b, bool dir) {
+Skeleton::Skeleton(b2Body *b, bool dir, AI ai) {
 	b->SetUserData(this);
 	e_box_body = b;
+	m_ai = ai;
 	init();
 
 	//After Default initalisation
 	e_direction = dir;
+	setDirection(e_direction);
 }
 Skeleton::Skeleton(b2World * world) {
 	/*
@@ -50,13 +52,24 @@ void Skeleton::init() {
 
 	m_current_state = WALKING;
 	m_previous_state = m_current_state;
-	ai = WHITE;
 
 	loadMedia();
 
 	//Entity Initalisation
-	e_hp = 10;
-	e_body_active;
+	switch (m_ai) {
+	case WHITE:
+		//Do nothing sprite is already white
+		e_hp = 10;
+		break;
+	case GREY:
+		setColor(sf::Color(95, 95, 95, 255));
+		e_hp = 20;
+		break;
+	case BLACK:
+		setColor(sf::Color(48, 48, 48, 255));
+		e_hp = 30;
+		break;
+	}
 	if (touching_terr == nullptr) {
 		m_current_state = IDLE;
 	}

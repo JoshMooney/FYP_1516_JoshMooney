@@ -11,6 +11,7 @@
 */
 class XYTile : public sf::Sprite {
 private:
+	float m_speed;
 	sf::Vector2f m_root_pos;
 	sf::Vector2f m_spawn_pos;
 	sf::Vector2f m_destin_pos;

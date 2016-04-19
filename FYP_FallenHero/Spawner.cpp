@@ -156,11 +156,11 @@ void Spawner::SpawnWeed(sf::Vector2f pos, bool dir) {
 	}*/
 
 }
-void Spawner::SpawnWeed(sf::Vector2f pos, bool dir, Projectile::STATE type) {
+void Spawner::SpawnWeed(sf::Vector2f pos, bool dir, Weed::AI type) {
 	m_enemies.push_back(new Weed(GenerateBody(WEED, pos), dir, m_gun, type));
 }
-void Spawner::SpawnSkeleton(sf::Vector2f pos) {
-	m_enemies.push_back(new Skeleton(GenerateBody(SKELETON, pos), true));
+void Spawner::SpawnSkeleton(sf::Vector2f pos, bool dir, Skeleton::AI type) {
+	m_enemies.push_back(new Skeleton(GenerateBody(SKELETON, pos), dir, type));
 }
 void Spawner::SpawnBlock(sf::Vector2f pos, CrumbleBlock::TYPE t, CrumbleBlock::SIZE s) {
 	sf::Vector2f size;

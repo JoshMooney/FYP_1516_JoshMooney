@@ -1,10 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="90" height="25" tilewidth="32" tileheight="32" nextobjectid="28">
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="90" height="25" tilewidth="32" tileheight="32" nextobjectid="29">
  <tileset firstgid="1" name="tile_set" tilewidth="32" tileheight="32" tilecount="3">
   <image source="Tiles/tile_set.png" width="96" height="32"/>
  </tileset>
  <tileset firstgid="4" name="Lvl_2_ground" tilewidth="32" tileheight="32" tilecount="9">
   <image source="Tiles/different_tileset.png" width="288" height="32"/>
+ </tileset>
+ <tileset firstgid="13" name="Cave_OG" tilewidth="32" tileheight="32" tilecount="28">
+  <image source="Tiles/Cave_OG.png" width="896" height="32"/>
  </tileset>
  <layer name="Textures" width="90" height="25">
   <data encoding="base64" compression="zlib">
@@ -57,16 +60,18 @@
  <objectgroup name="FG"/>
  <objectgroup name="Blocks"/>
  <objectgroup name="Enemy_Data">
-  <object id="10" name="Weed" x="736" y="512" width="32" height="32">
+  <object id="10" name="Green Weed" x="736" y="512" width="32" height="32">
    <properties>
+    <property name="ai" value="blue"/>
     <property name="direction" value="0"/>
     <property name="type" value="Weed"/>
     <property name="x" value="736"/>
     <property name="y" value="512"/>
    </properties>
   </object>
-  <object id="26" name="Skeleton" x="544" y="480" width="64" height="64">
+  <object id="26" name="Black Skeleton" x="544" y="480" width="64" height="64">
    <properties>
+    <property name="ai" value="black"/>
     <property name="type" value="Skeleton"/>
     <property name="x" value="544"/>
     <property name="y" value="480"/>
@@ -109,6 +114,13 @@
     <property name="type" value="Node"/>
     <property name="x" value="832"/>
     <property name="y" value="256"/>
+   </properties>
+  </object>
+  <object id="28" name="XY Platform" x="320" y="352" width="32" height="32">
+   <properties>
+    <property name="type" value="XYPlatform"/>
+    <property name="x" value="320"/>
+    <property name="y" value="320"/>
    </properties>
   </object>
  </objectgroup>
