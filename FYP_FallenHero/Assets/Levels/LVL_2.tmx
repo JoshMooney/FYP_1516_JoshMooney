@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="198" height="26" tilewidth="32" tileheight="32" nextobjectid="98">
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="198" height="26" tilewidth="32" tileheight="32" nextobjectid="102">
  <tileset firstgid="1" name="tile_set" tilewidth="32" tileheight="32" tilecount="3">
   <image source="Tiles/tile_set.png" width="96" height="32"/>
  </tileset>
@@ -261,17 +261,24 @@
     <property name="y" value="480"/>
    </properties>
   </object>
- </objectgroup>
- <objectgroup name="Player_Data">
-  <object id="4" name="Start Level" type="Spawn" x="32" y="512" width="64" height="64">
+  <object id="98" name="Terrain" type="Platform" x="0" y="0" width="32" height="608">
    <properties>
-    <property name="h" value="64"/>
-    <property name="label" value="Spawn"/>
-    <property name="w" value="64"/>
-    <property name="x" value="32"/>
-    <property name="y" value="512"/>
+    <property name="h" value="608.00"/>
+    <property name="w" value="32.00"/>
+    <property name="x" value="0.00"/>
+    <property name="y" value="0.00"/>
    </properties>
   </object>
+  <object id="99" name="Terrain" type="Platform" x="6304" y="0" width="32" height="480">
+   <properties>
+    <property name="h" value="480.00"/>
+    <property name="w" value="32.00"/>
+    <property name="x" value="6304.00"/>
+    <property name="y" value="0.00"/>
+   </properties>
+  </object>
+ </objectgroup>
+ <objectgroup name="Player_Data">
   <object id="5" name="End Level" type="Exit" x="6240" y="384" width="64" height="64">
    <properties>
     <property name="h" value="64"/>
@@ -279,6 +286,15 @@
     <property name="w" value="64"/>
     <property name="x" value="6240"/>
     <property name="y" value="384"/>
+   </properties>
+  </object>
+  <object id="100" name="Start Level" type="Spawn" x="96" y="544" width="64" height="64">
+   <properties>
+    <property name="h" value="64"/>
+    <property name="label" value="Spawn"/>
+    <property name="w" value="64"/>
+    <property name="x" value="96.00"/>
+    <property name="y" value="544.00"/>
    </properties>
   </object>
  </objectgroup>
@@ -563,6 +579,15 @@
     <property name="w" value="64"/>
     <property name="x" value="3072"/>
     <property name="y" value="416"/>
+   </properties>
+  </object>
+  <object id="101" name="Checkpoint" type="Exit" x="4128" y="256" width="32" height="32">
+   <properties>
+    <property name="h" value="64"/>
+    <property name="type" value="checkpoint"/>
+    <property name="w" value="64"/>
+    <property name="x" value="4128.00"/>
+    <property name="y" value="256.00"/>
    </properties>
   </object>
  </objectgroup>

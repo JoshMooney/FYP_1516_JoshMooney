@@ -1,8 +1,8 @@
 <Root>
     <SaveGame>
         <SaveSlot1>
-            <TimePlayed>668</TimePlayed>
-            <CurrentGold>9060</CurrentGold>
+            <TimePlayed>889</TimePlayed>
+            <CurrentGold>11260</CurrentGold>
             <Levels>
                 <LVL1>0</LVL1>
                 <LVL2>0</LVL2>
@@ -26,7 +26,7 @@
                 <ACH11>1</ACH11>
                 <ACH12>0</ACH12>
                 <ACH13>0</ACH13>
-                <ACH14>0</ACH14>
+                <ACH14>1</ACH14>
                 <ACH15>1</ACH15>
                 <ACH16>0</ACH16>
                 <ACH17>1</ACH17>

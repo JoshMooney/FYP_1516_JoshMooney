@@ -19,6 +19,8 @@ Level::Level(string s, b2World *world, Spawner *spawner, GemMine *mine, Platform
 	scene = ParallaxSprite(path + "Backgrounds/Mountains.png", sf::Vector3f(0, 0, 0.5f));
 	m_checkpoint = nullptr;
 
+
+	m_player_spawn = sf::Vector2f(100, 100);
 	loadMap(s);
 	scenery = Scenery();
 	m_world = world;

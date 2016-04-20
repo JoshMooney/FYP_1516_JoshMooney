@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="90" height="25" tilewidth="32" tileheight="32" nextobjectid="54">
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="90" height="25" tilewidth="32" tileheight="32" nextobjectid="55">
  <tileset firstgid="1" name="tile_set" tilewidth="32" tileheight="32" tilecount="3">
   <image source="TestLevel/Tiles/tile_set.png" width="96" height="32"/>
  </tileset>
@@ -24,12 +24,12 @@
    <property name="x" value=""/>
    <property name="y" value=""/>
   </properties>
-  <object id="1" name="pf_1" type="Platform" x="64" y="544" width="800" height="256">
+  <object id="1" name="pf_1" type="Platform" x="128" y="544" width="128" height="256">
    <properties>
-    <property name="h" value="256"/>
-    <property name="w" value="800"/>
-    <property name="x" value="64"/>
-    <property name="y" value="544"/>
+    <property name="h" value="256.00"/>
+    <property name="w" value="128.00"/>
+    <property name="x" value="128.00"/>
+    <property name="y" value="544.00"/>
    </properties>
   </object>
   <object id="40" name="pf_1" type="Platform" x="0" y="0" width="96" height="544">
@@ -70,6 +70,14 @@
     <property name="w" value="192"/>
     <property name="x" value="576"/>
     <property name="y" value="352"/>
+   </properties>
+  </object>
+  <object id="54" name="pf_1" type="Platform" x="352" y="544" width="160" height="256">
+   <properties>
+    <property name="h" value="256.00"/>
+    <property name="w" value="160.00"/>
+    <property name="x" value="352.00"/>
+    <property name="y" value="544.00"/>
    </properties>
   </object>
  </objectgroup>

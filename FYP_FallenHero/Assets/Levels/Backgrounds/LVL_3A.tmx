@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="left-down" width="320" height="20" tilewidth="32" tileheight="32" nextobjectid="135">
+<map version="1.0" orientation="orthogonal" renderorder="left-down" width="320" height="20" tilewidth="32" tileheight="32" nextobjectid="125">
  <tileset firstgid="1" name="groundTileset" tilewidth="32" tileheight="32" tilecount="9">
   <image source="Tiles/groundTileset.png" width="288" height="32"/>
  </tileset>
@@ -253,8 +253,8 @@
     <property name="id" value="n3_0"/>
     <property name="n" value="n3_1"/>
     <property name="type" value="Node"/>
-    <property name="x" value="3176.00"/>
-    <property name="y" value="288.00"/>
+    <property name="x" value="768"/>
+    <property name="y" value="256"/>
    </properties>
   </object>
   <object id="42" name="Node" x="3584" y="512" width="16" height="16">
@@ -520,12 +520,12 @@
     <property name="y" value="352.00"/>
    </properties>
   </object>
-  <object id="74" name="Player_Spawn" type="Spawn" x="96" y="480" width="64" height="64">
+  <object id="74" name="Player_Spawn" type="Spawn" x="64" y="480" width="64" height="64">
    <properties>
     <property name="h" value="64"/>
     <property name="type" value="spawn"/>
     <property name="w" value="64"/>
-    <property name="x" value="96.00"/>
+    <property name="x" value="64.00"/>
     <property name="y" value="480.00"/>
    </properties>
   </object>
@@ -932,88 +932,7 @@
     <property name="y" value="448.00"/>
    </properties>
   </object>
-  <object id="125" name="Terrain" type="Platform" x="0" y="0" width="32" height="544">
-   <properties>
-    <property name="h" value="544.00"/>
-    <property name="w" value="32.00"/>
-    <property name="x" value="0.00"/>
-    <property name="y" value="0.00"/>
-   </properties>
-  </object>
-  <object id="126" name="Terrain" type="Platform" x="10208" y="0" width="32" height="512">
-   <properties>
-    <property name="h" value="512.00"/>
-    <property name="w" value="32.00"/>
-    <property name="x" value="10208.00"/>
-    <property name="y" value="0.00"/>
-   </properties>
-  </object>
  </objectgroup>
- <objectgroup name="BG">
-  <object id="127" name="Trees" x="64" y="96" width="96" height="51.5">
-   <properties>
-    <property name="filename" value="Trees"/>
-    <property name="x" value="0"/>
-    <property name="y" value="150"/>
-    <property name="z" value="5"/>
-   </properties>
-  </object>
-  <object id="128" name="Trees" x="320" y="96" width="96" height="51.5">
-   <properties>
-    <property name="filename" value="Trees"/>
-    <property name="x" value="3000"/>
-    <property name="y" value="150"/>
-    <property name="z" value="5"/>
-   </properties>
-  </object>
-  <object id="129" name="Mountain" x="192" y="32" width="96" height="51.5">
-   <properties>
-    <property name="filename" value="Mountains"/>
-    <property name="x" value="0"/>
-    <property name="y" value="100"/>
-    <property name="z" value="8"/>
-   </properties>
-  </object>
-  <object id="130" name="Sky" x="64" y="32" width="96" height="51.5">
-   <properties>
-    <property name="filename" value="Sky"/>
-    <property name="x" value="0"/>
-    <property name="y" value="-100"/>
-    <property name="z" value="10"/>
-   </properties>
-  </object>
-  <object id="131" name="Clouds" x="448" y="96" width="96" height="51.5">
-   <properties>
-    <property name="filename" value="Clouds"/>
-    <property name="x" value="3000"/>
-    <property name="y" value="0"/>
-    <property name="z" value="7"/>
-   </properties>
-  </object>
-  <object id="132" name="Mountain" x="448" y="32" width="96" height="51.5">
-   <properties>
-    <property name="filename" value="Mountains"/>
-    <property name="x" value="3000"/>
-    <property name="y" value="100"/>
-    <property name="z" value="8"/>
-   </properties>
-  </object>
-  <object id="133" name="Sky" x="320" y="32" width="96" height="51.5">
-   <properties>
-    <property name="filename" value="Sky"/>
-    <property name="x" value="3000"/>
-    <property name="y" value="-100"/>
-    <property name="z" value="10"/>
-   </properties>
-  </object>
-  <object id="134" name="Clouds" x="192" y="96" width="96" height="51.5">
-   <properties>
-    <property name="filename" value="Clouds"/>
-    <property name="x" value="0"/>
-    <property name="y" value="0"/>
-    <property name="z" value="7"/>
-   </properties>
-  </object>
- </objectgroup>
+ <objectgroup name="BG"/>
  <objectgroup name="FG"/>
 </map>

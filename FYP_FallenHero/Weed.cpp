@@ -172,7 +172,7 @@ void Weed::attack() {
 	sf::Time elapsed = m_fire_clock.getElapsedTime();
 	if (elapsed.asSeconds() > cooldown_time) {
 		sf::Vector2f dir;
-		if (e_direction)
+		if (!e_direction)
 			dir = sf::Vector2f(1, 0);
 		else
 			dir = sf::Vector2f(-1, 0);

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="200" height="25" tilewidth="32" tileheight="32" backgroundcolor="#55aaff" nextobjectid="99">
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="200" height="25" tilewidth="32" tileheight="32" backgroundcolor="#55aaff" nextobjectid="103">
  <tileset firstgid="1" name="tile_set" tilewidth="32" tileheight="32" tilecount="3">
   <image source="TestLevel/Tiles/tile_set.png" width="96" height="32"/>
  </tileset>
@@ -253,7 +253,39 @@
     <property name="filename" value="More mountains"/>
     <property name="x" value="0"/>
     <property name="y" value="400"/>
-    <property name="z" value="0.8"/>
+    <property name="z" value="7"/>
+   </properties>
+  </object>
+  <object id="99" name="Sky" x="128" y="32" width="96" height="51.5">
+   <properties>
+    <property name="filename" value="Sky"/>
+    <property name="x" value="0"/>
+    <property name="y" value="-100"/>
+    <property name="z" value="10"/>
+   </properties>
+  </object>
+  <object id="100" name="Clouds" x="32" y="96" width="96" height="51.5">
+   <properties>
+    <property name="filename" value="Clouds"/>
+    <property name="x" value="0"/>
+    <property name="y" value="150"/>
+    <property name="z" value="7"/>
+   </properties>
+  </object>
+  <object id="101" name="pf_1" type="Platform" x="0" y="0" width="32" height="384">
+   <properties>
+    <property name="h" value="384.00"/>
+    <property name="w" value="32.00"/>
+    <property name="x" value="0.00"/>
+    <property name="y" value="0.00"/>
+   </properties>
+  </object>
+  <object id="102" name="pf_1" type="Platform" x="6368" y="0" width="32" height="448">
+   <properties>
+    <property name="h" value="448.00"/>
+    <property name="w" value="32.00"/>
+    <property name="x" value="6368.00"/>
+    <property name="y" value="0.00"/>
    </properties>
   </object>
  </objectgroup>
