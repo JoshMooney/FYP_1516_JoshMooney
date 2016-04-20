@@ -25,7 +25,7 @@ DarkDemon::DarkDemon(b2Body * b, ProjectileManager* pm, bool dir) : m_projectile
 
 	m_speed = 10.0f;
 	speedFactor = 0;
-	e_hp = 10;
+	e_hp = 80;
 	m_cooldown = 2.0f;
 
 	m_ai = make_shared<DemonAI>();

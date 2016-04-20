@@ -174,7 +174,7 @@ void Spawner::SpawnBlock(sf::Vector2f pos, CrumbleBlock::TYPE t, CrumbleBlock::S
 		size = sf::Vector2f(32, 32);
 
 	b2BodyDef block_Def;
-	block_Def.type = b2_dynamicBody;
+	block_Def.type = b2_kinematicBody;
 	sf::Vector2f pos_off = sf::Vector2f(pos.x - size.x / 2, pos.y - size.y / 2);
 	block_Def.position = vHelper::toB2(pos); //set the starting position
 	block_Def.angle = 0; //set the starting angle

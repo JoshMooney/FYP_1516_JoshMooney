@@ -30,7 +30,7 @@
 class ContactListener : public b2ContactListener {
 private:
 	const float player_jump_y_offset = 15;
-	const float entity_wall_offset = 10;
+	const float entity_wall_offset = 5;
 	const float boss_wall_offset = 5;
 	
 public:
@@ -50,6 +50,35 @@ public:
 	void BeginContact(b2Contact* contact) {
 		void* fixAType = contact->GetFixtureA()->GetUserData();
 		void* fixBType = contact->GetFixtureB()->GetUserData();
+
+		//Skeleton and Skeleton
+		if (fixAType == "Skeleton" && fixBType == "Skeleton"
+			|| fixAType == "Skeleton" && fixBType == "Skeleton") {
+			contact->SetEnabled(true);
+			void* skeleton_data;
+			void* skeleton_data2;
+
+			skeleton_data = contact->GetFixtureA()->GetBody()->GetUserData();
+			skeleton_data2 = contact->GetFixtureB()->GetBody()->GetUserData();
+
+			static_cast<Skeleton*>(skeleton_data)->ReachedEdge();
+			static_cast<Skeleton*>(skeleton_data2)->ReachedEdge();
+		}
+
+		//Projectile and Terrain
+		if (fixAType == "Projectile" && fixBType == "Terrain"
+			|| fixAType == "Terrain" && fixBType == "Projectile") {
+			contact->SetEnabled(true);
+			void* terrain_data;
+			void* bullet_data;
+
+			if (fixAType == "Projectile")
+				bullet_data = contact->GetFixtureA()->GetBody()->GetUserData();
+			else
+				bullet_data = contact->GetFixtureB()->GetBody()->GetUserData();
+
+			static_cast<Projectile*>(bullet_data)->Die();
+		}
 
 		//Projectile and Chest
 		if (fixAType == "Projectile" && fixBType == "Chest"
@@ -290,20 +319,16 @@ public:
 			Subject::instance()->notify(Subject::BULLET_HIT, nullptr);
 		}
 
-		//Projectile and Terrain
-		if (fixAType == "Projectile" && fixBType == "Terrain"
-			|| fixAType == "Terrain" && fixBType == "Projectile") {
-			void* terrain_data;
+		//Projectile and Block
+		if (fixAType == "Projectile" && fixBType == "Block"
+			|| fixAType == "Block" && fixBType == "Projectile") {
 			void* bullet_data;
+			void* block_data;
 
-			if (fixAType == "Terrain") {
-				terrain_data = contact->GetFixtureA()->GetBody()->GetUserData();
-				bullet_data = contact->GetFixtureB()->GetBody()->GetUserData();
-			}
-			else {
+			if (fixAType == "Projectile")
 				bullet_data = contact->GetFixtureA()->GetBody()->GetUserData();
-				terrain_data = contact->GetFixtureB()->GetBody()->GetUserData();
-			}
+			else
+				bullet_data = contact->GetFixtureB()->GetBody()->GetUserData();
 
 			static_cast<Projectile*>(bullet_data)->Die();
 		}
@@ -567,7 +592,7 @@ public:
 					sf::FloatRect block_geo = static_cast<CrumbleBlock*>(block_data)->getBounds();
 
 					if (player_geo.top + player_geo.height >= block_geo.top - player_jump_y_offset &&
-						player_geo.top + player_geo.height <= block_geo.top)
+						player_geo.top + player_geo.height -4 <= block_geo.top)
 						p->setJumping(false);
 				}
 			}
@@ -581,7 +606,7 @@ public:
 					sf::FloatRect block_geo = static_cast<CrumbleBlock*>(block_data)->getBounds();
 
 					if (player_geo.top + player_geo.height >= block_geo.top - player_jump_y_offset &&
-						player_geo.top + player_geo.height <= block_geo.top)
+						player_geo.top + player_geo.height - 4 <= block_geo.top)
 						p->setJumping(false);
 				}
 			}
@@ -681,7 +706,7 @@ public:
 			sf::FloatRect t = static_cast<Terrain*>(terrain_data)->geometry;
 			sf::FloatRect s = static_cast<DarkDemon*>(boss_data)->getBounds();
 
-			if (s.top + s.height >= t.top &&
+			if (s.top + s.height <= t.top &&
 				s.left >= t.left && s.left + s.width <= t.left + t.width) {
 				Terrain* t = static_cast<Terrain*>(terrain_data);
 				static_cast<DarkDemon*>(boss_data)->isTouching(t);
@@ -708,19 +733,27 @@ public:
 				sf::FloatRect t = static_cast<Terrain*>(bodyUserData2)->geometry;
 				sf::FloatRect s = static_cast<Skeleton*>(bodyUserData1)->getBounds();
 
-				//Right Side
-				if (s.left + s.width > t.left - entity_wall_offset &&
-					s.left + s.width < t.left)
-					static_cast<Skeleton*>(bodyUserData1)->ReachWall();
-				//Left Side
-				else if (s.left > t.left + t.width + entity_wall_offset &&
-					s.left < t.left + t.width)
-					static_cast<Skeleton*>(bodyUserData1)->ReachWall();
-				//Else set touching ground to be the skeleton ground
-				else {
+				if (s.top < t.top && s.left > t.left - s.width && s.left + s.width < t.left + t.width) {
 					Terrain* t = static_cast<Terrain*>(bodyUserData2);
 					static_cast<Skeleton*>(bodyUserData1)->isTouching(t);
 				}
+				else
+					static_cast<Skeleton*>(bodyUserData1)->ReachWall();
+
+				//sf::IntRect int_s = vHelper::FloatToInt(s);
+				////Right Side
+				//if (s.left + s.width > t.left - entity_wall_offset &&
+				//	s.left + s.width < t.left)
+				//	static_cast<Skeleton*>(bodyUserData1)->ReachWall();
+				////Left Side
+				//else if (s.left > t.left + t.width + entity_wall_offset &&
+				//	s.left < t.left + t.width)
+				//	static_cast<Skeleton*>(bodyUserData1)->ReachWall();
+				////Else set touching ground to be the skeleton ground
+				//else {
+				//	Terrain* t = static_cast<Terrain*>(bodyUserData2);
+				//	static_cast<Skeleton*>(bodyUserData1)->isTouching(t);
+				//}
 			}
 			else if (fixBType == "Skeleton") {
 				void* bodyUserData1 = contact->GetFixtureB()->GetBody()->GetUserData();
@@ -729,20 +762,28 @@ public:
 				sf::FloatRect t = static_cast<Terrain*>(bodyUserData2)->geometry;
 				sf::FloatRect s = static_cast<Skeleton*>(bodyUserData1)->getBounds();
 
-				sf::IntRect int_s = vHelper::FloatToInt(s);
-				//Right Side
-				if (int_s.left + int_s.width >= t.left - entity_wall_offset &&
-					int_s.left + int_s.width <= t.left)
-					static_cast<Skeleton*>(bodyUserData1)->ReachWall();
-				//Left Side
-				else if (int_s.left >= t.left + t.width + entity_wall_offset &&
-					int_s.left <= t.left + t.width)
-					static_cast<Skeleton*>(bodyUserData1)->ReachWall();
-				//Else set touching ground to be the skeleton ground
-				else {
+				if (s.top < t.top && s.left - s.width > t.left && s.left + s.width < t.left + t.width) {
 					Terrain* t = static_cast<Terrain*>(bodyUserData2);
 					static_cast<Skeleton*>(bodyUserData1)->isTouching(t);
 				}
+				else
+					static_cast<Skeleton*>(bodyUserData1)->ReachWall();
+				
+				////sf::IntRect int_s = vHelper::FloatToInt(s);
+				////Right Side
+				//if (s.left + s.width >= t.left - entity_wall_offset &&
+				//	s.left + s.width <= t.left)
+				//	static_cast<Skeleton*>(bodyUserData1)->ReachWall();
+				////Left Side
+				//else if (s.left >= t.left + t.width + entity_wall_offset &&
+				//	s.left <= t.left + t.width)
+				//	static_cast<Skeleton*>(bodyUserData1)->ReachWall();
+				////Else set touching ground to be the skeleton ground
+				//else {
+				//	Terrain* t = static_cast<Terrain*>(bodyUserData2);
+				//	static_cast<Skeleton*>(bodyUserData1)->isTouching(t);
+				//}
+				
 			}
 		}
 
@@ -809,14 +850,18 @@ public:
 				sf::FloatRect t = static_cast<CrumbleBlock*>(block_data)->getBounds();
 				sf::FloatRect s = static_cast<Skeleton*>(skele_data)->getBounds();
 
-				//Right Side
-				if (s.left + s.width > t.left - entity_wall_offset &&
-					s.left + s.width < t.left)
-					static_cast<Skeleton*>(skele_data)->ReachWall();
-				//Left Side
-				else if (s.left > t.left + t.width + entity_wall_offset &&
-					s.left < t.left + t.width)
-					static_cast<Skeleton*>(skele_data)->ReachWall();
+				static_cast<Skeleton*>(skele_data)->ReachWall();
+
+				//if(s.left < t.left)
+
+				////Right Side
+				//if (s.left + s.width > t.left - entity_wall_offset &&
+				//	s.left + s.width < t.left)
+				//	static_cast<Skeleton*>(skele_data)->ReachWall();
+				////Left Side
+				//else if (s.left > t.left + t.width + entity_wall_offset &&
+				//	s.left < t.left + t.width)
+				//	static_cast<Skeleton*>(skele_data)->ReachWall();
 				//Else set touching ground to be the skeleton ground
 				//else {
 				//	CrumbleBlock* t = static_cast<CrumbleBlock*>(block_data);
@@ -830,19 +875,21 @@ public:
 				sf::FloatRect t = static_cast<CrumbleBlock*>(block_data)->getBounds();
 				sf::FloatRect s = static_cast<Skeleton*>(skele_data)->getBounds();
 
-				//Right Side
-				if (s.left + s.width > t.left - entity_wall_offset &&
-					s.left + s.width < t.left)
-					static_cast<Skeleton*>(skele_data)->ReachWall();
-				//Left Side
-				else if (s.left > t.left + t.width + entity_wall_offset &&
-					s.left < t.left + t.width)
-					static_cast<Skeleton*>(skele_data)->ReachWall();
-				//Else set touching ground to be the skeleton ground
-				//else {
-				//	CrumbleBlock* t = static_cast<CrumbleBlock*>(block_data);
-				//	static_cast<Skeleton*>(skele_data)->isTouching(t);
-				//}
+				static_cast<Skeleton*>(skele_data)->ReachWall();
+
+				////Right Side
+				//if (s.left + s.width > t.left - entity_wall_offset &&
+				//	s.left + s.width < t.left)
+				//	static_cast<Skeleton*>(skele_data)->ReachWall();
+				////Left Side
+				//else if (s.left > t.left + t.width + entity_wall_offset &&
+				//	s.left < t.left + t.width)
+				//	static_cast<Skeleton*>(skele_data)->ReachWall();
+				////Else set touching ground to be the skeleton ground
+				////else {
+				////	CrumbleBlock* t = static_cast<CrumbleBlock*>(block_data);
+				////	static_cast<Skeleton*>(skele_data)->isTouching(t);
+				////}
 			}
 		}
 

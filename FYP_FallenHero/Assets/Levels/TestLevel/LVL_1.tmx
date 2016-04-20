@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="90" height="25" tilewidth="32" tileheight="32" nextobjectid="30">
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="90" height="25" tilewidth="32" tileheight="32" nextobjectid="35">
  <tileset firstgid="1" name="tile_set" tilewidth="32" tileheight="32" tilecount="3">
   <image source="Tiles/tile_set.png" width="96" height="32"/>
  </tileset>
@@ -11,7 +11,7 @@
  </tileset>
  <layer name="Textures" width="90" height="25">
   <data encoding="base64" compression="zlib">
-   eJztltsKgCAQBU26/v8P50sQIqm7m2XNwIFIKB0OW84BANzDUBmQgec2HP68S3v10RrIuPLsE9cgI9fneA1klMwN5rOeeA6f53HqHsjgf6MNeIYeeKKHf+w+ntvwds9jyKrIZL/9It7w/ap55xyyKbLYb7+I+Iyarlgk17eveNacwSI5D3ju27N27tfmr561z+0teMbzl4JnPFtmB+hTFTM=
+   eJztlt0KgCAMRk36ff8XrouCEMncpqGdAx+EgrHDmDoHAFCGITMgA891uPx5F/fqgz2Q8eTZR75BRqqfwz2Q8WZuMJ/1hHP4Po9jayCD90Yd8Awt8EUf/rH38VyHUjWvRv8cz7OkmcQV6Kh1f1l5no9siiziCnSENWp6xSKpfuvFs6YGi6Q84Lltz9q5n5u/etae21rwjOeegmc8W2YHuKIVQw==
   </data>
  </layer>
  <objectgroup name="Terrain">
@@ -37,6 +37,14 @@
     <property name="y" value="480"/>
    </properties>
   </object>
+  <object id="32" name="pf_1" type="Platform" x="704" y="480" width="39" height="76">
+   <properties>
+    <property name="h" value="76.00"/>
+    <property name="w" value="39.00"/>
+    <property name="x" value="704.00"/>
+    <property name="y" value="480.00"/>
+   </properties>
+  </object>
  </objectgroup>
  <objectgroup name="Player_Data">
   <object id="7" x="32" y="448" width="64" height="64">
@@ -58,14 +66,42 @@
  </objectgroup>
  <objectgroup name="BG"/>
  <objectgroup name="FG"/>
- <objectgroup name="Blocks"/>
- <objectgroup name="Enemy_Data">
-  <object id="26" name="Black Skeleton" x="544" y="480" width="64" height="64">
+ <objectgroup name="Blocks">
+  <object id="30" name="Rock Small" x="800" y="512" width="32" height="32">
    <properties>
-    <property name="ai" value="black"/>
-    <property name="type" value="Skeleton"/>
-    <property name="x" value="544"/>
-    <property name="y" value="480"/>
+    <property name="type" value="rock"/>
+    <property name="w" value="32"/>
+    <property name="x" value="800.00"/>
+    <property name="y" value="512.00"/>
+   </properties>
+  </object>
+  <object id="31" name="Rock Small" x="800" y="480" width="32" height="32">
+   <properties>
+    <property name="type" value="rock"/>
+    <property name="w" value="32"/>
+    <property name="x" value="800.00"/>
+    <property name="y" value="480.00"/>
+   </properties>
+  </object>
+ </objectgroup>
+ <objectgroup name="Enemy_Data">
+  <object id="33" name="Green Weed" x="448" y="480" width="32" height="32">
+   <properties>
+    <property name="ai" value="green"/>
+    <property name="direction" value="1"/>
+    <property name="type" value="Weed"/>
+    <property name="x" value="448.00"/>
+    <property name="y" value="480.00"/>
+   </properties>
+  </object>
+  <object id="34" name="Basic Cannon" x="448" y="512" width="32" height="32">
+   <properties>
+    <property name="bullet_type" value="Fire"/>
+    <property name="cool" value="3"/>
+    <property name="direction" value="1"/>
+    <property name="type" value="Cannon"/>
+    <property name="x" value="448.00"/>
+    <property name="y" value="512.00"/>
    </properties>
   </object>
  </objectgroup>
@@ -80,39 +116,5 @@
    </properties>
   </object>
  </objectgroup>
- <objectgroup name="Platform">
-  <object id="23" name="Node Platform" x="768" y="288" width="160" height="16">
-   <properties>
-    <property name="id" value="n_0"/>
-    <property name="type" value="NodePlatform"/>
-    <property name="x" value="768"/>
-    <property name="y" value="256"/>
-   </properties>
-  </object>
-  <object id="24" name="Node" x="832" y="512" width="16" height="16">
-   <properties>
-    <property name="id" value="n_0"/>
-    <property name="n" value="n_1"/>
-    <property name="type" value="Node"/>
-    <property name="x" value="832"/>
-    <property name="y" value="512"/>
-   </properties>
-  </object>
-  <object id="25" name="Node" x="832" y="256" width="16" height="16">
-   <properties>
-    <property name="id" value="n_1"/>
-    <property name="n" value="n_0"/>
-    <property name="type" value="Node"/>
-    <property name="x" value="832"/>
-    <property name="y" value="256"/>
-   </properties>
-  </object>
-  <object id="28" name="XY Platform" x="320" y="352" width="32" height="32">
-   <properties>
-    <property name="type" value="XYPlatform"/>
-    <property name="x" value="320"/>
-    <property name="y" value="320"/>
-   </properties>
-  </object>
- </objectgroup>
+ <objectgroup name="Platform"/>
 </map>

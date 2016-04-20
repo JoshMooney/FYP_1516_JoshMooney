@@ -163,8 +163,8 @@ void Level::CreateTerrain(b2World * world, tmx::ObjectGroup &layer) {
 		myFixtureDef.userData = "Terrain";
 
 		myFixtureDef.filter.categoryBits = _filterCategory::TERRAIN;
-		myFixtureDef.filter.maskBits = PLAYER | ENEMY | BULLET | TERRAIN | PLATFORM | GEM | SENSOR;
-
+		//myFixtureDef.filter.maskBits = PLAYER | ENEMY | BULLET | TERRAIN | PLATFORM | GEM | SENSOR;
+		myFixtureDef.filter.maskBits = PLAYER | ENEMY | BULLET | TERRAIN | PLATFORM | GEM;
 		box_body->CreateFixture(&myFixtureDef);
 
 		terrain = new Terrain();

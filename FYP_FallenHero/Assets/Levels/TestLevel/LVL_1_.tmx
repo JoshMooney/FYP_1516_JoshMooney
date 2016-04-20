@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="90" height="25" tilewidth="32" tileheight="32" nextobjectid="47">
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="90" height="25" tilewidth="32" tileheight="32" nextobjectid="53">
  <tileset firstgid="1" name="tile_set" tilewidth="32" tileheight="32" tilecount="3">
   <image source="Tiles/tile_set.png" width="96" height="32"/>
  </tileset>
@@ -14,7 +14,7 @@
  </tileset>
  <layer name="Textures" width="90" height="25">
   <data encoding="base64" compression="zlib">
-   eJztl7sKwkAQRfcH4gPtBB+xURtFrKxiQMTH/3+PN0VAFkeSwMws8R441TJk9zBNshDCAA6DHiuYw7XiN1InC+xsATvbwM42sLMNUucRHAszbc/YWe48gVNhpu0ZO7OzFexsQ5vOG7iN3DWYY2fusxVx5647+2uOneV93sODMNP17J+x+E8h6XS+w4fzHTRJpfMTvpzvoEkqnftO3blyDhdKLuGsgaXqa/347Jwn4FH3uW54dS7gFZ4iL6qv9aPubN24sq+7+w3rzkVgZ+6zHh6d69Y3eI4sVV/rh1dnyb7u+BukCzVc
+   eJztl7sKwkAQRfcH4gPtBB+xURtFrKxiQETN/3+PN0VAlowYYWaWeA+cahmye5gmWQhhAIdBjxXM4VrxG6mTBXa2gJ1tYGcb2NkGqfMIjoWZrmfsLHeewKkw0/WMndnZCna2gZ1tYGcb4s4buI3cRTNtLT/NsbO8z3t4EGZ+PftnLP5TSDqd7/DhfAdNUun8hJXzHTRJpXPfaTrXzuFCySWcfWGp+lo/3jvnCXjUfa4bXp0LeIWnyIvqa/1oOls3ru3r7rZh3bkI7Mx91sOjc9P6Bs+Rpepr/fDqLNnXHX8BnTk0jQ==
   </data>
  </layer>
  <objectgroup name="Terrain">
@@ -64,6 +64,14 @@
     <property name="y" value="352"/>
    </properties>
   </object>
+  <object id="47" name="pf_1" type="Platform" x="576" y="352" width="192" height="32">
+   <properties>
+    <property name="h" value="32"/>
+    <property name="w" value="192"/>
+    <property name="x" value="576"/>
+    <property name="y" value="352"/>
+   </properties>
+  </object>
  </objectgroup>
  <objectgroup name="Player_Data">
   <object id="5" name="End Level" type="Exit" x="961" y="447" width="64" height="64">
@@ -75,25 +83,35 @@
     <property name="y" value="447"/>
    </properties>
   </object>
-  <object id="44" name="Player_Spawn" type="Spawn" x="192" y="288" width="64" height="64">
+  <object id="44" name="Player_Spawn" type="Spawn" x="192" y="96" width="64" height="64">
    <properties>
     <property name="h" value="64"/>
     <property name="type" value="spawn"/>
     <property name="w" value="64"/>
     <property name="x" value="192"/>
-    <property name="y" value="288"/>
+    <property name="y" value="96"/>
    </properties>
   </object>
  </objectgroup>
  <objectgroup name="BG"/>
  <objectgroup name="FG"/>
  <objectgroup name="Enemy_Data">
-  <object id="39" name="Dark Demon" x="576" y="480" width="32" height="64">
+  <object id="51" name="Green Weed" x="480" y="512" width="32" height="32">
    <properties>
+    <property name="ai" value="green"/>
+    <property name="direction" value="1"/>
+    <property name="type" value="Weed"/>
+    <property name="x" value="480.00"/>
+    <property name="y" value="512.00"/>
+   </properties>
+  </object>
+  <object id="52" name="Red Weed" x="352" y="512" width="32" height="32">
+   <properties>
+    <property name="ai" value="red"/>
     <property name="direction" value="0"/>
-    <property name="type" value="Boss"/>
-    <property name="x" value="576"/>
-    <property name="y" value="480"/>
+    <property name="type" value="Weed"/>
+    <property name="x" value="352.00"/>
+    <property name="y" value="512.00"/>
    </properties>
   </object>
  </objectgroup>
@@ -102,9 +120,9 @@
   <object id="38" name="Duo Locked Door" x="832" y="384" width="32" height="160">
    <properties>
     <property name="direction" value="0"/>
-    <property name="id" value="dr1"/>
-    <property name="slot1" value="key1"/>
-    <property name="slot2" value="key2"/>
+    <property name="id" value="boss_door"/>
+    <property name="slot1" value="boss_key_1"/>
+    <property name="slot2" value="boss_key_2"/>
     <property name="slot3" value=""/>
     <property name="slot4" value=""/>
     <property name="value" value="door"/>
@@ -112,24 +130,14 @@
     <property name="y" value="384"/>
    </properties>
   </object>
-  <object id="42" name="Blue Key" x="448" y="256" width="32" height="32">
+  <object id="42" name="Blue Key" x="416" y="256" width="32" height="32">
    <properties>
-    <property name="door" value="dr1"/>
-    <property name="id" value="key2"/>
+    <property name="door" value="boss_door"/>
+    <property name="id" value="boss_key_2"/>
     <property name="type" value="blue"/>
     <property name="value" value="key"/>
-    <property name="x" value="436"/>
+    <property name="x" value="432"/>
     <property name="y" value="224"/>
-   </properties>
-  </object>
-  <object id="43" name="Gold Key " x="320" y="512" width="32" height="32">
-   <properties>
-    <property name="door" value="dr1"/>
-    <property name="id" value="key1"/>
-    <property name="type" value="gold"/>
-    <property name="value" value="key"/>
-    <property name="x" value="320"/>
-    <property name="y" value="512"/>
    </properties>
   </object>
  </objectgroup>
@@ -137,5 +145,13 @@
   <properties>
    <property name="x" value=""/>
   </properties>
+  <object id="48" name="OneWay Platform" x="368" y="448" width="160" height="16">
+   <properties>
+    <property name="id" value=""/>
+    <property name="type" value="OneWayPlatform"/>
+    <property name="x" value="368"/>
+    <property name="y" value="448"/>
+   </properties>
+  </object>
  </objectgroup>
 </map>

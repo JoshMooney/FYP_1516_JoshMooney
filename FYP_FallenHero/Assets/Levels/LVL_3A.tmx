@@ -1,233 +1,938 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="90" height="25" tilewidth="32" tileheight="32" nextobjectid="39">
- <tileset firstgid="1" name="tile_set" tilewidth="32" tileheight="32" tilecount="3">
-  <image source="Tiles/tile_set.png" width="96" height="32"/>
+<map version="1.0" orientation="orthogonal" renderorder="left-down" width="320" height="20" tilewidth="32" tileheight="32" nextobjectid="125">
+ <tileset firstgid="1" name="groundTileset" tilewidth="32" tileheight="32" tilecount="9">
+  <image source="Tiles/groundTileset.png" width="288" height="32"/>
  </tileset>
- <tileset firstgid="4" name="Lvl_2_ground" tilewidth="32" tileheight="32" tilecount="9">
-  <image source="Tiles/different_tileset.png" width="288" height="32"/>
+ <tileset firstgid="10" name="RockSpritestrip" tilewidth="32" tileheight="32" tilecount="10">
+  <image source="Tiles/RockSpritestrip.png" width="320" height="32"/>
  </tileset>
- <layer name="Textures" width="90" height="25">
+ <tileset firstgid="20" name="Cave_OG" tilewidth="32" tileheight="32" tilecount="28">
+  <image source="Tiles/Cave_OG.png" width="896" height="32"/>
+ </tileset>
+ <layer name="Texture" width="320" height="20">
   <data encoding="base64" compression="zlib">
-   eJzt0MEJACAQBDE/ovbfsEV4oC4JTAPTGgAAAAAA8KsZXq9bdWSFN+pWHbn9weeMfPY5KZ99TuqVzxvNrQ+/
+   eJztnNlugzAQRaFLvqB9iFDVJWr//xNrHixZCMyMPbYBnyNdRQIyDA5cxosyDHBUnp1uTi+tEwEAqAz+BwC9gv8BQK/gfwAAANATo9PrQk9NMwIAqIPv+4WiHwgAvTJ7oK8FAQB6w9eCVn3h0TAWAEBpfN94OT6Yolw/XRun1GjrvNq4ANAHa2ODFsrxz1RtjWlKr1FL6Kt7nk9tDAAtKOV/Ydy9+aRYnX0UX9T4OQCcg6X/Wc19p/ifpm6tjeZ6emZsHJd3E2go5X85ObTOZ41ljkesUVsze1RKX8EyruWcJVwf/E/GkXM8wvip9yhr/9PGtV63AefDj1VJ7gH8T8beOGmrOtD7Q8t2Cj3K0v9S4obHX8EDNc/yXgxpHOmaEIuc1mLk7tPMNcfmp2vdP1fwP2l7W69ZKnFu7VqpUm2QMgdX8vcI9e304/Tl9BvJ58/p06gNrNoxxROsn83Yf67k7rNSzvVp3jmS2srqGU6l1FqolPYvnUur8+5JQuz7k2EuU/D5HsnnzenRuN1q3ycSru5/VvO/LXKvlaNEOe/nM543JgnSWN6/Pja2h/umxfZpIfxPD/5XLu/c3GvliHSSoIkXetht2K4P7yvH3IP9s/89NuT97x9a8xzI
   </data>
  </layer>
- <objectgroup name="Terrain">
-  <properties>
-   <property name="h" value=""/>
-   <property name="w" value=""/>
-   <property name="x" value=""/>
-   <property name="y" value=""/>
-  </properties>
-  <object id="1" name="pf_1" type="Platform" x="-5" y="544" width="1829" height="256">
-   <properties>
-    <property name="h" value="256"/>
-    <property name="w" value="1829"/>
-    <property name="x" value="0"/>
-    <property name="y" value="544"/>
-   </properties>
-  </object>
- </objectgroup>
- <objectgroup name="Player_Data">
-  <object id="4" name="Start Level" type="Spawn" x="224" y="224" width="64" height="64">
-   <properties>
-    <property name="h" value="64"/>
-    <property name="type" value="spawn"/>
-    <property name="w" value="64"/>
-    <property name="x" value="224"/>
-    <property name="y" value="224"/>
-   </properties>
-  </object>
-  <object id="5" name="End Level" type="Exit" x="1728" y="480" width="64" height="64">
-   <properties>
-    <property name="h" value="64"/>
-    <property name="type" value="exit"/>
-    <property name="w" value="64"/>
-    <property name="x" value="1728"/>
-    <property name="y" value="480"/>
-   </properties>
-  </object>
- </objectgroup>
- <objectgroup name="FG"/>
  <objectgroup name="Blocks">
-  <object id="26" x="128" y="384" width="64" height="64">
+  <object id="56" name="Dirt Large" x="6368" y="448" width="64" height="64">
    <properties>
-    <property name="type" value="rock"/>
+    <property name="type" value="dirt"/>
     <property name="w" value="64"/>
-    <property name="x" value="128"/>
-    <property name="y" value="384"/>
+    <property name="x" value="6368.00"/>
+    <property name="y" value="448.00"/>
    </properties>
   </object>
-  <object id="27" x="192" y="416" width="32" height="32">
+  <object id="57" name="Dirt Small" x="6336" y="480" width="32" height="32">
+   <properties>
+    <property name="type" value="dirt"/>
+    <property name="w" value="32"/>
+    <property name="x" value="6336.00"/>
+    <property name="y" value="480.00"/>
+   </properties>
+  </object>
+  <object id="58" name="Dirt Large" x="6688" y="512" width="64" height="64">
+   <properties>
+    <property name="type" value="dirt"/>
+    <property name="w" value="64"/>
+    <property name="x" value="6688.00"/>
+    <property name="y" value="512.00"/>
+   </properties>
+  </object>
+  <object id="59" name="Sand Small" x="6656" y="544" width="32" height="32">
    <properties>
     <property name="type" value="sand"/>
     <property name="w" value="32"/>
-    <property name="x" value="192"/>
-    <property name="y" value="416"/>
+    <property name="x" value="6656.00"/>
+    <property name="y" value="544.00"/>
    </properties>
   </object>
-  <object id="35" x="160" y="288" width="32" height="32">
+  <object id="60" name="Sand Small" x="6144" y="480" width="32" height="32">
    <properties>
     <property name="type" value="sand"/>
     <property name="w" value="32"/>
-    <property name="x" value="160"/>
-    <property name="y" value="288"/>
+    <property name="x" value="6144.00"/>
+    <property name="y" value="480.00"/>
    </properties>
   </object>
- </objectgroup>
- <objectgroup name="Enemy_Data">
-  <object id="22" name="Cannon" x="256" y="416" width="32" height="32">
+  <object id="61" name="Sand Small" x="6144" y="416" width="32" height="32">
    <properties>
-    <property name="bullet_type" value="Blue"/>
-    <property name="cool" value="15"/>
-    <property name="direction" value="1"/>
-    <property name="type" value="Cannon"/>
-    <property name="x" value="256"/>
-    <property name="y" value="416"/>
+    <property name="type" value="sand"/>
+    <property name="w" value="32"/>
+    <property name="x" value="6144.00"/>
+    <property name="y" value="416.00"/>
    </properties>
   </object>
-  <object id="25" name="Cannon" x="256" y="288" width="32" height="32">
+  <object id="62" name="Sand Small" x="6144" y="448" width="32" height="32">
    <properties>
-    <property name="bullet_type" value="Fire"/>
-    <property name="cool" value="15"/>
-    <property name="direction" value="1"/>
-    <property name="type" value="Cannon"/>
-    <property name="x" value="256"/>
-    <property name="y" value="288"/>
+    <property name="type" value="sand"/>
+    <property name="w" value="32"/>
+    <property name="x" value="6144.00"/>
+    <property name="y" value="448.00"/>
+   </properties>
+  </object>
+  <object id="65" name="Dirt Large" x="7392" y="448" width="64" height="64">
+   <properties>
+    <property name="type" value="dirt"/>
+    <property name="w" value="64"/>
+    <property name="x" value="7392.00"/>
+    <property name="y" value="448.00"/>
+   </properties>
+  </object>
+  <object id="66" name="Dirt Small" x="7136" y="480" width="32" height="32">
+   <properties>
+    <property name="type" value="dirt"/>
+    <property name="w" value="32"/>
+    <property name="x" value="7136.00"/>
+    <property name="y" value="480.00"/>
+   </properties>
+  </object>
+  <object id="67" name="Dirt Small" x="7104" y="480" width="32" height="32">
+   <properties>
+    <property name="type" value="dirt"/>
+    <property name="w" value="32"/>
+    <property name="x" value="7104.00"/>
+    <property name="y" value="480.00"/>
+   </properties>
+  </object>
+  <object id="68" name="Dirt Small" x="7136" y="448" width="32" height="32">
+   <properties>
+    <property name="type" value="dirt"/>
+    <property name="w" value="32"/>
+    <property name="x" value="7136.00"/>
+    <property name="y" value="448.00"/>
+   </properties>
+  </object>
+  <object id="64" name="Sand Small" x="7360" y="480" width="32" height="32">
+   <properties>
+    <property name="type" value="sand"/>
+    <property name="w" value="32"/>
+    <property name="x" value="7360.00"/>
+    <property name="y" value="480.00"/>
+   </properties>
+  </object>
+  <object id="70" name="Sand Large" x="7552" y="512" width="64" height="64">
+   <properties>
+    <property name="type" value="sand"/>
+    <property name="w" value="64"/>
+    <property name="x" value="7552.00"/>
+    <property name="y" value="512.00"/>
    </properties>
   </object>
  </objectgroup>
  <objectgroup name="Platform">
-  <object id="8" x="896" y="384" width="160" height="16">
+  <object id="16" name="Node Platform" x="1728" y="512" width="160" height="16">
    <properties>
-    <property name="id" value="pf1"/>
-    <property name="type" value="Platform"/>
-    <property name="x" value="896"/>
-    <property name="y" value="384"/>
-   </properties>
-  </object>
-  <object id="10" x="864" y="448" width="160" height="16">
-   <properties>
-    <property name="id" value="n_0"/>
+    <property name="id" value="n2_0"/>
     <property name="type" value="NodePlatform"/>
-    <property name="x" value="864"/>
-    <property name="y" value="448"/>
+    <property name="x" value="1728"/>
+    <property name="y" value="512"/>
    </properties>
   </object>
-  <object id="11" x="768" y="448" width="16" height="16">
+  <object id="17" name="Node" x="1776" y="512" width="16" height="16">
    <properties>
-    <property name="id" value="n_3"/>
-    <property name="n" value="n_0"/>
+    <property name="id" value="n2_0"/>
+    <property name="n" value="n2_1"/>
     <property name="type" value="Node"/>
-    <property name="x" value="768"/>
-    <property name="y" value="448"/>
+    <property name="x" value="1776.00"/>
+    <property name="y" value="512.00"/>
    </properties>
   </object>
-  <object id="14" x="1152" y="448" width="16" height="16">
+  <object id="18" name="Node" x="2112" y="512" width="16" height="16">
    <properties>
-    <property name="id" value="n_2"/>
-    <property name="n" value="n_3"/>
+    <property name="id" value="n2_1"/>
+    <property name="n" value="n2_0"/>
     <property name="type" value="Node"/>
-    <property name="x" value="1152"/>
-    <property name="y" value="448"/>
+    <property name="x" value="2112"/>
+    <property name="y" value="512"/>
    </properties>
   </object>
-  <object id="15" x="768" y="256" width="16" height="16">
+  <object id="19" name="Fade Platform" x="3712" y="320" width="160" height="16">
    <properties>
-    <property name="id" value="n_0"/>
-    <property name="n" value="n_1"/>
-    <property name="type" value="Node"/>
-    <property name="x" value="768"/>
-    <property name="y" value="256"/>
+    <property name="a" value="3"/>
+    <property name="d" value="1.5"/>
+    <property name="i" value="5"/>
+    <property name="id" value=""/>
+    <property name="o" value="2"/>
+    <property name="type" value="FadePlatform"/>
+    <property name="x" value="3712"/>
+    <property name="y" value="320"/>
    </properties>
   </object>
-  <object id="16" x="1152" y="256" width="16" height="16">
-   <properties>
-    <property name="id" value="n_1"/>
-    <property name="n" value="n_2"/>
-    <property name="type" value="Node"/>
-    <property name="x" value="1152"/>
-    <property name="y" value="256"/>
-   </properties>
-  </object>
-  <object id="17" x="128" y="448" width="160" height="16">
+  <object id="20" name="OneWay Platform" x="4576" y="464" width="160" height="16">
    <properties>
     <property name="id" value=""/>
     <property name="type" value="OneWayPlatform"/>
-    <property name="x" value="128"/>
-    <property name="y" value="448"/>
+    <property name="x" value="4576.00"/>
+    <property name="y" value="464.00"/>
    </properties>
   </object>
-  <object id="19" x="704" y="320" width="160" height="16">
+  <object id="21" name="OneWay Platform" x="4576" y="352" width="160" height="16">
+   <properties>
+    <property name="id" value=""/>
+    <property name="type" value="OneWayPlatform"/>
+    <property name="x" value="4576.00"/>
+    <property name="y" value="352.00"/>
+   </properties>
+  </object>
+  <object id="22" name="Fade Platform" x="4864" y="352" width="160" height="16">
+   <properties>
+    <property name="a" value="2"/>
+    <property name="d" value="4"/>
+    <property name="i" value="5"/>
+    <property name="id" value=""/>
+    <property name="o" value="1"/>
+    <property name="type" value="FadePlatform"/>
+    <property name="x" value="4864.00"/>
+    <property name="y" value="352.00"/>
+   </properties>
+  </object>
+  <object id="23" name="Fade Platform" x="5120" y="352" width="160" height="16">
+   <properties>
+    <property name="a" value="3.5"/>
+    <property name="d" value="2.5"/>
+    <property name="i" value="5"/>
+    <property name="id" value=""/>
+    <property name="o" value="1"/>
+    <property name="type" value="FadePlatform"/>
+    <property name="x" value="5120.00"/>
+    <property name="y" value="352.00"/>
+   </properties>
+  </object>
+  <object id="24" name="Fade Platform" x="5376" y="352" width="160" height="16">
+   <properties>
+    <property name="a" value="5"/>
+    <property name="d" value="1"/>
+    <property name="i" value="5"/>
+    <property name="id" value=""/>
+    <property name="o" value="1"/>
+    <property name="type" value="FadePlatform"/>
+    <property name="x" value="5376.00"/>
+    <property name="y" value="352.00"/>
+   </properties>
+  </object>
+  <object id="25" name="Fade Platform" x="8800" y="384" width="160" height="16">
    <properties>
     <property name="a" value="2"/>
     <property name="d" value="2"/>
-    <property name="i" value="1"/>
+    <property name="i" value="5"/>
     <property name="id" value=""/>
     <property name="o" value="1"/>
     <property name="type" value="FadePlatform"/>
-    <property name="x" value="704"/>
-    <property name="y" value="320"/>
+    <property name="x" value="8800"/>
+    <property name="y" value="384"/>
    </properties>
   </object>
-  <object id="20" x="864" y="256" width="160" height="16">
+  <object id="27" name="Basic Platform" x="704" y="448" width="160" height="16">
    <properties>
-    <property name="id" value="n_1"/>
+    <property name="id" value="pf1"/>
+    <property name="type" value="Platform"/>
+    <property name="x" value="704.00"/>
+    <property name="y" value="448.00"/>
+   </properties>
+  </object>
+  <object id="32" name="Node" x="3176" y="512" width="16" height="16">
+   <properties>
+    <property name="id" value="n3_1"/>
+    <property name="n" value="n3_0"/>
+    <property name="type" value="Node"/>
+    <property name="x" value="3176.00"/>
+    <property name="y" value="512.00"/>
+   </properties>
+  </object>
+  <object id="33" name="Node Platform" x="3104" y="288" width="160" height="16">
+   <properties>
+    <property name="id" value="n3_0"/>
     <property name="type" value="NodePlatform"/>
-    <property name="x" value="864"/>
+    <property name="x" value="3104.00"/>
+    <property name="y" value="288.00"/>
+   </properties>
+  </object>
+  <object id="34" name="Node" x="3176" y="288" width="16" height="16">
+   <properties>
+    <property name="id" value="n3_0"/>
+    <property name="n" value="n3_1"/>
+    <property name="type" value="Node"/>
+    <property name="x" value="768"/>
     <property name="y" value="256"/>
    </properties>
   </object>
-  <object id="32" x="128" y="320" width="160" height="16">
+  <object id="42" name="Node" x="3584" y="512" width="16" height="16">
    <properties>
-    <property name="a" value=""/>
-    <property name="d" value=""/>
-    <property name="i" value="5"/>
-    <property name="id" value=""/>
-    <property name="o" value="1"/>
-    <property name="type" value="FadePlatform"/>
-    <property name="x" value="128"/>
-    <property name="y" value="320"/>
+    <property name="id" value="n1_2"/>
+    <property name="n" value="n1_3"/>
+    <property name="type" value="Node"/>
+    <property name="x" value="3584.00"/>
+    <property name="y" value="512.00"/>
    </properties>
   </object>
-  <object id="34" x="0" y="224" width="160" height="16">
+  <object id="43" name="Node Platform" x="4096" y="320" width="160" height="16">
    <properties>
-    <property name="a" value=""/>
-    <property name="d" value=""/>
-    <property name="i" value="5"/>
-    <property name="id" value=""/>
-    <property name="o" value="1"/>
-    <property name="type" value="FadePlatform"/>
-    <property name="x" value="0"/>
-    <property name="y" value="224"/>
+    <property name="id" value="n1_0"/>
+    <property name="type" value="NodePlatform"/>
+    <property name="x" value="4096.00"/>
+    <property name="y" value="320.00"/>
    </properties>
   </object>
-  <object id="38" name="XY Platform" x="512" y="448" width="32" height="32">
+  <object id="45" name="Node" x="4160" y="320" width="16" height="16">
    <properties>
-    <property name="type" value="XYPlatform"/>
-    <property name="x" value="512"/>
-    <property name="y" value="448"/>
+    <property name="id" value="n1_0"/>
+    <property name="n" value="n1_1"/>
+    <property name="type" value="Node"/>
+    <property name="x" value="4160.00"/>
+    <property name="y" value="320.00"/>
+   </properties>
+  </object>
+  <object id="46" name="Node" x="4160" y="512" width="16" height="16">
+   <properties>
+    <property name="id" value="n1_1"/>
+    <property name="n" value="n1_2"/>
+    <property name="type" value="Node"/>
+    <property name="x" value="4160.00"/>
+    <property name="y" value="512.00"/>
+   </properties>
+  </object>
+  <object id="47" name="Node" x="4128" y="512" width="16" height="16">
+   <properties>
+    <property name="id" value="n1_3"/>
+    <property name="n" value="n1_0"/>
+    <property name="type" value="Node"/>
+    <property name="x" value="4160.00"/>
+    <property name="y" value="512.00"/>
    </properties>
   </object>
  </objectgroup>
- <objectgroup name="BG"/>
  <objectgroup name="Level_Data">
-  <object id="36" name="Green Chest" x="896" y="352" width="32" height="32">
+  <object id="29" name="Locked Door" x="3328" y="128" width="64" height="160">
    <properties>
-    <property name="direction" value="0"/>
-    <property name="type" value="green"/>
-    <property name="value" value="chest"/>
-    <property name="x" value="896"/>
-    <property name="y" value="352"/>
+    <property name="id" value="dr1"/>
+    <property name="slot1" value="key1"/>
+    <property name="slot2" value=""/>
+    <property name="slot3" value=""/>
+    <property name="slot4" value=""/>
+    <property name="value" value="door"/>
+    <property name="x" value="3328.00"/>
+    <property name="y" value="128.00"/>
    </properties>
   </object>
-  <object id="37" name="Brown Chest" x="960" y="512" width="32" height="32">
+  <object id="30" name="GOLD Key" x="1280" y="128" width="32" height="32">
+   <properties>
+    <property name="door" value="dr1"/>
+    <property name="id" value="key1"/>
+    <property name="type" value="gold"/>
+    <property name="value" value="key"/>
+    <property name="x" value="1280.00"/>
+    <property name="y" value="128.00"/>
+   </properties>
+  </object>
+  <object id="41" name="Brown Chest" x="3456" y="480" width="32" height="32">
    <properties>
     <property name="direction" value="1"/>
     <property name="type" value="brown"/>
     <property name="value" value="chest"/>
-    <property name="x" value="960"/>
-    <property name="y" value="512"/>
+    <property name="x" value="3456.00"/>
+    <property name="y" value="480.00"/>
    </properties>
   </object>
  </objectgroup>
+ <objectgroup name="Enemy_Data">
+  <object id="26" name="White Skeleton" x="768" y="480" width="32" height="64">
+   <properties>
+    <property name="ai" value="white"/>
+    <property name="type" value="Skeleton"/>
+    <property name="x" value="768.00"/>
+    <property name="y" value="480.00"/>
+   </properties>
+  </object>
+  <object id="28" name="Red Weed" x="1344" y="512" width="32" height="32">
+   <properties>
+    <property name="ai" value="red"/>
+    <property name="direction" value="0"/>
+    <property name="type" value="Weed"/>
+    <property name="x" value="1344.00"/>
+    <property name="y" value="512.00"/>
+   </properties>
+  </object>
+  <object id="31" name="Green Weed" x="2912" y="448" width="32" height="32">
+   <properties>
+    <property name="ai" value="green"/>
+    <property name="direction" value="0"/>
+    <property name="type" value="Weed"/>
+    <property name="x" value="2912.00"/>
+    <property name="y" value="448.00"/>
+   </properties>
+  </object>
+  <object id="35" name="White Skeleton" x="2400" y="256" width="32" height="64">
+   <properties>
+    <property name="ai" value="white"/>
+    <property name="type" value="Skeleton"/>
+    <property name="x" value="2400.00"/>
+    <property name="y" value="256.00"/>
+   </properties>
+  </object>
+  <object id="36" name="Green Weed" x="2112" y="256" width="32" height="32">
+   <properties>
+    <property name="ai" value="green"/>
+    <property name="direction" value="1"/>
+    <property name="type" value="Weed"/>
+    <property name="x" value="2112.00"/>
+    <property name="y" value="256.00"/>
+   </properties>
+  </object>
+  <object id="37" name="Basic Cannon" x="1408" y="192" width="32" height="32">
+   <properties>
+    <property name="bullet_type" value="Fire"/>
+    <property name="cool" value="3"/>
+    <property name="direction" value="1"/>
+    <property name="type" value="Cannon"/>
+    <property name="x" value="1408.00"/>
+    <property name="y" value="192.00"/>
+   </properties>
+  </object>
+  <object id="38" name="Basic Cannon" x="1504" y="256" width="32" height="32">
+   <properties>
+    <property name="bullet_type" value="Fire"/>
+    <property name="cool" value="5"/>
+    <property name="direction" value="1"/>
+    <property name="type" value="Cannon"/>
+    <property name="x" value="1504.00"/>
+    <property name="y" value="256.00"/>
+   </properties>
+  </object>
+  <object id="48" name="White Skeleton" x="4448" y="288" width="32" height="64">
+   <properties>
+    <property name="ai" value="white"/>
+    <property name="type" value="Skeleton"/>
+    <property name="x" value="4448.00"/>
+    <property name="y" value="288.00"/>
+   </properties>
+  </object>
+  <object id="49" name="White Skeleton" x="4768" y="480" width="32" height="64">
+   <properties>
+    <property name="ai" value="white"/>
+    <property name="direction" value="0"/>
+    <property name="type" value="Skeleton"/>
+    <property name="x" value="4768.00"/>
+    <property name="y" value="480.00"/>
+   </properties>
+  </object>
+  <object id="50" name="White Skeleton" x="4864" y="480" width="32" height="64">
+   <properties>
+    <property name="ai" value="white"/>
+    <property name="direction" value="1"/>
+    <property name="type" value="Skeleton"/>
+    <property name="x" value="4864.00"/>
+    <property name="y" value="480.00"/>
+   </properties>
+  </object>
+  <object id="51" name="Green Weed" x="4992" y="512" width="32" height="32">
+   <properties>
+    <property name="ai" value="green"/>
+    <property name="direction" value="0"/>
+    <property name="type" value="Weed"/>
+    <property name="x" value="4992.00"/>
+    <property name="y" value="512.00"/>
+   </properties>
+  </object>
+  <object id="52" name="Green Weed" x="4576" y="512" width="32" height="32">
+   <properties>
+    <property name="ai" value="green"/>
+    <property name="direction" value="1"/>
+    <property name="type" value="Weed"/>
+    <property name="x" value="4576.00"/>
+    <property name="y" value="512.00"/>
+   </properties>
+  </object>
+  <object id="54" name="Red Cannon" x="5760" y="384" width="32" height="32">
+   <properties>
+    <property name="bullet_type" value="Red"/>
+    <property name="cool" value="3"/>
+    <property name="direction" value="1"/>
+    <property name="type" value="Cannon"/>
+    <property name="x" value="5760.00"/>
+    <property name="y" value="384.00"/>
+   </properties>
+  </object>
+  <object id="55" name="Basic Cannon" x="5888" y="448" width="32" height="32">
+   <properties>
+    <property name="bullet_type" value="Fire"/>
+    <property name="cool" value="2.5"/>
+    <property name="direction" value="1"/>
+    <property name="type" value="Cannon"/>
+    <property name="x" value="5888.00"/>
+    <property name="y" value="448.00"/>
+   </properties>
+  </object>
+  <object id="69" name="Red Cannon" x="6944" y="480" width="32" height="32">
+   <properties>
+    <property name="bullet_type" value="Red"/>
+    <property name="cool" value="2"/>
+    <property name="direction" value="1"/>
+    <property name="type" value="Cannon"/>
+    <property name="x" value="6944.00"/>
+    <property name="y" value="480.00"/>
+   </properties>
+  </object>
+  <object id="71" name="Green Weed" x="8672" y="384" width="32" height="32">
+   <properties>
+    <property name="ai" value="green"/>
+    <property name="direction" value="0"/>
+    <property name="type" value="Weed"/>
+    <property name="x" value="8672.00"/>
+    <property name="y" value="384.00"/>
+   </properties>
+  </object>
+ </objectgroup>
+ <objectgroup name="Player_Data">
+  <object id="39" name="Checkpoint" type="Exit" x="3040" y="480" width="32" height="32">
+   <properties>
+    <property name="h" value="64"/>
+    <property name="type" value="checkpoint"/>
+    <property name="w" value="64"/>
+    <property name="x" value="3040.00"/>
+    <property name="y" value="480.00"/>
+   </properties>
+  </object>
+  <object id="40" name="Checkpoint" type="Exit" x="3552" y="256" width="32" height="32">
+   <properties>
+    <property name="h" value="64"/>
+    <property name="type" value="checkpoint"/>
+    <property name="w" value="64"/>
+    <property name="x" value="3552.00"/>
+    <property name="y" value="256.00"/>
+   </properties>
+  </object>
+  <object id="53" name="Checkpoint" type="Exit" x="5696" y="320" width="32" height="32">
+   <properties>
+    <property name="h" value="64"/>
+    <property name="type" value="checkpoint"/>
+    <property name="w" value="64"/>
+    <property name="x" value="5696.00"/>
+    <property name="y" value="320.00"/>
+   </properties>
+  </object>
+  <object id="73" name="Checkpoint" type="Exit" x="8000" y="352" width="32" height="32">
+   <properties>
+    <property name="h" value="64"/>
+    <property name="type" value="checkpoint"/>
+    <property name="w" value="64"/>
+    <property name="x" value="8000.00"/>
+    <property name="y" value="352.00"/>
+   </properties>
+  </object>
+  <object id="74" name="Player_Spawn" type="Spawn" x="64" y="480" width="64" height="64">
+   <properties>
+    <property name="h" value="64"/>
+    <property name="type" value="spawn"/>
+    <property name="w" value="64"/>
+    <property name="x" value="64.00"/>
+    <property name="y" value="480.00"/>
+   </properties>
+  </object>
+  <object id="75" name="End Level" type="Exit" x="9984" y="544" width="192" height="96">
+   <properties>
+    <property name="h" value="96.00"/>
+    <property name="type" value="exit"/>
+    <property name="w" value="192.00"/>
+    <property name="x" value="9984.00"/>
+    <property name="y" value="544.00"/>
+   </properties>
+  </object>
+ </objectgroup>
+ <objectgroup name="Terrain">
+  <object id="76" name="Terrain" type="Platform" x="0" y="544" width="1728" height="96">
+   <properties>
+    <property name="h" value="96.00"/>
+    <property name="w" value="1728.00"/>
+    <property name="x" value="0.00"/>
+    <property name="y" value="544.00"/>
+   </properties>
+  </object>
+  <object id="77" name="Terrain" type="Platform" x="448" y="512" width="96" height="32">
+   <properties>
+    <property name="h" value="32.00"/>
+    <property name="w" value="96.00"/>
+    <property name="x" value="448.00"/>
+    <property name="y" value="512.00"/>
+   </properties>
+  </object>
+  <object id="78" name="Terrain" type="Platform" x="992" y="512" width="128" height="32">
+   <properties>
+    <property name="h" value="32.00"/>
+    <property name="w" value="128.00"/>
+    <property name="x" value="992.00"/>
+    <property name="y" value="512.00"/>
+   </properties>
+  </object>
+  <object id="79" name="Terrain" type="Platform" x="1216" y="160" width="192" height="64">
+   <properties>
+    <property name="h" value="64.00"/>
+    <property name="w" value="192.00"/>
+    <property name="x" value="1216.00"/>
+    <property name="y" value="160.00"/>
+   </properties>
+  </object>
+  <object id="80" name="Terrain" type="Platform" x="1408" y="224" width="64" height="32">
+   <properties>
+    <property name="h" value="32.00"/>
+    <property name="w" value="64.00"/>
+    <property name="x" value="1408.00"/>
+    <property name="y" value="224.00"/>
+   </properties>
+  </object>
+  <object id="81" name="Terrain" type="Platform" x="1440" y="256" width="64" height="96">
+   <properties>
+    <property name="h" value="96.00"/>
+    <property name="w" value="64.00"/>
+    <property name="x" value="1440.00"/>
+    <property name="y" value="256.00"/>
+   </properties>
+  </object>
+  <object id="82" name="Terrain" type="Platform" x="1376" y="512" width="352" height="32">
+   <properties>
+    <property name="h" value="32.00"/>
+    <property name="w" value="352.00"/>
+    <property name="x" value="1376.00"/>
+    <property name="y" value="512.00"/>
+   </properties>
+  </object>
+  <object id="83" name="Terrain" type="Platform" x="1504" y="288" width="640" height="64">
+   <properties>
+    <property name="h" value="64.00"/>
+    <property name="w" value="640.00"/>
+    <property name="x" value="1504.00"/>
+    <property name="y" value="288.00"/>
+   </properties>
+  </object>
+  <object id="84" name="Terrain" type="Platform" x="2560" y="288" width="544" height="64">
+   <properties>
+    <property name="h" value="64.00"/>
+    <property name="w" value="544.00"/>
+    <property name="x" value="2560.00"/>
+    <property name="y" value="288.00"/>
+   </properties>
+  </object>
+  <object id="85" name="Terrain" type="Platform" x="2144" y="320" width="416" height="32">
+   <properties>
+    <property name="h" value="32.00"/>
+    <property name="w" value="416.00"/>
+    <property name="x" value="2144.00"/>
+    <property name="y" value="320.00"/>
+   </properties>
+  </object>
+  <object id="86" name="Terrain" type="Platform" x="2176" y="512" width="96" height="128">
+   <properties>
+    <property name="h" value="128.00"/>
+    <property name="w" value="96.00"/>
+    <property name="x" value="2176.00"/>
+    <property name="y" value="512.00"/>
+   </properties>
+  </object>
+  <object id="87" name="Terrain" type="Platform" x="2400" y="512" width="96" height="128">
+   <properties>
+    <property name="h" value="128.00"/>
+    <property name="w" value="96.00"/>
+    <property name="x" value="2400.00"/>
+    <property name="y" value="512.00"/>
+   </properties>
+  </object>
+  <object id="88" name="Terrain" type="Platform" x="2624" y="512" width="96" height="128">
+   <properties>
+    <property name="h" value="128.00"/>
+    <property name="w" value="96.00"/>
+    <property name="x" value="2624.00"/>
+    <property name="y" value="512.00"/>
+   </properties>
+  </object>
+  <object id="89" name="Terrain" type="Platform" x="3264" y="288" width="384" height="32">
+   <properties>
+    <property name="h" value="32.00"/>
+    <property name="w" value="384.00"/>
+    <property name="x" value="3264.00"/>
+    <property name="y" value="288.00"/>
+   </properties>
+  </object>
+  <object id="90" name="Terrain" type="Platform" x="3264" y="320" width="320" height="64">
+   <properties>
+    <property name="h" value="64.00"/>
+    <property name="w" value="320.00"/>
+    <property name="x" value="3264.00"/>
+    <property name="y" value="320.00"/>
+   </properties>
+  </object>
+  <object id="91" name="Terrain" type="Platform" x="2848" y="512" width="672" height="128">
+   <properties>
+    <property name="h" value="128.00"/>
+    <property name="w" value="672.00"/>
+    <property name="x" value="2848.00"/>
+    <property name="y" value="512.00"/>
+   </properties>
+  </object>
+  <object id="92" name="Terrain" type="Platform" x="3264" y="384" width="160" height="128">
+   <properties>
+    <property name="h" value="128.00"/>
+    <property name="w" value="160.00"/>
+    <property name="x" value="3264.00"/>
+    <property name="y" value="384.00"/>
+   </properties>
+  </object>
+  <object id="93" name="Terrain" type="Platform" x="2912" y="480" width="96" height="32">
+   <properties>
+    <property name="h" value="32.00"/>
+    <property name="w" value="96.00"/>
+    <property name="x" value="2912.00"/>
+    <property name="y" value="480.00"/>
+   </properties>
+  </object>
+  <object id="94" name="Terrain" type="Platform" x="3296" y="0" width="96" height="128">
+   <properties>
+    <property name="h" value="128.00"/>
+    <property name="w" value="96.00"/>
+    <property name="x" value="3296.00"/>
+    <property name="y" value="0.00"/>
+   </properties>
+  </object>
+  <object id="95" name="Terrain" type="Platform" x="2048" y="256" width="64" height="32">
+   <properties>
+    <property name="h" value="32.00"/>
+    <property name="w" value="64.00"/>
+    <property name="x" value="2048.00"/>
+    <property name="y" value="256.00"/>
+   </properties>
+  </object>
+  <object id="96" name="Terrain" type="Platform" x="3968" y="320" width="128" height="96">
+   <properties>
+    <property name="h" value="96.00"/>
+    <property name="w" value="128.00"/>
+    <property name="x" value="3968.00"/>
+    <property name="y" value="320.00"/>
+   </properties>
+  </object>
+  <object id="97" name="Terrain" type="Platform" x="3968" y="544" width="128" height="96">
+   <properties>
+    <property name="h" value="96.00"/>
+    <property name="w" value="128.00"/>
+    <property name="x" value="3968.00"/>
+    <property name="y" value="544.00"/>
+   </properties>
+  </object>
+  <object id="98" name="Terrain" type="Platform" x="4320" y="352" width="256" height="288">
+   <properties>
+    <property name="h" value="288.00"/>
+    <property name="w" value="256.00"/>
+    <property name="x" value="4320.00"/>
+    <property name="y" value="352.00"/>
+   </properties>
+  </object>
+  <object id="99" name="Terrain" type="Platform" x="4320" y="320" width="64" height="32">
+   <properties>
+    <property name="h" value="32.00"/>
+    <property name="w" value="64.00"/>
+    <property name="x" value="4320.00"/>
+    <property name="y" value="320.00"/>
+   </properties>
+  </object>
+  <object id="100" name="Terrain" type="Platform" x="4576" y="544" width="448" height="96">
+   <properties>
+    <property name="h" value="96.00"/>
+    <property name="w" value="448.00"/>
+    <property name="x" value="4576.00"/>
+    <property name="y" value="544.00"/>
+   </properties>
+  </object>
+  <object id="101" name="Terrain" type="Platform" x="5632" y="512" width="960" height="96">
+   <properties>
+    <property name="h" value="96.00"/>
+    <property name="w" value="960.00"/>
+    <property name="x" value="5632.00"/>
+    <property name="y" value="512.00"/>
+   </properties>
+  </object>
+  <object id="102" name="Terrain" type="Platform" x="5632" y="352" width="128" height="64">
+   <properties>
+    <property name="h" value="64.00"/>
+    <property name="w" value="128.00"/>
+    <property name="x" value="5632.00"/>
+    <property name="y" value="352.00"/>
+   </properties>
+  </object>
+  <object id="103" name="Terrain" type="Platform" x="5632" y="416" width="256" height="96">
+   <properties>
+    <property name="h" value="96.00"/>
+    <property name="w" value="256.00"/>
+    <property name="x" value="5632.00"/>
+    <property name="y" value="416.00"/>
+   </properties>
+  </object>
+  <object id="104" name="Terrain" type="Platform" x="5888" y="480" width="64" height="32">
+   <properties>
+    <property name="h" value="32.00"/>
+    <property name="w" value="64.00"/>
+    <property name="x" value="5888.00"/>
+    <property name="y" value="480.00"/>
+   </properties>
+  </object>
+  <object id="105" name="Terrain" type="Platform" x="6592" y="576" width="160" height="32">
+   <properties>
+    <property name="h" value="32.00"/>
+    <property name="w" value="160.00"/>
+    <property name="x" value="6592.00"/>
+    <property name="y" value="576.00"/>
+   </properties>
+  </object>
+  <object id="106" name="Terrain" type="Platform" x="6752" y="512" width="800" height="96">
+   <properties>
+    <property name="h" value="96.00"/>
+    <property name="w" value="800.00"/>
+    <property name="x" value="6752.00"/>
+    <property name="y" value="512.00"/>
+   </properties>
+  </object>
+  <object id="107" name="Terrain" type="Platform" x="7712" y="512" width="896" height="96">
+   <properties>
+    <property name="h" value="96.00"/>
+    <property name="w" value="896.00"/>
+    <property name="x" value="7712.00"/>
+    <property name="y" value="512.00"/>
+   </properties>
+  </object>
+  <object id="108" name="Terrain" type="Platform" x="7552" y="576" width="160" height="32">
+   <properties>
+    <property name="h" value="32.00"/>
+    <property name="w" value="160.00"/>
+    <property name="x" value="7552.00"/>
+    <property name="y" value="576.00"/>
+   </properties>
+  </object>
+  <object id="109" name="Terrain" type="Platform" x="9152" y="512" width="832" height="128">
+   <properties>
+    <property name="h" value="128.00"/>
+    <property name="w" value="832.00"/>
+    <property name="x" value="9152.00"/>
+    <property name="y" value="512.00"/>
+   </properties>
+  </object>
+  <object id="110" name="Terrain" type="Platform" x="10176" y="512" width="64" height="128">
+   <properties>
+    <property name="h" value="128.00"/>
+    <property name="w" value="64.00"/>
+    <property name="x" value="10176.00"/>
+    <property name="y" value="512.00"/>
+   </properties>
+  </object>
+  <object id="111" name="Terrain" type="Platform" x="9120" y="480" width="32" height="32">
+   <properties>
+    <property name="h" value="32.00"/>
+    <property name="w" value="32.00"/>
+    <property name="x" value="9120.00"/>
+    <property name="y" value="480.00"/>
+   </properties>
+  </object>
+  <object id="112" name="Terrain" type="Platform" x="9088" y="448" width="32" height="32">
+   <properties>
+    <property name="h" value="32.00"/>
+    <property name="w" value="32.00"/>
+    <property name="x" value="9088.00"/>
+    <property name="y" value="448.00"/>
+   </properties>
+  </object>
+  <object id="113" name="Terrain" type="Platform" x="9056" y="416" width="32" height="32">
+   <properties>
+    <property name="h" value="32.00"/>
+    <property name="w" value="32.00"/>
+    <property name="x" value="9056.00"/>
+    <property name="y" value="416.00"/>
+   </properties>
+  </object>
+  <object id="114" name="Terrain" type="Platform" x="9024" y="384" width="32" height="256">
+   <properties>
+    <property name="h" value="256.00"/>
+    <property name="w" value="32.00"/>
+    <property name="x" value="9024.00"/>
+    <property name="y" value="384.00"/>
+   </properties>
+  </object>
+  <object id="115" name="Terrain" type="Platform" x="8704" y="384" width="32" height="256">
+   <properties>
+    <property name="h" value="256.00"/>
+    <property name="w" value="32.00"/>
+    <property name="x" value="8704.00"/>
+    <property name="y" value="384.00"/>
+   </properties>
+  </object>
+  <object id="116" name="Terrain" type="Platform" x="8672" y="416" width="32" height="32">
+   <properties>
+    <property name="h" value="32.00"/>
+    <property name="w" value="32.00"/>
+    <property name="x" value="8672.00"/>
+    <property name="y" value="416.00"/>
+   </properties>
+  </object>
+  <object id="117" name="Terrain" type="Platform" x="8640" y="448" width="32" height="32">
+   <properties>
+    <property name="h" value="32.00"/>
+    <property name="w" value="32.00"/>
+    <property name="x" value="8640.00"/>
+    <property name="y" value="448.00"/>
+   </properties>
+  </object>
+  <object id="118" name="Terrain" type="Platform" x="8608" y="480" width="32" height="32">
+   <properties>
+    <property name="h" value="32.00"/>
+    <property name="w" value="32.00"/>
+    <property name="x" value="8608.00"/>
+    <property name="y" value="480.00"/>
+   </properties>
+  </object>
+  <object id="119" name="Terrain" type="Platform" x="7904" y="480" width="32" height="32">
+   <properties>
+    <property name="h" value="32.00"/>
+    <property name="w" value="32.00"/>
+    <property name="x" value="7904.00"/>
+    <property name="y" value="480.00"/>
+   </properties>
+  </object>
+  <object id="120" name="Terrain" type="Platform" x="7936" y="448" width="32" height="32">
+   <properties>
+    <property name="h" value="32.00"/>
+    <property name="w" value="32.00"/>
+    <property name="x" value="7936.00"/>
+    <property name="y" value="448.00"/>
+   </properties>
+  </object>
+  <object id="121" name="Terrain" type="Platform" x="7968" y="416" width="32" height="32">
+   <properties>
+    <property name="h" value="32.00"/>
+    <property name="w" value="32.00"/>
+    <property name="x" value="7968.00"/>
+    <property name="y" value="416.00"/>
+   </properties>
+  </object>
+  <object id="122" name="Terrain" type="Platform" x="8000" y="384" width="32" height="128">
+   <properties>
+    <property name="h" value="128.00"/>
+    <property name="w" value="32.00"/>
+    <property name="x" value="8000.00"/>
+    <property name="y" value="384.00"/>
+   </properties>
+  </object>
+  <object id="123" name="Terrain" type="Platform" x="6848" y="480" width="96" height="32">
+   <properties>
+    <property name="h" value="32.00"/>
+    <property name="w" value="96.00"/>
+    <property name="x" value="6848.00"/>
+    <property name="y" value="480.00"/>
+   </properties>
+  </object>
+  <object id="124" name="Terrain" type="Platform" x="6880" y="448" width="64" height="32">
+   <properties>
+    <property name="h" value="32.00"/>
+    <property name="w" value="64.00"/>
+    <property name="x" value="6880.00"/>
+    <property name="y" value="448.00"/>
+   </properties>
+  </object>
+ </objectgroup>
+ <objectgroup name="BG"/>
+ <objectgroup name="FG"/>
 </map>

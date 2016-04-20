@@ -23,9 +23,9 @@ Projectile::Projectile(b2Body* b, sf::Vector2f dir, STATE type) {
 	m_box_body = b;
 	m_current_state = type;
 
-	init();
-
 	m_direction = dir;
+
+	init();
 
 	loadMedia();
 	alineSprite();

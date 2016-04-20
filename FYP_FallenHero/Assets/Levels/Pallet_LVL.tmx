@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="left-down" width="100" height="100" tilewidth="32" tileheight="32" nextobjectid="59">
+<map version="1.0" orientation="orthogonal" renderorder="left-down" width="100" height="100" tilewidth="32" tileheight="32" nextobjectid="62">
  <layer name="Tile Layer 1" width="100" height="100">
   <data encoding="base64" compression="zlib">
    eJztwTEBAAAAwqD1T+1lC6AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAbnEAAAQ==
@@ -215,6 +215,36 @@
     <property name="type" value="Skeleton"/>
     <property name="x" value="544"/>
     <property name="y" value="480"/>
+   </properties>
+  </object>
+  <object id="59" name="Basic Cannon" x="224" y="640" width="32" height="32">
+   <properties>
+    <property name="bullet_type" value="Fire"/>
+    <property name="cool" value="3"/>
+    <property name="direction" value="1"/>
+    <property name="type" value="Cannon"/>
+    <property name="x" value="384"/>
+    <property name="y" value="512"/>
+   </properties>
+  </object>
+  <object id="60" name="Blue Cannon" x="416" y="640" width="32" height="32">
+   <properties>
+    <property name="bullet_type" value="Blue"/>
+    <property name="cool" value="3"/>
+    <property name="direction" value="1"/>
+    <property name="type" value="Cannon"/>
+    <property name="x" value="384"/>
+    <property name="y" value="512"/>
+   </properties>
+  </object>
+  <object id="61" name="Red Cannon" x="320" y="640" width="32" height="32">
+   <properties>
+    <property name="bullet_type" value="Red"/>
+    <property name="cool" value="3"/>
+    <property name="direction" value="1"/>
+    <property name="type" value="Cannon"/>
+    <property name="x" value="384"/>
+    <property name="y" value="512"/>
    </properties>
   </object>
  </objectgroup>

@@ -16,6 +16,7 @@ private:
 	bool can_fire;
 	float cooldown_time;
 	
+	bool m_dir;
 	//string s_death;
 	//sf::Sound m_death;
 
