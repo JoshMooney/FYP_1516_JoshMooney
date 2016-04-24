@@ -1,0 +1,78 @@
+##########################################################
+##				Control Flow Graph Numbering			##
+##########################################################
+
+//takes a vector of strings which represent the keys the player has picked up.
+	bool Door::checkKeys(vector<string>* collected) {
+		//Compair the Key lists
+[1]		for (int i = 0; i < collected->size(); i++) {
+[2]			auto it = m_req_keys.find(collected->at(i));
+[3]			if (it != m_req_keys.end())
+[4]				(*it).second = true;
+		}
+	
+		//Check if all keys have been gotten
+		auto first = m_req_keys.begin();
+		auto last = m_req_keys.end();
+[5]		while (first != last) {
+[6]			if (!(*first).second) {
+[7]				m_cant_open.play();
+[9]				return false;
+			}
+[8]			++first;
+		}
+[9]		return true;
+	}
+	
+//Steps through all the the spawns in the level and checks which one the player should spawn to.
+	void Level::fetchSpawn() {
+[1]		std::list<Checkpoint*>::const_iterator iterator;
+		auto begin = m_checkpoint_list.begin();
+		auto end = m_checkpoint_list.end();
+[2]		if (!m_checkpoint_list.empty()) {
+			iterator = begin;
+[3]			for (iterator = begin; iterator != end; ++iterator) {
+[4]				Checkpoint* cp = (*iterator);
+[5]				if (cp->firstTrip()) {
+[6]					m_player_spawn = cp->position();
+				}
+			}
+		}
+	}
+	
+
+//Unlocks the achievement that is passed in.
+	void Achievements::unlock(Subject::EVENT e) {
+		cLog::inst()->print(0, "Achievements", "Achievement Unlocked !");
+		string ext = ".png";
+		string pre = "Assets/Achievements/";
+		string tag = "ACH";
+	
+		//Make Achievement here and push onto achievement queue.
+[1]		switch (e) {
+[2]		case Subject::FIRST_JUMP:
+			m_cheevo.setTexture(ResourceManager<sf::Texture>::instance()->get(pre + "first_jump" + ext));
+			break;
+[3]		case Subject::FIRST_ATTACK:
+			m_cheevo.setTexture(ResourceManager<sf::Texture>::instance()->get(pre + "first_attack" + ext));
+			break;
+[4]		case Subject::PICKUP_100:
+			m_cheevo.setTexture(ResourceManager<sf::Texture>::instance()->get(pre + "pickup_100" + ext));
+			break;
+	
+[n]		case Subject::nAchievement:
+			m_cheevo.setTexture(ResourceManager<sf::Texture>::instance()->get(pre + "elevator_pitch" + ext));
+			break;
+		}
+	
+[5]		m_queue.push(m_cheevo);
+[6]		m_current_slot->m_ACH_DATA[tag + std::to_string(e)] = true;
+[7]		m_current_slot->m_achieve_unlocked++;
+	
+		//If there is nothing in the queue restart the clock because it proabably running.
+[8]		if (m_queue.size() == 1) {
+[9]			m_cheevo_clock.restart();
+			//Make Unlock Noise
+		}
+	}
+	

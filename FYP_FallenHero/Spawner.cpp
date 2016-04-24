@@ -64,7 +64,7 @@ b2Body * Spawner::GenerateBody(SPAWN_TYPE type, sf::Vector2f pos) {
 		myFixtureDef.friction = 1.5f;
 		myFixtureDef.shape = &shape;
 		//Left on purpose so all the collision detection is the same. For now...
-		myFixtureDef.userData = "Skeleton";
+		myFixtureDef.userData = "Weed";
 
 		myFixtureDef.filter.categoryBits = _filterCategory::ENEMY;
 		myFixtureDef.filter.maskBits = PLAYER | TERRAIN | PLATFORM;

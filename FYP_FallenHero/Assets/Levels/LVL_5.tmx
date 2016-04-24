@@ -228,22 +228,22 @@
     <property name="y" value="384"/>
    </properties>
   </object>
-  <object id="64" name="Checkpoint" type="Exit" x="2752" y="448" width="32" height="32">
+  <object id="64" name="Checkpoint" type="Exit" x="2752" y="384" width="32" height="32">
    <properties>
     <property name="h" value="64"/>
     <property name="type" value="checkpoint"/>
     <property name="w" value="64"/>
-    <property name="x" value="2752"/>
-    <property name="y" value="448"/>
+    <property name="x" value="2752.00"/>
+    <property name="y" value="384.00"/>
    </properties>
   </object>
-  <object id="65" name="Checkpoint" type="Exit" x="4288" y="384" width="32" height="32">
+  <object id="65" name="Checkpoint" type="Exit" x="4288" y="320" width="32" height="32">
    <properties>
     <property name="h" value="64"/>
     <property name="type" value="checkpoint"/>
     <property name="w" value="64"/>
-    <property name="x" value="4288"/>
-    <property name="y" value="384"/>
+    <property name="x" value="4288.00"/>
+    <property name="y" value="320.00"/>
    </properties>
   </object>
  </objectgroup>
@@ -334,20 +334,20 @@
   </object>
   <object id="71" name="Red Weed" x="4512" y="544" width="32" height="32">
    <properties>
-    <property name="ai" value="red"/>
+    <property name="ai" value="blue"/>
     <property name="direction" value="1"/>
     <property name="type" value="Weed"/>
     <property name="x" value="4512"/>
     <property name="y" value="544"/>
    </properties>
   </object>
-  <object id="72" name="Red Weed" x="6144" y="416" width="32" height="32">
+  <object id="72" name="Red Weed" x="5856" y="512" width="32" height="32">
    <properties>
     <property name="ai" value="red"/>
     <property name="direction" value="0"/>
     <property name="type" value="Weed"/>
-    <property name="x" value="6144"/>
-    <property name="y" value="416"/>
+    <property name="x" value="5856.00"/>
+    <property name="y" value="512.00"/>
    </properties>
   </object>
   <object id="73" name="Red Cannon" x="2144" y="320" width="32" height="32">

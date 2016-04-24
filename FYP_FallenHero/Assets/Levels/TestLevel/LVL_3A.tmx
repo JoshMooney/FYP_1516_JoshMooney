@@ -1,0 +1,233 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="90" height="25" tilewidth="32" tileheight="32" nextobjectid="39">
+ <tileset firstgid="1" name="tile_set" tilewidth="32" tileheight="32" tilecount="3">
+  <image source="Tiles/tile_set.png" width="96" height="32"/>
+ </tileset>
+ <tileset firstgid="4" name="Lvl_2_ground" tilewidth="32" tileheight="32" tilecount="9">
+  <image source="Tiles/different_tileset.png" width="288" height="32"/>
+ </tileset>
+ <layer name="Textures" width="90" height="25">
+  <data encoding="base64" compression="zlib">
+   eJzt0MEJACAQBDE/ovbfsEV4oC4JTAPTGgAAAAAA8KsZXq9bdWSFN+pWHbn9weeMfPY5KZ99TuqVzxvNrQ+/
+  </data>
+ </layer>
+ <objectgroup name="Terrain">
+  <properties>
+   <property name="h" value=""/>
+   <property name="w" value=""/>
+   <property name="x" value=""/>
+   <property name="y" value=""/>
+  </properties>
+  <object id="1" name="pf_1" type="Platform" x="-5" y="544" width="1829" height="256">
+   <properties>
+    <property name="h" value="256"/>
+    <property name="w" value="1829"/>
+    <property name="x" value="0"/>
+    <property name="y" value="544"/>
+   </properties>
+  </object>
+ </objectgroup>
+ <objectgroup name="Player_Data">
+  <object id="4" name="Start Level" type="Spawn" x="224" y="224" width="64" height="64">
+   <properties>
+    <property name="h" value="64"/>
+    <property name="type" value="spawn"/>
+    <property name="w" value="64"/>
+    <property name="x" value="224"/>
+    <property name="y" value="224"/>
+   </properties>
+  </object>
+  <object id="5" name="End Level" type="Exit" x="1728" y="480" width="64" height="64">
+   <properties>
+    <property name="h" value="64"/>
+    <property name="type" value="exit"/>
+    <property name="w" value="64"/>
+    <property name="x" value="1728"/>
+    <property name="y" value="480"/>
+   </properties>
+  </object>
+ </objectgroup>
+ <objectgroup name="FG"/>
+ <objectgroup name="Blocks">
+  <object id="26" x="128" y="384" width="64" height="64">
+   <properties>
+    <property name="type" value="rock"/>
+    <property name="w" value="64"/>
+    <property name="x" value="128"/>
+    <property name="y" value="384"/>
+   </properties>
+  </object>
+  <object id="27" x="192" y="416" width="32" height="32">
+   <properties>
+    <property name="type" value="sand"/>
+    <property name="w" value="32"/>
+    <property name="x" value="192"/>
+    <property name="y" value="416"/>
+   </properties>
+  </object>
+  <object id="35" x="160" y="288" width="32" height="32">
+   <properties>
+    <property name="type" value="sand"/>
+    <property name="w" value="32"/>
+    <property name="x" value="160"/>
+    <property name="y" value="288"/>
+   </properties>
+  </object>
+ </objectgroup>
+ <objectgroup name="Enemy_Data">
+  <object id="22" name="Cannon" x="256" y="416" width="32" height="32">
+   <properties>
+    <property name="bullet_type" value="Blue"/>
+    <property name="cool" value="15"/>
+    <property name="direction" value="1"/>
+    <property name="type" value="Cannon"/>
+    <property name="x" value="256"/>
+    <property name="y" value="416"/>
+   </properties>
+  </object>
+  <object id="25" name="Cannon" x="256" y="288" width="32" height="32">
+   <properties>
+    <property name="bullet_type" value="Fire"/>
+    <property name="cool" value="15"/>
+    <property name="direction" value="1"/>
+    <property name="type" value="Cannon"/>
+    <property name="x" value="256"/>
+    <property name="y" value="288"/>
+   </properties>
+  </object>
+ </objectgroup>
+ <objectgroup name="Platform">
+  <object id="8" x="896" y="384" width="160" height="16">
+   <properties>
+    <property name="id" value="pf1"/>
+    <property name="type" value="Platform"/>
+    <property name="x" value="896"/>
+    <property name="y" value="384"/>
+   </properties>
+  </object>
+  <object id="10" x="864" y="448" width="160" height="16">
+   <properties>
+    <property name="id" value="n_0"/>
+    <property name="type" value="NodePlatform"/>
+    <property name="x" value="864"/>
+    <property name="y" value="448"/>
+   </properties>
+  </object>
+  <object id="11" x="768" y="448" width="16" height="16">
+   <properties>
+    <property name="id" value="n_3"/>
+    <property name="n" value="n_0"/>
+    <property name="type" value="Node"/>
+    <property name="x" value="768"/>
+    <property name="y" value="448"/>
+   </properties>
+  </object>
+  <object id="14" x="1152" y="448" width="16" height="16">
+   <properties>
+    <property name="id" value="n_2"/>
+    <property name="n" value="n_3"/>
+    <property name="type" value="Node"/>
+    <property name="x" value="1152"/>
+    <property name="y" value="448"/>
+   </properties>
+  </object>
+  <object id="15" x="768" y="256" width="16" height="16">
+   <properties>
+    <property name="id" value="n_0"/>
+    <property name="n" value="n_1"/>
+    <property name="type" value="Node"/>
+    <property name="x" value="768"/>
+    <property name="y" value="256"/>
+   </properties>
+  </object>
+  <object id="16" x="1152" y="256" width="16" height="16">
+   <properties>
+    <property name="id" value="n_1"/>
+    <property name="n" value="n_2"/>
+    <property name="type" value="Node"/>
+    <property name="x" value="1152"/>
+    <property name="y" value="256"/>
+   </properties>
+  </object>
+  <object id="17" x="128" y="448" width="160" height="16">
+   <properties>
+    <property name="id" value=""/>
+    <property name="type" value="OneWayPlatform"/>
+    <property name="x" value="128"/>
+    <property name="y" value="448"/>
+   </properties>
+  </object>
+  <object id="19" x="704" y="320" width="160" height="16">
+   <properties>
+    <property name="a" value="2"/>
+    <property name="d" value="2"/>
+    <property name="i" value="1"/>
+    <property name="id" value=""/>
+    <property name="o" value="1"/>
+    <property name="type" value="FadePlatform"/>
+    <property name="x" value="704"/>
+    <property name="y" value="320"/>
+   </properties>
+  </object>
+  <object id="20" x="864" y="256" width="160" height="16">
+   <properties>
+    <property name="id" value="n_1"/>
+    <property name="type" value="NodePlatform"/>
+    <property name="x" value="864"/>
+    <property name="y" value="256"/>
+   </properties>
+  </object>
+  <object id="32" x="128" y="320" width="160" height="16">
+   <properties>
+    <property name="a" value=""/>
+    <property name="d" value=""/>
+    <property name="i" value="5"/>
+    <property name="id" value=""/>
+    <property name="o" value="1"/>
+    <property name="type" value="FadePlatform"/>
+    <property name="x" value="128"/>
+    <property name="y" value="320"/>
+   </properties>
+  </object>
+  <object id="34" x="0" y="224" width="160" height="16">
+   <properties>
+    <property name="a" value=""/>
+    <property name="d" value=""/>
+    <property name="i" value="5"/>
+    <property name="id" value=""/>
+    <property name="o" value="1"/>
+    <property name="type" value="FadePlatform"/>
+    <property name="x" value="0"/>
+    <property name="y" value="224"/>
+   </properties>
+  </object>
+  <object id="38" name="XY Platform" x="512" y="448" width="32" height="32">
+   <properties>
+    <property name="type" value="XYPlatform"/>
+    <property name="x" value="512"/>
+    <property name="y" value="448"/>
+   </properties>
+  </object>
+ </objectgroup>
+ <objectgroup name="BG"/>
+ <objectgroup name="Level_Data">
+  <object id="36" name="Green Chest" x="896" y="352" width="32" height="32">
+   <properties>
+    <property name="direction" value="0"/>
+    <property name="type" value="green"/>
+    <property name="value" value="chest"/>
+    <property name="x" value="896"/>
+    <property name="y" value="352"/>
+   </properties>
+  </object>
+  <object id="37" name="Brown Chest" x="960" y="512" width="32" height="32">
+   <properties>
+    <property name="direction" value="1"/>
+    <property name="type" value="brown"/>
+    <property name="value" value="chest"/>
+    <property name="x" value="960"/>
+    <property name="y" value="512"/>
+   </properties>
+  </object>
+ </objectgroup>
+</map>

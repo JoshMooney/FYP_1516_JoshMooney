@@ -12,6 +12,7 @@ Skeleton::Skeleton(b2Body *b, bool dir, AI ai) {
 	e_box_body = b;
 	m_ai = ai;
 	init();
+	alineSprite();
 
 	//After Default initalisation
 	e_direction = dir;
@@ -23,6 +24,7 @@ Skeleton::Skeleton(b2Body *b, bool dir, AI ai, ProjectileManager *p) {
 	e_box_body = b;
 	m_ai = ai;
 	init();
+	alineSprite();
 
 	//After Default initalisation
 	e_direction = dir;

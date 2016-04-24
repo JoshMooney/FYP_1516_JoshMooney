@@ -49,6 +49,7 @@ public:
 	thor::Animator<sf::Sprite, STATE> m_animator;		//!<This is the THOR::Animator for stepping through a sprite sheet
 
 	Projectile();
+	Projectile(b2Body* b, bool dir, STATE type);
 	Projectile(b2Body* b, sf::Vector2f dir);
 	Projectile(b2Body* b, sf::Vector2f dir, STATE type);
 	Projectile(b2Body* b, sf::Vector2f dir, STATE type, string type_id);

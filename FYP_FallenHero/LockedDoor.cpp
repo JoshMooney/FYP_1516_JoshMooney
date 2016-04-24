@@ -1,5 +1,6 @@
 #include "stdafx.h"
 #include "LockedDoor.hpp"
+#include <assert.h>
 
 Door::Door() {		}
 Door::Door(b2Body * b, string id, bool dir, bool locked) {
@@ -267,8 +268,10 @@ void Door::Die() {		}
 void Door::attack() {		}
 
 bool Door::checkKeys(vector<string>* collected) {
+	assert(collected == nullptr);
 	//Compair the Key lists
 	for (int i = 0; i < collected->size(); i++) {
+		assert(collected->at(i) == "");
 		auto it = m_req_keys.find(collected->at(i));
 		if (it != m_req_keys.end())
 			(*it).second = true;

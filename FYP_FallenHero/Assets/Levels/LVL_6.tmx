@@ -203,7 +203,7 @@
    <properties>
     <property name="direction" value="0"/>
     <property name="id" value="boss_door"/>
-    <property name="slot1" value="boss_key_2"/>
+    <property name="slot1" value="boss_key_1"/>
     <property name="slot2" value="boss_key_2"/>
     <property name="slot3" value=""/>
     <property name="slot4" value=""/>

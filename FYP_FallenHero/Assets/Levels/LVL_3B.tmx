@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="90" height="25" tilewidth="32" tileheight="32" nextobjectid="55">
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="90" height="25" tilewidth="32" tileheight="32" nextobjectid="57">
  <tileset firstgid="1" name="tile_set" tilewidth="32" tileheight="32" tilecount="3">
   <image source="TestLevel/Tiles/tile_set.png" width="96" height="32"/>
  </tileset>
@@ -128,6 +128,26 @@
     <property name="type" value="Skeleton"/>
     <property name="x" value="160.00"/>
     <property name="y" value="480.00"/>
+   </properties>
+  </object>
+  <object id="55" name="Red Cannon" x="672" y="512" width="32" height="32">
+   <properties>
+    <property name="bullet_type" value="Red"/>
+    <property name="cool" value="3"/>
+    <property name="direction" value="0"/>
+    <property name="type" value="Cannon"/>
+    <property name="x" value="672.00"/>
+    <property name="y" value="512.00"/>
+   </properties>
+  </object>
+  <object id="56" name="Red Cannon" x="704" y="512" width="32" height="32">
+   <properties>
+    <property name="bullet_type" value="Red"/>
+    <property name="cool" value="3"/>
+    <property name="direction" value="1"/>
+    <property name="type" value="Cannon"/>
+    <property name="x" value="704.00"/>
+    <property name="y" value="512"/>
    </properties>
   </object>
  </objectgroup>

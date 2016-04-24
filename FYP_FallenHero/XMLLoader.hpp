@@ -210,7 +210,7 @@ public:
 				string d = "LVL" + std::to_string(i + 1);
 				const char * c = d.c_str();
 				tinyxml2::XMLElement * pListElement = xmlDoc.NewElement(c);
-				pListElement->SetText(0);
+				pListElement->SetText(1);
 
 				pElement->InsertEndChild(pListElement);
 			}

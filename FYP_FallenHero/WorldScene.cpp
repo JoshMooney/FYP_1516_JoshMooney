@@ -120,11 +120,11 @@ void WorldScene::handleInput(XBOXController &controller){
 			movePlayer("RIGHT");
 		}
 	}
-	if (controller.isPressed["A"]){
-		if (!m_key_pressed){
+	if (controller.isPressed["A"] && !controller.wasPressed["A"]){
+		//if (!m_key_pressed){
 			m_key_pressed = true;
 			select();
-		}
+		//}
 	}
 	if (controller.isIdle())
 		m_key_pressed = false;

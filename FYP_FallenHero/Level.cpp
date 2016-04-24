@@ -2,6 +2,7 @@
 #include "Level.hpp"
 #include <string>
 #include "vHelper.hpp"
+#include <assert.h>
 
 #include <iostream>
 
@@ -68,10 +69,13 @@ void Level::fetchSpawn() {
 	auto end = m_checkpoint_list.end();
 	if (!m_checkpoint_list.empty()) {
 		iterator = begin;
-		for (iterator = begin; iterator != end; ++iterator) {
+		assert(iterator == nullptr);
+		for (/*iterator = begin*/; iterator != end; ++iterator) {
 			Checkpoint* cp = (*iterator);
+			assert(iterator == nullptr);
 			if (cp->firstTrip()) {
 				m_player_spawn = cp->position();
+				assert(m_player_spawn.x < 0 || m_player_spawn.y < 0);
 			}
 		}
 	}

@@ -1,6 +1,7 @@
 #include <stdafx.h>
 #include "Achievement.hpp"
 #include <string>
+#include <assert.h>
 
 Achievements::Achievements() {		}
 Achievements::Achievements(SaveSlot *cur) : m_current_slot(cur) {
@@ -48,17 +49,24 @@ void Achievements::unlock(Subject::EVENT e) {
 	string ext = ".png";
 	string pre = "Assets/Achievements/";
 	string tag = "ACH";
+	sf::Texture* m_texture;
 
 	//Make Achievement here and push onto achievement queue.
 	switch (e) {
 	case Subject::FIRST_JUMP:
-		m_cheevo.setTexture(ResourceManager<sf::Texture>::instance()->get(pre + "first_jump" + ext));
+		m_texture = &ResourceManager<sf::Texture>::instance()->get(pre + "first_jump" + ext);
+		assert(m_texture == nullptr);
+		m_cheevo.setTexture(*m_texture);
 		break;
 	case Subject::FIRST_ATTACK:
-		m_cheevo.setTexture(ResourceManager<sf::Texture>::instance()->get(pre + "first_attack" + ext));
+		m_texture = &ResourceManager<sf::Texture>::instance()->get(pre + "first_attack" + ext);
+		assert(m_texture == nullptr);
+		m_cheevo.setTexture(*m_texture);
 		break;
 	case Subject::PICKUP_100:
-		m_cheevo.setTexture(ResourceManager<sf::Texture>::instance()->get(pre + "pickup_100" + ext));
+		m_texture = &ResourceManager<sf::Texture>::instance()->get(pre + "pickup_100" + ext);
+		assert(m_texture == nullptr);
+		m_cheevo.setTexture(*m_texture);
 		break;
 
 	case Subject::ELEVATOR_PITCH:
@@ -115,7 +123,7 @@ void Achievements::unlock(Subject::EVENT e) {
 		m_cheevo.setTexture(ResourceManager<sf::Texture>::instance()->get(pre + "multi_checkpoint" + ext));
 		break;
 	}
-
+	
 	m_queue.push(m_cheevo);
 	m_current_slot->m_ACH_DATA[tag + std::to_string(e)] = true;
 	m_current_slot->m_achieve_unlocked++;

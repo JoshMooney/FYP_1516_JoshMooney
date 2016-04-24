@@ -60,6 +60,9 @@ b2Body * ProjectileManager::GenerateBossBody(sf::Vector2f pos) {
 void ProjectileManager::fireBullet(sf::Vector2f pos, sf::Vector2f dir) {
 	m_projectiles.push_back(new Projectile(GenerateBody(pos), dir));
 }
+void ProjectileManager::fire(sf::Vector2f pos, bool dir, Projectile::STATE type) {
+	m_projectiles.push_back(new Projectile(GenerateBody(pos), dir, type));
+}
 void ProjectileManager::fire(sf::Vector2f pos, sf::Vector2f dir, Projectile::STATE type) {
 	m_projectiles.push_back(new Projectile(GenerateBody(pos), dir, type));
 }

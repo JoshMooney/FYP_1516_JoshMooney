@@ -278,20 +278,20 @@ void LevelScene::handleInput(XBOXController &controller) {
 		if (controller.isPressed["D_LEFT"] || controller.isPressed["AL_LEFT"]) {
 			m_player->moveLeft();
 		}
-		if (controller.isPressed["A"] && !m_key_pressed) {
+		if (controller.isPressed["A"] && !controller.wasPressed["A"]/*!m_key_pressed*/) {
 			buttonA_->execute(m_player);
 			m_key_pressed = true;
 		}
-		if (controller.isPressed["B"] && !m_key_pressed) {
+		if (controller.isPressed["B"] && !controller.wasPressed["B"]/*!m_key_pressed*/) {
 			buttonB_->execute(m_player);
 			m_spawner->CheckLockDoor(m_player->getKeys());
 			m_key_pressed = true;
 		}
-		if (controller.isPressed["X"] && !m_key_pressed) {
+		if (controller.isPressed["X"] && !controller.wasPressed["X"]/*!m_key_pressed*/) {
 			buttonX_->execute(m_player);
 			m_key_pressed = true;
 		}
-		if (controller.isPressed["Y"]) {
+		if (controller.isPressed["Y"]&& !controller.wasPressed["Y"]/*!m_key_pressed*/) {
 			buttonY_->execute(m_player);
 		}
 		if (controller.isPressed["START"]) {

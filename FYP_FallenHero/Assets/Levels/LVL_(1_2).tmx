@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="90" height="25" tilewidth="32" tileheight="32" nextobjectid="35">
+ <tileset firstgid="1" name="tile_set" tilewidth="32" tileheight="32" tilecount="3">
+  <image source="TestLevel/Tiles/tile_set.png" width="96" height="32"/>
+ </tileset>
+ <tileset firstgid="4" name="Lvl_2_ground" tilewidth="32" tileheight="32" tilecount="9">
+  <image source="TestLevel/Tiles/different_tileset.png" width="288" height="32"/>
+ </tileset>
+ <tileset firstgid="13" name="Cave_OG" tilewidth="32" tileheight="32" tilecount="28">
+  <image source="TestLevel/Tiles/Cave_OG.png" width="896" height="32"/>
+ </tileset>
+ <layer name="Textures" width="90" height="25">
+  <data encoding="base64" compression="zlib">
+   eJztlt0KgCAMRk36ff8XrouCEMncpqGdAx+EgrHDmDoHAFCGITMgA891uPx5F/fqgz2Q8eTZR75BRqqfwz2Q8WZuMJ/1hHP4Po9jayCD90Yd8Awt8EUf/rH38VyHUjWvRv8cz7OkmcQV6Kh1f1l5no9siiziCnSENWp6xSKpfuvFs6YGi6Q84Lltz9q5n5u/etae21rwjOeegmc8W2YHuKIVQw==
+  </data>
+ </layer>
+ <objectgroup name="Terrain">
+  <properties>
+   <property name="h" value=""/>
+   <property name="w" value=""/>
+   <property name="x" value=""/>
+   <property name="y" value=""/>
+  </properties>
+  <object id="1" name="pf_1" type="Platform" x="-5" y="544" width="1063" height="268">
+   <properties>
+    <property name="h" value="268"/>
+    <property name="w" value="1063"/>
+    <property name="x" value="0"/>
+    <property name="y" value="544"/>
+   </properties>
+  </object>
+  <object id="12" name="pf_1" type="Platform" x="1280" y="480" width="544" height="320">
+   <properties>
+    <property name="h" value="320"/>
+    <property name="w" value="544"/>
+    <property name="x" value="1280"/>
+    <property name="y" value="480"/>
+   </properties>
+  </object>
+  <object id="32" name="pf_1" type="Platform" x="704" y="480" width="39" height="76">
+   <properties>
+    <property name="h" value="76.00"/>
+    <property name="w" value="39.00"/>
+    <property name="x" value="704.00"/>
+    <property name="y" value="480.00"/>
+   </properties>
+  </object>
+ </objectgroup>
+ <objectgroup name="Player_Data">
+  <object id="7" x="32" y="448" width="64" height="64">
+   <properties>
+    <property name="type" value="spawn"/>
+    <property name="x" value="32"/>
+    <property name="y" value="448"/>
+   </properties>
+  </object>
+  <object id="9" x="1728" y="384" width="64" height="64">
+   <properties>
+    <property name="h" value="64"/>
+    <property name="type" value="exit"/>
+    <property name="w" value="64"/>
+    <property name="x" value="1728"/>
+    <property name="y" value="384"/>
+   </properties>
+  </object>
+ </objectgroup>
+ <objectgroup name="BG"/>
+ <objectgroup name="FG"/>
+ <objectgroup name="Blocks">
+  <object id="30" name="Rock Small" x="800" y="512" width="32" height="32">
+   <properties>
+    <property name="type" value="rock"/>
+    <property name="w" value="32"/>
+    <property name="x" value="800.00"/>
+    <property name="y" value="512.00"/>
+   </properties>
+  </object>
+  <object id="31" name="Rock Small" x="800" y="480" width="32" height="32">
+   <properties>
+    <property name="type" value="rock"/>
+    <property name="w" value="32"/>
+    <property name="x" value="800.00"/>
+    <property name="y" value="480.00"/>
+   </properties>
+  </object>
+ </objectgroup>
+ <objectgroup name="Enemy_Data">
+  <object id="33" name="Green Weed" x="448" y="480" width="32" height="32">
+   <properties>
+    <property name="ai" value="green"/>
+    <property name="direction" value="1"/>
+    <property name="type" value="Weed"/>
+    <property name="x" value="448.00"/>
+    <property name="y" value="480.00"/>
+   </properties>
+  </object>
+  <object id="34" name="Basic Cannon" x="448" y="512" width="32" height="32">
+   <properties>
+    <property name="bullet_type" value="Fire"/>
+    <property name="cool" value="3"/>
+    <property name="direction" value="1"/>
+    <property name="type" value="Cannon"/>
+    <property name="x" value="448.00"/>
+    <property name="y" value="512.00"/>
+   </properties>
+  </object>
+ </objectgroup>
+ <objectgroup name="Level_Data">
+  <object id="27" name="Green Chest" x="384" y="512" width="32" height="32">
+   <properties>
+    <property name="direction" value="0"/>
+    <property name="type" value="green"/>
+    <property name="value" value="chest"/>
+    <property name="x" value="384"/>
+    <property name="y" value="512"/>
+   </properties>
+  </object>
+ </objectgroup>
+ <objectgroup name="Platform"/>
+</map>

@@ -47,6 +47,11 @@ public:
 	*	@brief
 	*	@param
 	*/
+	void fire(sf::Vector2f pos, bool dir, Projectile::STATE type);
+	/**
+	*	@brief
+	*	@param
+	*/
 	void fire(sf::Vector2f pos, sf::Vector2f dir, Projectile::STATE type);
 	/**
 	*	@brief
