@@ -267,6 +267,8 @@ void Door::TakeDamage() {
 void Door::Die() {		}
 void Door::attack() {		}
 
+#define NDEBUG
+
 bool Door::checkKeys(vector<string>* collected) {
 	assert(collected == nullptr);
 	//Compair the Key lists
@@ -289,6 +291,8 @@ bool Door::checkKeys(vector<string>* collected) {
 	}
 	return true;
 }
+
+#undef NDEBUG
 
 void Door::changePrompt() {
 	m_prompt_spt.setTextureRect(sf::IntRect{ 32 * m_controller_input, 0, 32, 32 });

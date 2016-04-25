@@ -44,6 +44,8 @@ void Achievements::render(sf::RenderWindow * w) {
 		w->draw(m_queue.front());
 }
 
+#define NDEBUG
+
 void Achievements::unlock(Subject::EVENT e) {
 	cLog::inst()->print(0, "Achievements", "Achievement Unlocked !");
 	string ext = ".png";
@@ -134,6 +136,8 @@ void Achievements::unlock(Subject::EVENT e) {
 		//Make Unlock Noise
 	}
 }
+
+#undef NDEBUG
 
 void Achievements::onNotify(Subject::EVENT evnt, Entity *entity) {
 	string tag = "ACH";

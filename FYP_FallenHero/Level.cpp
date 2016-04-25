@@ -63,16 +63,18 @@ void Level::render(sf::RenderWindow &w, vCamera *cam, sf::Time frames){
 	}
 }
 
+#define NDEBUG
+
 void Level::fetchSpawn() {
     std::list<Checkpoint*>::const_iterator iterator;
 	auto begin = m_checkpoint_list.begin();
 	auto end = m_checkpoint_list.end();
 	if (!m_checkpoint_list.empty()) {
 		iterator = begin;
-		assert(iterator == nullptr);
+		assert((*iterator) == nullptr);
 		for (/*iterator = begin*/; iterator != end; ++iterator) {
 			Checkpoint* cp = (*iterator);
-			assert(iterator == nullptr);
+			assert((*iterator) == nullptr);
 			if (cp->firstTrip()) {
 				m_player_spawn = cp->position();
 				assert(m_player_spawn.x < 0 || m_player_spawn.y < 0);
@@ -80,6 +82,8 @@ void Level::fetchSpawn() {
 		}
 	}
 }
+
+#undef NDEBUG
 
 void Level::ParseMapLayers(b2World * world, Spawner *s, GemMine *mine, PlatformCreator *p, EntityCreator *ent_cre, SensorPool *sensor_pool) {
 	//map.GetObjectLayer("Layer Name");
