@@ -103,5 +103,6 @@ void Cannon::attack() {
 		m_fire.play();
 		//m_gun->fireBullet(getPosition(), dir);
 		m_gun->fire(getPosition(), dir, m_level);
+		//m_gun->fire(getPosition(), e_direction, m_level);
 	}
 }

@@ -733,27 +733,13 @@ public:
 				sf::FloatRect t = static_cast<Terrain*>(bodyUserData2)->geometry;
 				sf::FloatRect s = static_cast<Skeleton*>(bodyUserData1)->getBounds();
 
-				if (s.top < t.top && s.left > t.left - s.width && s.left + s.width < t.left + t.width) {
+				if (s.top < t.top && s.left - s.width > t.left && s.left + s.width < t.left + t.width) {
 					Terrain* t = static_cast<Terrain*>(bodyUserData2);
 					static_cast<Skeleton*>(bodyUserData1)->isTouching(t);
 				}
 				else
 					static_cast<Skeleton*>(bodyUserData1)->ReachWall();
 
-				//sf::IntRect int_s = vHelper::FloatToInt(s);
-				////Right Side
-				//if (s.left + s.width > t.left - entity_wall_offset &&
-				//	s.left + s.width < t.left)
-				//	static_cast<Skeleton*>(bodyUserData1)->ReachWall();
-				////Left Side
-				//else if (s.left > t.left + t.width + entity_wall_offset &&
-				//	s.left < t.left + t.width)
-				//	static_cast<Skeleton*>(bodyUserData1)->ReachWall();
-				////Else set touching ground to be the skeleton ground
-				//else {
-				//	Terrain* t = static_cast<Terrain*>(bodyUserData2);
-				//	static_cast<Skeleton*>(bodyUserData1)->isTouching(t);
-				//}
 			}
 			else if (fixBType == "Skeleton") {
 				void* bodyUserData1 = contact->GetFixtureB()->GetBody()->GetUserData();
@@ -768,22 +754,6 @@ public:
 				}
 				else
 					static_cast<Skeleton*>(bodyUserData1)->ReachWall();
-				
-				////sf::IntRect int_s = vHelper::FloatToInt(s);
-				////Right Side
-				//if (s.left + s.width >= t.left - entity_wall_offset &&
-				//	s.left + s.width <= t.left)
-				//	static_cast<Skeleton*>(bodyUserData1)->ReachWall();
-				////Left Side
-				//else if (s.left >= t.left + t.width + entity_wall_offset &&
-				//	s.left <= t.left + t.width)
-				//	static_cast<Skeleton*>(bodyUserData1)->ReachWall();
-				////Else set touching ground to be the skeleton ground
-				//else {
-				//	Terrain* t = static_cast<Terrain*>(bodyUserData2);
-				//	static_cast<Skeleton*>(bodyUserData1)->isTouching(t);
-				//}
-				
 			}
 		}
 
@@ -921,6 +891,55 @@ public:
 			}
 		}
 
+		//Player and Weed
+		if (fixAType == "Player" && fixBType == "Weed"
+			|| fixAType == "Weed" && fixBType == "Player") {
+			contact->SetEnabled(true);
+			void* weed_data;
+			void* player_data;
+
+			if (fixAType == "Player") {
+				//if bottom of player touches top of enenmy
+				player_data = contact->GetFixtureA()->GetBody()->GetUserData();
+				weed_data = contact->GetFixtureB()->GetBody()->GetUserData();
+
+				Weed* s = static_cast<Weed*>(weed_data); //->ReachPlayer();
+				Player* p = static_cast<Player*>(player_data); //->TakeDamage();
+				if (s->isAlive()) {
+					if (p->getBounds().top + p->getBounds().height < s->getBounds().top) {
+						//Kill enemy
+						s->TakeDamage();
+					}
+					else {
+						if (s->getCenter().x > p->getCenter().x)
+							p->TakeDamage(0);		//Knockback Left
+						else
+							p->TakeDamage(1);		//Knockback Left
+					}
+				}
+			}
+			else if (fixBType == "Player") {
+				//if bottom of player touches top of enenmy
+				player_data = contact->GetFixtureB()->GetBody()->GetUserData();
+				weed_data = contact->GetFixtureA()->GetBody()->GetUserData();
+
+				Weed* s = static_cast<Weed*>(weed_data); //->ReachPlayer();
+				Player* p = static_cast<Player*>(player_data); //->TakeDamage();
+				if (s->isAlive()) {
+					if (p->getBounds().top + p->getBounds().height < s->getBounds().top) {
+						//Kill enemy
+						s->TakeDamage();
+					}
+					else {
+						if (s->getCenter().x > p->getCenter().x)
+							p->TakeDamage(0);		//Knockback Left
+						else
+							p->TakeDamage(1);		//Knockback Left
+					}
+				}
+			}
+		}
+
 		//Player and Skeleton
 		else if (fixAType == "Skeleton" && fixBType == "Player"
 			|| fixAType == "Player" && fixBType == "Skeleton") {
@@ -986,6 +1005,26 @@ public:
 				void* bodyUserData2 = contact->GetFixtureA()->GetBody()->GetUserData();
 
 				static_cast<Skeleton*>(bodyUserData2)->setCollidingSword(true);
+			}
+		}
+
+		//Player Sword and Skeleton
+		else if (fixAType == "Weed" && fixBType == "Player_Sword"
+			|| fixAType == "Player_Sword" && fixBType == "Weed") {
+
+			if (fixAType == "Player_Sword") {
+				//if bottom of player touches top of enenmy
+				void* bodyUserData1 = contact->GetFixtureA()->GetBody()->GetUserData();
+				void* bodyUserData2 = contact->GetFixtureB()->GetBody()->GetUserData();
+
+				static_cast<Weed*>(bodyUserData2)->setCollidingSword(true);
+			}
+			else if (fixBType == "Player_Sword") {
+				//if bottom of player touches top of enenmy
+				void* bodyUserData1 = contact->GetFixtureB()->GetBody()->GetUserData();
+				void* bodyUserData2 = contact->GetFixtureA()->GetBody()->GetUserData();
+
+				static_cast<Weed*>(bodyUserData2)->setCollidingSword(true);
 			}
 		}
 	
@@ -1226,6 +1265,26 @@ public:
 				void* chest = contact->GetFixtureA()->GetBody()->GetUserData();
 
 				static_cast<Chest*>(chest)->setCollidingSword(false);
+			}
+		}
+
+		//Player Sword and Weed
+		if (fixAType == "Weed" && fixBType == "Player_Sword"
+			|| fixAType == "Player_Sword" && fixBType == "Weed") {
+
+			if (fixAType == "Player_Sword") {
+				//if bottom of player touches top of enenmy
+				void* bodyUserData1 = contact->GetFixtureA()->GetBody()->GetUserData();
+				void* bodyUserData2 = contact->GetFixtureB()->GetBody()->GetUserData();
+
+				static_cast<Weed*>(bodyUserData1)->setCollidingSword(false);
+			}
+			else if (fixBType == "Player_Sword") {
+				//if bottom of player touches top of enenmy
+				void* bodyUserData1 = contact->GetFixtureB()->GetBody()->GetUserData();
+				void* bodyUserData2 = contact->GetFixtureA()->GetBody()->GetUserData();
+
+				static_cast<Weed*>(bodyUserData1)->setCollidingSword(false);
 			}
 		}
 

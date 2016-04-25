@@ -105,6 +105,8 @@ XBOXController::XBOXController(bool is_output)	{
 	isPressed["AR_LEFT"] = false;
 	isPressed["AR_RIGHT"] = false;
 	isPressed_cleared = isPressed;
+
+	output = true;
 }
 XBOXController::~XBOXController() {		}
 

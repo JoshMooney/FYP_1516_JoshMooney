@@ -20,7 +20,6 @@ Game::Game() :
 	dd.PassWindow(m_window);
 	isRunning = true;
 	m_xbox_controller = make_shared<XBOXController>();
-	m_xbox_controller->UpdateButtons();
 	cLog::inst()->print("Game class initialised");
 
 	m_menu_scene = new MenuScene();
@@ -70,7 +69,7 @@ void Game::run(){
 
 		if (l_event.key.code == sf::Keyboard::Escape)
 			isRunning = false;
-
+		
 		controller_connected = checkController();		//Checks controller connections and compaires to previous state.
 		xboxConnector::inst()->connect(controller_connected);
 		if (controller_connected)	

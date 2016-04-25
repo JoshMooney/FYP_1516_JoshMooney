@@ -4,6 +4,30 @@
 
 Projectile::Projectile() {		}
 
+Projectile::Projectile(b2Body * b, bool dir, STATE type) {
+	b->SetUserData(this);
+	m_box_body = b;
+	m_current_state = type;
+
+	if (dir)
+		m_direction = sf::Vector2f(1, 0);
+	else
+		m_direction = sf::Vector2f(1, 0);
+
+	init();
+
+	if (dir)
+		setScale(-1, 1);
+	else
+		setScale(1, 1);
+
+	loadMedia();
+	alineSprite();
+	applySpeed();
+
+	m_animator.playAnimation(m_current_state);
+}
+
 Projectile::Projectile(b2Body* b, sf::Vector2f dir) {
 	b->SetUserData(this);
 	m_box_body = b;
@@ -90,8 +114,10 @@ void Projectile::init() {
 	can_despawn = false;
 	m_spawn_point = vHelper::toSF(getBody()->GetPosition());
 	if (m_current_state != BOSS) {
-		if (m_direction == sf::Vector2f(1, 0))	setScale(-1, 1);
-		if (m_direction == sf::Vector2f(-1, 0)) setScale(1, 1);
+		if (m_direction.x > 0)	
+			setScale(1, 1);
+		else                                    
+			setScale(-1, 1);
 	}
 }
 

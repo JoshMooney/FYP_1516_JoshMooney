@@ -145,17 +145,17 @@ void MenuScene::handleInput(XBOXController &controller){
 			moveLeft();
 		}
 	}
-	if (controller.isPressed["A"]){
-		if (!m_key_pressed){
+	if (controller.isPressed["A"] && !controller.wasPressed["A"]){
+		//if (!m_key_pressed){
 			m_key_pressed = true;
 			select();
-		}
+		//}
 	}
-	if (controller.isPressed["B"]){
-		if (!m_key_pressed){
+	if (controller.isPressed["B"] && !controller.wasPressed["B"]){
+		//if (!m_key_pressed){
 			m_key_pressed = true;
 			back();
-		}
+		//}
 	}
 	if (controller.isIdle())
 		m_key_pressed = false;

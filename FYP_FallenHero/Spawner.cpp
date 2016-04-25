@@ -7,7 +7,7 @@ float Spawner::distanceToPlayer(sf::Vector2f entity, sf::Vector2f player) {
 }
 
 Spawner::Spawner(b2World * world) {
-	update_dist = 1200;
+	update_dist = 1500;
 	m_world = world;
 
 	prototype_Skeleton = new Skeleton();
@@ -50,7 +50,7 @@ b2Body * Spawner::GenerateBody(SPAWN_TYPE type, sf::Vector2f pos) {
 		return body;
 		break;
 	case WEED:
-		myBodyDef.type = b2_dynamicBody; //this will be a dynamic body
+		myBodyDef.type = b2_kinematicBody; //this will be a dynamic body
 		size = sf::Vector2f(39, 37);
 		pos_off = sf::Vector2f(pos.x + size.x / 2, pos.y + size.y / 2);
 		myBodyDef.position = vHelper::toB2(pos_off); //set the starting position
@@ -64,7 +64,7 @@ b2Body * Spawner::GenerateBody(SPAWN_TYPE type, sf::Vector2f pos) {
 		myFixtureDef.friction = 1.5f;
 		myFixtureDef.shape = &shape;
 		//Left on purpose so all the collision detection is the same. For now...
-		myFixtureDef.userData = "Skeleton";
+		myFixtureDef.userData = "Weed";
 
 		myFixtureDef.filter.categoryBits = _filterCategory::ENEMY;
 		myFixtureDef.filter.maskBits = PLAYER | TERRAIN | PLATFORM;
